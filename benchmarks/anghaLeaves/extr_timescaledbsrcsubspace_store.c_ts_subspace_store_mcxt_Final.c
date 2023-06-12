@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ ts_subspace_store_mcxt(SubspaceStore *store)
 	return store->mcxt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_store0 = 1;
+          int _len_store0 = 65025;
           struct TYPE_3__ * store = (struct TYPE_3__ *) malloc(_len_store0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_store0; _i0++) {
-            store[_i0].mcxt = ((-2 * (next_i()%2)) + 1) * next_i();
+              store[_i0].mcxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ts_subspace_store_mcxt(store);
           printf("%d\n", benchRet); 
           free(store);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_store0 = 100;
           struct TYPE_3__ * store = (struct TYPE_3__ *) malloc(_len_store0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_store0; _i0++) {
-            store[_i0].mcxt = ((-2 * (next_i()%2)) + 1) * next_i();
+              store[_i0].mcxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ts_subspace_store_mcxt(store);
           printf("%d\n", benchRet); 
           free(store);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_store0 = 1;
+          struct TYPE_3__ * store = (struct TYPE_3__ *) malloc(_len_store0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_store0; _i0++) {
+              store[_i0].mcxt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ts_subspace_store_mcxt(store);
+          printf("%d\n", benchRet); 
+          free(store);
+        
+        break;
+    }
     default:
         usage();
         break;

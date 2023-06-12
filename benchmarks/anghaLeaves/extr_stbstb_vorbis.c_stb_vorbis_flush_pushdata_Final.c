@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ void stb_vorbis_flush_pushdata(stb_vorbis *f)
    f->channel_buffer_end = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_f0 = 65025;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].channel_buffer_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].channel_buffer_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].samples_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].discard_samples_deferred = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].page_crc_tests = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].previous_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stb_vorbis_flush_pushdata(f);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_f0 = 100;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].channel_buffer_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].channel_buffer_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].samples_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].discard_samples_deferred = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].page_crc_tests = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].previous_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stb_vorbis_flush_pushdata(f);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_f0 = 1;
           struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].channel_buffer_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].channel_buffer_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].samples_output = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].discard_samples_deferred = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].page_crc_tests = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].previous_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].channel_buffer_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].channel_buffer_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].samples_output = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].discard_samples_deferred = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].page_crc_tests = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].previous_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           stb_vorbis_flush_pushdata(f);
           free(f);
         

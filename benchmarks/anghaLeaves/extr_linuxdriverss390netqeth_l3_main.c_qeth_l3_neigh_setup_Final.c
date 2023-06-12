@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ qeth_l3_neigh_setup(struct net_device *dev, struct neigh_parms *np)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,24 +83,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_np0 = 1;
+        
+          int _len_np0 = 65025;
           struct neigh_parms * np = (struct neigh_parms *) malloc(_len_np0*sizeof(struct neigh_parms));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].neigh_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].neigh_setup = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_np__i0__tbl0 = 1;
           np[_i0].tbl = (struct TYPE_2__ *) malloc(_len_np__i0__tbl0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_np__i0__tbl0; _j0++) {
-            np[_i0].tbl->family = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].tbl->family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = qeth_l3_neigh_setup(dev,np);
+          printf("%d\n", benchRet); 
+          free(dev);
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].tbl);
+          }
+          free(np);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_np0 = 100;
+          struct neigh_parms * np = (struct neigh_parms *) malloc(_len_np0*sizeof(struct neigh_parms));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].neigh_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_np__i0__tbl0 = 1;
+          np[_i0].tbl = (struct TYPE_2__ *) malloc(_len_np__i0__tbl0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_np__i0__tbl0; _j0++) {
+              np[_i0].tbl->family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qeth_l3_neigh_setup(dev,np);
+          printf("%d\n", benchRet); 
+          free(dev);
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].tbl);
+          }
+          free(np);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_np0 = 1;
+          struct neigh_parms * np = (struct neigh_parms *) malloc(_len_np0*sizeof(struct neigh_parms));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].neigh_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_np__i0__tbl0 = 1;
+          np[_i0].tbl = (struct TYPE_2__ *) malloc(_len_np__i0__tbl0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_np__i0__tbl0; _j0++) {
+              np[_i0].tbl->family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = qeth_l3_neigh_setup(dev,np);
           printf("%d\n", benchRet); 
           free(dev);

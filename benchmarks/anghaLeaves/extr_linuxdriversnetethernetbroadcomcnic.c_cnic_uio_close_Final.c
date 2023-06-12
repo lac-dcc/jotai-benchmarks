@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int cnic_uio_close(struct uio_info *uinfo, struct i
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_uinfo0 = 1;
+          int _len_uinfo0 = 65025;
           struct uio_info * uinfo = (struct uio_info *) malloc(_len_uinfo0*sizeof(struct uio_info));
           for(int _i0 = 0; _i0 < _len_uinfo0; _i0++) {
               int _len_uinfo__i0__priv0 = 1;
           uinfo[_i0].priv = (struct cnic_uio_dev *) malloc(_len_uinfo__i0__priv0*sizeof(struct cnic_uio_dev));
           for(int _j0 = 0; _j0 < _len_uinfo__i0__priv0; _j0++) {
-            uinfo[_i0].priv->uio_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              uinfo[_i0].priv->uio_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_inode0 = 1;
+        
+          int _len_inode0 = 65025;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cnic_uio_close(uinfo,inode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_uinfo0; _aux++) {
@@ -110,7 +111,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_uinfo0 = 100;
+          struct uio_info * uinfo = (struct uio_info *) malloc(_len_uinfo0*sizeof(struct uio_info));
+          for(int _i0 = 0; _i0 < _len_uinfo0; _i0++) {
+              int _len_uinfo__i0__priv0 = 1;
+          uinfo[_i0].priv = (struct cnic_uio_dev *) malloc(_len_uinfo__i0__priv0*sizeof(struct cnic_uio_dev));
+          for(int _j0 = 0; _j0 < _len_uinfo__i0__priv0; _j0++) {
+              uinfo[_i0].priv->uio_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cnic_uio_close(uinfo,inode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_uinfo0; _aux++) {
+          free(uinfo[_aux].priv);
+          }
+          free(uinfo);
+          free(inode);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_uinfo0 = 1;
+          struct uio_info * uinfo = (struct uio_info *) malloc(_len_uinfo0*sizeof(struct uio_info));
+          for(int _i0 = 0; _i0 < _len_uinfo0; _i0++) {
+              int _len_uinfo__i0__priv0 = 1;
+          uinfo[_i0].priv = (struct cnic_uio_dev *) malloc(_len_uinfo__i0__priv0*sizeof(struct cnic_uio_dev));
+          for(int _j0 = 0; _j0 < _len_uinfo__i0__priv0; _j0++) {
+              uinfo[_i0].priv->uio_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cnic_uio_close(uinfo,inode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_uinfo0; _aux++) {
+          free(uinfo[_aux].priv);
+          }
+          free(uinfo);
+          free(inode);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -180,12 +182,6 @@ void fgSetCursor ( SFG_Window *window, int cursorID )
     window->State.Cursor = cursorID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -202,31 +198,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cursorID = 100;
+        
           int _len_window0 = 1;
           struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].State.Cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].State.Cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          fgSetCursor(window,cursorID);
+          free(window);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cursorID = 255;
+        
+          int _len_window0 = 65025;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].State.Cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           fgSetCursor(window,cursorID);
           free(window);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cursorID = 10;
+        
           int _len_window0 = 100;
           struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].State.Cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].State.Cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           fgSetCursor(window,cursorID);
           free(window);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cursorID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_window0 = 1;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].State.Cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          fgSetCursor(window,cursorID);
+          free(window);
+        
+        break;
+    }
     default:
         usage();
         break;

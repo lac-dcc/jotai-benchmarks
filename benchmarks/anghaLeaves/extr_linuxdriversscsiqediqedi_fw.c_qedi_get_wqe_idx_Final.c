@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static u16 qedi_get_wqe_idx(struct qedi_conn *qedi_conn)
 	return rval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +89,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_qedi_conn0 = 65025;
+          struct qedi_conn * qedi_conn = (struct qedi_conn *) malloc(_len_qedi_conn0*sizeof(struct qedi_conn));
+          for(int _i0 = 0; _i0 < _len_qedi_conn0; _i0++) {
+              int _len_qedi_conn__i0__ep0 = 1;
+          qedi_conn[_i0].ep = (struct qedi_endpoint *) malloc(_len_qedi_conn__i0__ep0*sizeof(struct qedi_endpoint));
+          for(int _j0 = 0; _j0 < _len_qedi_conn__i0__ep0; _j0++) {
+              qedi_conn[_i0].ep->sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qedi_conn[_i0].ep->fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = qedi_get_wqe_idx(qedi_conn);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_qedi_conn0; _aux++) {
+          free(qedi_conn[_aux].ep);
+          }
+          free(qedi_conn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_qedi_conn0 = 100;
+          struct qedi_conn * qedi_conn = (struct qedi_conn *) malloc(_len_qedi_conn0*sizeof(struct qedi_conn));
+          for(int _i0 = 0; _i0 < _len_qedi_conn0; _i0++) {
+              int _len_qedi_conn__i0__ep0 = 1;
+          qedi_conn[_i0].ep = (struct qedi_endpoint *) malloc(_len_qedi_conn__i0__ep0*sizeof(struct qedi_endpoint));
+          for(int _j0 = 0; _j0 < _len_qedi_conn__i0__ep0; _j0++) {
+              qedi_conn[_i0].ep->sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qedi_conn[_i0].ep->fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = qedi_get_wqe_idx(qedi_conn);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_qedi_conn0; _aux++) {
+          free(qedi_conn[_aux].ep);
+          }
+          free(qedi_conn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_qedi_conn0 = 1;
           struct qedi_conn * qedi_conn = (struct qedi_conn *) malloc(_len_qedi_conn0*sizeof(struct qedi_conn));
           for(int _i0 = 0; _i0 < _len_qedi_conn0; _i0++) {
               int _len_qedi_conn__i0__ep0 = 1;
           qedi_conn[_i0].ep = (struct qedi_endpoint *) malloc(_len_qedi_conn__i0__ep0*sizeof(struct qedi_endpoint));
           for(int _j0 = 0; _j0 < _len_qedi_conn__i0__ep0; _j0++) {
-            qedi_conn[_i0].ep->sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        qedi_conn[_i0].ep->fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              qedi_conn[_i0].ep->sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          qedi_conn[_i0].ep->fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long benchRet = qedi_get_wqe_idx(qedi_conn);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_qedi_conn0; _aux++) {

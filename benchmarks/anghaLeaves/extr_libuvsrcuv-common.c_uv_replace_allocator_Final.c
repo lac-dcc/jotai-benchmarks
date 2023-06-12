@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ int uv_replace_allocator(uv_malloc_func malloc_func,
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,29 +93,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_malloc_func0 = 1;
+          int _len_malloc_func0 = 65025;
           int * malloc_func = (int *) malloc(_len_malloc_func0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_malloc_func0; _i0++) {
             malloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_realloc_func0 = 1;
+        
+          int _len_realloc_func0 = 65025;
           int * realloc_func = (int *) malloc(_len_realloc_func0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_realloc_func0; _i0++) {
             realloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_calloc_func0 = 1;
+        
+          int _len_calloc_func0 = 65025;
           int * calloc_func = (int *) malloc(_len_calloc_func0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_calloc_func0; _i0++) {
             calloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_free_func0 = 1;
+        
+          int _len_free_func0 = 65025;
           int * free_func = (int *) malloc(_len_free_func0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_free_func0; _i0++) {
             free_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = uv_replace_allocator(malloc_func,realloc_func,calloc_func,free_func);
           printf("%d\n", benchRet); 
           free(malloc_func);
@@ -129,7 +129,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_malloc_func0 = 100;
+          int * malloc_func = (int *) malloc(_len_malloc_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_malloc_func0; _i0++) {
+            malloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_realloc_func0 = 100;
+          int * realloc_func = (int *) malloc(_len_realloc_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_realloc_func0; _i0++) {
+            realloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_calloc_func0 = 100;
+          int * calloc_func = (int *) malloc(_len_calloc_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_calloc_func0; _i0++) {
+            calloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_free_func0 = 100;
+          int * free_func = (int *) malloc(_len_free_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_free_func0; _i0++) {
+            free_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = uv_replace_allocator(malloc_func,realloc_func,calloc_func,free_func);
+          printf("%d\n", benchRet); 
+          free(malloc_func);
+          free(realloc_func);
+          free(calloc_func);
+          free(free_func);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_malloc_func0 = 1;
+          int * malloc_func = (int *) malloc(_len_malloc_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_malloc_func0; _i0++) {
+            malloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_realloc_func0 = 1;
+          int * realloc_func = (int *) malloc(_len_realloc_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_realloc_func0; _i0++) {
+            realloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_calloc_func0 = 1;
+          int * calloc_func = (int *) malloc(_len_calloc_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_calloc_func0; _i0++) {
+            calloc_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_free_func0 = 1;
+          int * free_func = (int *) malloc(_len_free_func0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_free_func0; _i0++) {
+            free_func[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = uv_replace_allocator(malloc_func,realloc_func,calloc_func,free_func);
+          printf("%d\n", benchRet); 
+          free(malloc_func);
+          free(realloc_func);
+          free(calloc_func);
+          free(free_func);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool gb_operation_is_core(struct gb_operatio
 	return operation->flags & GB_OPERATION_FLAG_CORE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_operation0 = 1;
+          int _len_operation0 = 65025;
           struct gb_operation * operation = (struct gb_operation *) malloc(_len_operation0*sizeof(struct gb_operation));
           for(int _i0 = 0; _i0 < _len_operation0; _i0++) {
-            operation[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              operation[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gb_operation_is_core(operation);
           printf("%d\n", benchRet); 
           free(operation);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_operation0 = 100;
           struct gb_operation * operation = (struct gb_operation *) malloc(_len_operation0*sizeof(struct gb_operation));
           for(int _i0 = 0; _i0 < _len_operation0; _i0++) {
-            operation[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              operation[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gb_operation_is_core(operation);
           printf("%d\n", benchRet); 
           free(operation);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_operation0 = 1;
+          struct gb_operation * operation = (struct gb_operation *) malloc(_len_operation0*sizeof(struct gb_operation));
+          for(int _i0 = 0; _i0 < _len_operation0; _i0++) {
+              operation[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gb_operation_is_core(operation);
+          printf("%d\n", benchRet); 
+          free(operation);
+        
+        break;
+    }
     default:
         usage();
         break;

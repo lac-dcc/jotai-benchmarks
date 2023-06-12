@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ const char *emscripten_result_to_string(EMSCRIPTEN_RESULT result) {
   return "Unknown EMSCRIPTEN_RESULT!";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long result = 100;
+        
           const char * benchRet = emscripten_result_to_string(result);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -110,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long result = 255;
+        
           const char * benchRet = emscripten_result_to_string(result);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -119,12 +116,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long result = 10;
+        
           const char * benchRet = emscripten_result_to_string(result);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = emscripten_result_to_string(result);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

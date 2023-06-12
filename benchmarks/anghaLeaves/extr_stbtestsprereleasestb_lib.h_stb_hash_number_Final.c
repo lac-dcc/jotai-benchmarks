@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ unsigned int stb_hash_number(unsigned int hash)
    return hash;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int hash = 100;
+        
           unsigned int benchRet = stb_hash_number(hash);
           printf("%u\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int hash = 255;
+        
           unsigned int benchRet = stb_hash_number(hash);
           printf("%u\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int hash = 10;
+        
           unsigned int benchRet = stb_hash_number(hash);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = stb_hash_number(hash);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

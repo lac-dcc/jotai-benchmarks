@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static inline u32 radeon_get_dstbpp(u16 depth)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int depth = 100;
+        
           int benchRet = radeon_get_dstbpp(depth);
           printf("%d\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int depth = 255;
+        
           int benchRet = radeon_get_dstbpp(depth);
           printf("%d\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int depth = 10;
+        
           int benchRet = radeon_get_dstbpp(depth);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = radeon_get_dstbpp(depth);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

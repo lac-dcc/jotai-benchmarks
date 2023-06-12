@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ __attribute__((used)) static int GetMidiLength(PMIDIALLOC pClient, BYTE b)
     return (pClient->l - 1); // uses previous value if data byte (running status)
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,30 +110,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int b = 100;
+        
           int _len_pClient0 = 1;
           struct TYPE_3__ * pClient = (struct TYPE_3__ *) malloc(_len_pClient0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pClient0; _i0++) {
-            pClient[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+              pClient[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = GetMidiLength(pClient,b);
           printf("%d\n", benchRet); 
           free(pClient);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int b = 255;
+        
+          int _len_pClient0 = 65025;
+          struct TYPE_3__ * pClient = (struct TYPE_3__ *) malloc(_len_pClient0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pClient0; _i0++) {
+              pClient[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = GetMidiLength(pClient,b);
+          printf("%d\n", benchRet); 
+          free(pClient);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int b = 10;
+        
           int _len_pClient0 = 100;
           struct TYPE_3__ * pClient = (struct TYPE_3__ *) malloc(_len_pClient0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pClient0; _i0++) {
-            pClient[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+              pClient[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = GetMidiLength(pClient,b);
+          printf("%d\n", benchRet); 
+          free(pClient);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pClient0 = 1;
+          struct TYPE_3__ * pClient = (struct TYPE_3__ *) malloc(_len_pClient0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pClient0; _i0++) {
+              pClient[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = GetMidiLength(pClient,b);
           printf("%d\n", benchRet); 
           free(pClient);

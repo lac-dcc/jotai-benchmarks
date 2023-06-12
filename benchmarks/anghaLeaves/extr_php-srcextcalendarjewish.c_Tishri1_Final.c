@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -102,12 +103,6 @@ __attribute__((used)) static zend_long Tishri1(
 	return (tishri1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,34 +115,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 98
+          // dynamic_instructions_O0 : 98
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int metonicYear = 100;
+        
           int moladDay = 100;
+        
           int moladHalakim = 100;
+        
           int benchRet = Tishri1(metonicYear,moladDay,moladHalakim);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 98
+          // dynamic_instructions_O0 : 98
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int metonicYear = 255;
+        
           int moladDay = 255;
+        
           int moladHalakim = 255;
+        
           int benchRet = Tishri1(metonicYear,moladDay,moladHalakim);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int metonicYear = 10;
+        
           int moladDay = 10;
+        
           int moladHalakim = 10;
+        
+          int benchRet = Tishri1(metonicYear,moladDay,moladHalakim);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 96
+          // dynamic_instructions_O0 : 96
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 42
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
+          int metonicYear = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int moladDay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int moladHalakim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = Tishri1(metonicYear,moladDay,moladHalakim);
           printf("%d\n", benchRet); 
         

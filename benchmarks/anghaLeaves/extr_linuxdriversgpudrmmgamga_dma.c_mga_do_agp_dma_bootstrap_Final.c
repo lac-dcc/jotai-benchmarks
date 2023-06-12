@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int mga_do_agp_dma_bootstrap(struct drm_device *dev
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dma_bs0 = 1;
+        
+          int _len_dma_bs0 = 65025;
           int * dma_bs = (int *) malloc(_len_dma_bs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dma_bs0; _i0++) {
             dma_bs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mga_do_agp_dma_bootstrap(dev,dma_bs);
           printf("%d\n", benchRet); 
           free(dev);
@@ -101,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_bs0 = 100;
+          int * dma_bs = (int *) malloc(_len_dma_bs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dma_bs0; _i0++) {
+            dma_bs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mga_do_agp_dma_bootstrap(dev,dma_bs);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(dma_bs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_bs0 = 1;
+          int * dma_bs = (int *) malloc(_len_dma_bs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dma_bs0; _i0++) {
+            dma_bs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mga_do_agp_dma_bootstrap(dev,dma_bs);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(dma_bs);
+        
+        break;
+    }
     default:
         usage();
         break;

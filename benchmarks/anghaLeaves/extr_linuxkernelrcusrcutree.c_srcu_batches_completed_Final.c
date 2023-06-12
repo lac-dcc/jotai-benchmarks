@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned long srcu_batches_completed(struct srcu_struct *sp)
 	return sp->srcu_idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sp0 = 1;
+          int _len_sp0 = 65025;
           struct srcu_struct * sp = (struct srcu_struct *) malloc(_len_sp0*sizeof(struct srcu_struct));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
-            sp[_i0].srcu_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              sp[_i0].srcu_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = srcu_batches_completed(sp);
           printf("%lu\n", benchRet); 
           free(sp);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_sp0 = 100;
           struct srcu_struct * sp = (struct srcu_struct *) malloc(_len_sp0*sizeof(struct srcu_struct));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
-            sp[_i0].srcu_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              sp[_i0].srcu_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = srcu_batches_completed(sp);
           printf("%lu\n", benchRet); 
           free(sp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sp0 = 1;
+          struct srcu_struct * sp = (struct srcu_struct *) malloc(_len_sp0*sizeof(struct srcu_struct));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+              sp[_i0].srcu_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = srcu_batches_completed(sp);
+          printf("%lu\n", benchRet); 
+          free(sp);
+        
+        break;
+    }
     default:
         usage();
         break;

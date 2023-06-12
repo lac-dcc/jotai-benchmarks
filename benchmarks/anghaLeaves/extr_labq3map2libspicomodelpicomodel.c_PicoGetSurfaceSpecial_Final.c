@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ int PicoGetSurfaceSpecial( picoSurface_t *surface, int num ){
 	return surface->special[ num ];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,10 +80,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int num = 100;
+        
           int _len_surface0 = 1;
           struct TYPE_3__ * surface = (struct TYPE_3__ *) malloc(_len_surface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
@@ -95,7 +116,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_surface__i0__special0; _j0++) {
             surface[_i0].special[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = PicoGetSurfaceSpecial(surface,num);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_surface0; _aux++) {
+          free(surface[_aux].special);
+          }
+          free(surface);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int num = 255;
+        
+          int _len_surface0 = 65025;
+          struct TYPE_3__ * surface = (struct TYPE_3__ *) malloc(_len_surface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
+              int _len_surface__i0__special0 = 1;
+          surface[_i0].special = (int *) malloc(_len_surface__i0__special0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_surface__i0__special0; _j0++) {
+            surface[_i0].special[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = PicoGetSurfaceSpecial(surface,num);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_surface0; _aux++) {
+          free(surface[_aux].special);
+          }
+          free(surface);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int num = 10;
+        
+          int _len_surface0 = 100;
+          struct TYPE_3__ * surface = (struct TYPE_3__ *) malloc(_len_surface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
+              int _len_surface__i0__special0 = 1;
+          surface[_i0].special = (int *) malloc(_len_surface__i0__special0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_surface__i0__special0; _j0++) {
+            surface[_i0].special[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = PicoGetSurfaceSpecial(surface,num);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_surface0; _aux++) {
+          free(surface[_aux].special);
+          }
+          free(surface);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_surface0 = 1;
+          struct TYPE_3__ * surface = (struct TYPE_3__ *) malloc(_len_surface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
+              int _len_surface__i0__special0 = 1;
+          surface[_i0].special = (int *) malloc(_len_surface__i0__special0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_surface__i0__special0; _j0++) {
+            surface[_i0].special[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = PicoGetSurfaceSpecial(surface,num);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_surface0; _aux++) {

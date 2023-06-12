@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +95,6 @@ __attribute__((used)) static int isif_get_pix_fmt(u32 mbus_code)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,6 +111,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mbus_code = 100;
+        
           int benchRet = isif_get_pix_fmt(mbus_code);
           printf("%d\n", benchRet); 
         
@@ -125,6 +121,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mbus_code = 255;
+        
           int benchRet = isif_get_pix_fmt(mbus_code);
           printf("%d\n", benchRet); 
         
@@ -134,12 +131,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mbus_code = 10;
+        
           int benchRet = isif_get_pix_fmt(mbus_code);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mbus_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = isif_get_pix_fmt(mbus_code);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

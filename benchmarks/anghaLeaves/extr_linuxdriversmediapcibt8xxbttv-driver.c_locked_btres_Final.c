@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int locked_btres(struct bttv *btv, int bit)
 	return (btv->resources & bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,30 +76,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int bit = 100;
+        
           int _len_btv0 = 1;
           struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
           for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
-            btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = locked_btres(btv,bit);
           printf("%d\n", benchRet); 
           free(btv);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int bit = 255;
+        
+          int _len_btv0 = 65025;
+          struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
+          for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = locked_btres(btv,bit);
+          printf("%d\n", benchRet); 
+          free(btv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int bit = 10;
+        
           int _len_btv0 = 100;
           struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
           for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
-            btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = locked_btres(btv,bit);
+          printf("%d\n", benchRet); 
+          free(btv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_btv0 = 1;
+          struct bttv * btv = (struct bttv *) malloc(_len_btv0*sizeof(struct bttv));
+          for(int _i0 = 0; _i0 < _len_btv0; _i0++) {
+              btv[_i0].resources = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = locked_btres(btv,bit);
           printf("%d\n", benchRet); 
           free(btv);

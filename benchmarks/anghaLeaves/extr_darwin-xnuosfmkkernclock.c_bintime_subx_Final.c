@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ bintime_subx(struct bintime *_bt, uint64_t _x)
 		_bt->sec--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long _x = 100;
+        
           int _len__bt0 = 1;
           struct bintime * _bt = (struct bintime *) malloc(_len__bt0*sizeof(struct bintime));
           for(int _i0 = 0; _i0 < _len__bt0; _i0++) {
-            _bt[_i0].frac = ((-2 * (next_i()%2)) + 1) * next_i();
-        _bt[_i0].sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              _bt[_i0].frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          _bt[_i0].sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bintime_subx(_bt,_x);
           free(_bt);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long _x = 255;
+        
+          int _len__bt0 = 65025;
+          struct bintime * _bt = (struct bintime *) malloc(_len__bt0*sizeof(struct bintime));
+          for(int _i0 = 0; _i0 < _len__bt0; _i0++) {
+              _bt[_i0].frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          _bt[_i0].sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bintime_subx(_bt,_x);
+          free(_bt);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long _x = 10;
+        
+          int _len__bt0 = 100;
+          struct bintime * _bt = (struct bintime *) malloc(_len__bt0*sizeof(struct bintime));
+          for(int _i0 = 0; _i0 < _len__bt0; _i0++) {
+              _bt[_i0].frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          _bt[_i0].sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bintime_subx(_bt,_x);
+          free(_bt);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long _x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len__bt0 = 1;
+          struct bintime * _bt = (struct bintime *) malloc(_len__bt0*sizeof(struct bintime));
+          for(int _i0 = 0; _i0 < _len__bt0; _i0++) {
+              _bt[_i0].frac = ((-2 * (next_i()%2)) + 1) * next_i();
+          _bt[_i0].sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bintime_subx(_bt,_x);
+          free(_bt);
+        
+        break;
+    }
     default:
         usage();
         break;

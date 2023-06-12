@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int out_total_unprocessed_bytes (struct connection *c) {
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,24 +82,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].Out.unprocessed_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].out.total_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].crypto = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].Out.unprocessed_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          c[_i0].out.total_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          c[_i0].crypto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = out_total_unprocessed_bytes(c);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_c0 = 100;
+          struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].Out.unprocessed_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          c[_i0].out.total_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          c[_i0].crypto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = out_total_unprocessed_bytes(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].Out.unprocessed_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          c[_i0].out.total_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          c[_i0].crypto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = out_total_unprocessed_bytes(c);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline int attributes_need_mount(u32 *bmval)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bmval0 = 1;
+          int _len_bmval0 = 65025;
           int * bmval = (int *) malloc(_len_bmval0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bmval0; _i0++) {
             bmval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = attributes_need_mount(bmval);
           printf("%d\n", benchRet); 
           free(bmval);
@@ -108,13 +104,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_bmval0; _i0++) {
             bmval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = attributes_need_mount(bmval);
           printf("%d\n", benchRet); 
           free(bmval);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bmval0 = 1;
+          int * bmval = (int *) malloc(_len_bmval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bmval0; _i0++) {
+            bmval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = attributes_need_mount(bmval);
+          printf("%d\n", benchRet); 
+          free(bmval);
+        
+        break;
+    }
     default:
         usage();
         break;

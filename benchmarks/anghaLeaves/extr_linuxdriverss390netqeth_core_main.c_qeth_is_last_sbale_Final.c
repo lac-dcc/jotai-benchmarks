@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int qeth_is_last_sbale(struct qdio_buffer_el
 	return (sbale->eflags & SBAL_EFLAGS_LAST_ENTRY);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sbale0 = 1;
+          int _len_sbale0 = 65025;
           struct qdio_buffer_element * sbale = (struct qdio_buffer_element *) malloc(_len_sbale0*sizeof(struct qdio_buffer_element));
           for(int _i0 = 0; _i0 < _len_sbale0; _i0++) {
-            sbale[_i0].eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbale[_i0].eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qeth_is_last_sbale(sbale);
           printf("%d\n", benchRet); 
           free(sbale);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_sbale0 = 100;
           struct qdio_buffer_element * sbale = (struct qdio_buffer_element *) malloc(_len_sbale0*sizeof(struct qdio_buffer_element));
           for(int _i0 = 0; _i0 < _len_sbale0; _i0++) {
-            sbale[_i0].eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbale[_i0].eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qeth_is_last_sbale(sbale);
           printf("%d\n", benchRet); 
           free(sbale);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sbale0 = 1;
+          struct qdio_buffer_element * sbale = (struct qdio_buffer_element *) malloc(_len_sbale0*sizeof(struct qdio_buffer_element));
+          for(int _i0 = 0; _i0 < _len_sbale0; _i0++) {
+              sbale[_i0].eflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qeth_is_last_sbale(sbale);
+          printf("%d\n", benchRet); 
+          free(sbale);
+        
+        break;
+    }
     default:
         usage();
         break;

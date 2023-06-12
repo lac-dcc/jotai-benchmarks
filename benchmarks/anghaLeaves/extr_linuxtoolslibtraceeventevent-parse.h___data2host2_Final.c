@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __data2host2(struct tep_handle *pevent, unsigned short data)
 	return swap;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +88,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short data = 100;
+        
           int _len_pevent0 = 1;
           struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
           for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
-            pevent[_i0].host_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
-        pevent[_i0].file_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+              pevent[_i0].host_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+          pevent[_i0].file_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned short benchRet = __data2host2(pevent,data);
           printf("%hu\n", benchRet); 
           free(pevent);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned short data = 255;
+        
+          int _len_pevent0 = 65025;
+          struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
+          for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
+              pevent[_i0].host_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+          pevent[_i0].file_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned short benchRet = __data2host2(pevent,data);
+          printf("%hu\n", benchRet); 
+          free(pevent);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned short data = 10;
+        
+          int _len_pevent0 = 100;
+          struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
+          for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
+              pevent[_i0].host_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+          pevent[_i0].file_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned short benchRet = __data2host2(pevent,data);
+          printf("%hu\n", benchRet); 
+          free(pevent);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned short data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pevent0 = 1;
+          struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
+          for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
+              pevent[_i0].host_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+          pevent[_i0].file_bigendian = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned short benchRet = __data2host2(pevent,data);
+          printf("%hu\n", benchRet); 
+          free(pevent);
+        
+        break;
+    }
     default:
         usage();
         break;

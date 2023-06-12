@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline void rlw_xor_run_bit(eword_t *word)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_word0 = 1;
+          int _len_word0 = 65025;
           int * word = (int *) malloc(_len_word0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_word0; _i0++) {
             word[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           rlw_xor_run_bit(word);
           free(word);
         
@@ -104,12 +100,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_word0; _i0++) {
             word[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           rlw_xor_run_bit(word);
           free(word);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_word0 = 1;
+          int * word = (int *) malloc(_len_word0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_word0; _i0++) {
+            word[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rlw_xor_run_bit(word);
+          free(word);
+        
+        break;
+    }
     default:
         usage();
         break;

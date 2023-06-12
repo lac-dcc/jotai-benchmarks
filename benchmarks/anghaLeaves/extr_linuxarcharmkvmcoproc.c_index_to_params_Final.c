@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -113,12 +116,6 @@ __attribute__((used)) static bool index_to_params(u64 id, struct coproc_params *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,19 +128,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int id = 100;
+        
           int _len_params0 = 1;
           struct coproc_params * params = (struct coproc_params *) malloc(_len_params0*sizeof(struct coproc_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = index_to_params(id,params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_params0 = 65025;
+          struct coproc_params * params = (struct coproc_params *) malloc(_len_params0*sizeof(struct coproc_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = index_to_params(id,params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int id = 10;
+        
+          int _len_params0 = 100;
+          struct coproc_params * params = (struct coproc_params *) malloc(_len_params0*sizeof(struct coproc_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = index_to_params(id,params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_params0 = 1;
+          struct coproc_params * params = (struct coproc_params *) malloc(_len_params0*sizeof(struct coproc_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].is_64bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = index_to_params(id,params);
           printf("%d\n", benchRet); 
           free(params);

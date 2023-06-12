@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ __attribute__((used)) static int amd_fam14h_get_pci_info(struct cstate *state,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,21 +114,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int cpu = 100;
+        
           int _len_state0 = 1;
           struct cstate * state = (struct cstate *) malloc(_len_state0*sizeof(struct cstate));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pci_offset0 = 1;
           unsigned int * pci_offset = (unsigned int *) malloc(_len_pci_offset0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_pci_offset0; _i0++) {
             pci_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_enable_bit0 = 1;
           unsigned int * enable_bit = (unsigned int *) malloc(_len_enable_bit0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_enable_bit0; _i0++) {
             enable_bit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = amd_fam14h_get_pci_info(state,pci_offset,enable_bit,cpu);
           printf("%d\n", benchRet); 
           free(state);
@@ -140,7 +142,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int cpu = 255;
+        
+          int _len_state0 = 65025;
+          struct cstate * state = (struct cstate *) malloc(_len_state0*sizeof(struct cstate));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pci_offset0 = 65025;
+          unsigned int * pci_offset = (unsigned int *) malloc(_len_pci_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_pci_offset0; _i0++) {
+            pci_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_enable_bit0 = 65025;
+          unsigned int * enable_bit = (unsigned int *) malloc(_len_enable_bit0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_enable_bit0; _i0++) {
+            enable_bit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = amd_fam14h_get_pci_info(state,pci_offset,enable_bit,cpu);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(pci_offset);
+          free(enable_bit);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int cpu = 10;
+        
+          int _len_state0 = 100;
+          struct cstate * state = (struct cstate *) malloc(_len_state0*sizeof(struct cstate));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pci_offset0 = 100;
+          unsigned int * pci_offset = (unsigned int *) malloc(_len_pci_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_pci_offset0; _i0++) {
+            pci_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_enable_bit0 = 100;
+          unsigned int * enable_bit = (unsigned int *) malloc(_len_enable_bit0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_enable_bit0; _i0++) {
+            enable_bit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = amd_fam14h_get_pci_info(state,pci_offset,enable_bit,cpu);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(pci_offset);
+          free(enable_bit);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct cstate * state = (struct cstate *) malloc(_len_state0*sizeof(struct cstate));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pci_offset0 = 1;
+          unsigned int * pci_offset = (unsigned int *) malloc(_len_pci_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_pci_offset0; _i0++) {
+            pci_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_enable_bit0 = 1;
+          unsigned int * enable_bit = (unsigned int *) malloc(_len_enable_bit0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_enable_bit0; _i0++) {
+            enable_bit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = amd_fam14h_get_pci_info(state,pci_offset,enable_bit,cpu);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(pci_offset);
+          free(enable_bit);
+        
+        break;
+    }
     default:
         usage();
         break;

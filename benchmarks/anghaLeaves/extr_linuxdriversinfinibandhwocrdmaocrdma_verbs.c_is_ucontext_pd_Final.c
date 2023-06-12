@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int is_ucontext_pd(struct ocrdma_ucontext *u
 	return (uctx->cntxt_pd == pd);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_uctx0 = 1;
+          int _len_uctx0 = 65025;
           struct ocrdma_ucontext * uctx = (struct ocrdma_ucontext *) malloc(_len_uctx0*sizeof(struct ocrdma_ucontext));
           for(int _i0 = 0; _i0 < _len_uctx0; _i0++) {
               int _len_uctx__i0__cntxt_pd0 = 1;
           uctx[_i0].cntxt_pd = (struct ocrdma_pd *) malloc(_len_uctx__i0__cntxt_pd0*sizeof(struct ocrdma_pd));
           for(int _j0 = 0; _j0 < _len_uctx__i0__cntxt_pd0; _j0++) {
-            uctx[_i0].cntxt_pd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uctx[_i0].cntxt_pd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_pd0 = 1;
+        
+          int _len_pd0 = 65025;
           struct ocrdma_pd * pd = (struct ocrdma_pd *) malloc(_len_pd0*sizeof(struct ocrdma_pd));
           for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
-            pd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_ucontext_pd(uctx,pd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_uctx0; _aux++) {
@@ -107,7 +108,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_uctx0 = 100;
+          struct ocrdma_ucontext * uctx = (struct ocrdma_ucontext *) malloc(_len_uctx0*sizeof(struct ocrdma_ucontext));
+          for(int _i0 = 0; _i0 < _len_uctx0; _i0++) {
+              int _len_uctx__i0__cntxt_pd0 = 1;
+          uctx[_i0].cntxt_pd = (struct ocrdma_pd *) malloc(_len_uctx__i0__cntxt_pd0*sizeof(struct ocrdma_pd));
+          for(int _j0 = 0; _j0 < _len_uctx__i0__cntxt_pd0; _j0++) {
+              uctx[_i0].cntxt_pd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_pd0 = 100;
+          struct ocrdma_pd * pd = (struct ocrdma_pd *) malloc(_len_pd0*sizeof(struct ocrdma_pd));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ucontext_pd(uctx,pd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_uctx0; _aux++) {
+          free(uctx[_aux].cntxt_pd);
+          }
+          free(uctx);
+          free(pd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_uctx0 = 1;
+          struct ocrdma_ucontext * uctx = (struct ocrdma_ucontext *) malloc(_len_uctx0*sizeof(struct ocrdma_ucontext));
+          for(int _i0 = 0; _i0 < _len_uctx0; _i0++) {
+              int _len_uctx__i0__cntxt_pd0 = 1;
+          uctx[_i0].cntxt_pd = (struct ocrdma_pd *) malloc(_len_uctx__i0__cntxt_pd0*sizeof(struct ocrdma_pd));
+          for(int _j0 = 0; _j0 < _len_uctx__i0__cntxt_pd0; _j0++) {
+              uctx[_i0].cntxt_pd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_pd0 = 1;
+          struct ocrdma_pd * pd = (struct ocrdma_pd *) malloc(_len_pd0*sizeof(struct ocrdma_pd));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ucontext_pd(uctx,pd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_uctx0; _aux++) {
+          free(uctx[_aux].cntxt_pd);
+          }
+          free(uctx);
+          free(pd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static inline void set_parse_status(enum parse_status *cur
         *current = PARSE_WARN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,15 +80,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum parse_status update = 0;
-          int _len_current0 = 1;
+        
+          int _len_current0 = 65025;
           enum parse_status * current = (enum parse_status *) malloc(_len_current0*sizeof(enum parse_status));
           for(int _i0 = 0; _i0 < _len_current0; _i0++) {
             current[_i0] = 0;
           }
+        
           set_parse_status(current,update);
           free(current);
         
@@ -103,17 +100,34 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum parse_status update = 0;
+        
           int _len_current0 = 100;
           enum parse_status * current = (enum parse_status *) malloc(_len_current0*sizeof(enum parse_status));
           for(int _i0 = 0; _i0 < _len_current0; _i0++) {
             current[_i0] = 0;
           }
+        
           set_parse_status(current,update);
           free(current);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum parse_status update = 0;
+        
+          int _len_current0 = 1;
+          enum parse_status * current = (enum parse_status *) malloc(_len_current0*sizeof(enum parse_status));
+          for(int _i0 = 0; _i0 < _len_current0; _i0++) {
+            current[_i0] = 0;
+          }
+        
+          set_parse_status(current,update);
+          free(current);
+        
+        break;
+    }
     default:
         usage();
         break;

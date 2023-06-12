@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void stb_idict_remove_all(stb_idict *e)
    e->has_empty = e->has_del = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +82,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_e0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_e0 = 65025;
           struct TYPE_5__ * e = (struct TYPE_5__ *) malloc(_len_e0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        e[_i0].has_del = ((-2 * (next_i()%2)) + 1) * next_i();
-        e[_i0].has_empty = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].has_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].has_empty = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_e__i0__table0 = 1;
           e[_i0].table = (struct TYPE_4__ *) malloc(_len_e__i0__table0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_e__i0__table0; _j0++) {
-            e[_i0].table->k = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].table->k = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          stb_idict_remove_all(e);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].table);
+          }
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_e0 = 100;
+          struct TYPE_5__ * e = (struct TYPE_5__ *) malloc(_len_e0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].has_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].has_empty = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__table0 = 1;
+          e[_i0].table = (struct TYPE_4__ *) malloc(_len_e__i0__table0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_e__i0__table0; _j0++) {
+              e[_i0].table->k = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          stb_idict_remove_all(e);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].table);
+          }
+          free(e);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_e0 = 1;
+          struct TYPE_5__ * e = (struct TYPE_5__ *) malloc(_len_e0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].has_del = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].has_empty = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__table0 = 1;
+          e[_i0].table = (struct TYPE_4__ *) malloc(_len_e__i0__table0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_e__i0__table0; _j0++) {
+              e[_i0].table->k = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           stb_idict_remove_all(e);
           for(int _aux = 0; _aux < _len_e0; _aux++) {
           free(e[_aux].table);

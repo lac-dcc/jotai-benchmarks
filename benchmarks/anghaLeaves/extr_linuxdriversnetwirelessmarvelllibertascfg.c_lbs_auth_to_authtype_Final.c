@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -82,12 +82,6 @@ __attribute__((used)) static int lbs_auth_to_authtype(enum nl80211_auth_type aut
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +94,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum nl80211_auth_type auth_type = 0;
+        
           int benchRet = lbs_auth_to_authtype(auth_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

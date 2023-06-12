@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -99,12 +99,6 @@ bpf_prog_load_check_attach_type(enum bpf_prog_type prog_type,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,17 +111,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum bpf_prog_type prog_type = 0;
+        
           enum bpf_attach_type expected_attach_type = 0;
+        
           int benchRet = bpf_prog_load_check_attach_type(prog_type,expected_attach_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

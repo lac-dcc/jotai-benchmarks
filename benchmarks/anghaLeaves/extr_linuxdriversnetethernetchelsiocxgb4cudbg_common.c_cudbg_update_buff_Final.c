@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void cudbg_update_buff(struct cudbg_buffer *pin_buff,
 	pout_buff->offset += pin_buff->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +78,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pin_buff0 = 1;
+          int _len_pin_buff0 = 65025;
           struct cudbg_buffer * pin_buff = (struct cudbg_buffer *) malloc(_len_pin_buff0*sizeof(struct cudbg_buffer));
           for(int _i0 = 0; _i0 < _len_pin_buff0; _i0++) {
-            pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pout_buff0 = 1;
+        
+          int _len_pout_buff0 = 65025;
           struct cudbg_buffer * pout_buff = (struct cudbg_buffer *) malloc(_len_pout_buff0*sizeof(struct cudbg_buffer));
           for(int _i0 = 0; _i0 < _len_pout_buff0; _i0++) {
-            pout_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        pout_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              pout_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pout_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cudbg_update_buff(pin_buff,pout_buff);
           free(pin_buff);
           free(pout_buff);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pin_buff0 = 100;
+          struct cudbg_buffer * pin_buff = (struct cudbg_buffer *) malloc(_len_pin_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pin_buff0; _i0++) {
+              pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pout_buff0 = 100;
+          struct cudbg_buffer * pout_buff = (struct cudbg_buffer *) malloc(_len_pout_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pout_buff0; _i0++) {
+              pout_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pout_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cudbg_update_buff(pin_buff,pout_buff);
+          free(pin_buff);
+          free(pout_buff);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pin_buff0 = 1;
+          struct cudbg_buffer * pin_buff = (struct cudbg_buffer *) malloc(_len_pin_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pin_buff0; _i0++) {
+              pin_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pin_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pout_buff0 = 1;
+          struct cudbg_buffer * pout_buff = (struct cudbg_buffer *) malloc(_len_pout_buff0*sizeof(struct cudbg_buffer));
+          for(int _i0 = 0; _i0 < _len_pout_buff0; _i0++) {
+              pout_buff[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pout_buff[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cudbg_update_buff(pin_buff,pout_buff);
+          free(pin_buff);
+          free(pout_buff);
+        
+        break;
+    }
     default:
         usage();
         break;

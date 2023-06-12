@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int qeth_is_ipa_supported(struct qeth_ipa_in
 	return (ipa->supported_funcs & func);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +76,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum qeth_ipa_funcs func = 0;
-          int _len_ipa0 = 1;
+        
+          int _len_ipa0 = 65025;
           struct qeth_ipa_info * ipa = (struct qeth_ipa_info *) malloc(_len_ipa0*sizeof(struct qeth_ipa_info));
           for(int _i0 = 0; _i0 < _len_ipa0; _i0++) {
-            ipa[_i0].supported_funcs = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipa[_i0].supported_funcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qeth_is_ipa_supported(ipa,func);
           printf("%d\n", benchRet); 
           free(ipa);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum qeth_ipa_funcs func = 0;
+        
           int _len_ipa0 = 100;
           struct qeth_ipa_info * ipa = (struct qeth_ipa_info *) malloc(_len_ipa0*sizeof(struct qeth_ipa_info));
           for(int _i0 = 0; _i0 < _len_ipa0; _i0++) {
-            ipa[_i0].supported_funcs = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipa[_i0].supported_funcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qeth_is_ipa_supported(ipa,func);
+          printf("%d\n", benchRet); 
+          free(ipa);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum qeth_ipa_funcs func = 0;
+        
+          int _len_ipa0 = 1;
+          struct qeth_ipa_info * ipa = (struct qeth_ipa_info *) malloc(_len_ipa0*sizeof(struct qeth_ipa_info));
+          for(int _i0 = 0; _i0 < _len_ipa0; _i0++) {
+              ipa[_i0].supported_funcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qeth_is_ipa_supported(ipa,func);
           printf("%d\n", benchRet); 
           free(ipa);

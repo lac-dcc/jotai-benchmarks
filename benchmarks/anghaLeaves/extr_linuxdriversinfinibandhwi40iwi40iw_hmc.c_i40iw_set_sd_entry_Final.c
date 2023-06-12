@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static inline void i40iw_set_sd_entry(u64 pa,
 	entry->cmd = (idx | (1 << I40E_PFHMC_SDCMD_PMSDWR_SHIFT) | (1 << 15));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,18 +91,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int pa = 100;
+        
           int idx = 100;
+        
           enum i40iw_sd_entry_type type = 0;
+        
           int _len_entry0 = 1;
           struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          i40iw_set_sd_entry(pa,idx,type,entry);
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int pa = 255;
+        
+          int idx = 255;
+        
+          enum i40iw_sd_entry_type type = 0;
+        
+          int _len_entry0 = 65025;
+          struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_set_sd_entry(pa,idx,type,entry);
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int pa = 10;
+        
+          int idx = 10;
+        
+          enum i40iw_sd_entry_type type = 0;
+        
+          int _len_entry0 = 100;
+          struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_set_sd_entry(pa,idx,type,entry);
+          free(entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int pa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum i40iw_sd_entry_type type = 0;
+        
+          int _len_entry0 = 1;
+          struct update_sd_entry * entry = (struct update_sd_entry *) malloc(_len_entry0*sizeof(struct update_sd_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           i40iw_set_sd_entry(pa,idx,type,entry);
           free(entry);
         

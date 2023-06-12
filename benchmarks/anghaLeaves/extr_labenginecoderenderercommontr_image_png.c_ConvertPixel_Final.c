@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -325,12 +328,6 @@ __attribute__((used)) static qboolean ConvertPixel(struct PNG_Chunk_IHDR *IHDR,
 	return(qtrue);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -347,32 +344,39 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int HasTransparentColour = 100;
+        
           int _len_IHDR0 = 1;
           struct PNG_Chunk_IHDR * IHDR = (struct PNG_Chunk_IHDR *) malloc(_len_IHDR0*sizeof(struct PNG_Chunk_IHDR));
           for(int _i0 = 0; _i0 < _len_IHDR0; _i0++) {
-            IHDR[_i0].ColourType = ((-2 * (next_i()%2)) + 1) * next_i();
-        IHDR[_i0].BitDepth = ((-2 * (next_i()%2)) + 1) * next_i();
+              IHDR[_i0].ColourType = ((-2 * (next_i()%2)) + 1) * next_i();
+          IHDR[_i0].BitDepth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_OutPtr0 = 1;
           int * OutPtr = (int *) malloc(_len_OutPtr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_OutPtr0; _i0++) {
             OutPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_DecompPtr0 = 1;
           int * DecompPtr = (int *) malloc(_len_DecompPtr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_DecompPtr0; _i0++) {
             DecompPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_TransparentColour0 = 1;
           int * TransparentColour = (int *) malloc(_len_TransparentColour0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_TransparentColour0; _i0++) {
             TransparentColour[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_OutPal0 = 1;
           int * OutPal = (int *) malloc(_len_OutPal0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_OutPal0; _i0++) {
             OutPal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ConvertPixel(IHDR,OutPtr,DecompPtr,HasTransparentColour,TransparentColour,OutPal);
           printf("%d\n", benchRet); 
           free(IHDR);
@@ -383,7 +387,147 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int HasTransparentColour = 255;
+        
+          int _len_IHDR0 = 65025;
+          struct PNG_Chunk_IHDR * IHDR = (struct PNG_Chunk_IHDR *) malloc(_len_IHDR0*sizeof(struct PNG_Chunk_IHDR));
+          for(int _i0 = 0; _i0 < _len_IHDR0; _i0++) {
+              IHDR[_i0].ColourType = ((-2 * (next_i()%2)) + 1) * next_i();
+          IHDR[_i0].BitDepth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_OutPtr0 = 65025;
+          int * OutPtr = (int *) malloc(_len_OutPtr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_OutPtr0; _i0++) {
+            OutPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DecompPtr0 = 65025;
+          int * DecompPtr = (int *) malloc(_len_DecompPtr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DecompPtr0; _i0++) {
+            DecompPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_TransparentColour0 = 65025;
+          int * TransparentColour = (int *) malloc(_len_TransparentColour0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_TransparentColour0; _i0++) {
+            TransparentColour[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_OutPal0 = 65025;
+          int * OutPal = (int *) malloc(_len_OutPal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_OutPal0; _i0++) {
+            OutPal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ConvertPixel(IHDR,OutPtr,DecompPtr,HasTransparentColour,TransparentColour,OutPal);
+          printf("%d\n", benchRet); 
+          free(IHDR);
+          free(OutPtr);
+          free(DecompPtr);
+          free(TransparentColour);
+          free(OutPal);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int HasTransparentColour = 10;
+        
+          int _len_IHDR0 = 100;
+          struct PNG_Chunk_IHDR * IHDR = (struct PNG_Chunk_IHDR *) malloc(_len_IHDR0*sizeof(struct PNG_Chunk_IHDR));
+          for(int _i0 = 0; _i0 < _len_IHDR0; _i0++) {
+              IHDR[_i0].ColourType = ((-2 * (next_i()%2)) + 1) * next_i();
+          IHDR[_i0].BitDepth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_OutPtr0 = 100;
+          int * OutPtr = (int *) malloc(_len_OutPtr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_OutPtr0; _i0++) {
+            OutPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DecompPtr0 = 100;
+          int * DecompPtr = (int *) malloc(_len_DecompPtr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DecompPtr0; _i0++) {
+            DecompPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_TransparentColour0 = 100;
+          int * TransparentColour = (int *) malloc(_len_TransparentColour0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_TransparentColour0; _i0++) {
+            TransparentColour[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_OutPal0 = 100;
+          int * OutPal = (int *) malloc(_len_OutPal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_OutPal0; _i0++) {
+            OutPal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ConvertPixel(IHDR,OutPtr,DecompPtr,HasTransparentColour,TransparentColour,OutPal);
+          printf("%d\n", benchRet); 
+          free(IHDR);
+          free(OutPtr);
+          free(DecompPtr);
+          free(TransparentColour);
+          free(OutPal);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int HasTransparentColour = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_IHDR0 = 1;
+          struct PNG_Chunk_IHDR * IHDR = (struct PNG_Chunk_IHDR *) malloc(_len_IHDR0*sizeof(struct PNG_Chunk_IHDR));
+          for(int _i0 = 0; _i0 < _len_IHDR0; _i0++) {
+              IHDR[_i0].ColourType = ((-2 * (next_i()%2)) + 1) * next_i();
+          IHDR[_i0].BitDepth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_OutPtr0 = 1;
+          int * OutPtr = (int *) malloc(_len_OutPtr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_OutPtr0; _i0++) {
+            OutPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DecompPtr0 = 1;
+          int * DecompPtr = (int *) malloc(_len_DecompPtr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DecompPtr0; _i0++) {
+            DecompPtr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_TransparentColour0 = 1;
+          int * TransparentColour = (int *) malloc(_len_TransparentColour0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_TransparentColour0; _i0++) {
+            TransparentColour[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_OutPal0 = 1;
+          int * OutPal = (int *) malloc(_len_OutPal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_OutPal0; _i0++) {
+            OutPal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ConvertPixel(IHDR,OutPtr,DecompPtr,HasTransparentColour,TransparentColour,OutPal);
+          printf("%d\n", benchRet); 
+          free(IHDR);
+          free(OutPtr);
+          free(DecompPtr);
+          free(TransparentColour);
+          free(OutPal);
+        
+        break;
+    }
     default:
         usage();
         break;

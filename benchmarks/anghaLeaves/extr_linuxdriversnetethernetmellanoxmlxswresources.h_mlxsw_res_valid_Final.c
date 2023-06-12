@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline bool mlxsw_res_valid(struct mlxsw_res *res,
 	return res->valid[res_id];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,11 +76,12 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum mlxsw_res_id res_id = 0;
-          int _len_res0 = 1;
+        
+          int _len_res0 = 65025;
           struct mlxsw_res * res = (struct mlxsw_res *) malloc(_len_res0*sizeof(struct mlxsw_res));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
               int _len_res__i0__valid0 = 1;
@@ -92,7 +89,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_res__i0__valid0; _j0++) {
             res[_i0].valid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = mlxsw_res_valid(res,res_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_res0; _aux++) {
@@ -102,7 +101,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum mlxsw_res_id res_id = 0;
+        
+          int _len_res0 = 100;
+          struct mlxsw_res * res = (struct mlxsw_res *) malloc(_len_res0*sizeof(struct mlxsw_res));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              int _len_res__i0__valid0 = 1;
+          res[_i0].valid = (int *) malloc(_len_res__i0__valid0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_res__i0__valid0; _j0++) {
+            res[_i0].valid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = mlxsw_res_valid(res,res_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].valid);
+          }
+          free(res);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum mlxsw_res_id res_id = 0;
+        
+          int _len_res0 = 1;
+          struct mlxsw_res * res = (struct mlxsw_res *) malloc(_len_res0*sizeof(struct mlxsw_res));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              int _len_res__i0__valid0 = 1;
+          res[_i0].valid = (int *) malloc(_len_res__i0__valid0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_res__i0__valid0; _j0++) {
+            res[_i0].valid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = mlxsw_res_valid(res,res_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].valid);
+          }
+          free(res);
+        
+        break;
+    }
     default:
         usage();
         break;

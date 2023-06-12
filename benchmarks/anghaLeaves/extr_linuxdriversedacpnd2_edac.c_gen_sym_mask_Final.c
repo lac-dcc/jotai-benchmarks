@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int gen_sym_mask(struct b_cr_slice_channel_hash *p)
 	return mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct b_cr_slice_channel_hash * p = (struct b_cr_slice_channel_hash *) malloc(_len_p0*sizeof(struct b_cr_slice_channel_hash));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].sym_slice0_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sym_slice1_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].enable_pmi_dual_data_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ch_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].slice_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].slice_0_mem_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gen_sym_mask(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct b_cr_slice_channel_hash * p = (struct b_cr_slice_channel_hash *) malloc(_len_p0*sizeof(struct b_cr_slice_channel_hash));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].sym_slice0_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sym_slice1_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].enable_pmi_dual_data_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ch_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].slice_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].slice_0_mem_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gen_sym_mask(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct b_cr_slice_channel_hash * p = (struct b_cr_slice_channel_hash *) malloc(_len_p0*sizeof(struct b_cr_slice_channel_hash));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].sym_slice0_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].sym_slice1_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].enable_pmi_dual_data_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].ch_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].slice_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].slice_0_mem_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].sym_slice0_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].sym_slice1_channel_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].enable_pmi_dual_data_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].ch_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].slice_1_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].slice_0_mem_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gen_sym_mask(p);
           printf("%d\n", benchRet); 
           free(p);

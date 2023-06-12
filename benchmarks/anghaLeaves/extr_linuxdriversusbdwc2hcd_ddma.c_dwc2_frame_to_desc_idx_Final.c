@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static u8 dwc2_frame_to_desc_idx(struct dwc2_qh *qh, u16 f
 		return frame_idx & (MAX_DMA_DESC_NUM_GENERIC - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,30 +84,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int frame_idx = 100;
+        
           int _len_qh0 = 1;
           struct dwc2_qh * qh = (struct dwc2_qh *) malloc(_len_qh0*sizeof(struct dwc2_qh));
           for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
-            qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc2_frame_to_desc_idx(qh,frame_idx);
           printf("%d\n", benchRet); 
           free(qh);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int frame_idx = 255;
+        
+          int _len_qh0 = 65025;
+          struct dwc2_qh * qh = (struct dwc2_qh *) malloc(_len_qh0*sizeof(struct dwc2_qh));
+          for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dwc2_frame_to_desc_idx(qh,frame_idx);
+          printf("%d\n", benchRet); 
+          free(qh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int frame_idx = 10;
+        
           int _len_qh0 = 100;
           struct dwc2_qh * qh = (struct dwc2_qh *) malloc(_len_qh0*sizeof(struct dwc2_qh));
           for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
-            qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dwc2_frame_to_desc_idx(qh,frame_idx);
+          printf("%d\n", benchRet); 
+          free(qh);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int frame_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qh0 = 1;
+          struct dwc2_qh * qh = (struct dwc2_qh *) malloc(_len_qh0*sizeof(struct dwc2_qh));
+          for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dwc2_frame_to_desc_idx(qh,frame_idx);
           printf("%d\n", benchRet); 
           free(qh);

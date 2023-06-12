@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int tcm_qla2xxx_dif_tags(struct qla_tgt_cmd *cmd,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +89,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].se_cmd.prot_checks = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].se_cmd.prot_checks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_pfw_prot_opts0 = 1;
+        
+          int _len_pfw_prot_opts0 = 65025;
           int * pfw_prot_opts = (int *) malloc(_len_pfw_prot_opts0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pfw_prot_opts0; _i0++) {
             pfw_prot_opts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tcm_qla2xxx_dif_tags(cmd,pfw_prot_opts);
           printf("%d\n", benchRet); 
           free(cmd);
@@ -113,7 +113,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cmd0 = 100;
+          struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].se_cmd.prot_checks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pfw_prot_opts0 = 100;
+          int * pfw_prot_opts = (int *) malloc(_len_pfw_prot_opts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pfw_prot_opts0; _i0++) {
+            pfw_prot_opts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tcm_qla2xxx_dif_tags(cmd,pfw_prot_opts);
+          printf("%d\n", benchRet); 
+          free(cmd);
+          free(pfw_prot_opts);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct qla_tgt_cmd * cmd = (struct qla_tgt_cmd *) malloc(_len_cmd0*sizeof(struct qla_tgt_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].se_cmd.prot_checks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pfw_prot_opts0 = 1;
+          int * pfw_prot_opts = (int *) malloc(_len_pfw_prot_opts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pfw_prot_opts0; _i0++) {
+            pfw_prot_opts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tcm_qla2xxx_dif_tags(cmd,pfw_prot_opts);
+          printf("%d\n", benchRet); 
+          free(cmd);
+          free(pfw_prot_opts);
+        
+        break;
+    }
     default:
         usage();
         break;

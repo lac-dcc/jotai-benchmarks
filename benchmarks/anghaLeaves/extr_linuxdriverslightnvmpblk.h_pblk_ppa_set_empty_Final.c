@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void pblk_ppa_set_empty(struct ppa_addr *ppa
 	ppa_addr->ppa = ADDR_EMPTY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,27 +75,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ppa_addr0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ppa_addr0 = 65025;
           struct ppa_addr * ppa_addr = (struct ppa_addr *) malloc(_len_ppa_addr0*sizeof(struct ppa_addr));
           for(int _i0 = 0; _i0 < _len_ppa_addr0; _i0++) {
-            ppa_addr[_i0].ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppa_addr[_i0].ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pblk_ppa_set_empty(ppa_addr);
           free(ppa_addr);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_ppa_addr0 = 100;
           struct ppa_addr * ppa_addr = (struct ppa_addr *) malloc(_len_ppa_addr0*sizeof(struct ppa_addr));
           for(int _i0 = 0; _i0 < _len_ppa_addr0; _i0++) {
-            ppa_addr[_i0].ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppa_addr[_i0].ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pblk_ppa_set_empty(ppa_addr);
+          free(ppa_addr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ppa_addr0 = 1;
+          struct ppa_addr * ppa_addr = (struct ppa_addr *) malloc(_len_ppa_addr0*sizeof(struct ppa_addr));
+          for(int _i0 = 0; _i0 < _len_ppa_addr0; _i0++) {
+              ppa_addr[_i0].ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pblk_ppa_set_empty(ppa_addr);
           free(ppa_addr);
         

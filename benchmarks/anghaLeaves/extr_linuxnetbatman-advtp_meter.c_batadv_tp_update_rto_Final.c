@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static void batadv_tp_update_rto(struct batadv_tp_vars *tp
 	tp_vars->rto = (tp_vars->srtt >> 3) + tp_vars->rttvar;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,19 +106,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long new_rtt = 100;
+        
           int _len_tp_vars0 = 1;
           struct batadv_tp_vars * tp_vars = (struct batadv_tp_vars *) malloc(_len_tp_vars0*sizeof(struct batadv_tp_vars));
           for(int _i0 = 0; _i0 < _len_tp_vars0; _i0++) {
-            tp_vars[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp_vars[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp_vars[_i0].rto = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp_vars[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           batadv_tp_update_rto(tp_vars,new_rtt);
           free(tp_vars);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long new_rtt = 255;
+        
+          int _len_tp_vars0 = 65025;
+          struct batadv_tp_vars * tp_vars = (struct batadv_tp_vars *) malloc(_len_tp_vars0*sizeof(struct batadv_tp_vars));
+          for(int _i0 = 0; _i0 < _len_tp_vars0; _i0++) {
+              tp_vars[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          batadv_tp_update_rto(tp_vars,new_rtt);
+          free(tp_vars);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long new_rtt = 10;
+        
+          int _len_tp_vars0 = 100;
+          struct batadv_tp_vars * tp_vars = (struct batadv_tp_vars *) malloc(_len_tp_vars0*sizeof(struct batadv_tp_vars));
+          for(int _i0 = 0; _i0 < _len_tp_vars0; _i0++) {
+              tp_vars[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          batadv_tp_update_rto(tp_vars,new_rtt);
+          free(tp_vars);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long new_rtt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tp_vars0 = 1;
+          struct batadv_tp_vars * tp_vars = (struct batadv_tp_vars *) malloc(_len_tp_vars0*sizeof(struct batadv_tp_vars));
+          for(int _i0 = 0; _i0 < _len_tp_vars0; _i0++) {
+              tp_vars[_i0].srtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rttvar = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp_vars[_i0].rto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          batadv_tp_update_rto(tp_vars,new_rtt);
+          free(tp_vars);
+        
+        break;
+    }
     default:
         usage();
         break;

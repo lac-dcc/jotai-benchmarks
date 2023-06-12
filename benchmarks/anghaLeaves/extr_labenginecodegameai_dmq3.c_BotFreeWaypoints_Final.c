@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -68,7 +69,6 @@ void BotFreeWaypoints(bot_waypoint_t *wp) {
 	}
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_wp(int length, struct TYPE_4__ *aux_wp[]) {
@@ -96,7 +96,6 @@ void _delete_wp(struct TYPE_4__ *aux_wp[], int aux_wp_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,11 +108,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 130007
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 70007
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 70007
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 70007
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 70007
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 70007
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 80006
+          // ------------------------------- 
+
+          struct TYPE_4__ * aux_wp[10000];
+          struct TYPE_4__ * wp = _allocate_wp(10000, aux_wp);
+        
+          BotFreeWaypoints(wp);
+          _delete_wp(aux_wp, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_wp[1];
           struct TYPE_4__ * wp = _allocate_wp(1, aux_wp);
+        
           BotFreeWaypoints(wp);
           _delete_wp(aux_wp, 1);
         

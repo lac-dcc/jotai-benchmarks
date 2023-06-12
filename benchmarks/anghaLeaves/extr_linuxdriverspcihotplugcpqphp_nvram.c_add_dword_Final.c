@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static u32 add_dword(u32 **p_buffer, u32 value, u32 *used,
 	return(0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long value = 100;
+        
           int _len_p_buffer0 = 1;
           long ** p_buffer = (long **) malloc(_len_p_buffer0*sizeof(long *));
           for(int _i0 = 0; _i0 < _len_p_buffer0; _i0++) {
@@ -97,20 +95,22 @@ int main(int argc, char *argv[]) {
               p_buffer[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_used0 = 1;
           long * used = (long *) malloc(_len_used0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_used0; _i0++) {
             used[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_avail0 = 1;
           long * avail = (long *) malloc(_len_avail0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_avail0; _i0++) {
             avail[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = add_dword(p_buffer,value,used,avail);
           printf("%ld\n", benchRet); 
           for(int i1 = 0; i1 < _len_p_buffer0; i1++) {
-            int _len_p_buffer1 = 1;
               free(p_buffer[i1]);
           }
           free(p_buffer);
@@ -119,7 +119,120 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long value = 255;
+        
+          int _len_p_buffer0 = 65025;
+          long ** p_buffer = (long **) malloc(_len_p_buffer0*sizeof(long *));
+          for(int _i0 = 0; _i0 < _len_p_buffer0; _i0++) {
+            int _len_p_buffer1 = 1;
+            p_buffer[_i0] = (long *) malloc(_len_p_buffer1*sizeof(long));
+            for(int _i1 = 0; _i1 < _len_p_buffer1; _i1++) {
+              p_buffer[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_used0 = 65025;
+          long * used = (long *) malloc(_len_used0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_used0; _i0++) {
+            used[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_avail0 = 65025;
+          long * avail = (long *) malloc(_len_avail0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_avail0; _i0++) {
+            avail[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = add_dword(p_buffer,value,used,avail);
+          printf("%ld\n", benchRet); 
+          for(int i1 = 0; i1 < _len_p_buffer0; i1++) {
+              free(p_buffer[i1]);
+          }
+          free(p_buffer);
+          free(used);
+          free(avail);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long value = 10;
+        
+          int _len_p_buffer0 = 100;
+          long ** p_buffer = (long **) malloc(_len_p_buffer0*sizeof(long *));
+          for(int _i0 = 0; _i0 < _len_p_buffer0; _i0++) {
+            int _len_p_buffer1 = 1;
+            p_buffer[_i0] = (long *) malloc(_len_p_buffer1*sizeof(long));
+            for(int _i1 = 0; _i1 < _len_p_buffer1; _i1++) {
+              p_buffer[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_used0 = 100;
+          long * used = (long *) malloc(_len_used0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_used0; _i0++) {
+            used[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_avail0 = 100;
+          long * avail = (long *) malloc(_len_avail0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_avail0; _i0++) {
+            avail[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = add_dword(p_buffer,value,used,avail);
+          printf("%ld\n", benchRet); 
+          for(int i1 = 0; i1 < _len_p_buffer0; i1++) {
+              free(p_buffer[i1]);
+          }
+          free(p_buffer);
+          free(used);
+          free(avail);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_buffer0 = 1;
+          long ** p_buffer = (long **) malloc(_len_p_buffer0*sizeof(long *));
+          for(int _i0 = 0; _i0 < _len_p_buffer0; _i0++) {
+            int _len_p_buffer1 = 1;
+            p_buffer[_i0] = (long *) malloc(_len_p_buffer1*sizeof(long));
+            for(int _i1 = 0; _i1 < _len_p_buffer1; _i1++) {
+              p_buffer[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_used0 = 1;
+          long * used = (long *) malloc(_len_used0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_used0; _i0++) {
+            used[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_avail0 = 1;
+          long * avail = (long *) malloc(_len_avail0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_avail0; _i0++) {
+            avail[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = add_dword(p_buffer,value,used,avail);
+          printf("%ld\n", benchRet); 
+          for(int i1 = 0; i1 < _len_p_buffer0; i1++) {
+              free(p_buffer[i1]);
+          }
+          free(p_buffer);
+          free(used);
+          free(avail);
+        
+        break;
+    }
     default:
         usage();
         break;

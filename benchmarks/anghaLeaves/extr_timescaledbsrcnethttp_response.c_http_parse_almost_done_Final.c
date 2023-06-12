@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ http_parse_almost_done(HttpResponseState *state, const char next)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,21 +99,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const char next = 100;
+        
           int _len_state0 = 1;
           struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].content_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].parse_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].raw_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].body_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].content_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].parse_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].raw_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].body_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           http_parse_almost_done(state,next);
           free(state);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          const char next = 255;
+        
+          int _len_state0 = 65025;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].content_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].parse_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].raw_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].body_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          http_parse_almost_done(state,next);
+          free(state);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          const char next = 10;
+        
+          int _len_state0 = 100;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].content_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].parse_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].raw_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].body_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          http_parse_almost_done(state,next);
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          const char next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].content_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].parse_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].raw_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].body_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          http_parse_almost_done(state,next);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

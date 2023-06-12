@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void cut_comma(char *map, jsmntok_t *newval)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,27 +82,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_map0 = 1;
+          int _len_map0 = 65025;
           char * map = (char *) malloc(_len_map0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
             map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_newval0 = 1;
+        
+          int _len_newval0 = 65025;
           struct TYPE_3__ * newval = (struct TYPE_3__ *) malloc(_len_newval0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_newval0; _i0++) {
-            newval[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        newval[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              newval[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          newval[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cut_comma(map,newval);
           free(map);
           free(newval);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_map0 = 100;
+          char * map = (char *) malloc(_len_map0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_newval0 = 100;
+          struct TYPE_3__ * newval = (struct TYPE_3__ *) malloc(_len_newval0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_newval0; _i0++) {
+              newval[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          newval[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cut_comma(map,newval);
+          free(map);
+          free(newval);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_map0 = 1;
+          char * map = (char *) malloc(_len_map0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_newval0 = 1;
+          struct TYPE_3__ * newval = (struct TYPE_3__ *) malloc(_len_newval0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_newval0; _i0++) {
+              newval[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          newval[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cut_comma(map,newval);
+          free(map);
+          free(newval);
+        
+        break;
+    }
     default:
         usage();
         break;

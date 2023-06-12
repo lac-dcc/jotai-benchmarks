@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ void __attribute__((weak)) kvm_arch_irq_routing_update(struct kvm *kvm)
 {
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,14 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_kvm0 = 1;
+          int _len_kvm0 = 65025;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           kvm_arch_irq_routing_update(kvm);
           free(kvm);
         
@@ -97,14 +94,30 @@ int main(int argc, char *argv[]) {
           int _len_kvm0 = 100;
           struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
           for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
-            kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           kvm_arch_irq_routing_update(kvm);
           free(kvm);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_kvm0 = 1;
+          struct kvm * kvm = (struct kvm *) malloc(_len_kvm0*sizeof(struct kvm));
+          for(int _i0 = 0; _i0 < _len_kvm0; _i0++) {
+              kvm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kvm_arch_irq_routing_update(kvm);
+          free(kvm);
+        
+        break;
+    }
     default:
         usage();
         break;

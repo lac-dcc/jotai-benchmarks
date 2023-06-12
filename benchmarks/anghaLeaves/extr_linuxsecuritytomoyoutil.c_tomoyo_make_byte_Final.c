@@ -61,12 +61,6 @@ __attribute__((used)) static inline u8 tomoyo_make_byte(const u8 c1, const u8 c2
 	return ((c1 - '0') << 6) + ((c2 - '0') << 3) + (c3 - '0');
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,8 +77,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int c1 = 100;
+        
           const int c2 = 100;
+        
           const int c3 = 100;
+        
           int benchRet = tomoyo_make_byte(c1,c2,c3);
           printf("%d\n", benchRet); 
         
@@ -94,14 +91,16 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int c1 = 255;
+        
           const int c2 = 255;
+        
           const int c3 = 255;
+        
           int benchRet = tomoyo_make_byte(c1,c2,c3);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

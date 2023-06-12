@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ unsigned long ftrace_graph_ret_addr(struct task_struct *task, int *idx,
 	return task->ret_stack[task_idx].ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,26 +96,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ret = 100;
+        
           int _len_task0 = 1;
           struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].curr_ret_stack = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].curr_ret_stack = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_task__i0__ret_stack0 = 1;
           task[_i0].ret_stack = (struct TYPE_2__ *) malloc(_len_task__i0__ret_stack0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_task__i0__ret_stack0; _j0++) {
-            task[_i0].ret_stack->ret = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].ret_stack->ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_idx0 = 1;
           int * idx = (int *) malloc(_len_idx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
             idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_retp0 = 1;
           unsigned long * retp = (unsigned long *) malloc(_len_retp0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_retp0; _i0++) {
             retp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = ftrace_graph_ret_addr(task,idx,ret,retp);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_task0; _aux++) {
@@ -130,7 +133,129 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long ret = 255;
+        
+          int _len_task0 = 65025;
+          struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].curr_ret_stack = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_task__i0__ret_stack0 = 1;
+          task[_i0].ret_stack = (struct TYPE_2__ *) malloc(_len_task__i0__ret_stack0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_task__i0__ret_stack0; _j0++) {
+              task[_i0].ret_stack->ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_idx0 = 65025;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_retp0 = 65025;
+          unsigned long * retp = (unsigned long *) malloc(_len_retp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_retp0; _i0++) {
+            retp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = ftrace_graph_ret_addr(task,idx,ret,retp);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].ret_stack);
+          }
+          free(task);
+          free(idx);
+          free(retp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long ret = 10;
+        
+          int _len_task0 = 100;
+          struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].curr_ret_stack = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_task__i0__ret_stack0 = 1;
+          task[_i0].ret_stack = (struct TYPE_2__ *) malloc(_len_task__i0__ret_stack0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_task__i0__ret_stack0; _j0++) {
+              task[_i0].ret_stack->ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_idx0 = 100;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_retp0 = 100;
+          unsigned long * retp = (unsigned long *) malloc(_len_retp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_retp0; _i0++) {
+            retp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = ftrace_graph_ret_addr(task,idx,ret,retp);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].ret_stack);
+          }
+          free(task);
+          free(idx);
+          free(retp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_task0 = 1;
+          struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].curr_ret_stack = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_task__i0__ret_stack0 = 1;
+          task[_i0].ret_stack = (struct TYPE_2__ *) malloc(_len_task__i0__ret_stack0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_task__i0__ret_stack0; _j0++) {
+              task[_i0].ret_stack->ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_idx0 = 1;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_retp0 = 1;
+          unsigned long * retp = (unsigned long *) malloc(_len_retp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_retp0; _i0++) {
+            retp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = ftrace_graph_ret_addr(task,idx,ret,retp);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].ret_stack);
+          }
+          free(task);
+          free(idx);
+          free(retp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int config_out_of_range(struct pci_pbm_info *pbm,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned long bus = 100;
+        
           unsigned long devfn = 100;
+        
           unsigned long reg = 100;
+        
           int _len_pbm0 = 1;
           struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
           for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
-            pbm[_i0].pci_first_busno = ((-2 * (next_i()%2)) + 1) * next_i();
-        pbm[_i0].pci_last_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+              pbm[_i0].pci_first_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+          pbm[_i0].pci_last_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = config_out_of_range(pbm,bus,devfn,reg);
+          printf("%d\n", benchRet); 
+          free(pbm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long bus = 255;
+        
+          unsigned long devfn = 255;
+        
+          unsigned long reg = 255;
+        
+          int _len_pbm0 = 65025;
+          struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
+          for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
+              pbm[_i0].pci_first_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+          pbm[_i0].pci_last_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = config_out_of_range(pbm,bus,devfn,reg);
+          printf("%d\n", benchRet); 
+          free(pbm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long bus = 10;
+        
+          unsigned long devfn = 10;
+        
+          unsigned long reg = 10;
+        
+          int _len_pbm0 = 100;
+          struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
+          for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
+              pbm[_i0].pci_first_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+          pbm[_i0].pci_last_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = config_out_of_range(pbm,bus,devfn,reg);
+          printf("%d\n", benchRet); 
+          free(pbm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pbm0 = 1;
+          struct pci_pbm_info * pbm = (struct pci_pbm_info *) malloc(_len_pbm0*sizeof(struct pci_pbm_info));
+          for(int _i0 = 0; _i0 < _len_pbm0; _i0++) {
+              pbm[_i0].pci_first_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+          pbm[_i0].pci_last_busno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = config_out_of_range(pbm,bus,devfn,reg);
           printf("%d\n", benchRet); 
           free(pbm);

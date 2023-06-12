@@ -67,12 +67,6 @@ __attribute__((used)) static unsigned int fan_from_reg16(u16 reg, unsigned int d
 	return 1350000U / (reg << divreg);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,13 +83,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int reg = 10;
+        
           unsigned int divreg = 10;
+        
           unsigned int benchRet = fan_from_reg16(reg,divreg);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

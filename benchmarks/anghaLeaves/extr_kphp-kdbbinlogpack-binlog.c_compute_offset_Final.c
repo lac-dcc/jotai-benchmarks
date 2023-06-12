@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static long long compute_offset (long long off, int header
   return off + 4096 * headers;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long long off = 100;
+        
           int headers = 100;
+        
           long long benchRet = compute_offset(off,headers);
           printf("%lld\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long long off = 255;
+        
           int headers = 255;
+        
           long long benchRet = compute_offset(off,headers);
           printf("%lld\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long long off = 10;
+        
           int headers = 10;
+        
           long long benchRet = compute_offset(off,headers);
           printf("%lld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long long off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int headers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long long benchRet = compute_offset(off,headers);
+          printf("%lld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -66,12 +66,6 @@ __attribute__((used)) static unsigned int digits_in_number(unsigned int number)
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int number = 100;
+        
           unsigned int benchRet = digits_in_number(number);
           printf("%u\n", benchRet); 
         
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int number = 255;
+        
           unsigned int benchRet = digits_in_number(number);
           printf("%u\n", benchRet); 
         
@@ -106,12 +102,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int number = 10;
+        
           unsigned int benchRet = digits_in_number(number);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

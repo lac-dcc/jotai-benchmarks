@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -189,12 +191,6 @@ __attribute__((used)) static bool tonga_check_s0_mc_reg_index(uint16_t in_reg, u
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -211,11 +207,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int in_reg = 100;
+        
           int _len_out_reg0 = 1;
           int * out_reg = (int *) malloc(_len_out_reg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_reg0; _i0++) {
             out_reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = tonga_check_s0_mc_reg_index(in_reg,out_reg);
+          printf("%d\n", benchRet); 
+          free(out_reg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int in_reg = 255;
+        
+          int _len_out_reg0 = 65025;
+          int * out_reg = (int *) malloc(_len_out_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_reg0; _i0++) {
+            out_reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = tonga_check_s0_mc_reg_index(in_reg,out_reg);
           printf("%d\n", benchRet); 
           free(out_reg);
@@ -223,21 +238,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int in_reg = 10;
+        
           int _len_out_reg0 = 100;
           int * out_reg = (int *) malloc(_len_out_reg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_reg0; _i0++) {
             out_reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tonga_check_s0_mc_reg_index(in_reg,out_reg);
           printf("%d\n", benchRet); 
           free(out_reg);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int in_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_out_reg0 = 1;
+          int * out_reg = (int *) malloc(_len_out_reg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_reg0; _i0++) {
+            out_reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tonga_check_s0_mc_reg_index(in_reg,out_reg);
+          printf("%d\n", benchRet); 
+          free(out_reg);
+        
+        break;
+    }
     default:
         usage();
         break;

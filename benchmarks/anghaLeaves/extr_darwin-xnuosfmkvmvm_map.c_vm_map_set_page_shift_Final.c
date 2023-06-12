@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ vm_map_set_page_shift(
 	return KERN_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +96,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pageshift = 100;
+        
           int _len_map0 = 1;
           struct TYPE_5__ * map = (struct TYPE_5__ *) malloc(_len_map0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].hdr.nentries = ((-2 * (next_i()%2)) + 1) * next_i();
-        map[_i0].hdr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].hdr.nentries = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].hdr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = vm_map_set_page_shift(map,pageshift);
           printf("%d\n", benchRet); 
           free(map);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pageshift = 255;
+        
+          int _len_map0 = 65025;
+          struct TYPE_5__ * map = (struct TYPE_5__ *) malloc(_len_map0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].hdr.nentries = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].hdr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vm_map_set_page_shift(map,pageshift);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pageshift = 10;
+        
+          int _len_map0 = 100;
+          struct TYPE_5__ * map = (struct TYPE_5__ *) malloc(_len_map0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].hdr.nentries = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].hdr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vm_map_set_page_shift(map,pageshift);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pageshift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_map0 = 1;
+          struct TYPE_5__ * map = (struct TYPE_5__ *) malloc(_len_map0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].hdr.nentries = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].hdr.page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vm_map_set_page_shift(map,pageshift);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

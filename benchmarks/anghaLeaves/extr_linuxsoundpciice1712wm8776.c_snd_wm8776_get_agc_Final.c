@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void snd_wm8776_get_agc(struct snd_wm8776 *wm, u16 
 	*mode = wm->agc_mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,24 +75,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wm0 = 1;
+          int _len_wm0 = 65025;
           struct snd_wm8776 * wm = (struct snd_wm8776 *) malloc(_len_wm0*sizeof(struct snd_wm8776));
           for(int _i0 = 0; _i0 < _len_wm0; _i0++) {
-            wm[_i0].agc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              wm[_i0].agc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mode0 = 1;
+        
+          int _len_mode0 = 65025;
           int * mode = (int *) malloc(_len_mode0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_nothing0 = 1;
+        
+          int _len_nothing0 = 65025;
           int * nothing = (int *) malloc(_len_nothing0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_nothing0; _i0++) {
             nothing[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           snd_wm8776_get_agc(wm,mode,nothing);
           free(wm);
           free(mode);
@@ -104,7 +104,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wm0 = 100;
+          struct snd_wm8776 * wm = (struct snd_wm8776 *) malloc(_len_wm0*sizeof(struct snd_wm8776));
+          for(int _i0 = 0; _i0 < _len_wm0; _i0++) {
+              wm[_i0].agc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 100;
+          int * mode = (int *) malloc(_len_mode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nothing0 = 100;
+          int * nothing = (int *) malloc(_len_nothing0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nothing0; _i0++) {
+            nothing[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          snd_wm8776_get_agc(wm,mode,nothing);
+          free(wm);
+          free(mode);
+          free(nothing);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wm0 = 1;
+          struct snd_wm8776 * wm = (struct snd_wm8776 *) malloc(_len_wm0*sizeof(struct snd_wm8776));
+          for(int _i0 = 0; _i0 < _len_wm0; _i0++) {
+              wm[_i0].agc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 1;
+          int * mode = (int *) malloc(_len_mode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_nothing0 = 1;
+          int * nothing = (int *) malloc(_len_nothing0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nothing0; _i0++) {
+            nothing[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          snd_wm8776_get_agc(wm,mode,nothing);
+          free(wm);
+          free(mode);
+          free(nothing);
+        
+        break;
+    }
     default:
         usage();
         break;

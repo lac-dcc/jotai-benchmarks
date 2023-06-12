@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ long long add_ll (long long a, long long b) {
     return a + b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,7 +77,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long long a = 100;
+        
           long long b = 100;
+        
           long long benchRet = add_ll(a,b);
           printf("%lld\n", benchRet); 
         
@@ -92,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long long a = 255;
+        
           long long b = 255;
+        
           long long benchRet = add_ll(a,b);
           printf("%lld\n", benchRet); 
         
@@ -102,13 +101,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long long a = 10;
+        
           long long b = 10;
+        
           long long benchRet = add_ll(a,b);
           printf("%lld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long long a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long long b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long long benchRet = add_ll(a,b);
+          printf("%lld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

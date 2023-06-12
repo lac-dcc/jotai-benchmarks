@@ -61,12 +61,6 @@ __attribute__((used)) static inline u8 pca955x_ledsel(u8 oldval, int led_num, in
 		((state & 0x3) << (led_num << 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +77,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int oldval = 10;
+        
           int led_num = 10;
+        
           int state = 10;
+        
           int benchRet = pca955x_ledsel(oldval,led_num,state);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

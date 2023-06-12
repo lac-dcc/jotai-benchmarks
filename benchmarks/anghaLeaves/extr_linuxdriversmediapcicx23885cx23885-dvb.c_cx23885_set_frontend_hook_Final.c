@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void cx23885_set_frontend_hook(struct cx23885_tspor
 	fe->ops.set_frontend = cx23885_dvb_set_frontend;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,26 +80,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct cx23885_tsport * port = (struct cx23885_tsport *) malloc(_len_port0*sizeof(struct cx23885_tsport));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_fe0 = 1;
+        
+          int _len_fe0 = 65025;
           struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
           for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
-            fe[_i0].ops.set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+              fe[_i0].ops.set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cx23885_set_frontend_hook(port,fe);
           free(port);
           free(fe);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_port0 = 100;
+          struct cx23885_tsport * port = (struct cx23885_tsport *) malloc(_len_port0*sizeof(struct cx23885_tsport));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fe0 = 100;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              fe[_i0].ops.set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cx23885_set_frontend_hook(port,fe);
+          free(port);
+          free(fe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct cx23885_tsport * port = (struct cx23885_tsport *) malloc(_len_port0*sizeof(struct cx23885_tsport));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fe0 = 1;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              fe[_i0].ops.set_frontend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cx23885_set_frontend_hook(port,fe);
+          free(port);
+          free(fe);
+        
+        break;
+    }
     default:
         usage();
         break;

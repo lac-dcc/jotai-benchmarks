@@ -60,12 +60,6 @@ __attribute__((used)) static inline uint64_t xfs_mask64lo(int n)
 	return ((uint64_t)1 << (n)) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,12 +76,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 10;
+        
           int benchRet = xfs_mask64lo(n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

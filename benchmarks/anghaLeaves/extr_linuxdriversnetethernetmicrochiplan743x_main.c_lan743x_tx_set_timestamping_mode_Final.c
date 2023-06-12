@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ void lan743x_tx_set_timestamping_mode(struct lan743x_tx *tx,
 		tx->ts_flags &= ~TX_TS_FLAG_ONE_STEP_SYNC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +86,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int enable_timestamping = 100;
+        
           int enable_onestep_sync = 100;
+        
           int _len_tx0 = 1;
           struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
-            tx[_i0].ts_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx[_i0].ts_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           lan743x_tx_set_timestamping_mode(tx,enable_timestamping,enable_onestep_sync);
           free(tx);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int enable_timestamping = 255;
+        
+          int enable_onestep_sync = 255;
+        
+          int _len_tx0 = 65025;
+          struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+              tx[_i0].ts_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lan743x_tx_set_timestamping_mode(tx,enable_timestamping,enable_onestep_sync);
+          free(tx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int enable_timestamping = 10;
+        
           int enable_onestep_sync = 10;
+        
           int _len_tx0 = 100;
           struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
-            tx[_i0].ts_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx[_i0].ts_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          lan743x_tx_set_timestamping_mode(tx,enable_timestamping,enable_onestep_sync);
+          free(tx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int enable_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enable_onestep_sync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx0 = 1;
+          struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+              tx[_i0].ts_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           lan743x_tx_set_timestamping_mode(tx,enable_timestamping,enable_onestep_sync);
           free(tx);
         

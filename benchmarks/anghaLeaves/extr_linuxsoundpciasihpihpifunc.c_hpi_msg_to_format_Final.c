@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void hpi_msg_to_format(struct hpi_format *pF,
 	pF->unused = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,29 +82,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_pF0 = 65025;
+          struct hpi_format * pF = (struct hpi_format *) malloc(_len_pF0*sizeof(struct hpi_format));
+          for(int _i0 = 0; _i0 < _len_pF0; _i0++) {
+              pF[_i0].unused = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].mode_legacy = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pMF0 = 65025;
+          struct hpi_msg_format * pMF = (struct hpi_msg_format *) malloc(_len_pMF0*sizeof(struct hpi_msg_format));
+          for(int _i0 = 0; _i0 < _len_pMF0; _i0++) {
+              pMF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hpi_msg_to_format(pF,pMF);
+          free(pF);
+          free(pMF);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_pF0 = 100;
+          struct hpi_format * pF = (struct hpi_format *) malloc(_len_pF0*sizeof(struct hpi_format));
+          for(int _i0 = 0; _i0 < _len_pF0; _i0++) {
+              pF[_i0].unused = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].mode_legacy = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pMF0 = 100;
+          struct hpi_msg_format * pMF = (struct hpi_msg_format *) malloc(_len_pMF0*sizeof(struct hpi_msg_format));
+          for(int _i0 = 0; _i0 < _len_pMF0; _i0++) {
+              pMF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hpi_msg_to_format(pF,pMF);
+          free(pF);
+          free(pMF);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_pF0 = 1;
           struct hpi_format * pF = (struct hpi_format *) malloc(_len_pF0*sizeof(struct hpi_format));
           for(int _i0 = 0; _i0 < _len_pF0; _i0++) {
-            pF[_i0].unused = ((-2 * (next_i()%2)) + 1) * next_i();
-        pF[_i0].mode_legacy = ((-2 * (next_i()%2)) + 1) * next_i();
-        pF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
-        pF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        pF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
-        pF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              pF[_i0].unused = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].mode_legacy = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pMF0 = 1;
           struct hpi_msg_format * pMF = (struct hpi_msg_format *) malloc(_len_pMF0*sizeof(struct hpi_msg_format));
           for(int _i0 = 0; _i0 < _len_pMF0; _i0++) {
-            pMF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
-        pMF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        pMF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
-        pMF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pMF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              pMF[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].attributes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].bit_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pMF[_i0].sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hpi_msg_to_format(pF,pMF);
           free(pF);
           free(pMF);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static int hclgevf_init_roce_base_info(struct hclgevf_dev 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,40 +100,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdev0 = 1;
+          int _len_hdev0 = 65025;
           struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].num_roce_msix = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].num_msi_left = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].hw.io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce_base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].nic.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdev[_i0].roce.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].num_roce_msix = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].num_msi_left = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].hw.io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].roce_base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].nic.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          hdev[_i0].roce.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].roce.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = hclgevf_init_roce_base_info(hdev);
           printf("%d\n", benchRet); 
           free(hdev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hdev0 = 100;
+          struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].num_roce_msix = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].num_msi_left = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].hw.io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].roce_base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].nic.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          hdev[_i0].roce.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].roce.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = hclgevf_init_roce_base_info(hdev);
+          printf("%d\n", benchRet); 
+          free(hdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hdev0 = 1;
+          struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].num_roce_msix = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].num_msi_left = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].hw.io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].roce_base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].nic.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].nic.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          hdev[_i0].roce.numa_node_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.ae_algo = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.pdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.num_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.roce_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdev[_i0].roce.rinfo.base_vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hdev[_i0].roce.kinfo.netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = hclgevf_init_roce_base_info(hdev);
+          printf("%d\n", benchRet); 
+          free(hdev);
+        
+        break;
+    }
     default:
         usage();
         break;

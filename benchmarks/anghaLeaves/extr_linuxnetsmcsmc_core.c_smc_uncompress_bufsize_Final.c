@@ -64,12 +64,6 @@ int smc_uncompress_bufsize(u8 compressed)
 	return (int)size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +80,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long compressed = 10;
+        
           int benchRet = smc_uncompress_bufsize(compressed);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

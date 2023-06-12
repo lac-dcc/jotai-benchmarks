@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static size_t bipbuf_sizeof(const unsigned int size)
     return sizeof(bipbuf_t) + size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const unsigned int size = 100;
+        
           unsigned long benchRet = bipbuf_sizeof(size);
           printf("%lu\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const unsigned int size = 255;
+        
           unsigned long benchRet = bipbuf_sizeof(size);
           printf("%lu\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const unsigned int size = 10;
+        
           unsigned long benchRet = bipbuf_sizeof(size);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const unsigned int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = bipbuf_sizeof(size);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

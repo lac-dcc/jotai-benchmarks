@@ -64,12 +64,6 @@ Field_op0_s6_Slot_xt_flix64_slot3_set (xtensa_insnbuf insn, uint32 val)
   insn[0] = (insn[0] & ~0xf8000000) | (tie_t << 27);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +76,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int val = 10;
+        
           int _len_insn0 = 100;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Field_op0_s6_Slot_xt_flix64_slot3_set(insn,val);
           free(insn);
         

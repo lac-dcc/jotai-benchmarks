@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ bfa_itnim_meminfo(struct bfa_iocfc_cfg_s *cfg, u32 *km_len)
 	*km_len += cfg->fwcfg.num_rports * sizeof(struct bfa_itnim_s);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_cfg0 = 65025;
+          struct bfa_iocfc_cfg_s * cfg = (struct bfa_iocfc_cfg_s *) malloc(_len_cfg0*sizeof(struct bfa_iocfc_cfg_s));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_km_len0 = 65025;
+          int * km_len = (int *) malloc(_len_km_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_km_len0; _i0++) {
+            km_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bfa_itnim_meminfo(cfg,km_len);
+          free(cfg);
+          free(km_len);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_cfg0 = 100;
+          struct bfa_iocfc_cfg_s * cfg = (struct bfa_iocfc_cfg_s *) malloc(_len_cfg0*sizeof(struct bfa_iocfc_cfg_s));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_km_len0 = 100;
+          int * km_len = (int *) malloc(_len_km_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_km_len0; _i0++) {
+            km_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bfa_itnim_meminfo(cfg,km_len);
+          free(cfg);
+          free(km_len);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_cfg0 = 1;
           struct bfa_iocfc_cfg_s * cfg = (struct bfa_iocfc_cfg_s *) malloc(_len_cfg0*sizeof(struct bfa_iocfc_cfg_s));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].fwcfg.num_rports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_km_len0 = 1;
           int * km_len = (int *) malloc(_len_km_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_km_len0; _i0++) {
             km_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           bfa_itnim_meminfo(cfg,km_len);
           free(cfg);
           free(km_len);

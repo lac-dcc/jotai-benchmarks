@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ get_device_index(RDPCLIENT * This, NTHANDLE handle)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,15 +92,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long handle = 100;
+        
           int _len_This0 = 1;
           struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_This0; _i0++) {
               int _len_This__i0__rdpdr_device0 = 1;
           This[_i0].rdpdr_device = (struct TYPE_4__ *) malloc(_len_This__i0__rdpdr_device0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_This__i0__rdpdr_device0; _j0++) {
-            This[_i0].rdpdr_device->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              This[_i0].rdpdr_device->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = get_device_index(This,handle);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_This0; _aux++) {
@@ -113,7 +114,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long handle = 255;
+        
+          int _len_This0 = 65025;
+          struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              int _len_This__i0__rdpdr_device0 = 1;
+          This[_i0].rdpdr_device = (struct TYPE_4__ *) malloc(_len_This__i0__rdpdr_device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_This__i0__rdpdr_device0; _j0++) {
+              This[_i0].rdpdr_device->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_device_index(This,handle);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_This0; _aux++) {
+          free(This[_aux].rdpdr_device);
+          }
+          free(This);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long handle = 10;
+        
+          int _len_This0 = 100;
+          struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              int _len_This__i0__rdpdr_device0 = 1;
+          This[_i0].rdpdr_device = (struct TYPE_4__ *) malloc(_len_This__i0__rdpdr_device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_This__i0__rdpdr_device0; _j0++) {
+              This[_i0].rdpdr_device->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_device_index(This,handle);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_This0; _aux++) {
+          free(This[_aux].rdpdr_device);
+          }
+          free(This);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_This0 = 1;
+          struct TYPE_5__ * This = (struct TYPE_5__ *) malloc(_len_This0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              int _len_This__i0__rdpdr_device0 = 1;
+          This[_i0].rdpdr_device = (struct TYPE_4__ *) malloc(_len_This__i0__rdpdr_device0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_This__i0__rdpdr_device0; _j0++) {
+              This[_i0].rdpdr_device->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_device_index(This,handle);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_This0; _aux++) {
+          free(This[_aux].rdpdr_device);
+          }
+          free(This);
+        
+        break;
+    }
     default:
         usage();
         break;

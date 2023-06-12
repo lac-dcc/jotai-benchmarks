@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ bstp_calc_path_cost(struct bstp_port *bp)
 	return (path_cost);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,22 +109,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_bp0 = 65025;
           struct bstp_port * bp = (struct bstp_port *) malloc(_len_bp0*sizeof(struct bstp_port));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].bp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bp_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bp_if_link_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bp_protover = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].bp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_if_link_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_protover = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_bp__i0__bp_ifp0 = 1;
           bp[_i0].bp_ifp = (struct ifnet *) malloc(_len_bp__i0__bp_ifp0*sizeof(struct ifnet));
           for(int _j0 = 0; _j0 < _len_bp__i0__bp_ifp0; _j0++) {
-            bp[_i0].bp_ifp->if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].bp_ifp->if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = bstp_calc_path_cost(bp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].bp_ifp);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_bp0 = 100;
+          struct bstp_port * bp = (struct bstp_port *) malloc(_len_bp0*sizeof(struct bstp_port));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].bp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_if_link_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_protover = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bp__i0__bp_ifp0 = 1;
+          bp[_i0].bp_ifp = (struct ifnet *) malloc(_len_bp__i0__bp_ifp0*sizeof(struct ifnet));
+          for(int _j0 = 0; _j0 < _len_bp__i0__bp_ifp0; _j0++) {
+              bp[_i0].bp_ifp->if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = bstp_calc_path_cost(bp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].bp_ifp);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_bp0 = 1;
+          struct bstp_port * bp = (struct bstp_port *) malloc(_len_bp0*sizeof(struct bstp_port));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].bp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_if_link_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bp_protover = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bp__i0__bp_ifp0 = 1;
+          bp[_i0].bp_ifp = (struct ifnet *) malloc(_len_bp__i0__bp_ifp0*sizeof(struct ifnet));
+          for(int _j0 = 0; _j0 < _len_bp__i0__bp_ifp0; _j0++) {
+              bp[_i0].bp_ifp->if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = bstp_calc_path_cost(bp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bp0; _aux++) {

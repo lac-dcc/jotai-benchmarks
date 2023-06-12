@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline bool __fw_state_check(struct fw_priv *fw_pri
 	return fw_st->status == status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,30 +79,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum fw_status status = 0;
-          int _len_fw_priv0 = 1;
+        
+          int _len_fw_priv0 = 65025;
           struct fw_priv * fw_priv = (struct fw_priv *) malloc(_len_fw_priv0*sizeof(struct fw_priv));
           for(int _i0 = 0; _i0 < _len_fw_priv0; _i0++) {
-            fw_priv[_i0].fw_st.status = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw_priv[_i0].fw_st.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = __fw_state_check(fw_priv,status);
           printf("%d\n", benchRet); 
           free(fw_priv);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum fw_status status = 0;
+        
           int _len_fw_priv0 = 100;
           struct fw_priv * fw_priv = (struct fw_priv *) malloc(_len_fw_priv0*sizeof(struct fw_priv));
           for(int _i0 = 0; _i0 < _len_fw_priv0; _i0++) {
-            fw_priv[_i0].fw_st.status = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw_priv[_i0].fw_st.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = __fw_state_check(fw_priv,status);
+          printf("%d\n", benchRet); 
+          free(fw_priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum fw_status status = 0;
+        
+          int _len_fw_priv0 = 1;
+          struct fw_priv * fw_priv = (struct fw_priv *) malloc(_len_fw_priv0*sizeof(struct fw_priv));
+          for(int _i0 = 0; _i0 < _len_fw_priv0; _i0++) {
+              fw_priv[_i0].fw_st.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = __fw_state_check(fw_priv,status);
           printf("%d\n", benchRet); 
           free(fw_priv);

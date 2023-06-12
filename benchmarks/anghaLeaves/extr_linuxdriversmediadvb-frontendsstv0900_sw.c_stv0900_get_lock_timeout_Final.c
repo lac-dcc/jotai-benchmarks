@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -108,12 +111,6 @@ __attribute__((used)) static void stv0900_get_lock_timeout(s32 *demod_timeout, s
 		(*demod_timeout) /= 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,21 +123,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int srate = 100;
+        
           enum fe_stv0900_search_algo algo = 0;
+        
           int _len_demod_timeout0 = 1;
           int * demod_timeout = (int *) malloc(_len_demod_timeout0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_demod_timeout0; _i0++) {
             demod_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_fec_timeout0 = 1;
           int * fec_timeout = (int *) malloc(_len_fec_timeout0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fec_timeout0; _i0++) {
             fec_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          stv0900_get_lock_timeout(demod_timeout,fec_timeout,srate,algo);
+          free(demod_timeout);
+          free(fec_timeout);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int srate = 255;
+        
+          enum fe_stv0900_search_algo algo = 0;
+        
+          int _len_demod_timeout0 = 65025;
+          int * demod_timeout = (int *) malloc(_len_demod_timeout0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_demod_timeout0; _i0++) {
+            demod_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fec_timeout0 = 65025;
+          int * fec_timeout = (int *) malloc(_len_fec_timeout0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fec_timeout0; _i0++) {
+            fec_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stv0900_get_lock_timeout(demod_timeout,fec_timeout,srate,algo);
+          free(demod_timeout);
+          free(fec_timeout);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int srate = 10;
+        
+          enum fe_stv0900_search_algo algo = 0;
+        
+          int _len_demod_timeout0 = 100;
+          int * demod_timeout = (int *) malloc(_len_demod_timeout0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_demod_timeout0; _i0++) {
+            demod_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fec_timeout0 = 100;
+          int * fec_timeout = (int *) malloc(_len_fec_timeout0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fec_timeout0; _i0++) {
+            fec_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stv0900_get_lock_timeout(demod_timeout,fec_timeout,srate,algo);
+          free(demod_timeout);
+          free(fec_timeout);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int srate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum fe_stv0900_search_algo algo = 0;
+        
+          int _len_demod_timeout0 = 1;
+          int * demod_timeout = (int *) malloc(_len_demod_timeout0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_demod_timeout0; _i0++) {
+            demod_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fec_timeout0 = 1;
+          int * fec_timeout = (int *) malloc(_len_fec_timeout0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fec_timeout0; _i0++) {
+            fec_timeout[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           stv0900_get_lock_timeout(demod_timeout,fec_timeout,srate,algo);
           free(demod_timeout);
           free(fec_timeout);

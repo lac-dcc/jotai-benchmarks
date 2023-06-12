@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void _rt2x00_desc_write(__le32 *desc, const 
 	desc[word] = value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +74,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          const unsigned long word = 10;
-          int value = 10;
-          int _len_desc0 = 100;
+          const unsigned long word = 255;
+        
+          int value = 255;
+        
+          int _len_desc0 = 65025;
           int * desc = (int *) malloc(_len_desc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
             desc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           _rt2x00_desc_write(desc,word,value);
           free(desc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          const unsigned long word = 10;
+        
+          int value = 10;
+        
+          int _len_desc0 = 100;
+          int * desc = (int *) malloc(_len_desc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+            desc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _rt2x00_desc_write(desc,word,value);
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

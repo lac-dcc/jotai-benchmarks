@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static AVFrame *select_frame(FieldMatchContext *fm, int ma
     else  /* match == mC */              return fm->src;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,10 +84,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int match = 100;
+        
           int _len_fm0 = 1;
           struct TYPE_3__ * fm = (struct TYPE_3__ *) malloc(_len_fm0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fm0; _i0++) {
@@ -109,7 +130,204 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_fm__i0__prv0; _j0++) {
             fm[_i0].prv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int * benchRet = select_frame(fm,match);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].src);
+          }
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].nxt);
+          }
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].prv);
+          }
+          free(fm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int match = 255;
+        
+          int _len_fm0 = 65025;
+          struct TYPE_3__ * fm = (struct TYPE_3__ *) malloc(_len_fm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fm0; _i0++) {
+              int _len_fm__i0__src0 = 1;
+          fm[_i0].src = (int *) malloc(_len_fm__i0__src0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__src0; _j0++) {
+            fm[_i0].src[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fm__i0__nxt0 = 1;
+          fm[_i0].nxt = (int *) malloc(_len_fm__i0__nxt0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__nxt0; _j0++) {
+            fm[_i0].nxt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fm__i0__prv0 = 1;
+          fm[_i0].prv = (int *) malloc(_len_fm__i0__prv0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__prv0; _j0++) {
+            fm[_i0].prv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = select_frame(fm,match);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].src);
+          }
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].nxt);
+          }
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].prv);
+          }
+          free(fm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int match = 10;
+        
+          int _len_fm0 = 100;
+          struct TYPE_3__ * fm = (struct TYPE_3__ *) malloc(_len_fm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fm0; _i0++) {
+              int _len_fm__i0__src0 = 1;
+          fm[_i0].src = (int *) malloc(_len_fm__i0__src0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__src0; _j0++) {
+            fm[_i0].src[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fm__i0__nxt0 = 1;
+          fm[_i0].nxt = (int *) malloc(_len_fm__i0__nxt0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__nxt0; _j0++) {
+            fm[_i0].nxt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fm__i0__prv0 = 1;
+          fm[_i0].prv = (int *) malloc(_len_fm__i0__prv0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__prv0; _j0++) {
+            fm[_i0].prv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = select_frame(fm,match);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].src);
+          }
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].nxt);
+          }
+          for(int _aux = 0; _aux < _len_fm0; _aux++) {
+          free(fm[_aux].prv);
+          }
+          free(fm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int match = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fm0 = 1;
+          struct TYPE_3__ * fm = (struct TYPE_3__ *) malloc(_len_fm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fm0; _i0++) {
+              int _len_fm__i0__src0 = 1;
+          fm[_i0].src = (int *) malloc(_len_fm__i0__src0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__src0; _j0++) {
+            fm[_i0].src[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fm__i0__nxt0 = 1;
+          fm[_i0].nxt = (int *) malloc(_len_fm__i0__nxt0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__nxt0; _j0++) {
+            fm[_i0].nxt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fm__i0__prv0 = 1;
+          fm[_i0].prv = (int *) malloc(_len_fm__i0__prv0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fm__i0__prv0; _j0++) {
+            fm[_i0].prv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int * benchRet = select_frame(fm,match);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_fm0; _aux++) {

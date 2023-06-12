@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void mark_all_ce_unused(struct index_state *index)
 		index->cache[i]->ce_flags &= ~(CE_UNPACKED | CE_ADDED | CE_NEW_SKIP_WORKTREE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,155 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_index0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_index0 = 65025;
           struct index_state * index = (struct index_state *) malloc(_len_index0*sizeof(struct index_state));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
-            index[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              index[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_index__i0__cache0 = 1;
           index[_i0].cache = (struct TYPE_2__ **) malloc(_len_index__i0__cache0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_index__i0__cache0; _j0++) {
             int _len_index__i0__cache1 = 1;
             index[_i0].cache[_j0] = (struct TYPE_2__ *) malloc(_len_index__i0__cache1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_index__i0__cache1; _j1++) {
-              index[_i0].cache[_j0]->ce_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+                index[_i0].cache[_j0]->ce_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          mark_all_ce_unused(index);
+          for(int _aux = 0; _aux < _len_index0; _aux++) {
+          free(*(index[_aux].cache));
+        free(index[_aux].cache);
+          }
+          free(index);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_index0 = 100;
+          struct index_state * index = (struct index_state *) malloc(_len_index0*sizeof(struct index_state));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+              index[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_index__i0__cache0 = 1;
+          index[_i0].cache = (struct TYPE_2__ **) malloc(_len_index__i0__cache0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_index__i0__cache0; _j0++) {
+            int _len_index__i0__cache1 = 1;
+            index[_i0].cache[_j0] = (struct TYPE_2__ *) malloc(_len_index__i0__cache1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_index__i0__cache1; _j1++) {
+                index[_i0].cache[_j0]->ce_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          mark_all_ce_unused(index);
+          for(int _aux = 0; _aux < _len_index0; _aux++) {
+          free(*(index[_aux].cache));
+        free(index[_aux].cache);
+          }
+          free(index);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_index0 = 1;
+          struct index_state * index = (struct index_state *) malloc(_len_index0*sizeof(struct index_state));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+              index[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_index__i0__cache0 = 1;
+          index[_i0].cache = (struct TYPE_2__ **) malloc(_len_index__i0__cache0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_index__i0__cache0; _j0++) {
+            int _len_index__i0__cache1 = 1;
+            index[_i0].cache[_j0] = (struct TYPE_2__ *) malloc(_len_index__i0__cache1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_index__i0__cache1; _j1++) {
+                index[_i0].cache[_j0]->ce_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           mark_all_ce_unused(index);
           for(int _aux = 0; _aux < _len_index0; _aux++) {
           free(*(index[_aux].cache));

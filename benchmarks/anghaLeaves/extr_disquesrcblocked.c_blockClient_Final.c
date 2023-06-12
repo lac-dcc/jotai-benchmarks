@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ void blockClient(client *c, int btype) {
     server.bpop_blocked_clients++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int btype = 100;
+        
           int _len_c0 = 1;
           struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           blockClient(c,btype);
           free(c);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int btype = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blockClient(c,btype);
+          free(c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int btype = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blockClient(c,btype);
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int btype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct TYPE_4__ * c = (struct TYPE_4__ *) malloc(_len_c0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].btype = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blockClient(c,btype);
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

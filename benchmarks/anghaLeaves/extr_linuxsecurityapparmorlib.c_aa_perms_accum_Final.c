@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void aa_perms_accum(struct aa_perms *accum, struct aa_perms *addend)
 	accum->prompt |= addend->prompt & ~accum->allow & ~accum->deny;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,37 +83,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
+          int _len_accum0 = 65025;
+          struct aa_perms * accum = (struct aa_perms *) malloc(_len_accum0*sizeof(struct aa_perms));
+          for(int _i0 = 0; _i0 < _len_accum0; _i0++) {
+              accum[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addend0 = 65025;
+          struct aa_perms * addend = (struct aa_perms *) malloc(_len_addend0*sizeof(struct aa_perms));
+          for(int _i0 = 0; _i0 < _len_addend0; _i0++) {
+              addend[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          aa_perms_accum(accum,addend);
+          free(accum);
+          free(addend);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
+          int _len_accum0 = 100;
+          struct aa_perms * accum = (struct aa_perms *) malloc(_len_accum0*sizeof(struct aa_perms));
+          for(int _i0 = 0; _i0 < _len_accum0; _i0++) {
+              accum[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addend0 = 100;
+          struct aa_perms * addend = (struct aa_perms *) malloc(_len_addend0*sizeof(struct aa_perms));
+          for(int _i0 = 0; _i0 < _len_addend0; _i0++) {
+              addend[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          aa_perms_accum(accum,addend);
+          free(accum);
+          free(addend);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 102
+          // dynamic_instructions_O0 : 102
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
           int _len_accum0 = 1;
           struct aa_perms * accum = (struct aa_perms *) malloc(_len_accum0*sizeof(struct aa_perms));
           for(int _i0 = 0; _i0 < _len_accum0; _i0++) {
-            accum[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
-        accum[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+              accum[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
+          accum[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_addend0 = 1;
           struct aa_perms * addend = (struct aa_perms *) malloc(_len_addend0*sizeof(struct aa_perms));
           for(int _i0 = 0; _i0 < _len_addend0; _i0++) {
-            addend[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
-        addend[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+              addend[_i0].deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].audit = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].quiet = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].kill = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].complain = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].cond = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].hide = ((-2 * (next_i()%2)) + 1) * next_i();
+          addend[_i0].prompt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           aa_perms_accum(accum,addend);
           free(accum);
           free(addend);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void update_depth (RTreeNode *n, RTreeVisitor *vis)
 	n->depth = n->parent ? n->parent->depth + 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,24 +78,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_n0 = 1;
+          int _len_n0 = 65025;
           struct TYPE_5__ * n = (struct TYPE_5__ *) malloc(_len_n0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
               int _len_n__i0__parent0 = 1;
           n[_i0].parent = (struct TYPE_4__ *) malloc(_len_n__i0__parent0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_n__i0__parent0; _j0++) {
-            n[_i0].parent->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].parent->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        n[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_vis0 = 1;
+        
+          int _len_vis0 = 65025;
           int * vis = (int *) malloc(_len_vis0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_vis0; _i0++) {
             vis[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           update_depth(n,vis);
           for(int _aux = 0; _aux < _len_n0; _aux++) {
           free(n[_aux].parent);
@@ -109,7 +109,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_n0 = 100;
+          struct TYPE_5__ * n = (struct TYPE_5__ *) malloc(_len_n0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__parent0 = 1;
+          n[_i0].parent = (struct TYPE_4__ *) malloc(_len_n__i0__parent0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_n__i0__parent0; _j0++) {
+              n[_i0].parent->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          n[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vis0 = 100;
+          int * vis = (int *) malloc(_len_vis0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_vis0; _i0++) {
+            vis[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          update_depth(n,vis);
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].parent);
+          }
+          free(n);
+          free(vis);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_n0 = 1;
+          struct TYPE_5__ * n = (struct TYPE_5__ *) malloc(_len_n0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__parent0 = 1;
+          n[_i0].parent = (struct TYPE_4__ *) malloc(_len_n__i0__parent0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_n__i0__parent0; _j0++) {
+              n[_i0].parent->depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          n[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vis0 = 1;
+          int * vis = (int *) malloc(_len_vis0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_vis0; _i0++) {
+            vis[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          update_depth(n,vis);
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].parent);
+          }
+          free(n);
+          free(vis);
+        
+        break;
+    }
     default:
         usage();
         break;

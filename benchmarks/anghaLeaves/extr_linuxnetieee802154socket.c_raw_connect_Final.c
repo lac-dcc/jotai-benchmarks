@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int raw_connect(struct sock *sk, struct sockaddr *u
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr_len = 100;
+        
           int _len_sk0 = 1;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
-            sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_uaddr0 = 1;
           struct sockaddr * uaddr = (struct sockaddr *) malloc(_len_uaddr0*sizeof(struct sockaddr));
           for(int _i0 = 0; _i0 < _len_uaddr0; _i0++) {
-            uaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = raw_connect(sk,uaddr,addr_len);
           printf("%d\n", benchRet); 
           free(sk);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int addr_len = 255;
+        
+          int _len_sk0 = 65025;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uaddr0 = 65025;
+          struct sockaddr * uaddr = (struct sockaddr *) malloc(_len_uaddr0*sizeof(struct sockaddr));
+          for(int _i0 = 0; _i0 < _len_uaddr0; _i0++) {
+              uaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = raw_connect(sk,uaddr,addr_len);
+          printf("%d\n", benchRet); 
+          free(sk);
+          free(uaddr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int addr_len = 10;
+        
+          int _len_sk0 = 100;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uaddr0 = 100;
+          struct sockaddr * uaddr = (struct sockaddr *) malloc(_len_uaddr0*sizeof(struct sockaddr));
+          for(int _i0 = 0; _i0 < _len_uaddr0; _i0++) {
+              uaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = raw_connect(sk,uaddr,addr_len);
+          printf("%d\n", benchRet); 
+          free(sk);
+          free(uaddr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int addr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sk0 = 1;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              sk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uaddr0 = 1;
+          struct sockaddr * uaddr = (struct sockaddr *) malloc(_len_uaddr0*sizeof(struct sockaddr));
+          for(int _i0 = 0; _i0 < _len_uaddr0; _i0++) {
+              uaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = raw_connect(sk,uaddr,addr_len);
+          printf("%d\n", benchRet); 
+          free(sk);
+          free(uaddr);
+        
+        break;
+    }
     default:
         usage();
         break;

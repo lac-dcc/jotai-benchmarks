@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,7 +68,6 @@ __attribute__((used)) static u32 countLookasideSlots(LookasideSlot *p){
   return cnt;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_3__ *_allocate_p(int length, struct TYPE_3__ *aux_p[]) {
@@ -95,7 +95,6 @@ void _delete_p(struct TYPE_3__ *aux_p[], int aux_p_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,18 +107,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_3__ * aux_p[10000];
+          struct TYPE_3__ * p = _allocate_p(10000, aux_p);
+        
+          long benchRet = countLookasideSlots(p);
+          printf("%ld\n", benchRet); 
+          _delete_p(aux_p, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_3__ * aux_p[1];
           struct TYPE_3__ * p = _allocate_p(1, aux_p);
+        
           long benchRet = countLookasideSlots(p);
           printf("%ld\n", benchRet); 
           _delete_p(aux_p, 1);
         
         break;
     }
-
     default:
         usage();
         break;

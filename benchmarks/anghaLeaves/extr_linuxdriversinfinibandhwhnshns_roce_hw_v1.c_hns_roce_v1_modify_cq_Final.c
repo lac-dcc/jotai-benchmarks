@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int hns_roce_v1_modify_cq(struct ib_cq *cq, u16 cq_
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,32 +77,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int cq_count = 100;
+        
           int cq_period = 100;
+        
           int _len_cq0 = 1;
           struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
           for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
-            cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hns_roce_v1_modify_cq(cq,cq_count,cq_period);
           printf("%d\n", benchRet); 
           free(cq);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cq_count = 255;
+        
+          int cq_period = 255;
+        
+          int _len_cq0 = 65025;
+          struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hns_roce_v1_modify_cq(cq,cq_count,cq_period);
+          printf("%d\n", benchRet); 
+          free(cq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int cq_count = 10;
+        
           int cq_period = 10;
+        
           int _len_cq0 = 100;
           struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
           for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
-            cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hns_roce_v1_modify_cq(cq,cq_count,cq_period);
+          printf("%d\n", benchRet); 
+          free(cq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int cq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cq_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cq0 = 1;
+          struct ib_cq * cq = (struct ib_cq *) malloc(_len_cq0*sizeof(struct ib_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hns_roce_v1_modify_cq(cq,cq_count,cq_period);
           printf("%d\n", benchRet); 
           free(cq);

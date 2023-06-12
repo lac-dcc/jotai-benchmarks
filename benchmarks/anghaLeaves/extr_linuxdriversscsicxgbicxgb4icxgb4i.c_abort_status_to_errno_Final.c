@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static int abort_status_to_errno(struct cxgbi_sock *csk, i
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,16 +103,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int abort_reason = 100;
+        
           int _len_csk0 = 1;
           struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
           for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_need_rst0 = 1;
           int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
             need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = abort_status_to_errno(csk,abort_reason,need_rst);
           printf("%d\n", benchRet); 
           free(csk);
@@ -123,7 +124,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int abort_reason = 255;
+        
+          int _len_csk0 = 65025;
+          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
+          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_need_rst0 = 65025;
+          int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
+            need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = abort_status_to_errno(csk,abort_reason,need_rst);
+          printf("%d\n", benchRet); 
+          free(csk);
+          free(need_rst);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int abort_reason = 10;
+        
+          int _len_csk0 = 100;
+          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
+          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_need_rst0 = 100;
+          int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
+            need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = abort_status_to_errno(csk,abort_reason,need_rst);
+          printf("%d\n", benchRet); 
+          free(csk);
+          free(need_rst);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int abort_reason = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_csk0 = 1;
+          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
+          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_need_rst0 = 1;
+          int * need_rst = (int *) malloc(_len_need_rst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_need_rst0; _i0++) {
+            need_rst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = abort_status_to_errno(csk,abort_reason,need_rst);
+          printf("%d\n", benchRet); 
+          free(csk);
+          free(need_rst);
+        
+        break;
+    }
     default:
         usage();
         break;

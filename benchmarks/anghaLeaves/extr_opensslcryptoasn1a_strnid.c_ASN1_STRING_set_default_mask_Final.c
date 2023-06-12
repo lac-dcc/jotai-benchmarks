@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void ASN1_STRING_set_default_mask(unsigned long mask)
     global_mask = mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long mask = 100;
+        
           ASN1_STRING_set_default_mask(mask);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long mask = 255;
+        
           ASN1_STRING_set_default_mask(mask);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long mask = 10;
+        
           ASN1_STRING_set_default_mask(mask);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ASN1_STRING_set_default_mask(mask);
+        
+        break;
+    }
     default:
         usage();
         break;

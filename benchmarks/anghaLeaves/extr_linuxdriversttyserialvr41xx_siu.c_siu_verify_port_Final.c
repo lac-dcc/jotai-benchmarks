@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int siu_verify_port(struct uart_port *port, struct 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +87,157 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_serial0 = 65025;
+          struct serial_struct * serial = (struct serial_struct *) malloc(_len_serial0*sizeof(struct serial_struct));
+          for(int _i0 = 0; _i0 < _len_serial0; _i0++) {
+              serial[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          serial[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          serial[_i0].iomem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = siu_verify_port(port,serial);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(serial);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_serial0 = 100;
+          struct serial_struct * serial = (struct serial_struct *) malloc(_len_serial0*sizeof(struct serial_struct));
+          for(int _i0 = 0; _i0 < _len_serial0; _i0++) {
+              serial[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          serial[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          serial[_i0].iomem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = siu_verify_port(port,serial);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(serial);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].iotype = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].mapbase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_serial0 = 1;
           struct serial_struct * serial = (struct serial_struct *) malloc(_len_serial0*sizeof(struct serial_struct));
           for(int _i0 = 0; _i0 < _len_serial0; _i0++) {
-            serial[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        serial[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        serial[_i0].iomem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              serial[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          serial[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          serial[_i0].iomem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = siu_verify_port(port,serial);
           printf("%d\n", benchRet); 
           free(port);

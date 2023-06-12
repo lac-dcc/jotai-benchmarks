@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static u32 pm8941_wled_num_strings_values_fn(u32 idx)
 	return idx + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long idx = 100;
+        
           long benchRet = pm8941_wled_num_strings_values_fn(idx);
           printf("%ld\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long idx = 255;
+        
           long benchRet = pm8941_wled_num_strings_values_fn(idx);
           printf("%ld\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long idx = 10;
+        
           long benchRet = pm8941_wled_num_strings_values_fn(idx);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = pm8941_wled_num_strings_values_fn(idx);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

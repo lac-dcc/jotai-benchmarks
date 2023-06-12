@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int hclge_parse_func_status(struct hclge_dev *hdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +89,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdev0 = 1;
+          int _len_hdev0 = 65025;
           struct hclge_dev * hdev = (struct hclge_dev *) malloc(_len_hdev0*sizeof(struct hclge_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_status0 = 1;
+        
+          int _len_status0 = 65025;
           struct hclge_func_status_cmd * status = (struct hclge_func_status_cmd *) malloc(_len_status0*sizeof(struct hclge_func_status_cmd));
           for(int _i0 = 0; _i0 < _len_status0; _i0++) {
-            status[_i0].pf_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              status[_i0].pf_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hclge_parse_func_status(hdev,status);
           printf("%d\n", benchRet); 
           free(hdev);
@@ -113,7 +113,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hdev0 = 100;
+          struct hclge_dev * hdev = (struct hclge_dev *) malloc(_len_hdev0*sizeof(struct hclge_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_status0 = 100;
+          struct hclge_func_status_cmd * status = (struct hclge_func_status_cmd *) malloc(_len_status0*sizeof(struct hclge_func_status_cmd));
+          for(int _i0 = 0; _i0 < _len_status0; _i0++) {
+              status[_i0].pf_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hclge_parse_func_status(hdev,status);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(status);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hdev0 = 1;
+          struct hclge_dev * hdev = (struct hclge_dev *) malloc(_len_hdev0*sizeof(struct hclge_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_status0 = 1;
+          struct hclge_func_status_cmd * status = (struct hclge_func_status_cmd *) malloc(_len_status0*sizeof(struct hclge_func_status_cmd));
+          for(int _i0 = 0; _i0 < _len_status0; _i0++) {
+              status[_i0].pf_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hclge_parse_func_status(hdev,status);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(status);
+        
+        break;
+    }
     default:
         usage();
         break;

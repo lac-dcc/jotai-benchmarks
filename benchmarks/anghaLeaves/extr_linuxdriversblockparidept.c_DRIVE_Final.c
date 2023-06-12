@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u8 DRIVE(struct pt_unit *tape)
 	return 0xa0+0x10*tape->drive;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tape0 = 1;
+          int _len_tape0 = 65025;
           struct pt_unit * tape = (struct pt_unit *) malloc(_len_tape0*sizeof(struct pt_unit));
           for(int _i0 = 0; _i0 < _len_tape0; _i0++) {
-            tape[_i0].drive = ((-2 * (next_i()%2)) + 1) * next_i();
+              tape[_i0].drive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = DRIVE(tape);
           printf("%d\n", benchRet); 
           free(tape);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_tape0 = 100;
           struct pt_unit * tape = (struct pt_unit *) malloc(_len_tape0*sizeof(struct pt_unit));
           for(int _i0 = 0; _i0 < _len_tape0; _i0++) {
-            tape[_i0].drive = ((-2 * (next_i()%2)) + 1) * next_i();
+              tape[_i0].drive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = DRIVE(tape);
           printf("%d\n", benchRet); 
           free(tape);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tape0 = 1;
+          struct pt_unit * tape = (struct pt_unit *) malloc(_len_tape0*sizeof(struct pt_unit));
+          for(int _i0 = 0; _i0 < _len_tape0; _i0++) {
+              tape[_i0].drive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = DRIVE(tape);
+          printf("%d\n", benchRet); 
+          free(tape);
+        
+        break;
+    }
     default:
         usage();
         break;

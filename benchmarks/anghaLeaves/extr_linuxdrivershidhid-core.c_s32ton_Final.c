@@ -65,12 +65,6 @@ __attribute__((used)) static u32 s32ton(__s32 value, unsigned n)
 	return value & ((1 << n) - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,13 +81,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int value = 10;
+        
           unsigned int n = 10;
+        
           int benchRet = s32ton(value,n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

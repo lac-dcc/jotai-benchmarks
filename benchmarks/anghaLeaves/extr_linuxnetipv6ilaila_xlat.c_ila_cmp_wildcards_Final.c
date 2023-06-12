@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline int ila_cmp_wildcards(struct ila_map *ila,
 	return (ila->xp.ifindex && ila->xp.ifindex != ifindex);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +79,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int ifindex = 100;
+        
           int _len_ila0 = 1;
           struct ila_map * ila = (struct ila_map *) malloc(_len_ila0*sizeof(struct ila_map));
           for(int _i0 = 0; _i0 < _len_ila0; _i0++) {
-            ila[_i0].xp.ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+              ila[_i0].xp.ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_iaddr0 = 1;
           struct ila_addr * iaddr = (struct ila_addr *) malloc(_len_iaddr0*sizeof(struct ila_addr));
           for(int _i0 = 0; _i0 < _len_iaddr0; _i0++) {
-            iaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              iaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ila_cmp_wildcards(ila,iaddr,ifindex);
+          printf("%d\n", benchRet); 
+          free(ila);
+          free(iaddr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int ifindex = 255;
+        
+          int _len_ila0 = 65025;
+          struct ila_map * ila = (struct ila_map *) malloc(_len_ila0*sizeof(struct ila_map));
+          for(int _i0 = 0; _i0 < _len_ila0; _i0++) {
+              ila[_i0].xp.ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_iaddr0 = 65025;
+          struct ila_addr * iaddr = (struct ila_addr *) malloc(_len_iaddr0*sizeof(struct ila_addr));
+          for(int _i0 = 0; _i0 < _len_iaddr0; _i0++) {
+              iaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ila_cmp_wildcards(ila,iaddr,ifindex);
+          printf("%d\n", benchRet); 
+          free(ila);
+          free(iaddr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int ifindex = 10;
+        
+          int _len_ila0 = 100;
+          struct ila_map * ila = (struct ila_map *) malloc(_len_ila0*sizeof(struct ila_map));
+          for(int _i0 = 0; _i0 < _len_ila0; _i0++) {
+              ila[_i0].xp.ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_iaddr0 = 100;
+          struct ila_addr * iaddr = (struct ila_addr *) malloc(_len_iaddr0*sizeof(struct ila_addr));
+          for(int _i0 = 0; _i0 < _len_iaddr0; _i0++) {
+              iaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ila_cmp_wildcards(ila,iaddr,ifindex);
+          printf("%d\n", benchRet); 
+          free(ila);
+          free(iaddr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ila0 = 1;
+          struct ila_map * ila = (struct ila_map *) malloc(_len_ila0*sizeof(struct ila_map));
+          for(int _i0 = 0; _i0 < _len_ila0; _i0++) {
+              ila[_i0].xp.ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_iaddr0 = 1;
+          struct ila_addr * iaddr = (struct ila_addr *) malloc(_len_iaddr0*sizeof(struct ila_addr));
+          for(int _i0 = 0; _i0 < _len_iaddr0; _i0++) {
+              iaddr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ila_cmp_wildcards(ila,iaddr,ifindex);
           printf("%d\n", benchRet); 
           free(ila);

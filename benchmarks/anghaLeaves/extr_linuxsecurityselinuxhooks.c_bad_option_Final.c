@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static int bad_option(struct superblock_security_struct *s
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,13 +97,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char flag = 100;
+        
           long old_sid = 100;
+        
           long new_sid = 100;
+        
           int _len_sbsec0 = 1;
           struct superblock_security_struct * sbsec = (struct superblock_security_struct *) malloc(_len_sbsec0*sizeof(struct superblock_security_struct));
           for(int _i0 = 0; _i0 < _len_sbsec0; _i0++) {
-            sbsec[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbsec[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bad_option(sbsec,flag,old_sid,new_sid);
+          printf("%d\n", benchRet); 
+          free(sbsec);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          char flag = 255;
+        
+          long old_sid = 255;
+        
+          long new_sid = 255;
+        
+          int _len_sbsec0 = 65025;
+          struct superblock_security_struct * sbsec = (struct superblock_security_struct *) malloc(_len_sbsec0*sizeof(struct superblock_security_struct));
+          for(int _i0 = 0; _i0 < _len_sbsec0; _i0++) {
+              sbsec[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bad_option(sbsec,flag,old_sid,new_sid);
           printf("%d\n", benchRet); 
           free(sbsec);
@@ -115,23 +138,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           char flag = 10;
+        
           long old_sid = 10;
+        
           long new_sid = 10;
+        
           int _len_sbsec0 = 100;
           struct superblock_security_struct * sbsec = (struct superblock_security_struct *) malloc(_len_sbsec0*sizeof(struct superblock_security_struct));
           for(int _i0 = 0; _i0 < _len_sbsec0; _i0++) {
-            sbsec[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              sbsec[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bad_option(sbsec,flag,old_sid,new_sid);
           printf("%d\n", benchRet); 
           free(sbsec);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long old_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long new_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sbsec0 = 1;
+          struct superblock_security_struct * sbsec = (struct superblock_security_struct *) malloc(_len_sbsec0*sizeof(struct superblock_security_struct));
+          for(int _i0 = 0; _i0 < _len_sbsec0; _i0++) {
+              sbsec[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bad_option(sbsec,flag,old_sid,new_sid);
+          printf("%d\n", benchRet); 
+          free(sbsec);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline unsigned int get_freeobj(struct zspage *zspa
 	return zspage->freeobj;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zspage0 = 1;
+          int _len_zspage0 = 65025;
           struct zspage * zspage = (struct zspage *) malloc(_len_zspage0*sizeof(struct zspage));
           for(int _i0 = 0; _i0 < _len_zspage0; _i0++) {
-            zspage[_i0].freeobj = ((-2 * (next_i()%2)) + 1) * next_i();
+              zspage[_i0].freeobj = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = get_freeobj(zspage);
           printf("%u\n", benchRet); 
           free(zspage);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_zspage0 = 100;
           struct zspage * zspage = (struct zspage *) malloc(_len_zspage0*sizeof(struct zspage));
           for(int _i0 = 0; _i0 < _len_zspage0; _i0++) {
-            zspage[_i0].freeobj = ((-2 * (next_i()%2)) + 1) * next_i();
+              zspage[_i0].freeobj = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = get_freeobj(zspage);
           printf("%u\n", benchRet); 
           free(zspage);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_zspage0 = 1;
+          struct zspage * zspage = (struct zspage *) malloc(_len_zspage0*sizeof(struct zspage));
+          for(int _i0 = 0; _i0 < _len_zspage0; _i0++) {
+              zspage[_i0].freeobj = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = get_freeobj(zspage);
+          printf("%u\n", benchRet); 
+          free(zspage);
+        
+        break;
+    }
     default:
         usage();
         break;

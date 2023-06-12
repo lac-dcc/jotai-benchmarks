@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int adv748x_hdmi_g_pixelaspect(struct v4l2_subdev *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +79,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_sd0 = 65025;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_aspect0 = 65025;
+          struct v4l2_fract * aspect = (struct v4l2_fract *) malloc(_len_aspect0*sizeof(struct v4l2_fract));
+          for(int _i0 = 0; _i0 < _len_aspect0; _i0++) {
+              aspect[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          aspect[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = adv748x_hdmi_g_pixelaspect(sd,aspect);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(aspect);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_sd0 = 100;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_aspect0 = 100;
+          struct v4l2_fract * aspect = (struct v4l2_fract *) malloc(_len_aspect0*sizeof(struct v4l2_fract));
+          for(int _i0 = 0; _i0 < _len_aspect0; _i0++) {
+              aspect[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          aspect[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = adv748x_hdmi_g_pixelaspect(sd,aspect);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(aspect);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_sd0 = 1;
           struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_aspect0 = 1;
           struct v4l2_fract * aspect = (struct v4l2_fract *) malloc(_len_aspect0*sizeof(struct v4l2_fract));
           for(int _i0 = 0; _i0 < _len_aspect0; _i0++) {
-            aspect[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
-        aspect[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+              aspect[_i0].numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          aspect[_i0].denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = adv748x_hdmi_g_pixelaspect(sd,aspect);
           printf("%d\n", benchRet); 
           free(sd);

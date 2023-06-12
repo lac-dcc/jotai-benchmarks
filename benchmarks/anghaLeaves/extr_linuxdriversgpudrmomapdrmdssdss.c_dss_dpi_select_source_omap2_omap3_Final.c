@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int dss_dpi_select_source_omap2_omap3(struct dss_de
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,12 +86,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int port = 100;
+        
           enum omap_channel channel = 0;
+        
           int _len_dss0 = 1;
           struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
           for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
-            dss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dss_dpi_select_source_omap2_omap3(dss,port,channel);
+          printf("%d\n", benchRet); 
+          free(dss);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int port = 255;
+        
+          enum omap_channel channel = 0;
+        
+          int _len_dss0 = 65025;
+          struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
+          for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
+              dss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dss_dpi_select_source_omap2_omap3(dss,port,channel);
           printf("%d\n", benchRet); 
           free(dss);
@@ -103,22 +123,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int port = 10;
+        
           enum omap_channel channel = 0;
+        
           int _len_dss0 = 100;
           struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
           for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
-            dss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dss_dpi_select_source_omap2_omap3(dss,port,channel);
           printf("%d\n", benchRet); 
           free(dss);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum omap_channel channel = 0;
+        
+          int _len_dss0 = 1;
+          struct dss_device * dss = (struct dss_device *) malloc(_len_dss0*sizeof(struct dss_device));
+          for(int _i0 = 0; _i0 < _len_dss0; _i0++) {
+              dss[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dss_dpi_select_source_omap2_omap3(dss,port,channel);
+          printf("%d\n", benchRet); 
+          free(dss);
+        
+        break;
+    }
     default:
         usage();
         break;

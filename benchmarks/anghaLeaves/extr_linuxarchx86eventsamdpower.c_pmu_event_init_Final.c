@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static int pmu_event_init(struct perf_event *event)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,22 +104,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_event0 = 65025;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.sample_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pmu_event_init(event);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_event0 = 100;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.sample_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pmu_event_init(event);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_event0 = 1;
           struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.sample_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.sample_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_guest = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_host = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = pmu_event_init(event);
           printf("%d\n", benchRet); 
           free(event);

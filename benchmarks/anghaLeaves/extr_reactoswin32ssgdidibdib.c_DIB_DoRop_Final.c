@@ -175,12 +175,6 @@ static const ULONG ExpandDest[16] =
   return(Result);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -197,9 +191,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Rop = 100;
+        
           int Dest = 100;
+        
           int Source = 100;
+        
           int Pattern = 100;
+        
           int benchRet = DIB_DoRop(Rop,Dest,Source,Pattern);
           printf("%d\n", benchRet); 
         
@@ -209,15 +207,18 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int Rop = 10;
+        
           int Dest = 10;
+        
           int Source = 10;
+        
           int Pattern = 10;
+        
           int benchRet = DIB_DoRop(Rop,Dest,Source,Pattern);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

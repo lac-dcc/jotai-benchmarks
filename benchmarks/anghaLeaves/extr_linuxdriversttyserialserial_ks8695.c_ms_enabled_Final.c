@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int ms_enabled(struct uart_port *port)
 	return port->unused[0] & 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__unused0 = 1;
+          port[_i0].unused = (int *) malloc(_len_port__i0__unused0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_port__i0__unused0; _j0++) {
+            port[_i0].unused[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ms_enabled(port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].unused);
+          }
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__unused0 = 1;
+          port[_i0].unused = (int *) malloc(_len_port__i0__unused0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_port__i0__unused0; _j0++) {
+            port[_i0].unused[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ms_enabled(port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].unused);
+          }
+          free(port);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct uart_port * port = (struct uart_port *) malloc(_len_port0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_port__i0__unused0; _j0++) {
             port[_i0].unused[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ms_enabled(port);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_port0; _aux++) {

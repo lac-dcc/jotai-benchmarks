@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ timer_start(timer_t timer, uint64_t tstamp)
 	timer->tstamp = tstamp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tstamp = 100;
+        
           int _len_timer0 = 1;
           struct TYPE_3__ * timer = (struct TYPE_3__ *) malloc(_len_timer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
-            timer[_i0].tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer[_i0].tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          timer_start(timer,tstamp);
+          free(timer);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int tstamp = 255;
+        
+          int _len_timer0 = 65025;
+          struct TYPE_3__ * timer = (struct TYPE_3__ *) malloc(_len_timer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
+              timer[_i0].tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           timer_start(timer,tstamp);
           free(timer);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int tstamp = 10;
+        
           int _len_timer0 = 100;
           struct TYPE_3__ * timer = (struct TYPE_3__ *) malloc(_len_timer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
-            timer[_i0].tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer[_i0].tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           timer_start(timer,tstamp);
           free(timer);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_timer0 = 1;
+          struct TYPE_3__ * timer = (struct TYPE_3__ *) malloc(_len_timer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
+              timer[_i0].tstamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          timer_start(timer,tstamp);
+          free(timer);
+        
+        break;
+    }
     default:
         usage();
         break;

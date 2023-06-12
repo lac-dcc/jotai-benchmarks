@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ cs_entitlement_flags(struct proc *p)
 	return (p->p_csflags & CS_ENTITLEMENT_FLAGS);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_csflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_csflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cs_entitlement_flags(p);
           printf("%d\n", benchRet); 
           free(p);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_csflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_csflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cs_entitlement_flags(p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_csflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cs_entitlement_flags(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

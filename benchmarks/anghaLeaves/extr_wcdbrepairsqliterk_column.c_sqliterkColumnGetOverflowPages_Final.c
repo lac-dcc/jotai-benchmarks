@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ sqliterk_values *sqliterkColumnGetOverflowPages(sqliterk_column *column)
     return column->overflowPages;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,10 +80,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_column0 = 1;
+          int _len_column0 = 65025;
           struct TYPE_3__ * column = (struct TYPE_3__ *) malloc(_len_column0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_column0; _i0++) {
               int _len_column__i0__overflowPages0 = 1;
@@ -95,7 +91,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_column__i0__overflowPages0; _j0++) {
             column[_i0].overflowPages[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = sqliterkColumnGetOverflowPages(column);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_column0; _aux++) {
@@ -105,7 +103,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_column0 = 100;
+          struct TYPE_3__ * column = (struct TYPE_3__ *) malloc(_len_column0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_column0; _i0++) {
+              int _len_column__i0__overflowPages0 = 1;
+          column[_i0].overflowPages = (int *) malloc(_len_column__i0__overflowPages0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_column__i0__overflowPages0; _j0++) {
+            column[_i0].overflowPages[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = sqliterkColumnGetOverflowPages(column);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_column0; _aux++) {
+          free(column[_aux].overflowPages);
+          }
+          free(column);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_column0 = 1;
+          struct TYPE_3__ * column = (struct TYPE_3__ *) malloc(_len_column0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_column0; _i0++) {
+              int _len_column__i0__overflowPages0 = 1;
+          column[_i0].overflowPages = (int *) malloc(_len_column__i0__overflowPages0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_column__i0__overflowPages0; _j0++) {
+            column[_i0].overflowPages[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = sqliterkColumnGetOverflowPages(column);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_column0; _aux++) {
+          free(column[_aux].overflowPages);
+          }
+          free(column);
+        
+        break;
+    }
     default:
         usage();
         break;

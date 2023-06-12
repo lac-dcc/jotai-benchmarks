@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ bstp_info_cmp(struct bstp_pri_vector *pv,
 	return (INFO_SAME);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,25 +99,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_pv0 = 65025;
+          struct bstp_pri_vector * pv = (struct bstp_pri_vector *) malloc(_len_pv0*sizeof(struct bstp_pri_vector));
+          for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
+              pv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cpv0 = 65025;
+          struct bstp_pri_vector * cpv = (struct bstp_pri_vector *) malloc(_len_cpv0*sizeof(struct bstp_pri_vector));
+          for(int _i0 = 0; _i0 < _len_cpv0; _i0++) {
+              cpv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bstp_info_cmp(pv,cpv);
+          printf("%d\n", benchRet); 
+          free(pv);
+          free(cpv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_pv0 = 100;
+          struct bstp_pri_vector * pv = (struct bstp_pri_vector *) malloc(_len_pv0*sizeof(struct bstp_pri_vector));
+          for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
+              pv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cpv0 = 100;
+          struct bstp_pri_vector * cpv = (struct bstp_pri_vector *) malloc(_len_cpv0*sizeof(struct bstp_pri_vector));
+          for(int _i0 = 0; _i0 < _len_cpv0; _i0++) {
+              cpv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bstp_info_cmp(pv,cpv);
+          printf("%d\n", benchRet); 
+          free(pv);
+          free(cpv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_pv0 = 1;
           struct bstp_pri_vector * pv = (struct bstp_pri_vector *) malloc(_len_pv0*sizeof(struct bstp_pri_vector));
           for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
-            pv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        pv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
-        pv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        pv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              pv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          pv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cpv0 = 1;
           struct bstp_pri_vector * cpv = (struct bstp_pri_vector *) malloc(_len_cpv0*sizeof(struct bstp_pri_vector));
           for(int _i0 = 0; _i0 < _len_cpv0; _i0++) {
-            cpv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        cpv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
-        cpv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        cpv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpv[_i0].pv_root_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_dbridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpv[_i0].pv_dport_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bstp_info_cmp(pv,cpv);
           printf("%d\n", benchRet); 
           free(pv);

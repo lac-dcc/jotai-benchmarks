@@ -60,12 +60,6 @@ __attribute__((used)) static inline uint32_t rotl32(uint32_t x, unsigned n)
   return (x << n) | (x >> (32 - n));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int x = 10;
+        
           unsigned int n = 10;
+        
           unsigned int benchRet = rotl32(x,n);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ errcode_t ext2fs_set_rec_len(ext2_filsys fs,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +96,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int len = 100;
+        
           int _len_fs0 = 1;
           struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dirent0 = 1;
           struct ext2_dir_entry * dirent = (struct ext2_dir_entry *) malloc(_len_dirent0*sizeof(struct ext2_dir_entry));
           for(int _i0 = 0; _i0 < _len_dirent0; _i0++) {
-            dirent[_i0].rec_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              dirent[_i0].rec_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ext2fs_set_rec_len(fs,len,dirent);
+          printf("%d\n", benchRet); 
+          free(fs);
+          free(dirent);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int len = 255;
+        
+          int _len_fs0 = 65025;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dirent0 = 65025;
+          struct ext2_dir_entry * dirent = (struct ext2_dir_entry *) malloc(_len_dirent0*sizeof(struct ext2_dir_entry));
+          for(int _i0 = 0; _i0 < _len_dirent0; _i0++) {
+              dirent[_i0].rec_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_set_rec_len(fs,len,dirent);
+          printf("%d\n", benchRet); 
+          free(fs);
+          free(dirent);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int len = 10;
+        
+          int _len_fs0 = 100;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dirent0 = 100;
+          struct ext2_dir_entry * dirent = (struct ext2_dir_entry *) malloc(_len_dirent0*sizeof(struct ext2_dir_entry));
+          for(int _i0 = 0; _i0 < _len_dirent0; _i0++) {
+              dirent[_i0].rec_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ext2fs_set_rec_len(fs,len,dirent);
+          printf("%d\n", benchRet); 
+          free(fs);
+          free(dirent);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dirent0 = 1;
+          struct ext2_dir_entry * dirent = (struct ext2_dir_entry *) malloc(_len_dirent0*sizeof(struct ext2_dir_entry));
+          for(int _i0 = 0; _i0 < _len_dirent0; _i0++) {
+              dirent[_i0].rec_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ext2fs_set_rec_len(fs,len,dirent);
           printf("%d\n", benchRet); 
           free(fs);

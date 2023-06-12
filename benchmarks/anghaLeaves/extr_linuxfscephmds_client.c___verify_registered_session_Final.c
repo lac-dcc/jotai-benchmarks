@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int __verify_registered_session(struct ceph_mds_cli
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +80,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mdsc0 = 1;
+          int _len_mdsc0 = 65025;
           struct ceph_mds_client * mdsc = (struct ceph_mds_client *) malloc(_len_mdsc0*sizeof(struct ceph_mds_client));
           for(int _i0 = 0; _i0 < _len_mdsc0; _i0++) {
-            mdsc[_i0].max_sessions = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdsc[_i0].max_sessions = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mdsc__i0__sessions0 = 1;
           mdsc[_i0].sessions = (struct ceph_mds_session **) malloc(_len_mdsc__i0__sessions0*sizeof(struct ceph_mds_session *));
           for(int _j0 = 0; _j0 < _len_mdsc__i0__sessions0; _j0++) {
             int _len_mdsc__i0__sessions1 = 1;
             mdsc[_i0].sessions[_j0] = (struct ceph_mds_session *) malloc(_len_mdsc__i0__sessions1*sizeof(struct ceph_mds_session));
             for(int _j1 = 0; _j1 < _len_mdsc__i0__sessions1; _j1++) {
-              mdsc[_i0].sessions[_j0]->s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+                mdsc[_i0].sessions[_j0]->s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
-          int _len_s0 = 1;
+        
+          int _len_s0 = 65025;
           struct ceph_mds_session * s = (struct ceph_mds_session *) malloc(_len_s0*sizeof(struct ceph_mds_session));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __verify_registered_session(mdsc,s);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mdsc0; _aux++) {
@@ -117,7 +118,82 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mdsc0 = 100;
+          struct ceph_mds_client * mdsc = (struct ceph_mds_client *) malloc(_len_mdsc0*sizeof(struct ceph_mds_client));
+          for(int _i0 = 0; _i0 < _len_mdsc0; _i0++) {
+              mdsc[_i0].max_sessions = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mdsc__i0__sessions0 = 1;
+          mdsc[_i0].sessions = (struct ceph_mds_session **) malloc(_len_mdsc__i0__sessions0*sizeof(struct ceph_mds_session *));
+          for(int _j0 = 0; _j0 < _len_mdsc__i0__sessions0; _j0++) {
+            int _len_mdsc__i0__sessions1 = 1;
+            mdsc[_i0].sessions[_j0] = (struct ceph_mds_session *) malloc(_len_mdsc__i0__sessions1*sizeof(struct ceph_mds_session));
+            for(int _j1 = 0; _j1 < _len_mdsc__i0__sessions1; _j1++) {
+                mdsc[_i0].sessions[_j0]->s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_s0 = 100;
+          struct ceph_mds_session * s = (struct ceph_mds_session *) malloc(_len_s0*sizeof(struct ceph_mds_session));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __verify_registered_session(mdsc,s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mdsc0; _aux++) {
+          free(*(mdsc[_aux].sessions));
+        free(mdsc[_aux].sessions);
+          }
+          free(mdsc);
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mdsc0 = 1;
+          struct ceph_mds_client * mdsc = (struct ceph_mds_client *) malloc(_len_mdsc0*sizeof(struct ceph_mds_client));
+          for(int _i0 = 0; _i0 < _len_mdsc0; _i0++) {
+              mdsc[_i0].max_sessions = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mdsc__i0__sessions0 = 1;
+          mdsc[_i0].sessions = (struct ceph_mds_session **) malloc(_len_mdsc__i0__sessions0*sizeof(struct ceph_mds_session *));
+          for(int _j0 = 0; _j0 < _len_mdsc__i0__sessions0; _j0++) {
+            int _len_mdsc__i0__sessions1 = 1;
+            mdsc[_i0].sessions[_j0] = (struct ceph_mds_session *) malloc(_len_mdsc__i0__sessions1*sizeof(struct ceph_mds_session));
+            for(int _j1 = 0; _j1 < _len_mdsc__i0__sessions1; _j1++) {
+                mdsc[_i0].sessions[_j0]->s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_s0 = 1;
+          struct ceph_mds_session * s = (struct ceph_mds_session *) malloc(_len_s0*sizeof(struct ceph_mds_session));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].s_mds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __verify_registered_session(mdsc,s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mdsc0; _aux++) {
+          free(*(mdsc[_aux].sessions));
+        free(mdsc[_aux].sessions);
+          }
+          free(mdsc);
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

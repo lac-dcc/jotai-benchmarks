@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static inline int sis190_rx_pkt_err(u32 status, struct net
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,19 +99,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int status = 100;
+        
           int _len_stats0 = 1;
           struct net_device_stats * stats = (struct net_device_stats *) malloc(_len_stats0*sizeof(struct net_device_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_frame_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_frame_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sis190_rx_pkt_err(status,stats);
+          printf("%d\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int status = 255;
+        
+          int _len_stats0 = 65025;
+          struct net_device_stats * stats = (struct net_device_stats *) malloc(_len_stats0*sizeof(struct net_device_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_frame_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sis190_rx_pkt_err(status,stats);
+          printf("%d\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int status = 10;
+        
+          int _len_stats0 = 100;
+          struct net_device_stats * stats = (struct net_device_stats *) malloc(_len_stats0*sizeof(struct net_device_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_frame_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sis190_rx_pkt_err(status,stats);
+          printf("%d\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stats0 = 1;
+          struct net_device_stats * stats = (struct net_device_stats *) malloc(_len_stats0*sizeof(struct net_device_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_frame_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sis190_rx_pkt_err(status,stats);
           printf("%d\n", benchRet); 
           free(stats);

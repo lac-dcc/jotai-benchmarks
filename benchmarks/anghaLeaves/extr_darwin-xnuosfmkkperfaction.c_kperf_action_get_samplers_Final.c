@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ kperf_action_get_samplers(unsigned actionid, uint32_t *samplers_out)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,11 +95,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int actionid = 100;
+        
           int _len_samplers_out0 = 1;
           long * samplers_out = (long *) malloc(_len_samplers_out0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_samplers_out0; _i0++) {
             samplers_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = kperf_action_get_samplers(actionid,samplers_out);
+          printf("%d\n", benchRet); 
+          free(samplers_out);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int actionid = 255;
+        
+          int _len_samplers_out0 = 65025;
+          long * samplers_out = (long *) malloc(_len_samplers_out0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_samplers_out0; _i0++) {
+            samplers_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = kperf_action_get_samplers(actionid,samplers_out);
           printf("%d\n", benchRet); 
           free(samplers_out);
@@ -111,21 +126,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int actionid = 10;
+        
           int _len_samplers_out0 = 100;
           long * samplers_out = (long *) malloc(_len_samplers_out0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_samplers_out0; _i0++) {
             samplers_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kperf_action_get_samplers(actionid,samplers_out);
           printf("%d\n", benchRet); 
           free(samplers_out);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int actionid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_samplers_out0 = 1;
+          long * samplers_out = (long *) malloc(_len_samplers_out0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_samplers_out0; _i0++) {
+            samplers_out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kperf_action_get_samplers(actionid,samplers_out);
+          printf("%d\n", benchRet); 
+          free(samplers_out);
+        
+        break;
+    }
     default:
         usage();
         break;

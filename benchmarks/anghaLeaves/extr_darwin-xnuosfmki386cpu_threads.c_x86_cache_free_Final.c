@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -71,7 +72,6 @@ x86_cache_free(x86_cpu_cache_t *cache)
     x86_caches = cache;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_cache(int length, struct TYPE_4__ *aux_cache[]) {
@@ -101,7 +101,6 @@ void _delete_cache(struct TYPE_4__ *aux_cache[], int aux_cache_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,17 +113,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_cache[10000];
+          struct TYPE_4__ * cache = _allocate_cache(10000, aux_cache);
+        
+          x86_cache_free(cache);
+          _delete_cache(aux_cache, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_cache[1];
           struct TYPE_4__ * cache = _allocate_cache(1, aux_cache);
+        
           x86_cache_free(cache);
           _delete_cache(aux_cache, 1);
         
         break;
     }
-
     default:
         usage();
         break;

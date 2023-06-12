@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ ifnet_type(ifnet_t interface)
 	return ((interface == NULL) ? 0 : interface->if_data.ifi_type);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_interface0 = 1;
+          int _len_interface0 = 65025;
           struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_data.ifi_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_data.ifi_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ifnet_type(interface);
           printf("%d\n", benchRet); 
           free(interface);
@@ -105,15 +103,34 @@ int main(int argc, char *argv[]) {
           int _len_interface0 = 100;
           struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_data.ifi_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_data.ifi_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ifnet_type(interface);
           printf("%d\n", benchRet); 
           free(interface);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_interface0 = 1;
+          struct TYPE_5__ * interface = (struct TYPE_5__ *) malloc(_len_interface0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_data.ifi_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ifnet_type(interface);
+          printf("%d\n", benchRet); 
+          free(interface);
+        
+        break;
+    }
     default:
         usage();
         break;

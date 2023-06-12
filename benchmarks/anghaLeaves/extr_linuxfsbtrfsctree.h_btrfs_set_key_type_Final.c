@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void btrfs_set_key_type(struct btrfs_key *ke
 	key->type = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int _len_key0 = 1;
           struct btrfs_key * key = (struct btrfs_key *) malloc(_len_key0*sizeof(struct btrfs_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          btrfs_set_key_type(key,val);
+          free(key);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int val = 255;
+        
+          int _len_key0 = 65025;
+          struct btrfs_key * key = (struct btrfs_key *) malloc(_len_key0*sizeof(struct btrfs_key));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           btrfs_set_key_type(key,val);
           free(key);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int val = 10;
+        
           int _len_key0 = 100;
           struct btrfs_key * key = (struct btrfs_key *) malloc(_len_key0*sizeof(struct btrfs_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           btrfs_set_key_type(key,val);
           free(key);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_key0 = 1;
+          struct btrfs_key * key = (struct btrfs_key *) malloc(_len_key0*sizeof(struct btrfs_key));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          btrfs_set_key_type(key,val);
+          free(key);
+        
+        break;
+    }
     default:
         usage();
         break;

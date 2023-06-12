@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void wlc_phy_cal_perical_mphase_restart(struct brcms_phy *pi)
 	pi->mphase_txcal_cmdidx = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pi0 = 1;
+          int _len_pi0 = 65025;
           struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
           for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
-            pi[_i0].mphase_txcal_cmdidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        pi[_i0].mphase_cal_phase_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              pi[_i0].mphase_txcal_cmdidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].mphase_cal_phase_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           wlc_phy_cal_perical_mphase_restart(pi);
           free(pi);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pi0 = 100;
+          struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].mphase_txcal_cmdidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].mphase_cal_phase_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wlc_phy_cal_perical_mphase_restart(pi);
+          free(pi);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pi0 = 1;
+          struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].mphase_txcal_cmdidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].mphase_cal_phase_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wlc_phy_cal_perical_mphase_restart(pi);
+          free(pi);
+        
+        break;
+    }
     default:
         usage();
         break;

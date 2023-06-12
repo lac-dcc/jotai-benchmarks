@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ smb2_dir_needs_close(struct cifsFileInfo *cfile)
 	return !cfile->invalidHandle;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfile0 = 1;
+          int _len_cfile0 = 65025;
           struct cifsFileInfo * cfile = (struct cifsFileInfo *) malloc(_len_cfile0*sizeof(struct cifsFileInfo));
           for(int _i0 = 0; _i0 < _len_cfile0; _i0++) {
-            cfile[_i0].invalidHandle = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfile[_i0].invalidHandle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smb2_dir_needs_close(cfile);
           printf("%d\n", benchRet); 
           free(cfile);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_cfile0 = 100;
           struct cifsFileInfo * cfile = (struct cifsFileInfo *) malloc(_len_cfile0*sizeof(struct cifsFileInfo));
           for(int _i0 = 0; _i0 < _len_cfile0; _i0++) {
-            cfile[_i0].invalidHandle = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfile[_i0].invalidHandle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smb2_dir_needs_close(cfile);
           printf("%d\n", benchRet); 
           free(cfile);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cfile0 = 1;
+          struct cifsFileInfo * cfile = (struct cifsFileInfo *) malloc(_len_cfile0*sizeof(struct cifsFileInfo));
+          for(int _i0 = 0; _i0 < _len_cfile0; _i0++) {
+              cfile[_i0].invalidHandle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = smb2_dir_needs_close(cfile);
+          printf("%d\n", benchRet); 
+          free(cfile);
+        
+        break;
+    }
     default:
         usage();
         break;

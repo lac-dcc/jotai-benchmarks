@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ __attribute__((used)) static unsigned int rpmh_regulator_pmic4_bob_of_map_mode(u
 	return mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rpmh_mode = 100;
+        
           unsigned int benchRet = rpmh_regulator_pmic4_bob_of_map_mode(rpmh_mode);
           printf("%u\n", benchRet); 
         
@@ -115,6 +111,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int rpmh_mode = 255;
+        
           unsigned int benchRet = rpmh_regulator_pmic4_bob_of_map_mode(rpmh_mode);
           printf("%u\n", benchRet); 
         
@@ -124,12 +121,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int rpmh_mode = 10;
+        
           unsigned int benchRet = rpmh_regulator_pmic4_bob_of_map_mode(rpmh_mode);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int rpmh_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = rpmh_regulator_pmic4_bob_of_map_mode(rpmh_mode);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

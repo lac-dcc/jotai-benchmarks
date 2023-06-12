@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool is_space_or_tab(const char ch)
 	return ch == ' ' || ch == '\t';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const char ch = 100;
+        
           int benchRet = is_space_or_tab(ch);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const char ch = 255;
+        
           int benchRet = is_space_or_tab(ch);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const char ch = 10;
+        
           int benchRet = is_space_or_tab(ch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const char ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_space_or_tab(ch);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

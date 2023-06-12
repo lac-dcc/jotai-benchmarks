@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ SiSDetermineROMLayout661(struct SiS_Private *SiS_Pr)
    return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,10 +113,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_SiS_Pr0 = 1;
+          int _len_SiS_Pr0 = 65025;
           struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
           for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
               int _len_SiS_Pr__i0__VirtualRomBase0 = 1;
@@ -128,8 +124,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__VirtualRomBase0; _j0++) {
             SiS_Pr[_i0].VirtualRomBase[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        SiS_Pr[_i0].ChipType = ((-2 * (next_i()%2)) + 1) * next_i();
+          SiS_Pr[_i0].ChipType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = SiSDetermineROMLayout661(SiS_Pr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
@@ -139,7 +137,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_SiS_Pr0 = 100;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              int _len_SiS_Pr__i0__VirtualRomBase0 = 1;
+          SiS_Pr[_i0].VirtualRomBase = (unsigned char *) malloc(_len_SiS_Pr__i0__VirtualRomBase0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__VirtualRomBase0; _j0++) {
+            SiS_Pr[_i0].VirtualRomBase[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          SiS_Pr[_i0].ChipType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = SiSDetermineROMLayout661(SiS_Pr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].VirtualRomBase);
+          }
+          free(SiS_Pr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_SiS_Pr0 = 1;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              int _len_SiS_Pr__i0__VirtualRomBase0 = 1;
+          SiS_Pr[_i0].VirtualRomBase = (unsigned char *) malloc(_len_SiS_Pr__i0__VirtualRomBase0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__VirtualRomBase0; _j0++) {
+            SiS_Pr[_i0].VirtualRomBase[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          SiS_Pr[_i0].ChipType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = SiSDetermineROMLayout661(SiS_Pr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].VirtualRomBase);
+          }
+          free(SiS_Pr);
+        
+        break;
+    }
     default:
         usage();
         break;

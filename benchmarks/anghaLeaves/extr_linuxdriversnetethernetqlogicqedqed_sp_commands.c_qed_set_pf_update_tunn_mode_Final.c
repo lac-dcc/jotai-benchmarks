@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ qed_set_pf_update_tunn_mode(struct qed_tunnel_info *p_tun,
 		    p_src->ip_geneve.b_mode_enabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,41 +106,214 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int b_pf_start = 100;
+        
           int _len_p_tun0 = 1;
           struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
           for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
-            p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_p_src0 = 1;
           struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
           for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
-            p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qed_set_pf_update_tunn_mode(p_tun,p_src,b_pf_start);
           free(p_tun);
           free(p_src);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int b_pf_start = 255;
+        
+          int _len_p_tun0 = 65025;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_src0 = 65025;
+          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_set_pf_update_tunn_mode(p_tun,p_src,b_pf_start);
+          free(p_tun);
+          free(p_src);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int b_pf_start = 10;
+        
+          int _len_p_tun0 = 100;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_src0 = 100;
+          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_set_pf_update_tunn_mode(p_tun,p_src,b_pf_start);
+          free(p_tun);
+          free(p_src);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int b_pf_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_tun0 = 1;
+          struct qed_tunnel_info * p_tun = (struct qed_tunnel_info *) malloc(_len_p_tun0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_tun0; _i0++) {
+              p_tun[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_tun[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_tun[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_src0 = 1;
+          struct qed_tunnel_info * p_src = (struct qed_tunnel_info *) malloc(_len_p_src0*sizeof(struct qed_tunnel_info));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              p_src[_i0].ip_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_geneve.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_geneve.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].ip_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].ip_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].l2_gre.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].l2_gre.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p_src[_i0].vxlan.b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].vxlan.b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qed_set_pf_update_tunn_mode(p_tun,p_src,b_pf_start);
+          free(p_tun);
+          free(p_src);
+        
+        break;
+    }
     default:
         usage();
         break;

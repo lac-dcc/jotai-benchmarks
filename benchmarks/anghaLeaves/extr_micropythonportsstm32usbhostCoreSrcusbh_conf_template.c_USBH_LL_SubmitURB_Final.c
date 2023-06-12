@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ USBH_StatusTypeDef   USBH_LL_SubmitURB  (USBH_HandleTypeDef *phost,
   return USBH_OK;   
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,25 +87,230 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pipe = 100;
+        
           int direction = 100;
+        
           int ep_type = 100;
+        
           int token = 100;
+        
           int length = 100;
+        
           int do_ping = 100;
+        
           int _len_phost0 = 1;
           int * phost = (int *) malloc(_len_phost0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
             phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pbuff0 = 1;
           int * pbuff = (int *) malloc(_len_pbuff0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pbuff0; _i0++) {
             pbuff[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = USBH_LL_SubmitURB(phost,pipe,direction,ep_type,token,pbuff,length,do_ping);
+          printf("%d\n", benchRet); 
+          free(phost);
+          free(pbuff);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pipe = 255;
+        
+          int direction = 255;
+        
+          int ep_type = 255;
+        
+          int token = 255;
+        
+          int length = 255;
+        
+          int do_ping = 255;
+        
+          int _len_phost0 = 65025;
+          int * phost = (int *) malloc(_len_phost0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+            phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbuff0 = 65025;
+          int * pbuff = (int *) malloc(_len_pbuff0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbuff0; _i0++) {
+            pbuff[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = USBH_LL_SubmitURB(phost,pipe,direction,ep_type,token,pbuff,length,do_ping);
+          printf("%d\n", benchRet); 
+          free(phost);
+          free(pbuff);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pipe = 10;
+        
+          int direction = 10;
+        
+          int ep_type = 10;
+        
+          int token = 10;
+        
+          int length = 10;
+        
+          int do_ping = 10;
+        
+          int _len_phost0 = 100;
+          int * phost = (int *) malloc(_len_phost0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+            phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbuff0 = 100;
+          int * pbuff = (int *) malloc(_len_pbuff0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbuff0; _i0++) {
+            pbuff[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = USBH_LL_SubmitURB(phost,pipe,direction,ep_type,token,pbuff,length,do_ping);
+          printf("%d\n", benchRet); 
+          free(phost);
+          free(pbuff);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int token = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int do_ping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phost0 = 1;
+          int * phost = (int *) malloc(_len_phost0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+            phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pbuff0 = 1;
+          int * pbuff = (int *) malloc(_len_pbuff0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pbuff0; _i0++) {
+            pbuff[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = USBH_LL_SubmitURB(phost,pipe,direction,ep_type,token,pbuff,length,do_ping);
           printf("%d\n", benchRet); 
           free(phost);

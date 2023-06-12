@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int set_validity_icpt(struct kvm_s390_sie_block *sc
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +85,62 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long reason_code = 100;
+        
           int _len_scb0 = 1;
           struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
-            scb[_i0].ipa = ((-2 * (next_i()%2)) + 1) * next_i();
-        scb[_i0].ipb = ((-2 * (next_i()%2)) + 1) * next_i();
-        scb[_i0].icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].ipa = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].ipb = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = set_validity_icpt(scb,reason_code);
           printf("%d\n", benchRet); 
           free(scb);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long reason_code = 255;
+        
+          int _len_scb0 = 65025;
+          struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].ipa = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].ipb = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_validity_icpt(scb,reason_code);
+          printf("%d\n", benchRet); 
+          free(scb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long reason_code = 10;
+        
+          int _len_scb0 = 100;
+          struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].ipa = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].ipb = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].icptcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_validity_icpt(scb,reason_code);
+          printf("%d\n", benchRet); 
+          free(scb);
+        
+        break;
+    }
     default:
         usage();
         break;

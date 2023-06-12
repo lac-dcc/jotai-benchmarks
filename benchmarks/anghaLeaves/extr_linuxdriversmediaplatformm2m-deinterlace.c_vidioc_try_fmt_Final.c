@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int vidioc_try_fmt(struct v4l2_format *f, struct de
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,23 +91,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_f0 = 65025;
+          struct v4l2_format * f = (struct v4l2_format *) malloc(_len_f0*sizeof(struct v4l2_format));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_fmt0 = 65025;
+          struct deinterlace_fmt * fmt = (struct deinterlace_fmt *) malloc(_len_fmt0*sizeof(struct deinterlace_fmt));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vidioc_try_fmt(f,fmt);
+          printf("%d\n", benchRet); 
+          free(f);
+          free(fmt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_f0 = 100;
+          struct v4l2_format * f = (struct v4l2_format *) malloc(_len_f0*sizeof(struct v4l2_format));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_fmt0 = 100;
+          struct deinterlace_fmt * fmt = (struct deinterlace_fmt *) malloc(_len_fmt0*sizeof(struct deinterlace_fmt));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vidioc_try_fmt(f,fmt);
+          printf("%d\n", benchRet); 
+          free(f);
+          free(fmt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_f0 = 1;
           struct v4l2_format * f = (struct v4l2_format *) malloc(_len_f0*sizeof(struct v4l2_format));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].fmt.pix.pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].fmt.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_fmt0 = 1;
           struct deinterlace_fmt * fmt = (struct deinterlace_fmt *) malloc(_len_fmt0*sizeof(struct deinterlace_fmt));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vidioc_try_fmt(f,fmt);
           printf("%d\n", benchRet); 
           free(f);

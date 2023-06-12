@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void mt_post_parse(struct mt_device *td, struct mt_
 		app->quirks &= ~MT_QUIRK_CONTACT_CNT_ACCURATE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_td0 = 65025;
+          struct mt_device * td = (struct mt_device *) malloc(_len_td0*sizeof(struct mt_device));
+          for(int _i0 = 0; _i0 < _len_td0; _i0++) {
+              td[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_app0 = 65025;
+          struct mt_application * app = (struct mt_application *) malloc(_len_app0*sizeof(struct mt_application));
+          for(int _i0 = 0; _i0 < _len_app0; _i0++) {
+              app[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+          app[_i0].have_contact_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mt_post_parse(td,app);
+          free(td);
+          free(app);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_td0 = 100;
+          struct mt_device * td = (struct mt_device *) malloc(_len_td0*sizeof(struct mt_device));
+          for(int _i0 = 0; _i0 < _len_td0; _i0++) {
+              td[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_app0 = 100;
+          struct mt_application * app = (struct mt_application *) malloc(_len_app0*sizeof(struct mt_application));
+          for(int _i0 = 0; _i0 < _len_app0; _i0++) {
+              app[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+          app[_i0].have_contact_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mt_post_parse(td,app);
+          free(td);
+          free(app);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_td0 = 1;
           struct mt_device * td = (struct mt_device *) malloc(_len_td0*sizeof(struct mt_device));
           for(int _i0 = 0; _i0 < _len_td0; _i0++) {
-            td[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              td[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_app0 = 1;
           struct mt_application * app = (struct mt_application *) malloc(_len_app0*sizeof(struct mt_application));
           for(int _i0 = 0; _i0 < _len_app0; _i0++) {
-            app[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
-        app[_i0].have_contact_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              app[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+          app[_i0].have_contact_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mt_post_parse(td,app);
           free(td);
           free(app);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ bfa_ioc_flash_fwver_valid(struct bfi_ioc_image_hdr_s *flash_fwhdr)
 	return BFA_TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_flash_fwhdr0 = 1;
+          int _len_flash_fwhdr0 = 65025;
           struct bfi_ioc_image_hdr_s * flash_fwhdr = (struct bfi_ioc_image_hdr_s *) malloc(_len_flash_fwhdr0*sizeof(struct bfi_ioc_image_hdr_s));
           for(int _i0 = 0; _i0 < _len_flash_fwhdr0; _i0++) {
-            flash_fwhdr[_i0].fwver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+              flash_fwhdr[_i0].fwver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bfa_ioc_flash_fwver_valid(flash_fwhdr);
           printf("%d\n", benchRet); 
           free(flash_fwhdr);
@@ -108,15 +106,34 @@ int main(int argc, char *argv[]) {
           int _len_flash_fwhdr0 = 100;
           struct bfi_ioc_image_hdr_s * flash_fwhdr = (struct bfi_ioc_image_hdr_s *) malloc(_len_flash_fwhdr0*sizeof(struct bfi_ioc_image_hdr_s));
           for(int _i0 = 0; _i0 < _len_flash_fwhdr0; _i0++) {
-            flash_fwhdr[_i0].fwver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+              flash_fwhdr[_i0].fwver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bfa_ioc_flash_fwver_valid(flash_fwhdr);
           printf("%d\n", benchRet); 
           free(flash_fwhdr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_flash_fwhdr0 = 1;
+          struct bfi_ioc_image_hdr_s * flash_fwhdr = (struct bfi_ioc_image_hdr_s *) malloc(_len_flash_fwhdr0*sizeof(struct bfi_ioc_image_hdr_s));
+          for(int _i0 = 0; _i0 < _len_flash_fwhdr0; _i0++) {
+              flash_fwhdr[_i0].fwver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bfa_ioc_flash_fwver_valid(flash_fwhdr);
+          printf("%d\n", benchRet); 
+          free(flash_fwhdr);
+        
+        break;
+    }
     default:
         usage();
         break;

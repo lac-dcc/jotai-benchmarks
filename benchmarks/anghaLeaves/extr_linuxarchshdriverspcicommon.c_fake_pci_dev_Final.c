@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static struct pci_dev *fake_pci_dev(struct pci_channel *ho
 	return &dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,34 +94,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int top_bus = 100;
+        
           int busnr = 100;
+        
           int devfn = 100;
+        
           int _len_hose0 = 1;
           struct pci_channel * hose = (struct pci_channel *) malloc(_len_hose0*sizeof(struct pci_channel));
           for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
-            hose[_i0].pci_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              hose[_i0].pci_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct pci_dev * benchRet = fake_pci_dev(hose,top_bus,busnr,devfn);
           printf("%d\n", (*benchRet).devfn);
           free(hose);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int top_bus = 255;
+        
+          int busnr = 255;
+        
+          int devfn = 255;
+        
+          int _len_hose0 = 65025;
+          struct pci_channel * hose = (struct pci_channel *) malloc(_len_hose0*sizeof(struct pci_channel));
+          for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
+              hose[_i0].pci_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct pci_dev * benchRet = fake_pci_dev(hose,top_bus,busnr,devfn);
+          printf("%d\n", (*benchRet).devfn);
+          free(hose);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int top_bus = 10;
+        
           int busnr = 10;
+        
           int devfn = 10;
+        
           int _len_hose0 = 100;
           struct pci_channel * hose = (struct pci_channel *) malloc(_len_hose0*sizeof(struct pci_channel));
           for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
-            hose[_i0].pci_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              hose[_i0].pci_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          struct pci_dev * benchRet = fake_pci_dev(hose,top_bus,busnr,devfn);
+          printf("%d\n", (*benchRet).devfn);
+          free(hose);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int top_bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int busnr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hose0 = 1;
+          struct pci_channel * hose = (struct pci_channel *) malloc(_len_hose0*sizeof(struct pci_channel));
+          for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
+              hose[_i0].pci_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           struct pci_dev * benchRet = fake_pci_dev(hose,top_bus,busnr,devfn);
           printf("%d\n", (*benchRet).devfn);
           free(hose);

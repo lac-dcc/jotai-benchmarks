@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline int dpu_crtc_get_mixer_height(struct dpu_crt
 	return mode->vdisplay;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,24 +80,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dpu_crtc0 = 65025;
+          struct dpu_crtc * dpu_crtc = (struct dpu_crtc *) malloc(_len_dpu_crtc0*sizeof(struct dpu_crtc));
+          for(int _i0 = 0; _i0 < _len_dpu_crtc0; _i0++) {
+              dpu_crtc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cstate0 = 65025;
+          struct dpu_crtc_state * cstate = (struct dpu_crtc_state *) malloc(_len_cstate0*sizeof(struct dpu_crtc_state));
+          for(int _i0 = 0; _i0 < _len_cstate0; _i0++) {
+              cstate[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 65025;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dpu_crtc_get_mixer_height(dpu_crtc,cstate,mode);
+          printf("%d\n", benchRet); 
+          free(dpu_crtc);
+          free(cstate);
+          free(mode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dpu_crtc0 = 100;
+          struct dpu_crtc * dpu_crtc = (struct dpu_crtc *) malloc(_len_dpu_crtc0*sizeof(struct dpu_crtc));
+          for(int _i0 = 0; _i0 < _len_dpu_crtc0; _i0++) {
+              dpu_crtc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cstate0 = 100;
+          struct dpu_crtc_state * cstate = (struct dpu_crtc_state *) malloc(_len_cstate0*sizeof(struct dpu_crtc_state));
+          for(int _i0 = 0; _i0 < _len_cstate0; _i0++) {
+              cstate[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 100;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dpu_crtc_get_mixer_height(dpu_crtc,cstate,mode);
+          printf("%d\n", benchRet); 
+          free(dpu_crtc);
+          free(cstate);
+          free(mode);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_dpu_crtc0 = 1;
           struct dpu_crtc * dpu_crtc = (struct dpu_crtc *) malloc(_len_dpu_crtc0*sizeof(struct dpu_crtc));
           for(int _i0 = 0; _i0 < _len_dpu_crtc0; _i0++) {
-            dpu_crtc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpu_crtc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cstate0 = 1;
           struct dpu_crtc_state * cstate = (struct dpu_crtc_state *) malloc(_len_cstate0*sizeof(struct dpu_crtc_state));
           for(int _i0 = 0; _i0 < _len_cstate0; _i0++) {
-            cstate[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cstate[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mode0 = 1;
           struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dpu_crtc_get_mixer_height(dpu_crtc,cstate,mode);
           printf("%d\n", benchRet); 
           free(dpu_crtc);

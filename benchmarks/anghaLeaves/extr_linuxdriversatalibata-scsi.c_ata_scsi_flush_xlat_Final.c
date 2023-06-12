@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static unsigned int ata_scsi_flush_xlat(struct ata_queued_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,22 +96,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qc0 = 1;
+          int _len_qc0 = 65025;
           struct ata_queued_cmd * qc = (struct ata_queued_cmd *) malloc(_len_qc0*sizeof(struct ata_queued_cmd));
           for(int _i0 = 0; _i0 < _len_qc0; _i0++) {
-            qc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              qc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_qc__i0__dev0 = 1;
           qc[_i0].dev = (struct TYPE_2__ *) malloc(_len_qc__i0__dev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_qc__i0__dev0; _j0++) {
-            qc[_i0].dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              qc[_i0].dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        qc[_i0].tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
-        qc[_i0].tf.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
-        qc[_i0].tf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = ata_scsi_flush_xlat(qc);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_qc0; _aux++) {
@@ -125,7 +125,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_qc0 = 100;
+          struct ata_queued_cmd * qc = (struct ata_queued_cmd *) malloc(_len_qc0*sizeof(struct ata_queued_cmd));
+          for(int _i0 = 0; _i0 < _len_qc0; _i0++) {
+              qc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_qc__i0__dev0 = 1;
+          qc[_i0].dev = (struct TYPE_2__ *) malloc(_len_qc__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_qc__i0__dev0; _j0++) {
+              qc[_i0].dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          qc[_i0].tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = ata_scsi_flush_xlat(qc);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_qc0; _aux++) {
+          free(qc[_aux].dev);
+          }
+          free(qc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_qc0 = 1;
+          struct ata_queued_cmd * qc = (struct ata_queued_cmd *) malloc(_len_qc0*sizeof(struct ata_queued_cmd));
+          for(int _i0 = 0; _i0 < _len_qc0; _i0++) {
+              qc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_qc__i0__dev0 = 1;
+          qc[_i0].dev = (struct TYPE_2__ *) malloc(_len_qc__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_qc__i0__dev0; _j0++) {
+              qc[_i0].dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          qc[_i0].tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+          qc[_i0].tf.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = ata_scsi_flush_xlat(qc);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_qc0; _aux++) {
+          free(qc[_aux].dev);
+          }
+          free(qc);
+        
+        break;
+    }
     default:
         usage();
         break;

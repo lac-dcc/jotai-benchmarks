@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ colour_dist_sq(int R, int G, int B, int r, int g, int b)
 	return ((R - r) * (R - r) + (G - g) * (G - g) + (B - b) * (B - b));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +79,17 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int R = 100;
+        
           int G = 100;
+        
           int B = 100;
+        
           int r = 100;
+        
           int g = 100;
+        
           int b = 100;
+        
           int benchRet = colour_dist_sq(R,G,B,r,g,b);
           printf("%d\n", benchRet); 
         
@@ -98,11 +99,17 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int R = 255;
+        
           int G = 255;
+        
           int B = 255;
+        
           int r = 255;
+        
           int g = 255;
+        
           int b = 255;
+        
           int benchRet = colour_dist_sq(R,G,B,r,g,b);
           printf("%d\n", benchRet); 
         
@@ -112,17 +119,42 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int R = 10;
+        
           int G = 10;
+        
           int B = 10;
+        
           int r = 10;
+        
           int g = 10;
+        
           int b = 10;
+        
           int benchRet = colour_dist_sq(R,G,B,r,g,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int R = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int G = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int B = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int g = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = colour_dist_sq(R,G,B,r,g,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

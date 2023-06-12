@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static inline int16_t mace_broken_clip_int16(int n)
         return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int benchRet = mace_broken_clip_int16(n);
           printf("%d\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int n = 255;
+        
           int benchRet = mace_broken_clip_int16(n);
           printf("%d\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int n = 10;
+        
           int benchRet = mace_broken_clip_int16(n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mace_broken_clip_int16(n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ unsigned int get_reg_baud(unsigned int core_freq, unsigned int baud) {
     return core_freq * 1000000 / (8 * baud) - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,7 +77,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int core_freq = 100;
+        
           unsigned int baud = 100;
+        
           unsigned int benchRet = get_reg_baud(core_freq,baud);
           printf("%u\n", benchRet); 
         
@@ -92,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int core_freq = 255;
+        
           unsigned int baud = 255;
+        
           unsigned int benchRet = get_reg_baud(core_freq,baud);
           printf("%u\n", benchRet); 
         
@@ -102,13 +101,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int core_freq = 10;
+        
           unsigned int baud = 10;
+        
           unsigned int benchRet = get_reg_baud(core_freq,baud);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int core_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int baud = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_reg_baud(core_freq,baud);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

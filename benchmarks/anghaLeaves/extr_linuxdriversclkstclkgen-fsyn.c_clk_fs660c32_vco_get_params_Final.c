@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static int clk_fs660c32_vco_get_params(unsigned long input
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,32 +100,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned long input = 100;
+        
           unsigned long output = 100;
+        
           int _len_fs0 = 1;
           struct stm_fs * fs = (struct stm_fs *) malloc(_len_fs0*sizeof(struct stm_fs));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].ndiv = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].ndiv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = clk_fs660c32_vco_get_params(input,output,fs);
           printf("%d\n", benchRet); 
           free(fs);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long input = 255;
+        
+          unsigned long output = 255;
+        
+          int _len_fs0 = 65025;
+          struct stm_fs * fs = (struct stm_fs *) malloc(_len_fs0*sizeof(struct stm_fs));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].ndiv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = clk_fs660c32_vco_get_params(input,output,fs);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned long input = 10;
+        
           unsigned long output = 10;
+        
           int _len_fs0 = 100;
           struct stm_fs * fs = (struct stm_fs *) malloc(_len_fs0*sizeof(struct stm_fs));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].ndiv = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].ndiv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = clk_fs660c32_vco_get_params(input,output,fs);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long output = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct stm_fs * fs = (struct stm_fs *) malloc(_len_fs0*sizeof(struct stm_fs));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].ndiv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = clk_fs660c32_vco_get_params(input,output,fs);
           printf("%d\n", benchRet); 
           free(fs);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int calc_idx(int idx, int rx_dlc)
 		return idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int rx_dlc = 100;
+        
           int benchRet = calc_idx(idx,rx_dlc);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int idx = 255;
+        
           int rx_dlc = 255;
+        
           int benchRet = calc_idx(idx,rx_dlc);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int idx = 10;
+        
           int rx_dlc = 10;
+        
           int benchRet = calc_idx(idx,rx_dlc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rx_dlc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = calc_idx(idx,rx_dlc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

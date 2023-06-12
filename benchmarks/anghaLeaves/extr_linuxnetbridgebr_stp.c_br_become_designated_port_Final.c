@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void br_become_designated_port(struct net_bridge_port *p)
 	p->designated_port = p->port_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct net_bridge_port * p = (struct net_bridge_port *) malloc(_len_p0*sizeof(struct net_bridge_port));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].port_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].designated_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].designated_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].designated_cost = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_p__i0__br0 = 1;
           p[_i0].br = (struct net_bridge *) malloc(_len_p__i0__br0*sizeof(struct net_bridge));
           for(int _j0 = 0; _j0 < _len_p__i0__br0; _j0++) {
-            p[_i0].br->bridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].br->root_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].br->designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].br->bridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].br->root_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].br->designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           br_become_designated_port(p);
           for(int _aux = 0; _aux < _len_p0; _aux++) {
           free(p[_aux].br);
@@ -112,7 +111,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct net_bridge_port * p = (struct net_bridge_port *) malloc(_len_p0*sizeof(struct net_bridge_port));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__br0 = 1;
+          p[_i0].br = (struct net_bridge *) malloc(_len_p__i0__br0*sizeof(struct net_bridge));
+          for(int _j0 = 0; _j0 < _len_p__i0__br0; _j0++) {
+              p[_i0].br->bridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].br->root_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].br->designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          br_become_designated_port(p);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].br);
+          }
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct net_bridge_port * p = (struct net_bridge_port *) malloc(_len_p0*sizeof(struct net_bridge_port));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].port_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_bridge = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_p__i0__br0 = 1;
+          p[_i0].br = (struct net_bridge *) malloc(_len_p__i0__br0*sizeof(struct net_bridge));
+          for(int _j0 = 0; _j0 < _len_p__i0__br0; _j0++) {
+              p[_i0].br->bridge_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].br->root_path_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].br->designated_root = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          br_become_designated_port(p);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].br);
+          }
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ bool usb_of_has_combined_node(struct usb_device *udev)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,21 +98,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_udev0 = 65025;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              int _len_udev__i0__config0 = 1;
+          udev[_i0].config = (struct TYPE_4__ *) malloc(_len_udev__i0__config0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_udev__i0__config0; _j0++) {
+              udev[_i0].config->desc.bNumInterfaces = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          udev[_i0].dev.of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          udev[_i0].descriptor.bDeviceClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].descriptor.bNumConfigurations = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = usb_of_has_combined_node(udev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_udev0; _aux++) {
+          free(udev[_aux].config);
+          }
+          free(udev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_udev0 = 100;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              int _len_udev__i0__config0 = 1;
+          udev[_i0].config = (struct TYPE_4__ *) malloc(_len_udev__i0__config0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_udev__i0__config0; _j0++) {
+              udev[_i0].config->desc.bNumInterfaces = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          udev[_i0].dev.of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          udev[_i0].descriptor.bDeviceClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].descriptor.bNumConfigurations = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = usb_of_has_combined_node(udev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_udev0; _aux++) {
+          free(udev[_aux].config);
+          }
+          free(udev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_udev0 = 1;
           struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
               int _len_udev__i0__config0 = 1;
           udev[_i0].config = (struct TYPE_4__ *) malloc(_len_udev__i0__config0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_udev__i0__config0; _j0++) {
-            udev[_i0].config->desc.bNumInterfaces = ((-2 * (next_i()%2)) + 1) * next_i();
+              udev[_i0].config->desc.bNumInterfaces = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        udev[_i0].dev.of_node = ((-2 * (next_i()%2)) + 1) * next_i();
-        udev[_i0].descriptor.bDeviceClass = ((-2 * (next_i()%2)) + 1) * next_i();
-        udev[_i0].descriptor.bNumConfigurations = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].dev.of_node = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          udev[_i0].descriptor.bDeviceClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].descriptor.bNumConfigurations = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = usb_of_has_combined_node(udev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_udev0; _aux++) {

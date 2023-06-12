@@ -61,12 +61,6 @@ __attribute__((used)) static unsigned int sun4d_encode_irq(int board, int lvl, i
 	return (board + 1) << 5 | (lvl << 2) | slot;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,8 +77,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int board = 100;
+        
           int lvl = 100;
+        
           int slot = 100;
+        
           unsigned int benchRet = sun4d_encode_irq(board,lvl,slot);
           printf("%u\n", benchRet); 
         
@@ -94,8 +91,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int board = 255;
+        
           int lvl = 255;
+        
           int slot = 255;
+        
           unsigned int benchRet = sun4d_encode_irq(board,lvl,slot);
           printf("%u\n", benchRet); 
         
@@ -105,14 +105,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int board = 10;
+        
           int lvl = 10;
+        
           int slot = 10;
+        
           unsigned int benchRet = sun4d_encode_irq(board,lvl,slot);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

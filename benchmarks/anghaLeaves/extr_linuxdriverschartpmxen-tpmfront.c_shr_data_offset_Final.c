@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int shr_data_offset(struct vtpm_shared_pag
 	return sizeof(*shr) + sizeof(u32) * shr->nr_extra_pages;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_shr0 = 1;
+          int _len_shr0 = 65025;
           struct vtpm_shared_page * shr = (struct vtpm_shared_page *) malloc(_len_shr0*sizeof(struct vtpm_shared_page));
           for(int _i0 = 0; _i0 < _len_shr0; _i0++) {
-            shr[_i0].nr_extra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              shr[_i0].nr_extra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = shr_data_offset(shr);
           printf("%u\n", benchRet); 
           free(shr);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_shr0 = 100;
           struct vtpm_shared_page * shr = (struct vtpm_shared_page *) malloc(_len_shr0*sizeof(struct vtpm_shared_page));
           for(int _i0 = 0; _i0 < _len_shr0; _i0++) {
-            shr[_i0].nr_extra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              shr[_i0].nr_extra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = shr_data_offset(shr);
           printf("%u\n", benchRet); 
           free(shr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_shr0 = 1;
+          struct vtpm_shared_page * shr = (struct vtpm_shared_page *) malloc(_len_shr0*sizeof(struct vtpm_shared_page));
+          for(int _i0 = 0; _i0 < _len_shr0; _i0++) {
+              shr[_i0].nr_extra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = shr_data_offset(shr);
+          printf("%u\n", benchRet); 
+          free(shr);
+        
+        break;
+    }
     default:
         usage();
         break;

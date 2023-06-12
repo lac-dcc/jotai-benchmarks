@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static u32 outstream_get_space_available(struct hpi_hostbu
 		status->dsp_index);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_status0 = 1;
+          int _len_status0 = 65025;
           struct hpi_hostbuffer_status * status = (struct hpi_hostbuffer_status *) malloc(_len_status0*sizeof(struct hpi_hostbuffer_status));
           for(int _i0 = 0; _i0 < _len_status0; _i0++) {
-            status[_i0].dsp_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        status[_i0].host_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        status[_i0].size_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              status[_i0].dsp_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          status[_i0].host_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          status[_i0].size_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = outstream_get_space_available(status);
           printf("%ld\n", benchRet); 
           free(status);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_status0 = 100;
+          struct hpi_hostbuffer_status * status = (struct hpi_hostbuffer_status *) malloc(_len_status0*sizeof(struct hpi_hostbuffer_status));
+          for(int _i0 = 0; _i0 < _len_status0; _i0++) {
+              status[_i0].dsp_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          status[_i0].host_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          status[_i0].size_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = outstream_get_space_available(status);
+          printf("%ld\n", benchRet); 
+          free(status);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_status0 = 1;
+          struct hpi_hostbuffer_status * status = (struct hpi_hostbuffer_status *) malloc(_len_status0*sizeof(struct hpi_hostbuffer_status));
+          for(int _i0 = 0; _i0 < _len_status0; _i0++) {
+              status[_i0].dsp_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          status[_i0].host_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          status[_i0].size_in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = outstream_get_space_available(status);
+          printf("%ld\n", benchRet); 
+          free(status);
+        
+        break;
+    }
     default:
         usage();
         break;

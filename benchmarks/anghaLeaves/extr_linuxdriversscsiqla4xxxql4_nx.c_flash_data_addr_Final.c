@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ flash_data_addr(struct ql82xx_hw_data *hw, uint32_t faddr)
 	return hw->flash_data_off | faddr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int faddr = 100;
+        
           int _len_hw0 = 1;
           struct ql82xx_hw_data * hw = (struct ql82xx_hw_data *) malloc(_len_hw0*sizeof(struct ql82xx_hw_data));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].flash_data_off = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].flash_data_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = flash_data_addr(hw,faddr);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int faddr = 255;
+        
+          int _len_hw0 = 65025;
+          struct ql82xx_hw_data * hw = (struct ql82xx_hw_data *) malloc(_len_hw0*sizeof(struct ql82xx_hw_data));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].flash_data_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = flash_data_addr(hw,faddr);
           printf("%d\n", benchRet); 
           free(hw);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int faddr = 10;
+        
           int _len_hw0 = 100;
           struct ql82xx_hw_data * hw = (struct ql82xx_hw_data *) malloc(_len_hw0*sizeof(struct ql82xx_hw_data));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].flash_data_off = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].flash_data_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = flash_data_addr(hw,faddr);
           printf("%d\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int faddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ql82xx_hw_data * hw = (struct ql82xx_hw_data *) malloc(_len_hw0*sizeof(struct ql82xx_hw_data));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].flash_data_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = flash_data_addr(hw,faddr);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

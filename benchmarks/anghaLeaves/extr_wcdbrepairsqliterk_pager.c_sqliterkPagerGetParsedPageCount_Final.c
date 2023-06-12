@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ int sqliterkPagerGetParsedPageCount(sqliterk_pager *pager)
     return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +87,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pager0 = 1;
+          int _len_pager0 = 65025;
           struct TYPE_3__ * pager = (struct TYPE_3__ *) malloc(_len_pager0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pager0; _i0++) {
               int _len_pager__i0__pagesStatus0 = 1;
@@ -102,8 +98,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_pager__i0__pagesStatus0; _j0++) {
             pager[_i0].pagesStatus[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        pager[_i0].pagecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pager[_i0].pagecount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sqliterkPagerGetParsedPageCount(pager);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pager0; _aux++) {
@@ -113,7 +111,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pager0 = 100;
+          struct TYPE_3__ * pager = (struct TYPE_3__ *) malloc(_len_pager0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pager0; _i0++) {
+              int _len_pager__i0__pagesStatus0 = 1;
+          pager[_i0].pagesStatus = (long *) malloc(_len_pager__i0__pagesStatus0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_pager__i0__pagesStatus0; _j0++) {
+            pager[_i0].pagesStatus[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pager[_i0].pagecount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sqliterkPagerGetParsedPageCount(pager);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pager0; _aux++) {
+          free(pager[_aux].pagesStatus);
+          }
+          free(pager);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pager0 = 1;
+          struct TYPE_3__ * pager = (struct TYPE_3__ *) malloc(_len_pager0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pager0; _i0++) {
+              int _len_pager__i0__pagesStatus0 = 1;
+          pager[_i0].pagesStatus = (long *) malloc(_len_pager__i0__pagesStatus0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_pager__i0__pagesStatus0; _j0++) {
+            pager[_i0].pagesStatus[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pager[_i0].pagecount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sqliterkPagerGetParsedPageCount(pager);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pager0; _aux++) {
+          free(pager[_aux].pagesStatus);
+          }
+          free(pager);
+        
+        break;
+    }
     default:
         usage();
         break;

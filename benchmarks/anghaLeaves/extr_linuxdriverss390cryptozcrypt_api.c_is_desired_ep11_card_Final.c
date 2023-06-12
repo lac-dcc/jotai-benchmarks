@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static bool is_desired_ep11_card(unsigned int dev_id,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int dev_id = 10;
-          unsigned short target_num = 10;
-          int _len_targets0 = 100;
+          unsigned int dev_id = 255;
+        
+          unsigned short target_num = 255;
+        
+          int _len_targets0 = 65025;
           struct ep11_target_dev * targets = (struct ep11_target_dev *) malloc(_len_targets0*sizeof(struct ep11_target_dev));
           for(int _i0 = 0; _i0 < _len_targets0; _i0++) {
-            targets[_i0].ap_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              targets[_i0].ap_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_desired_ep11_card(dev_id,target_num,targets);
           printf("%d\n", benchRet); 
           free(targets);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int dev_id = 10;
+        
+          unsigned short target_num = 10;
+        
+          int _len_targets0 = 100;
+          struct ep11_target_dev * targets = (struct ep11_target_dev *) malloc(_len_targets0*sizeof(struct ep11_target_dev));
+          for(int _i0 = 0; _i0 < _len_targets0; _i0++) {
+              targets[_i0].ap_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_desired_ep11_card(dev_id,target_num,targets);
+          printf("%d\n", benchRet); 
+          free(targets);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          unsigned int dev_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short target_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_targets0 = 1;
+          struct ep11_target_dev * targets = (struct ep11_target_dev *) malloc(_len_targets0*sizeof(struct ep11_target_dev));
+          for(int _i0 = 0; _i0 < _len_targets0; _i0++) {
+              targets[_i0].ap_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_desired_ep11_card(dev_id,target_num,targets);
+          printf("%d\n", benchRet); 
+          free(targets);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ xfs_dentry_to_name(
 	namep->type = XFS_DIR3_FT_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,29 +83,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_namep0 = 1;
+          int _len_namep0 = 65025;
           struct xfs_name * namep = (struct xfs_name *) malloc(_len_namep0*sizeof(struct xfs_name));
           for(int _i0 = 0; _i0 < _len_namep0; _i0++) {
-            namep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        namep[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        namep[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+              namep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          namep[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          namep[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dentry0 = 1;
+        
+          int _len_dentry0 = 65025;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
-            dentry[_i0].d_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dentry[_i0].d_name.name = ((-2 * (next_i()%2)) + 1) * next_i();
+              dentry[_i0].d_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dentry[_i0].d_name.name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           xfs_dentry_to_name(namep,dentry);
           free(namep);
           free(dentry);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_namep0 = 100;
+          struct xfs_name * namep = (struct xfs_name *) malloc(_len_namep0*sizeof(struct xfs_name));
+          for(int _i0 = 0; _i0 < _len_namep0; _i0++) {
+              namep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          namep[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          namep[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 100;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].d_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dentry[_i0].d_name.name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          xfs_dentry_to_name(namep,dentry);
+          free(namep);
+          free(dentry);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_namep0 = 1;
+          struct xfs_name * namep = (struct xfs_name *) malloc(_len_namep0*sizeof(struct xfs_name));
+          for(int _i0 = 0; _i0 < _len_namep0; _i0++) {
+              namep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          namep[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          namep[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dentry0 = 1;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              dentry[_i0].d_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dentry[_i0].d_name.name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          xfs_dentry_to_name(namep,dentry);
+          free(namep);
+          free(dentry);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -73,12 +73,6 @@ __attribute__((used)) static inline int map_signal_num(int sig)
 	return SIGUNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sig = 100;
+        
           int benchRet = map_signal_num(sig);
           printf("%d\n", benchRet); 
         
@@ -104,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sig = 255;
+        
           int benchRet = map_signal_num(sig);
           printf("%d\n", benchRet); 
         
@@ -113,12 +109,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sig = 10;
+        
           int benchRet = map_signal_num(sig);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

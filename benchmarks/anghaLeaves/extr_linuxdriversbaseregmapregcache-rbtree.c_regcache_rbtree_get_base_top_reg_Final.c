@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void regcache_rbtree_get_base_top_reg(
 	*top = rbnode->base_reg + ((rbnode->blklen - 1) * map->reg_stride);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,30 +79,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_map0 = 65025;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].reg_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rbnode0 = 65025;
+          struct regcache_rbtree_node * rbnode = (struct regcache_rbtree_node *) malloc(_len_rbnode0*sizeof(struct regcache_rbtree_node));
+          for(int _i0 = 0; _i0 < _len_rbnode0; _i0++) {
+              rbnode[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbnode[_i0].blklen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_base0 = 65025;
+          unsigned int * base = (unsigned int *) malloc(_len_base0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_top0 = 65025;
+          unsigned int * top = (unsigned int *) malloc(_len_top0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+            top[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          regcache_rbtree_get_base_top_reg(map,rbnode,base,top);
+          free(map);
+          free(rbnode);
+          free(base);
+          free(top);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_map0 = 100;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].reg_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rbnode0 = 100;
+          struct regcache_rbtree_node * rbnode = (struct regcache_rbtree_node *) malloc(_len_rbnode0*sizeof(struct regcache_rbtree_node));
+          for(int _i0 = 0; _i0 < _len_rbnode0; _i0++) {
+              rbnode[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbnode[_i0].blklen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_base0 = 100;
+          unsigned int * base = (unsigned int *) malloc(_len_base0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_top0 = 100;
+          unsigned int * top = (unsigned int *) malloc(_len_top0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+            top[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          regcache_rbtree_get_base_top_reg(map,rbnode,base,top);
+          free(map);
+          free(rbnode);
+          free(base);
+          free(top);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_map0 = 1;
           struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].reg_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].reg_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rbnode0 = 1;
           struct regcache_rbtree_node * rbnode = (struct regcache_rbtree_node *) malloc(_len_rbnode0*sizeof(struct regcache_rbtree_node));
           for(int _i0 = 0; _i0 < _len_rbnode0; _i0++) {
-            rbnode[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        rbnode[_i0].blklen = ((-2 * (next_i()%2)) + 1) * next_i();
+              rbnode[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbnode[_i0].blklen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_base0 = 1;
           unsigned int * base = (unsigned int *) malloc(_len_base0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
             base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_top0 = 1;
           unsigned int * top = (unsigned int *) malloc(_len_top0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_top0; _i0++) {
             top[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           regcache_rbtree_get_base_top_reg(map,rbnode,base,top);
           free(map);
           free(rbnode);

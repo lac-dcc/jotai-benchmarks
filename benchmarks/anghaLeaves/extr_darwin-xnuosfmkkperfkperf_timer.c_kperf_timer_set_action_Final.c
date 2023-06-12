@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ kperf_timer_set_action(unsigned int timerid, uint32_t action)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int timerid = 100;
+        
           int action = 100;
+        
           int benchRet = kperf_timer_set_action(timerid,action);
           printf("%d\n", benchRet); 
         
@@ -105,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int timerid = 255;
+        
           int action = 255;
+        
           int benchRet = kperf_timer_set_action(timerid,action);
           printf("%d\n", benchRet); 
         
@@ -115,13 +114,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int timerid = 10;
+        
           int action = 10;
+        
           int benchRet = kperf_timer_set_action(timerid,action);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int timerid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int action = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kperf_timer_set_action(timerid,action);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

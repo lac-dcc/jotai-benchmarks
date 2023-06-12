@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int stm32_timer_of_bits_get(struct timer_of *to)
 	return pd->bits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_to0 = 65025;
+          struct timer_of * to = (struct timer_of *) malloc(_len_to0*sizeof(struct timer_of));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              int _len_to__i0__private_data0 = 1;
+          to[_i0].private_data = (struct stm32_timer_private *) malloc(_len_to__i0__private_data0*sizeof(struct stm32_timer_private));
+          for(int _j0 = 0; _j0 < _len_to__i0__private_data0; _j0++) {
+              to[_i0].private_data->bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = stm32_timer_of_bits_get(to);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_to0; _aux++) {
+          free(to[_aux].private_data);
+          }
+          free(to);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_to0 = 100;
+          struct timer_of * to = (struct timer_of *) malloc(_len_to0*sizeof(struct timer_of));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              int _len_to__i0__private_data0 = 1;
+          to[_i0].private_data = (struct stm32_timer_private *) malloc(_len_to__i0__private_data0*sizeof(struct stm32_timer_private));
+          for(int _j0 = 0; _j0 < _len_to__i0__private_data0; _j0++) {
+              to[_i0].private_data->bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = stm32_timer_of_bits_get(to);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_to0; _aux++) {
+          free(to[_aux].private_data);
+          }
+          free(to);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_to0 = 1;
           struct timer_of * to = (struct timer_of *) malloc(_len_to0*sizeof(struct timer_of));
           for(int _i0 = 0; _i0 < _len_to0; _i0++) {
               int _len_to__i0__private_data0 = 1;
           to[_i0].private_data = (struct stm32_timer_private *) malloc(_len_to__i0__private_data0*sizeof(struct stm32_timer_private));
           for(int _j0 = 0; _j0 < _len_to__i0__private_data0; _j0++) {
-            to[_i0].private_data->bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              to[_i0].private_data->bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = stm32_timer_of_bits_get(to);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_to0; _aux++) {

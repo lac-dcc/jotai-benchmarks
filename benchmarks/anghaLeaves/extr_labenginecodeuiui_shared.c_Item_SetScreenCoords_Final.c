@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ void Item_SetScreenCoords(itemDef_t *item, float x, float y) {
   item->textRect.h = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,33 +100,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           float x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           float y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_item0 = 1;
+        
+          int _len_item0 = 65025;
           struct TYPE_11__ * item = (struct TYPE_11__ *) malloc(_len_item0*sizeof(struct TYPE_11__));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].textRect.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].textRect.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.border = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rectClient.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rectClient.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rectClient.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rectClient.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rect.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rect.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        item[_i0].window.borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].textRect.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].textRect.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.border = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.rect.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           Item_SetScreenCoords(item,x,y);
           free(item);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          float x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          float y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_item0 = 100;
+          struct TYPE_11__ * item = (struct TYPE_11__ *) malloc(_len_item0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].textRect.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].textRect.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.border = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.rect.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          Item_SetScreenCoords(item,x,y);
+          free(item);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          float x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          float y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_item0 = 1;
+          struct TYPE_11__ * item = (struct TYPE_11__ *) malloc(_len_item0*sizeof(struct TYPE_11__));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].textRect.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].textRect.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.border = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rectClient.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.rect.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          item[_i0].window.rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          item[_i0].window.borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          Item_SetScreenCoords(item,x,y);
+          free(item);
+        
+        break;
+    }
     default:
         usage();
         break;

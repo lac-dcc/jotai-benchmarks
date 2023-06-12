@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int ff_AMediaCodec_infoTryAgainLater(FFAMediaCodec *codec, ssize_t idx)
     return idx == codec->INFO_TRY_AGAIN_LATER;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long idx = 100;
+        
           int _len_codec0 = 1;
           struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].INFO_TRY_AGAIN_LATER = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].INFO_TRY_AGAIN_LATER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ff_AMediaCodec_infoTryAgainLater(codec,idx);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long idx = 255;
+        
+          int _len_codec0 = 65025;
+          struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].INFO_TRY_AGAIN_LATER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ff_AMediaCodec_infoTryAgainLater(codec,idx);
           printf("%d\n", benchRet); 
           free(codec);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long idx = 10;
+        
           int _len_codec0 = 100;
           struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].INFO_TRY_AGAIN_LATER = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].INFO_TRY_AGAIN_LATER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ff_AMediaCodec_infoTryAgainLater(codec,idx);
           printf("%d\n", benchRet); 
           free(codec);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].INFO_TRY_AGAIN_LATER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ff_AMediaCodec_infoTryAgainLater(codec,idx);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ int gcd(int m, int n)
     return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int m = 100;
+        
           int n = 100;
+        
           int benchRet = gcd(m,n);
           printf("%d\n", benchRet); 
         
@@ -99,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int m = 255;
+        
           int n = 255;
+        
           int benchRet = gcd(m,n);
           printf("%d\n", benchRet); 
         
@@ -109,13 +108,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int m = 10;
+        
           int n = 10;
+        
           int benchRet = gcd(m,n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = gcd(m,n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

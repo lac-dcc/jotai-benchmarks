@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int qla4xxx_is_eh_active(struct Scsi_Host *shost)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_shost0 = 1;
+          int _len_shost0 = 65025;
           struct Scsi_Host * shost = (struct Scsi_Host *) malloc(_len_shost0*sizeof(struct Scsi_Host));
           for(int _i0 = 0; _i0 < _len_shost0; _i0++) {
-            shost[_i0].shost_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              shost[_i0].shost_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qla4xxx_is_eh_active(shost);
           printf("%d\n", benchRet); 
           free(shost);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_shost0 = 100;
           struct Scsi_Host * shost = (struct Scsi_Host *) malloc(_len_shost0*sizeof(struct Scsi_Host));
           for(int _i0 = 0; _i0 < _len_shost0; _i0++) {
-            shost[_i0].shost_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              shost[_i0].shost_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qla4xxx_is_eh_active(shost);
           printf("%d\n", benchRet); 
           free(shost);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_shost0 = 1;
+          struct Scsi_Host * shost = (struct Scsi_Host *) malloc(_len_shost0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_shost0; _i0++) {
+              shost[_i0].shost_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qla4xxx_is_eh_active(shost);
+          printf("%d\n", benchRet); 
+          free(shost);
+        
+        break;
+    }
     default:
         usage();
         break;

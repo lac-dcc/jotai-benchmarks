@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static speed_t pl2303_encode_baud_rate_divisor(unsigned ch
 	return baud;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,11 +113,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int baud = 100;
+        
           int _len_buf0 = 4;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = pl2303_encode_baud_rate_divisor(buf,baud);
+          printf("%u\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int baud = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = pl2303_encode_baud_rate_divisor(buf,baud);
           printf("%u\n", benchRet); 
           free(buf);
@@ -129,21 +144,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int baud = 10;
+        
           int _len_buf0 = 100;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = pl2303_encode_baud_rate_divisor(buf,baud);
           printf("%u\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int baud = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 4;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = pl2303_encode_baud_rate_divisor(buf,baud);
+          printf("%u\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

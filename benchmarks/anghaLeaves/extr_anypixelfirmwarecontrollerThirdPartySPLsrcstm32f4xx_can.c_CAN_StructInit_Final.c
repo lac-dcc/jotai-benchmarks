@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ void CAN_StructInit(CAN_InitTypeDef* CAN_InitStruct)
   CAN_InitStruct->CAN_Prescaler = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,24 +114,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_CAN_InitStruct0 = 1;
+          int _len_CAN_InitStruct0 = 65025;
           struct TYPE_3__ * CAN_InitStruct = (struct TYPE_3__ *) malloc(_len_CAN_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_CAN_InitStruct0; _i0++) {
-            CAN_InitStruct[_i0].CAN_Prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
-        CAN_InitStruct[_i0].CAN_BS2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        CAN_InitStruct[_i0].CAN_BS1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        CAN_InitStruct[_i0].CAN_SJW = ((-2 * (next_i()%2)) + 1) * next_i();
-        CAN_InitStruct[_i0].CAN_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              CAN_InitStruct[_i0].CAN_Prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_BS2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_BS1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_SJW = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           CAN_StructInit(CAN_InitStruct);
           free(CAN_InitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_CAN_InitStruct0 = 100;
+          struct TYPE_3__ * CAN_InitStruct = (struct TYPE_3__ *) malloc(_len_CAN_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CAN_InitStruct0; _i0++) {
+              CAN_InitStruct[_i0].CAN_Prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_BS2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_BS1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_SJW = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CAN_StructInit(CAN_InitStruct);
+          free(CAN_InitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_CAN_InitStruct0 = 1;
+          struct TYPE_3__ * CAN_InitStruct = (struct TYPE_3__ *) malloc(_len_CAN_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CAN_InitStruct0; _i0++) {
+              CAN_InitStruct[_i0].CAN_Prescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_BS2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_BS1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_SJW = ((-2 * (next_i()%2)) + 1) * next_i();
+          CAN_InitStruct[_i0].CAN_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CAN_StructInit(CAN_InitStruct);
+          free(CAN_InitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

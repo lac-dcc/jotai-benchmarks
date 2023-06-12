@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void BIO_set_flags(BIO *b, int flags)
     b->flags |= flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_b0 = 1;
           struct TYPE_3__ * b = (struct TYPE_3__ *) malloc(_len_b0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          BIO_set_flags(b,flags);
+          free(b);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_b0 = 65025;
+          struct TYPE_3__ * b = (struct TYPE_3__ *) malloc(_len_b0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           BIO_set_flags(b,flags);
           free(b);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_b0 = 100;
           struct TYPE_3__ * b = (struct TYPE_3__ *) malloc(_len_b0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           BIO_set_flags(b,flags);
           free(b);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_b0 = 1;
+          struct TYPE_3__ * b = (struct TYPE_3__ *) malloc(_len_b0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BIO_set_flags(b,flags);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -100,12 +100,6 @@ __attribute__((used)) static uint8_t hpd_sel_to_atom(enum hpd_source_id id)
 	return atom_hpd_sel >> 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,16 +112,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum hpd_source_id id = 0;
+        
           int benchRet = hpd_sel_to_atom(id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

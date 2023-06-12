@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static FT_Bool
     return FALSE;
   }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +90,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 3329
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 1285
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 1285
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 1284
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 1284
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1285
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 1539
+          // ------------------------------- 
+
+          unsigned long ntables = 255;
+        
+          unsigned long type = 255;
+        
+          int _len_tables0 = 65025;
+          struct TYPE_3__ * tables = (struct TYPE_3__ *) malloc(_len_tables0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tables0; _i0++) {
+              tables[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pcf_has_table_type(tables,ntables,type);
+          printf("%d\n", benchRet); 
+          free(tables);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 144
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 60
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 60
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 60
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 69
+          // ------------------------------- 
+
           unsigned long ntables = 10;
+        
           unsigned long type = 10;
+        
           int _len_tables0 = 100;
           struct TYPE_3__ * tables = (struct TYPE_3__ *) malloc(_len_tables0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tables0; _i0++) {
-            tables[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              tables[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pcf_has_table_type(tables,ntables,type);
+          printf("%d\n", benchRet); 
+          free(tables);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long ntables = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tables0 = 1;
+          struct TYPE_3__ * tables = (struct TYPE_3__ *) malloc(_len_tables0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tables0; _i0++) {
+              tables[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pcf_has_table_type(tables,ntables,type);
           printf("%d\n", benchRet); 
           free(tables);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static unsigned int* uv__get_nbufs(uv_fs_t* req) {
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_req0 = 1;
+          int _len_req0 = 65025;
           struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].nbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].nbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int * benchRet = uv__get_nbufs(req);
           printf("%u\n", (*benchRet)); 
           free(req);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_req0 = 100;
           struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].nbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].nbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int * benchRet = uv__get_nbufs(req);
           printf("%u\n", (*benchRet)); 
           free(req);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_req0 = 1;
+          struct TYPE_3__ * req = (struct TYPE_3__ *) malloc(_len_req0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].nbufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int * benchRet = uv__get_nbufs(req);
+          printf("%u\n", (*benchRet)); 
+          free(req);
+        
+        break;
+    }
     default:
         usage();
         break;

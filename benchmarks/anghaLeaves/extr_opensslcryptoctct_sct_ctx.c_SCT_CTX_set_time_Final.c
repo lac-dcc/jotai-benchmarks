@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void SCT_CTX_set_time(SCT_CTX *sctx, uint64_t time_in_ms)
     sctx->epoch_time_in_ms = time_in_ms;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int time_in_ms = 100;
+        
           int _len_sctx0 = 1;
           struct TYPE_3__ * sctx = (struct TYPE_3__ *) malloc(_len_sctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
-            sctx[_i0].epoch_time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+              sctx[_i0].epoch_time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          SCT_CTX_set_time(sctx,time_in_ms);
+          free(sctx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int time_in_ms = 255;
+        
+          int _len_sctx0 = 65025;
+          struct TYPE_3__ * sctx = (struct TYPE_3__ *) malloc(_len_sctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
+              sctx[_i0].epoch_time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           SCT_CTX_set_time(sctx,time_in_ms);
           free(sctx);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int time_in_ms = 10;
+        
           int _len_sctx0 = 100;
           struct TYPE_3__ * sctx = (struct TYPE_3__ *) malloc(_len_sctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
-            sctx[_i0].epoch_time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+              sctx[_i0].epoch_time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SCT_CTX_set_time(sctx,time_in_ms);
           free(sctx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sctx0 = 1;
+          struct TYPE_3__ * sctx = (struct TYPE_3__ *) malloc(_len_sctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sctx0; _i0++) {
+              sctx[_i0].epoch_time_in_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SCT_CTX_set_time(sctx,time_in_ms);
+          free(sctx);
+        
+        break;
+    }
     default:
         usage();
         break;

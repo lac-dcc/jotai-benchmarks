@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -64,7 +65,6 @@ PSINGLE_LIST_ENTRY FlushList(PSINGLE_LIST_ENTRY ListHead)
     return Ret;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_ListHead(int length, struct TYPE_4__ *aux_ListHead[]) {
@@ -92,7 +92,6 @@ void _delete_ListHead(struct TYPE_4__ *aux_ListHead[], int aux_ListHead_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,17 +104,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_ListHead[10000];
+          struct TYPE_4__ * ListHead = _allocate_ListHead(10000, aux_ListHead);
+        
+          struct TYPE_4__ * benchRet = FlushList(ListHead);
+          _delete_ListHead(aux_ListHead, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_ListHead[1];
           struct TYPE_4__ * ListHead = _allocate_ListHead(1, aux_ListHead);
+        
           struct TYPE_4__ * benchRet = FlushList(ListHead);
           _delete_ListHead(aux_ListHead, 1);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ unsigned int __sw_hweight32(unsigned int w)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int w = 100;
+        
           unsigned int benchRet = __sw_hweight32(w);
           printf("%u\n", benchRet); 
         
@@ -103,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int w = 255;
+        
           unsigned int benchRet = __sw_hweight32(w);
           printf("%u\n", benchRet); 
         
@@ -112,12 +109,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int w = 10;
+        
           unsigned int benchRet = __sw_hweight32(w);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = __sw_hweight32(w);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

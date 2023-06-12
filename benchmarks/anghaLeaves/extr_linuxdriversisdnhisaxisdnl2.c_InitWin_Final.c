@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ InitWin(struct Layer2 *l2)
 		l2->windowar[i] = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,8 +79,62 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_l20 = 65025;
+          struct Layer2 * l2 = (struct Layer2 *) malloc(_len_l20*sizeof(struct Layer2));
+          for(int _i0 = 0; _i0 < _len_l20; _i0++) {
+              int _len_l2__i0__windowar0 = 1;
+          l2[_i0].windowar = (int **) malloc(_len_l2__i0__windowar0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_l2__i0__windowar0; _j0++) {
+            int _len_l2__i0__windowar1 = 1;
+            l2[_i0].windowar[_j0] = (int *) malloc(_len_l2__i0__windowar1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_l2__i0__windowar1; _j1++) {
+              l2[_i0].windowar[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          InitWin(l2);
+          for(int _aux = 0; _aux < _len_l20; _aux++) {
+          free(*(l2[_aux].windowar));
+        free(l2[_aux].windowar);
+          }
+          free(l2);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_l20 = 100;
+          struct Layer2 * l2 = (struct Layer2 *) malloc(_len_l20*sizeof(struct Layer2));
+          for(int _i0 = 0; _i0 < _len_l20; _i0++) {
+              int _len_l2__i0__windowar0 = 1;
+          l2[_i0].windowar = (int **) malloc(_len_l2__i0__windowar0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_l2__i0__windowar0; _j0++) {
+            int _len_l2__i0__windowar1 = 1;
+            l2[_i0].windowar[_j0] = (int *) malloc(_len_l2__i0__windowar1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_l2__i0__windowar1; _j1++) {
+              l2[_i0].windowar[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          InitWin(l2);
+          for(int _aux = 0; _aux < _len_l20; _aux++) {
+          free(*(l2[_aux].windowar));
+        free(l2[_aux].windowar);
+          }
+          free(l2);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_l20 = 1;
           struct Layer2 * l2 = (struct Layer2 *) malloc(_len_l20*sizeof(struct Layer2));
@@ -98,7 +148,9 @@ int main(int argc, char *argv[]) {
               l2[_i0].windowar[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
           InitWin(l2);
           for(int _aux = 0; _aux < _len_l20; _aux++) {
           free(*(l2[_aux].windowar));
@@ -108,7 +160,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int hdsp_set_use_midi_tasklet(struct hdsp *hdsp, in
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,30 +79,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int use_tasklet = 100;
+        
           int _len_hdsp0 = 1;
           struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
           for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
-            hdsp[_i0].use_midi_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdsp[_i0].use_midi_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hdsp_set_use_midi_tasklet(hdsp,use_tasklet);
           printf("%d\n", benchRet); 
           free(hdsp);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int use_tasklet = 255;
+        
+          int _len_hdsp0 = 65025;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              hdsp[_i0].use_midi_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hdsp_set_use_midi_tasklet(hdsp,use_tasklet);
+          printf("%d\n", benchRet); 
+          free(hdsp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int use_tasklet = 10;
+        
           int _len_hdsp0 = 100;
           struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
           for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
-            hdsp[_i0].use_midi_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdsp[_i0].use_midi_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hdsp_set_use_midi_tasklet(hdsp,use_tasklet);
+          printf("%d\n", benchRet); 
+          free(hdsp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int use_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdsp0 = 1;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              hdsp[_i0].use_midi_tasklet = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hdsp_set_use_midi_tasklet(hdsp,use_tasklet);
           printf("%d\n", benchRet); 
           free(hdsp);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int interface_to_InterfaceNumber(struct usb_
 	return interface->cur_altsetting->desc.bInterfaceNumber;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +82,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_interface0 = 65025;
+          struct usb_interface * interface = (struct usb_interface *) malloc(_len_interface0*sizeof(struct usb_interface));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              int _len_interface__i0__cur_altsetting0 = 1;
+          interface[_i0].cur_altsetting = (struct TYPE_4__ *) malloc(_len_interface__i0__cur_altsetting0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_interface__i0__cur_altsetting0; _j0++) {
+              interface[_i0].cur_altsetting->desc.bInterfaceNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = interface_to_InterfaceNumber(interface);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interface0; _aux++) {
+          free(interface[_aux].cur_altsetting);
+          }
+          free(interface);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_interface0 = 100;
+          struct usb_interface * interface = (struct usb_interface *) malloc(_len_interface0*sizeof(struct usb_interface));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              int _len_interface__i0__cur_altsetting0 = 1;
+          interface[_i0].cur_altsetting = (struct TYPE_4__ *) malloc(_len_interface__i0__cur_altsetting0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_interface__i0__cur_altsetting0; _j0++) {
+              interface[_i0].cur_altsetting->desc.bInterfaceNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = interface_to_InterfaceNumber(interface);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interface0; _aux++) {
+          free(interface[_aux].cur_altsetting);
+          }
+          free(interface);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_interface0 = 1;
           struct usb_interface * interface = (struct usb_interface *) malloc(_len_interface0*sizeof(struct usb_interface));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
               int _len_interface__i0__cur_altsetting0 = 1;
           interface[_i0].cur_altsetting = (struct TYPE_4__ *) malloc(_len_interface__i0__cur_altsetting0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_interface__i0__cur_altsetting0; _j0++) {
-            interface[_i0].cur_altsetting->desc.bInterfaceNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].cur_altsetting->desc.bInterfaceNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = interface_to_InterfaceNumber(interface);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_interface0; _aux++) {

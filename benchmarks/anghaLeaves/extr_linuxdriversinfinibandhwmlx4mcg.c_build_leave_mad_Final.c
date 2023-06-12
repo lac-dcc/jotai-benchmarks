@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void build_leave_mad(struct mcast_req *req)
 	mad->mad_hdr.method = IB_SA_METHOD_DELETE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,27 +80,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_req0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
           struct mcast_req * req = (struct mcast_req *) malloc(_len_req0*sizeof(struct mcast_req));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].sa_mad.mad_hdr.method = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].sa_mad.mad_hdr.method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           build_leave_mad(req);
           free(req);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_req0 = 100;
           struct mcast_req * req = (struct mcast_req *) malloc(_len_req0*sizeof(struct mcast_req));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].sa_mad.mad_hdr.method = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].sa_mad.mad_hdr.method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          build_leave_mad(req);
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_req0 = 1;
+          struct mcast_req * req = (struct mcast_req *) malloc(_len_req0*sizeof(struct mcast_req));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].sa_mad.mad_hdr.method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           build_leave_mad(req);
           free(req);
         

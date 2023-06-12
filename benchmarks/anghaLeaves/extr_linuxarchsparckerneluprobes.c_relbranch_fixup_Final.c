@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static unsigned long relbranch_fixup(u32 insn, struct upro
 	return regs->tnpc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,23 +103,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int insn = 100;
+        
           int _len_utask0 = 1;
           struct uprobe_task * utask = (struct uprobe_task *) malloc(_len_utask0*sizeof(struct uprobe_task));
           for(int _i0 = 0; _i0 < _len_utask0; _i0++) {
-            utask[_i0].xol_vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        utask[_i0].vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        utask[_i0].autask.saved_tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+              utask[_i0].xol_vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].autask.saved_tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_regs0 = 1;
           struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-            regs[_i0].tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+              regs[_i0].tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = relbranch_fixup(insn,utask,regs);
+          printf("%lu\n", benchRet); 
+          free(utask);
+          free(regs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int insn = 255;
+        
+          int _len_utask0 = 65025;
+          struct uprobe_task * utask = (struct uprobe_task *) malloc(_len_utask0*sizeof(struct uprobe_task));
+          for(int _i0 = 0; _i0 < _len_utask0; _i0++) {
+              utask[_i0].xol_vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].autask.saved_tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_regs0 = 65025;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = relbranch_fixup(insn,utask,regs);
+          printf("%lu\n", benchRet); 
+          free(utask);
+          free(regs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int insn = 10;
+        
+          int _len_utask0 = 100;
+          struct uprobe_task * utask = (struct uprobe_task *) malloc(_len_utask0*sizeof(struct uprobe_task));
+          for(int _i0 = 0; _i0 < _len_utask0; _i0++) {
+              utask[_i0].xol_vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].autask.saved_tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_regs0 = 100;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = relbranch_fixup(insn,utask,regs);
+          printf("%lu\n", benchRet); 
+          free(utask);
+          free(regs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int insn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_utask0 = 1;
+          struct uprobe_task * utask = (struct uprobe_task *) malloc(_len_utask0*sizeof(struct uprobe_task));
+          for(int _i0 = 0; _i0 < _len_utask0; _i0++) {
+              utask[_i0].xol_vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          utask[_i0].autask.saved_tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_regs0 = 1;
+          struct pt_regs * regs = (struct pt_regs *) malloc(_len_regs0*sizeof(struct pt_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].tnpc = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].tpc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = relbranch_fixup(insn,utask,regs);
           printf("%lu\n", benchRet); 
           free(utask);

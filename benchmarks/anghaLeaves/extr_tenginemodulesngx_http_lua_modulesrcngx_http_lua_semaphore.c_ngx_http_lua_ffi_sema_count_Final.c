@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ngx_http_lua_ffi_sema_count(ngx_http_lua_sema_t *sem)
     return sem->resource_count - sem->wait_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sem0 = 1;
+          int _len_sem0 = 65025;
           struct TYPE_3__ * sem = (struct TYPE_3__ *) malloc(_len_sem0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sem0; _i0++) {
-            sem[_i0].resource_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        sem[_i0].wait_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              sem[_i0].resource_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          sem[_i0].wait_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ngx_http_lua_ffi_sema_count(sem);
           printf("%d\n", benchRet); 
           free(sem);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sem0 = 100;
+          struct TYPE_3__ * sem = (struct TYPE_3__ *) malloc(_len_sem0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sem0; _i0++) {
+              sem[_i0].resource_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          sem[_i0].wait_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_lua_ffi_sema_count(sem);
+          printf("%d\n", benchRet); 
+          free(sem);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sem0 = 1;
+          struct TYPE_3__ * sem = (struct TYPE_3__ *) malloc(_len_sem0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sem0; _i0++) {
+              sem[_i0].resource_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          sem[_i0].wait_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_lua_ffi_sema_count(sem);
+          printf("%d\n", benchRet); 
+          free(sem);
+        
+        break;
+    }
     default:
         usage();
         break;

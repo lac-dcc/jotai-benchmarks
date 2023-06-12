@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void enic_intr_update_pkt_size(struct vnic_rx_bytes
 		pkt_size->small_pkt_bytes_cnt += pkt_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +85,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pkt_len = 100;
+        
           int _len_pkt_size0 = 1;
           struct vnic_rx_bytes_counter * pkt_size = (struct vnic_rx_bytes_counter *) malloc(_len_pkt_size0*sizeof(struct vnic_rx_bytes_counter));
           for(int _i0 = 0; _i0 < _len_pkt_size0; _i0++) {
-            pkt_size[_i0].small_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt_size[_i0].large_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt_size[_i0].small_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_size[_i0].large_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           enic_intr_update_pkt_size(pkt_size,pkt_len);
           free(pkt_size);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long pkt_len = 255;
+        
+          int _len_pkt_size0 = 65025;
+          struct vnic_rx_bytes_counter * pkt_size = (struct vnic_rx_bytes_counter *) malloc(_len_pkt_size0*sizeof(struct vnic_rx_bytes_counter));
+          for(int _i0 = 0; _i0 < _len_pkt_size0; _i0++) {
+              pkt_size[_i0].small_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_size[_i0].large_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          enic_intr_update_pkt_size(pkt_size,pkt_len);
+          free(pkt_size);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long pkt_len = 10;
+        
+          int _len_pkt_size0 = 100;
+          struct vnic_rx_bytes_counter * pkt_size = (struct vnic_rx_bytes_counter *) malloc(_len_pkt_size0*sizeof(struct vnic_rx_bytes_counter));
+          for(int _i0 = 0; _i0 < _len_pkt_size0; _i0++) {
+              pkt_size[_i0].small_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_size[_i0].large_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          enic_intr_update_pkt_size(pkt_size,pkt_len);
+          free(pkt_size);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long pkt_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pkt_size0 = 1;
+          struct vnic_rx_bytes_counter * pkt_size = (struct vnic_rx_bytes_counter *) malloc(_len_pkt_size0*sizeof(struct vnic_rx_bytes_counter));
+          for(int _i0 = 0; _i0 < _len_pkt_size0; _i0++) {
+              pkt_size[_i0].small_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt_size[_i0].large_pkt_bytes_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          enic_intr_update_pkt_size(pkt_size,pkt_len);
+          free(pkt_size);
+        
+        break;
+    }
     default:
         usage();
         break;

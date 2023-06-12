@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ int RAND_DRBG_set_callbacks(RAND_DRBG *drbg,
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,27 +93,236 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int get_entropy = 100;
+        
           int cleanup_entropy = 100;
+        
           int get_nonce = 100;
+        
           int cleanup_nonce = 100;
+        
           int _len_drbg0 = 1;
           struct TYPE_3__ * drbg = (struct TYPE_3__ *) malloc(_len_drbg0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_drbg0; _i0++) {
-            drbg[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-        drbg[_i0].cleanup_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
-        drbg[_i0].get_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
-        drbg[_i0].cleanup_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
-        drbg[_i0].get_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+              drbg[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_drbg__i0__parent0 = 1;
           drbg[_i0].parent = (int *) malloc(_len_drbg__i0__parent0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_drbg__i0__parent0; _j0++) {
             drbg[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = RAND_DRBG_set_callbacks(drbg,get_entropy,cleanup_entropy,get_nonce,cleanup_nonce);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drbg0; _aux++) {
+          free(drbg[_aux].parent);
+          }
+          free(drbg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int get_entropy = 255;
+        
+          int cleanup_entropy = 255;
+        
+          int get_nonce = 255;
+        
+          int cleanup_nonce = 255;
+        
+          int _len_drbg0 = 65025;
+          struct TYPE_3__ * drbg = (struct TYPE_3__ *) malloc(_len_drbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drbg0; _i0++) {
+              drbg[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drbg__i0__parent0 = 1;
+          drbg[_i0].parent = (int *) malloc(_len_drbg__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_drbg__i0__parent0; _j0++) {
+            drbg[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = RAND_DRBG_set_callbacks(drbg,get_entropy,cleanup_entropy,get_nonce,cleanup_nonce);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drbg0; _aux++) {
+          free(drbg[_aux].parent);
+          }
+          free(drbg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int get_entropy = 10;
+        
+          int cleanup_entropy = 10;
+        
+          int get_nonce = 10;
+        
+          int cleanup_nonce = 10;
+        
+          int _len_drbg0 = 100;
+          struct TYPE_3__ * drbg = (struct TYPE_3__ *) malloc(_len_drbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drbg0; _i0++) {
+              drbg[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drbg__i0__parent0 = 1;
+          drbg[_i0].parent = (int *) malloc(_len_drbg__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_drbg__i0__parent0; _j0++) {
+            drbg[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = RAND_DRBG_set_callbacks(drbg,get_entropy,cleanup_entropy,get_nonce,cleanup_nonce);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drbg0; _aux++) {
+          free(drbg[_aux].parent);
+          }
+          free(drbg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int get_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cleanup_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int get_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cleanup_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_drbg0 = 1;
+          struct TYPE_3__ * drbg = (struct TYPE_3__ *) malloc(_len_drbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drbg0; _i0++) {
+              drbg[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_nonce = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].cleanup_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          drbg[_i0].get_entropy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_drbg__i0__parent0 = 1;
+          drbg[_i0].parent = (int *) malloc(_len_drbg__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_drbg__i0__parent0; _j0++) {
+            drbg[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = RAND_DRBG_set_callbacks(drbg,get_entropy,cleanup_entropy,get_nonce,cleanup_nonce);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_drbg0; _aux++) {

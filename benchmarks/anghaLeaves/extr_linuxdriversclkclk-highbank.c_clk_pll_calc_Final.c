@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void clk_pll_calc(unsigned long rate, unsigned long
 	*pdivf = divf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +101,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rate = 100;
+        
           unsigned long ref_freq = 100;
+        
           int _len_pdivq0 = 1;
           int * pdivq = (int *) malloc(_len_pdivq0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdivq0; _i0++) {
             pdivq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pdivf0 = 1;
           int * pdivf = (int *) malloc(_len_pdivf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdivf0; _i0++) {
             pdivf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           clk_pll_calc(rate,ref_freq,pdivq,pdivf);
           free(pdivq);
           free(pdivf);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long rate = 255;
+        
+          unsigned long ref_freq = 255;
+        
+          int _len_pdivq0 = 65025;
+          int * pdivq = (int *) malloc(_len_pdivq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdivq0; _i0++) {
+            pdivq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdivf0 = 65025;
+          int * pdivf = (int *) malloc(_len_pdivf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdivf0; _i0++) {
+            pdivf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          clk_pll_calc(rate,ref_freq,pdivq,pdivf);
+          free(pdivq);
+          free(pdivf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long rate = 10;
+        
+          unsigned long ref_freq = 10;
+        
+          int _len_pdivq0 = 100;
+          int * pdivq = (int *) malloc(_len_pdivq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdivq0; _i0++) {
+            pdivq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdivf0 = 100;
+          int * pdivf = (int *) malloc(_len_pdivf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdivf0; _i0++) {
+            pdivf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          clk_pll_calc(rate,ref_freq,pdivq,pdivf);
+          free(pdivq);
+          free(pdivf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdivq0 = 1;
+          int * pdivq = (int *) malloc(_len_pdivq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdivq0; _i0++) {
+            pdivq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdivf0 = 1;
+          int * pdivf = (int *) malloc(_len_pdivf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdivf0; _i0++) {
+            pdivf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          clk_pll_calc(rate,ref_freq,pdivq,pdivf);
+          free(pdivq);
+          free(pdivf);
+        
+        break;
+    }
     default:
         usage();
         break;

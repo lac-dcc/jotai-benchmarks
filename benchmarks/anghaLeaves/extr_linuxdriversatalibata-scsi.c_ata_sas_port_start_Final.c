@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ int ata_sas_port_start(struct ata_port *ap)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ap0 = 1;
+          int _len_ap0 = 65025;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
-            ap[_i0].pflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].pflags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ap__i0__ops0 = 1;
           ap[_i0].ops = (struct TYPE_2__ *) malloc(_len_ap__i0__ops0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ap__i0__ops0; _j0++) {
-            ap[_i0].ops->error_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].ops->error_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ata_sas_port_start(ap);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ap0; _aux++) {
@@ -109,7 +108,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ap0 = 100;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].pflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ap__i0__ops0 = 1;
+          ap[_i0].ops = (struct TYPE_2__ *) malloc(_len_ap__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ap__i0__ops0; _j0++) {
+              ap[_i0].ops->error_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ata_sas_port_start(ap);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].ops);
+          }
+          free(ap);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ap0 = 1;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].pflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ap__i0__ops0 = 1;
+          ap[_i0].ops = (struct TYPE_2__ *) malloc(_len_ap__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ap__i0__ops0; _j0++) {
+              ap[_i0].ops->error_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ata_sas_port_start(ap);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].ops);
+          }
+          free(ap);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ sector_t dm_rh_get_region_size(struct dm_region_hash *rh)
 	return rh->region_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rh0 = 1;
+          int _len_rh0 = 65025;
           struct dm_region_hash * rh = (struct dm_region_hash *) malloc(_len_rh0*sizeof(struct dm_region_hash));
           for(int _i0 = 0; _i0 < _len_rh0; _i0++) {
-            rh[_i0].region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rh[_i0].region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dm_rh_get_region_size(rh);
           printf("%d\n", benchRet); 
           free(rh);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_rh0 = 100;
           struct dm_region_hash * rh = (struct dm_region_hash *) malloc(_len_rh0*sizeof(struct dm_region_hash));
           for(int _i0 = 0; _i0 < _len_rh0; _i0++) {
-            rh[_i0].region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rh[_i0].region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dm_rh_get_region_size(rh);
           printf("%d\n", benchRet); 
           free(rh);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rh0 = 1;
+          struct dm_region_hash * rh = (struct dm_region_hash *) malloc(_len_rh0*sizeof(struct dm_region_hash));
+          for(int _i0 = 0; _i0 < _len_rh0; _i0++) {
+              rh[_i0].region_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dm_rh_get_region_size(rh);
+          printf("%d\n", benchRet); 
+          free(rh);
+        
+        break;
+    }
     default:
         usage();
         break;

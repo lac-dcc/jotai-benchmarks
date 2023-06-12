@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -144,12 +146,6 @@ __attribute__((used)) static void rxe_init_device_param(struct rxe_dev *rxe)
 	rxe->max_ucontext			= RXE_MAX_UCONTEXT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -162,58 +158,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rxe0 = 1;
+          int _len_rxe0 = 65025;
           struct rxe_dev * rxe = (struct rxe_dev *) malloc(_len_rxe0*sizeof(struct rxe_dev));
           for(int _i0 = 0; _i0 < _len_rxe0; _i0++) {
-            rxe[_i0].max_ucontext = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_cqe = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.local_ca_ack_delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_pkeys = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_fast_reg_page_list_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_srq_sge = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_srq_wr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_srq = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_map_per_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_ah = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_total_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_mcast_grp = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_raw_ethy_qp = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_raw_ipv6_qp = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_mw = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_rdd = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_ee = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.atomic_cap = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_ee_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_qp_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_res_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_ee_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_qp_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_pd = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_mr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_cq = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_sge_rd = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_qp_wr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_qp = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.hw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.vendor_part_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.page_size_cap = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.max_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].attr.fw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
-        rxe[_i0].max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxe[_i0].max_ucontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_cqe = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.local_ca_ack_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_pkeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_fast_reg_page_list_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_map_per_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ah = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_total_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mcast_grp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_raw_ethy_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_raw_ipv6_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_rdd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.atomic_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_res_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_pd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_sge_rd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.hw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.vendor_part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.page_size_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.fw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rxe[_i0].max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rxe_init_device_param(rxe);
           free(rxe);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rxe0 = 100;
+          struct rxe_dev * rxe = (struct rxe_dev *) malloc(_len_rxe0*sizeof(struct rxe_dev));
+          for(int _i0 = 0; _i0 < _len_rxe0; _i0++) {
+              rxe[_i0].max_ucontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_cqe = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.local_ca_ack_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_pkeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_fast_reg_page_list_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_map_per_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ah = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_total_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mcast_grp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_raw_ethy_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_raw_ipv6_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_rdd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.atomic_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_res_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_pd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_sge_rd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.hw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.vendor_part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.page_size_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.fw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rxe[_i0].max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rxe_init_device_param(rxe);
+          free(rxe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rxe0 = 1;
+          struct rxe_dev * rxe = (struct rxe_dev *) malloc(_len_rxe0*sizeof(struct rxe_dev));
+          for(int _i0 = 0; _i0 < _len_rxe0; _i0++) {
+              rxe[_i0].max_ucontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_cqe = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.local_ca_ack_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_pkeys = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_fast_reg_page_list_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_map_per_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_fmr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ah = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_total_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mcast_qp_attach = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mcast_grp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_raw_ethy_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_raw_ipv6_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mw = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_rdd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.atomic_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_init_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_res_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_ee_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_rd_atom = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_pd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_sge_rd = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.hw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.vendor_part_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.vendor_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.page_size_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.max_mr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          rxe[_i0].attr.fw_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rxe[_i0].max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rxe_init_device_param(rxe);
+          free(rxe);
+        
+        break;
+    }
     default:
         usage();
         break;

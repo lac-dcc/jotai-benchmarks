@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static int cmp_keys(struct dm_cell_key *lhs,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,25 +93,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_lhs0 = 65025;
+          struct dm_cell_key * lhs = (struct dm_cell_key *) malloc(_len_lhs0*sizeof(struct dm_cell_key));
+          for(int _i0 = 0; _i0 < _len_lhs0; _i0++) {
+              lhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rhs0 = 65025;
+          struct dm_cell_key * rhs = (struct dm_cell_key *) malloc(_len_rhs0*sizeof(struct dm_cell_key));
+          for(int _i0 = 0; _i0 < _len_rhs0; _i0++) {
+              rhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_keys(lhs,rhs);
+          printf("%d\n", benchRet); 
+          free(lhs);
+          free(rhs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_lhs0 = 100;
+          struct dm_cell_key * lhs = (struct dm_cell_key *) malloc(_len_lhs0*sizeof(struct dm_cell_key));
+          for(int _i0 = 0; _i0 < _len_lhs0; _i0++) {
+              lhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rhs0 = 100;
+          struct dm_cell_key * rhs = (struct dm_cell_key *) malloc(_len_rhs0*sizeof(struct dm_cell_key));
+          for(int _i0 = 0; _i0 < _len_rhs0; _i0++) {
+              rhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_keys(lhs,rhs);
+          printf("%d\n", benchRet); 
+          free(lhs);
+          free(rhs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_lhs0 = 1;
           struct dm_cell_key * lhs = (struct dm_cell_key *) malloc(_len_lhs0*sizeof(struct dm_cell_key));
           for(int _i0 = 0; _i0 < _len_lhs0; _i0++) {
-            lhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        lhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        lhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        lhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+              lhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rhs0 = 1;
           struct dm_cell_key * rhs = (struct dm_cell_key *) malloc(_len_rhs0*sizeof(struct dm_cell_key));
           for(int _i0 = 0; _i0 < _len_rhs0; _i0++) {
-            rhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        rhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
-        rhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        rhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+              rhs[_i0].virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].block_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs[_i0].block_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmp_keys(lhs,rhs);
           printf("%d\n", benchRet); 
           free(lhs);

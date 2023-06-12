@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ dtls1_set_message_header_int(SSL *s, unsigned char mt,
     msg_hdr->frag_len = frag_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,27 +89,245 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned char mt = 100;
+        
           unsigned long len = 100;
+        
           unsigned short seq_num = 100;
+        
           unsigned long frag_off = 100;
+        
           unsigned long frag_len = 100;
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__d10 = 1;
           s[_i0].d1 = (struct TYPE_4__ *) malloc(_len_s__i0__d10*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_s__i0__d10; _j0++) {
-            s[_i0].d1->w_msg_hdr.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].d1->w_msg_hdr.msg_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].d1->w_msg_hdr.seq = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].d1->w_msg_hdr.frag_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].d1->w_msg_hdr.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].d1->w_msg_hdr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.msg_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          dtls1_set_message_header_int(s,mt,len,seq_num,frag_off,frag_len);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].d1);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned char mt = 255;
+        
+          unsigned long len = 255;
+        
+          unsigned short seq_num = 255;
+        
+          unsigned long frag_off = 255;
+        
+          unsigned long frag_len = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__d10 = 1;
+          s[_i0].d1 = (struct TYPE_4__ *) malloc(_len_s__i0__d10*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__d10; _j0++) {
+              s[_i0].d1->w_msg_hdr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.msg_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          dtls1_set_message_header_int(s,mt,len,seq_num,frag_off,frag_len);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].d1);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned char mt = 10;
+        
+          unsigned long len = 10;
+        
+          unsigned short seq_num = 10;
+        
+          unsigned long frag_off = 10;
+        
+          unsigned long frag_len = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__d10 = 1;
+          s[_i0].d1 = (struct TYPE_4__ *) malloc(_len_s__i0__d10*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__d10; _j0++) {
+              s[_i0].d1->w_msg_hdr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.msg_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          dtls1_set_message_header_int(s,mt,len,seq_num,frag_off,frag_len);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].d1);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned char mt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long frag_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__d10 = 1;
+          s[_i0].d1 = (struct TYPE_4__ *) malloc(_len_s__i0__d10*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__d10; _j0++) {
+              s[_i0].d1->w_msg_hdr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.msg_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].d1->w_msg_hdr.frag_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           dtls1_set_message_header_int(s,mt,len,seq_num,frag_off,frag_len);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].d1);

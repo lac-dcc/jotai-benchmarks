@@ -70,12 +70,6 @@ __attribute__((used)) static char *kdballocenv(size_t bytes)
 	return ep;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long bytes = 100;
+        
           char * benchRet = kdballocenv(bytes);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -101,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long bytes = 255;
+        
           char * benchRet = kdballocenv(bytes);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -110,12 +106,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long bytes = 10;
+        
           char * benchRet = kdballocenv(bytes);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

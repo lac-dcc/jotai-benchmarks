@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static inline void scale_band_ext_coeffs(ATRAC9ChannelData
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +84,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           const int s_unit = 100;
+        
           const int e_unit = 100;
+        
           int _len_c0 = 1;
           struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
@@ -100,12 +122,186 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_c__i0__coeffs0; _j0++) {
             c[_i0].coeffs[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           }
+        
           int _len_sf0 = 6;
           float * sf = (float *) malloc(_len_sf0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
             sf[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
+          scale_band_ext_coeffs(c,sf,s_unit,e_unit);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].coeffs);
+          }
+          free(c);
+          free(sf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          const int s_unit = 255;
+        
+          const int e_unit = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__coeffs0 = 1;
+          c[_i0].coeffs = (float *) malloc(_len_c__i0__coeffs0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_c__i0__coeffs0; _j0++) {
+            c[_i0].coeffs[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          int _len_sf0 = 65025;
+          float * sf = (float *) malloc(_len_sf0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
+            sf[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          scale_band_ext_coeffs(c,sf,s_unit,e_unit);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].coeffs);
+          }
+          free(c);
+          free(sf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          const int s_unit = 10;
+        
+          const int e_unit = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__coeffs0 = 1;
+          c[_i0].coeffs = (float *) malloc(_len_c__i0__coeffs0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_c__i0__coeffs0; _j0++) {
+            c[_i0].coeffs[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          int _len_sf0 = 100;
+          float * sf = (float *) malloc(_len_sf0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
+            sf[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          scale_band_ext_coeffs(c,sf,s_unit,e_unit);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].coeffs);
+          }
+          free(c);
+          free(sf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          const int s_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int e_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__coeffs0 = 1;
+          c[_i0].coeffs = (float *) malloc(_len_c__i0__coeffs0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_c__i0__coeffs0; _j0++) {
+            c[_i0].coeffs[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          int _len_sf0 = 6;
+          float * sf = (float *) malloc(_len_sf0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_sf0; _i0++) {
+            sf[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
           scale_band_ext_coeffs(c,sf,s_unit,e_unit);
           for(int _aux = 0; _aux < _len_c0; _aux++) {
           free(c[_aux].coeffs);

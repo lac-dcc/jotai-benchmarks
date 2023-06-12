@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void unzlocal_DosDateToTmuDate (uLong ulDosDate, tm
     ptm->tm_sec =  (uInt) (2*(ulDosDate&0x1f)) ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,29 +92,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ulDosDate = 100;
+        
           int _len_ptm0 = 1;
           struct TYPE_3__ * ptm = (struct TYPE_3__ *) malloc(_len_ptm0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ptm0; _i0++) {
-              }
+            
+          }
+        
+          unzlocal_DosDateToTmuDate(ulDosDate,ptm);
+          free(ptm);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ulDosDate = 255;
+        
+          int _len_ptm0 = 65025;
+          struct TYPE_3__ * ptm = (struct TYPE_3__ *) malloc(_len_ptm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ptm0; _i0++) {
+            
+          }
+        
           unzlocal_DosDateToTmuDate(ulDosDate,ptm);
           free(ptm);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ulDosDate = 10;
+        
           int _len_ptm0 = 100;
           struct TYPE_3__ * ptm = (struct TYPE_3__ *) malloc(_len_ptm0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ptm0; _i0++) {
-              }
+            
+          }
+        
           unzlocal_DosDateToTmuDate(ulDosDate,ptm);
           free(ptm);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ulDosDate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ptm0 = 1;
+          struct TYPE_3__ * ptm = (struct TYPE_3__ *) malloc(_len_ptm0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ptm0; _i0++) {
+            
+          }
+        
+          unzlocal_DosDateToTmuDate(ulDosDate,ptm);
+          free(ptm);
+        
+        break;
+    }
     default:
         usage();
         break;

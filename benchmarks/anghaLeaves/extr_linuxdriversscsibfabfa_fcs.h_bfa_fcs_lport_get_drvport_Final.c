@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ bfa_fcs_lport_get_drvport(struct bfa_fcs_lport_s *port)
 	return port->bfad_port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct bfa_fcs_lport_s * port = (struct bfa_fcs_lport_s *) malloc(_len_port0*sizeof(struct bfa_fcs_lport_s));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
               int _len_port__i0__bfad_port0 = 1;
           port[_i0].bfad_port = (struct bfad_port_s *) malloc(_len_port__i0__bfad_port0*sizeof(struct bfad_port_s));
           for(int _j0 = 0; _j0 < _len_port__i0__bfad_port0; _j0++) {
-            port[_i0].bfad_port->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].bfad_port->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct bfad_port_s * benchRet = bfa_fcs_lport_get_drvport(port);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_port0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_port0 = 100;
+          struct bfa_fcs_lport_s * port = (struct bfa_fcs_lport_s *) malloc(_len_port0*sizeof(struct bfa_fcs_lport_s));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__bfad_port0 = 1;
+          port[_i0].bfad_port = (struct bfad_port_s *) malloc(_len_port__i0__bfad_port0*sizeof(struct bfad_port_s));
+          for(int _j0 = 0; _j0 < _len_port__i0__bfad_port0; _j0++) {
+              port[_i0].bfad_port->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bfad_port_s * benchRet = bfa_fcs_lport_get_drvport(port);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].bfad_port);
+          }
+          free(port);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct bfa_fcs_lport_s * port = (struct bfa_fcs_lport_s *) malloc(_len_port0*sizeof(struct bfa_fcs_lport_s));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__bfad_port0 = 1;
+          port[_i0].bfad_port = (struct bfad_port_s *) malloc(_len_port__i0__bfad_port0*sizeof(struct bfad_port_s));
+          for(int _j0 = 0; _j0 < _len_port__i0__bfad_port0; _j0++) {
+              port[_i0].bfad_port->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bfad_port_s * benchRet = bfa_fcs_lport_get_drvport(port);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].bfad_port);
+          }
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

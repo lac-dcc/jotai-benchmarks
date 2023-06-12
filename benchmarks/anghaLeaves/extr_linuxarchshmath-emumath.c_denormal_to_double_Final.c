@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static void denormal_to_double(struct sh_fpu_soft_struct *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,20 +91,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int n = 100;
+        
           int _len_fpu0 = 1;
           struct sh_fpu_soft_struct * fpu = (struct sh_fpu_soft_struct *) malloc(_len_fpu0*sizeof(struct sh_fpu_soft_struct));
           for(int _i0 = 0; _i0 < _len_fpu0; _i0++) {
-            fpu[_i0].fpul = ((-2 * (next_i()%2)) + 1) * next_i();
+              fpu[_i0].fpul = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fpu__i0__fp_regs0 = 1;
           fpu[_i0].fp_regs = (unsigned long *) malloc(_len_fpu__i0__fp_regs0*sizeof(unsigned long));
           for(int _j0 = 0; _j0 < _len_fpu__i0__fp_regs0; _j0++) {
             fpu[_i0].fp_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          denormal_to_double(fpu,n);
+          for(int _aux = 0; _aux < _len_fpu0; _aux++) {
+          free(fpu[_aux].fp_regs);
+          }
+          free(fpu);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_fpu0 = 65025;
+          struct sh_fpu_soft_struct * fpu = (struct sh_fpu_soft_struct *) malloc(_len_fpu0*sizeof(struct sh_fpu_soft_struct));
+          for(int _i0 = 0; _i0 < _len_fpu0; _i0++) {
+              fpu[_i0].fpul = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fpu__i0__fp_regs0 = 1;
+          fpu[_i0].fp_regs = (unsigned long *) malloc(_len_fpu__i0__fp_regs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_fpu__i0__fp_regs0; _j0++) {
+            fpu[_i0].fp_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          denormal_to_double(fpu,n);
+          for(int _aux = 0; _aux < _len_fpu0; _aux++) {
+          free(fpu[_aux].fp_regs);
+          }
+          free(fpu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int n = 10;
+        
+          int _len_fpu0 = 100;
+          struct sh_fpu_soft_struct * fpu = (struct sh_fpu_soft_struct *) malloc(_len_fpu0*sizeof(struct sh_fpu_soft_struct));
+          for(int _i0 = 0; _i0 < _len_fpu0; _i0++) {
+              fpu[_i0].fpul = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fpu__i0__fp_regs0 = 1;
+          fpu[_i0].fp_regs = (unsigned long *) malloc(_len_fpu__i0__fp_regs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_fpu__i0__fp_regs0; _j0++) {
+            fpu[_i0].fp_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          denormal_to_double(fpu,n);
+          for(int _aux = 0; _aux < _len_fpu0; _aux++) {
+          free(fpu[_aux].fp_regs);
+          }
+          free(fpu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fpu0 = 1;
+          struct sh_fpu_soft_struct * fpu = (struct sh_fpu_soft_struct *) malloc(_len_fpu0*sizeof(struct sh_fpu_soft_struct));
+          for(int _i0 = 0; _i0 < _len_fpu0; _i0++) {
+              fpu[_i0].fpul = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fpu__i0__fp_regs0 = 1;
+          fpu[_i0].fp_regs = (unsigned long *) malloc(_len_fpu__i0__fp_regs0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_fpu__i0__fp_regs0; _j0++) {
+            fpu[_i0].fp_regs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           denormal_to_double(fpu,n);
           for(int _aux = 0; _aux < _len_fpu0; _aux++) {
           free(fpu[_aux].fp_regs);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ proc_set_dispatchqueue_offset(struct proc *p, uint64_t offset)
 	p->p_dispatchqueue_offset = offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int offset = 100;
+        
           int _len_p0 = 1;
           struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_dispatchqueue_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_dispatchqueue_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           proc_set_dispatchqueue_offset(p,offset);
           free(p);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int _len_p0 = 65025;
+          struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_dispatchqueue_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          proc_set_dispatchqueue_offset(p,offset);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int offset = 10;
+        
           int _len_p0 = 100;
           struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_dispatchqueue_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_dispatchqueue_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          proc_set_dispatchqueue_offset(p,offset);
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct proc * p = (struct proc *) malloc(_len_p0*sizeof(struct proc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_dispatchqueue_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           proc_set_dispatchqueue_offset(p,offset);
           free(p);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ pf_state_compare_id(struct pf_state *a, struct pf_state *b)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct pf_state * a = (struct pf_state *) malloc(_len_a0*sizeof(struct pf_state));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct pf_state * b = (struct pf_state *) malloc(_len_b0*sizeof(struct pf_state));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_state_compare_id(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct pf_state * a = (struct pf_state *) malloc(_len_a0*sizeof(struct pf_state));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct pf_state * b = (struct pf_state *) malloc(_len_b0*sizeof(struct pf_state));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_state_compare_id(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct pf_state * a = (struct pf_state *) malloc(_len_a0*sizeof(struct pf_state));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct pf_state * b = (struct pf_state *) malloc(_len_b0*sizeof(struct pf_state));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].creatorid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pf_state_compare_id(a,b);
           printf("%d\n", benchRet); 
           free(a);

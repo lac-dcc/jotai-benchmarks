@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static void update_devnum(struct usb_device *udev, int dev
 		udev->devnum = devnum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int devnum = 100;
+        
           int _len_udev0 = 1;
           struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
-            udev[_i0].devnum = ((-2 * (next_i()%2)) + 1) * next_i();
-        udev[_i0].wusb = ((-2 * (next_i()%2)) + 1) * next_i();
+              udev[_i0].devnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].wusb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_devnum(udev,devnum);
           free(udev);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int devnum = 255;
+        
+          int _len_udev0 = 65025;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].devnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].wusb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_devnum(udev,devnum);
+          free(udev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int devnum = 10;
+        
+          int _len_udev0 = 100;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].devnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].wusb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_devnum(udev,devnum);
+          free(udev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int devnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_udev0 = 1;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].devnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].wusb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_devnum(udev,devnum);
+          free(udev);
+        
+        break;
+    }
     default:
         usage();
         break;

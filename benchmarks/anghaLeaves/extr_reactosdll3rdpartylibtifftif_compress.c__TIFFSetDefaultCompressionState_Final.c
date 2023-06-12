@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -98,12 +100,6 @@ _TIFFSetDefaultCompressionState(TIFF* tif)
 	tif->tif_flags &= ~(TIFF_NOBITREV|TIFF_NOREADRAW);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,30 +112,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tif0 = 1;
+          int _len_tif0 = 65025;
           struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_deftilesize = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_defstripsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_encodetile = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_encodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_encoderow = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_decodetile = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_decodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_decoderow = ((-2 * (next_i()%2)) + 1) * next_i();
-        tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_deftilesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_defstripsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encodetile = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encoderow = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decodetile = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decoderow = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           _TIFFSetDefaultCompressionState(tif);
           free(tif);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tif0 = 100;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_deftilesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_defstripsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encodetile = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encoderow = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decodetile = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decoderow = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _TIFFSetDefaultCompressionState(tif);
+          free(tif);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tif0 = 1;
+          struct TYPE_3__ * tif = (struct TYPE_3__ *) malloc(_len_tif0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_deftilesize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_defstripsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_seek = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encodetile = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_encoderow = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decodetile = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decodestrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_decoderow = ((-2 * (next_i()%2)) + 1) * next_i();
+          tif[_i0].tif_fixuptags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _TIFFSetDefaultCompressionState(tif);
+          free(tif);
+        
+        break;
+    }
     default:
         usage();
         break;

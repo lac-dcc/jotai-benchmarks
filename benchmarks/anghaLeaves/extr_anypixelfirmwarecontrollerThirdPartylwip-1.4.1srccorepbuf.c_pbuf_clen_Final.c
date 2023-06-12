@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,7 +70,6 @@ pbuf_clen(struct pbuf *p)
   return len;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct pbuf *_allocate_p(int length, struct pbuf *aux_p[]) {
@@ -97,7 +97,6 @@ void _delete_p(struct pbuf *aux_p[], int aux_p_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,18 +109,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct pbuf * aux_p[10000];
+          struct pbuf * p = _allocate_p(10000, aux_p);
+        
+          long benchRet = pbuf_clen(p);
+          printf("%ld\n", benchRet); 
+          _delete_p(aux_p, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct pbuf * aux_p[1];
           struct pbuf * p = _allocate_p(1, aux_p);
+        
           long benchRet = pbuf_clen(p);
           printf("%ld\n", benchRet); 
           _delete_p(aux_p, 1);
         
         break;
     }
-
     default:
         usage();
         break;

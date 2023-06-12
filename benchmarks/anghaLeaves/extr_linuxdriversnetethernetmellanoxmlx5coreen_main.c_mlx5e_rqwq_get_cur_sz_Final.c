@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static u32 mlx5e_rqwq_get_cur_sz(struct mlx5e_rq *rq)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +89,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rq0 = 1;
+          int _len_rq0 = 65025;
           struct mlx5e_rq * rq = (struct mlx5e_rq *) malloc(_len_rq0*sizeof(struct mlx5e_rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].wq_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].wqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].mpwqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].wq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].wqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          rq[_i0].mpwqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = mlx5e_rqwq_get_cur_sz(rq);
           printf("%d\n", benchRet); 
           free(rq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rq0 = 100;
+          struct mlx5e_rq * rq = (struct mlx5e_rq *) malloc(_len_rq0*sizeof(struct mlx5e_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].wq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].wqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          rq[_i0].mpwqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = mlx5e_rqwq_get_cur_sz(rq);
+          printf("%d\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rq0 = 1;
+          struct mlx5e_rq * rq = (struct mlx5e_rq *) malloc(_len_rq0*sizeof(struct mlx5e_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].wq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].wqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          rq[_i0].mpwqe.wq.cur_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = mlx5e_rqwq_get_cur_sz(rq);
+          printf("%d\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
     default:
         usage();
         break;

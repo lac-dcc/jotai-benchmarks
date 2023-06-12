@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool req_no_special_merge(struct request *req)
 	return !q->mq_ops && req->special;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_req0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
           struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].special = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].special = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_req__i0__q0 = 1;
           req[_i0].q = (struct request_queue *) malloc(_len_req__i0__q0*sizeof(struct request_queue));
           for(int _j0 = 0; _j0 < _len_req__i0__q0; _j0++) {
-            req[_i0].q->mq_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].q->mq_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = req_no_special_merge(req);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_req0; _aux++) {
@@ -104,19 +126,144 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
-          int _len_req0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_req0 = 100;
           struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].special = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].special = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_req__i0__q0 = 1;
           req[_i0].q = (struct request_queue *) malloc(_len_req__i0__q0*sizeof(struct request_queue));
           for(int _j0 = 0; _j0 < _len_req__i0__q0; _j0++) {
-            req[_i0].q->mq_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].q->mq_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = req_no_special_merge(req);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_req0; _aux++) {
+          free(req[_aux].q);
+          }
+          free(req);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_req0 = 1;
+          struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].special = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_req__i0__q0 = 1;
+          req[_i0].q = (struct request_queue *) malloc(_len_req__i0__q0*sizeof(struct request_queue));
+          for(int _j0 = 0; _j0 < _len_req__i0__q0; _j0++) {
+              req[_i0].q->mq_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = req_no_special_merge(req);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_req0; _aux++) {
+          free(req[_aux].q);
+          }
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_req0 = 1;
+          struct request * req = (struct request *) malloc(_len_req0*sizeof(struct request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].special = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_req__i0__q0 = 1;
+          req[_i0].q = (struct request_queue *) malloc(_len_req__i0__q0*sizeof(struct request_queue));
+          for(int _j0 = 0; _j0 < _len_req__i0__q0; _j0++) {
+              req[_i0].q->mq_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = req_no_special_merge(req);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_req0; _aux++) {

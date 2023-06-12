@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static int rockchip_pcie_valid_device(struct rockchip_pcie
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,21 +88,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int dev = 100;
+        
           int _len_rockchip0 = 1;
           struct rockchip_pcie * rockchip = (struct rockchip_pcie *) malloc(_len_rockchip0*sizeof(struct rockchip_pcie));
           for(int _i0 = 0; _i0 < _len_rockchip0; _i0++) {
-            rockchip[_i0].root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              rockchip[_i0].root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bus0 = 1;
           struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rockchip_pcie_valid_device(rockchip,bus,dev);
+          printf("%d\n", benchRet); 
+          free(rockchip);
+          free(bus);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int dev = 255;
+        
+          int _len_rockchip0 = 65025;
+          struct rockchip_pcie * rockchip = (struct rockchip_pcie *) malloc(_len_rockchip0*sizeof(struct rockchip_pcie));
+          for(int _i0 = 0; _i0 < _len_rockchip0; _i0++) {
+              rockchip[_i0].root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bus0 = 65025;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rockchip_pcie_valid_device(rockchip,bus,dev);
+          printf("%d\n", benchRet); 
+          free(rockchip);
+          free(bus);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int dev = 10;
+        
+          int _len_rockchip0 = 100;
+          struct rockchip_pcie * rockchip = (struct rockchip_pcie *) malloc(_len_rockchip0*sizeof(struct rockchip_pcie));
+          for(int _i0 = 0; _i0 < _len_rockchip0; _i0++) {
+              rockchip[_i0].root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bus0 = 100;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rockchip_pcie_valid_device(rockchip,bus,dev);
+          printf("%d\n", benchRet); 
+          free(rockchip);
+          free(bus);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rockchip0 = 1;
+          struct rockchip_pcie * rockchip = (struct rockchip_pcie *) malloc(_len_rockchip0*sizeof(struct rockchip_pcie));
+          for(int _i0 = 0; _i0 < _len_rockchip0; _i0++) {
+              rockchip[_i0].root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bus0 = 1;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rockchip_pcie_valid_device(rockchip,bus,dev);
           printf("%d\n", benchRet); 
           free(rockchip);

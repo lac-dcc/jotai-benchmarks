@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline bool modifiers_match(obs_hotkey_binding_t *b
 		(strict_modifiers && modifiers == modifiers_);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,12 +88,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int modifiers_ = 100;
+        
           int strict_modifiers = 100;
+        
           int _len_binding0 = 1;
           struct TYPE_5__ * binding = (struct TYPE_5__ *) malloc(_len_binding0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
-            binding[_i0].key.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+              binding[_i0].key.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = modifiers_match(binding,modifiers_,strict_modifiers);
+          printf("%d\n", benchRet); 
+          free(binding);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int modifiers_ = 255;
+        
+          int strict_modifiers = 255;
+        
+          int _len_binding0 = 65025;
+          struct TYPE_5__ * binding = (struct TYPE_5__ *) malloc(_len_binding0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
+              binding[_i0].key.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = modifiers_match(binding,modifiers_,strict_modifiers);
           printf("%d\n", benchRet); 
           free(binding);
@@ -105,22 +127,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int modifiers_ = 10;
+        
           int strict_modifiers = 10;
+        
           int _len_binding0 = 100;
           struct TYPE_5__ * binding = (struct TYPE_5__ *) malloc(_len_binding0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
-            binding[_i0].key.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+              binding[_i0].key.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = modifiers_match(binding,modifiers_,strict_modifiers);
           printf("%d\n", benchRet); 
           free(binding);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int modifiers_ = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int strict_modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_binding0 = 1;
+          struct TYPE_5__ * binding = (struct TYPE_5__ *) malloc(_len_binding0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_binding0; _i0++) {
+              binding[_i0].key.modifiers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = modifiers_match(binding,modifiers_,strict_modifiers);
+          printf("%d\n", benchRet); 
+          free(binding);
+        
+        break;
+    }
     default:
         usage();
         break;

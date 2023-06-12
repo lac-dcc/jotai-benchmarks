@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int uas_is_interface(struct usb_host_interface *int
 		intf->desc.bInterfaceProtocol == USB_PR_UAS);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_intf0 = 1;
+          int _len_intf0 = 65025;
           struct usb_host_interface * intf = (struct usb_host_interface *) malloc(_len_intf0*sizeof(struct usb_host_interface));
           for(int _i0 = 0; _i0 < _len_intf0; _i0++) {
-            intf[_i0].desc.bInterfaceClass = ((-2 * (next_i()%2)) + 1) * next_i();
-        intf[_i0].desc.bInterfaceSubClass = ((-2 * (next_i()%2)) + 1) * next_i();
-        intf[_i0].desc.bInterfaceProtocol = ((-2 * (next_i()%2)) + 1) * next_i();
+              intf[_i0].desc.bInterfaceClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].desc.bInterfaceSubClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].desc.bInterfaceProtocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = uas_is_interface(intf);
           printf("%d\n", benchRet); 
           free(intf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_intf0 = 100;
+          struct usb_host_interface * intf = (struct usb_host_interface *) malloc(_len_intf0*sizeof(struct usb_host_interface));
+          for(int _i0 = 0; _i0 < _len_intf0; _i0++) {
+              intf[_i0].desc.bInterfaceClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].desc.bInterfaceSubClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].desc.bInterfaceProtocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = uas_is_interface(intf);
+          printf("%d\n", benchRet); 
+          free(intf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_intf0 = 1;
+          struct usb_host_interface * intf = (struct usb_host_interface *) malloc(_len_intf0*sizeof(struct usb_host_interface));
+          for(int _i0 = 0; _i0 < _len_intf0; _i0++) {
+              intf[_i0].desc.bInterfaceClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].desc.bInterfaceSubClass = ((-2 * (next_i()%2)) + 1) * next_i();
+          intf[_i0].desc.bInterfaceProtocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = uas_is_interface(intf);
+          printf("%d\n", benchRet); 
+          free(intf);
+        
+        break;
+    }
     default:
         usage();
         break;

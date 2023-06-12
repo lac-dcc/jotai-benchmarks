@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ TIFFCIELabToXYZ(TIFFCIELabToRGB *cielab, uint32 l, int32 a, int32 b,
 		*Z = cielab->Z0 * tmp * tmp * tmp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,30 +106,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long l = 100;
+        
           long a = 100;
+        
           long b = 100;
+        
           int _len_cielab0 = 1;
           struct TYPE_3__ * cielab = (struct TYPE_3__ *) malloc(_len_cielab0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cielab0; _i0++) {
-            cielab[_i0].Y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        cielab[_i0].X0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        cielab[_i0].Z0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              cielab[_i0].Y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].X0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].Z0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           int _len_X0 = 1;
           float * X = (float *) malloc(_len_X0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_X0; _i0++) {
             X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int _len_Y0 = 1;
           float * Y = (float *) malloc(_len_Y0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
             Y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int _len_Z0 = 1;
           float * Z = (float *) malloc(_len_Z0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_Z0; _i0++) {
             Z[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           TIFFCIELabToXYZ(cielab,l,a,b,X,Y,Z);
           free(cielab);
           free(X);
@@ -141,7 +146,138 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long l = 255;
+        
+          long a = 255;
+        
+          long b = 255;
+        
+          int _len_cielab0 = 65025;
+          struct TYPE_3__ * cielab = (struct TYPE_3__ *) malloc(_len_cielab0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cielab0; _i0++) {
+              cielab[_i0].Y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].X0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].Z0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          int _len_X0 = 65025;
+          float * X = (float *) malloc(_len_X0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+            X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_Y0 = 65025;
+          float * Y = (float *) malloc(_len_Y0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
+            Y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_Z0 = 65025;
+          float * Z = (float *) malloc(_len_Z0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_Z0; _i0++) {
+            Z[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          TIFFCIELabToXYZ(cielab,l,a,b,X,Y,Z);
+          free(cielab);
+          free(X);
+          free(Y);
+          free(Z);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long l = 10;
+        
+          long a = 10;
+        
+          long b = 10;
+        
+          int _len_cielab0 = 100;
+          struct TYPE_3__ * cielab = (struct TYPE_3__ *) malloc(_len_cielab0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cielab0; _i0++) {
+              cielab[_i0].Y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].X0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].Z0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          int _len_X0 = 100;
+          float * X = (float *) malloc(_len_X0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+            X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_Y0 = 100;
+          float * Y = (float *) malloc(_len_Y0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
+            Y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_Z0 = 100;
+          float * Z = (float *) malloc(_len_Z0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_Z0; _i0++) {
+            Z[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          TIFFCIELabToXYZ(cielab,l,a,b,X,Y,Z);
+          free(cielab);
+          free(X);
+          free(Y);
+          free(Z);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cielab0 = 1;
+          struct TYPE_3__ * cielab = (struct TYPE_3__ *) malloc(_len_cielab0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cielab0; _i0++) {
+              cielab[_i0].Y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].X0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          cielab[_i0].Z0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          int _len_X0 = 1;
+          float * X = (float *) malloc(_len_X0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+            X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_Y0 = 1;
+          float * Y = (float *) malloc(_len_Y0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
+            Y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_Z0 = 1;
+          float * Z = (float *) malloc(_len_Z0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_Z0; _i0++) {
+            Z[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          TIFFCIELabToXYZ(cielab,l,a,b,X,Y,Z);
+          free(cielab);
+          free(X);
+          free(Y);
+          free(Z);
+        
+        break;
+    }
     default:
         usage();
         break;

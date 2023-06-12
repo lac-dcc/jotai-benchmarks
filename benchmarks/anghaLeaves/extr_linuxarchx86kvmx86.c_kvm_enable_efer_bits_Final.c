@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void kvm_enable_efer_bits(u64 mask)
        efer_reserved_bits &= ~mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 100;
+        
           kvm_enable_efer_bits(mask);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mask = 255;
+        
           kvm_enable_efer_bits(mask);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mask = 10;
+        
           kvm_enable_efer_bits(mask);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          kvm_enable_efer_bits(mask);
+        
+        break;
+    }
     default:
         usage();
         break;

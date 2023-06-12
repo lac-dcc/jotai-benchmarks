@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ unicode_combinable(u_int16_t character)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int character = 100;
+        
           int benchRet = unicode_combinable(character);
           printf("%d\n", benchRet); 
         
@@ -110,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int character = 255;
+        
           int benchRet = unicode_combinable(character);
           printf("%d\n", benchRet); 
         
@@ -119,12 +116,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int character = 10;
+        
           int benchRet = unicode_combinable(character);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int character = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = unicode_combinable(character);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void ZSTD_reset_compressedBlockState(ZSTD_compresse
     bs->entropy.fse.litlength_repeatMode = FSE_repeat_none;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +92,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bs0 = 1;
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_bs0 = 65025;
           struct TYPE_9__ * bs = (struct TYPE_9__ *) malloc(_len_bs0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
-            bs[_i0].entropy.huf.repeatMode = ((-2 * (next_i()%2)) + 1) * next_i();
+            
+          bs[_i0].entropy.huf.repeatMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int _len_bs__i0__rep0 = 1;
           bs[_i0].rep = (int *) malloc(_len_bs__i0__rep0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_bs__i0__rep0; _j0++) {
             bs[_i0].rep[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          ZSTD_reset_compressedBlockState(bs);
+          for(int _aux = 0; _aux < _len_bs0; _aux++) {
+          free(bs[_aux].rep);
+          }
+          free(bs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_bs0 = 100;
+          struct TYPE_9__ * bs = (struct TYPE_9__ *) malloc(_len_bs0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+            
+          bs[_i0].entropy.huf.repeatMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_bs__i0__rep0 = 1;
+          bs[_i0].rep = (int *) malloc(_len_bs__i0__rep0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_bs__i0__rep0; _j0++) {
+            bs[_i0].rep[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ZSTD_reset_compressedBlockState(bs);
+          for(int _aux = 0; _aux < _len_bs0; _aux++) {
+          free(bs[_aux].rep);
+          }
+          free(bs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_bs0 = 1;
+          struct TYPE_9__ * bs = (struct TYPE_9__ *) malloc(_len_bs0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_bs0; _i0++) {
+            
+          bs[_i0].entropy.huf.repeatMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_bs__i0__rep0 = 1;
+          bs[_i0].rep = (int *) malloc(_len_bs__i0__rep0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_bs__i0__rep0; _j0++) {
+            bs[_i0].rep[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           ZSTD_reset_compressedBlockState(bs);
           for(int _aux = 0; _aux < _len_bs0; _aux++) {
           free(bs[_aux].rep);

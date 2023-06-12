@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ update_fds(EventLoopData *eld) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,27 +86,174 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_eld0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_eld0 = 65025;
           struct TYPE_7__ * eld = (struct TYPE_7__ *) malloc(_len_eld0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_eld0; _i0++) {
-            eld[_i0].watches_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              eld[_i0].watches_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_eld__i0__fds0 = 1;
           eld[_i0].fds = (struct TYPE_5__ *) malloc(_len_eld__i0__fds0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_eld__i0__fds0; _j0++) {
-            eld[_i0].fds->events = ((-2 * (next_i()%2)) + 1) * next_i();
-        eld[_i0].fds->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              eld[_i0].fds->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].fds->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_eld__i0__watches0 = 1;
           eld[_i0].watches = (struct TYPE_6__ *) malloc(_len_eld__i0__watches0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_eld__i0__watches0; _j0++) {
-            eld[_i0].watches->events = ((-2 * (next_i()%2)) + 1) * next_i();
-        eld[_i0].watches->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        eld[_i0].watches->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              eld[_i0].watches->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].watches->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].watches->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          update_fds(eld);
+          for(int _aux = 0; _aux < _len_eld0; _aux++) {
+          free(eld[_aux].fds);
+          }
+          for(int _aux = 0; _aux < _len_eld0; _aux++) {
+          free(eld[_aux].watches);
+          }
+          free(eld);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_eld0 = 100;
+          struct TYPE_7__ * eld = (struct TYPE_7__ *) malloc(_len_eld0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_eld0; _i0++) {
+              eld[_i0].watches_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_eld__i0__fds0 = 1;
+          eld[_i0].fds = (struct TYPE_5__ *) malloc(_len_eld__i0__fds0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_eld__i0__fds0; _j0++) {
+              eld[_i0].fds->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].fds->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_eld__i0__watches0 = 1;
+          eld[_i0].watches = (struct TYPE_6__ *) malloc(_len_eld__i0__watches0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_eld__i0__watches0; _j0++) {
+              eld[_i0].watches->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].watches->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].watches->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          update_fds(eld);
+          for(int _aux = 0; _aux < _len_eld0; _aux++) {
+          free(eld[_aux].fds);
+          }
+          for(int _aux = 0; _aux < _len_eld0; _aux++) {
+          free(eld[_aux].watches);
+          }
+          free(eld);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_eld0 = 1;
+          struct TYPE_7__ * eld = (struct TYPE_7__ *) malloc(_len_eld0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_eld0; _i0++) {
+              eld[_i0].watches_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_eld__i0__fds0 = 1;
+          eld[_i0].fds = (struct TYPE_5__ *) malloc(_len_eld__i0__fds0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_eld__i0__fds0; _j0++) {
+              eld[_i0].fds->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].fds->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_eld__i0__watches0 = 1;
+          eld[_i0].watches = (struct TYPE_6__ *) malloc(_len_eld__i0__watches0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_eld__i0__watches0; _j0++) {
+              eld[_i0].watches->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].watches->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          eld[_i0].watches->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           update_fds(eld);
           for(int _aux = 0; _aux < _len_eld0; _aux++) {
           free(eld[_aux].fds);

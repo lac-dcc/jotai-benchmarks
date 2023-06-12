@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int jornada720_ts_average(int coords[4])
 	return coord / 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_coords0 = 4;
+          int _len_coords0 = 65025;
           int * coords = (int *) malloc(_len_coords0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_coords0; _i0++) {
             coords[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = jornada720_ts_average(coords);
           printf("%d\n", benchRet); 
           free(coords);
@@ -106,13 +102,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_coords0; _i0++) {
             coords[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = jornada720_ts_average(coords);
           printf("%d\n", benchRet); 
           free(coords);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_coords0 = 4;
+          int * coords = (int *) malloc(_len_coords0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_coords0; _i0++) {
+            coords[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = jornada720_ts_average(coords);
+          printf("%d\n", benchRet); 
+          free(coords);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static inline int adjust_pred16(int itype, int up, int lef
     return itype;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int itype = 100;
+        
           int up = 100;
+        
           int left = 100;
+        
           int benchRet = adjust_pred16(itype,up,left);
           printf("%d\n", benchRet); 
         
@@ -112,8 +110,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int itype = 255;
+        
           int up = 255;
+        
           int left = 255;
+        
           int benchRet = adjust_pred16(itype,up,left);
           printf("%d\n", benchRet); 
         
@@ -123,14 +124,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int itype = 10;
+        
           int up = 10;
+        
           int left = 10;
+        
           int benchRet = adjust_pred16(itype,up,left);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int itype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int up = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = adjust_pred16(itype,up,left);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

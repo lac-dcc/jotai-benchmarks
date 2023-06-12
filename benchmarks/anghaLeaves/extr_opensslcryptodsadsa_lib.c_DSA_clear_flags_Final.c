@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void DSA_clear_flags(DSA *d, int flags)
     d->flags &= ~flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_d0 = 1;
           struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          DSA_clear_flags(d,flags);
+          free(d);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_d0 = 65025;
+          struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           DSA_clear_flags(d,flags);
           free(d);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_d0 = 100;
           struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           DSA_clear_flags(d,flags);
           free(d);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_d0 = 1;
+          struct TYPE_3__ * d = (struct TYPE_3__ *) malloc(_len_d0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          DSA_clear_flags(d,flags);
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

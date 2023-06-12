@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void free_gru_resources(struct gru_state *gru,
 	gru->gs_dsr_map |= gts->ts_dsr_map;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_gru0 = 65025;
+          struct gru_state * gru = (struct gru_state *) malloc(_len_gru0*sizeof(struct gru_state));
+          for(int _i0 = 0; _i0 < _len_gru0; _i0++) {
+              gru[_i0].gs_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gru[_i0].gs_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gru[_i0].gs_active_contexts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_gts0 = 65025;
+          struct gru_thread_state * gts = (struct gru_thread_state *) malloc(_len_gts0*sizeof(struct gru_thread_state));
+          for(int _i0 = 0; _i0 < _len_gts0; _i0++) {
+              gts[_i0].ts_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gts[_i0].ts_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          free_gru_resources(gru,gts);
+          free(gru);
+          free(gts);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_gru0 = 100;
+          struct gru_state * gru = (struct gru_state *) malloc(_len_gru0*sizeof(struct gru_state));
+          for(int _i0 = 0; _i0 < _len_gru0; _i0++) {
+              gru[_i0].gs_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gru[_i0].gs_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gru[_i0].gs_active_contexts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_gts0 = 100;
+          struct gru_thread_state * gts = (struct gru_thread_state *) malloc(_len_gts0*sizeof(struct gru_thread_state));
+          for(int _i0 = 0; _i0 < _len_gts0; _i0++) {
+              gts[_i0].ts_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gts[_i0].ts_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          free_gru_resources(gru,gts);
+          free(gru);
+          free(gts);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_gru0 = 1;
           struct gru_state * gru = (struct gru_state *) malloc(_len_gru0*sizeof(struct gru_state));
           for(int _i0 = 0; _i0 < _len_gru0; _i0++) {
-            gru[_i0].gs_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        gru[_i0].gs_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        gru[_i0].gs_active_contexts = ((-2 * (next_i()%2)) + 1) * next_i();
+              gru[_i0].gs_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gru[_i0].gs_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gru[_i0].gs_active_contexts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_gts0 = 1;
           struct gru_thread_state * gts = (struct gru_thread_state *) malloc(_len_gts0*sizeof(struct gru_thread_state));
           for(int _i0 = 0; _i0 < _len_gts0; _i0++) {
-            gts[_i0].ts_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        gts[_i0].ts_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+              gts[_i0].ts_dsr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          gts[_i0].ts_cbr_map = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           free_gru_resources(gru,gts);
           free(gru);
           free(gts);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static struct sdw_cdns_pdi *cdns_find_pdi(struct sdw_cdns 
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int num = 100;
+        
           int _len_cdns0 = 1;
           struct sdw_cdns * cdns = (struct sdw_cdns *) malloc(_len_cdns0*sizeof(struct sdw_cdns));
           for(int _i0 = 0; _i0 < _len_cdns0; _i0++) {
-            cdns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pdi0 = 1;
           struct sdw_cdns_pdi * pdi = (struct sdw_cdns_pdi *) malloc(_len_pdi0*sizeof(struct sdw_cdns_pdi));
           for(int _i0 = 0; _i0 < _len_pdi0; _i0++) {
-            pdi[_i0].assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdi[_i0].assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct sdw_cdns_pdi * benchRet = cdns_find_pdi(cdns,num,pdi);
           printf("%d\n", (*benchRet).assigned);
           free(cdns);
@@ -110,7 +112,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int num = 255;
+        
+          int _len_cdns0 = 65025;
+          struct sdw_cdns * cdns = (struct sdw_cdns *) malloc(_len_cdns0*sizeof(struct sdw_cdns));
+          for(int _i0 = 0; _i0 < _len_cdns0; _i0++) {
+              cdns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdi0 = 65025;
+          struct sdw_cdns_pdi * pdi = (struct sdw_cdns_pdi *) malloc(_len_pdi0*sizeof(struct sdw_cdns_pdi));
+          for(int _i0 = 0; _i0 < _len_pdi0; _i0++) {
+              pdi[_i0].assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct sdw_cdns_pdi * benchRet = cdns_find_pdi(cdns,num,pdi);
+          printf("%d\n", (*benchRet).assigned);
+          free(cdns);
+          free(pdi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int num = 10;
+        
+          int _len_cdns0 = 100;
+          struct sdw_cdns * cdns = (struct sdw_cdns *) malloc(_len_cdns0*sizeof(struct sdw_cdns));
+          for(int _i0 = 0; _i0 < _len_cdns0; _i0++) {
+              cdns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdi0 = 100;
+          struct sdw_cdns_pdi * pdi = (struct sdw_cdns_pdi *) malloc(_len_pdi0*sizeof(struct sdw_cdns_pdi));
+          for(int _i0 = 0; _i0 < _len_pdi0; _i0++) {
+              pdi[_i0].assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct sdw_cdns_pdi * benchRet = cdns_find_pdi(cdns,num,pdi);
+          printf("%d\n", (*benchRet).assigned);
+          free(cdns);
+          free(pdi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cdns0 = 1;
+          struct sdw_cdns * cdns = (struct sdw_cdns *) malloc(_len_cdns0*sizeof(struct sdw_cdns));
+          for(int _i0 = 0; _i0 < _len_cdns0; _i0++) {
+              cdns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdi0 = 1;
+          struct sdw_cdns_pdi * pdi = (struct sdw_cdns_pdi *) malloc(_len_pdi0*sizeof(struct sdw_cdns_pdi));
+          for(int _i0 = 0; _i0 < _len_pdi0; _i0++) {
+              pdi[_i0].assigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct sdw_cdns_pdi * benchRet = cdns_find_pdi(cdns,num,pdi);
+          printf("%d\n", (*benchRet).assigned);
+          free(cdns);
+          free(pdi);
+        
+        break;
+    }
     default:
         usage();
         break;

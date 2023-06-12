@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u64 generic_id(u64 timestamp, unsigned int p
 	return (timestamp * 100 + part) * 1000 + count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int timestamp = 100;
+        
           unsigned int part = 100;
+        
           int count = 100;
+        
           int benchRet = generic_id(timestamp,part,count);
           printf("%d\n", benchRet); 
         
@@ -95,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int timestamp = 255;
+        
           unsigned int part = 255;
+        
           int count = 255;
+        
           int benchRet = generic_id(timestamp,part,count);
           printf("%d\n", benchRet); 
         
@@ -106,14 +107,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int timestamp = 10;
+        
           unsigned int part = 10;
+        
           int count = 10;
+        
           int benchRet = generic_id(timestamp,part,count);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int part = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = generic_id(timestamp,part,count);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

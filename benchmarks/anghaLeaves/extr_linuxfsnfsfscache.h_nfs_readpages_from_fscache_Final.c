@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int nfs_readpages_from_fscache(struct nfs_op
 	return -ENOBUFS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,34 +82,43 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct nfs_open_context * ctx = (struct nfs_open_context *) malloc(_len_ctx0*sizeof(struct nfs_open_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_inode0 = 1;
+        
+          int _len_inode0 = 65025;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mapping0 = 1;
+        
+          int _len_mapping0 = 65025;
           struct address_space * mapping = (struct address_space *) malloc(_len_mapping0*sizeof(struct address_space));
           for(int _i0 = 0; _i0 < _len_mapping0; _i0++) {
-            mapping[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mapping[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pages0 = 1;
+        
+          int _len_pages0 = 65025;
           struct list_head * pages = (struct list_head *) malloc(_len_pages0*sizeof(struct list_head));
           for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
-            pages[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pages[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_nr_pages0 = 1;
+        
+          int _len_nr_pages0 = 65025;
           unsigned int * nr_pages = (unsigned int *) malloc(_len_nr_pages0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_nr_pages0; _i0++) {
             nr_pages[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nfs_readpages_from_fscache(ctx,inode,mapping,pages,nr_pages);
           printf("%d\n", benchRet); 
           free(ctx);
@@ -124,7 +129,100 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct nfs_open_context * ctx = (struct nfs_open_context *) malloc(_len_ctx0*sizeof(struct nfs_open_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mapping0 = 100;
+          struct address_space * mapping = (struct address_space *) malloc(_len_mapping0*sizeof(struct address_space));
+          for(int _i0 = 0; _i0 < _len_mapping0; _i0++) {
+              mapping[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pages0 = 100;
+          struct list_head * pages = (struct list_head *) malloc(_len_pages0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
+              pages[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nr_pages0 = 100;
+          unsigned int * nr_pages = (unsigned int *) malloc(_len_nr_pages0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_nr_pages0; _i0++) {
+            nr_pages[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nfs_readpages_from_fscache(ctx,inode,mapping,pages,nr_pages);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(inode);
+          free(mapping);
+          free(pages);
+          free(nr_pages);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct nfs_open_context * ctx = (struct nfs_open_context *) malloc(_len_ctx0*sizeof(struct nfs_open_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mapping0 = 1;
+          struct address_space * mapping = (struct address_space *) malloc(_len_mapping0*sizeof(struct address_space));
+          for(int _i0 = 0; _i0 < _len_mapping0; _i0++) {
+              mapping[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pages0 = 1;
+          struct list_head * pages = (struct list_head *) malloc(_len_pages0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_pages0; _i0++) {
+              pages[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nr_pages0 = 1;
+          unsigned int * nr_pages = (unsigned int *) malloc(_len_nr_pages0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_nr_pages0; _i0++) {
+            nr_pages[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nfs_readpages_from_fscache(ctx,inode,mapping,pages,nr_pages);
+          printf("%d\n", benchRet); 
+          free(ctx);
+          free(inode);
+          free(mapping);
+          free(pages);
+          free(nr_pages);
+        
+        break;
+    }
     default:
         usage();
         break;

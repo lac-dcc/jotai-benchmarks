@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ int riscv_map_cache_decode(u64 config, unsigned int *type,
 	return -ENOENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,25 +77,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int config = 100;
+        
           int _len_type0 = 1;
           unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
             type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_op0 = 1;
           unsigned int * op = (unsigned int *) malloc(_len_op0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
             op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_result0 = 1;
           unsigned int * result = (unsigned int *) malloc(_len_result0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_result0; _i0++) {
             result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = riscv_map_cache_decode(config,type,op,result);
+          printf("%d\n", benchRet); 
+          free(type);
+          free(op);
+          free(result);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int config = 255;
+        
+          int _len_type0 = 65025;
+          unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 65025;
+          unsigned int * op = (unsigned int *) malloc(_len_op0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+            op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 65025;
+          unsigned int * result = (unsigned int *) malloc(_len_result0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = riscv_map_cache_decode(config,type,op,result);
+          printf("%d\n", benchRet); 
+          free(type);
+          free(op);
+          free(result);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int config = 10;
+        
+          int _len_type0 = 100;
+          unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 100;
+          unsigned int * op = (unsigned int *) malloc(_len_op0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+            op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 100;
+          unsigned int * result = (unsigned int *) malloc(_len_result0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = riscv_map_cache_decode(config,type,op,result);
+          printf("%d\n", benchRet); 
+          free(type);
+          free(op);
+          free(result);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_type0 = 1;
+          unsigned int * type = (unsigned int *) malloc(_len_type0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 1;
+          unsigned int * op = (unsigned int *) malloc(_len_op0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+            op[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_result0 = 1;
+          unsigned int * result = (unsigned int *) malloc(_len_result0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_result0; _i0++) {
+            result[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = riscv_map_cache_decode(config,type,op,result);
           printf("%d\n", benchRet); 
           free(type);

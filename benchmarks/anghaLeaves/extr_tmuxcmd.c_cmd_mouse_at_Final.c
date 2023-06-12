@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ cmd_mouse_at(struct window_pane *wp, struct mouse_event *m, u_int *xp,
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,33 +107,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int last = 100;
+        
           int _len_wp0 = 1;
           struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
           for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
-            wp[_i0].xoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        wp[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wp[_i0].yoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        wp[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+              wp[_i0].xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].yoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_m0 = 1;
           struct mouse_event * m = (struct mouse_event *) malloc(_len_m0*sizeof(struct mouse_event));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].statusat = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].statusat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_xp0 = 1;
           long * xp = (long *) malloc(_len_xp0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_xp0; _i0++) {
             xp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_yp0 = 1;
           long * yp = (long *) malloc(_len_yp0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_yp0; _i0++) {
             yp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cmd_mouse_at(wp,m,xp,yp,last);
           printf("%d\n", benchRet); 
           free(wp);
@@ -146,7 +150,147 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int last = 255;
+        
+          int _len_wp0 = 65025;
+          struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
+              wp[_i0].xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].yoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 65025;
+          struct mouse_event * m = (struct mouse_event *) malloc(_len_m0*sizeof(struct mouse_event));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].statusat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xp0 = 65025;
+          long * xp = (long *) malloc(_len_xp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_xp0; _i0++) {
+            xp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_yp0 = 65025;
+          long * yp = (long *) malloc(_len_yp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_yp0; _i0++) {
+            yp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cmd_mouse_at(wp,m,xp,yp,last);
+          printf("%d\n", benchRet); 
+          free(wp);
+          free(m);
+          free(xp);
+          free(yp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int last = 10;
+        
+          int _len_wp0 = 100;
+          struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
+              wp[_i0].xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].yoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 100;
+          struct mouse_event * m = (struct mouse_event *) malloc(_len_m0*sizeof(struct mouse_event));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].statusat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xp0 = 100;
+          long * xp = (long *) malloc(_len_xp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_xp0; _i0++) {
+            xp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_yp0 = 100;
+          long * yp = (long *) malloc(_len_yp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_yp0; _i0++) {
+            yp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cmd_mouse_at(wp,m,xp,yp,last);
+          printf("%d\n", benchRet); 
+          free(wp);
+          free(m);
+          free(xp);
+          free(yp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wp0 = 1;
+          struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
+              wp[_i0].xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].yoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          wp[_i0].sy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 1;
+          struct mouse_event * m = (struct mouse_event *) malloc(_len_m0*sizeof(struct mouse_event));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].statusat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xp0 = 1;
+          long * xp = (long *) malloc(_len_xp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_xp0; _i0++) {
+            xp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_yp0 = 1;
+          long * yp = (long *) malloc(_len_yp0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_yp0; _i0++) {
+            yp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cmd_mouse_at(wp,m,xp,yp,last);
+          printf("%d\n", benchRet); 
+          free(wp);
+          free(m);
+          free(xp);
+          free(yp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static int free_wq_copy_descs(struct fnic *fnic, struct vn
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,8 +103,92 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_fnic0 = 65025;
+          struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
+          for(int _i0 = 0; _i0 < _len_fnic0; _i0++) {
+              int _len_fnic__i0__fw_ack_index0 = 1;
+          fnic[_i0].fw_ack_index = (int *) malloc(_len_fnic__i0__fw_ack_index0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fnic__i0__fw_ack_index0; _j0++) {
+            fnic[_i0].fw_ack_index[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fnic__i0__fw_ack_recd0 = 1;
+          fnic[_i0].fw_ack_recd = (long *) malloc(_len_fnic__i0__fw_ack_recd0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fnic__i0__fw_ack_recd0; _j0++) {
+            fnic[_i0].fw_ack_recd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_wq0 = 65025;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = free_wq_copy_descs(fnic,wq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fnic0; _aux++) {
+          free(fnic[_aux].fw_ack_index);
+          }
+          for(int _aux = 0; _aux < _len_fnic0; _aux++) {
+          free(fnic[_aux].fw_ack_recd);
+          }
+          free(fnic);
+          free(wq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fnic0 = 100;
+          struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
+          for(int _i0 = 0; _i0 < _len_fnic0; _i0++) {
+              int _len_fnic__i0__fw_ack_index0 = 1;
+          fnic[_i0].fw_ack_index = (int *) malloc(_len_fnic__i0__fw_ack_index0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_fnic__i0__fw_ack_index0; _j0++) {
+            fnic[_i0].fw_ack_index[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_fnic__i0__fw_ack_recd0 = 1;
+          fnic[_i0].fw_ack_recd = (long *) malloc(_len_fnic__i0__fw_ack_recd0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_fnic__i0__fw_ack_recd0; _j0++) {
+            fnic[_i0].fw_ack_recd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_wq0 = 100;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = free_wq_copy_descs(fnic,wq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fnic0; _aux++) {
+          free(fnic[_aux].fw_ack_index);
+          }
+          for(int _aux = 0; _aux < _len_fnic0; _aux++) {
+          free(fnic[_aux].fw_ack_recd);
+          }
+          free(fnic);
+          free(wq);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_fnic0 = 1;
           struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
@@ -123,14 +203,19 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_fnic__i0__fw_ack_recd0; _j0++) {
             fnic[_i0].fw_ack_recd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_wq0 = 1;
           struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
-            wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = free_wq_copy_descs(fnic,wq);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fnic0; _aux++) {
@@ -144,7 +229,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

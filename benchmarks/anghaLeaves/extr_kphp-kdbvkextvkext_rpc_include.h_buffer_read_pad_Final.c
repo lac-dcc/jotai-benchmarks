@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int buffer_read_pad (struct rpc_buffer *buf)
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_buf0 = 1;
+          int _len_buf0 = 65025;
           struct rpc_buffer * buf = (struct rpc_buffer *) malloc(_len_buf0*sizeof(struct rpc_buffer));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].sptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].sptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = buffer_read_pad(buf);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_buf0 = 100;
+          struct rpc_buffer * buf = (struct rpc_buffer *) malloc(_len_buf0*sizeof(struct rpc_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].sptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = buffer_read_pad(buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_buf0 = 1;
+          struct rpc_buffer * buf = (struct rpc_buffer *) malloc(_len_buf0*sizeof(struct rpc_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].sptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].rptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = buffer_read_pad(buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

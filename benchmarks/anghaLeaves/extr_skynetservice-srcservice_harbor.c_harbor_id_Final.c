@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ harbor_id(struct harbor *h, int fd) {
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +84,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int fd = 100;
+        
           int _len_h0 = 1;
           struct harbor * h = (struct harbor *) malloc(_len_h0*sizeof(struct harbor));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
               int _len_h__i0__s0 = 1;
           h[_i0].s = (struct slave *) malloc(_len_h__i0__s0*sizeof(struct slave));
           for(int _j0 = 0; _j0 < _len_h__i0__s0; _j0++) {
-            h[_i0].s->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].s->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = harbor_id(h,fd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_h0; _aux++) {
+          free(h[_aux].s);
+          }
+          free(h);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int fd = 255;
+        
+          int _len_h0 = 65025;
+          struct harbor * h = (struct harbor *) malloc(_len_h0*sizeof(struct harbor));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              int _len_h__i0__s0 = 1;
+          h[_i0].s = (struct slave *) malloc(_len_h__i0__s0*sizeof(struct slave));
+          for(int _j0 = 0; _j0 < _len_h__i0__s0; _j0++) {
+              h[_i0].s->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = harbor_id(h,fd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_h0; _aux++) {
+          free(h[_aux].s);
+          }
+          free(h);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int fd = 10;
+        
+          int _len_h0 = 100;
+          struct harbor * h = (struct harbor *) malloc(_len_h0*sizeof(struct harbor));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              int _len_h__i0__s0 = 1;
+          h[_i0].s = (struct slave *) malloc(_len_h__i0__s0*sizeof(struct slave));
+          for(int _j0 = 0; _j0 < _len_h__i0__s0; _j0++) {
+              h[_i0].s->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = harbor_id(h,fd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_h0; _aux++) {
+          free(h[_aux].s);
+          }
+          free(h);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_h0 = 1;
+          struct harbor * h = (struct harbor *) malloc(_len_h0*sizeof(struct harbor));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              int _len_h__i0__s0 = 1;
+          h[_i0].s = (struct slave *) malloc(_len_h__i0__s0*sizeof(struct slave));
+          for(int _j0 = 0; _j0 < _len_h__i0__s0; _j0++) {
+              h[_i0].s->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = harbor_id(h,fd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_h0; _aux++) {

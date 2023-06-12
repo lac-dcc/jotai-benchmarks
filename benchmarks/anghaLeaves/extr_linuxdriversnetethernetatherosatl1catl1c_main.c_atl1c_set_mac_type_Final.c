@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static void atl1c_set_mac_type(struct atl1c_hw *hw)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,21 +107,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct atl1c_hw * hw = (struct atl1c_hw *) malloc(_len_hw0*sizeof(struct atl1c_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].nic_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].nic_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           atl1c_set_mac_type(hw);
           free(hw);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct atl1c_hw * hw = (struct atl1c_hw *) malloc(_len_hw0*sizeof(struct atl1c_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].nic_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          atl1c_set_mac_type(hw);
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct atl1c_hw * hw = (struct atl1c_hw *) malloc(_len_hw0*sizeof(struct atl1c_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].nic_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          atl1c_set_mac_type(hw);
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ nvram_conf_addr(struct qla_hw_data *ha, uint32_t naddr)
 	return ha->nvram_conf_off | naddr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int naddr = 100;
+        
           int _len_ha0 = 1;
           struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
-            ha[_i0].nvram_conf_off = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].nvram_conf_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nvram_conf_addr(ha,naddr);
+          printf("%d\n", benchRet); 
+          free(ha);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int naddr = 255;
+        
+          int _len_ha0 = 65025;
+          struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].nvram_conf_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nvram_conf_addr(ha,naddr);
           printf("%d\n", benchRet); 
           free(ha);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int naddr = 10;
+        
           int _len_ha0 = 100;
           struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
-            ha[_i0].nvram_conf_off = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].nvram_conf_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nvram_conf_addr(ha,naddr);
           printf("%d\n", benchRet); 
           free(ha);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int naddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ha0 = 1;
+          struct qla_hw_data * ha = (struct qla_hw_data *) malloc(_len_ha0*sizeof(struct qla_hw_data));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].nvram_conf_off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvram_conf_addr(ha,naddr);
+          printf("%d\n", benchRet); 
+          free(ha);
+        
+        break;
+    }
     default:
         usage();
         break;

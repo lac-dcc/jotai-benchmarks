@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void stb_source_path(char *path)
    stb__source_path = path;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_path0 = 1;
+          int _len_path0 = 65025;
           char * path = (char *) malloc(_len_path0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_path0; _i0++) {
             path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           stb_source_path(path);
           free(path);
         
@@ -100,12 +96,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_path0; _i0++) {
             path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           stb_source_path(path);
           free(path);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_path0 = 1;
+          char * path = (char *) malloc(_len_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_path0; _i0++) {
+            path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stb_source_path(path);
+          free(path);
+        
+        break;
+    }
     default:
         usage();
         break;

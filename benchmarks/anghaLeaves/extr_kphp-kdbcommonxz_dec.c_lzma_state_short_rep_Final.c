@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline void lzma_state_short_rep(enum lzma_state *s
 	*state = *state < LIT_STATES ? STATE_LIT_SHORTREP : STATE_NONLIT_REP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state0 = 1;
+          int _len_state0 = 65025;
           enum lzma_state * state = (enum lzma_state *) malloc(_len_state0*sizeof(enum lzma_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = 0;
           }
+        
           lzma_state_short_rep(state);
           free(state);
         
@@ -103,12 +99,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = 0;
           }
+        
           lzma_state_short_rep(state);
           free(state);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_state0 = 1;
+          enum lzma_state * state = (enum lzma_state *) malloc(_len_state0*sizeof(enum lzma_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = 0;
+          }
+        
+          lzma_state_short_rep(state);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

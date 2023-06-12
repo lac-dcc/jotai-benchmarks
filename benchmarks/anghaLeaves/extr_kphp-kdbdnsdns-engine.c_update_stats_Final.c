@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ void update_stats (worker_stats_t *Sum, worker_stats_t *W) {
 #undef MAX
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,78 +108,231 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Sum0 = 1;
+          int _len_Sum0 = 65025;
           struct TYPE_4__ * Sum = (struct TYPE_4__ *) malloc(_len_Sum0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_Sum0; _i0++) {
-            Sum[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        Sum[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+              Sum[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_W0 = 1;
+        
+          int _len_W0 = 65025;
           struct TYPE_4__ * W = (struct TYPE_4__ *) malloc(_len_W0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_W0; _i0++) {
-            W[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
-        W[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+              W[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_stats(Sum,W);
           free(Sum);
           free(W);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_Sum0 = 100;
+          struct TYPE_4__ * Sum = (struct TYPE_4__ *) malloc(_len_Sum0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_Sum0; _i0++) {
+              Sum[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_W0 = 100;
+          struct TYPE_4__ * W = (struct TYPE_4__ *) malloc(_len_W0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_W0; _i0++) {
+              W[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_stats(Sum,W);
+          free(Sum);
+          free(W);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_Sum0 = 1;
+          struct TYPE_4__ * Sum = (struct TYPE_4__ *) malloc(_len_Sum0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_Sum0; _i0++) {
+              Sum[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          Sum[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_W0 = 1;
+          struct TYPE_4__ * W = (struct TYPE_4__ *) malloc(_len_W0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_W0; _i0++) {
+              W[_i0].dns_udp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_max_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_max_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_max_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_recent_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].workers_average_idle_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].refused_by_remote_ip_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_refused_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_not_implemented_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_name_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_server_failure_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_format_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].rcode_no_error_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_truncated_responses = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_tcp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_response_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_query_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_skipped_long_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_bad_parse_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_bad_act_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+          W[_i0].dns_udp_queries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_stats(Sum,W);
+          free(Sum);
+          free(W);
+        
+        break;
+    }
     default:
         usage();
         break;

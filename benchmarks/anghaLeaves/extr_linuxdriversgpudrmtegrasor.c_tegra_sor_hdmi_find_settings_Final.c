@@ -31,7 +31,10 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            linked\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            linked\n\
+       4            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ tegra_sor_hdmi_find_settings(struct tegra_sor *sor, unsigned long frequency)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long frequency = 100;
+        
           int _len_sor0 = 1;
           struct tegra_sor * sor = (struct tegra_sor *) malloc(_len_sor0*sizeof(struct tegra_sor));
           for(int _i0 = 0; _i0 < _len_sor0; _i0++) {
-            sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
+              sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sor__i0__settings0 = 1;
           sor[_i0].settings = (struct tegra_sor_hdmi_settings *) malloc(_len_sor__i0__settings0*sizeof(struct tegra_sor_hdmi_settings));
           for(int _j0 = 0; _j0 < _len_sor__i0__settings0; _j0++) {
-            sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct tegra_sor_hdmi_settings * benchRet = tegra_sor_hdmi_find_settings(sor,frequency);
+          printf("%lu\n", (*benchRet).frequency);
+          for(int _aux = 0; _aux < _len_sor0; _aux++) {
+          free(sor[_aux].settings);
+          }
+          free(sor);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long frequency = 255;
+        
+          int _len_sor0 = 65025;
+          struct tegra_sor * sor = (struct tegra_sor *) malloc(_len_sor0*sizeof(struct tegra_sor));
+          for(int _i0 = 0; _i0 < _len_sor0; _i0++) {
+              sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sor__i0__settings0 = 1;
+          sor[_i0].settings = (struct tegra_sor_hdmi_settings *) malloc(_len_sor__i0__settings0*sizeof(struct tegra_sor_hdmi_settings));
+          for(int _j0 = 0; _j0 < _len_sor__i0__settings0; _j0++) {
+              sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct tegra_sor_hdmi_settings * benchRet = tegra_sor_hdmi_find_settings(sor,frequency);
+          printf("%lu\n", (*benchRet).frequency);
+          for(int _aux = 0; _aux < _len_sor0; _aux++) {
+          free(sor[_aux].settings);
+          }
+          free(sor);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long frequency = 10;
+        
+          int _len_sor0 = 100;
+          struct tegra_sor * sor = (struct tegra_sor *) malloc(_len_sor0*sizeof(struct tegra_sor));
+          for(int _i0 = 0; _i0 < _len_sor0; _i0++) {
+              sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sor__i0__settings0 = 1;
+          sor[_i0].settings = (struct tegra_sor_hdmi_settings *) malloc(_len_sor__i0__settings0*sizeof(struct tegra_sor_hdmi_settings));
+          for(int _j0 = 0; _j0 < _len_sor__i0__settings0; _j0++) {
+              sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct tegra_sor_hdmi_settings * benchRet = tegra_sor_hdmi_find_settings(sor,frequency);
           printf("%lu\n", (*benchRet).frequency);
           for(int _aux = 0; _aux < _len_sor0; _aux++) {
@@ -111,19 +166,23 @@ int main(int argc, char *argv[]) {
         break;
     }
     // linked
-    case 1:
+    case 3:
     {
           unsigned long frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_sor0 = 1;
           struct tegra_sor * sor = (struct tegra_sor *) malloc(_len_sor0*sizeof(struct tegra_sor));
           for(int _i0 = 0; _i0 < _len_sor0; _i0++) {
-            sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
+              sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sor__i0__settings0 = 1;
           sor[_i0].settings = (struct tegra_sor_hdmi_settings *) malloc(_len_sor__i0__settings0*sizeof(struct tegra_sor_hdmi_settings));
           for(int _j0 = 0; _j0 < _len_sor__i0__settings0; _j0++) {
-            sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct tegra_sor_hdmi_settings * benchRet = tegra_sor_hdmi_find_settings(sor,frequency);
           printf("%lu\n", (*benchRet).frequency);
           for(int _aux = 0; _aux < _len_sor0; _aux++) {
@@ -133,7 +192,33 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 4:
+    {
+          unsigned long frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sor0 = 1;
+          struct tegra_sor * sor = (struct tegra_sor *) malloc(_len_sor0*sizeof(struct tegra_sor));
+          for(int _i0 = 0; _i0 < _len_sor0; _i0++) {
+              sor[_i0].num_settings = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sor__i0__settings0 = 1;
+          sor[_i0].settings = (struct tegra_sor_hdmi_settings *) malloc(_len_sor__i0__settings0*sizeof(struct tegra_sor_hdmi_settings));
+          for(int _j0 = 0; _j0 < _len_sor__i0__settings0; _j0++) {
+              sor[_i0].settings->frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct tegra_sor_hdmi_settings * benchRet = tegra_sor_hdmi_find_settings(sor,frequency);
+          printf("%lu\n", (*benchRet).frequency);
+          for(int _aux = 0; _aux < _len_sor0; _aux++) {
+          free(sor[_aux].settings);
+          }
+          free(sor);
+        
+        break;
+    }
     default:
         usage();
         break;

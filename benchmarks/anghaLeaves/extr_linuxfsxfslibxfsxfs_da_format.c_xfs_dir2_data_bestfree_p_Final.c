@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ xfs_dir2_data_bestfree_p(struct xfs_dir2_data_hdr *hdr)
 	return hdr->bestfree;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_hdr0 = 65025;
+          struct xfs_dir2_data_hdr * hdr = (struct xfs_dir2_data_hdr *) malloc(_len_hdr0*sizeof(struct xfs_dir2_data_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              int _len_hdr__i0__bestfree0 = 1;
+          hdr[_i0].bestfree = (struct xfs_dir2_data_free *) malloc(_len_hdr__i0__bestfree0*sizeof(struct xfs_dir2_data_free));
+          for(int _j0 = 0; _j0 < _len_hdr__i0__bestfree0; _j0++) {
+              hdr[_i0].bestfree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_dir2_data_free * benchRet = xfs_dir2_data_bestfree_p(hdr);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_hdr0; _aux++) {
+          free(hdr[_aux].bestfree);
+          }
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_hdr0 = 100;
+          struct xfs_dir2_data_hdr * hdr = (struct xfs_dir2_data_hdr *) malloc(_len_hdr0*sizeof(struct xfs_dir2_data_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              int _len_hdr__i0__bestfree0 = 1;
+          hdr[_i0].bestfree = (struct xfs_dir2_data_free *) malloc(_len_hdr__i0__bestfree0*sizeof(struct xfs_dir2_data_free));
+          for(int _j0 = 0; _j0 < _len_hdr__i0__bestfree0; _j0++) {
+              hdr[_i0].bestfree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_dir2_data_free * benchRet = xfs_dir2_data_bestfree_p(hdr);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_hdr0; _aux++) {
+          free(hdr[_aux].bestfree);
+          }
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_hdr0 = 1;
           struct xfs_dir2_data_hdr * hdr = (struct xfs_dir2_data_hdr *) malloc(_len_hdr0*sizeof(struct xfs_dir2_data_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
               int _len_hdr__i0__bestfree0 = 1;
           hdr[_i0].bestfree = (struct xfs_dir2_data_free *) malloc(_len_hdr__i0__bestfree0*sizeof(struct xfs_dir2_data_free));
           for(int _j0 = 0; _j0 < _len_hdr__i0__bestfree0; _j0++) {
-            hdr[_i0].bestfree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].bestfree->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct xfs_dir2_data_free * benchRet = xfs_dir2_data_bestfree_p(hdr);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_hdr0; _aux++) {

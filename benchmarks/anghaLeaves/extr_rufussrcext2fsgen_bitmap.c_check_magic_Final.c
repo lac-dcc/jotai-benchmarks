@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static errcode_t check_magic(ext2fs_generic_bitmap bitmap)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bitmap0 = 1;
+          int _len_bitmap0 = 65025;
           struct TYPE_3__ * bitmap = (struct TYPE_3__ *) malloc(_len_bitmap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
-            bitmap[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+              bitmap[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = check_magic(bitmap);
           printf("%ld\n", benchRet); 
           free(bitmap);
@@ -109,15 +106,32 @@ int main(int argc, char *argv[]) {
           int _len_bitmap0 = 100;
           struct TYPE_3__ * bitmap = (struct TYPE_3__ *) malloc(_len_bitmap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
-            bitmap[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+              bitmap[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = check_magic(bitmap);
           printf("%ld\n", benchRet); 
           free(bitmap);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bitmap0 = 1;
+          struct TYPE_3__ * bitmap = (struct TYPE_3__ *) malloc(_len_bitmap0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+              bitmap[_i0].magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = check_magic(bitmap);
+          printf("%ld\n", benchRet); 
+          free(bitmap);
+        
+        break;
+    }
     default:
         usage();
         break;

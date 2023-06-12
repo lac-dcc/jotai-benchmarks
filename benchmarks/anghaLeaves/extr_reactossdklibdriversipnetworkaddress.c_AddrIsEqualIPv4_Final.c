@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ BOOLEAN AddrIsEqualIPv4(
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long Address2 = 100;
+        
           int _len_Address10 = 1;
           struct TYPE_5__ * Address1 = (struct TYPE_5__ *) malloc(_len_Address10*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_Address10; _i0++) {
-            Address1[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
-        Address1[_i0].Address.IPv4Address = ((-2 * (next_i()%2)) + 1) * next_i();
+              Address1[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          Address1[_i0].Address.IPv4Address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = AddrIsEqualIPv4(Address1,Address2);
           printf("%d\n", benchRet); 
           free(Address1);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long Address2 = 255;
+        
+          int _len_Address10 = 65025;
+          struct TYPE_5__ * Address1 = (struct TYPE_5__ *) malloc(_len_Address10*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_Address10; _i0++) {
+              Address1[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          Address1[_i0].Address.IPv4Address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = AddrIsEqualIPv4(Address1,Address2);
+          printf("%d\n", benchRet); 
+          free(Address1);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long Address2 = 10;
+        
+          int _len_Address10 = 100;
+          struct TYPE_5__ * Address1 = (struct TYPE_5__ *) malloc(_len_Address10*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_Address10; _i0++) {
+              Address1[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          Address1[_i0].Address.IPv4Address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = AddrIsEqualIPv4(Address1,Address2);
+          printf("%d\n", benchRet); 
+          free(Address1);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long Address2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Address10 = 1;
+          struct TYPE_5__ * Address1 = (struct TYPE_5__ *) malloc(_len_Address10*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_Address10; _i0++) {
+              Address1[_i0].Type = ((-2 * (next_i()%2)) + 1) * next_i();
+          Address1[_i0].Address.IPv4Address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = AddrIsEqualIPv4(Address1,Address2);
+          printf("%d\n", benchRet); 
+          free(Address1);
+        
+        break;
+    }
     default:
         usage();
         break;

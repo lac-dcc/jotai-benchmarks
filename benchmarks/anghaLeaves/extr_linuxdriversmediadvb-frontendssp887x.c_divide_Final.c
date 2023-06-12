@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void divide (int n, int d, int *quotient_i, int *qu
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +87,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int n = 100;
+        
           int d = 100;
+        
           int _len_quotient_i0 = 1;
           int * quotient_i = (int *) malloc(_len_quotient_i0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_quotient_i0; _i0++) {
             quotient_i[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_quotient_f0 = 1;
           int * quotient_f = (int *) malloc(_len_quotient_f0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_quotient_f0; _i0++) {
             quotient_f[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          divide(n,d,quotient_i,quotient_f);
+          free(quotient_i);
+          free(quotient_f);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int d = 255;
+        
+          int _len_quotient_i0 = 65025;
+          int * quotient_i = (int *) malloc(_len_quotient_i0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient_i0; _i0++) {
+            quotient_i[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_quotient_f0 = 65025;
+          int * quotient_f = (int *) malloc(_len_quotient_f0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient_f0; _i0++) {
+            quotient_f[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          divide(n,d,quotient_i,quotient_f);
+          free(quotient_i);
+          free(quotient_f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int n = 10;
+        
+          int d = 10;
+        
+          int _len_quotient_i0 = 100;
+          int * quotient_i = (int *) malloc(_len_quotient_i0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient_i0; _i0++) {
+            quotient_i[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_quotient_f0 = 100;
+          int * quotient_f = (int *) malloc(_len_quotient_f0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient_f0; _i0++) {
+            quotient_f[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          divide(n,d,quotient_i,quotient_f);
+          free(quotient_i);
+          free(quotient_f);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_quotient_i0 = 1;
+          int * quotient_i = (int *) malloc(_len_quotient_i0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient_i0; _i0++) {
+            quotient_i[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_quotient_f0 = 1;
+          int * quotient_f = (int *) malloc(_len_quotient_f0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_quotient_f0; _i0++) {
+            quotient_f[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           divide(n,d,quotient_i,quotient_f);
           free(quotient_i);
           free(quotient_f);

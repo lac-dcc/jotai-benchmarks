@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int choose_this_phy(struct dp83640_clock *clock,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_clock0 = 65025;
+          struct dp83640_clock * clock = (struct dp83640_clock *) malloc(_len_clock0*sizeof(struct dp83640_clock));
+          for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
+              clock[_i0].chosen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_phydev0 = 65025;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              phydev[_i0].mdio.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = choose_this_phy(clock,phydev);
+          printf("%d\n", benchRet); 
+          free(clock);
+          free(phydev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_clock0 = 100;
+          struct dp83640_clock * clock = (struct dp83640_clock *) malloc(_len_clock0*sizeof(struct dp83640_clock));
+          for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
+              clock[_i0].chosen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_phydev0 = 100;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              phydev[_i0].mdio.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = choose_this_phy(clock,phydev);
+          printf("%d\n", benchRet); 
+          free(clock);
+          free(phydev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_clock0 = 1;
           struct dp83640_clock * clock = (struct dp83640_clock *) malloc(_len_clock0*sizeof(struct dp83640_clock));
           for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
-            clock[_i0].chosen = ((-2 * (next_i()%2)) + 1) * next_i();
+              clock[_i0].chosen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_phydev0 = 1;
           struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
-            phydev[_i0].mdio.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              phydev[_i0].mdio.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = choose_this_phy(clock,phydev);
           printf("%d\n", benchRet); 
           free(clock);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -109,12 +110,6 @@ __attribute__((used)) static UINT resolve_type( UINT left, UINT right )
     return CIM_ILLEGAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,7 +126,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int left = 100;
+        
           int right = 100;
+        
           int benchRet = resolve_type(left,right);
           printf("%d\n", benchRet); 
         
@@ -141,7 +138,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int left = 255;
+        
           int right = 255;
+        
           int benchRet = resolve_type(left,right);
           printf("%d\n", benchRet); 
         
@@ -151,13 +150,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int left = 10;
+        
           int right = 10;
+        
           int benchRet = resolve_type(left,right);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = resolve_type(left,right);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

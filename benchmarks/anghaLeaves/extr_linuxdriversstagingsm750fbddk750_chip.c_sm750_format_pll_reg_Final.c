@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ unsigned int sm750_format_pll_reg(struct pll_value *pPLL)
 	return reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,24 +105,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pPLL0 = 1;
+          int _len_pPLL0 = 65025;
           struct pll_value * pPLL = (struct pll_value *) malloc(_len_pPLL0*sizeof(struct pll_value));
           for(int _i0 = 0; _i0 < _len_pPLL0; _i0++) {
-            pPLL[_i0].POD = ((-2 * (next_i()%2)) + 1) * next_i();
-        pPLL[_i0].OD = ((-2 * (next_i()%2)) + 1) * next_i();
-        pPLL[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
-        pPLL[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+              pPLL[_i0].POD = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].OD = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = sm750_format_pll_reg(pPLL);
           printf("%u\n", benchRet); 
           free(pPLL);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pPLL0 = 100;
+          struct pll_value * pPLL = (struct pll_value *) malloc(_len_pPLL0*sizeof(struct pll_value));
+          for(int _i0 = 0; _i0 < _len_pPLL0; _i0++) {
+              pPLL[_i0].POD = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].OD = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = sm750_format_pll_reg(pPLL);
+          printf("%u\n", benchRet); 
+          free(pPLL);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pPLL0 = 1;
+          struct pll_value * pPLL = (struct pll_value *) malloc(_len_pPLL0*sizeof(struct pll_value));
+          for(int _i0 = 0; _i0 < _len_pPLL0; _i0++) {
+              pPLL[_i0].POD = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].OD = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
+          pPLL[_i0].N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = sm750_format_pll_reg(pPLL);
+          printf("%u\n", benchRet); 
+          free(pPLL);
+        
+        break;
+    }
     default:
         usage();
         break;

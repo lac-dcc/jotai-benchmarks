@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void vtconsole_deinit_device(struct con_driver *con
 	con->flag &= ~CON_DRIVER_FLAG_ATTR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_con0 = 1;
+          int _len_con0 = 65025;
           struct con_driver * con = (struct con_driver *) malloc(_len_con0*sizeof(struct con_driver));
           for(int _i0 = 0; _i0 < _len_con0; _i0++) {
-            con[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              con[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vtconsole_deinit_device(con);
           free(con);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_con0 = 100;
           struct con_driver * con = (struct con_driver *) malloc(_len_con0*sizeof(struct con_driver));
           for(int _i0 = 0; _i0 < _len_con0; _i0++) {
-            con[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              con[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vtconsole_deinit_device(con);
           free(con);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_con0 = 1;
+          struct con_driver * con = (struct con_driver *) malloc(_len_con0*sizeof(struct con_driver));
+          for(int _i0 = 0; _i0 < _len_con0; _i0++) {
+              con[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vtconsole_deinit_device(con);
+          free(con);
+        
+        break;
+    }
     default:
         usage();
         break;

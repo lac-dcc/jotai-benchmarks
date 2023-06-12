@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void setExit ( Int32 v )
    if (v > exitValue) exitValue = v;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long v = 100;
+        
           setExit(v);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long v = 255;
+        
           setExit(v);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long v = 10;
+        
           setExit(v);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          setExit(v);
+        
+        break;
+    }
     default:
         usage();
         break;

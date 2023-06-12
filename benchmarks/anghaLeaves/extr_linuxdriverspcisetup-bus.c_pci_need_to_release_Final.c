@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static bool pci_need_to_release(unsigned long mask, struct
 	return false;	/* should not get here */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,20 +98,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned long mask = 100;
+        
           int _len_res0 = 1;
           struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_res__i0__parent0 = 1;
           res[_i0].parent = (struct TYPE_2__ *) malloc(_len_res__i0__parent0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_res__i0__parent0; _j0++) {
-            res[_i0].parent->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].parent->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = pci_need_to_release(mask,res);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].parent);
+          }
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long mask = 255;
+        
+          int _len_res0 = 65025;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_res__i0__parent0 = 1;
+          res[_i0].parent = (struct TYPE_2__ *) malloc(_len_res__i0__parent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_res__i0__parent0; _j0++) {
+              res[_i0].parent->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pci_need_to_release(mask,res);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].parent);
+          }
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long mask = 10;
+        
+          int _len_res0 = 100;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_res__i0__parent0 = 1;
+          res[_i0].parent = (struct TYPE_2__ *) malloc(_len_res__i0__parent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_res__i0__parent0; _j0++) {
+              res[_i0].parent->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pci_need_to_release(mask,res);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].parent);
+          }
+          free(res);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_res__i0__parent0 = 1;
+          res[_i0].parent = (struct TYPE_2__ *) malloc(_len_res__i0__parent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_res__i0__parent0; _j0++) {
+              res[_i0].parent->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = pci_need_to_release(mask,res);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_res0; _aux++) {

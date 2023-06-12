@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ int ntb_default_peer_port_number(struct ntb_dev *ntb, int pidx)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,11 +101,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pidx = 100;
+        
           int _len_ntb0 = 1;
           struct ntb_dev * ntb = (struct ntb_dev *) malloc(_len_ntb0*sizeof(struct ntb_dev));
           for(int _i0 = 0; _i0 < _len_ntb0; _i0++) {
-            ntb[_i0].topo = ((-2 * (next_i()%2)) + 1) * next_i();
+              ntb[_i0].topo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ntb_default_peer_port_number(ntb,pidx);
+          printf("%d\n", benchRet); 
+          free(ntb);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pidx = 255;
+        
+          int _len_ntb0 = 65025;
+          struct ntb_dev * ntb = (struct ntb_dev *) malloc(_len_ntb0*sizeof(struct ntb_dev));
+          for(int _i0 = 0; _i0 < _len_ntb0; _i0++) {
+              ntb[_i0].topo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ntb_default_peer_port_number(ntb,pidx);
           printf("%d\n", benchRet); 
           free(ntb);
@@ -117,21 +134,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pidx = 10;
+        
           int _len_ntb0 = 100;
           struct ntb_dev * ntb = (struct ntb_dev *) malloc(_len_ntb0*sizeof(struct ntb_dev));
           for(int _i0 = 0; _i0 < _len_ntb0; _i0++) {
-            ntb[_i0].topo = ((-2 * (next_i()%2)) + 1) * next_i();
+              ntb[_i0].topo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ntb_default_peer_port_number(ntb,pidx);
           printf("%d\n", benchRet); 
           free(ntb);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ntb0 = 1;
+          struct ntb_dev * ntb = (struct ntb_dev *) malloc(_len_ntb0*sizeof(struct ntb_dev));
+          for(int _i0 = 0; _i0 < _len_ntb0; _i0++) {
+              ntb[_i0].topo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ntb_default_peer_port_number(ntb,pidx);
+          printf("%d\n", benchRet); 
+          free(ntb);
+        
+        break;
+    }
     default:
         usage();
         break;

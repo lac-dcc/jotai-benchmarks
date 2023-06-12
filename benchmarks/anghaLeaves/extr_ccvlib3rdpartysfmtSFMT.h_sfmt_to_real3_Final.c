@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) inline static double sfmt_to_real3(uint32_t v)
     /* divided by 2^32 */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long v = 100;
+        
           double benchRet = sfmt_to_real3(v);
           printf("%lf\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long v = 255;
+        
           double benchRet = sfmt_to_real3(v);
           printf("%lf\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long v = 10;
+        
           double benchRet = sfmt_to_real3(v);
           printf("%lf\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          double benchRet = sfmt_to_real3(v);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

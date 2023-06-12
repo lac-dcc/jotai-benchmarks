@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,8 +63,50 @@ void tlist_clear (tlist_t *L) {
   L->next = L->prev = L;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_3__ *_allocate_Dlinked_L(int length, struct TYPE_3__ *aux_dlinked_L[] ) {
+  struct TYPE_3__ *walker = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
+
+  aux_dlinked_L[0] = walker;
+  walker->prev = NULL;
+  walker->next = NULL;
+
+  struct TYPE_3__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->next = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
+    walker->next->prev = walker;
+    walker = walker->next;
+    aux_dlinked_L[i] = walker;
+    if (i == (length - 1)) 
+      walker->next = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_L(struct TYPE_3__ *aux_dlinked_L[], int aux_dlinked_L_size) {
+  for(int i = 0; i < aux_dlinked_L_size; i++) 
+    if(aux_dlinked_L[i])
+      free(aux_dlinked_L[i]);
+}
+
+struct TYPE_3__ *_allocateBinTree_L(int length, struct TYPE_3__ *aux_tree_L[], int *counter_L) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_3__ *walker = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
+
+  aux_tree_L[*counter_L] = walker;
+  (*counter_L)++;
+  walker->prev = _allocateBinTree_L(length - 1, aux_tree_L, counter_L);
+  walker->next = _allocateBinTree_L(length - 1, aux_tree_L, counter_L);
+  return walker;
+}
+
+void _deleteBinTree_L(struct TYPE_3__ *aux_tree_L[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_L[i])
+      free(aux_tree_L[i]);
+}
 
 struct TYPE_3__ *_allocate_L(int length, struct TYPE_3__ *aux_L[]) {
   struct TYPE_3__ *walker = (struct TYPE_3__ *)malloc(sizeof(struct TYPE_3__));
@@ -94,7 +138,6 @@ void _delete_L(struct TYPE_3__ *aux_L[], int aux_L_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,17 +150,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // dlinked
     case 0:
+    {
+          struct TYPE_3__ * aux_dlinked_L[10000];
+          struct TYPE_3__ * L = _allocate_Dlinked_L(10000, aux_dlinked_L);
+        
+          tlist_clear(L);
+          _delete_Dlinked_L(aux_dlinked_L, 10000);
+        
+        break;
+    }
+    // bintree
+    case 1:
+    {
+          int counter_L= 0;
+          struct TYPE_3__ *  aux_tree_L[1023];
+          struct TYPE_3__ * L = _allocateBinTree_L(10, aux_tree_L, &counter_L);
+        
+          tlist_clear(L);
+          _deleteBinTree_L(aux_tree_L);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           struct TYPE_3__ * aux_L[1];
           struct TYPE_3__ * L = _allocate_L(1, aux_L);
+        
           tlist_clear(L);
           _delete_L(aux_L, 1);
         
         break;
     }
-
     default:
         usage();
         break;

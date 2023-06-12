@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ gui_mch_set_blinking(long wait, long on, long off)
     blink_offtime = off;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +84,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long wait = 100;
+        
           long on = 100;
+        
           long off = 100;
+        
           gui_mch_set_blinking(wait,on,off);
         
         break;
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long wait = 255;
+        
           long on = 255;
+        
           long off = 255;
+        
           gui_mch_set_blinking(wait,on,off);
         
         break;
@@ -109,13 +110,28 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long wait = 10;
+        
           long on = 10;
+        
           long off = 10;
+        
           gui_mch_set_blinking(wait,on,off);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long wait = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          gui_mch_set_blinking(wait,on,off);
+        
+        break;
+    }
     default:
         usage();
         break;

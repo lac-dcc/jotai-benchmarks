@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void ftrace_reset_array_ops(struct trace_array *tr)
 	tr->ops->func = ftrace_stub;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_tr0 = 65025;
+          struct trace_array * tr = (struct trace_array *) malloc(_len_tr0*sizeof(struct trace_array));
+          for(int _i0 = 0; _i0 < _len_tr0; _i0++) {
+              int _len_tr__i0__ops0 = 1;
+          tr[_i0].ops = (struct TYPE_2__ *) malloc(_len_tr__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tr__i0__ops0; _j0++) {
+              tr[_i0].ops->func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ftrace_reset_array_ops(tr);
+          for(int _aux = 0; _aux < _len_tr0; _aux++) {
+          free(tr[_aux].ops);
+          }
+          free(tr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_tr0 = 100;
+          struct trace_array * tr = (struct trace_array *) malloc(_len_tr0*sizeof(struct trace_array));
+          for(int _i0 = 0; _i0 < _len_tr0; _i0++) {
+              int _len_tr__i0__ops0 = 1;
+          tr[_i0].ops = (struct TYPE_2__ *) malloc(_len_tr__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tr__i0__ops0; _j0++) {
+              tr[_i0].ops->func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ftrace_reset_array_ops(tr);
+          for(int _aux = 0; _aux < _len_tr0; _aux++) {
+          free(tr[_aux].ops);
+          }
+          free(tr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_tr0 = 1;
           struct trace_array * tr = (struct trace_array *) malloc(_len_tr0*sizeof(struct trace_array));
           for(int _i0 = 0; _i0 < _len_tr0; _i0++) {
               int _len_tr__i0__ops0 = 1;
           tr[_i0].ops = (struct TYPE_2__ *) malloc(_len_tr__i0__ops0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_tr__i0__ops0; _j0++) {
-            tr[_i0].ops->func = ((-2 * (next_i()%2)) + 1) * next_i();
+              tr[_i0].ops->func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ftrace_reset_array_ops(tr);
           for(int _aux = 0; _aux < _len_tr0; _aux++) {
           free(tr[_aux].ops);

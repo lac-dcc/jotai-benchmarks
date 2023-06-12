@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -207,12 +210,6 @@ int tegra_plane_format(u32 fourcc, u32 *format, u32 *swap)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -229,16 +226,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fourcc = 100;
+        
           int _len_format0 = 1;
           int * format = (int *) malloc(_len_format0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_format0; _i0++) {
             format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_swap0 = 1;
           int * swap = (int *) malloc(_len_swap0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_swap0; _i0++) {
             swap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tegra_plane_format(fourcc,format,swap);
           printf("%d\n", benchRet); 
           free(format);
@@ -246,7 +246,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int fourcc = 255;
+        
+          int _len_format0 = 65025;
+          int * format = (int *) malloc(_len_format0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+            format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_swap0 = 65025;
+          int * swap = (int *) malloc(_len_swap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_swap0; _i0++) {
+            swap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tegra_plane_format(fourcc,format,swap);
+          printf("%d\n", benchRet); 
+          free(format);
+          free(swap);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int fourcc = 10;
+        
+          int _len_format0 = 100;
+          int * format = (int *) malloc(_len_format0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+            format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_swap0 = 100;
+          int * swap = (int *) malloc(_len_swap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_swap0; _i0++) {
+            swap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tegra_plane_format(fourcc,format,swap);
+          printf("%d\n", benchRet); 
+          free(format);
+          free(swap);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int fourcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_format0 = 1;
+          int * format = (int *) malloc(_len_format0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_format0; _i0++) {
+            format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_swap0 = 1;
+          int * swap = (int *) malloc(_len_swap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_swap0; _i0++) {
+            swap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tegra_plane_format(fourcc,format,swap);
+          printf("%d\n", benchRet); 
+          free(format);
+          free(swap);
+        
+        break;
+    }
     default:
         usage();
         break;

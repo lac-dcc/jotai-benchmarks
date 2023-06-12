@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ buf_setdevice(buf_t bp, vnode_t vp) {
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +88,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          int _len_bp0 = 65025;
           struct TYPE_6__ * bp = (struct TYPE_6__ *) malloc(_len_bp0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].b_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].b_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_vp0 = 1;
+        
+          int _len_vp0 = 65025;
           struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
-            vp[_i0].v_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].v_rdev = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].v_rdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = buf_setdevice(bp,vp);
           printf("%d\n", benchRet); 
           free(bp);
@@ -113,7 +113,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bp0 = 100;
+          struct TYPE_6__ * bp = (struct TYPE_6__ *) malloc(_len_bp0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vp0 = 100;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].v_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].v_rdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = buf_setdevice(bp,vp);
+          printf("%d\n", benchRet); 
+          free(bp);
+          free(vp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bp0 = 1;
+          struct TYPE_6__ * bp = (struct TYPE_6__ *) malloc(_len_bp0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].b_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vp0 = 1;
+          struct TYPE_5__ * vp = (struct TYPE_5__ *) malloc(_len_vp0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].v_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].v_rdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = buf_setdevice(bp,vp);
+          printf("%d\n", benchRet); 
+          free(bp);
+          free(vp);
+        
+        break;
+    }
     default:
         usage();
         break;

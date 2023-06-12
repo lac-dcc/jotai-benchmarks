@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static int ath10k_usb_hif_map_service_to_pipe(struct ath10
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,21 +107,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int svc_id = 100;
+        
           int _len_ar0 = 1;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ul_pipe0 = 1;
           int * ul_pipe = (int *) malloc(_len_ul_pipe0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ul_pipe0; _i0++) {
             ul_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_dl_pipe0 = 1;
           int * dl_pipe = (int *) malloc(_len_dl_pipe0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dl_pipe0; _i0++) {
             dl_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ath10k_usb_hif_map_service_to_pipe(ar,svc_id,ul_pipe,dl_pipe);
           printf("%d\n", benchRet); 
           free(ar);
@@ -133,7 +135,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int svc_id = 255;
+        
+          int _len_ar0 = 65025;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ul_pipe0 = 65025;
+          int * ul_pipe = (int *) malloc(_len_ul_pipe0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ul_pipe0; _i0++) {
+            ul_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dl_pipe0 = 65025;
+          int * dl_pipe = (int *) malloc(_len_dl_pipe0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dl_pipe0; _i0++) {
+            dl_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath10k_usb_hif_map_service_to_pipe(ar,svc_id,ul_pipe,dl_pipe);
+          printf("%d\n", benchRet); 
+          free(ar);
+          free(ul_pipe);
+          free(dl_pipe);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int svc_id = 10;
+        
+          int _len_ar0 = 100;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ul_pipe0 = 100;
+          int * ul_pipe = (int *) malloc(_len_ul_pipe0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ul_pipe0; _i0++) {
+            ul_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dl_pipe0 = 100;
+          int * dl_pipe = (int *) malloc(_len_dl_pipe0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dl_pipe0; _i0++) {
+            dl_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath10k_usb_hif_map_service_to_pipe(ar,svc_id,ul_pipe,dl_pipe);
+          printf("%d\n", benchRet); 
+          free(ar);
+          free(ul_pipe);
+          free(dl_pipe);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int svc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ar0 = 1;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ul_pipe0 = 1;
+          int * ul_pipe = (int *) malloc(_len_ul_pipe0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ul_pipe0; _i0++) {
+            ul_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dl_pipe0 = 1;
+          int * dl_pipe = (int *) malloc(_len_dl_pipe0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dl_pipe0; _i0++) {
+            dl_pipe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath10k_usb_hif_map_service_to_pipe(ar,svc_id,ul_pipe,dl_pipe);
+          printf("%d\n", benchRet); 
+          free(ar);
+          free(ul_pipe);
+          free(dl_pipe);
+        
+        break;
+    }
     default:
         usage();
         break;

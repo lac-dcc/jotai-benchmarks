@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ __attribute__((used)) static u16 xd_load_log_block_addr(u8 *redunt)
 	return addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,14 +95,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_redunt0 = 1;
+          int _len_redunt0 = 65025;
           int * redunt = (int *) malloc(_len_redunt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_redunt0; _i0++) {
             redunt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xd_load_log_block_addr(redunt);
           printf("%d\n", benchRet); 
           free(redunt);
@@ -122,13 +118,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_redunt0; _i0++) {
             redunt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xd_load_log_block_addr(redunt);
           printf("%d\n", benchRet); 
           free(redunt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_redunt0 = 1;
+          int * redunt = (int *) malloc(_len_redunt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_redunt0; _i0++) {
+            redunt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xd_load_log_block_addr(redunt);
+          printf("%d\n", benchRet); 
+          free(redunt);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static int w100fb_setcolreg(u_int regno, u_int red, u_int 
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,14 +101,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int regno = 100;
+        
           int red = 100;
+        
           int green = 100;
+        
           int blue = 100;
+        
           int trans = 100;
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
@@ -121,8 +145,129 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_info__i0__pseudo_palette0; _j0++) {
             info[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = w100fb_setcolreg(regno,red,green,blue,trans,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].pseudo_palette);
+          }
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int regno = 255;
+        
+          int red = 255;
+        
+          int green = 255;
+        
+          int blue = 255;
+        
+          int trans = 255;
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__pseudo_palette0 = 1;
+          info[_i0].pseudo_palette = (unsigned int *) malloc(_len_info__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_info__i0__pseudo_palette0; _j0++) {
+            info[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = w100fb_setcolreg(regno,red,green,blue,trans,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].pseudo_palette);
+          }
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int regno = 10;
+        
+          int red = 10;
+        
+          int green = 10;
+        
+          int blue = 10;
+        
+          int trans = 10;
+        
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__pseudo_palette0 = 1;
+          info[_i0].pseudo_palette = (unsigned int *) malloc(_len_info__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_info__i0__pseudo_palette0; _j0++) {
+            info[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          info[_i0].var.grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = w100fb_setcolreg(regno,red,green,blue,trans,info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_info0; _aux++) {

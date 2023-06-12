@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ screen_write_mode_clear(struct screen_write_ctx *ctx, int mode)
 	s->mode &= ~mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int mode = 100;
+        
           int _len_ctx0 = 1;
           struct screen_write_ctx * ctx = (struct screen_write_ctx *) malloc(_len_ctx0*sizeof(struct screen_write_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
               int _len_ctx__i0__s0 = 1;
           ctx[_i0].s = (struct screen *) malloc(_len_ctx__i0__s0*sizeof(struct screen));
           for(int _j0 = 0; _j0 < _len_ctx__i0__s0; _j0++) {
-            ctx[_i0].s->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].s->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          screen_write_mode_clear(ctx,mode);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].s);
+          }
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int mode = 255;
+        
+          int _len_ctx0 = 65025;
+          struct screen_write_ctx * ctx = (struct screen_write_ctx *) malloc(_len_ctx0*sizeof(struct screen_write_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__s0 = 1;
+          ctx[_i0].s = (struct screen *) malloc(_len_ctx__i0__s0*sizeof(struct screen));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__s0; _j0++) {
+              ctx[_i0].s->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          screen_write_mode_clear(ctx,mode);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].s);
+          }
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int mode = 10;
+        
+          int _len_ctx0 = 100;
+          struct screen_write_ctx * ctx = (struct screen_write_ctx *) malloc(_len_ctx0*sizeof(struct screen_write_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__s0 = 1;
+          ctx[_i0].s = (struct screen *) malloc(_len_ctx__i0__s0*sizeof(struct screen));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__s0; _j0++) {
+              ctx[_i0].s->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          screen_write_mode_clear(ctx,mode);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].s);
+          }
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct screen_write_ctx * ctx = (struct screen_write_ctx *) malloc(_len_ctx0*sizeof(struct screen_write_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__s0 = 1;
+          ctx[_i0].s = (struct screen *) malloc(_len_ctx__i0__s0*sizeof(struct screen));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__s0; _j0++) {
+              ctx[_i0].s->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           screen_write_mode_clear(ctx,mode);
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
           free(ctx[_aux].s);

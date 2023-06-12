@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ pmap_flush_context_init(pmap_flush_context *pfc)
 	pfc->pfc_invalid_global = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pfc0 = 1;
+          int _len_pfc0 = 65025;
           struct TYPE_3__ * pfc = (struct TYPE_3__ *) malloc(_len_pfc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pfc0; _i0++) {
-            pfc[_i0].pfc_invalid_global = ((-2 * (next_i()%2)) + 1) * next_i();
-        pfc[_i0].pfc_cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+              pfc[_i0].pfc_invalid_global = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfc[_i0].pfc_cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pmap_flush_context_init(pfc);
           free(pfc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pfc0 = 100;
+          struct TYPE_3__ * pfc = (struct TYPE_3__ *) malloc(_len_pfc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pfc0; _i0++) {
+              pfc[_i0].pfc_invalid_global = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfc[_i0].pfc_cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmap_flush_context_init(pfc);
+          free(pfc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pfc0 = 1;
+          struct TYPE_3__ * pfc = (struct TYPE_3__ *) malloc(_len_pfc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pfc0; _i0++) {
+              pfc[_i0].pfc_invalid_global = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfc[_i0].pfc_cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pmap_flush_context_init(pfc);
+          free(pfc);
+        
+        break;
+    }
     default:
         usage();
         break;

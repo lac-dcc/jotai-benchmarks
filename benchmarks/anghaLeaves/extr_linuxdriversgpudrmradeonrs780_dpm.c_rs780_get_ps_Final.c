@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static struct igp_ps *rs780_get_ps(struct radeon_ps *rps)
 	return ps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rps0 = 65025;
+          struct radeon_ps * rps = (struct radeon_ps *) malloc(_len_rps0*sizeof(struct radeon_ps));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+              int _len_rps__i0__ps_priv0 = 1;
+          rps[_i0].ps_priv = (struct igp_ps *) malloc(_len_rps__i0__ps_priv0*sizeof(struct igp_ps));
+          for(int _j0 = 0; _j0 < _len_rps__i0__ps_priv0; _j0++) {
+              rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct igp_ps * benchRet = rs780_get_ps(rps);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rps0; _aux++) {
+          free(rps[_aux].ps_priv);
+          }
+          free(rps);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_rps0 = 100;
+          struct radeon_ps * rps = (struct radeon_ps *) malloc(_len_rps0*sizeof(struct radeon_ps));
+          for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
+              int _len_rps__i0__ps_priv0 = 1;
+          rps[_i0].ps_priv = (struct igp_ps *) malloc(_len_rps__i0__ps_priv0*sizeof(struct igp_ps));
+          for(int _j0 = 0; _j0 < _len_rps__i0__ps_priv0; _j0++) {
+              rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct igp_ps * benchRet = rs780_get_ps(rps);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rps0; _aux++) {
+          free(rps[_aux].ps_priv);
+          }
+          free(rps);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_rps0 = 1;
           struct radeon_ps * rps = (struct radeon_ps *) malloc(_len_rps0*sizeof(struct radeon_ps));
           for(int _i0 = 0; _i0 < _len_rps0; _i0++) {
               int _len_rps__i0__ps_priv0 = 1;
           rps[_i0].ps_priv = (struct igp_ps *) malloc(_len_rps__i0__ps_priv0*sizeof(struct igp_ps));
           for(int _j0 = 0; _j0 < _len_rps__i0__ps_priv0; _j0++) {
-            rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rps[_i0].ps_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct igp_ps * benchRet = rs780_get_ps(rps);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rps0; _aux++) {

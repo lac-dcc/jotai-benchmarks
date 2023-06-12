@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void to_compat_ipc64_perm(struct compat_ipc64_perm *to, struct ipc64_perm *from)
 	to->seq = from->seq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,38 +81,111 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_to0 = 1;
+          int _len_to0 = 65025;
           struct compat_ipc64_perm * to = (struct compat_ipc64_perm *) malloc(_len_to0*sizeof(struct compat_ipc64_perm));
           for(int _i0 = 0; _i0 < _len_to0; _i0++) {
-            to[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
-        to[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+              to[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_from0 = 1;
+        
+          int _len_from0 = 65025;
           struct ipc64_perm * from = (struct ipc64_perm *) malloc(_len_from0*sizeof(struct ipc64_perm));
           for(int _i0 = 0; _i0 < _len_from0; _i0++) {
-            from[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
-        from[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+              from[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           to_compat_ipc64_perm(to,from);
           free(to);
           free(from);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_to0 = 100;
+          struct compat_ipc64_perm * to = (struct compat_ipc64_perm *) malloc(_len_to0*sizeof(struct compat_ipc64_perm));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_from0 = 100;
+          struct ipc64_perm * from = (struct ipc64_perm *) malloc(_len_from0*sizeof(struct ipc64_perm));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          to_compat_ipc64_perm(to,from);
+          free(to);
+          free(from);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_to0 = 1;
+          struct compat_ipc64_perm * to = (struct compat_ipc64_perm *) malloc(_len_to0*sizeof(struct compat_ipc64_perm));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          to[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_from0 = 1;
+          struct ipc64_perm * from = (struct ipc64_perm *) malloc(_len_from0*sizeof(struct ipc64_perm));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].cgid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].cuid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          from[_i0].key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          to_compat_ipc64_perm(to,from);
+          free(to);
+          free(from);
+        
+        break;
+    }
     default:
         usage();
         break;

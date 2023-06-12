@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ __attribute__((used)) static int qede_get_rss_flags(struct qede_dev *edev, struc
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,20 +110,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_edev0 = 1;
+          int _len_edev0 = 65025;
           struct qede_dev * edev = (struct qede_dev *) malloc(_len_edev0*sizeof(struct qede_dev));
           for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
-            edev[_i0].rss_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              edev[_i0].rss_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_info0 = 1;
+        
+          int _len_info0 = 65025;
           struct ethtool_rxnfc * info = (struct ethtool_rxnfc *) malloc(_len_info0*sizeof(struct ethtool_rxnfc));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qede_get_rss_flags(edev,info);
           printf("%d\n", benchRet); 
           free(edev);
@@ -135,7 +135,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_edev0 = 100;
+          struct qede_dev * edev = (struct qede_dev *) malloc(_len_edev0*sizeof(struct qede_dev));
+          for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
+              edev[_i0].rss_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct ethtool_rxnfc * info = (struct ethtool_rxnfc *) malloc(_len_info0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qede_get_rss_flags(edev,info);
+          printf("%d\n", benchRet); 
+          free(edev);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_edev0 = 1;
+          struct qede_dev * edev = (struct qede_dev *) malloc(_len_edev0*sizeof(struct qede_dev));
+          for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
+              edev[_i0].rss_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 1;
+          struct ethtool_rxnfc * info = (struct ethtool_rxnfc *) malloc(_len_info0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qede_get_rss_flags(edev,info);
+          printf("%d\n", benchRet); 
+          free(edev);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

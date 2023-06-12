@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ int fb_get_color_depth(struct fb_var_screeninfo *var,
 	return depth;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +100,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_fix0 = 65025;
+          struct fb_fix_screeninfo * fix = (struct fb_fix_screeninfo *) malloc(_len_fix0*sizeof(struct fb_fix_screeninfo));
+          for(int _i0 = 0; _i0 < _len_fix0; _i0++) {
+              fix[_i0].visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fb_get_color_depth(var,fix);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(fix);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_fix0 = 100;
+          struct fb_fix_screeninfo * fix = (struct fb_fix_screeninfo *) malloc(_len_fix0*sizeof(struct fb_fix_screeninfo));
+          for(int _i0 = 0; _i0 < _len_fix0; _i0++) {
+              fix[_i0].visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fb_get_color_depth(var,fix);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(fix);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_fix0 = 1;
           struct fb_fix_screeninfo * fix = (struct fb_fix_screeninfo *) malloc(_len_fix0*sizeof(struct fb_fix_screeninfo));
           for(int _i0 = 0; _i0 < _len_fix0; _i0++) {
-            fix[_i0].visual = ((-2 * (next_i()%2)) + 1) * next_i();
+              fix[_i0].visual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fb_get_color_depth(var,fix);
           printf("%d\n", benchRet); 
           free(var);

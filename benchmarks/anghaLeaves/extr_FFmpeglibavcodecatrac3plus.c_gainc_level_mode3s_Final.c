@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void gainc_level_mode3s(AtracGainInfo *dst, 
         dst->lev_code[i] = (i >= ref->num_points) ? 7 : ref->lev_code[i];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,29 +79,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dst0 = 1;
+          int _len_dst0 = 65025;
           struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dst__i0__lev_code0 = 1;
           dst[_i0].lev_code = (int *) malloc(_len_dst__i0__lev_code0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_dst__i0__lev_code0; _j0++) {
             dst[_i0].lev_code[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_ref0 = 1;
+        
+          int _len_ref0 = 65025;
           struct TYPE_4__ * ref = (struct TYPE_4__ *) malloc(_len_ref0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
-            ref[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+              ref[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ref__i0__lev_code0 = 1;
           ref[_i0].lev_code = (int *) malloc(_len_ref__i0__lev_code0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ref__i0__lev_code0; _j0++) {
             ref[_i0].lev_code[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           gainc_level_mode3s(dst,ref);
           for(int _aux = 0; _aux < _len_dst0; _aux++) {
           free(dst[_aux].lev_code);
@@ -118,7 +118,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dst0 = 100;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__lev_code0 = 1;
+          dst[_i0].lev_code = (int *) malloc(_len_dst__i0__lev_code0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__lev_code0; _j0++) {
+            dst[_i0].lev_code[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ref0 = 100;
+          struct TYPE_4__ * ref = (struct TYPE_4__ *) malloc(_len_ref0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ref__i0__lev_code0 = 1;
+          ref[_i0].lev_code = (int *) malloc(_len_ref__i0__lev_code0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ref__i0__lev_code0; _j0++) {
+            ref[_i0].lev_code[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          gainc_level_mode3s(dst,ref);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].lev_code);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_ref0; _aux++) {
+          free(ref[_aux].lev_code);
+          }
+          free(ref);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dst0 = 1;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dst__i0__lev_code0 = 1;
+          dst[_i0].lev_code = (int *) malloc(_len_dst__i0__lev_code0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__lev_code0; _j0++) {
+            dst[_i0].lev_code[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ref0 = 1;
+          struct TYPE_4__ * ref = (struct TYPE_4__ *) malloc(_len_ref0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              ref[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ref__i0__lev_code0 = 1;
+          ref[_i0].lev_code = (int *) malloc(_len_ref__i0__lev_code0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ref__i0__lev_code0; _j0++) {
+            ref[_i0].lev_code[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          gainc_level_mode3s(dst,ref);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].lev_code);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_ref0; _aux++) {
+          free(ref[_aux].lev_code);
+          }
+          free(ref);
+        
+        break;
+    }
     default:
         usage();
         break;

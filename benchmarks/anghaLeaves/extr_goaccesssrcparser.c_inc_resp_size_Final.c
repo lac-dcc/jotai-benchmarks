@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ inc_resp_size (GLog * glog, uint64_t resp_size)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +86,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long resp_size = 100;
+        
           int _len_glog0 = 1;
           struct TYPE_3__ * glog = (struct TYPE_3__ *) malloc(_len_glog0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_glog0; _i0++) {
-            glog[_i0].resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              glog[_i0].resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          inc_resp_size(glog,resp_size);
+          free(glog);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long resp_size = 255;
+        
+          int _len_glog0 = 65025;
+          struct TYPE_3__ * glog = (struct TYPE_3__ *) malloc(_len_glog0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_glog0; _i0++) {
+              glog[_i0].resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           inc_resp_size(glog,resp_size);
           free(glog);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long resp_size = 10;
+        
           int _len_glog0 = 100;
           struct TYPE_3__ * glog = (struct TYPE_3__ *) malloc(_len_glog0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_glog0; _i0++) {
-            glog[_i0].resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              glog[_i0].resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           inc_resp_size(glog,resp_size);
           free(glog);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_glog0 = 1;
+          struct TYPE_3__ * glog = (struct TYPE_3__ *) malloc(_len_glog0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_glog0; _i0++) {
+              glog[_i0].resp_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          inc_resp_size(glog,resp_size);
+          free(glog);
+        
+        break;
+    }
     default:
         usage();
         break;

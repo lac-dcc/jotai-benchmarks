@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +87,6 @@ int iwlagn_hwrate_to_mac80211_idx(u32 rate_n_flags, enum nl80211_band band)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rate_n_flags = 100;
+        
           enum nl80211_band band = 0;
+        
           int benchRet = iwlagn_hwrate_to_mac80211_idx(rate_n_flags,band);
           printf("%d\n", benchRet); 
         
@@ -118,7 +115,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int rate_n_flags = 255;
+        
           enum nl80211_band band = 0;
+        
           int benchRet = iwlagn_hwrate_to_mac80211_idx(rate_n_flags,band);
           printf("%d\n", benchRet); 
         
@@ -128,13 +127,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int rate_n_flags = 10;
+        
           enum nl80211_band band = 0;
+        
           int benchRet = iwlagn_hwrate_to_mac80211_idx(rate_n_flags,band);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int rate_n_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum nl80211_band band = 0;
+        
+          int benchRet = iwlagn_hwrate_to_mac80211_idx(rate_n_flags,band);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

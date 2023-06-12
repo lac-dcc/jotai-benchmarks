@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ commpage_set_memory_pressure(
 	*((uint32_t *)(_COMM_PAGE_MEMORY_PRESSURE+_COMM_PAGE_RW_OFFSET)) = pressure;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pressure = 100;
+        
           commpage_set_memory_pressure(pressure);
         
         break;
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int pressure = 255;
+        
           commpage_set_memory_pressure(pressure);
         
         break;
@@ -107,11 +104,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int pressure = 10;
+        
           commpage_set_memory_pressure(pressure);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pressure = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          commpage_set_memory_pressure(pressure);
+        
+        break;
+    }
     default:
         usage();
         break;

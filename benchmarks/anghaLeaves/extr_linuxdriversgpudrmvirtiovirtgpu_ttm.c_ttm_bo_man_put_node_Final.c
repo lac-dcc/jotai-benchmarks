@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void ttm_bo_man_put_node(struct ttm_mem_type_manage
 	mem->mm_node = (void *)NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +76,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_man0 = 1;
+          int _len_man0 = 65025;
           struct ttm_mem_type_manager * man = (struct ttm_mem_type_manager *) malloc(_len_man0*sizeof(struct ttm_mem_type_manager));
           for(int _i0 = 0; _i0 < _len_man0; _i0++) {
-            man[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              man[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mem0 = 1;
+        
+          int _len_mem0 = 65025;
           struct ttm_mem_reg * mem = (struct ttm_mem_reg *) malloc(_len_mem0*sizeof(struct ttm_mem_reg));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
-              }
+            
+          }
+        
           ttm_bo_man_put_node(man,mem);
           free(man);
           free(mem);
@@ -105,19 +104,44 @@ int main(int argc, char *argv[]) {
           int _len_man0 = 100;
           struct ttm_mem_type_manager * man = (struct ttm_mem_type_manager *) malloc(_len_man0*sizeof(struct ttm_mem_type_manager));
           for(int _i0 = 0; _i0 < _len_man0; _i0++) {
-            man[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              man[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mem0 = 100;
           struct ttm_mem_reg * mem = (struct ttm_mem_reg *) malloc(_len_mem0*sizeof(struct ttm_mem_reg));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
-              }
+            
+          }
+        
           ttm_bo_man_put_node(man,mem);
           free(man);
           free(mem);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_man0 = 1;
+          struct ttm_mem_type_manager * man = (struct ttm_mem_type_manager *) malloc(_len_man0*sizeof(struct ttm_mem_type_manager));
+          for(int _i0 = 0; _i0 < _len_man0; _i0++) {
+              man[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mem0 = 1;
+          struct ttm_mem_reg * mem = (struct ttm_mem_reg *) malloc(_len_mem0*sizeof(struct ttm_mem_reg));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+            
+          }
+        
+          ttm_bo_man_put_node(man,mem);
+          free(man);
+          free(mem);
+        
+        break;
+    }
     default:
         usage();
         break;

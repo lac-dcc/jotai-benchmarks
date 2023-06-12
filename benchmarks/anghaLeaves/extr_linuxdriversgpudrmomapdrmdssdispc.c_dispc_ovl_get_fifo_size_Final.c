@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static u32 dispc_ovl_get_fifo_size(struct dispc_device *di
 	return size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +87,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           enum omap_plane_id plane = 0;
+        
+          int _len_dispc0 = 65025;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__fifo_assignment0 = 1;
+          dispc[_i0].fifo_assignment = (int *) malloc(_len_dispc__i0__fifo_assignment0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__fifo_assignment0; _j0++) {
+            dispc[_i0].fifo_assignment[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dispc__i0__fifo_size0 = 1;
+          dispc[_i0].fifo_size = (long *) malloc(_len_dispc__i0__fifo_size0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__fifo_size0; _j0++) {
+            dispc[_i0].fifo_size[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->num_fifos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dispc_ovl_get_fifo_size(dispc,plane);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].fifo_assignment);
+          }
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].fifo_size);
+          }
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          enum omap_plane_id plane = 0;
+        
+          int _len_dispc0 = 100;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__fifo_assignment0 = 1;
+          dispc[_i0].fifo_assignment = (int *) malloc(_len_dispc__i0__fifo_assignment0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__fifo_assignment0; _j0++) {
+            dispc[_i0].fifo_assignment[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dispc__i0__fifo_size0 = 1;
+          dispc[_i0].fifo_size = (long *) malloc(_len_dispc__i0__fifo_size0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__fifo_size0; _j0++) {
+            dispc[_i0].fifo_size[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->num_fifos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dispc_ovl_get_fifo_size(dispc,plane);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].fifo_assignment);
+          }
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].fifo_size);
+          }
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          enum omap_plane_id plane = 0;
+        
           int _len_dispc0 = 1;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
@@ -111,9 +263,12 @@ int main(int argc, char *argv[]) {
           int _len_dispc__i0__feat0 = 1;
           dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
-            dispc[_i0].feat->num_fifos = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].feat->num_fifos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = dispc_ovl_get_fifo_size(dispc,plane);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dispc0; _aux++) {

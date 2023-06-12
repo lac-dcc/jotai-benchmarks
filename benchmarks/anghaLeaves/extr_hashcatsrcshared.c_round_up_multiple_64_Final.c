@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ u64 round_up_multiple_64 (const u64 v, const u64 m)
   return v + m - r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const long v = 100;
+        
           const long m = 100;
+        
           const long benchRet = round_up_multiple_64(v,m);
           printf("%ld\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const long v = 255;
+        
           const long m = 255;
+        
           const long benchRet = round_up_multiple_64(v,m);
           printf("%ld\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const long v = 10;
+        
           const long m = 10;
+        
           const long benchRet = round_up_multiple_64(v,m);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const long m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const long benchRet = round_up_multiple_64(v,m);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

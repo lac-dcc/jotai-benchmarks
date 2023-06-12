@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void ufshcd_init_pwr_info(struct ufs_hba *hba)
 	hba->pwr_info.hs_rate = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +84,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_hba0 = 65025;
+          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].pwr_info.lane_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].pwr_info.lane_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].pwr_info.hs_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ufshcd_init_pwr_info(hba);
+          free(hba);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_hba0 = 100;
+          struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].pwr_info.lane_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].pwr_info.lane_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].pwr_info.hs_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ufshcd_init_pwr_info(hba);
+          free(hba);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_hba0 = 1;
           struct ufs_hba * hba = (struct ufs_hba *) malloc(_len_hba0*sizeof(struct ufs_hba));
           for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].pwr_info.lane_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].pwr_info.lane_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        hba[_i0].pwr_info.hs_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              hba[_i0].pwr_info.lane_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].pwr_info.lane_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          hba[_i0].pwr_info.hs_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ufshcd_init_pwr_info(hba);
           free(hba);
         

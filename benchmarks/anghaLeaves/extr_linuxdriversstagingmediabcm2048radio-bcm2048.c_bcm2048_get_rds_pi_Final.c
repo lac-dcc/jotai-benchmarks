@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int bcm2048_get_rds_pi(struct bcm2048_device *bdev)
 	return bdev->rds_info.rds_pi;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bdev0 = 1;
+          int _len_bdev0 = 65025;
           struct bcm2048_device * bdev = (struct bcm2048_device *) malloc(_len_bdev0*sizeof(struct bcm2048_device));
           for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
-            bdev[_i0].rds_info.rds_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+              bdev[_i0].rds_info.rds_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bcm2048_get_rds_pi(bdev);
           printf("%d\n", benchRet); 
           free(bdev);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_bdev0 = 100;
           struct bcm2048_device * bdev = (struct bcm2048_device *) malloc(_len_bdev0*sizeof(struct bcm2048_device));
           for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
-            bdev[_i0].rds_info.rds_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+              bdev[_i0].rds_info.rds_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bcm2048_get_rds_pi(bdev);
           printf("%d\n", benchRet); 
           free(bdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bdev0 = 1;
+          struct bcm2048_device * bdev = (struct bcm2048_device *) malloc(_len_bdev0*sizeof(struct bcm2048_device));
+          for(int _i0 = 0; _i0 < _len_bdev0; _i0++) {
+              bdev[_i0].rds_info.rds_pi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bcm2048_get_rds_pi(bdev);
+          printf("%d\n", benchRet); 
+          free(bdev);
+        
+        break;
+    }
     default:
         usage();
         break;

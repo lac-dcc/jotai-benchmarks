@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static inline int fill_gva_list(u64 gva_list[], int offset
 	return gva_n - offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,17 +98,89 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          unsigned long start = 255;
+        
+          unsigned long end = 255;
+        
+          int _len_gva_list0 = 65025;
+          unsigned long * gva_list = (unsigned long *) malloc(_len_gva_list0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_gva_list0; _i0++) {
+            gva_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fill_gva_list(gva_list,offset,start,end);
+          printf("%d\n", benchRet); 
+          free(gva_list);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int offset = 10;
+        
           unsigned long start = 10;
+        
           unsigned long end = 10;
+        
           int _len_gva_list0 = 100;
           unsigned long * gva_list = (unsigned long *) malloc(_len_gva_list0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_gva_list0; _i0++) {
             gva_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = fill_gva_list(gva_list,offset,start,end);
           printf("%d\n", benchRet); 
           free(gva_list);

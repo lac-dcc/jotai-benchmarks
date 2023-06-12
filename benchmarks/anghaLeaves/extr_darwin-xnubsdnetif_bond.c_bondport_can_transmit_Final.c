@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ bondport_can_transmit(bondport_ref p, int32_t current_secs,
     return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,17 +97,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long current_secs = 100;
+        
           int _len_p0 = 1;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].po_last_transmit_secs = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].po_n_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].po_last_transmit_secs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].po_n_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_next_secs0 = 1;
           long * next_secs = (long *) malloc(_len_next_secs0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_next_secs0; _i0++) {
             next_secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bondport_can_transmit(p,current_secs,next_secs);
           printf("%d\n", benchRet); 
           free(p);
@@ -118,7 +119,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long current_secs = 255;
+        
+          int _len_p0 = 65025;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].po_last_transmit_secs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].po_n_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_next_secs0 = 65025;
+          long * next_secs = (long *) malloc(_len_next_secs0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_next_secs0; _i0++) {
+            next_secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bondport_can_transmit(p,current_secs,next_secs);
+          printf("%d\n", benchRet); 
+          free(p);
+          free(next_secs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long current_secs = 10;
+        
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].po_last_transmit_secs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].po_n_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_next_secs0 = 100;
+          long * next_secs = (long *) malloc(_len_next_secs0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_next_secs0; _i0++) {
+            next_secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bondport_can_transmit(p,current_secs,next_secs);
+          printf("%d\n", benchRet); 
+          free(p);
+          free(next_secs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long current_secs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].po_last_transmit_secs = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].po_n_transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_next_secs0 = 1;
+          long * next_secs = (long *) malloc(_len_next_secs0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_next_secs0; _i0++) {
+            next_secs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bondport_can_transmit(p,current_secs,next_secs);
+          printf("%d\n", benchRet); 
+          free(p);
+          free(next_secs);
+        
+        break;
+    }
     default:
         usage();
         break;

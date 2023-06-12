@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int ramoops_pstore_open(struct pstore_info *psi)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +81,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_psi0 = 1;
+          int _len_psi0 = 65025;
           struct pstore_info * psi = (struct pstore_info *) malloc(_len_psi0*sizeof(struct pstore_info));
           for(int _i0 = 0; _i0 < _len_psi0; _i0++) {
               int _len_psi__i0__data0 = 1;
           psi[_i0].data = (struct ramoops_context *) malloc(_len_psi__i0__data0*sizeof(struct ramoops_context));
           for(int _j0 = 0; _j0 < _len_psi__i0__data0; _j0++) {
-            psi[_i0].data->pmsg_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        psi[_i0].data->ftrace_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        psi[_i0].data->console_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        psi[_i0].data->dump_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              psi[_i0].data->pmsg_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->ftrace_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->console_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->dump_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ramoops_pstore_open(psi);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_psi0; _aux++) {
@@ -109,7 +108,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_psi0 = 100;
+          struct pstore_info * psi = (struct pstore_info *) malloc(_len_psi0*sizeof(struct pstore_info));
+          for(int _i0 = 0; _i0 < _len_psi0; _i0++) {
+              int _len_psi__i0__data0 = 1;
+          psi[_i0].data = (struct ramoops_context *) malloc(_len_psi__i0__data0*sizeof(struct ramoops_context));
+          for(int _j0 = 0; _j0 < _len_psi__i0__data0; _j0++) {
+              psi[_i0].data->pmsg_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->ftrace_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->console_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->dump_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ramoops_pstore_open(psi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_psi0; _aux++) {
+          free(psi[_aux].data);
+          }
+          free(psi);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_psi0 = 1;
+          struct pstore_info * psi = (struct pstore_info *) malloc(_len_psi0*sizeof(struct pstore_info));
+          for(int _i0 = 0; _i0 < _len_psi0; _i0++) {
+              int _len_psi__i0__data0 = 1;
+          psi[_i0].data = (struct ramoops_context *) malloc(_len_psi__i0__data0*sizeof(struct ramoops_context));
+          for(int _j0 = 0; _j0 < _len_psi__i0__data0; _j0++) {
+              psi[_i0].data->pmsg_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->ftrace_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->console_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psi[_i0].data->dump_read_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ramoops_pstore_open(psi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_psi0; _aux++) {
+          free(psi[_aux].data);
+          }
+          free(psi);
+        
+        break;
+    }
     default:
         usage();
         break;

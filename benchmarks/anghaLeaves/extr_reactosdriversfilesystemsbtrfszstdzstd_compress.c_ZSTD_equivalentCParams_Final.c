@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -67,12 +67,6 @@ __attribute__((used)) static U32 ZSTD_equivalentCParams(ZSTD_compressionParamete
          & ((cParams1.searchLength==3) == (cParams2.searchLength==3));  /* hashlog3 space */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +79,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ cParams1;
-        cParams1.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        cParams1.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        cParams1.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
-        cParams1.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams1.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams1.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams1.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams1.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ cParams2;
-        cParams2.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        cParams2.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        cParams2.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
-        cParams2.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams2.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams2.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams2.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          cParams2.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ZSTD_equivalentCParams(cParams1,cParams2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

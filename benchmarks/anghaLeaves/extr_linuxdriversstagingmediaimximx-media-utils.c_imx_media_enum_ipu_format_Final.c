@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ int imx_media_enum_ipu_format(u32 *code, u32 index, enum codespace_sel cs_sel)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,12 +117,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long index = 100;
+        
           enum codespace_sel cs_sel = 0;
+        
           int _len_code0 = 1;
           unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_code0; _i0++) {
             code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = imx_media_enum_ipu_format(code,index,cs_sel);
+          printf("%d\n", benchRet); 
+          free(code);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long index = 255;
+        
+          enum codespace_sel cs_sel = 0;
+        
+          int _len_code0 = 65025;
+          unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = imx_media_enum_ipu_format(code,index,cs_sel);
           printf("%d\n", benchRet); 
           free(code);
@@ -134,22 +152,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long index = 10;
+        
           enum codespace_sel cs_sel = 0;
+        
           int _len_code0 = 100;
           unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_code0; _i0++) {
             code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = imx_media_enum_ipu_format(code,index,cs_sel);
           printf("%d\n", benchRet); 
           free(code);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum codespace_sel cs_sel = 0;
+        
+          int _len_code0 = 1;
+          unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = imx_media_enum_ipu_format(code,index,cs_sel);
+          printf("%d\n", benchRet); 
+          free(code);
+        
+        break;
+    }
     default:
         usage();
         break;

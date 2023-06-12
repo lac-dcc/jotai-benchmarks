@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int calc_pixclock(struct gxt4500_par *par)
 		/ par->pll_n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_par0 = 65025;
+          struct gxt4500_par * par = (struct gxt4500_par *) malloc(_len_par0*sizeof(struct gxt4500_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].refclk_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_pd1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_pd2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = calc_pixclock(par);
+          printf("%d\n", benchRet); 
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_par0 = 100;
+          struct gxt4500_par * par = (struct gxt4500_par *) malloc(_len_par0*sizeof(struct gxt4500_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].refclk_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_pd1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_pd2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = calc_pixclock(par);
+          printf("%d\n", benchRet); 
+          free(par);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_par0 = 1;
           struct gxt4500_par * par = (struct gxt4500_par *) malloc(_len_par0*sizeof(struct gxt4500_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].refclk_ps = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].pll_m = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].pll_pd1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].pll_pd2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].pll_n = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].refclk_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_pd1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_pd2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].pll_n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = calc_pixclock(par);
           printf("%d\n", benchRet); 
           free(par);

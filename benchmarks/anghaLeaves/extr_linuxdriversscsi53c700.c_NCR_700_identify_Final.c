@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ NCR_700_identify(int can_disconnect, __u8 lun)
 		(lun & NCR_700_LUN_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int can_disconnect = 100;
+        
           int lun = 100;
+        
           int benchRet = NCR_700_identify(can_disconnect,lun);
           printf("%d\n", benchRet); 
         
@@ -99,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int can_disconnect = 255;
+        
           int lun = 255;
+        
           int benchRet = NCR_700_identify(can_disconnect,lun);
           printf("%d\n", benchRet); 
         
@@ -109,13 +108,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int can_disconnect = 10;
+        
           int lun = 10;
+        
           int benchRet = NCR_700_identify(can_disconnect,lun);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int can_disconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int lun = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = NCR_700_identify(can_disconnect,lun);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

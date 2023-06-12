@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ updateNTTBits(lacp_actor_partner_state s)
 		 | LACP_ACTOR_PARTNER_STATE_SYNCHRONIZATION));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int s = 100;
+        
           int benchRet = updateNTTBits(s);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int s = 255;
+        
           int benchRet = updateNTTBits(s);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int s = 10;
+        
           int benchRet = updateNTTBits(s);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = updateNTTBits(s);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

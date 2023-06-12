@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ void ahc_set_sense_residual(struct scb *scb, u_long resid)
 	scb->platform_data->sense_resid = resid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +83,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int resid = 100;
+        
           int _len_scb0 = 1;
           struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
               int _len_scb__i0__platform_data0 = 1;
           scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
-            scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ahc_set_sense_residual(scb,resid);
           for(int _aux = 0; _aux < _len_scb0; _aux++) {
           free(scb[_aux].platform_data);
@@ -103,7 +104,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int resid = 255;
+        
+          int _len_scb0 = 65025;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__platform_data0 = 1;
+          scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ahc_set_sense_residual(scb,resid);
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].platform_data);
+          }
+          free(scb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int resid = 10;
+        
+          int _len_scb0 = 100;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__platform_data0 = 1;
+          scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ahc_set_sense_residual(scb,resid);
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].platform_data);
+          }
+          free(scb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_scb0 = 1;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__platform_data0 = 1;
+          scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ahc_set_sense_residual(scb,resid);
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].platform_data);
+          }
+          free(scb);
+        
+        break;
+    }
     default:
         usage();
         break;

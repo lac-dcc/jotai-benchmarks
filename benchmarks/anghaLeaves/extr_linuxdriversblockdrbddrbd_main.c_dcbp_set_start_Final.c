@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void dcbp_set_start(struct p_compressed_bm *p, int 
 	p->encoding = (p->encoding & ~0x80) | (set ? 0x80 : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,29 +75,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int set = 100;
+        
           int _len_p0 = 1;
           struct p_compressed_bm * p = (struct p_compressed_bm *) malloc(_len_p0*sizeof(struct p_compressed_bm));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dcbp_set_start(p,set);
           free(p);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int set = 255;
+        
+          int _len_p0 = 65025;
+          struct p_compressed_bm * p = (struct p_compressed_bm *) malloc(_len_p0*sizeof(struct p_compressed_bm));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dcbp_set_start(p,set);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int set = 10;
+        
           int _len_p0 = 100;
           struct p_compressed_bm * p = (struct p_compressed_bm *) malloc(_len_p0*sizeof(struct p_compressed_bm));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dcbp_set_start(p,set);
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct p_compressed_bm * p = (struct p_compressed_bm *) malloc(_len_p0*sizeof(struct p_compressed_bm));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dcbp_set_start(p,set);
           free(p);
         

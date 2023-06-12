@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ int posix_spawn_file_actions_adddup2(posix_spawn_file_actions_t *fa, int fd, int
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,22 +85,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int fd = 100;
+        
           int newfd = 100;
+        
           int _len_fa0 = 1;
           struct TYPE_5__ * fa = (struct TYPE_5__ *) malloc(_len_fa0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
-            fa[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+              fa[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fa__i0__action0 = 1;
           fa[_i0].action = (struct TYPE_4__ *) malloc(_len_fa__i0__action0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_fa__i0__action0; _j0++) {
-            fa[_i0].action->filedes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fa[_i0].action->newfiledes = ((-2 * (next_i()%2)) + 1) * next_i();
+              fa[_i0].action->filedes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].action->newfiledes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = posix_spawn_file_actions_adddup2(fa,fd,newfd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fa0; _aux++) {
+          free(fa[_aux].action);
+          }
+          free(fa);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int fd = 255;
+        
+          int newfd = 255;
+        
+          int _len_fa0 = 65025;
+          struct TYPE_5__ * fa = (struct TYPE_5__ *) malloc(_len_fa0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fa__i0__action0 = 1;
+          fa[_i0].action = (struct TYPE_4__ *) malloc(_len_fa__i0__action0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fa__i0__action0; _j0++) {
+              fa[_i0].action->filedes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].action->newfiledes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = posix_spawn_file_actions_adddup2(fa,fd,newfd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fa0; _aux++) {
+          free(fa[_aux].action);
+          }
+          free(fa);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int fd = 10;
+        
+          int newfd = 10;
+        
+          int _len_fa0 = 100;
+          struct TYPE_5__ * fa = (struct TYPE_5__ *) malloc(_len_fa0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fa__i0__action0 = 1;
+          fa[_i0].action = (struct TYPE_4__ *) malloc(_len_fa__i0__action0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fa__i0__action0; _j0++) {
+              fa[_i0].action->filedes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].action->newfiledes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = posix_spawn_file_actions_adddup2(fa,fd,newfd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fa0; _aux++) {
+          free(fa[_aux].action);
+          }
+          free(fa);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int newfd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fa0 = 1;
+          struct TYPE_5__ * fa = (struct TYPE_5__ *) malloc(_len_fa0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fa__i0__action0 = 1;
+          fa[_i0].action = (struct TYPE_4__ *) malloc(_len_fa__i0__action0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fa__i0__action0; _j0++) {
+              fa[_i0].action->filedes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fa[_i0].action->newfiledes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = posix_spawn_file_actions_adddup2(fa,fd,newfd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fa0; _aux++) {

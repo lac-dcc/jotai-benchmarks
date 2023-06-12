@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -72,7 +73,6 @@ struct reserve_info *add_reserve_entry(struct reserve_info *list,
 
 	return list;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -124,7 +124,6 @@ void _delete_new(struct reserve_info *aux_new[], int aux_new_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -137,20 +136,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct reserve_info * aux_list[10000];
+          struct reserve_info * list = _allocate_list(10000, aux_list);
+        
+          struct reserve_info * aux_new[10000];
+          struct reserve_info * new = _allocate_new(10000, aux_new);
+        
+          struct reserve_info * benchRet = add_reserve_entry(list,new);
+          _delete_list(aux_list, 10000);
+          _delete_new(aux_new, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct reserve_info * aux_list[1];
           struct reserve_info * list = _allocate_list(1, aux_list);
+        
           struct reserve_info * aux_new[1];
           struct reserve_info * new = _allocate_new(1, aux_new);
+        
           struct reserve_info * benchRet = add_reserve_entry(list,new);
           _delete_list(aux_list, 1);
           _delete_new(aux_new, 1);
         
         break;
     }
-
     default:
         usage();
         break;

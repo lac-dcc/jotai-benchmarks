@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void ice_fill_rss_lut(u8 *lut, u16 rss_table_size, u16 rss_size)
 		lut[i] = i % rss_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +77,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long rss_table_size = 10;
-          unsigned long rss_size = 10;
-          int _len_lut0 = 100;
+          unsigned long rss_table_size = 255;
+        
+          unsigned long rss_size = 255;
+        
+          int _len_lut0 = 65025;
           unsigned long * lut = (unsigned long *) malloc(_len_lut0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
             lut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ice_fill_rss_lut(lut,rss_table_size,rss_size);
           free(lut);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long rss_table_size = 10;
+        
+          unsigned long rss_size = 10;
+        
+          int _len_lut0 = 100;
+          unsigned long * lut = (unsigned long *) malloc(_len_lut0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+            lut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ice_fill_rss_lut(lut,rss_table_size,rss_size);
+          free(lut);
+        
+        break;
+    }
     default:
         usage();
         break;

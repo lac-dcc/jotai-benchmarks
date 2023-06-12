@@ -62,12 +62,6 @@ __attribute__((used)) static inline void mark_dirty(struct vmcb *vmcb, int bit)
 	vmcb->control.clean &= ~(1 << bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +74,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int bit = 10;
+        
           int _len_vmcb0 = 100;
           struct vmcb * vmcb = (struct vmcb *) malloc(_len_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_vmcb0; _i0++) {
-            vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mark_dirty(vmcb,bit);
           free(vmcb);
         

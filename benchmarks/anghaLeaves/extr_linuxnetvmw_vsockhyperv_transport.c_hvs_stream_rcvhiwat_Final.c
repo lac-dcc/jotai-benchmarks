@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u64 hvs_stream_rcvhiwat(struct vsock_sock *vsk)
 	return HVS_MTU_SIZE + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vsk0 = 1;
+          int _len_vsk0 = 65025;
           struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
           for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
-            vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = hvs_stream_rcvhiwat(vsk);
           printf("%ld\n", benchRet); 
           free(vsk);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_vsk0 = 100;
           struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
           for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
-            vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = hvs_stream_rcvhiwat(vsk);
           printf("%ld\n", benchRet); 
           free(vsk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vsk0 = 1;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = hvs_stream_rcvhiwat(vsk);
+          printf("%ld\n", benchRet); 
+          free(vsk);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int is_valid_config(struct usb_config_descriptor *c
 	/* FIXME check lengths: walk to end */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,21 +91,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int total = 100;
+        
           int _len_config0 = 1;
           struct usb_config_descriptor * config = (struct usb_config_descriptor *) malloc(_len_config0*sizeof(struct usb_config_descriptor));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
-            config[_i0].bDescriptorType = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].bLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].bConfigurationValue = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].bmAttributes = ((-2 * (next_i()%2)) + 1) * next_i();
+              config[_i0].bDescriptorType = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bConfigurationValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bmAttributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_valid_config(config,total);
           printf("%d\n", benchRet); 
           free(config);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int total = 255;
+        
+          int _len_config0 = 65025;
+          struct usb_config_descriptor * config = (struct usb_config_descriptor *) malloc(_len_config0*sizeof(struct usb_config_descriptor));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].bDescriptorType = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bConfigurationValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bmAttributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_valid_config(config,total);
+          printf("%d\n", benchRet); 
+          free(config);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int total = 10;
+        
+          int _len_config0 = 100;
+          struct usb_config_descriptor * config = (struct usb_config_descriptor *) malloc(_len_config0*sizeof(struct usb_config_descriptor));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].bDescriptorType = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bConfigurationValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bmAttributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_valid_config(config,total);
+          printf("%d\n", benchRet); 
+          free(config);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_config0 = 1;
+          struct usb_config_descriptor * config = (struct usb_config_descriptor *) malloc(_len_config0*sizeof(struct usb_config_descriptor));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].bDescriptorType = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bConfigurationValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].bmAttributes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_valid_config(config,total);
+          printf("%d\n", benchRet); 
+          free(config);
+        
+        break;
+    }
     default:
         usage();
         break;

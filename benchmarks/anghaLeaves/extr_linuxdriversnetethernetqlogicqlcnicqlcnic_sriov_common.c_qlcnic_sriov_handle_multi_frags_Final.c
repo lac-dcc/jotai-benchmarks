@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void qlcnic_sriov_handle_multi_frags(struct qlcnic_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,26 +97,234 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           long type = 100;
+        
           int _len_trans0 = 1;
           struct qlcnic_bc_trans * trans = (struct qlcnic_bc_trans *) malloc(_len_trans0*sizeof(struct qlcnic_bc_trans));
           for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
-            trans[_i0].curr_rsp_frag = ((-2 * (next_i()%2)) + 1) * next_i();
-        trans[_i0].curr_req_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+              trans[_i0].curr_rsp_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          trans[_i0].curr_req_frag = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_trans__i0__req_hdr0 = 1;
           trans[_i0].req_hdr = (struct TYPE_3__ *) malloc(_len_trans__i0__req_hdr0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_trans__i0__req_hdr0; _j0++) {
-            trans[_i0].req_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+              trans[_i0].req_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_trans__i0__rsp_hdr0 = 1;
           trans[_i0].rsp_hdr = (struct TYPE_4__ *) malloc(_len_trans__i0__rsp_hdr0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_trans__i0__rsp_hdr0; _j0++) {
-            trans[_i0].rsp_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+              trans[_i0].rsp_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          qlcnic_sriov_handle_multi_frags(trans,type);
+          for(int _aux = 0; _aux < _len_trans0; _aux++) {
+          free(trans[_aux].req_hdr);
+          }
+          for(int _aux = 0; _aux < _len_trans0; _aux++) {
+          free(trans[_aux].rsp_hdr);
+          }
+          free(trans);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long type = 255;
+        
+          int _len_trans0 = 65025;
+          struct qlcnic_bc_trans * trans = (struct qlcnic_bc_trans *) malloc(_len_trans0*sizeof(struct qlcnic_bc_trans));
+          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
+              trans[_i0].curr_rsp_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          trans[_i0].curr_req_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trans__i0__req_hdr0 = 1;
+          trans[_i0].req_hdr = (struct TYPE_3__ *) malloc(_len_trans__i0__req_hdr0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_trans__i0__req_hdr0; _j0++) {
+              trans[_i0].req_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_trans__i0__rsp_hdr0 = 1;
+          trans[_i0].rsp_hdr = (struct TYPE_4__ *) malloc(_len_trans__i0__rsp_hdr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_trans__i0__rsp_hdr0; _j0++) {
+              trans[_i0].rsp_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qlcnic_sriov_handle_multi_frags(trans,type);
+          for(int _aux = 0; _aux < _len_trans0; _aux++) {
+          free(trans[_aux].req_hdr);
+          }
+          for(int _aux = 0; _aux < _len_trans0; _aux++) {
+          free(trans[_aux].rsp_hdr);
+          }
+          free(trans);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long type = 10;
+        
+          int _len_trans0 = 100;
+          struct qlcnic_bc_trans * trans = (struct qlcnic_bc_trans *) malloc(_len_trans0*sizeof(struct qlcnic_bc_trans));
+          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
+              trans[_i0].curr_rsp_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          trans[_i0].curr_req_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trans__i0__req_hdr0 = 1;
+          trans[_i0].req_hdr = (struct TYPE_3__ *) malloc(_len_trans__i0__req_hdr0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_trans__i0__req_hdr0; _j0++) {
+              trans[_i0].req_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_trans__i0__rsp_hdr0 = 1;
+          trans[_i0].rsp_hdr = (struct TYPE_4__ *) malloc(_len_trans__i0__rsp_hdr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_trans__i0__rsp_hdr0; _j0++) {
+              trans[_i0].rsp_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qlcnic_sriov_handle_multi_frags(trans,type);
+          for(int _aux = 0; _aux < _len_trans0; _aux++) {
+          free(trans[_aux].req_hdr);
+          }
+          for(int _aux = 0; _aux < _len_trans0; _aux++) {
+          free(trans[_aux].rsp_hdr);
+          }
+          free(trans);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_trans0 = 1;
+          struct qlcnic_bc_trans * trans = (struct qlcnic_bc_trans *) malloc(_len_trans0*sizeof(struct qlcnic_bc_trans));
+          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
+              trans[_i0].curr_rsp_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          trans[_i0].curr_req_frag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trans__i0__req_hdr0 = 1;
+          trans[_i0].req_hdr = (struct TYPE_3__ *) malloc(_len_trans__i0__req_hdr0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_trans__i0__req_hdr0; _j0++) {
+              trans[_i0].req_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_trans__i0__rsp_hdr0 = 1;
+          trans[_i0].rsp_hdr = (struct TYPE_4__ *) malloc(_len_trans__i0__rsp_hdr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_trans__i0__rsp_hdr0; _j0++) {
+              trans[_i0].rsp_hdr->num_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           qlcnic_sriov_handle_multi_frags(trans,type);
           for(int _aux = 0; _aux < _len_trans0; _aux++) {
           free(trans[_aux].req_hdr);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ file_finder_move(struct file_finder *finder, int direction)
 		finder->pos.offset = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,18 +97,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
           int direction = 100;
+        
           int _len_finder0 = 1;
           struct file_finder * finder = (struct file_finder *) malloc(_len_finder0*sizeof(struct file_finder));
           for(int _i0 = 0; _i0 < _len_finder0; _i0++) {
-            finder[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
-        finder[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        finder[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
-        finder[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              finder[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          file_finder_move(finder,direction);
+          free(finder);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int direction = 255;
+        
+          int _len_finder0 = 65025;
+          struct file_finder * finder = (struct file_finder *) malloc(_len_finder0*sizeof(struct file_finder));
+          for(int _i0 = 0; _i0 < _len_finder0; _i0++) {
+              finder[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          file_finder_move(finder,direction);
+          free(finder);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int direction = 10;
+        
+          int _len_finder0 = 100;
+          struct file_finder * finder = (struct file_finder *) malloc(_len_finder0*sizeof(struct file_finder));
+          for(int _i0 = 0; _i0 < _len_finder0; _i0++) {
+              finder[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          file_finder_move(finder,direction);
+          free(finder);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 61
+          // dynamic_instructions_O0 : 61
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
+          int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_finder0 = 1;
+          struct file_finder * finder = (struct file_finder *) malloc(_len_finder0*sizeof(struct file_finder));
+          for(int _i0 = 0; _i0 < _len_finder0; _i0++) {
+              finder[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          finder[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           file_finder_move(finder,direction);
           free(finder);
         

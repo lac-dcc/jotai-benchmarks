@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -107,12 +110,6 @@ int rtw_os_xmit_resource_alloc(_adapter *padapter, struct xmit_buf *pxmitbuf,u32
 	return _SUCCESS;	
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,16 +126,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int alloc_sz = 100;
+        
           int _len_padapter0 = 1;
           int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
             padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pxmitbuf0 = 1;
           struct xmit_buf * pxmitbuf = (struct xmit_buf *) malloc(_len_pxmitbuf0*sizeof(struct xmit_buf));
           for(int _i0 = 0; _i0 < _len_pxmitbuf0; _i0++) {
-            pxmitbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pxmitbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_os_xmit_resource_alloc(padapter,pxmitbuf,alloc_sz);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -146,7 +147,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int alloc_sz = 255;
+        
+          int _len_padapter0 = 65025;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pxmitbuf0 = 65025;
+          struct xmit_buf * pxmitbuf = (struct xmit_buf *) malloc(_len_pxmitbuf0*sizeof(struct xmit_buf));
+          for(int _i0 = 0; _i0 < _len_pxmitbuf0; _i0++) {
+              pxmitbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_os_xmit_resource_alloc(padapter,pxmitbuf,alloc_sz);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pxmitbuf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int alloc_sz = 10;
+        
+          int _len_padapter0 = 100;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pxmitbuf0 = 100;
+          struct xmit_buf * pxmitbuf = (struct xmit_buf *) malloc(_len_pxmitbuf0*sizeof(struct xmit_buf));
+          for(int _i0 = 0; _i0 < _len_pxmitbuf0; _i0++) {
+              pxmitbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_os_xmit_resource_alloc(padapter,pxmitbuf,alloc_sz);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pxmitbuf);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int alloc_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_padapter0 = 1;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pxmitbuf0 = 1;
+          struct xmit_buf * pxmitbuf = (struct xmit_buf *) malloc(_len_pxmitbuf0*sizeof(struct xmit_buf));
+          for(int _i0 = 0; _i0 < _len_pxmitbuf0; _i0++) {
+              pxmitbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_os_xmit_resource_alloc(padapter,pxmitbuf,alloc_sz);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pxmitbuf);
+        
+        break;
+    }
     default:
         usage();
         break;

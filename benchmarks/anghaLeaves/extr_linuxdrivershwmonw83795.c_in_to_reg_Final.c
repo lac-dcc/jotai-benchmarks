@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline u16 in_to_reg(u8 index, u16 val)
 		return val / 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int val = 100;
+        
           int benchRet = in_to_reg(index,val);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int index = 255;
+        
           int val = 255;
+        
           int benchRet = in_to_reg(index,val);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int index = 10;
+        
           int val = 10;
+        
           int benchRet = in_to_reg(index,val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = in_to_reg(index,val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

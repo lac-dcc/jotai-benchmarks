@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void host1x_syncpt_base_free(struct host1x_syncpt_b
 		base->requested = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_base0 = 1;
+          int _len_base0 = 65025;
           struct host1x_syncpt_base * base = (struct host1x_syncpt_base *) malloc(_len_base0*sizeof(struct host1x_syncpt_base));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
-            base[_i0].requested = ((-2 * (next_i()%2)) + 1) * next_i();
+              base[_i0].requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           host1x_syncpt_base_free(base);
           free(base);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_base0 = 100;
           struct host1x_syncpt_base * base = (struct host1x_syncpt_base *) malloc(_len_base0*sizeof(struct host1x_syncpt_base));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
-            base[_i0].requested = ((-2 * (next_i()%2)) + 1) * next_i();
+              base[_i0].requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           host1x_syncpt_base_free(base);
           free(base);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_base0 = 1;
+          struct host1x_syncpt_base * base = (struct host1x_syncpt_base *) malloc(_len_base0*sizeof(struct host1x_syncpt_base));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+              base[_i0].requested = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          host1x_syncpt_base_free(base);
+          free(base);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int smscore_get_device_mode(struct smscore_device_t *coredev)
 	return coredev->mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_coredev0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_coredev0 = 65025;
           struct smscore_device_t * coredev = (struct smscore_device_t *) malloc(_len_coredev0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_coredev0; _i0++) {
-            coredev[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              coredev[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smscore_get_device_mode(coredev);
           printf("%d\n", benchRet); 
           free(coredev);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_coredev0 = 100;
           struct smscore_device_t * coredev = (struct smscore_device_t *) malloc(_len_coredev0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_coredev0; _i0++) {
-            coredev[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              coredev[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = smscore_get_device_mode(coredev);
+          printf("%d\n", benchRet); 
+          free(coredev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_coredev0 = 1;
+          struct smscore_device_t * coredev = (struct smscore_device_t *) malloc(_len_coredev0*sizeof(struct smscore_device_t));
+          for(int _i0 = 0; _i0 < _len_coredev0; _i0++) {
+              coredev[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = smscore_get_device_mode(coredev);
           printf("%d\n", benchRet); 
           free(coredev);

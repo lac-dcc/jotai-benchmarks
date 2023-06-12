@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ task_clear_used_for_purging(task_t task)
 	task->purged_memory_critical = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +82,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].purged_memory_critical = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].purged_memory_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].purged_memory_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].purged_memory_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           task_clear_used_for_purging(task);
           free(task);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_task0 = 100;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].purged_memory_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].purged_memory_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          task_clear_used_for_purging(task);
+          free(task);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].purged_memory_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].purged_memory_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          task_clear_used_for_purging(task);
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

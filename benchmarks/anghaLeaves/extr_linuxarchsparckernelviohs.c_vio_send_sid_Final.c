@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ u32 vio_send_sid(struct vio_driver_state *vio)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,23 +88,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vio0 = 1;
+          int _len_vio0 = 65025;
           struct vio_driver_state * vio = (struct vio_driver_state *) malloc(_len_vio0*sizeof(struct vio_driver_state));
           for(int _i0 = 0; _i0 < _len_vio0; _i0++) {
-            vio[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
-        vio[_i0]._peer_sid = ((-2 * (next_i()%2)) + 1) * next_i();
-        vio[_i0]._local_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+              vio[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          vio[_i0]._peer_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          vio[_i0]._local_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vio_send_sid(vio);
           printf("%d\n", benchRet); 
           free(vio);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vio0 = 100;
+          struct vio_driver_state * vio = (struct vio_driver_state *) malloc(_len_vio0*sizeof(struct vio_driver_state));
+          for(int _i0 = 0; _i0 < _len_vio0; _i0++) {
+              vio[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          vio[_i0]._peer_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          vio[_i0]._local_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vio_send_sid(vio);
+          printf("%d\n", benchRet); 
+          free(vio);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vio0 = 1;
+          struct vio_driver_state * vio = (struct vio_driver_state *) malloc(_len_vio0*sizeof(struct vio_driver_state));
+          for(int _i0 = 0; _i0 < _len_vio0; _i0++) {
+              vio[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          vio[_i0]._peer_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+          vio[_i0]._local_sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vio_send_sid(vio);
+          printf("%d\n", benchRet); 
+          free(vio);
+        
+        break;
+    }
     default:
         usage();
         break;

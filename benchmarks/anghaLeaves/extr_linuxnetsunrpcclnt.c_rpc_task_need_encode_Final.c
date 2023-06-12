@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ rpc_task_need_encode(struct rpc_task *task)
 	return task->tk_rqstp->rq_snd_buf.len == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct rpc_task * task = (struct rpc_task *) malloc(_len_task0*sizeof(struct rpc_task));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
               int _len_task__i0__tk_rqstp0 = 1;
           task[_i0].tk_rqstp = (struct TYPE_4__ *) malloc(_len_task__i0__tk_rqstp0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_task__i0__tk_rqstp0; _j0++) {
-            task[_i0].tk_rqstp->rq_snd_buf.len = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].tk_rqstp->rq_snd_buf.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = rpc_task_need_encode(task);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_task0; _aux++) {
@@ -104,7 +104,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_task0 = 100;
+          struct rpc_task * task = (struct rpc_task *) malloc(_len_task0*sizeof(struct rpc_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__tk_rqstp0 = 1;
+          task[_i0].tk_rqstp = (struct TYPE_4__ *) malloc(_len_task__i0__tk_rqstp0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_task__i0__tk_rqstp0; _j0++) {
+              task[_i0].tk_rqstp->rq_snd_buf.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = rpc_task_need_encode(task);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].tk_rqstp);
+          }
+          free(task);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct rpc_task * task = (struct rpc_task *) malloc(_len_task0*sizeof(struct rpc_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__tk_rqstp0 = 1;
+          task[_i0].tk_rqstp = (struct TYPE_4__ *) malloc(_len_task__i0__tk_rqstp0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_task__i0__tk_rqstp0; _j0++) {
+              task[_i0].tk_rqstp->rq_snd_buf.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = rpc_task_need_encode(task);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].tk_rqstp);
+          }
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

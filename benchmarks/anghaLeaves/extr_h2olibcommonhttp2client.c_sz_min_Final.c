@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static size_t sz_min(size_t x, size_t y)
     return x < y ? x : y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long x = 100;
+        
           unsigned long y = 100;
+        
           unsigned long benchRet = sz_min(x,y);
           printf("%lu\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long x = 255;
+        
           unsigned long y = 255;
+        
           unsigned long benchRet = sz_min(x,y);
           printf("%lu\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long x = 10;
+        
           unsigned long y = 10;
+        
           unsigned long benchRet = sz_min(x,y);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = sz_min(x,y);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

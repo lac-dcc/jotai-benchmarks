@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ void *xdiLoadFile(char *FileName, dword *FileLength,
 	return (ret);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +86,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned long lim = 100;
+        
           int _len_FileName0 = 1;
           char * FileName = (char *) malloc(_len_FileName0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_FileName0; _i0++) {
             FileName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_FileLength0 = 1;
           long * FileLength = (long *) malloc(_len_FileLength0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_FileLength0; _i0++) {
             FileLength[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          void * benchRet = xdiLoadFile(FileName,FileLength,lim);
+          free(FileName);
+          free(FileLength);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long lim = 255;
+        
+          int _len_FileName0 = 65025;
+          char * FileName = (char *) malloc(_len_FileName0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_FileName0; _i0++) {
+            FileName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FileLength0 = 65025;
+          long * FileLength = (long *) malloc(_len_FileLength0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_FileLength0; _i0++) {
+            FileLength[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          void * benchRet = xdiLoadFile(FileName,FileLength,lim);
+          free(FileName);
+          free(FileLength);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long lim = 10;
+        
+          int _len_FileName0 = 100;
+          char * FileName = (char *) malloc(_len_FileName0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_FileName0; _i0++) {
+            FileName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FileLength0 = 100;
+          long * FileLength = (long *) malloc(_len_FileLength0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_FileLength0; _i0++) {
+            FileLength[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          void * benchRet = xdiLoadFile(FileName,FileLength,lim);
+          free(FileName);
+          free(FileLength);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long lim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_FileName0 = 1;
+          char * FileName = (char *) malloc(_len_FileName0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_FileName0; _i0++) {
+            FileName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_FileLength0 = 1;
+          long * FileLength = (long *) malloc(_len_FileLength0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_FileLength0; _i0++) {
+            FileLength[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           void * benchRet = xdiLoadFile(FileName,FileLength,lim);
           free(FileName);
           free(FileLength);

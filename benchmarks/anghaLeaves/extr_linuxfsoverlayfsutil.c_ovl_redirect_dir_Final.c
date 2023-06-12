@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ bool ovl_redirect_dir(struct super_block *sb)
 	return ofs->config.redirect_dir && !ofs->noxattr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sb0 = 1;
+          int _len_sb0 = 65025;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
               int _len_sb__i0__s_fs_info0 = 1;
           sb[_i0].s_fs_info = (struct ovl_fs *) malloc(_len_sb__i0__s_fs_info0*sizeof(struct ovl_fs));
           for(int _j0 = 0; _j0 < _len_sb__i0__s_fs_info0; _j0++) {
-            sb[_i0].s_fs_info->noxattr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sb[_i0].s_fs_info->config.redirect_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_fs_info->noxattr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb[_i0].s_fs_info->config.redirect_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = ovl_redirect_dir(sb);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sb0; _aux++) {
@@ -105,7 +105,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sb0 = 100;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              int _len_sb__i0__s_fs_info0 = 1;
+          sb[_i0].s_fs_info = (struct ovl_fs *) malloc(_len_sb__i0__s_fs_info0*sizeof(struct ovl_fs));
+          for(int _j0 = 0; _j0 < _len_sb__i0__s_fs_info0; _j0++) {
+              sb[_i0].s_fs_info->noxattr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb[_i0].s_fs_info->config.redirect_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = ovl_redirect_dir(sb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sb0; _aux++) {
+          free(sb[_aux].s_fs_info);
+          }
+          free(sb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sb0 = 1;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              int _len_sb__i0__s_fs_info0 = 1;
+          sb[_i0].s_fs_info = (struct ovl_fs *) malloc(_len_sb__i0__s_fs_info0*sizeof(struct ovl_fs));
+          for(int _j0 = 0; _j0 < _len_sb__i0__s_fs_info0; _j0++) {
+              sb[_i0].s_fs_info->noxattr = ((-2 * (next_i()%2)) + 1) * next_i();
+          sb[_i0].s_fs_info->config.redirect_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = ovl_redirect_dir(sb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sb0; _aux++) {
+          free(sb[_aux].s_fs_info);
+          }
+          free(sb);
+        
+        break;
+    }
     default:
         usage();
         break;

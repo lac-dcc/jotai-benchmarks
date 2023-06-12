@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ int usbhs_status_get_ctrl_stage(struct usbhs_irq_state *irq_state)
 	return (int)irq_state->intsts0 & CTSQ_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_irq_state0 = 1;
+          int _len_irq_state0 = 65025;
           struct usbhs_irq_state * irq_state = (struct usbhs_irq_state *) malloc(_len_irq_state0*sizeof(struct usbhs_irq_state));
           for(int _i0 = 0; _i0 < _len_irq_state0; _i0++) {
-            irq_state[_i0].intsts0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              irq_state[_i0].intsts0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = usbhs_status_get_ctrl_stage(irq_state);
           printf("%d\n", benchRet); 
           free(irq_state);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_irq_state0 = 100;
           struct usbhs_irq_state * irq_state = (struct usbhs_irq_state *) malloc(_len_irq_state0*sizeof(struct usbhs_irq_state));
           for(int _i0 = 0; _i0 < _len_irq_state0; _i0++) {
-            irq_state[_i0].intsts0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              irq_state[_i0].intsts0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = usbhs_status_get_ctrl_stage(irq_state);
           printf("%d\n", benchRet); 
           free(irq_state);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_irq_state0 = 1;
+          struct usbhs_irq_state * irq_state = (struct usbhs_irq_state *) malloc(_len_irq_state0*sizeof(struct usbhs_irq_state));
+          for(int _i0 = 0; _i0 < _len_irq_state0; _i0++) {
+              irq_state[_i0].intsts0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usbhs_status_get_ctrl_stage(irq_state);
+          printf("%d\n", benchRet); 
+          free(irq_state);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ d_last_char (struct d_print_info *dpi)
   return dpi->last_char;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dpi0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dpi0 = 65025;
           struct d_print_info * dpi = (struct d_print_info *) malloc(_len_dpi0*sizeof(struct d_print_info));
           for(int _i0 = 0; _i0 < _len_dpi0; _i0++) {
-            dpi[_i0].last_char = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpi[_i0].last_char = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char benchRet = d_last_char(dpi);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(dpi);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_dpi0 = 100;
           struct d_print_info * dpi = (struct d_print_info *) malloc(_len_dpi0*sizeof(struct d_print_info));
           for(int _i0 = 0; _i0 < _len_dpi0; _i0++) {
-            dpi[_i0].last_char = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpi[_i0].last_char = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          char benchRet = d_last_char(dpi);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(dpi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dpi0 = 1;
+          struct d_print_info * dpi = (struct d_print_info *) malloc(_len_dpi0*sizeof(struct d_print_info));
+          for(int _i0 = 0; _i0 < _len_dpi0; _i0++) {
+              dpi[_i0].last_char = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           char benchRet = d_last_char(dpi);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(dpi);

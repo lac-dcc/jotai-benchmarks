@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void gsc_get_prescaler_shfactor(u32 hratio, u32 vratio, u32 *sh)
 		*sh = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 42
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 42
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 42
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 42
+          // ------------------------------- 
+          // static_instructions_Oz : 42
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
           int hratio = 100;
+        
           int vratio = 100;
+        
           int _len_sh0 = 1;
           int * sh = (int *) malloc(_len_sh0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sh0; _i0++) {
             sh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           gsc_get_prescaler_shfactor(hratio,vratio,sh);
           free(sh);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 42
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 42
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 42
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 42
+          // ------------------------------- 
+          // static_instructions_Oz : 42
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
+          int hratio = 255;
+        
+          int vratio = 255;
+        
+          int _len_sh0 = 65025;
+          int * sh = (int *) malloc(_len_sh0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sh0; _i0++) {
+            sh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          gsc_get_prescaler_shfactor(hratio,vratio,sh);
+          free(sh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 42
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 42
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 42
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 42
+          // ------------------------------- 
+          // static_instructions_Oz : 42
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
           int hratio = 10;
+        
           int vratio = 10;
+        
           int _len_sh0 = 100;
           int * sh = (int *) malloc(_len_sh0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sh0; _i0++) {
             sh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          gsc_get_prescaler_shfactor(hratio,vratio,sh);
+          free(sh);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 42
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 42
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 42
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 42
+          // ------------------------------- 
+          // static_instructions_Oz : 42
+          // dynamic_instructions_Oz : 42
+          // ------------------------------- 
+
+          int hratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sh0 = 1;
+          int * sh = (int *) malloc(_len_sh0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sh0; _i0++) {
+            sh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           gsc_get_prescaler_shfactor(hratio,vratio,sh);
           free(sh);
         

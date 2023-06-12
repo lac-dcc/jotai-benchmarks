@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int sys_get_trip_type(struct thermal_zone_device *t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int trip = 100;
+        
           int _len_thermal0 = 1;
           struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
           for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
-            thermal[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              thermal[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_type0 = 1;
           enum thermal_trip_type * type = (enum thermal_trip_type *) malloc(_len_type0*sizeof(enum thermal_trip_type));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
             type[_i0] = 0;
           }
+        
           int benchRet = sys_get_trip_type(thermal,trip,type);
           printf("%d\n", benchRet); 
           free(thermal);
@@ -108,7 +109,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int trip = 255;
+        
+          int _len_thermal0 = 65025;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              thermal[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_type0 = 65025;
+          enum thermal_trip_type * type = (enum thermal_trip_type *) malloc(_len_type0*sizeof(enum thermal_trip_type));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = 0;
+          }
+        
+          int benchRet = sys_get_trip_type(thermal,trip,type);
+          printf("%d\n", benchRet); 
+          free(thermal);
+          free(type);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int trip = 10;
+        
+          int _len_thermal0 = 100;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              thermal[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_type0 = 100;
+          enum thermal_trip_type * type = (enum thermal_trip_type *) malloc(_len_type0*sizeof(enum thermal_trip_type));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = 0;
+          }
+        
+          int benchRet = sys_get_trip_type(thermal,trip,type);
+          printf("%d\n", benchRet); 
+          free(thermal);
+          free(type);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int trip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_thermal0 = 1;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              thermal[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_type0 = 1;
+          enum thermal_trip_type * type = (enum thermal_trip_type *) malloc(_len_type0*sizeof(enum thermal_trip_type));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+            type[_i0] = 0;
+          }
+        
+          int benchRet = sys_get_trip_type(thermal,trip,type);
+          printf("%d\n", benchRet); 
+          free(thermal);
+          free(type);
+        
+        break;
+    }
     default:
         usage();
         break;

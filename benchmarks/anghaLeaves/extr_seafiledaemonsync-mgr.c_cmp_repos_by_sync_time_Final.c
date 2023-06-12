@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ cmp_repos_by_sync_time (gconstpointer a, gconstpointer b, gpointer user_data)
     return (repo_a->last_sync_time - repo_b->last_sync_time);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int user_data = 100;
+        
           int _len_a0 = 1;
           struct TYPE_5__ * a = (struct TYPE_5__ *) malloc(_len_a0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = cmp_repos_by_sync_time(a,b,user_data);
           printf("%ld\n", benchRet); 
           free(a);
@@ -108,7 +110,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int user_data = 255;
+        
+          int _len_a0 = 65025;
+          struct TYPE_5__ * a = (struct TYPE_5__ *) malloc(_len_a0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = cmp_repos_by_sync_time(a,b,user_data);
+          printf("%ld\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int user_data = 10;
+        
+          int _len_a0 = 100;
+          struct TYPE_5__ * a = (struct TYPE_5__ *) malloc(_len_a0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = cmp_repos_by_sync_time(a,b,user_data);
+          printf("%ld\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int user_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          struct TYPE_5__ * a = (struct TYPE_5__ *) malloc(_len_a0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 1;
+          struct TYPE_5__ * b = (struct TYPE_5__ *) malloc(_len_b0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].last_sync_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = cmp_repos_by_sync_time(a,b,user_data);
+          printf("%ld\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

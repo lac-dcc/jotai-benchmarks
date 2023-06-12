@@ -61,12 +61,6 @@ void sst_hsw_set_module_disabled_rtd3(struct sst_hsw *hsw, u32 module_id)
 	hsw->enabled_modules_rtd3 &= ~(1 << module_id);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +73,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int module_id = 10;
+        
           int _len_hsw0 = 100;
           struct sst_hsw * hsw = (struct sst_hsw *) malloc(_len_hsw0*sizeof(struct sst_hsw));
           for(int _i0 = 0; _i0 < _len_hsw0; _i0++) {
-            hsw[_i0].enabled_modules_rtd3 = ((-2 * (next_i()%2)) + 1) * next_i();
+              hsw[_i0].enabled_modules_rtd3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sst_hsw_set_module_disabled_rtd3(hsw,module_id);
           free(hsw);
         

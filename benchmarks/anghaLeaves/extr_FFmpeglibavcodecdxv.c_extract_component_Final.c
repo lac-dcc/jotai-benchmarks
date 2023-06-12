@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +87,6 @@ __attribute__((used)) static int extract_component(int yo0, int yo1, int code)
     return yo;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,8 +103,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int yo0 = 100;
+        
           int yo1 = 100;
+        
           int code = 100;
+        
           int benchRet = extract_component(yo0,yo1,code);
           printf("%d\n", benchRet); 
         
@@ -119,8 +117,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int yo0 = 255;
+        
           int yo1 = 255;
+        
           int code = 255;
+        
           int benchRet = extract_component(yo0,yo1,code);
           printf("%d\n", benchRet); 
         
@@ -130,14 +131,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int yo0 = 10;
+        
           int yo1 = 10;
+        
           int code = 10;
+        
           int benchRet = extract_component(yo0,yo1,code);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int yo0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int yo1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = extract_component(yo0,yo1,code);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

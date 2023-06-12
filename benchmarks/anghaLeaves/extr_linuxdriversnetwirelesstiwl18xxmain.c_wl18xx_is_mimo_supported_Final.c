@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static bool wl18xx_is_mimo_supported(struct wl1271 *wl)
 	       (priv->conf.ht.mode != HT_MODE_SISO20);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +90,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wl0 = 65025;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__priv0 = 1;
+          wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
+          for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
+              wl[_i0].priv->conf.ht.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wl[_i0].priv->conf.phy.number_of_assembled_ant2_4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = wl18xx_is_mimo_supported(wl);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].priv);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_wl0 = 100;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__priv0 = 1;
+          wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
+          for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
+              wl[_i0].priv->conf.ht.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wl[_i0].priv->conf.phy.number_of_assembled_ant2_4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = wl18xx_is_mimo_supported(wl);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].priv);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_wl0 = 1;
           struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
               int _len_wl__i0__priv0 = 1;
           wl[_i0].priv = (struct wl18xx_priv *) malloc(_len_wl__i0__priv0*sizeof(struct wl18xx_priv));
           for(int _j0 = 0; _j0 < _len_wl__i0__priv0; _j0++) {
-            wl[_i0].priv->conf.ht.mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        wl[_i0].priv->conf.phy.number_of_assembled_ant2_4 = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl[_i0].priv->conf.ht.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wl[_i0].priv->conf.phy.number_of_assembled_ant2_4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           int benchRet = wl18xx_is_mimo_supported(wl);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wl0; _aux++) {

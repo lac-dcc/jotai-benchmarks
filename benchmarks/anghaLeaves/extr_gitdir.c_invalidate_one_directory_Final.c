@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void invalidate_one_directory(struct untracked_cach
 	ucd->untracked_nr = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_uc0 = 65025;
+          struct untracked_cache * uc = (struct untracked_cache *) malloc(_len_uc0*sizeof(struct untracked_cache));
+          for(int _i0 = 0; _i0 < _len_uc0; _i0++) {
+              uc[_i0].dir_invalidated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ucd0 = 65025;
+          struct untracked_cache_dir * ucd = (struct untracked_cache_dir *) malloc(_len_ucd0*sizeof(struct untracked_cache_dir));
+          for(int _i0 = 0; _i0 < _len_ucd0; _i0++) {
+              ucd[_i0].untracked_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ucd[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          invalidate_one_directory(uc,ucd);
+          free(uc);
+          free(ucd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_uc0 = 100;
+          struct untracked_cache * uc = (struct untracked_cache *) malloc(_len_uc0*sizeof(struct untracked_cache));
+          for(int _i0 = 0; _i0 < _len_uc0; _i0++) {
+              uc[_i0].dir_invalidated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ucd0 = 100;
+          struct untracked_cache_dir * ucd = (struct untracked_cache_dir *) malloc(_len_ucd0*sizeof(struct untracked_cache_dir));
+          for(int _i0 = 0; _i0 < _len_ucd0; _i0++) {
+              ucd[_i0].untracked_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ucd[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          invalidate_one_directory(uc,ucd);
+          free(uc);
+          free(ucd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_uc0 = 1;
           struct untracked_cache * uc = (struct untracked_cache *) malloc(_len_uc0*sizeof(struct untracked_cache));
           for(int _i0 = 0; _i0 < _len_uc0; _i0++) {
-            uc[_i0].dir_invalidated = ((-2 * (next_i()%2)) + 1) * next_i();
+              uc[_i0].dir_invalidated = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ucd0 = 1;
           struct untracked_cache_dir * ucd = (struct untracked_cache_dir *) malloc(_len_ucd0*sizeof(struct untracked_cache_dir));
           for(int _i0 = 0; _i0 < _len_ucd0; _i0++) {
-            ucd[_i0].untracked_nr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ucd[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              ucd[_i0].untracked_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ucd[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           invalidate_one_directory(uc,ucd);
           free(uc);
           free(ucd);

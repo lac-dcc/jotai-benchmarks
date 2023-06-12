@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +98,6 @@ __attribute__((used)) static u64 power8_bhrb_filter_map(u64 branch_sample_type)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int branch_sample_type = 100;
+        
           int benchRet = power8_bhrb_filter_map(branch_sample_type);
           printf("%d\n", benchRet); 
         
@@ -128,6 +124,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int branch_sample_type = 255;
+        
           int benchRet = power8_bhrb_filter_map(branch_sample_type);
           printf("%d\n", benchRet); 
         
@@ -137,12 +134,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int branch_sample_type = 10;
+        
           int benchRet = power8_bhrb_filter_map(branch_sample_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int branch_sample_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = power8_bhrb_filter_map(branch_sample_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ int zlog_set_level(int new_value) /* {{{ */
 	return old_value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int new_value = 100;
+        
           int benchRet = zlog_set_level(new_value);
           printf("%d\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int new_value = 255;
+        
           int benchRet = zlog_set_level(new_value);
           printf("%d\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int new_value = 10;
+        
           int benchRet = zlog_set_level(new_value);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int new_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = zlog_set_level(new_value);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

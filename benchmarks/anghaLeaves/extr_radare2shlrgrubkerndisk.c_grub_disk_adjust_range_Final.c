@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ grub_disk_adjust_range (grub_disk_t disk, grub_disk_addr_t *sector,
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,21 +110,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int disk = 100;
+        
           int size = 100;
+        
           int _len_sector0 = 1;
           int * sector = (int *) malloc(_len_sector0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sector0; _i0++) {
             sector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offset0 = 1;
           int * offset = (int *) malloc(_len_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = grub_disk_adjust_range(disk,sector,offset,size);
+          printf("%d\n", benchRet); 
+          free(sector);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int disk = 255;
+        
+          int size = 255;
+        
+          int _len_sector0 = 65025;
+          int * sector = (int *) malloc(_len_sector0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sector0; _i0++) {
+            sector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 65025;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = grub_disk_adjust_range(disk,sector,offset,size);
+          printf("%d\n", benchRet); 
+          free(sector);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int disk = 10;
+        
+          int size = 10;
+        
+          int _len_sector0 = 100;
+          int * sector = (int *) malloc(_len_sector0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sector0; _i0++) {
+            sector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 100;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = grub_disk_adjust_range(disk,sector,offset,size);
+          printf("%d\n", benchRet); 
+          free(sector);
+          free(offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int disk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sector0 = 1;
+          int * sector = (int *) malloc(_len_sector0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sector0; _i0++) {
+            sector[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 1;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = grub_disk_adjust_range(disk,sector,offset,size);
           printf("%d\n", benchRet); 
           free(sector);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static inline int check_mode(struct tuner *t, enum v4l2_tu
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,30 +88,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           enum v4l2_tuner_type mode = 0;
-          int _len_t0 = 1;
+        
+          int _len_t0 = 65025;
           struct tuner * t = (struct tuner *) malloc(_len_t0*sizeof(struct tuner));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].mode_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].mode_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_mode(t,mode);
           printf("%d\n", benchRet); 
           free(t);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           enum v4l2_tuner_type mode = 0;
+        
           int _len_t0 = 100;
           struct tuner * t = (struct tuner *) malloc(_len_t0*sizeof(struct tuner));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].mode_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].mode_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = check_mode(t,mode);
+          printf("%d\n", benchRet); 
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          enum v4l2_tuner_type mode = 0;
+        
+          int _len_t0 = 1;
+          struct tuner * t = (struct tuner *) malloc(_len_t0*sizeof(struct tuner));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].mode_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = check_mode(t,mode);
           printf("%d\n", benchRet); 
           free(t);

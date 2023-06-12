@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ unsigned int get_pipes_per_mec(struct device_queue_manager *dqm)
 	return dqm->dev->shared_resources.num_pipe_per_mec;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dqm0 = 1;
+          int _len_dqm0 = 65025;
           struct device_queue_manager * dqm = (struct device_queue_manager *) malloc(_len_dqm0*sizeof(struct device_queue_manager));
           for(int _i0 = 0; _i0 < _len_dqm0; _i0++) {
               int _len_dqm__i0__dev0 = 1;
           dqm[_i0].dev = (struct TYPE_4__ *) malloc(_len_dqm__i0__dev0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_dqm__i0__dev0; _j0++) {
-            dqm[_i0].dev->shared_resources.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+              dqm[_i0].dev->shared_resources.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           unsigned int benchRet = get_pipes_per_mec(dqm);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_dqm0; _aux++) {
@@ -103,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dqm0 = 100;
+          struct device_queue_manager * dqm = (struct device_queue_manager *) malloc(_len_dqm0*sizeof(struct device_queue_manager));
+          for(int _i0 = 0; _i0 < _len_dqm0; _i0++) {
+              int _len_dqm__i0__dev0 = 1;
+          dqm[_i0].dev = (struct TYPE_4__ *) malloc(_len_dqm__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dqm__i0__dev0; _j0++) {
+              dqm[_i0].dev->shared_resources.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = get_pipes_per_mec(dqm);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dqm0; _aux++) {
+          free(dqm[_aux].dev);
+          }
+          free(dqm);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dqm0 = 1;
+          struct device_queue_manager * dqm = (struct device_queue_manager *) malloc(_len_dqm0*sizeof(struct device_queue_manager));
+          for(int _i0 = 0; _i0 < _len_dqm0; _i0++) {
+              int _len_dqm__i0__dev0 = 1;
+          dqm[_i0].dev = (struct TYPE_4__ *) malloc(_len_dqm__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dqm__i0__dev0; _j0++) {
+              dqm[_i0].dev->shared_resources.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = get_pipes_per_mec(dqm);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dqm0; _aux++) {
+          free(dqm[_aux].dev);
+          }
+          free(dqm);
+        
+        break;
+    }
     default:
         usage();
         break;

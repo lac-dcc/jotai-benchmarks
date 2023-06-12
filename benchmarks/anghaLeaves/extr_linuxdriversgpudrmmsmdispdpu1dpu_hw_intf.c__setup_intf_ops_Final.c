@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void _setup_intf_ops(struct dpu_hw_intf_ops *ops,
 	ops->get_line_count = dpu_hw_intf_get_line_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,23 +93,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long cap = 100;
+        
           int _len_ops0 = 1;
           struct dpu_hw_intf_ops * ops = (struct dpu_hw_intf_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intf_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].collect_misr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_misr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].enable_timing = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_prg_fetch = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_timing_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].collect_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_timing = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_prg_fetch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_timing_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           _setup_intf_ops(ops,cap);
           free(ops);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long cap = 255;
+        
+          int _len_ops0 = 65025;
+          struct dpu_hw_intf_ops * ops = (struct dpu_hw_intf_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intf_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].collect_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_timing = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_prg_fetch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_timing_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_intf_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long cap = 10;
+        
+          int _len_ops0 = 100;
+          struct dpu_hw_intf_ops * ops = (struct dpu_hw_intf_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intf_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].collect_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_timing = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_prg_fetch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_timing_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_intf_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ops0 = 1;
+          struct dpu_hw_intf_ops * ops = (struct dpu_hw_intf_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intf_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].collect_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_misr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_timing = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_prg_fetch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_timing_gen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_intf_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
     default:
         usage();
         break;

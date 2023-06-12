@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ PE_i_can_has_debugger(uint32_t *debug_flags)
 	return (debug_enabled);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_debug_flags0 = 1;
+          int _len_debug_flags0 = 65025;
           long * debug_flags = (long *) malloc(_len_debug_flags0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_debug_flags0; _i0++) {
             debug_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = PE_i_can_has_debugger(debug_flags);
           printf("%ld\n", benchRet); 
           free(debug_flags);
@@ -113,13 +109,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_debug_flags0; _i0++) {
             debug_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = PE_i_can_has_debugger(debug_flags);
           printf("%ld\n", benchRet); 
           free(debug_flags);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_debug_flags0 = 1;
+          long * debug_flags = (long *) malloc(_len_debug_flags0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_debug_flags0; _i0++) {
+            debug_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = PE_i_can_has_debugger(debug_flags);
+          printf("%ld\n", benchRet); 
+          free(debug_flags);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool match_fwnode(struct v4l2_subdev *sd, struct v4
 	return sd->fwnode == asd->match.fwnode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sd0 = 1;
+          int _len_sd0 = 65025;
           struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_asd0 = 1;
+        
+          int _len_asd0 = 65025;
           struct v4l2_async_subdev * asd = (struct v4l2_async_subdev *) malloc(_len_asd0*sizeof(struct v4l2_async_subdev));
           for(int _i0 = 0; _i0 < _len_asd0; _i0++) {
-            asd[_i0].match.fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+              asd[_i0].match.fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = match_fwnode(sd,asd);
           printf("%d\n", benchRet); 
           free(sd);
@@ -101,7 +102,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sd0 = 100;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_asd0 = 100;
+          struct v4l2_async_subdev * asd = (struct v4l2_async_subdev *) malloc(_len_asd0*sizeof(struct v4l2_async_subdev));
+          for(int _i0 = 0; _i0 < _len_asd0; _i0++) {
+              asd[_i0].match.fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = match_fwnode(sd,asd);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(asd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sd0 = 1;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_asd0 = 1;
+          struct v4l2_async_subdev * asd = (struct v4l2_async_subdev *) malloc(_len_asd0*sizeof(struct v4l2_async_subdev));
+          for(int _i0 = 0; _i0 < _len_asd0; _i0++) {
+              asd[_i0].match.fwnode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = match_fwnode(sd,asd);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(asd);
+        
+        break;
+    }
     default:
         usage();
         break;

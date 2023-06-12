@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int someone_adding(struct mlx5_mr_cache *cache)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cache0 = 1;
+          int _len_cache0 = 65025;
           struct mlx5_mr_cache * cache = (struct mlx5_mr_cache *) malloc(_len_cache0*sizeof(struct mlx5_mr_cache));
           for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
               int _len_cache__i0__ent0 = 1;
           cache[_i0].ent = (struct TYPE_2__ *) malloc(_len_cache__i0__ent0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cache__i0__ent0; _j0++) {
-            cache[_i0].ent->cur = ((-2 * (next_i()%2)) + 1) * next_i();
-        cache[_i0].ent->limit = ((-2 * (next_i()%2)) + 1) * next_i();
+              cache[_i0].ent->cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cache[_i0].ent->limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = someone_adding(cache);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cache0; _aux++) {
@@ -110,7 +109,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cache0 = 100;
+          struct mlx5_mr_cache * cache = (struct mlx5_mr_cache *) malloc(_len_cache0*sizeof(struct mlx5_mr_cache));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              int _len_cache__i0__ent0 = 1;
+          cache[_i0].ent = (struct TYPE_2__ *) malloc(_len_cache__i0__ent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cache__i0__ent0; _j0++) {
+              cache[_i0].ent->cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cache[_i0].ent->limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = someone_adding(cache);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cache0; _aux++) {
+          free(cache[_aux].ent);
+          }
+          free(cache);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cache0 = 1;
+          struct mlx5_mr_cache * cache = (struct mlx5_mr_cache *) malloc(_len_cache0*sizeof(struct mlx5_mr_cache));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              int _len_cache__i0__ent0 = 1;
+          cache[_i0].ent = (struct TYPE_2__ *) malloc(_len_cache__i0__ent0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cache__i0__ent0; _j0++) {
+              cache[_i0].ent->cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cache[_i0].ent->limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = someone_adding(cache);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cache0; _aux++) {
+          free(cache[_aux].ent);
+          }
+          free(cache);
+        
+        break;
+    }
     default:
         usage();
         break;

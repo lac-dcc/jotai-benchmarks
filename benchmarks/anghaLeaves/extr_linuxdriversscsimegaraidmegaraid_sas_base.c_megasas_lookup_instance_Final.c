@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static struct megasas_instance *megasas_lookup_instance(u1
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long host_no = 100;
+        
           struct megasas_instance * benchRet = megasas_lookup_instance(host_no);
         
         break;
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long host_no = 255;
+        
           struct megasas_instance * benchRet = megasas_lookup_instance(host_no);
         
         break;
@@ -115,11 +112,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long host_no = 10;
+        
           struct megasas_instance * benchRet = megasas_lookup_instance(host_no);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long host_no = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct megasas_instance * benchRet = megasas_lookup_instance(host_no);
+        
+        break;
+    }
     default:
         usage();
         break;

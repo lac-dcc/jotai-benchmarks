@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -108,12 +111,6 @@ __attribute__((used)) static u64 i40e_get_rss_hash_bits(struct ethtool_rxnfc *nf
 	return i_set;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,16 +123,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int i_setc = 100;
+        
           int _len_nfc0 = 1;
           struct ethtool_rxnfc * nfc = (struct ethtool_rxnfc *) malloc(_len_nfc0*sizeof(struct ethtool_rxnfc));
           for(int _i0 = 0; _i0 < _len_nfc0; _i0++) {
-            nfc[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        nfc[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              nfc[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          nfc[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = i40e_get_rss_hash_bits(nfc,i_setc);
+          printf("%d\n", benchRet); 
+          free(nfc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int i_setc = 255;
+        
+          int _len_nfc0 = 65025;
+          struct ethtool_rxnfc * nfc = (struct ethtool_rxnfc *) malloc(_len_nfc0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_nfc0; _i0++) {
+              nfc[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          nfc[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = i40e_get_rss_hash_bits(nfc,i_setc);
+          printf("%d\n", benchRet); 
+          free(nfc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int i_setc = 10;
+        
+          int _len_nfc0 = 100;
+          struct ethtool_rxnfc * nfc = (struct ethtool_rxnfc *) malloc(_len_nfc0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_nfc0; _i0++) {
+              nfc[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          nfc[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = i40e_get_rss_hash_bits(nfc,i_setc);
+          printf("%d\n", benchRet); 
+          free(nfc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int i_setc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nfc0 = 1;
+          struct ethtool_rxnfc * nfc = (struct ethtool_rxnfc *) malloc(_len_nfc0*sizeof(struct ethtool_rxnfc));
+          for(int _i0 = 0; _i0 < _len_nfc0; _i0++) {
+              nfc[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          nfc[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = i40e_get_rss_hash_bits(nfc,i_setc);
           printf("%d\n", benchRet); 
           free(nfc);

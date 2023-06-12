@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static void mult64(unsigned long long x, unsigned long lon
 	*highp = high;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,21 +95,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           unsigned long long x = 100;
+        
           unsigned long long y = 100;
+        
           int _len_highp0 = 1;
           unsigned long long * highp = (unsigned long long *) malloc(_len_highp0*sizeof(unsigned long long));
           for(int _i0 = 0; _i0 < _len_highp0; _i0++) {
             highp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lowp0 = 1;
           unsigned long long * lowp = (unsigned long long *) malloc(_len_lowp0*sizeof(unsigned long long));
           for(int _i0 = 0; _i0 < _len_lowp0; _i0++) {
             lowp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          mult64(x,y,highp,lowp);
+          free(highp);
+          free(lowp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          unsigned long long x = 255;
+        
+          unsigned long long y = 255;
+        
+          int _len_highp0 = 65025;
+          unsigned long long * highp = (unsigned long long *) malloc(_len_highp0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_highp0; _i0++) {
+            highp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lowp0 = 65025;
+          unsigned long long * lowp = (unsigned long long *) malloc(_len_lowp0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_lowp0; _i0++) {
+            lowp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mult64(x,y,highp,lowp);
+          free(highp);
+          free(lowp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          unsigned long long x = 10;
+        
+          unsigned long long y = 10;
+        
+          int _len_highp0 = 100;
+          unsigned long long * highp = (unsigned long long *) malloc(_len_highp0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_highp0; _i0++) {
+            highp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lowp0 = 100;
+          unsigned long long * lowp = (unsigned long long *) malloc(_len_lowp0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_lowp0; _i0++) {
+            lowp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mult64(x,y,highp,lowp);
+          free(highp);
+          free(lowp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 72
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          unsigned long long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long long y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_highp0 = 1;
+          unsigned long long * highp = (unsigned long long *) malloc(_len_highp0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_highp0; _i0++) {
+            highp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lowp0 = 1;
+          unsigned long long * lowp = (unsigned long long *) malloc(_len_lowp0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_lowp0; _i0++) {
+            lowp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           mult64(x,y,highp,lowp);
           free(highp);
           free(lowp);

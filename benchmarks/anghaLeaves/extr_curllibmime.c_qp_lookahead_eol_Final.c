@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static int qp_lookahead_eol(mime_encoder_state *st, int at
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +86,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int ateof = 100;
+        
           unsigned long n = 100;
+        
           int _len_st0 = 1;
           struct TYPE_3__ * st = (struct TYPE_3__ *) malloc(_len_st0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].bufend = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].bufend = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_st__i0__buf0 = 1;
           st[_i0].buf = (int *) malloc(_len_st__i0__buf0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_st__i0__buf0; _j0++) {
             st[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        st[_i0].bufbeg = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].bufbeg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qp_lookahead_eol(st,ateof,n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].buf);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int ateof = 10;
+        
+          unsigned long n = 10;
+        
+          int _len_st0 = 100;
+          struct TYPE_3__ * st = (struct TYPE_3__ *) malloc(_len_st0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].bufend = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__buf0 = 1;
+          st[_i0].buf = (int *) malloc(_len_st__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_st__i0__buf0; _j0++) {
+            st[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          st[_i0].bufbeg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qp_lookahead_eol(st,ateof,n);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_st0; _aux++) {

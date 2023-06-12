@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void vtpm_proxy_fops_open(struct file *filp)
 	proxy_dev->state |= STATE_OPENED_FLAG;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_filp0 = 65025;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              int _len_filp__i0__private_data0 = 1;
+          filp[_i0].private_data = (struct proxy_dev *) malloc(_len_filp__i0__private_data0*sizeof(struct proxy_dev));
+          for(int _j0 = 0; _j0 < _len_filp__i0__private_data0; _j0++) {
+              filp[_i0].private_data->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          vtpm_proxy_fops_open(filp);
+          for(int _aux = 0; _aux < _len_filp0; _aux++) {
+          free(filp[_aux].private_data);
+          }
+          free(filp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_filp0 = 100;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              int _len_filp__i0__private_data0 = 1;
+          filp[_i0].private_data = (struct proxy_dev *) malloc(_len_filp__i0__private_data0*sizeof(struct proxy_dev));
+          for(int _j0 = 0; _j0 < _len_filp__i0__private_data0; _j0++) {
+              filp[_i0].private_data->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          vtpm_proxy_fops_open(filp);
+          for(int _aux = 0; _aux < _len_filp0; _aux++) {
+          free(filp[_aux].private_data);
+          }
+          free(filp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_filp0 = 1;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
               int _len_filp__i0__private_data0 = 1;
           filp[_i0].private_data = (struct proxy_dev *) malloc(_len_filp__i0__private_data0*sizeof(struct proxy_dev));
           for(int _j0 = 0; _j0 < _len_filp__i0__private_data0; _j0++) {
-            filp[_i0].private_data->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].private_data->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           vtpm_proxy_fops_open(filp);
           for(int _aux = 0; _aux < _len_filp0; _aux++) {
           free(filp[_aux].private_data);

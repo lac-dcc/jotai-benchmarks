@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ void gl_flip_bytes( GLubyte *p, GLuint n )
    }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,15 +87,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 11995
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 8423
+          // ------------------------------- 
+          // static_instructions_O2 : 91
+          // dynamic_instructions_O2 : 4501
+          // ------------------------------- 
+          // static_instructions_O3 : 91
+          // dynamic_instructions_O3 : 4501
+          // ------------------------------- 
+          // static_instructions_Ofast : 91
+          // dynamic_instructions_Ofast : 4501
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 8422
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 8677
+          // ------------------------------- 
+
+          unsigned long n = 255;
+        
+          int _len_p0 = 65025;
+          long * p = (long *) malloc(_len_p0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          gl_flip_bytes(p,n);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 480
+          // ------------------------------- 
+          // static_instructions_O1 : 41
+          // dynamic_instructions_O1 : 338
+          // ------------------------------- 
+          // static_instructions_O2 : 57
+          // dynamic_instructions_O2 : 197
+          // ------------------------------- 
+          // static_instructions_O3 : 57
+          // dynamic_instructions_O3 : 197
+          // ------------------------------- 
+          // static_instructions_Ofast : 57
+          // dynamic_instructions_Ofast : 197
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 337
+          // ------------------------------- 
+          // static_instructions_Oz : 39
+          // dynamic_instructions_Oz : 347
+          // ------------------------------- 
+
           unsigned long n = 10;
+        
           int _len_p0 = 100;
           long * p = (long *) malloc(_len_p0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           gl_flip_bytes(p,n);
           free(p);
         

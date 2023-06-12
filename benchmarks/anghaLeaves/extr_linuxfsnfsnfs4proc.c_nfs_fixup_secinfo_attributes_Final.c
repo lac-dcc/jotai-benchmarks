@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void nfs_fixup_secinfo_attributes(struct nfs_fattr 
 	fattr->nlink = 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +84,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fattr0 = 65025;
+          struct nfs_fattr * fattr = (struct nfs_fattr *) malloc(_len_fattr0*sizeof(struct nfs_fattr));
+          for(int _i0 = 0; _i0 < _len_fattr0; _i0++) {
+              fattr[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_fixup_secinfo_attributes(fattr);
+          free(fattr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fattr0 = 100;
+          struct nfs_fattr * fattr = (struct nfs_fattr *) malloc(_len_fattr0*sizeof(struct nfs_fattr));
+          for(int _i0 = 0; _i0 < _len_fattr0; _i0++) {
+              fattr[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_fixup_secinfo_attributes(fattr);
+          free(fattr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_fattr0 = 1;
           struct nfs_fattr * fattr = (struct nfs_fattr *) malloc(_len_fattr0*sizeof(struct nfs_fattr));
           for(int _i0 = 0; _i0 < _len_fattr0; _i0++) {
-            fattr[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        fattr[_i0].nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+              fattr[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fattr[_i0].nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfs_fixup_secinfo_attributes(fattr);
           free(fattr);
         

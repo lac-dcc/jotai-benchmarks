@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static bool memslot_is_logging(struct kvm_memory_slot *mem
 	return memslot->dirty_bitmap && !(memslot->flags & KVM_MEM_READONLY);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_memslot0 = 1;
+          int _len_memslot0 = 65025;
           struct kvm_memory_slot * memslot = (struct kvm_memory_slot *) malloc(_len_memslot0*sizeof(struct kvm_memory_slot));
           for(int _i0 = 0; _i0 < _len_memslot0; _i0++) {
-            memslot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        memslot[_i0].dirty_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+              memslot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          memslot[_i0].dirty_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = memslot_is_logging(memslot);
           printf("%d\n", benchRet); 
           free(memslot);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_memslot0 = 100;
+          struct kvm_memory_slot * memslot = (struct kvm_memory_slot *) malloc(_len_memslot0*sizeof(struct kvm_memory_slot));
+          for(int _i0 = 0; _i0 < _len_memslot0; _i0++) {
+              memslot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          memslot[_i0].dirty_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = memslot_is_logging(memslot);
+          printf("%d\n", benchRet); 
+          free(memslot);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_memslot0 = 1;
+          struct kvm_memory_slot * memslot = (struct kvm_memory_slot *) malloc(_len_memslot0*sizeof(struct kvm_memory_slot));
+          for(int _i0 = 0; _i0 < _len_memslot0; _i0++) {
+              memslot[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          memslot[_i0].dirty_bitmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = memslot_is_logging(memslot);
+          printf("%d\n", benchRet); 
+          free(memslot);
+        
+        break;
+    }
     default:
         usage();
         break;

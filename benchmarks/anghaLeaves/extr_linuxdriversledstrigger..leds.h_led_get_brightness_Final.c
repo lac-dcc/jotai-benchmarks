@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int led_get_brightness(struct led_classdev *
 	return led_cdev->brightness;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_led_cdev0 = 1;
+          int _len_led_cdev0 = 65025;
           struct led_classdev * led_cdev = (struct led_classdev *) malloc(_len_led_cdev0*sizeof(struct led_classdev));
           for(int _i0 = 0; _i0 < _len_led_cdev0; _i0++) {
-            led_cdev[_i0].brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+              led_cdev[_i0].brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = led_get_brightness(led_cdev);
           printf("%d\n", benchRet); 
           free(led_cdev);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_led_cdev0 = 100;
           struct led_classdev * led_cdev = (struct led_classdev *) malloc(_len_led_cdev0*sizeof(struct led_classdev));
           for(int _i0 = 0; _i0 < _len_led_cdev0; _i0++) {
-            led_cdev[_i0].brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+              led_cdev[_i0].brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = led_get_brightness(led_cdev);
           printf("%d\n", benchRet); 
           free(led_cdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_led_cdev0 = 1;
+          struct led_classdev * led_cdev = (struct led_classdev *) malloc(_len_led_cdev0*sizeof(struct led_classdev));
+          for(int _i0 = 0; _i0 < _len_led_cdev0; _i0++) {
+              led_cdev[_i0].brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = led_get_brightness(led_cdev);
+          printf("%d\n", benchRet); 
+          free(led_cdev);
+        
+        break;
+    }
     default:
         usage();
         break;

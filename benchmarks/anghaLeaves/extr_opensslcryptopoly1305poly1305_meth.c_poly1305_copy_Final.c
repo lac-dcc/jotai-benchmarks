@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int poly1305_copy(EVP_MAC_IMPL *dst, EVP_MAC_IMPL *
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,9 +78,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dst0 = 65025;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              int _len_dst__i0__ctx0 = 1;
+          dst[_i0].ctx = (int *) malloc(_len_dst__i0__ctx0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__ctx0; _j0++) {
+            dst[_i0].ctx[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              int _len_src__i0__ctx0 = 1;
+          src[_i0].ctx = (int *) malloc(_len_src__i0__ctx0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__ctx0; _j0++) {
+            src[_i0].ctx[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = poly1305_copy(dst,src);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].ctx);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].ctx);
+          }
+          free(src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_dst0 = 100;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              int _len_dst__i0__ctx0 = 1;
+          dst[_i0].ctx = (int *) malloc(_len_dst__i0__ctx0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__ctx0; _j0++) {
+            dst[_i0].ctx[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_src0 = 100;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              int _len_src__i0__ctx0 = 1;
+          src[_i0].ctx = (int *) malloc(_len_src__i0__ctx0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__ctx0; _j0++) {
+            src[_i0].ctx[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = poly1305_copy(dst,src);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].ctx);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].ctx);
+          }
+          free(src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_dst0 = 1;
           struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
@@ -93,7 +236,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dst__i0__ctx0; _j0++) {
             dst[_i0].ctx[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_src0 = 1;
           struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
@@ -102,7 +247,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_src__i0__ctx0; _j0++) {
             src[_i0].ctx[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = poly1305_copy(dst,src);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dst0; _aux++) {

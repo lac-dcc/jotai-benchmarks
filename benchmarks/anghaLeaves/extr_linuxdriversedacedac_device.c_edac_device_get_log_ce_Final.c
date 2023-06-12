@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int edac_device_get_log_ce(struct edac_devic
 	return edac_dev->log_ce;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_edac_dev0 = 1;
+          int _len_edac_dev0 = 65025;
           struct edac_device_ctl_info * edac_dev = (struct edac_device_ctl_info *) malloc(_len_edac_dev0*sizeof(struct edac_device_ctl_info));
           for(int _i0 = 0; _i0 < _len_edac_dev0; _i0++) {
-            edac_dev[_i0].log_ce = ((-2 * (next_i()%2)) + 1) * next_i();
+              edac_dev[_i0].log_ce = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = edac_device_get_log_ce(edac_dev);
           printf("%d\n", benchRet); 
           free(edac_dev);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_edac_dev0 = 100;
           struct edac_device_ctl_info * edac_dev = (struct edac_device_ctl_info *) malloc(_len_edac_dev0*sizeof(struct edac_device_ctl_info));
           for(int _i0 = 0; _i0 < _len_edac_dev0; _i0++) {
-            edac_dev[_i0].log_ce = ((-2 * (next_i()%2)) + 1) * next_i();
+              edac_dev[_i0].log_ce = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = edac_device_get_log_ce(edac_dev);
           printf("%d\n", benchRet); 
           free(edac_dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_edac_dev0 = 1;
+          struct edac_device_ctl_info * edac_dev = (struct edac_device_ctl_info *) malloc(_len_edac_dev0*sizeof(struct edac_device_ctl_info));
+          for(int _i0 = 0; _i0 < _len_edac_dev0; _i0++) {
+              edac_dev[_i0].log_ce = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = edac_device_get_log_ce(edac_dev);
+          printf("%d\n", benchRet); 
+          free(edac_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

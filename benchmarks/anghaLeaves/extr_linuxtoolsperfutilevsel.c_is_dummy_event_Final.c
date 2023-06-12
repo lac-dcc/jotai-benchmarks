@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool is_dummy_event(struct perf_evsel *evsel)
 	       (evsel->attr.config == PERF_COUNT_SW_DUMMY);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_evsel0 = 65025;
+          struct perf_evsel * evsel = (struct perf_evsel *) malloc(_len_evsel0*sizeof(struct perf_evsel));
+          for(int _i0 = 0; _i0 < _len_evsel0; _i0++) {
+              evsel[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          evsel[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_dummy_event(evsel);
+          printf("%d\n", benchRet); 
+          free(evsel);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_evsel0 = 100;
+          struct perf_evsel * evsel = (struct perf_evsel *) malloc(_len_evsel0*sizeof(struct perf_evsel));
+          for(int _i0 = 0; _i0 < _len_evsel0; _i0++) {
+              evsel[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          evsel[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_dummy_event(evsel);
+          printf("%d\n", benchRet); 
+          free(evsel);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_evsel0 = 1;
           struct perf_evsel * evsel = (struct perf_evsel *) malloc(_len_evsel0*sizeof(struct perf_evsel));
           for(int _i0 = 0; _i0 < _len_evsel0; _i0++) {
-            evsel[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        evsel[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+              evsel[_i0].attr.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          evsel[_i0].attr.config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = is_dummy_event(evsel);
           printf("%d\n", benchRet); 
           free(evsel);

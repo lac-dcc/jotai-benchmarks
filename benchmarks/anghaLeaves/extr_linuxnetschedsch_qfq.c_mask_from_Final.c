@@ -59,12 +59,6 @@ __attribute__((used)) static inline unsigned long mask_from(unsigned long bitmap
 	return bitmap & ~((1UL << from) - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,13 +75,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long bitmap = 10;
+        
           int from = 10;
+        
           unsigned long benchRet = mask_from(bitmap,from);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

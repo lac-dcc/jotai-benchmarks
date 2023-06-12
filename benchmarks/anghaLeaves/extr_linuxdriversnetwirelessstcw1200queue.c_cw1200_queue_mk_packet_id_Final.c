@@ -66,12 +66,6 @@ __attribute__((used)) static inline u32 cw1200_queue_mk_packet_id(u8 queue_gener
 		((u32)queue_generation << 24);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,9 +82,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long queue_generation = 100;
+        
           long queue_id = 100;
+        
           long item_generation = 100;
+        
           long item_id = 100;
+        
           int benchRet = cw1200_queue_mk_packet_id(queue_generation,queue_id,item_generation,item_id);
           printf("%d\n", benchRet); 
         
@@ -100,15 +98,18 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long queue_generation = 10;
+        
           long queue_id = 10;
+        
           long item_generation = 10;
+        
           long item_id = 10;
+        
           int benchRet = cw1200_queue_mk_packet_id(queue_generation,queue_id,item_generation,item_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

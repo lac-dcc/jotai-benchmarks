@@ -94,12 +94,6 @@ __attribute__((used)) static u64 control_word_base(unsigned int len, unsigned in
 	return word;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,55 +106,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 70
+          // ------------------------------- 
+          // static_instructions_O1 : 51
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 51
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 51
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 51
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 51
+          // dynamic_instructions_Oz : 51
+          // ------------------------------- 
+
           unsigned int len = 100;
+        
           unsigned int hmac_key_len = 100;
+        
           int enc_type = 100;
+        
           int auth_type = 100;
+        
           unsigned int hash_len = 100;
+        
           int sfas = 100;
+        
           int sob = 100;
+        
           int eob = 100;
+        
           int encrypt = 100;
+        
           int opcode = 100;
+        
           int benchRet = control_word_base(len,hmac_key_len,enc_type,auth_type,hash_len,sfas,sob,eob,encrypt,opcode);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 70
+          // ------------------------------- 
+          // static_instructions_O1 : 51
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 51
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 51
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 51
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 51
+          // dynamic_instructions_Oz : 51
+          // ------------------------------- 
+
           unsigned int len = 255;
+        
           unsigned int hmac_key_len = 255;
+        
           int enc_type = 255;
+        
           int auth_type = 255;
+        
           unsigned int hash_len = 255;
+        
           int sfas = 255;
+        
           int sob = 255;
+        
           int eob = 255;
+        
           int encrypt = 255;
+        
           int opcode = 255;
+        
           int benchRet = control_word_base(len,hmac_key_len,enc_type,auth_type,hash_len,sfas,sob,eob,encrypt,opcode);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 70
+          // ------------------------------- 
+          // static_instructions_O1 : 51
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 51
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 51
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 51
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 51
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 51
+          // dynamic_instructions_Oz : 51
+          // ------------------------------- 
+
           unsigned int len = 10;
+        
           unsigned int hmac_key_len = 10;
+        
           int enc_type = 10;
+        
           int auth_type = 10;
+        
           unsigned int hash_len = 10;
+        
           int sfas = 10;
+        
           int sob = 10;
+        
           int eob = 10;
+        
           int encrypt = 10;
+        
           int opcode = 10;
+        
           int benchRet = control_word_base(len,hmac_key_len,enc_type,auth_type,hash_len,sfas,sob,eob,encrypt,opcode);
           printf("%d\n", benchRet); 
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static inline void convert_htc_flag(struct ath_rx_status *
 		rx_stats->enc_flags |= RX_ENC_FLAG_SHORT_GI;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,27 +86,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rx_stats0 = 1;
+          int _len_rx_stats0 = 65025;
           struct ath_rx_status * rx_stats = (struct ath_rx_status *) malloc(_len_rx_stats0*sizeof(struct ath_rx_status));
           for(int _i0 = 0; _i0 < _len_rx_stats0; _i0++) {
-            rx_stats[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rx_stats[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+              rx_stats[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rx_stats[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rxstatus0 = 1;
+        
+          int _len_rxstatus0 = 65025;
           struct ath_htc_rx_status * rxstatus = (struct ath_htc_rx_status *) malloc(_len_rxstatus0*sizeof(struct ath_htc_rx_status));
           for(int _i0 = 0; _i0 < _len_rxstatus0; _i0++) {
-            rxstatus[_i0].rs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxstatus[_i0].rs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           convert_htc_flag(rx_stats,rxstatus);
           free(rx_stats);
           free(rxstatus);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rx_stats0 = 100;
+          struct ath_rx_status * rx_stats = (struct ath_rx_status *) malloc(_len_rx_stats0*sizeof(struct ath_rx_status));
+          for(int _i0 = 0; _i0 < _len_rx_stats0; _i0++) {
+              rx_stats[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rx_stats[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rxstatus0 = 100;
+          struct ath_htc_rx_status * rxstatus = (struct ath_htc_rx_status *) malloc(_len_rxstatus0*sizeof(struct ath_htc_rx_status));
+          for(int _i0 = 0; _i0 < _len_rxstatus0; _i0++) {
+              rxstatus[_i0].rs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          convert_htc_flag(rx_stats,rxstatus);
+          free(rx_stats);
+          free(rxstatus);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rx_stats0 = 1;
+          struct ath_rx_status * rx_stats = (struct ath_rx_status *) malloc(_len_rx_stats0*sizeof(struct ath_rx_status));
+          for(int _i0 = 0; _i0 < _len_rx_stats0; _i0++) {
+              rx_stats[_i0].enc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rx_stats[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rxstatus0 = 1;
+          struct ath_htc_rx_status * rxstatus = (struct ath_htc_rx_status *) malloc(_len_rxstatus0*sizeof(struct ath_htc_rx_status));
+          for(int _i0 = 0; _i0 < _len_rxstatus0; _i0++) {
+              rxstatus[_i0].rs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          convert_htc_flag(rx_stats,rxstatus);
+          free(rx_stats);
+          free(rxstatus);
+        
+        break;
+    }
     default:
         usage();
         break;

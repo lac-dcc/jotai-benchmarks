@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool dsa_port_is_dsa(struct dsa_port *port)
 	return port->type == DSA_PORT_TYPE_DSA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct dsa_port * port = (struct dsa_port *) malloc(_len_port0*sizeof(struct dsa_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dsa_port_is_dsa(port);
           printf("%d\n", benchRet); 
           free(port);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_port0 = 100;
           struct dsa_port * port = (struct dsa_port *) malloc(_len_port0*sizeof(struct dsa_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dsa_port_is_dsa(port);
           printf("%d\n", benchRet); 
           free(port);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct dsa_port * port = (struct dsa_port *) malloc(_len_port0*sizeof(struct dsa_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dsa_port_is_dsa(port);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

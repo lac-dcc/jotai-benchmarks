@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void qib_6120_tidtemplate(struct qib_devdata *dd)
 	dd->tidinvalid = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,22 +90,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dd0 = 1;
+          int _len_dd0 = 65025;
           struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].rcvegrbufsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        dd[_i0].tidtemplate = ((-2 * (next_i()%2)) + 1) * next_i();
-        dd[_i0].tidinvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].rcvegrbufsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          dd[_i0].tidtemplate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dd[_i0].tidinvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qib_6120_tidtemplate(dd);
           free(dd);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dd0 = 100;
+          struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].rcvegrbufsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          dd[_i0].tidtemplate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dd[_i0].tidinvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qib_6120_tidtemplate(dd);
+          free(dd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dd0 = 1;
+          struct qib_devdata * dd = (struct qib_devdata *) malloc(_len_dd0*sizeof(struct qib_devdata));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].rcvegrbufsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          dd[_i0].tidtemplate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dd[_i0].tidinvalid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qib_6120_tidtemplate(dd);
+          free(dd);
+        
+        break;
+    }
     default:
         usage();
         break;

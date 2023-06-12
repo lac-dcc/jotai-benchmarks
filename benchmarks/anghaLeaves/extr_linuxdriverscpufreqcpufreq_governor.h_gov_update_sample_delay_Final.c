@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void gov_update_sample_delay(struct policy_d
 	policy_dbs->sample_delay_ns = delay_us * NSEC_PER_USEC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int delay_us = 100;
+        
           int _len_policy_dbs0 = 1;
           struct policy_dbs_info * policy_dbs = (struct policy_dbs_info *) malloc(_len_policy_dbs0*sizeof(struct policy_dbs_info));
           for(int _i0 = 0; _i0 < _len_policy_dbs0; _i0++) {
-            policy_dbs[_i0].sample_delay_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              policy_dbs[_i0].sample_delay_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gov_update_sample_delay(policy_dbs,delay_us);
           free(policy_dbs);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int delay_us = 255;
+        
+          int _len_policy_dbs0 = 65025;
+          struct policy_dbs_info * policy_dbs = (struct policy_dbs_info *) malloc(_len_policy_dbs0*sizeof(struct policy_dbs_info));
+          for(int _i0 = 0; _i0 < _len_policy_dbs0; _i0++) {
+              policy_dbs[_i0].sample_delay_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gov_update_sample_delay(policy_dbs,delay_us);
+          free(policy_dbs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int delay_us = 10;
+        
           int _len_policy_dbs0 = 100;
           struct policy_dbs_info * policy_dbs = (struct policy_dbs_info *) malloc(_len_policy_dbs0*sizeof(struct policy_dbs_info));
           for(int _i0 = 0; _i0 < _len_policy_dbs0; _i0++) {
-            policy_dbs[_i0].sample_delay_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              policy_dbs[_i0].sample_delay_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          gov_update_sample_delay(policy_dbs,delay_us);
+          free(policy_dbs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int delay_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_policy_dbs0 = 1;
+          struct policy_dbs_info * policy_dbs = (struct policy_dbs_info *) malloc(_len_policy_dbs0*sizeof(struct policy_dbs_info));
+          for(int _i0 = 0; _i0 < _len_policy_dbs0; _i0++) {
+              policy_dbs[_i0].sample_delay_ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           gov_update_sample_delay(policy_dbs,delay_us);
           free(policy_dbs);
         

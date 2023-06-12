@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ tty_window_offset(struct tty *tty, u_int *ox, u_int *oy, u_int *sx, u_int *sy)
 	return (tty->oflag);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,38 +81,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_tty0 = 65025;
+          struct tty * tty = (struct tty *) malloc(_len_tty0*sizeof(struct tty));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              tty[_i0].oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].osy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].osx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].ooy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].oox = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ox0 = 65025;
+          int * ox = (int *) malloc(_len_ox0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ox0; _i0++) {
+            ox[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_oy0 = 65025;
+          int * oy = (int *) malloc(_len_oy0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_oy0; _i0++) {
+            oy[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sx0 = 65025;
+          int * sx = (int *) malloc(_len_sx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sx0; _i0++) {
+            sx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sy0 = 65025;
+          int * sy = (int *) malloc(_len_sy0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sy0; _i0++) {
+            sy[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tty_window_offset(tty,ox,oy,sx,sy);
+          printf("%d\n", benchRet); 
+          free(tty);
+          free(ox);
+          free(oy);
+          free(sx);
+          free(sy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_tty0 = 100;
+          struct tty * tty = (struct tty *) malloc(_len_tty0*sizeof(struct tty));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              tty[_i0].oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].osy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].osx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].ooy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].oox = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ox0 = 100;
+          int * ox = (int *) malloc(_len_ox0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ox0; _i0++) {
+            ox[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_oy0 = 100;
+          int * oy = (int *) malloc(_len_oy0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_oy0; _i0++) {
+            oy[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sx0 = 100;
+          int * sx = (int *) malloc(_len_sx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sx0; _i0++) {
+            sx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sy0 = 100;
+          int * sy = (int *) malloc(_len_sy0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sy0; _i0++) {
+            sy[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tty_window_offset(tty,ox,oy,sx,sy);
+          printf("%d\n", benchRet); 
+          free(tty);
+          free(ox);
+          free(oy);
+          free(sx);
+          free(sy);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_tty0 = 1;
           struct tty * tty = (struct tty *) malloc(_len_tty0*sizeof(struct tty));
           for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
-            tty[_i0].oflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].osy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].osx = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].ooy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].oox = ((-2 * (next_i()%2)) + 1) * next_i();
+              tty[_i0].oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].osy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].osx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].ooy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].oox = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ox0 = 1;
           int * ox = (int *) malloc(_len_ox0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ox0; _i0++) {
             ox[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_oy0 = 1;
           int * oy = (int *) malloc(_len_oy0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_oy0; _i0++) {
             oy[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_sx0 = 1;
           int * sx = (int *) malloc(_len_sx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sx0; _i0++) {
             sx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_sy0 = 1;
           int * sy = (int *) malloc(_len_sy0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sy0; _i0++) {
             sy[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tty_window_offset(tty,ox,oy,sx,sy);
           printf("%d\n", benchRet); 
           free(tty);

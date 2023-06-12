@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void handle_f5(int *key, struct menu *current_item)
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,26 +76,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_key0 = 1;
+          int _len_key0 = 65025;
           int * key = (int *) malloc(_len_key0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
             key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_current_item0 = 1;
+        
+          int _len_current_item0 = 65025;
           struct menu * current_item = (struct menu *) malloc(_len_current_item0*sizeof(struct menu));
           for(int _i0 = 0; _i0 < _len_current_item0; _i0++) {
-            current_item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              current_item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           handle_f5(key,current_item);
           free(key);
           free(current_item);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_key0 = 100;
+          int * key = (int *) malloc(_len_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+            key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_current_item0 = 100;
+          struct menu * current_item = (struct menu *) malloc(_len_current_item0*sizeof(struct menu));
+          for(int _i0 = 0; _i0 < _len_current_item0; _i0++) {
+              current_item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          handle_f5(key,current_item);
+          free(key);
+          free(current_item);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_key0 = 1;
+          int * key = (int *) malloc(_len_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+            key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_current_item0 = 1;
+          struct menu * current_item = (struct menu *) malloc(_len_current_item0*sizeof(struct menu));
+          for(int _i0 = 0; _i0 < _len_current_item0; _i0++) {
+              current_item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          handle_f5(key,current_item);
+          free(key);
+          free(current_item);
+        
+        break;
+    }
     default:
         usage();
         break;

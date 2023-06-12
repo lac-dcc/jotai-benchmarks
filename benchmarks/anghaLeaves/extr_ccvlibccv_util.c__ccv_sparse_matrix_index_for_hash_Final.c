@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -250,12 +251,6 @@ __attribute__((used)) static uint32_t _ccv_sparse_matrix_index_for_hash(const ui
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -272,7 +267,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const unsigned int hash = 100;
+        
           const int prime_index = 100;
+        
           unsigned int benchRet = _ccv_sparse_matrix_index_for_hash(hash,prime_index);
           printf("%u\n", benchRet); 
         
@@ -282,7 +279,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const unsigned int hash = 255;
+        
           const int prime_index = 255;
+        
           unsigned int benchRet = _ccv_sparse_matrix_index_for_hash(hash,prime_index);
           printf("%u\n", benchRet); 
         
@@ -292,13 +291,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const unsigned int hash = 10;
+        
           const int prime_index = 10;
+        
           unsigned int benchRet = _ccv_sparse_matrix_index_for_hash(hash,prime_index);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const unsigned int hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int prime_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = _ccv_sparse_matrix_index_for_hash(hash,prime_index);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

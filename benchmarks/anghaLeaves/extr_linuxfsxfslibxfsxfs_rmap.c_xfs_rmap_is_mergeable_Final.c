@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ xfs_rmap_is_mergeable(
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,17 +97,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           long owner = 100;
+        
           unsigned int flags = 100;
+        
           int _len_irec0 = 1;
           struct xfs_rmap_irec * irec = (struct xfs_rmap_irec *) malloc(_len_irec0*sizeof(struct xfs_rmap_irec));
           for(int _i0 = 0; _i0 < _len_irec0; _i0++) {
-            irec[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
-        irec[_i0].rm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              irec[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          irec[_i0].rm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = xfs_rmap_is_mergeable(irec,owner,flags);
+          printf("%d\n", benchRet); 
+          free(irec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long owner = 255;
+        
+          unsigned int flags = 255;
+        
+          int _len_irec0 = 65025;
+          struct xfs_rmap_irec * irec = (struct xfs_rmap_irec *) malloc(_len_irec0*sizeof(struct xfs_rmap_irec));
+          for(int _i0 = 0; _i0 < _len_irec0; _i0++) {
+              irec[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          irec[_i0].rm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_rmap_is_mergeable(irec,owner,flags);
+          printf("%d\n", benchRet); 
+          free(irec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long owner = 10;
+        
+          unsigned int flags = 10;
+        
+          int _len_irec0 = 100;
+          struct xfs_rmap_irec * irec = (struct xfs_rmap_irec *) malloc(_len_irec0*sizeof(struct xfs_rmap_irec));
+          for(int _i0 = 0; _i0 < _len_irec0; _i0++) {
+              irec[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          irec[_i0].rm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xfs_rmap_is_mergeable(irec,owner,flags);
+          printf("%d\n", benchRet); 
+          free(irec);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          long owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_irec0 = 1;
+          struct xfs_rmap_irec * irec = (struct xfs_rmap_irec *) malloc(_len_irec0*sizeof(struct xfs_rmap_irec));
+          for(int _i0 = 0; _i0 < _len_irec0; _i0++) {
+              irec[_i0].rm_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          irec[_i0].rm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = xfs_rmap_is_mergeable(irec,owner,flags);
           printf("%d\n", benchRet); 
           free(irec);

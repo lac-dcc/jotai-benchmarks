@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ pcifront_get_pdev(struct pcifront_sd *sd)
 	return sd->pdev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_sd0 = 65025;
+          struct pcifront_sd * sd = (struct pcifront_sd *) malloc(_len_sd0*sizeof(struct pcifront_sd));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              int _len_sd__i0__pdev0 = 1;
+          sd[_i0].pdev = (struct pcifront_device *) malloc(_len_sd__i0__pdev0*sizeof(struct pcifront_device));
+          for(int _j0 = 0; _j0 < _len_sd__i0__pdev0; _j0++) {
+              sd[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct pcifront_device * benchRet = pcifront_get_pdev(sd);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_sd0; _aux++) {
+          free(sd[_aux].pdev);
+          }
+          free(sd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_sd0 = 100;
+          struct pcifront_sd * sd = (struct pcifront_sd *) malloc(_len_sd0*sizeof(struct pcifront_sd));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              int _len_sd__i0__pdev0 = 1;
+          sd[_i0].pdev = (struct pcifront_device *) malloc(_len_sd__i0__pdev0*sizeof(struct pcifront_device));
+          for(int _j0 = 0; _j0 < _len_sd__i0__pdev0; _j0++) {
+              sd[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct pcifront_device * benchRet = pcifront_get_pdev(sd);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_sd0; _aux++) {
+          free(sd[_aux].pdev);
+          }
+          free(sd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_sd0 = 1;
           struct pcifront_sd * sd = (struct pcifront_sd *) malloc(_len_sd0*sizeof(struct pcifront_sd));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
               int _len_sd__i0__pdev0 = 1;
           sd[_i0].pdev = (struct pcifront_device *) malloc(_len_sd__i0__pdev0*sizeof(struct pcifront_device));
           for(int _j0 = 0; _j0 < _len_sd__i0__pdev0; _j0++) {
-            sd[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct pcifront_device * benchRet = pcifront_get_pdev(sd);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_sd0; _aux++) {

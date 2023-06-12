@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static void cinema_parameters(opj_cparameters_t *p)
     p->tcp_mct = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,37 +109,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].cp_tdx = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].cp_tdy = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tp_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tp_on = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].cblockw_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].cblockh_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].csty = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].roi_compno = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].subsampling_dx = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].subsampling_dy = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].irreversible = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tcp_mct = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].prog_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].image_offset_y0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].image_offset_x0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].cp_ty0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].cp_tx0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tile_size_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].cp_tdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_tdy = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tp_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tp_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cblockw_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cblockh_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].csty = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].roi_compno = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].subsampling_dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].subsampling_dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].irreversible = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tcp_mct = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].prog_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].image_offset_y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].image_offset_x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_ty0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_tx0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tile_size_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cinema_parameters(p);
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].cp_tdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_tdy = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tp_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tp_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cblockw_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cblockh_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].csty = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].roi_compno = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].subsampling_dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].subsampling_dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].irreversible = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tcp_mct = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].prog_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].image_offset_y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].image_offset_x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_ty0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_tx0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tile_size_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cinema_parameters(p);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct TYPE_3__ * p = (struct TYPE_3__ *) malloc(_len_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].cp_tdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_tdy = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tp_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tp_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cblockw_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cblockh_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].csty = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].roi_compno = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].subsampling_dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].subsampling_dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].irreversible = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tcp_mct = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].prog_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].image_offset_y0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].image_offset_x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_ty0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].cp_tx0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tile_size_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cinema_parameters(p);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

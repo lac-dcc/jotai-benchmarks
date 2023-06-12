@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ set_data_in (float * data, unsigned len, float value)
                 data [k] = value ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +75,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
-          unsigned int len = 10;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 2816
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 1029
+          // ------------------------------- 
+          // static_instructions_O2 : 65
+          // dynamic_instructions_O2 : 157
+          // ------------------------------- 
+          // static_instructions_O3 : 65
+          // dynamic_instructions_O3 : 157
+          // ------------------------------- 
+          // static_instructions_Ofast : 65
+          // dynamic_instructions_Ofast : 157
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 1028
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 1283
+          // ------------------------------- 
+
+          unsigned int len = 255;
+        
           float value = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_data0 = 65025;
+          float * data = (float *) malloc(_len_data0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          set_data_in(data,len,value);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 121
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 43
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 43
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 58
+          // ------------------------------- 
+
+          unsigned int len = 10;
+        
+          float value = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int _len_data0 = 100;
           float * data = (float *) malloc(_len_data0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           set_data_in(data,len,value);
           free(data);
         

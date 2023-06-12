@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int lan743x_tx_next_index(struct lan743x_tx *tx, in
 	return ((++index) % tx->ring_size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,11 +79,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int _len_tx0 = 1;
           struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
-            tx[_i0].ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx[_i0].ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lan743x_tx_next_index(tx,index);
+          printf("%d\n", benchRet); 
+          free(tx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int _len_tx0 = 65025;
+          struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+              tx[_i0].ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lan743x_tx_next_index(tx,index);
           printf("%d\n", benchRet); 
           free(tx);
@@ -95,21 +112,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int index = 10;
+        
           int _len_tx0 = 100;
           struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
-            tx[_i0].ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx[_i0].ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lan743x_tx_next_index(tx,index);
           printf("%d\n", benchRet); 
           free(tx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx0 = 1;
+          struct lan743x_tx * tx = (struct lan743x_tx *) malloc(_len_tx0*sizeof(struct lan743x_tx));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+              tx[_i0].ring_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lan743x_tx_next_index(tx,index);
+          printf("%d\n", benchRet); 
+          free(tx);
+        
+        break;
+    }
     default:
         usage();
         break;

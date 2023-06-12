@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ ngx_http_upstream_ignore_header_line(ngx_http_request_t *r, ngx_table_elt_t *h,
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int offset = 100;
+        
           int _len_r0 = 1;
           int * r = (int *) malloc(_len_r0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
             r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_h0 = 1;
           int * h = (int *) malloc(_len_h0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
             h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ngx_http_upstream_ignore_header_line(r,h,offset);
+          printf("%d\n", benchRet); 
+          free(r);
+          free(h);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int _len_r0 = 65025;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h0 = 65025;
+          int * h = (int *) malloc(_len_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+            h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_http_upstream_ignore_header_line(r,h,offset);
+          printf("%d\n", benchRet); 
+          free(r);
+          free(h);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = 10;
+        
+          int _len_r0 = 100;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h0 = 100;
+          int * h = (int *) malloc(_len_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+            h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ngx_http_upstream_ignore_header_line(r,h,offset);
+          printf("%d\n", benchRet); 
+          free(r);
+          free(h);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h0 = 1;
+          int * h = (int *) malloc(_len_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+            h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ngx_http_upstream_ignore_header_line(r,h,offset);
           printf("%d\n", benchRet); 
           free(r);

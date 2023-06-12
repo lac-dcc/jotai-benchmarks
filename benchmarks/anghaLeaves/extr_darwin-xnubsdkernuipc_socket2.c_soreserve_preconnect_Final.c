@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ soreserve_preconnect(struct socket *so, unsigned int pre_cc)
 	so->so_rcv.sb_preconn_hiwat = pre_cc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int pre_cc = 100;
+        
           int _len_so0 = 1;
           struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_so0; _i0++) {
-            so[_i0].so_rcv.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
-        so[_i0].so_snd.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+              so[_i0].so_rcv.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          so[_i0].so_snd.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          soreserve_preconnect(so,pre_cc);
+          free(so);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int pre_cc = 255;
+        
+          int _len_so0 = 65025;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].so_rcv.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          so[_i0].so_snd.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          soreserve_preconnect(so,pre_cc);
+          free(so);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int pre_cc = 10;
+        
+          int _len_so0 = 100;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].so_rcv.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          so[_i0].so_snd.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          soreserve_preconnect(so,pre_cc);
+          free(so);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int pre_cc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_so0 = 1;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].so_rcv.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          so[_i0].so_snd.sb_preconn_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           soreserve_preconnect(so,pre_cc);
           free(so);
         

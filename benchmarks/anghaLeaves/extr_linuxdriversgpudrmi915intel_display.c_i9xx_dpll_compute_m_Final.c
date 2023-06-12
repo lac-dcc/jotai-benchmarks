@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static uint32_t i9xx_dpll_compute_m(struct dpll *dpll)
 	return 5 * (dpll->m1 + 2) + (dpll->m2 + 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dpll0 = 65025;
+          struct dpll * dpll = (struct dpll *) malloc(_len_dpll0*sizeof(struct dpll));
+          for(int _i0 = 0; _i0 < _len_dpll0; _i0++) {
+              dpll[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpll[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = i9xx_dpll_compute_m(dpll);
+          printf("%ld\n", benchRet); 
+          free(dpll);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dpll0 = 100;
+          struct dpll * dpll = (struct dpll *) malloc(_len_dpll0*sizeof(struct dpll));
+          for(int _i0 = 0; _i0 < _len_dpll0; _i0++) {
+              dpll[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpll[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = i9xx_dpll_compute_m(dpll);
+          printf("%ld\n", benchRet); 
+          free(dpll);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_dpll0 = 1;
           struct dpll * dpll = (struct dpll *) malloc(_len_dpll0*sizeof(struct dpll));
           for(int _i0 = 0; _i0 < _len_dpll0; _i0++) {
-            dpll[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dpll[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpll[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dpll[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = i9xx_dpll_compute_m(dpll);
           printf("%ld\n", benchRet); 
           free(dpll);

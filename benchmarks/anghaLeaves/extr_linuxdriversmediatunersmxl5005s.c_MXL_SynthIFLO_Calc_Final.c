@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void MXL_SynthIFLO_Calc(struct dvb_frontend *fe)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,150 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_fe0 = 65025;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct mxl5005s_state *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct mxl5005s_state));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->Chan_Bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_OUT = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_LO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          MXL_SynthIFLO_Calc(fe);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_fe0 = 100;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct mxl5005s_state *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct mxl5005s_state));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->Chan_Bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_OUT = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_LO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          MXL_SynthIFLO_Calc(fe);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_fe0 = 1;
           struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
           for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
               int _len_fe__i0__tuner_priv0 = 1;
           fe[_i0].tuner_priv = (struct mxl5005s_state *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct mxl5005s_state));
           for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
-            fe[_i0].tuner_priv->Mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->IF_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->Chan_Bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->IF_OUT = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->IF_LO = ((-2 * (next_i()%2)) + 1) * next_i();
+              fe[_i0].tuner_priv->Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->Chan_Bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_OUT = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->IF_LO = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           MXL_SynthIFLO_Calc(fe);
           for(int _aux = 0; _aux < _len_fe0; _aux++) {
           free(fe[_aux].tuner_priv);

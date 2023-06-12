@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +99,6 @@ pci_emul_msix_twrite(struct pci_devinst *pi, uint64_t offset, int size,
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,18 +111,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int offset = 100;
+        
           int size = 100;
+        
           int value = 100;
+        
           int _len_pi0 = 1;
           struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
           for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
-            pi[_i0].pi_msix.table_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        pi[_i0].pi_msix.table = ((-2 * (next_i()%2)) + 1) * next_i();
+              pi[_i0].pi_msix.table_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.table = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = pci_emul_msix_twrite(pi,offset,size,value);
+          printf("%d\n", benchRet); 
+          free(pi);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int size = 255;
+        
+          int value = 255;
+        
+          int _len_pi0 = 65025;
+          struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].pi_msix.table_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.table = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pci_emul_msix_twrite(pi,offset,size,value);
+          printf("%d\n", benchRet); 
+          free(pi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int offset = 10;
+        
+          int size = 10;
+        
+          int value = 10;
+        
+          int _len_pi0 = 100;
+          struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].pi_msix.table_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.table = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pci_emul_msix_twrite(pi,offset,size,value);
+          printf("%d\n", benchRet); 
+          free(pi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pi0 = 1;
+          struct pci_devinst * pi = (struct pci_devinst *) malloc(_len_pi0*sizeof(struct pci_devinst));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].pi_msix.table_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].pi_msix.table = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = pci_emul_msix_twrite(pi,offset,size,value);
           printf("%d\n", benchRet); 
           free(pi);

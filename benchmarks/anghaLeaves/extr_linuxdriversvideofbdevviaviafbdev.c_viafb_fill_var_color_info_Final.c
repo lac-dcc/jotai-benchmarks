@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -123,12 +126,6 @@ __attribute__((used)) static void viafb_fill_var_color_info(struct fb_var_screen
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -145,31 +142,142 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int depth = 100;
+        
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           viafb_fill_var_color_info(var,depth);
           free(var);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int depth = 255;
+        
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          viafb_fill_var_color_info(var,depth);
+          free(var);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int depth = 10;
+        
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          viafb_fill_var_color_info(var,depth);
+          free(var);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_var0 = 1;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].nonstd = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].grayscale = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          viafb_fill_var_color_info(var,depth);
+          free(var);
+        
+        break;
+    }
     default:
         usage();
         break;

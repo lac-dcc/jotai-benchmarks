@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static uint32_t vega10_find_lowest_dpm_level(
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_table0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_table0 = 65025;
           struct vega10_single_dpm_table * table = (struct vega10_single_dpm_table *) malloc(_len_table0*sizeof(struct vega10_single_dpm_table));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
-            table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_table__i0__dpm_levels0 = 1;
           table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_table__i0__dpm_levels0; _j0++) {
-            table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned long benchRet = vega10_find_lowest_dpm_level(table);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_table0; _aux++) {
+          free(table[_aux].dpm_levels);
+          }
+          free(table);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_table0 = 100;
+          struct vega10_single_dpm_table * table = (struct vega10_single_dpm_table *) malloc(_len_table0*sizeof(struct vega10_single_dpm_table));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_table__i0__dpm_levels0 = 1;
+          table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_table__i0__dpm_levels0; _j0++) {
+              table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = vega10_find_lowest_dpm_level(table);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_table0; _aux++) {
+          free(table[_aux].dpm_levels);
+          }
+          free(table);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_table0 = 1;
+          struct vega10_single_dpm_table * table = (struct vega10_single_dpm_table *) malloc(_len_table0*sizeof(struct vega10_single_dpm_table));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_table__i0__dpm_levels0 = 1;
+          table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_table__i0__dpm_levels0; _j0++) {
+              table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned long benchRet = vega10_find_lowest_dpm_level(table);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_table0; _aux++) {

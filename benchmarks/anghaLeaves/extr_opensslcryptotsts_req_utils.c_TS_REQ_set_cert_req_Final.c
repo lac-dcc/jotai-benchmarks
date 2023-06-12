@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int TS_REQ_set_cert_req(TS_REQ *a, int cert_req)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cert_req = 100;
+        
           int _len_a0 = 1;
           struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = TS_REQ_set_cert_req(a,cert_req);
+          printf("%d\n", benchRet); 
+          free(a);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cert_req = 255;
+        
+          int _len_a0 = 65025;
+          struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = TS_REQ_set_cert_req(a,cert_req);
           printf("%d\n", benchRet); 
           free(a);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cert_req = 10;
+        
           int _len_a0 = 100;
           struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = TS_REQ_set_cert_req(a,cert_req);
           printf("%d\n", benchRet); 
           free(a);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].cert_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = TS_REQ_set_cert_req(a,cert_req);
+          printf("%d\n", benchRet); 
+          free(a);
+        
+        break;
+    }
     default:
         usage();
         break;

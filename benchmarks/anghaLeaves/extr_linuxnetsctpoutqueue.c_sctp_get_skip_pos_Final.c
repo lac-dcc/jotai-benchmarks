@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int sctp_get_skip_pos(struct sctp_fwdtsn_ski
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 3329
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 1284
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 1285
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 1285
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 1285
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1285
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 1540
+          // ------------------------------- 
+
+          int nskips = 255;
+        
+          long stream = 255;
+        
+          int _len_skiplist0 = 65025;
+          struct sctp_fwdtsn_skip * skiplist = (struct sctp_fwdtsn_skip *) malloc(_len_skiplist0*sizeof(struct sctp_fwdtsn_skip));
+          for(int _i0 = 0; _i0 < _len_skiplist0; _i0++) {
+              skiplist[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sctp_get_skip_pos(skiplist,nskips,stream);
+          printf("%d\n", benchRet); 
+          free(skiplist);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 144
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 59
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 60
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 60
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 60
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 60
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 70
+          // ------------------------------- 
+
           int nskips = 10;
+        
           long stream = 10;
+        
           int _len_skiplist0 = 100;
           struct sctp_fwdtsn_skip * skiplist = (struct sctp_fwdtsn_skip *) malloc(_len_skiplist0*sizeof(struct sctp_fwdtsn_skip));
           for(int _i0 = 0; _i0 < _len_skiplist0; _i0++) {
-            skiplist[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+              skiplist[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sctp_get_skip_pos(skiplist,nskips,stream);
+          printf("%d\n", benchRet); 
+          free(skiplist);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int nskips = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_skiplist0 = 1;
+          struct sctp_fwdtsn_skip * skiplist = (struct sctp_fwdtsn_skip *) malloc(_len_skiplist0*sizeof(struct sctp_fwdtsn_skip));
+          for(int _i0 = 0; _i0 < _len_skiplist0; _i0++) {
+              skiplist[_i0].stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sctp_get_skip_pos(skiplist,nskips,stream);
           printf("%d\n", benchRet); 
           free(skiplist);

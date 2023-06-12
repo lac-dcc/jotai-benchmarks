@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -104,12 +106,6 @@ __attribute__((used)) static int verify_extent(struct pnfs_block_extent *be,
 		return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,24 +118,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_be0 = 1;
+          int _len_be0 = 65025;
           struct pnfs_block_extent * be = (struct pnfs_block_extent *) malloc(_len_be0*sizeof(struct pnfs_block_extent));
           for(int _i0 = 0; _i0 < _len_be0; _i0++) {
-            be[_i0].be_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        be[_i0].be_f_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        be[_i0].be_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              be[_i0].be_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          be[_i0].be_f_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          be[_i0].be_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_lv0 = 1;
+        
+          int _len_lv0 = 65025;
           struct layout_verification * lv = (struct layout_verification *) malloc(_len_lv0*sizeof(struct layout_verification));
           for(int _i0 = 0; _i0 < _len_lv0; _i0++) {
-            lv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        lv[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        lv[_i0].cowread = ((-2 * (next_i()%2)) + 1) * next_i();
-        lv[_i0].inval = ((-2 * (next_i()%2)) + 1) * next_i();
+              lv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].cowread = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].inval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = verify_extent(be,lv);
           printf("%d\n", benchRet); 
           free(be);
@@ -147,7 +147,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_be0 = 100;
+          struct pnfs_block_extent * be = (struct pnfs_block_extent *) malloc(_len_be0*sizeof(struct pnfs_block_extent));
+          for(int _i0 = 0; _i0 < _len_be0; _i0++) {
+              be[_i0].be_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          be[_i0].be_f_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          be[_i0].be_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lv0 = 100;
+          struct layout_verification * lv = (struct layout_verification *) malloc(_len_lv0*sizeof(struct layout_verification));
+          for(int _i0 = 0; _i0 < _len_lv0; _i0++) {
+              lv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].cowread = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].inval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verify_extent(be,lv);
+          printf("%d\n", benchRet); 
+          free(be);
+          free(lv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_be0 = 1;
+          struct pnfs_block_extent * be = (struct pnfs_block_extent *) malloc(_len_be0*sizeof(struct pnfs_block_extent));
+          for(int _i0 = 0; _i0 < _len_be0; _i0++) {
+              be[_i0].be_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          be[_i0].be_f_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          be[_i0].be_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lv0 = 1;
+          struct layout_verification * lv = (struct layout_verification *) malloc(_len_lv0*sizeof(struct layout_verification));
+          for(int _i0 = 0; _i0 < _len_lv0; _i0++) {
+              lv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].cowread = ((-2 * (next_i()%2)) + 1) * next_i();
+          lv[_i0].inval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verify_extent(be,lv);
+          printf("%d\n", benchRet); 
+          free(be);
+          free(lv);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ int mtty_get_device_info(struct mdev_device *mdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +83,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mdev0 = 1;
+          int _len_mdev0 = 65025;
           struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
           for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
-            mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dev_info0 = 1;
+        
+          int _len_dev_info0 = 65025;
           struct vfio_device_info * dev_info = (struct vfio_device_info *) malloc(_len_dev_info0*sizeof(struct vfio_device_info));
           for(int _i0 = 0; _i0 < _len_dev_info0; _i0++) {
-            dev_info[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev_info[_i0].num_regions = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev_info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_info[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_info[_i0].num_regions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mtty_get_device_info(mdev,dev_info);
           printf("%d\n", benchRet); 
           free(mdev);
@@ -109,7 +109,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mdev0 = 100;
+          struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev_info0 = 100;
+          struct vfio_device_info * dev_info = (struct vfio_device_info *) malloc(_len_dev_info0*sizeof(struct vfio_device_info));
+          for(int _i0 = 0; _i0 < _len_dev_info0; _i0++) {
+              dev_info[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_info[_i0].num_regions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtty_get_device_info(mdev,dev_info);
+          printf("%d\n", benchRet); 
+          free(mdev);
+          free(dev_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mdev0 = 1;
+          struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev_info0 = 1;
+          struct vfio_device_info * dev_info = (struct vfio_device_info *) malloc(_len_dev_info0*sizeof(struct vfio_device_info));
+          for(int _i0 = 0; _i0 < _len_dev_info0; _i0++) {
+              dev_info[_i0].num_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_info[_i0].num_regions = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtty_get_device_info(mdev,dev_info);
+          printf("%d\n", benchRet); 
+          free(mdev);
+          free(dev_info);
+        
+        break;
+    }
     default:
         usage();
         break;

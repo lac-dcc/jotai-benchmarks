@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ uthread_set_returnval(struct uthread *uth, int retval)
 	uth->uu_rval[0] = retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int retval = 100;
+        
           int _len_uth0 = 1;
           struct uthread * uth = (struct uthread *) malloc(_len_uth0*sizeof(struct uthread));
           for(int _i0 = 0; _i0 < _len_uth0; _i0++) {
@@ -91,7 +89,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_uth__i0__uu_rval0; _j0++) {
             uth[_i0].uu_rval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           uthread_set_returnval(uth,retval);
           for(int _aux = 0; _aux < _len_uth0; _aux++) {
           free(uth[_aux].uu_rval);
@@ -100,7 +100,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int retval = 255;
+        
+          int _len_uth0 = 65025;
+          struct uthread * uth = (struct uthread *) malloc(_len_uth0*sizeof(struct uthread));
+          for(int _i0 = 0; _i0 < _len_uth0; _i0++) {
+              int _len_uth__i0__uu_rval0 = 1;
+          uth[_i0].uu_rval = (int *) malloc(_len_uth__i0__uu_rval0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_uth__i0__uu_rval0; _j0++) {
+            uth[_i0].uu_rval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          uthread_set_returnval(uth,retval);
+          for(int _aux = 0; _aux < _len_uth0; _aux++) {
+          free(uth[_aux].uu_rval);
+          }
+          free(uth);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int retval = 10;
+        
+          int _len_uth0 = 100;
+          struct uthread * uth = (struct uthread *) malloc(_len_uth0*sizeof(struct uthread));
+          for(int _i0 = 0; _i0 < _len_uth0; _i0++) {
+              int _len_uth__i0__uu_rval0 = 1;
+          uth[_i0].uu_rval = (int *) malloc(_len_uth__i0__uu_rval0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_uth__i0__uu_rval0; _j0++) {
+            uth[_i0].uu_rval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          uthread_set_returnval(uth,retval);
+          for(int _aux = 0; _aux < _len_uth0; _aux++) {
+          free(uth[_aux].uu_rval);
+          }
+          free(uth);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int retval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_uth0 = 1;
+          struct uthread * uth = (struct uthread *) malloc(_len_uth0*sizeof(struct uthread));
+          for(int _i0 = 0; _i0 < _len_uth0; _i0++) {
+              int _len_uth__i0__uu_rval0 = 1;
+          uth[_i0].uu_rval = (int *) malloc(_len_uth__i0__uu_rval0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_uth__i0__uu_rval0; _j0++) {
+            uth[_i0].uu_rval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          uthread_set_returnval(uth,retval);
+          for(int _aux = 0; _aux < _len_uth0; _aux++) {
+          free(uth[_aux].uu_rval);
+          }
+          free(uth);
+        
+        break;
+    }
     default:
         usage();
         break;

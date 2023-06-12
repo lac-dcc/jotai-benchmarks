@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +97,6 @@ posix_spawn_file_actions_addinherit_np(posix_spawn_file_actions_t *file_actions,
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,6 +113,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int filedes = 100;
+        
           int _len_file_actions0 = 1;
           int ** file_actions = (int **) malloc(_len_file_actions0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_file_actions0; _i0++) {
@@ -125,17 +123,88 @@ int main(int argc, char *argv[]) {
               file_actions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = posix_spawn_file_actions_addinherit_np(file_actions,filedes);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_file_actions0; i1++) {
-            int _len_file_actions1 = 1;
               free(file_actions[i1]);
           }
           free(file_actions);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int filedes = 255;
+        
+          int _len_file_actions0 = 65025;
+          int ** file_actions = (int **) malloc(_len_file_actions0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_file_actions0; _i0++) {
+            int _len_file_actions1 = 1;
+            file_actions[_i0] = (int *) malloc(_len_file_actions1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_file_actions1; _i1++) {
+              file_actions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = posix_spawn_file_actions_addinherit_np(file_actions,filedes);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_file_actions0; i1++) {
+              free(file_actions[i1]);
+          }
+          free(file_actions);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int filedes = 10;
+        
+          int _len_file_actions0 = 100;
+          int ** file_actions = (int **) malloc(_len_file_actions0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_file_actions0; _i0++) {
+            int _len_file_actions1 = 1;
+            file_actions[_i0] = (int *) malloc(_len_file_actions1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_file_actions1; _i1++) {
+              file_actions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = posix_spawn_file_actions_addinherit_np(file_actions,filedes);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_file_actions0; i1++) {
+              free(file_actions[i1]);
+          }
+          free(file_actions);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int filedes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_file_actions0 = 1;
+          int ** file_actions = (int **) malloc(_len_file_actions0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_file_actions0; _i0++) {
+            int _len_file_actions1 = 1;
+            file_actions[_i0] = (int *) malloc(_len_file_actions1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_file_actions1; _i1++) {
+              file_actions[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = posix_spawn_file_actions_addinherit_np(file_actions,filedes);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_file_actions0; i1++) {
+              free(file_actions[i1]);
+          }
+          free(file_actions);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -65,12 +65,6 @@ __attribute__((used)) static int sex(int bits, int imm) {
 	return imm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,13 +81,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits = 10;
+        
           int imm = 10;
+        
           int benchRet = sex(bits,imm);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static unsigned long next_instruction(unsigned long pc)
 	return pc + 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pc = 100;
+        
           unsigned long benchRet = next_instruction(pc);
           printf("%lu\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long pc = 255;
+        
           unsigned long benchRet = next_instruction(pc);
           printf("%lu\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long pc = 10;
+        
           unsigned long benchRet = next_instruction(pc);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = next_instruction(pc);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ void blk_set_default_limits(struct queue_limits *lim)
 	lim->zoned = BLK_ZONED_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,39 +103,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int _len_lim0 = 65025;
+          struct queue_limits * lim = (struct queue_limits *) malloc(_len_lim0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
+              lim[_i0].max_discard_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].bounce_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].cluster = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].zoned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].io_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_alignment = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_granularity = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_hw_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_write_zeroes_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_write_same_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_dev_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_hw_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_segment_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].virt_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].seg_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_integrity_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_set_default_limits(lim);
+          free(lim);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int _len_lim0 = 100;
+          struct queue_limits * lim = (struct queue_limits *) malloc(_len_lim0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
+              lim[_i0].max_discard_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].bounce_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].cluster = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].zoned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].io_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_alignment = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_granularity = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_hw_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_write_zeroes_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_write_same_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_dev_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_hw_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_segment_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].virt_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].seg_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_integrity_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_set_default_limits(lim);
+          free(lim);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 66
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           int _len_lim0 = 1;
           struct queue_limits * lim = (struct queue_limits *) malloc(_len_lim0*sizeof(struct queue_limits));
           for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
-            lim[_i0].max_discard_segments = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].bounce_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].cluster = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].zoned = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].io_opt = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].discard_misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].discard_alignment = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].discard_granularity = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_hw_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_write_zeroes_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_write_same_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_dev_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_hw_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_segment_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].virt_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].seg_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_integrity_segments = ((-2 * (next_i()%2)) + 1) * next_i();
-        lim[_i0].max_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+              lim[_i0].max_discard_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].logical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].physical_block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].io_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].bounce_pfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].cluster = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].zoned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].io_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].alignment_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_misaligned = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_alignment = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].discard_granularity = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_hw_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_discard_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_write_zeroes_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_write_same_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_dev_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_hw_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_segment_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].virt_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].seg_boundary_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_integrity_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          lim[_i0].max_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           blk_set_default_limits(lim);
           free(lim);
         

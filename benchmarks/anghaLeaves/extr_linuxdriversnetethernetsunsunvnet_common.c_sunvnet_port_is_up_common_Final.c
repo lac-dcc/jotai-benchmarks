@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ bool sunvnet_port_is_up_common(struct vnet_port *vnet)
 	return !!(vio->hs_state & VIO_HS_COMPLETE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vnet0 = 1;
+          int _len_vnet0 = 65025;
           struct vnet_port * vnet = (struct vnet_port *) malloc(_len_vnet0*sizeof(struct vnet_port));
           for(int _i0 = 0; _i0 < _len_vnet0; _i0++) {
-            vnet[_i0].vio.hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              vnet[_i0].vio.hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sunvnet_port_is_up_common(vnet);
           printf("%d\n", benchRet); 
           free(vnet);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_vnet0 = 100;
           struct vnet_port * vnet = (struct vnet_port *) malloc(_len_vnet0*sizeof(struct vnet_port));
           for(int _i0 = 0; _i0 < _len_vnet0; _i0++) {
-            vnet[_i0].vio.hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              vnet[_i0].vio.hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sunvnet_port_is_up_common(vnet);
           printf("%d\n", benchRet); 
           free(vnet);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vnet0 = 1;
+          struct vnet_port * vnet = (struct vnet_port *) malloc(_len_vnet0*sizeof(struct vnet_port));
+          for(int _i0 = 0; _i0 < _len_vnet0; _i0++) {
+              vnet[_i0].vio.hs_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = sunvnet_port_is_up_common(vnet);
+          printf("%d\n", benchRet); 
+          free(vnet);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool radeon_check_pot_argument(int arg)
 	return (arg & (arg - 1)) == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int arg = 100;
+        
           int benchRet = radeon_check_pot_argument(arg);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int arg = 255;
+        
           int benchRet = radeon_check_pot_argument(arg);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int arg = 10;
+        
           int benchRet = radeon_check_pot_argument(arg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = radeon_check_pot_argument(arg);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +93,6 @@ ept_emulation_fault(uint64_t ept_qual)
 	return (TRUE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,6 +109,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ept_qual = 100;
+        
           int benchRet = ept_emulation_fault(ept_qual);
           printf("%d\n", benchRet); 
         
@@ -123,6 +119,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ept_qual = 255;
+        
           int benchRet = ept_emulation_fault(ept_qual);
           printf("%d\n", benchRet); 
         
@@ -132,12 +129,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ept_qual = 10;
+        
           int benchRet = ept_emulation_fault(ept_qual);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ept_qual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ept_emulation_fault(ept_qual);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

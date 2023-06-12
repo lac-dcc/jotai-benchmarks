@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int mv_cesa_ahash_pad_len(struct mv_cesa_ahash_req 
 	return padlen;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +80,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_creq0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_creq0 = 65025;
           struct mv_cesa_ahash_req * creq = (struct mv_cesa_ahash_req *) malloc(_len_creq0*sizeof(struct mv_cesa_ahash_req));
           for(int _i0 = 0; _i0 < _len_creq0; _i0++) {
-            creq[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              creq[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mv_cesa_ahash_pad_len(creq);
           printf("%d\n", benchRet); 
           free(creq);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_creq0 = 100;
           struct mv_cesa_ahash_req * creq = (struct mv_cesa_ahash_req *) malloc(_len_creq0*sizeof(struct mv_cesa_ahash_req));
           for(int _i0 = 0; _i0 < _len_creq0; _i0++) {
-            creq[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              creq[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mv_cesa_ahash_pad_len(creq);
+          printf("%d\n", benchRet); 
+          free(creq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_creq0 = 1;
+          struct mv_cesa_ahash_req * creq = (struct mv_cesa_ahash_req *) malloc(_len_creq0*sizeof(struct mv_cesa_ahash_req));
+          for(int _i0 = 0; _i0 < _len_creq0; _i0++) {
+              creq[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mv_cesa_ahash_pad_len(creq);
           printf("%d\n", benchRet); 
           free(creq);

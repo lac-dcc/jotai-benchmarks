@@ -63,12 +63,6 @@ __attribute__((used)) static inline int TO_BRIGHT(int level)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int level = 100;
+        
           int benchRet = TO_BRIGHT(level);
           printf("%d\n", benchRet); 
         
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int level = 255;
+        
           int benchRet = TO_BRIGHT(level);
           printf("%d\n", benchRet); 
         
@@ -103,12 +99,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int level = 10;
+        
           int benchRet = TO_BRIGHT(level);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

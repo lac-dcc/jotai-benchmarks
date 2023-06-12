@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool kvm_timer_irq_can_fire(struct arch_timer_conte
 		(timer_ctx->cnt_ctl & ARCH_TIMER_CTRL_ENABLE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_timer_ctx0 = 1;
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_timer_ctx0 = 65025;
           struct arch_timer_context * timer_ctx = (struct arch_timer_context *) malloc(_len_timer_ctx0*sizeof(struct arch_timer_context));
           for(int _i0 = 0; _i0 < _len_timer_ctx0; _i0++) {
-            timer_ctx[_i0].cnt_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer_ctx[_i0].cnt_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kvm_timer_irq_can_fire(timer_ctx);
           printf("%d\n", benchRet); 
           free(timer_ctx);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_timer_ctx0 = 100;
           struct arch_timer_context * timer_ctx = (struct arch_timer_context *) malloc(_len_timer_ctx0*sizeof(struct arch_timer_context));
           for(int _i0 = 0; _i0 < _len_timer_ctx0; _i0++) {
-            timer_ctx[_i0].cnt_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer_ctx[_i0].cnt_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = kvm_timer_irq_can_fire(timer_ctx);
+          printf("%d\n", benchRet); 
+          free(timer_ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_timer_ctx0 = 1;
+          struct arch_timer_context * timer_ctx = (struct arch_timer_context *) malloc(_len_timer_ctx0*sizeof(struct arch_timer_context));
+          for(int _i0 = 0; _i0 < _len_timer_ctx0; _i0++) {
+              timer_ctx[_i0].cnt_ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = kvm_timer_irq_can_fire(timer_ctx);
           printf("%d\n", benchRet); 
           free(timer_ctx);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int mapM(int srcMin, int srcMax, int srcVal, int ds
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,15 +101,46 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int srcMin = 100;
+        
           int srcMax = 100;
+        
           int srcVal = 100;
+        
           int dstMin = 100;
+        
           int dstMax = 100;
+        
           int _len_dstVal0 = 1;
           int * dstVal = (int *) malloc(_len_dstVal0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dstVal0; _i0++) {
             dstVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = mapM(srcMin,srcMax,srcVal,dstMin,dstMax,dstVal);
+          printf("%d\n", benchRet); 
+          free(dstVal);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int srcMin = 255;
+        
+          int srcMax = 255;
+        
+          int srcVal = 255;
+        
+          int dstMin = 255;
+        
+          int dstMax = 255;
+        
+          int _len_dstVal0 = 65025;
+          int * dstVal = (int *) malloc(_len_dstVal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dstVal0; _i0++) {
+            dstVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = mapM(srcMin,srcMax,srcVal,dstMin,dstMax,dstVal);
           printf("%d\n", benchRet); 
           free(dstVal);
@@ -121,25 +148,55 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int srcMin = 10;
+        
           int srcMax = 10;
+        
           int srcVal = 10;
+        
           int dstMin = 10;
+        
           int dstMax = 10;
+        
           int _len_dstVal0 = 100;
           int * dstVal = (int *) malloc(_len_dstVal0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dstVal0; _i0++) {
             dstVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mapM(srcMin,srcMax,srcVal,dstMin,dstMax,dstVal);
           printf("%d\n", benchRet); 
           free(dstVal);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int srcMin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int srcMax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int srcVal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dstMin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dstMax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dstVal0 = 1;
+          int * dstVal = (int *) malloc(_len_dstVal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dstVal0; _i0++) {
+            dstVal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mapM(srcMin,srcMax,srcVal,dstMin,dstMax,dstVal);
+          printf("%d\n", benchRet); 
+          free(dstVal);
+        
+        break;
+    }
     default:
         usage();
         break;

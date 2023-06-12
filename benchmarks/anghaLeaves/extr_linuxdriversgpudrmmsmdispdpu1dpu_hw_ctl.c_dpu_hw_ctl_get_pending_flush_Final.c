@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static u32 dpu_hw_ctl_get_pending_flush(struct dpu_hw_ctl 
 	return ctx->pending_flush_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct dpu_hw_ctl * ctx = (struct dpu_hw_ctl *) malloc(_len_ctx0*sizeof(struct dpu_hw_ctl));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dpu_hw_ctl_get_pending_flush(ctx);
           printf("%d\n", benchRet); 
           free(ctx);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_ctx0 = 100;
           struct dpu_hw_ctl * ctx = (struct dpu_hw_ctl *) malloc(_len_ctx0*sizeof(struct dpu_hw_ctl));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dpu_hw_ctl_get_pending_flush(ctx);
           printf("%d\n", benchRet); 
           free(ctx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct dpu_hw_ctl * ctx = (struct dpu_hw_ctl *) malloc(_len_ctx0*sizeof(struct dpu_hw_ctl));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pending_flush_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dpu_hw_ctl_get_pending_flush(ctx);
+          printf("%d\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

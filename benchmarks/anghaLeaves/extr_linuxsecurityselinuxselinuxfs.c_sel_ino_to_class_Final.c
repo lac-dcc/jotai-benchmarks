@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline u16 sel_ino_to_class(unsigned long ino)
 	return (ino & SEL_INO_MASK) / (SEL_VEC_MAX + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ino = 100;
+        
           unsigned long benchRet = sel_ino_to_class(ino);
           printf("%lu\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long ino = 255;
+        
           unsigned long benchRet = sel_ino_to_class(ino);
           printf("%lu\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long ino = 10;
+        
           unsigned long benchRet = sel_ino_to_class(ino);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = sel_ino_to_class(ino);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

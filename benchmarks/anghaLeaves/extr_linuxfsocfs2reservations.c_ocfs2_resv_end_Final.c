@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline unsigned int ocfs2_resv_end(struct ocfs2_all
 	return resv->r_start;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_resv0 = 1;
+          int _len_resv0 = 65025;
           struct ocfs2_alloc_reservation * resv = (struct ocfs2_alloc_reservation *) malloc(_len_resv0*sizeof(struct ocfs2_alloc_reservation));
           for(int _i0 = 0; _i0 < _len_resv0; _i0++) {
-            resv[_i0].r_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        resv[_i0].r_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              resv[_i0].r_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          resv[_i0].r_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ocfs2_resv_end(resv);
           printf("%u\n", benchRet); 
           free(resv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_resv0 = 100;
+          struct ocfs2_alloc_reservation * resv = (struct ocfs2_alloc_reservation *) malloc(_len_resv0*sizeof(struct ocfs2_alloc_reservation));
+          for(int _i0 = 0; _i0 < _len_resv0; _i0++) {
+              resv[_i0].r_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          resv[_i0].r_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ocfs2_resv_end(resv);
+          printf("%u\n", benchRet); 
+          free(resv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_resv0 = 1;
+          struct ocfs2_alloc_reservation * resv = (struct ocfs2_alloc_reservation *) malloc(_len_resv0*sizeof(struct ocfs2_alloc_reservation));
+          for(int _i0 = 0; _i0 < _len_resv0; _i0++) {
+              resv[_i0].r_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          resv[_i0].r_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ocfs2_resv_end(resv);
+          printf("%u\n", benchRet); 
+          free(resv);
+        
+        break;
+    }
     default:
         usage();
         break;

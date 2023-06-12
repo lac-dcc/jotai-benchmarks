@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int rsnd_rdai_ssi_lane_ctrl(struct rsnd_dai *rdai,
 	return rdai->ssi_lane;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,30 +79,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int ssi_lane = 100;
+        
           int _len_rdai0 = 1;
           struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
           for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
-            rdai[_i0].ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdai[_i0].ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rsnd_rdai_ssi_lane_ctrl(rdai,ssi_lane);
           printf("%d\n", benchRet); 
           free(rdai);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ssi_lane = 255;
+        
+          int _len_rdai0 = 65025;
+          struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
+          for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
+              rdai[_i0].ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rsnd_rdai_ssi_lane_ctrl(rdai,ssi_lane);
+          printf("%d\n", benchRet); 
+          free(rdai);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int ssi_lane = 10;
+        
           int _len_rdai0 = 100;
           struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
           for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
-            rdai[_i0].ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdai[_i0].ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rsnd_rdai_ssi_lane_ctrl(rdai,ssi_lane);
+          printf("%d\n", benchRet); 
+          free(rdai);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdai0 = 1;
+          struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
+          for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
+              rdai[_i0].ssi_lane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rsnd_rdai_ssi_lane_ctrl(rdai,ssi_lane);
           printf("%d\n", benchRet); 
           free(rdai);

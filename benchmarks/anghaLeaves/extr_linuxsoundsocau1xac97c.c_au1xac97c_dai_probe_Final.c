@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int au1xac97c_dai_probe(struct snd_soc_dai *dai)
 	return ac97c_workdata ? 0 : -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dai0 = 1;
+          int _len_dai0 = 65025;
           struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
           for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
-            dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = au1xac97c_dai_probe(dai);
           printf("%d\n", benchRet); 
           free(dai);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_dai0 = 100;
           struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
           for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
-            dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = au1xac97c_dai_probe(dai);
           printf("%d\n", benchRet); 
           free(dai);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dai0 = 1;
+          struct snd_soc_dai * dai = (struct snd_soc_dai *) malloc(_len_dai0*sizeof(struct snd_soc_dai));
+          for(int _i0 = 0; _i0 < _len_dai0; _i0++) {
+              dai[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = au1xac97c_dai_probe(dai);
+          printf("%d\n", benchRet); 
+          free(dai);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline bool ath9k_check_auto_sleep(struct ath_softc
 	       (sc->sc_ah->caps.hw_caps & ATH9K_HW_CAP_AUTOSLEEP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_sc0 = 65025;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              int _len_sc__i0__sc_ah0 = 1;
+          sc[_i0].sc_ah = (struct TYPE_4__ *) malloc(_len_sc__i0__sc_ah0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sc__i0__sc_ah0; _j0++) {
+              sc[_i0].sc_ah->caps.hw_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          sc[_i0].ps_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath9k_check_auto_sleep(sc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sc0; _aux++) {
+          free(sc[_aux].sc_ah);
+          }
+          free(sc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_sc0 = 100;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              int _len_sc__i0__sc_ah0 = 1;
+          sc[_i0].sc_ah = (struct TYPE_4__ *) malloc(_len_sc__i0__sc_ah0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sc__i0__sc_ah0; _j0++) {
+              sc[_i0].sc_ah->caps.hw_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          sc[_i0].ps_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath9k_check_auto_sleep(sc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sc0; _aux++) {
+          free(sc[_aux].sc_ah);
+          }
+          free(sc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_sc0 = 1;
           struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
               int _len_sc__i0__sc_ah0 = 1;
           sc[_i0].sc_ah = (struct TYPE_4__ *) malloc(_len_sc__i0__sc_ah0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_sc__i0__sc_ah0; _j0++) {
-            sc[_i0].sc_ah->caps.hw_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].sc_ah->caps.hw_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        sc[_i0].ps_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].ps_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath9k_check_auto_sleep(sc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sc0; _aux++) {

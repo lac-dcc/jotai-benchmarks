@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ bfa_ioim_profile_start(struct bfa_ioim_s *ioim)
 	ioim->start_time = jiffies;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ioim0 = 1;
+          int _len_ioim0 = 65025;
           struct bfa_ioim_s * ioim = (struct bfa_ioim_s *) malloc(_len_ioim0*sizeof(struct bfa_ioim_s));
           for(int _i0 = 0; _i0 < _len_ioim0; _i0++) {
-            ioim[_i0].start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              ioim[_i0].start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_ioim_profile_start(ioim);
           free(ioim);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_ioim0 = 100;
           struct bfa_ioim_s * ioim = (struct bfa_ioim_s *) malloc(_len_ioim0*sizeof(struct bfa_ioim_s));
           for(int _i0 = 0; _i0 < _len_ioim0; _i0++) {
-            ioim[_i0].start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              ioim[_i0].start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bfa_ioim_profile_start(ioim);
           free(ioim);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ioim0 = 1;
+          struct bfa_ioim_s * ioim = (struct bfa_ioim_s *) malloc(_len_ioim0*sizeof(struct bfa_ioim_s));
+          for(int _i0 = 0; _i0 < _len_ioim0; _i0++) {
+              ioim[_i0].start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bfa_ioim_profile_start(ioim);
+          free(ioim);
+        
+        break;
+    }
     default:
         usage();
         break;

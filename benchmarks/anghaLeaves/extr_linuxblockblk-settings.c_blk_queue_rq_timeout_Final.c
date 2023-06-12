@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void blk_queue_rq_timeout(struct request_queue *q, unsigned int timeout)
 	q->rq_timeout = timeout;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int timeout = 100;
+        
           int _len_q0 = 1;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].rq_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].rq_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          blk_queue_rq_timeout(q,timeout);
+          free(q);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int timeout = 255;
+        
+          int _len_q0 = 65025;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].rq_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           blk_queue_rq_timeout(q,timeout);
           free(q);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int timeout = 10;
+        
           int _len_q0 = 100;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].rq_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].rq_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           blk_queue_rq_timeout(q,timeout);
           free(q);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].rq_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_queue_rq_timeout(q,timeout);
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ gqueue_init (GDnsQueue * q, int capacity)
   q->capacity = capacity;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int capacity = 100;
+        
           int _len_q0 = 1;
           struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          gqueue_init(q,capacity);
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int capacity = 255;
+        
+          int _len_q0 = 65025;
+          struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gqueue_init(q,capacity);
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int capacity = 10;
+        
+          int _len_q0 = 100;
+          struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gqueue_init(q,capacity);
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].capacity = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           gqueue_init(q,capacity);
           free(q);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int cpu_to_queue_index(unsigned int nr_queues, cons
 	return cpu % nr_queues;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int nr_queues = 100;
+        
           const int cpu = 100;
+        
           int benchRet = cpu_to_queue_index(nr_queues,cpu);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int nr_queues = 255;
+        
           const int cpu = 255;
+        
           int benchRet = cpu_to_queue_index(nr_queues,cpu);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int nr_queues = 10;
+        
           const int cpu = 10;
+        
           int benchRet = cpu_to_queue_index(nr_queues,cpu);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int nr_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cpu_to_queue_index(nr_queues,cpu);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

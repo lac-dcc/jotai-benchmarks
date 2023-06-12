@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void CRYP_IVStructInit(CRYP_IVInitTypeDef* CRYP_IVInitStruct)
   CRYP_IVInitStruct->CRYP_IV1Right = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_CRYP_IVInitStruct0 = 1;
+          int _len_CRYP_IVInitStruct0 = 65025;
           struct TYPE_3__ * CRYP_IVInitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_IVInitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_CRYP_IVInitStruct0; _i0++) {
-            CRYP_IVInitStruct[_i0].CRYP_IV1Right = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_IVInitStruct[_i0].CRYP_IV1Left = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_IVInitStruct[_i0].CRYP_IV0Right = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_IVInitStruct[_i0].CRYP_IV0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+              CRYP_IVInitStruct[_i0].CRYP_IV1Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV1Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV0Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           CRYP_IVStructInit(CRYP_IVInitStruct);
           free(CRYP_IVInitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_CRYP_IVInitStruct0 = 100;
+          struct TYPE_3__ * CRYP_IVInitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_IVInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CRYP_IVInitStruct0; _i0++) {
+              CRYP_IVInitStruct[_i0].CRYP_IV1Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV1Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV0Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CRYP_IVStructInit(CRYP_IVInitStruct);
+          free(CRYP_IVInitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_CRYP_IVInitStruct0 = 1;
+          struct TYPE_3__ * CRYP_IVInitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_IVInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CRYP_IVInitStruct0; _i0++) {
+              CRYP_IVInitStruct[_i0].CRYP_IV1Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV1Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV0Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_IVInitStruct[_i0].CRYP_IV0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CRYP_IVStructInit(CRYP_IVInitStruct);
+          free(CRYP_IVInitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

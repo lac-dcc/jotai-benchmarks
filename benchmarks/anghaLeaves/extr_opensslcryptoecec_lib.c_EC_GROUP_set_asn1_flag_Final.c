@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void EC_GROUP_set_asn1_flag(EC_GROUP *group, int flag)
     group->asn1_flag = flag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,17 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flag = 100;
+        
           int _len_group0 = 1;
           struct TYPE_3__ * group = (struct TYPE_3__ *) malloc(_len_group0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_group0; _i0++) {
-            group[_i0].asn1_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              group[_i0].asn1_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           EC_GROUP_set_asn1_flag(group,flag);
           free(group);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int flag = 255;
+        
+          int _len_group0 = 65025;
+          struct TYPE_3__ * group = (struct TYPE_3__ *) malloc(_len_group0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              group[_i0].asn1_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EC_GROUP_set_asn1_flag(group,flag);
+          free(group);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int flag = 10;
+        
+          int _len_group0 = 100;
+          struct TYPE_3__ * group = (struct TYPE_3__ *) malloc(_len_group0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              group[_i0].asn1_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EC_GROUP_set_asn1_flag(group,flag);
+          free(group);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_group0 = 1;
+          struct TYPE_3__ * group = (struct TYPE_3__ *) malloc(_len_group0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              group[_i0].asn1_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EC_GROUP_set_asn1_flag(group,flag);
+          free(group);
+        
+        break;
+    }
     default:
         usage();
         break;

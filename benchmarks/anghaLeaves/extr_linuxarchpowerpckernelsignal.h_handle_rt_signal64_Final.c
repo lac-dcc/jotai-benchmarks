@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int handle_rt_signal64(struct ksignal *ksig,
 	return -EFAULT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,24 +78,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ksig0 = 65025;
+          struct ksignal * ksig = (struct ksignal *) malloc(_len_ksig0*sizeof(struct ksignal));
+          for(int _i0 = 0; _i0 < _len_ksig0; _i0++) {
+              ksig[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_set0 = 65025;
+          int * set = (int *) malloc(_len_set0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_set0; _i0++) {
+            set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tsk0 = 65025;
+          struct task_struct * tsk = (struct task_struct *) malloc(_len_tsk0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_tsk0; _i0++) {
+              tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = handle_rt_signal64(ksig,set,tsk);
+          printf("%d\n", benchRet); 
+          free(ksig);
+          free(set);
+          free(tsk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_ksig0 = 100;
+          struct ksignal * ksig = (struct ksignal *) malloc(_len_ksig0*sizeof(struct ksignal));
+          for(int _i0 = 0; _i0 < _len_ksig0; _i0++) {
+              ksig[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_set0 = 100;
+          int * set = (int *) malloc(_len_set0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_set0; _i0++) {
+            set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tsk0 = 100;
+          struct task_struct * tsk = (struct task_struct *) malloc(_len_tsk0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_tsk0; _i0++) {
+              tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = handle_rt_signal64(ksig,set,tsk);
+          printf("%d\n", benchRet); 
+          free(ksig);
+          free(set);
+          free(tsk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_ksig0 = 1;
           struct ksignal * ksig = (struct ksignal *) malloc(_len_ksig0*sizeof(struct ksignal));
           for(int _i0 = 0; _i0 < _len_ksig0; _i0++) {
-            ksig[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ksig[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_set0 = 1;
           int * set = (int *) malloc(_len_set0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_set0; _i0++) {
             set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tsk0 = 1;
           struct task_struct * tsk = (struct task_struct *) malloc(_len_tsk0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_tsk0; _i0++) {
-            tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = handle_rt_signal64(ksig,set,tsk);
           printf("%d\n", benchRet); 
           free(ksig);

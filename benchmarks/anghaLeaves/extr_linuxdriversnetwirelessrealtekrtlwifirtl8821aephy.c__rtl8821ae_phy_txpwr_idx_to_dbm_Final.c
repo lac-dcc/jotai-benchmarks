@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static long _rtl8821ae_phy_txpwr_idx_to_dbm(struct ieee802
 	return pwrout_dbm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,12 +102,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum wireless_mode wirelessmode = 0;
+        
           int txpwridx = 100;
+        
           int _len_hw0 = 1;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = _rtl8821ae_phy_txpwr_idx_to_dbm(hw,wirelessmode,txpwridx);
+          printf("%ld\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          enum wireless_mode wirelessmode = 0;
+        
+          int txpwridx = 255;
+        
+          int _len_hw0 = 65025;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = _rtl8821ae_phy_txpwr_idx_to_dbm(hw,wirelessmode,txpwridx);
           printf("%ld\n", benchRet); 
           free(hw);
@@ -119,22 +139,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           enum wireless_mode wirelessmode = 0;
+        
           int txpwridx = 10;
+        
           int _len_hw0 = 100;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = _rtl8821ae_phy_txpwr_idx_to_dbm(hw,wirelessmode,txpwridx);
           printf("%ld\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum wireless_mode wirelessmode = 0;
+        
+          int txpwridx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = _rtl8821ae_phy_txpwr_idx_to_dbm(hw,wirelessmode,txpwridx);
+          printf("%ld\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

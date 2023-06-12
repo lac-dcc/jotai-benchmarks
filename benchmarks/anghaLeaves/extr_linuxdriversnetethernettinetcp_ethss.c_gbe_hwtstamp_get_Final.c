@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int gbe_hwtstamp_get(struct gbe_intf *gbe_in
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gbe_intf0 = 1;
+          int _len_gbe_intf0 = 65025;
           struct gbe_intf * gbe_intf = (struct gbe_intf *) malloc(_len_gbe_intf0*sizeof(struct gbe_intf));
           for(int _i0 = 0; _i0 < _len_gbe_intf0; _i0++) {
-            gbe_intf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gbe_intf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_req0 = 1;
+        
+          int _len_req0 = 65025;
           struct ifreq * req = (struct ifreq *) malloc(_len_req0*sizeof(struct ifreq));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gbe_hwtstamp_get(gbe_intf,req);
           printf("%d\n", benchRet); 
           free(gbe_intf);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gbe_intf0 = 100;
+          struct gbe_intf * gbe_intf = (struct gbe_intf *) malloc(_len_gbe_intf0*sizeof(struct gbe_intf));
+          for(int _i0 = 0; _i0 < _len_gbe_intf0; _i0++) {
+              gbe_intf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_req0 = 100;
+          struct ifreq * req = (struct ifreq *) malloc(_len_req0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gbe_hwtstamp_get(gbe_intf,req);
+          printf("%d\n", benchRet); 
+          free(gbe_intf);
+          free(req);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gbe_intf0 = 1;
+          struct gbe_intf * gbe_intf = (struct gbe_intf *) malloc(_len_gbe_intf0*sizeof(struct gbe_intf));
+          for(int _i0 = 0; _i0 < _len_gbe_intf0; _i0++) {
+              gbe_intf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_req0 = 1;
+          struct ifreq * req = (struct ifreq *) malloc(_len_req0*sizeof(struct ifreq));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gbe_hwtstamp_get(gbe_intf,req);
+          printf("%d\n", benchRet); 
+          free(gbe_intf);
+          free(req);
+        
+        break;
+    }
     default:
         usage();
         break;

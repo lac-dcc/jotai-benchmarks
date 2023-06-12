@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int b43_plcp_get_bitrate_idx_cck(struct b43_plcp_hd
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +84,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_plcp0 = 1;
+          int _len_plcp0 = 65025;
           struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
           for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
               int _len_plcp__i0__raw0 = 1;
@@ -99,7 +95,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
             plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = b43_plcp_get_bitrate_idx_cck(plcp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_plcp0; _aux++) {
@@ -109,7 +107,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_plcp0 = 100;
+          struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+              int _len_plcp__i0__raw0 = 1;
+          plcp[_i0].raw = (int *) malloc(_len_plcp__i0__raw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
+            plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = b43_plcp_get_bitrate_idx_cck(plcp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plcp0; _aux++) {
+          free(plcp[_aux].raw);
+          }
+          free(plcp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_plcp0 = 1;
+          struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+              int _len_plcp__i0__raw0 = 1;
+          plcp[_i0].raw = (int *) malloc(_len_plcp__i0__raw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
+            plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = b43_plcp_get_bitrate_idx_cck(plcp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plcp0; _aux++) {
+          free(plcp[_aux].raw);
+          }
+          free(plcp);
+        
+        break;
+    }
     default:
         usage();
         break;

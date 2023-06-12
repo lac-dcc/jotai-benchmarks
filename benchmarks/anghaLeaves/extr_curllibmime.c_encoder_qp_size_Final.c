@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static curl_off_t encoder_qp_size(curl_mimepart *part)
   return part->datasize? -1: 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_part0 = 1;
+          int _len_part0 = 65025;
           struct TYPE_3__ * part = (struct TYPE_3__ *) malloc(_len_part0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_part0; _i0++) {
-            part[_i0].datasize = ((-2 * (next_i()%2)) + 1) * next_i();
+              part[_i0].datasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = encoder_qp_size(part);
           printf("%d\n", benchRet); 
           free(part);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_part0 = 100;
           struct TYPE_3__ * part = (struct TYPE_3__ *) malloc(_len_part0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_part0; _i0++) {
-            part[_i0].datasize = ((-2 * (next_i()%2)) + 1) * next_i();
+              part[_i0].datasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = encoder_qp_size(part);
           printf("%d\n", benchRet); 
           free(part);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_part0 = 1;
+          struct TYPE_3__ * part = (struct TYPE_3__ *) malloc(_len_part0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_part0; _i0++) {
+              part[_i0].datasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = encoder_qp_size(part);
+          printf("%d\n", benchRet); 
+          free(part);
+        
+        break;
+    }
     default:
         usage();
         break;

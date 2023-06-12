@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void skd_release_skreq(struct skd_device *skdev,
 	skreq->state = SKD_REQ_STATE_IDLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,26 +80,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_skdev0 = 1;
+          int _len_skdev0 = 65025;
           struct skd_device * skdev = (struct skd_device *) malloc(_len_skdev0*sizeof(struct skd_device));
           for(int _i0 = 0; _i0 < _len_skdev0; _i0++) {
-            skdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_skreq0 = 1;
+        
+          int _len_skreq0 = 65025;
           struct skd_request_context * skreq = (struct skd_request_context *) malloc(_len_skreq0*sizeof(struct skd_request_context));
           for(int _i0 = 0; _i0 < _len_skreq0; _i0++) {
-            skreq[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              skreq[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           skd_release_skreq(skdev,skreq);
           free(skdev);
           free(skreq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_skdev0 = 100;
+          struct skd_device * skdev = (struct skd_device *) malloc(_len_skdev0*sizeof(struct skd_device));
+          for(int _i0 = 0; _i0 < _len_skdev0; _i0++) {
+              skdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skreq0 = 100;
+          struct skd_request_context * skreq = (struct skd_request_context *) malloc(_len_skreq0*sizeof(struct skd_request_context));
+          for(int _i0 = 0; _i0 < _len_skreq0; _i0++) {
+              skreq[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          skd_release_skreq(skdev,skreq);
+          free(skdev);
+          free(skreq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_skdev0 = 1;
+          struct skd_device * skdev = (struct skd_device *) malloc(_len_skdev0*sizeof(struct skd_device));
+          for(int _i0 = 0; _i0 < _len_skdev0; _i0++) {
+              skdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skreq0 = 1;
+          struct skd_request_context * skreq = (struct skd_request_context *) malloc(_len_skreq0*sizeof(struct skd_request_context));
+          for(int _i0 = 0; _i0 < _len_skreq0; _i0++) {
+              skreq[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          skd_release_skreq(skdev,skreq);
+          free(skdev);
+          free(skreq);
+        
+        break;
+    }
     default:
         usage();
         break;

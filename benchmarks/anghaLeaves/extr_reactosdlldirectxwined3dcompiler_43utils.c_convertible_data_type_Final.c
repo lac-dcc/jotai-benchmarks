@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static BOOL convertible_data_type(struct hlsl_type *type)
     return type->type != HLSL_CLASS_OBJECT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_type0 = 1;
+          int _len_type0 = 65025;
           struct hlsl_type * type = (struct hlsl_type *) malloc(_len_type0*sizeof(struct hlsl_type));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
-            type[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              type[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = convertible_data_type(type);
           printf("%d\n", benchRet); 
           free(type);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_type0 = 100;
           struct hlsl_type * type = (struct hlsl_type *) malloc(_len_type0*sizeof(struct hlsl_type));
           for(int _i0 = 0; _i0 < _len_type0; _i0++) {
-            type[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              type[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = convertible_data_type(type);
           printf("%d\n", benchRet); 
           free(type);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_type0 = 1;
+          struct hlsl_type * type = (struct hlsl_type *) malloc(_len_type0*sizeof(struct hlsl_type));
+          for(int _i0 = 0; _i0 < _len_type0; _i0++) {
+              type[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = convertible_data_type(type);
+          printf("%d\n", benchRet); 
+          free(type);
+        
+        break;
+    }
     default:
         usage();
         break;

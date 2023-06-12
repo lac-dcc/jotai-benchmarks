@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void beiscsi_parse_pdu(struct iscsi_conn *conn, itt
 		*age = conn->session->age;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +85,31 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long itt = 100;
+        
           int _len_conn0 = 1;
           struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
               int _len_conn__i0__session0 = 1;
           conn[_i0].session = (struct TYPE_2__ *) malloc(_len_conn__i0__session0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_conn__i0__session0; _j0++) {
-            conn[_i0].session->age = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].session->age = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_index0 = 1;
           int * index = (int *) malloc(_len_index0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
             index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_age0 = 1;
           int * age = (int *) malloc(_len_age0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_age0; _i0++) {
             age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           beiscsi_parse_pdu(conn,itt,index,age);
           for(int _aux = 0; _aux < _len_conn0; _aux++) {
           free(conn[_aux].session);
@@ -117,7 +120,123 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long itt = 255;
+        
+          int _len_conn0 = 65025;
+          struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              int _len_conn__i0__session0 = 1;
+          conn[_i0].session = (struct TYPE_2__ *) malloc(_len_conn__i0__session0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_conn__i0__session0; _j0++) {
+              conn[_i0].session->age = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_index0 = 65025;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_age0 = 65025;
+          int * age = (int *) malloc(_len_age0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_age0; _i0++) {
+            age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          beiscsi_parse_pdu(conn,itt,index,age);
+          for(int _aux = 0; _aux < _len_conn0; _aux++) {
+          free(conn[_aux].session);
+          }
+          free(conn);
+          free(index);
+          free(age);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long itt = 10;
+        
+          int _len_conn0 = 100;
+          struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              int _len_conn__i0__session0 = 1;
+          conn[_i0].session = (struct TYPE_2__ *) malloc(_len_conn__i0__session0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_conn__i0__session0; _j0++) {
+              conn[_i0].session->age = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_index0 = 100;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_age0 = 100;
+          int * age = (int *) malloc(_len_age0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_age0; _i0++) {
+            age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          beiscsi_parse_pdu(conn,itt,index,age);
+          for(int _aux = 0; _aux < _len_conn0; _aux++) {
+          free(conn[_aux].session);
+          }
+          free(conn);
+          free(index);
+          free(age);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long itt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              int _len_conn__i0__session0 = 1;
+          conn[_i0].session = (struct TYPE_2__ *) malloc(_len_conn__i0__session0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_conn__i0__session0; _j0++) {
+              conn[_i0].session->age = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_index0 = 1;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_age0 = 1;
+          int * age = (int *) malloc(_len_age0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_age0; _i0++) {
+            age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          beiscsi_parse_pdu(conn,itt,index,age);
+          for(int _aux = 0; _aux < _len_conn0; _aux++) {
+          free(conn[_aux].session);
+          }
+          free(conn);
+          free(index);
+          free(age);
+        
+        break;
+    }
     default:
         usage();
         break;

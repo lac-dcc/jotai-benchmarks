@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ machine_thread_state_convert_to_user(
 	return KERN_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,13 +91,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int thread = 100;
+        
           int flavor = 100;
+        
           int tstate = 100;
+        
           int _len_count0 = 1;
           int * count = (int *) malloc(_len_count0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = machine_thread_state_convert_to_user(thread,flavor,tstate,count);
+          printf("%d\n", benchRet); 
+          free(count);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int thread = 255;
+        
+          int flavor = 255;
+        
+          int tstate = 255;
+        
+          int _len_count0 = 65025;
+          int * count = (int *) malloc(_len_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = machine_thread_state_convert_to_user(thread,flavor,tstate,count);
           printf("%d\n", benchRet); 
           free(count);
@@ -109,23 +130,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int thread = 10;
+        
           int flavor = 10;
+        
           int tstate = 10;
+        
           int _len_count0 = 100;
           int * count = (int *) malloc(_len_count0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = machine_thread_state_convert_to_user(thread,flavor,tstate,count);
           printf("%d\n", benchRet); 
           free(count);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int thread = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_count0 = 1;
+          int * count = (int *) malloc(_len_count0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = machine_thread_state_convert_to_user(thread,flavor,tstate,count);
+          printf("%d\n", benchRet); 
+          free(count);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ plane_switching_crtc(struct drm_atomic_state *state,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,28 +92,186 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct drm_atomic_state * state = (struct drm_atomic_state *) malloc(_len_state0*sizeof(struct drm_atomic_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_plane0 = 65025;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              int _len_plane__i0__state0 = 1;
+          plane[_i0].state = (struct TYPE_2__ *) malloc(_len_plane__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_plane__i0__state0; _j0++) {
+              plane[_i0].state->crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_plane_state0 = 65025;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = plane_switching_crtc(state,plane,plane_state);
+          printf("%d\n", benchRet); 
+          free(state);
+          for(int _aux = 0; _aux < _len_plane0; _aux++) {
+          free(plane[_aux].state);
+          }
+          free(plane);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct drm_atomic_state * state = (struct drm_atomic_state *) malloc(_len_state0*sizeof(struct drm_atomic_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_plane0 = 100;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              int _len_plane__i0__state0 = 1;
+          plane[_i0].state = (struct TYPE_2__ *) malloc(_len_plane__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_plane__i0__state0; _j0++) {
+              plane[_i0].state->crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_plane_state0 = 100;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = plane_switching_crtc(state,plane,plane_state);
+          printf("%d\n", benchRet); 
+          free(state);
+          for(int _aux = 0; _aux < _len_plane0; _aux++) {
+          free(plane[_aux].state);
+          }
+          free(plane);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct drm_atomic_state * state = (struct drm_atomic_state *) malloc(_len_state0*sizeof(struct drm_atomic_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_plane0 = 1;
           struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
           for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
               int _len_plane__i0__state0 = 1;
           plane[_i0].state = (struct TYPE_2__ *) malloc(_len_plane__i0__state0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_plane__i0__state0; _j0++) {
-            plane[_i0].state->crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane[_i0].state->crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_plane_state0 = 1;
           struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
           for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
-            plane_state[_i0].crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane_state[_i0].crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = plane_switching_crtc(state,plane,plane_state);
           printf("%d\n", benchRet); 
           free(state);

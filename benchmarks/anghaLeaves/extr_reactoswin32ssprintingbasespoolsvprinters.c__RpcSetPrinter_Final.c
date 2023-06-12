@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ _RpcSetPrinter(WINSPOOL_PRINTER_HANDLE hPrinter, WINSPOOL_PRINTER_CONTAINER* pPr
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,26 +83,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hPrinter = 100;
+        
           int Command = 100;
+        
           int _len_pPrinterContainer0 = 1;
           int * pPrinterContainer = (int *) malloc(_len_pPrinterContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPrinterContainer0; _i0++) {
             pPrinterContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pDevModeContainer0 = 1;
           int * pDevModeContainer = (int *) malloc(_len_pDevModeContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pDevModeContainer0; _i0++) {
             pDevModeContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pSecurityContainer0 = 1;
           int * pSecurityContainer = (int *) malloc(_len_pSecurityContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pSecurityContainer0; _i0++) {
             pSecurityContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcSetPrinter(hPrinter,pPrinterContainer,pDevModeContainer,pSecurityContainer,Command);
+          printf("%d\n", benchRet); 
+          free(pPrinterContainer);
+          free(pDevModeContainer);
+          free(pSecurityContainer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 255;
+        
+          int Command = 255;
+        
+          int _len_pPrinterContainer0 = 65025;
+          int * pPrinterContainer = (int *) malloc(_len_pPrinterContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrinterContainer0; _i0++) {
+            pPrinterContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pDevModeContainer0 = 65025;
+          int * pDevModeContainer = (int *) malloc(_len_pDevModeContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pDevModeContainer0; _i0++) {
+            pDevModeContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pSecurityContainer0 = 65025;
+          int * pSecurityContainer = (int *) malloc(_len_pSecurityContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pSecurityContainer0; _i0++) {
+            pSecurityContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcSetPrinter(hPrinter,pPrinterContainer,pDevModeContainer,pSecurityContainer,Command);
+          printf("%d\n", benchRet); 
+          free(pPrinterContainer);
+          free(pDevModeContainer);
+          free(pSecurityContainer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 10;
+        
+          int Command = 10;
+        
+          int _len_pPrinterContainer0 = 100;
+          int * pPrinterContainer = (int *) malloc(_len_pPrinterContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrinterContainer0; _i0++) {
+            pPrinterContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pDevModeContainer0 = 100;
+          int * pDevModeContainer = (int *) malloc(_len_pDevModeContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pDevModeContainer0; _i0++) {
+            pDevModeContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pSecurityContainer0 = 100;
+          int * pSecurityContainer = (int *) malloc(_len_pSecurityContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pSecurityContainer0; _i0++) {
+            pSecurityContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcSetPrinter(hPrinter,pPrinterContainer,pDevModeContainer,pSecurityContainer,Command);
+          printf("%d\n", benchRet); 
+          free(pPrinterContainer);
+          free(pDevModeContainer);
+          free(pSecurityContainer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pPrinterContainer0 = 1;
+          int * pPrinterContainer = (int *) malloc(_len_pPrinterContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPrinterContainer0; _i0++) {
+            pPrinterContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pDevModeContainer0 = 1;
+          int * pDevModeContainer = (int *) malloc(_len_pDevModeContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pDevModeContainer0; _i0++) {
+            pDevModeContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pSecurityContainer0 = 1;
+          int * pSecurityContainer = (int *) malloc(_len_pSecurityContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pSecurityContainer0; _i0++) {
+            pSecurityContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcSetPrinter(hPrinter,pPrinterContainer,pDevModeContainer,pSecurityContainer,Command);
           printf("%d\n", benchRet); 
           free(pPrinterContainer);

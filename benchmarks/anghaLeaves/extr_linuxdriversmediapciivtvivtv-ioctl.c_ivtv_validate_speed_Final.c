@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +96,6 @@ __attribute__((used)) static int ivtv_validate_speed(int cur_speed, int new_spee
 	return 1000 / (fact * new_speed);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,7 +112,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cur_speed = 100;
+        
           int new_speed = 100;
+        
           int benchRet = ivtv_validate_speed(cur_speed,new_speed);
           printf("%d\n", benchRet); 
         
@@ -127,7 +124,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cur_speed = 255;
+        
           int new_speed = 255;
+        
           int benchRet = ivtv_validate_speed(cur_speed,new_speed);
           printf("%d\n", benchRet); 
         
@@ -137,13 +136,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cur_speed = 10;
+        
           int new_speed = 10;
+        
           int benchRet = ivtv_validate_speed(cur_speed,new_speed);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cur_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int new_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ivtv_validate_speed(cur_speed,new_speed);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

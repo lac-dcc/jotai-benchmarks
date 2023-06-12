@@ -60,12 +60,6 @@ __attribute__((used)) static inline __u32 CNVT_TOHW(__u32 val, __u32 width)
 	return ((val << width) + 0x7FFF - val) >> 16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 10;
+        
           int width = 10;
+        
           int benchRet = CNVT_TOHW(val,width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

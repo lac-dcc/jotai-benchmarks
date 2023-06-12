@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ mlxsw_i2c_driver_register(struct i2c_driver *i2c_driver)
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_i2c_driver0 = 1;
+          int _len_i2c_driver0 = 65025;
           struct i2c_driver * i2c_driver = (struct i2c_driver *) malloc(_len_i2c_driver0*sizeof(struct i2c_driver));
           for(int _i0 = 0; _i0 < _len_i2c_driver0; _i0++) {
-            i2c_driver[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_driver[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlxsw_i2c_driver_register(i2c_driver);
           printf("%d\n", benchRet); 
           free(i2c_driver);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_i2c_driver0 = 100;
           struct i2c_driver * i2c_driver = (struct i2c_driver *) malloc(_len_i2c_driver0*sizeof(struct i2c_driver));
           for(int _i0 = 0; _i0 < _len_i2c_driver0; _i0++) {
-            i2c_driver[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_driver[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlxsw_i2c_driver_register(i2c_driver);
           printf("%d\n", benchRet); 
           free(i2c_driver);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_i2c_driver0 = 1;
+          struct i2c_driver * i2c_driver = (struct i2c_driver *) malloc(_len_i2c_driver0*sizeof(struct i2c_driver));
+          for(int _i0 = 0; _i0 < _len_i2c_driver0; _i0++) {
+              i2c_driver[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlxsw_i2c_driver_register(i2c_driver);
+          printf("%d\n", benchRet); 
+          free(i2c_driver);
+        
+        break;
+    }
     default:
         usage();
         break;

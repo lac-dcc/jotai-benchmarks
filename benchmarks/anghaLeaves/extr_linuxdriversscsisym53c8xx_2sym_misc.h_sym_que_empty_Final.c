@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -60,7 +61,6 @@ __attribute__((used)) static inline int sym_que_empty(struct sym_quehead *head)
 	return head->flink == head;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct sym_quehead *_allocate_head(int length, struct sym_quehead *aux_head[]) {
@@ -88,7 +88,6 @@ void _delete_head(struct sym_quehead *aux_head[], int aux_head_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,18 +100,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct sym_quehead * aux_head[10000];
+          struct sym_quehead * head = _allocate_head(10000, aux_head);
+        
+          int benchRet = sym_que_empty(head);
+          printf("%d\n", benchRet); 
+          _delete_head(aux_head, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct sym_quehead * aux_head[1];
           struct sym_quehead * head = _allocate_head(1, aux_head);
+        
           int benchRet = sym_que_empty(head);
           printf("%d\n", benchRet); 
           _delete_head(aux_head, 1);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ size_t Curl_multi_max_host_connections(struct Curl_multi *multi)
   return multi ? multi->max_host_connections : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_multi0 = 1;
+          int _len_multi0 = 65025;
           struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
           for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
-            multi[_i0].max_host_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+              multi[_i0].max_host_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = Curl_multi_max_host_connections(multi);
           printf("%lu\n", benchRet); 
           free(multi);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_multi0 = 100;
           struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
           for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
-            multi[_i0].max_host_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+              multi[_i0].max_host_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = Curl_multi_max_host_connections(multi);
           printf("%lu\n", benchRet); 
           free(multi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_multi0 = 1;
+          struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
+          for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
+              multi[_i0].max_host_connections = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = Curl_multi_max_host_connections(multi);
+          printf("%lu\n", benchRet); 
+          free(multi);
+        
+        break;
+    }
     default:
         usage();
         break;

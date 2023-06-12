@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline uint32_t fsi_smode_senddly(int x)
 	return (x & FSI_SMODE_SD_MASK) << FSI_SMODE_SD_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int benchRet = fsi_smode_senddly(x);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int benchRet = fsi_smode_senddly(x);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int benchRet = fsi_smode_senddly(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = fsi_smode_senddly(x);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

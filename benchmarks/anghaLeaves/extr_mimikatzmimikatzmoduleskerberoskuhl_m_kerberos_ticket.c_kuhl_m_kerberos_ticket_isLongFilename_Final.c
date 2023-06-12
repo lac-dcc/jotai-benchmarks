@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ BOOL kuhl_m_kerberos_ticket_isLongFilename(PKIWI_KERBEROS_TICKET ticket)
 	return ticket && (ticket->ClientName) && (ticket->ClientName->NameType == KRB_NT_PRINCIPAL) && (ticket->ClientName->NameCount == 1) && (ticket->ServiceName) && ((ticket->ServiceName->NameType >= KRB_NT_PRINCIPAL) && (ticket->ServiceName->NameType <= KRB_NT_SRV_HST)) && (ticket->ServiceName->NameCount > 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,25 +83,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ticket0 = 65025;
+          struct TYPE_7__ * ticket = (struct TYPE_7__ *) malloc(_len_ticket0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ticket0; _i0++) {
+              int _len_ticket__i0__ServiceName0 = 1;
+          ticket[_i0].ServiceName = (struct TYPE_6__ *) malloc(_len_ticket__i0__ServiceName0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_ticket__i0__ServiceName0; _j0++) {
+              ticket[_i0].ServiceName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          ticket[_i0].ServiceName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ticket__i0__ClientName0 = 1;
+          ticket[_i0].ClientName = (struct TYPE_5__ *) malloc(_len_ticket__i0__ClientName0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_ticket__i0__ClientName0; _j0++) {
+              ticket[_i0].ClientName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          ticket[_i0].ClientName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = kuhl_m_kerberos_ticket_isLongFilename(ticket);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ticket0; _aux++) {
+          free(ticket[_aux].ServiceName);
+          }
+          for(int _aux = 0; _aux < _len_ticket0; _aux++) {
+          free(ticket[_aux].ClientName);
+          }
+          free(ticket);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ticket0 = 100;
+          struct TYPE_7__ * ticket = (struct TYPE_7__ *) malloc(_len_ticket0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ticket0; _i0++) {
+              int _len_ticket__i0__ServiceName0 = 1;
+          ticket[_i0].ServiceName = (struct TYPE_6__ *) malloc(_len_ticket__i0__ServiceName0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_ticket__i0__ServiceName0; _j0++) {
+              ticket[_i0].ServiceName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          ticket[_i0].ServiceName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ticket__i0__ClientName0 = 1;
+          ticket[_i0].ClientName = (struct TYPE_5__ *) malloc(_len_ticket__i0__ClientName0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_ticket__i0__ClientName0; _j0++) {
+              ticket[_i0].ClientName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          ticket[_i0].ClientName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = kuhl_m_kerberos_ticket_isLongFilename(ticket);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ticket0; _aux++) {
+          free(ticket[_aux].ServiceName);
+          }
+          for(int _aux = 0; _aux < _len_ticket0; _aux++) {
+          free(ticket[_aux].ClientName);
+          }
+          free(ticket);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_ticket0 = 1;
           struct TYPE_7__ * ticket = (struct TYPE_7__ *) malloc(_len_ticket0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_ticket0; _i0++) {
               int _len_ticket__i0__ServiceName0 = 1;
           ticket[_i0].ServiceName = (struct TYPE_6__ *) malloc(_len_ticket__i0__ServiceName0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_ticket__i0__ServiceName0; _j0++) {
-            ticket[_i0].ServiceName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
-        ticket[_i0].ServiceName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+              ticket[_i0].ServiceName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          ticket[_i0].ServiceName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_ticket__i0__ClientName0 = 1;
           ticket[_i0].ClientName = (struct TYPE_5__ *) malloc(_len_ticket__i0__ClientName0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_ticket__i0__ClientName0; _j0++) {
-            ticket[_i0].ClientName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
-        ticket[_i0].ClientName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+              ticket[_i0].ClientName->NameType = ((-2 * (next_i()%2)) + 1) * next_i();
+          ticket[_i0].ClientName->NameCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = kuhl_m_kerberos_ticket_isLongFilename(ticket);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ticket0; _aux++) {

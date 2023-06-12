@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void catchsignal(int signal)
     return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signal = 100;
+        
           catchsignal(signal);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signal = 255;
+        
           catchsignal(signal);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signal = 10;
+        
           catchsignal(signal);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          catchsignal(signal);
+        
+        break;
+    }
     default:
         usage();
         break;

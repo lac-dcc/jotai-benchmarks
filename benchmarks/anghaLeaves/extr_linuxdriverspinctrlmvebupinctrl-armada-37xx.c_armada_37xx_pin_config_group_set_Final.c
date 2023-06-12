@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int armada_37xx_pin_config_group_set(struct pinctrl
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +82,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int selector = 100;
+        
           unsigned int num_configs = 100;
+        
           int _len_pctldev0 = 1;
           struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
           for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
-            pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_configs0 = 1;
           unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
             configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = armada_37xx_pin_config_group_set(pctldev,selector,configs,num_configs);
           printf("%d\n", benchRet); 
           free(pctldev);
@@ -103,7 +105,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int selector = 255;
+        
+          unsigned int num_configs = 255;
+        
+          int _len_pctldev0 = 65025;
+          struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_configs0 = 65025;
+          unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
+            configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = armada_37xx_pin_config_group_set(pctldev,selector,configs,num_configs);
+          printf("%d\n", benchRet); 
+          free(pctldev);
+          free(configs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int selector = 10;
+        
+          unsigned int num_configs = 10;
+        
+          int _len_pctldev0 = 100;
+          struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_configs0 = 100;
+          unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
+            configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = armada_37xx_pin_config_group_set(pctldev,selector,configs,num_configs);
+          printf("%d\n", benchRet); 
+          free(pctldev);
+          free(configs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int num_configs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pctldev0 = 1;
+          struct pinctrl_dev * pctldev = (struct pinctrl_dev *) malloc(_len_pctldev0*sizeof(struct pinctrl_dev));
+          for(int _i0 = 0; _i0 < _len_pctldev0; _i0++) {
+              pctldev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_configs0 = 1;
+          unsigned long * configs = (unsigned long *) malloc(_len_configs0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_configs0; _i0++) {
+            configs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = armada_37xx_pin_config_group_set(pctldev,selector,configs,num_configs);
+          printf("%d\n", benchRet); 
+          free(pctldev);
+          free(configs);
+        
+        break;
+    }
     default:
         usage();
         break;

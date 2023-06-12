@@ -65,12 +65,6 @@ void set_gpio_pullup(GPIO_TypeDef *GPIO, int pin, int mode) {
   GPIO->PUPDR = tmp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +77,43 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int pin = 10;
+        
           int mode = 10;
+        
           int _len_GPIO0 = 100;
           struct TYPE_3__ * GPIO = (struct TYPE_3__ *) malloc(_len_GPIO0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_GPIO0; _i0++) {
-            GPIO[_i0].PUPDR = ((-2 * (next_i()%2)) + 1) * next_i();
+              GPIO[_i0].PUPDR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_gpio_pullup(GPIO,pin,mode);
           free(GPIO);
         

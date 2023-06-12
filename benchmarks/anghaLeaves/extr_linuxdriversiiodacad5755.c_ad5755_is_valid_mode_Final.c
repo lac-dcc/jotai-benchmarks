@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static bool ad5755_is_valid_mode(struct ad5755_state *st, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,19 +96,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum ad5755_mode mode = 0;
+        
+          int _len_st0 = 65025;
+          struct ad5755_state * st = (struct ad5755_state *) malloc(_len_st0*sizeof(struct ad5755_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->has_voltage_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ad5755_is_valid_mode(st,mode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum ad5755_mode mode = 0;
+        
+          int _len_st0 = 100;
+          struct ad5755_state * st = (struct ad5755_state *) malloc(_len_st0*sizeof(struct ad5755_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->has_voltage_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ad5755_is_valid_mode(st,mode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum ad5755_mode mode = 0;
+        
           int _len_st0 = 1;
           struct ad5755_state * st = (struct ad5755_state *) malloc(_len_st0*sizeof(struct ad5755_state));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
               int _len_st__i0__chip_info0 = 1;
           st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
-            st[_i0].chip_info->has_voltage_out = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].chip_info->has_voltage_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ad5755_is_valid_mode(st,mode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_st0; _aux++) {

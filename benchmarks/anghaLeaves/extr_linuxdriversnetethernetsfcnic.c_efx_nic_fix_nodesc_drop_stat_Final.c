@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ void efx_nic_fix_nodesc_drop_stat(struct efx_nic *efx, u64 *rx_nodesc_drops)
 	*rx_nodesc_drops -= efx->rx_nodesc_drops_while_down;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,26 +84,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_efx0 = 1;
+          int _len_efx0 = 65025;
           struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
           for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
-            efx[_i0].rx_nodesc_drops_prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        efx[_i0].rx_nodesc_drops_while_down = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].rx_nodesc_drops_prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          efx[_i0].rx_nodesc_drops_while_down = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_efx__i0__net_dev0 = 1;
           efx[_i0].net_dev = (struct TYPE_2__ *) malloc(_len_efx__i0__net_dev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_efx__i0__net_dev0; _j0++) {
-            efx[_i0].net_dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              efx[_i0].net_dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        efx[_i0].rx_nodesc_drops_total = ((-2 * (next_i()%2)) + 1) * next_i();
+          efx[_i0].rx_nodesc_drops_total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rx_nodesc_drops0 = 1;
+        
+          int _len_rx_nodesc_drops0 = 65025;
           long * rx_nodesc_drops = (long *) malloc(_len_rx_nodesc_drops0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_rx_nodesc_drops0; _i0++) {
             rx_nodesc_drops[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           efx_nic_fix_nodesc_drop_stat(efx,rx_nodesc_drops);
           for(int _aux = 0; _aux < _len_efx0; _aux++) {
           free(efx[_aux].net_dev);
@@ -117,7 +117,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_efx0 = 100;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].rx_nodesc_drops_prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          efx[_i0].rx_nodesc_drops_while_down = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__net_dev0 = 1;
+          efx[_i0].net_dev = (struct TYPE_2__ *) malloc(_len_efx__i0__net_dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_efx__i0__net_dev0; _j0++) {
+              efx[_i0].net_dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          efx[_i0].rx_nodesc_drops_total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rx_nodesc_drops0 = 100;
+          long * rx_nodesc_drops = (long *) malloc(_len_rx_nodesc_drops0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_rx_nodesc_drops0; _i0++) {
+            rx_nodesc_drops[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          efx_nic_fix_nodesc_drop_stat(efx,rx_nodesc_drops);
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].net_dev);
+          }
+          free(efx);
+          free(rx_nodesc_drops);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_efx0 = 1;
+          struct efx_nic * efx = (struct efx_nic *) malloc(_len_efx0*sizeof(struct efx_nic));
+          for(int _i0 = 0; _i0 < _len_efx0; _i0++) {
+              efx[_i0].rx_nodesc_drops_prev_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          efx[_i0].rx_nodesc_drops_while_down = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_efx__i0__net_dev0 = 1;
+          efx[_i0].net_dev = (struct TYPE_2__ *) malloc(_len_efx__i0__net_dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_efx__i0__net_dev0; _j0++) {
+              efx[_i0].net_dev->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          efx[_i0].rx_nodesc_drops_total = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rx_nodesc_drops0 = 1;
+          long * rx_nodesc_drops = (long *) malloc(_len_rx_nodesc_drops0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_rx_nodesc_drops0; _i0++) {
+            rx_nodesc_drops[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          efx_nic_fix_nodesc_drop_stat(efx,rx_nodesc_drops);
+          for(int _aux = 0; _aux < _len_efx0; _aux++) {
+          free(efx[_aux].net_dev);
+          }
+          free(efx);
+          free(rx_nodesc_drops);
+        
+        break;
+    }
     default:
         usage();
         break;

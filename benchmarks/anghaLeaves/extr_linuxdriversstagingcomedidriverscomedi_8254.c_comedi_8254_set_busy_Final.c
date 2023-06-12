@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void comedi_8254_set_busy(struct comedi_8254 *i8254,
 		i8254->busy[counter] = busy;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int counter = 100;
+        
           int busy = 100;
+        
           int _len_i82540 = 1;
           struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
           for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
@@ -93,7 +92,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_i8254__i0__busy0; _j0++) {
             i8254[_i0].busy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           comedi_8254_set_busy(i8254,counter,busy);
           for(int _aux = 0; _aux < _len_i82540; _aux++) {
           free(i8254[_aux].busy);
@@ -102,7 +103,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int counter = 255;
+        
+          int busy = 255;
+        
+          int _len_i82540 = 65025;
+          struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
+          for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
+              int _len_i8254__i0__busy0 = 1;
+          i8254[_i0].busy = (int *) malloc(_len_i8254__i0__busy0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_i8254__i0__busy0; _j0++) {
+            i8254[_i0].busy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          comedi_8254_set_busy(i8254,counter,busy);
+          for(int _aux = 0; _aux < _len_i82540; _aux++) {
+          free(i8254[_aux].busy);
+          }
+          free(i8254);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int counter = 10;
+        
+          int busy = 10;
+        
+          int _len_i82540 = 100;
+          struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
+          for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
+              int _len_i8254__i0__busy0 = 1;
+          i8254[_i0].busy = (int *) malloc(_len_i8254__i0__busy0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_i8254__i0__busy0; _j0++) {
+            i8254[_i0].busy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          comedi_8254_set_busy(i8254,counter,busy);
+          for(int _aux = 0; _aux < _len_i82540; _aux++) {
+          free(i8254[_aux].busy);
+          }
+          free(i8254);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_i82540 = 1;
+          struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
+          for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
+              int _len_i8254__i0__busy0 = 1;
+          i8254[_i0].busy = (int *) malloc(_len_i8254__i0__busy0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_i8254__i0__busy0; _j0++) {
+            i8254[_i0].busy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          comedi_8254_set_busy(i8254,counter,busy);
+          for(int _aux = 0; _aux < _len_i82540; _aux++) {
+          free(i8254[_aux].busy);
+          }
+          free(i8254);
+        
+        break;
+    }
     default:
         usage();
         break;

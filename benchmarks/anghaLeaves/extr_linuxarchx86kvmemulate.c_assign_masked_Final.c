@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void assign_masked(ulong *dest, ulong src, ulong ma
 	*dest = (*dest & ~mask) | (src & mask);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,33 +79,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src = 100;
+        
           int mask = 100;
+        
           int _len_dest0 = 1;
           int * dest = (int *) malloc(_len_dest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          assign_masked(dest,src,mask);
+          free(dest);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int src = 255;
+        
+          int mask = 255;
+        
+          int _len_dest0 = 65025;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           assign_masked(dest,src,mask);
           free(dest);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int src = 10;
+        
           int mask = 10;
+        
           int _len_dest0 = 100;
           int * dest = (int *) malloc(_len_dest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           assign_masked(dest,src,mask);
           free(dest);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dest0 = 1;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          assign_masked(dest,src,mask);
+          free(dest);
+        
+        break;
+    }
     default:
         usage();
         break;

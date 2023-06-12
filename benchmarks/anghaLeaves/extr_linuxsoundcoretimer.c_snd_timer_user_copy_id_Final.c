@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void snd_timer_user_copy_id(struct snd_timer_id *id
 	id->subdevice = timer->tmr_subdevice;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,30 +82,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_id0 = 1;
+          int _len_id0 = 65025;
           struct snd_timer_id * id = (struct snd_timer_id *) malloc(_len_id0*sizeof(struct snd_timer_id));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_timer0 = 1;
+        
+          int _len_timer0 = 65025;
           struct snd_timer * timer = (struct snd_timer *) malloc(_len_timer0*sizeof(struct snd_timer));
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
-            timer[_i0].tmr_subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
-        timer[_i0].tmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer[_i0].tmr_subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          timer[_i0].tmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_timer__i0__card0 = 1;
           timer[_i0].card = (struct TYPE_2__ *) malloc(_len_timer__i0__card0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_timer__i0__card0; _j0++) {
-            timer[_i0].card->number = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer[_i0].card->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        timer[_i0].tmr_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          timer[_i0].tmr_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_timer_user_copy_id(id,timer);
           free(id);
           for(int _aux = 0; _aux < _len_timer0; _aux++) {
@@ -119,7 +120,82 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_id0 = 100;
+          struct snd_timer_id * id = (struct snd_timer_id *) malloc(_len_id0*sizeof(struct snd_timer_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_timer0 = 100;
+          struct snd_timer * timer = (struct snd_timer *) malloc(_len_timer0*sizeof(struct snd_timer));
+          for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
+              timer[_i0].tmr_subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          timer[_i0].tmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_timer__i0__card0 = 1;
+          timer[_i0].card = (struct TYPE_2__ *) malloc(_len_timer__i0__card0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_timer__i0__card0; _j0++) {
+              timer[_i0].card->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          timer[_i0].tmr_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_timer_user_copy_id(id,timer);
+          free(id);
+          for(int _aux = 0; _aux < _len_timer0; _aux++) {
+          free(timer[_aux].card);
+          }
+          free(timer);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_id0 = 1;
+          struct snd_timer_id * id = (struct snd_timer_id *) malloc(_len_id0*sizeof(struct snd_timer_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_timer0 = 1;
+          struct snd_timer * timer = (struct snd_timer *) malloc(_len_timer0*sizeof(struct snd_timer));
+          for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
+              timer[_i0].tmr_subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          timer[_i0].tmr_device = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_timer__i0__card0 = 1;
+          timer[_i0].card = (struct TYPE_2__ *) malloc(_len_timer__i0__card0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_timer__i0__card0; _j0++) {
+              timer[_i0].card->number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          timer[_i0].tmr_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_timer_user_copy_id(id,timer);
+          free(id);
+          for(int _aux = 0; _aux < _len_timer0; _aux++) {
+          free(timer[_aux].card);
+          }
+          free(timer);
+        
+        break;
+    }
     default:
         usage();
         break;

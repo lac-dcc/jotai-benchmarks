@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int xudc_ep0_disable(struct usb_ep *ep)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ep0 = 1;
+          int _len_ep0 = 65025;
           struct usb_ep * ep = (struct usb_ep *) malloc(_len_ep0*sizeof(struct usb_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xudc_ep0_disable(ep);
           printf("%d\n", benchRet); 
           free(ep);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_ep0 = 100;
           struct usb_ep * ep = (struct usb_ep *) malloc(_len_ep0*sizeof(struct usb_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xudc_ep0_disable(ep);
           printf("%d\n", benchRet); 
           free(ep);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ep0 = 1;
+          struct usb_ep * ep = (struct usb_ep *) malloc(_len_ep0*sizeof(struct usb_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xudc_ep0_disable(ep);
+          printf("%d\n", benchRet); 
+          free(ep);
+        
+        break;
+    }
     default:
         usage();
         break;

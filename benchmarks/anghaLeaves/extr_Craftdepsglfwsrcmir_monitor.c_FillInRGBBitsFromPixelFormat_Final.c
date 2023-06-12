@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -100,12 +103,6 @@ void FillInRGBBitsFromPixelFormat(GLFWvidmode* mode, const MirPixelFormat pf)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,19 +119,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int pf = 100;
+        
           int _len_mode0 = 1;
           struct TYPE_3__ * mode = (struct TYPE_3__ *) malloc(_len_mode0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].redBits = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].greenBits = ((-2 * (next_i()%2)) + 1) * next_i();
-        mode[_i0].blueBits = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].redBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].greenBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].blueBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           FillInRGBBitsFromPixelFormat(mode,pf);
           free(mode);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          const int pf = 255;
+        
+          int _len_mode0 = 65025;
+          struct TYPE_3__ * mode = (struct TYPE_3__ *) malloc(_len_mode0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].redBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].greenBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].blueBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FillInRGBBitsFromPixelFormat(mode,pf);
+          free(mode);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          const int pf = 10;
+        
+          int _len_mode0 = 100;
+          struct TYPE_3__ * mode = (struct TYPE_3__ *) malloc(_len_mode0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].redBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].greenBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].blueBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FillInRGBBitsFromPixelFormat(mode,pf);
+          free(mode);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          const int pf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mode0 = 1;
+          struct TYPE_3__ * mode = (struct TYPE_3__ *) malloc(_len_mode0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].redBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].greenBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          mode[_i0].blueBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FillInRGBBitsFromPixelFormat(mode,pf);
+          free(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

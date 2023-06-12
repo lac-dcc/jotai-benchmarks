@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static int zilog_tx_carrier(struct rc_dev *dev, u32 carrie
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,15 +89,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int carrier = 100;
+        
           int _len_dev0 = 1;
           struct rc_dev * dev = (struct rc_dev *) malloc(_len_dev0*sizeof(struct rc_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__priv0 = 1;
           dev[_i0].priv = (struct IR_i2c *) malloc(_len_dev__i0__priv0*sizeof(struct IR_i2c));
           for(int _j0 = 0; _j0 < _len_dev__i0__priv0; _j0++) {
-            dev[_i0].priv->carrier = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].priv->carrier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = zilog_tx_carrier(dev,carrier);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
@@ -110,7 +111,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int carrier = 255;
+        
+          int _len_dev0 = 65025;
+          struct rc_dev * dev = (struct rc_dev *) malloc(_len_dev0*sizeof(struct rc_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__priv0 = 1;
+          dev[_i0].priv = (struct IR_i2c *) malloc(_len_dev__i0__priv0*sizeof(struct IR_i2c));
+          for(int _j0 = 0; _j0 < _len_dev__i0__priv0; _j0++) {
+              dev[_i0].priv->carrier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = zilog_tx_carrier(dev,carrier);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].priv);
+          }
+          free(dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int carrier = 10;
+        
+          int _len_dev0 = 100;
+          struct rc_dev * dev = (struct rc_dev *) malloc(_len_dev0*sizeof(struct rc_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__priv0 = 1;
+          dev[_i0].priv = (struct IR_i2c *) malloc(_len_dev__i0__priv0*sizeof(struct IR_i2c));
+          for(int _j0 = 0; _j0 < _len_dev__i0__priv0; _j0++) {
+              dev[_i0].priv->carrier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = zilog_tx_carrier(dev,carrier);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].priv);
+          }
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int carrier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct rc_dev * dev = (struct rc_dev *) malloc(_len_dev0*sizeof(struct rc_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__priv0 = 1;
+          dev[_i0].priv = (struct IR_i2c *) malloc(_len_dev__i0__priv0*sizeof(struct IR_i2c));
+          for(int _j0 = 0; _j0 < _len_dev__i0__priv0; _j0++) {
+              dev[_i0].priv->carrier = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = zilog_tx_carrier(dev,carrier);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].priv);
+          }
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

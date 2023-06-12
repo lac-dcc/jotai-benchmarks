@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static bool in_region(struct region *rp, u64 addr)
 	return rp->base <= addr && addr <= rp->limit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long addr = 100;
+        
           int _len_rp0 = 1;
           struct region * rp = (struct region *) malloc(_len_rp0*sizeof(struct region));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
-        rp[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        rp[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = in_region(rp,addr);
           printf("%d\n", benchRet); 
           free(rp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long addr = 255;
+        
+          int _len_rp0 = 65025;
+          struct region * rp = (struct region *) malloc(_len_rp0*sizeof(struct region));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = in_region(rp,addr);
+          printf("%d\n", benchRet); 
+          free(rp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long addr = 10;
+        
+          int _len_rp0 = 100;
+          struct region * rp = (struct region *) malloc(_len_rp0*sizeof(struct region));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = in_region(rp,addr);
+          printf("%d\n", benchRet); 
+          free(rp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rp0 = 1;
+          struct region * rp = (struct region *) malloc(_len_rp0*sizeof(struct region));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rp[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = in_region(rp,addr);
+          printf("%d\n", benchRet); 
+          free(rp);
+        
+        break;
+    }
     default:
         usage();
         break;

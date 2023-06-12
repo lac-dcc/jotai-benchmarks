@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static inline bool iwl_mvm_vif_low_latency(struct iwl_mvm_
 	return mvmvif->low_latency;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mvmvif0 = 1;
+          int _len_mvmvif0 = 65025;
           struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
           for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
-            mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iwl_mvm_vif_low_latency(mvmvif);
           printf("%d\n", benchRet); 
           free(mvmvif);
@@ -109,15 +106,32 @@ int main(int argc, char *argv[]) {
           int _len_mvmvif0 = 100;
           struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
           for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
-            mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iwl_mvm_vif_low_latency(mvmvif);
           printf("%d\n", benchRet); 
           free(mvmvif);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mvmvif0 = 1;
+          struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
+          for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_mvm_vif_low_latency(mvmvif);
+          printf("%d\n", benchRet); 
+          free(mvmvif);
+        
+        break;
+    }
     default:
         usage();
         break;

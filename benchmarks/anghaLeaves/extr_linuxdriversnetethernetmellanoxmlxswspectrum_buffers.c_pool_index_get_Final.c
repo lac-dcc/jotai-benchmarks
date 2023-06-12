@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static u16 pool_index_get(u8 pool, enum mlxsw_reg_sbxx_dir
 	return pool_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pool = 100;
+        
           enum mlxsw_reg_sbxx_dir dir = 0;
+        
           int benchRet = pool_index_get(pool,dir);
           printf("%d\n", benchRet); 
         
@@ -103,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pool = 255;
+        
           enum mlxsw_reg_sbxx_dir dir = 0;
+        
           int benchRet = pool_index_get(pool,dir);
           printf("%d\n", benchRet); 
         
@@ -113,13 +112,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pool = 10;
+        
           enum mlxsw_reg_sbxx_dir dir = 0;
+        
           int benchRet = pool_index_get(pool,dir);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum mlxsw_reg_sbxx_dir dir = 0;
+        
+          int benchRet = pool_index_get(pool,dir);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static void car25519(gf o)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,76 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 760
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 360
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 360
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 360
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 360
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 359
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 345
+          // ------------------------------- 
+
+          int _len_o0 = 65025;
+          long long * o = (long long *) malloc(_len_o0*sizeof(long long));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+            o[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          car25519(o);
+          free(o);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 760
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 360
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 360
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 360
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 360
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 359
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 345
+          // ------------------------------- 
+
           int _len_o0 = 100;
           long long * o = (long long *) malloc(_len_o0*sizeof(long long));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
             o[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           car25519(o);
           free(o);
         

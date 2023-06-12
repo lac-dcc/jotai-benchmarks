@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int cx8802_blackbird_advise_release(struct cx8802_d
 	return err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +87,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_drv0 = 1;
+          int _len_drv0 = 65025;
           struct cx8802_driver * drv = (struct cx8802_driver *) malloc(_len_drv0*sizeof(struct cx8802_driver));
           for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
               int _len_drv__i0__core0 = 1;
           drv[_i0].core = (struct cx88_core *) malloc(_len_drv__i0__core0*sizeof(struct cx88_core));
           for(int _j0 = 0; _j0 < _len_drv__i0__core0; _j0++) {
-            drv[_i0].core->boardnr = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv[_i0].core->boardnr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = cx8802_blackbird_advise_release(drv);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_drv0; _aux++) {
@@ -112,7 +111,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_drv0 = 100;
+          struct cx8802_driver * drv = (struct cx8802_driver *) malloc(_len_drv0*sizeof(struct cx8802_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              int _len_drv__i0__core0 = 1;
+          drv[_i0].core = (struct cx88_core *) malloc(_len_drv__i0__core0*sizeof(struct cx88_core));
+          for(int _j0 = 0; _j0 < _len_drv__i0__core0; _j0++) {
+              drv[_i0].core->boardnr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cx8802_blackbird_advise_release(drv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drv0; _aux++) {
+          free(drv[_aux].core);
+          }
+          free(drv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_drv0 = 1;
+          struct cx8802_driver * drv = (struct cx8802_driver *) malloc(_len_drv0*sizeof(struct cx8802_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              int _len_drv__i0__core0 = 1;
+          drv[_i0].core = (struct cx88_core *) malloc(_len_drv__i0__core0*sizeof(struct cx88_core));
+          for(int _j0 = 0; _j0 < _len_drv__i0__core0; _j0++) {
+              drv[_i0].core->boardnr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cx8802_blackbird_advise_release(drv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_drv0; _aux++) {
+          free(drv[_aux].core);
+          }
+          free(drv);
+        
+        break;
+    }
     default:
         usage();
         break;

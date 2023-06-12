@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ int arch_uprobe_analyze_insn(struct arch_uprobe *auprobe,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned long addr = 100;
+        
           int _len_auprobe0 = 1;
           struct arch_uprobe * auprobe = (struct arch_uprobe *) malloc(_len_auprobe0*sizeof(struct arch_uprobe));
           for(int _i0 = 0; _i0 < _len_auprobe0; _i0++) {
-            auprobe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              auprobe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mm0 = 1;
           struct mm_struct * mm = (struct mm_struct *) malloc(_len_mm0*sizeof(struct mm_struct));
           for(int _i0 = 0; _i0 < _len_mm0; _i0++) {
-            mm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = arch_uprobe_analyze_insn(auprobe,mm,addr);
+          printf("%d\n", benchRet); 
+          free(auprobe);
+          free(mm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long addr = 255;
+        
+          int _len_auprobe0 = 65025;
+          struct arch_uprobe * auprobe = (struct arch_uprobe *) malloc(_len_auprobe0*sizeof(struct arch_uprobe));
+          for(int _i0 = 0; _i0 < _len_auprobe0; _i0++) {
+              auprobe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mm0 = 65025;
+          struct mm_struct * mm = (struct mm_struct *) malloc(_len_mm0*sizeof(struct mm_struct));
+          for(int _i0 = 0; _i0 < _len_mm0; _i0++) {
+              mm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = arch_uprobe_analyze_insn(auprobe,mm,addr);
+          printf("%d\n", benchRet); 
+          free(auprobe);
+          free(mm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long addr = 10;
+        
+          int _len_auprobe0 = 100;
+          struct arch_uprobe * auprobe = (struct arch_uprobe *) malloc(_len_auprobe0*sizeof(struct arch_uprobe));
+          for(int _i0 = 0; _i0 < _len_auprobe0; _i0++) {
+              auprobe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mm0 = 100;
+          struct mm_struct * mm = (struct mm_struct *) malloc(_len_mm0*sizeof(struct mm_struct));
+          for(int _i0 = 0; _i0 < _len_mm0; _i0++) {
+              mm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = arch_uprobe_analyze_insn(auprobe,mm,addr);
+          printf("%d\n", benchRet); 
+          free(auprobe);
+          free(mm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_auprobe0 = 1;
+          struct arch_uprobe * auprobe = (struct arch_uprobe *) malloc(_len_auprobe0*sizeof(struct arch_uprobe));
+          for(int _i0 = 0; _i0 < _len_auprobe0; _i0++) {
+              auprobe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mm0 = 1;
+          struct mm_struct * mm = (struct mm_struct *) malloc(_len_mm0*sizeof(struct mm_struct));
+          for(int _i0 = 0; _i0 < _len_mm0; _i0++) {
+              mm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = arch_uprobe_analyze_insn(auprobe,mm,addr);
           printf("%d\n", benchRet); 
           free(auprobe);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void hack_force_pipe_split(struct dcn_bw_internal_v
 		v->max_dppclk[0] = pixel_rate_mhz;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pixel_rate_khz = 100;
+        
           int _len_v0 = 1;
           struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
@@ -98,7 +96,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_v__i0__max_dppclk0; _j0++) {
             v[_i0].max_dppclk[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           }
+        
           hack_force_pipe_split(v,pixel_rate_khz);
           for(int _aux = 0; _aux < _len_v0; _aux++) {
           free(v[_aux].max_dppclk);
@@ -107,7 +107,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int pixel_rate_khz = 255;
+        
+          int _len_v0 = 65025;
+          struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__max_dppclk0 = 1;
+          v[_i0].max_dppclk = (float *) malloc(_len_v__i0__max_dppclk0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_v__i0__max_dppclk0; _j0++) {
+            v[_i0].max_dppclk[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          hack_force_pipe_split(v,pixel_rate_khz);
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].max_dppclk);
+          }
+          free(v);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int pixel_rate_khz = 10;
+        
+          int _len_v0 = 100;
+          struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__max_dppclk0 = 1;
+          v[_i0].max_dppclk = (float *) malloc(_len_v__i0__max_dppclk0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_v__i0__max_dppclk0; _j0++) {
+            v[_i0].max_dppclk[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          hack_force_pipe_split(v,pixel_rate_khz);
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].max_dppclk);
+          }
+          free(v);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int pixel_rate_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_v0 = 1;
+          struct dcn_bw_internal_vars * v = (struct dcn_bw_internal_vars *) malloc(_len_v0*sizeof(struct dcn_bw_internal_vars));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__max_dppclk0 = 1;
+          v[_i0].max_dppclk = (float *) malloc(_len_v__i0__max_dppclk0*sizeof(float));
+          for(int _j0 = 0; _j0 < _len_v__i0__max_dppclk0; _j0++) {
+            v[_i0].max_dppclk[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          hack_force_pipe_split(v,pixel_rate_khz);
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].max_dppclk);
+          }
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

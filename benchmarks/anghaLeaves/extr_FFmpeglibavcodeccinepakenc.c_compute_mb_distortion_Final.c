@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static int compute_mb_distortion(CinepakEncContext *s,
     return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,14 +99,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a_data0 = 65025;
+          int ** a_data = (int **) malloc(_len_a_data0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_a_data0; _i0++) {
+            int _len_a_data1 = 1;
+            a_data[_i0] = (int *) malloc(_len_a_data1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_a_data1; _i1++) {
+              a_data[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_a_linesize0 = 65025;
+          int * a_linesize = (int *) malloc(_len_a_linesize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a_linesize0; _i0++) {
+            a_linesize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b_data0 = 65025;
+          int ** b_data = (int **) malloc(_len_b_data0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_b_data0; _i0++) {
+            int _len_b_data1 = 1;
+            b_data[_i0] = (int *) malloc(_len_b_data1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_b_data1; _i1++) {
+              b_data[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_b_linesize0 = 65025;
+          int * b_linesize = (int *) malloc(_len_b_linesize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b_linesize0; _i0++) {
+            b_linesize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = compute_mb_distortion(s,a_data,a_linesize,b_data,b_linesize);
+          printf("%d\n", benchRet); 
+          free(s);
+          for(int i1 = 0; i1 < _len_a_data0; i1++) {
+              free(a_data[i1]);
+          }
+          free(a_data);
+          free(a_linesize);
+          for(int i1 = 0; i1 < _len_b_data0; i1++) {
+              free(b_data[i1]);
+          }
+          free(b_data);
+          free(b_linesize);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a_data0 = 100;
+          int ** a_data = (int **) malloc(_len_a_data0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_a_data0; _i0++) {
+            int _len_a_data1 = 1;
+            a_data[_i0] = (int *) malloc(_len_a_data1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_a_data1; _i1++) {
+              a_data[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_a_linesize0 = 100;
+          int * a_linesize = (int *) malloc(_len_a_linesize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a_linesize0; _i0++) {
+            a_linesize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b_data0 = 100;
+          int ** b_data = (int **) malloc(_len_b_data0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_b_data0; _i0++) {
+            int _len_b_data1 = 1;
+            b_data[_i0] = (int *) malloc(_len_b_data1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_b_data1; _i1++) {
+              b_data[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_b_linesize0 = 100;
+          int * b_linesize = (int *) malloc(_len_b_linesize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b_linesize0; _i0++) {
+            b_linesize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = compute_mb_distortion(s,a_data,a_linesize,b_data,b_linesize);
+          printf("%d\n", benchRet); 
+          free(s);
+          for(int i1 = 0; i1 < _len_a_data0; i1++) {
+              free(a_data[i1]);
+          }
+          free(a_data);
+          free(a_linesize);
+          for(int i1 = 0; i1 < _len_b_data0; i1++) {
+              free(b_data[i1]);
+          }
+          free(b_data);
+          free(b_linesize);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_a_data0 = 4;
           int ** a_data = (int **) malloc(_len_a_data0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_a_data0; _i0++) {
@@ -120,11 +305,13 @@ int main(int argc, char *argv[]) {
               a_data[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_a_linesize0 = 4;
           int * a_linesize = (int *) malloc(_len_a_linesize0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a_linesize0; _i0++) {
             a_linesize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_b_data0 = 4;
           int ** b_data = (int **) malloc(_len_b_data0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_b_data0; _i0++) {
@@ -134,22 +321,22 @@ int main(int argc, char *argv[]) {
               b_data[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_b_linesize0 = 4;
           int * b_linesize = (int *) malloc(_len_b_linesize0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_b_linesize0; _i0++) {
             b_linesize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = compute_mb_distortion(s,a_data,a_linesize,b_data,b_linesize);
           printf("%d\n", benchRet); 
           free(s);
           for(int i1 = 0; i1 < _len_a_data0; i1++) {
-            int _len_a_data1 = 1;
               free(a_data[i1]);
           }
           free(a_data);
           free(a_linesize);
           for(int i1 = 0; i1 < _len_b_data0; i1++) {
-            int _len_b_data1 = 1;
               free(b_data[i1]);
           }
           free(b_data);

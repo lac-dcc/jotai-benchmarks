@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int set_fifo_size(struct IsdnCardState *cs)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,23 +91,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cs0 = 1;
+          int _len_cs0 = 65025;
           struct IsdnCardState * cs = (struct IsdnCardState *) malloc(_len_cs0*sizeof(struct IsdnCardState));
           for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
-            cs[_i0].hw.hfcsx.chip = ((-2 * (next_i()%2)) + 1) * next_i();
-        cs[_i0].hw.hfcsx.cirm = ((-2 * (next_i()%2)) + 1) * next_i();
-        cs[_i0].hw.hfcsx.b_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              cs[_i0].hw.hfcsx.chip = ((-2 * (next_i()%2)) + 1) * next_i();
+          cs[_i0].hw.hfcsx.cirm = ((-2 * (next_i()%2)) + 1) * next_i();
+          cs[_i0].hw.hfcsx.b_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = set_fifo_size(cs);
           printf("%d\n", benchRet); 
           free(cs);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cs0 = 100;
+          struct IsdnCardState * cs = (struct IsdnCardState *) malloc(_len_cs0*sizeof(struct IsdnCardState));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].hw.hfcsx.chip = ((-2 * (next_i()%2)) + 1) * next_i();
+          cs[_i0].hw.hfcsx.cirm = ((-2 * (next_i()%2)) + 1) * next_i();
+          cs[_i0].hw.hfcsx.b_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = set_fifo_size(cs);
+          printf("%d\n", benchRet); 
+          free(cs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cs0 = 1;
+          struct IsdnCardState * cs = (struct IsdnCardState *) malloc(_len_cs0*sizeof(struct IsdnCardState));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].hw.hfcsx.chip = ((-2 * (next_i()%2)) + 1) * next_i();
+          cs[_i0].hw.hfcsx.cirm = ((-2 * (next_i()%2)) + 1) * next_i();
+          cs[_i0].hw.hfcsx.b_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = set_fifo_size(cs);
+          printf("%d\n", benchRet); 
+          free(cs);
+        
+        break;
+    }
     default:
         usage();
         break;

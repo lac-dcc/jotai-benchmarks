@@ -63,12 +63,6 @@ __attribute__((used)) static inline u_int32_t gpio_i_bit(int i)
 		return 1 << (i + 14);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +79,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 10;
+        
           int benchRet = gpio_i_bit(i);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

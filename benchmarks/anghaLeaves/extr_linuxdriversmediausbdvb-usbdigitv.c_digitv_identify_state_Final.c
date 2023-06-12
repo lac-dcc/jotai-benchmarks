@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int digitv_identify_state (struct usb_device *udev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,40 +81,47 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_udev0 = 1;
+          int _len_udev0 = 65025;
           struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
-            udev[_i0].descriptor.iManufacturer = ((-2 * (next_i()%2)) + 1) * next_i();
-        udev[_i0].descriptor.iProduct = ((-2 * (next_i()%2)) + 1) * next_i();
+              udev[_i0].descriptor.iManufacturer = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].descriptor.iProduct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_props0 = 1;
+        
+          int _len_props0 = 65025;
           struct dvb_usb_device_properties * props = (struct dvb_usb_device_properties *) malloc(_len_props0*sizeof(struct dvb_usb_device_properties));
           for(int _i0 = 0; _i0 < _len_props0; _i0++) {
-            props[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              props[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_desc0 = 1;
+        
+          int _len_desc0 = 65025;
           struct dvb_usb_device_description ** desc = (struct dvb_usb_device_description **) malloc(_len_desc0*sizeof(struct dvb_usb_device_description *));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
             int _len_desc1 = 1;
             desc[_i0] = (struct dvb_usb_device_description *) malloc(_len_desc1*sizeof(struct dvb_usb_device_description));
             for(int _i1 = 0; _i1 < _len_desc1; _i1++) {
-              desc[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                desc[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
-          int _len_cold0 = 1;
+        
+          int _len_cold0 = 65025;
           int * cold = (int *) malloc(_len_cold0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cold0; _i0++) {
             cold[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = digitv_identify_state(udev,props,desc,cold);
           printf("%d\n", benchRet); 
           free(udev);
           free(props);
           for(int i1 = 0; i1 < _len_desc0; i1++) {
-            int _len_desc1 = 1;
               free(desc[i1]);
           }
           free(desc);
@@ -126,7 +129,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_udev0 = 100;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].descriptor.iManufacturer = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].descriptor.iProduct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_props0 = 100;
+          struct dvb_usb_device_properties * props = (struct dvb_usb_device_properties *) malloc(_len_props0*sizeof(struct dvb_usb_device_properties));
+          for(int _i0 = 0; _i0 < _len_props0; _i0++) {
+              props[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_desc0 = 100;
+          struct dvb_usb_device_description ** desc = (struct dvb_usb_device_description **) malloc(_len_desc0*sizeof(struct dvb_usb_device_description *));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+            int _len_desc1 = 1;
+            desc[_i0] = (struct dvb_usb_device_description *) malloc(_len_desc1*sizeof(struct dvb_usb_device_description));
+            for(int _i1 = 0; _i1 < _len_desc1; _i1++) {
+                desc[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_cold0 = 100;
+          int * cold = (int *) malloc(_len_cold0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cold0; _i0++) {
+            cold[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = digitv_identify_state(udev,props,desc,cold);
+          printf("%d\n", benchRet); 
+          free(udev);
+          free(props);
+          for(int i1 = 0; i1 < _len_desc0; i1++) {
+              free(desc[i1]);
+          }
+          free(desc);
+          free(cold);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_udev0 = 1;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].descriptor.iManufacturer = ((-2 * (next_i()%2)) + 1) * next_i();
+          udev[_i0].descriptor.iProduct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_props0 = 1;
+          struct dvb_usb_device_properties * props = (struct dvb_usb_device_properties *) malloc(_len_props0*sizeof(struct dvb_usb_device_properties));
+          for(int _i0 = 0; _i0 < _len_props0; _i0++) {
+              props[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_desc0 = 1;
+          struct dvb_usb_device_description ** desc = (struct dvb_usb_device_description **) malloc(_len_desc0*sizeof(struct dvb_usb_device_description *));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+            int _len_desc1 = 1;
+            desc[_i0] = (struct dvb_usb_device_description *) malloc(_len_desc1*sizeof(struct dvb_usb_device_description));
+            for(int _i1 = 0; _i1 < _len_desc1; _i1++) {
+                desc[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_cold0 = 1;
+          int * cold = (int *) malloc(_len_cold0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cold0; _i0++) {
+            cold[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = digitv_identify_state(udev,props,desc,cold);
+          printf("%d\n", benchRet); 
+          free(udev);
+          free(props);
+          for(int i1 = 0; i1 < _len_desc0; i1++) {
+              free(desc[i1]);
+          }
+          free(desc);
+          free(cold);
+        
+        break;
+    }
     default:
         usage();
         break;

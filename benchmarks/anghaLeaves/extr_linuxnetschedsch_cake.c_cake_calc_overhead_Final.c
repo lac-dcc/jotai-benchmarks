@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +97,6 @@ __attribute__((used)) static u32 cake_calc_overhead(struct cake_sched_data *q, u
 	return len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,23 +109,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int len = 100;
+        
           int off = 100;
+        
           int _len_q0 = 1;
           struct cake_sched_data * q = (struct cake_sched_data *) malloc(_len_q0*sizeof(struct cake_sched_data));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].rate_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].max_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].min_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].rate_mpu = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].atm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].max_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].min_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].rate_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].rate_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_mpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].atm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cake_calc_overhead(q,len,off);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int off = 255;
+        
+          int _len_q0 = 65025;
+          struct cake_sched_data * q = (struct cake_sched_data *) malloc(_len_q0*sizeof(struct cake_sched_data));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].rate_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_mpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].atm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cake_calc_overhead(q,len,off);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int len = 10;
+        
+          int off = 10;
+        
+          int _len_q0 = 100;
+          struct cake_sched_data * q = (struct cake_sched_data *) malloc(_len_q0*sizeof(struct cake_sched_data));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].rate_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_mpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].atm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cake_calc_overhead(q,len,off);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct cake_sched_data * q = (struct cake_sched_data *) malloc(_len_q0*sizeof(struct cake_sched_data));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].rate_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_netlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_mpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].atm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].max_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].min_adjlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].rate_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cake_calc_overhead(q,len,off);
           printf("%d\n", benchRet); 
           free(q);

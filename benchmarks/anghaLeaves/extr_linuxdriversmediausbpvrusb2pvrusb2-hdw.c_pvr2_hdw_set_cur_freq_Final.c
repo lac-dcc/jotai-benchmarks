@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static void pvr2_hdw_set_cur_freq(struct pvr2_hdw *hdw,uns
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,21 +98,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned long val = 100;
+        
           int _len_hdw0 = 1;
           struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
           for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
-            hdw[_i0].input_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].freqSelector = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].freqDirty = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].freqValRadio = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].freqValTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].freqSlotTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].freqSlotRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdw[_i0].input_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSelector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqDirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pvr2_hdw_set_cur_freq(hdw,val);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long val = 255;
+        
+          int _len_hdw0 = 65025;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].input_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSelector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqDirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pvr2_hdw_set_cur_freq(hdw,val);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long val = 10;
+        
+          int _len_hdw0 = 100;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].input_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSelector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqDirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pvr2_hdw_set_cur_freq(hdw,val);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdw0 = 1;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].input_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSelector = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqDirty = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqValTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotTelevision = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].freqSlotRadio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pvr2_hdw_set_cur_freq(hdw,val);
           free(hdw);
         

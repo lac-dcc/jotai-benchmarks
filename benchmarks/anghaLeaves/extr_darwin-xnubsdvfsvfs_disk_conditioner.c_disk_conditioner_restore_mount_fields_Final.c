@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ disk_conditioner_restore_mount_fields(mount_t mp, struct saved_mount_fields *mnt
 	mp->mnt_ioscale = mnt_fields->mnt_ioscale;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,36 +82,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mp0 = 1;
+          int _len_mp0 = 65025;
           struct TYPE_3__ * mp = (struct TYPE_3__ *) malloc(_len_mp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
-            mp[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        mp[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mnt_fields0 = 1;
+        
+          int _len_mnt_fields0 = 65025;
           struct saved_mount_fields * mnt_fields = (struct saved_mount_fields *) malloc(_len_mnt_fields0*sizeof(struct saved_mount_fields));
           for(int _i0 = 0; _i0 < _len_mnt_fields0; _i0++) {
-            mnt_fields[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
-        mnt_fields[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        mnt_fields[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        mnt_fields[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        mnt_fields[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        mnt_fields[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              mnt_fields[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           disk_conditioner_restore_mount_fields(mp,mnt_fields);
           free(mp);
           free(mnt_fields);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mp0 = 100;
+          struct TYPE_3__ * mp = (struct TYPE_3__ *) malloc(_len_mp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              mp[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mnt_fields0 = 100;
+          struct saved_mount_fields * mnt_fields = (struct saved_mount_fields *) malloc(_len_mnt_fields0*sizeof(struct saved_mount_fields));
+          for(int _i0 = 0; _i0 < _len_mnt_fields0; _i0++) {
+              mnt_fields[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          disk_conditioner_restore_mount_fields(mp,mnt_fields);
+          free(mp);
+          free(mnt_fields);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mp0 = 1;
+          struct TYPE_3__ * mp = (struct TYPE_3__ *) malloc(_len_mp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              mp[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mp[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mnt_fields0 = 1;
+          struct saved_mount_fields * mnt_fields = (struct saved_mount_fields *) malloc(_len_mnt_fields0*sizeof(struct saved_mount_fields));
+          for(int _i0 = 0; _i0 < _len_mnt_fields0; _i0++) {
+              mnt_fields[_i0].mnt_ioscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_ioqueue_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_segwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_segreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_maxwritecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          mnt_fields[_i0].mnt_maxreadcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          disk_conditioner_restore_mount_fields(mp,mnt_fields);
+          free(mp);
+          free(mnt_fields);
+        
+        break;
+    }
     default:
         usage();
         break;

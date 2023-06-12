@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void rs_set_new(struct raid_set *rs)
 	mddev->delta_disks = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +81,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rs0 = 1;
+          int _len_rs0 = 65025;
           struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.delta_disks = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.layout = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.level = ((-2 * (next_i()%2)) + 1) * next_i();
+              rs[_i0].raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.delta_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           rs_set_new(rs);
           free(rs);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rs0 = 100;
+          struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              rs[_i0].raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.delta_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rs_set_new(rs);
+          free(rs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rs0 = 1;
+          struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              rs[_i0].raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.delta_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.raid_disks = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rs_set_new(rs);
+          free(rs);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static inline bool kdb_check_flags(kdb_cmdflags_t flags, i
 	return permissions & flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int permissions = 100;
+        
           int no_args = 100;
+        
           int benchRet = kdb_check_flags(flags,permissions,no_args);
           printf("%d\n", benchRet); 
         
@@ -110,8 +108,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flags = 255;
+        
           int permissions = 255;
+        
           int no_args = 255;
+        
           int benchRet = kdb_check_flags(flags,permissions,no_args);
           printf("%d\n", benchRet); 
         
@@ -121,14 +122,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flags = 10;
+        
           int permissions = 10;
+        
           int no_args = 10;
+        
           int benchRet = kdb_check_flags(flags,permissions,no_args);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int permissions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int no_args = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kdb_check_flags(flags,permissions,no_args);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

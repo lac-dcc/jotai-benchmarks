@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void tb_pci_init_path(struct tb_path *path)
 	path->nfc_credits = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +85,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_path0 = 1;
+          int _len_path0 = 65025;
           struct tb_path * path = (struct tb_path *) malloc(_len_path0*sizeof(struct tb_path));
           for(int _i0 = 0; _i0 < _len_path0; _i0++) {
-            path[_i0].egress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        path[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        path[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
-        path[_i0].nfc_credits = ((-2 * (next_i()%2)) + 1) * next_i();
-        path[_i0].drop_packages = ((-2 * (next_i()%2)) + 1) * next_i();
-        path[_i0].ingress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              path[_i0].egress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].nfc_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].drop_packages = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].ingress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tb_pci_init_path(path);
           free(path);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_path0 = 100;
+          struct tb_path * path = (struct tb_path *) malloc(_len_path0*sizeof(struct tb_path));
+          for(int _i0 = 0; _i0 < _len_path0; _i0++) {
+              path[_i0].egress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].nfc_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].drop_packages = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].ingress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tb_pci_init_path(path);
+          free(path);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_path0 = 1;
+          struct tb_path * path = (struct tb_path *) malloc(_len_path0*sizeof(struct tb_path));
+          for(int _i0 = 0; _i0 < _len_path0; _i0++) {
+              path[_i0].egress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].nfc_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].drop_packages = ((-2 * (next_i()%2)) + 1) * next_i();
+          path[_i0].ingress_fc_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tb_pci_init_path(path);
+          free(path);
+        
+        break;
+    }
     default:
         usage();
         break;

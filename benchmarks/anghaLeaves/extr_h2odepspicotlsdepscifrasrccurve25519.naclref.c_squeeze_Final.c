@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void squeeze(unsigned int a[32])
   u += a[31]; a[31] = u;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +80,114 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 65
+          // dynamic_instructions_O0 : 1209
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 451
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 389
+          // ------------------------------- 
+          // static_instructions_O3 : 260
+          // dynamic_instructions_O3 : 260
+          // ------------------------------- 
+          // static_instructions_Ofast : 260
+          // dynamic_instructions_Ofast : 260
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 449
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 514
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          unsigned int * a = (unsigned int *) malloc(_len_a0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          squeeze(a);
+          free(a);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 65
+          // dynamic_instructions_O0 : 1209
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 451
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 389
+          // ------------------------------- 
+          // static_instructions_O3 : 260
+          // dynamic_instructions_O3 : 260
+          // ------------------------------- 
+          // static_instructions_Ofast : 260
+          // dynamic_instructions_Ofast : 260
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 449
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 514
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          unsigned int * a = (unsigned int *) malloc(_len_a0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          squeeze(a);
+          free(a);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 65
+          // dynamic_instructions_O0 : 1209
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 451
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 389
+          // ------------------------------- 
+          // static_instructions_O3 : 260
+          // dynamic_instructions_O3 : 260
+          // ------------------------------- 
+          // static_instructions_Ofast : 260
+          // dynamic_instructions_Ofast : 260
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 449
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 514
+          // ------------------------------- 
+
           int _len_a0 = 32;
           unsigned int * a = (unsigned int *) malloc(_len_a0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           squeeze(a);
           free(a);
         

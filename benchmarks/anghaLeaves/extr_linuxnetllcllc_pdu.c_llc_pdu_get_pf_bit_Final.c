@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static u8 llc_pdu_get_pf_bit(struct llc_pdu_sn *pdu)
 	return pf_bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,15 +99,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_pdu0 = 65025;
+          struct llc_pdu_sn * pdu = (struct llc_pdu_sn *) malloc(_len_pdu0*sizeof(struct llc_pdu_sn));
+          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
+              pdu[_i0].ctrl_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].ctrl_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = llc_pdu_get_pf_bit(pdu);
+          printf("%d\n", benchRet); 
+          free(pdu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_pdu0 = 100;
+          struct llc_pdu_sn * pdu = (struct llc_pdu_sn *) malloc(_len_pdu0*sizeof(struct llc_pdu_sn));
+          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
+              pdu[_i0].ctrl_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].ctrl_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = llc_pdu_get_pf_bit(pdu);
+          printf("%d\n", benchRet); 
+          free(pdu);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_pdu0 = 1;
           struct llc_pdu_sn * pdu = (struct llc_pdu_sn *) malloc(_len_pdu0*sizeof(struct llc_pdu_sn));
           for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
-            pdu[_i0].ctrl_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].ctrl_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdu[_i0].ctrl_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].ctrl_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = llc_pdu_get_pf_bit(pdu);
           printf("%d\n", benchRet); 
           free(pdu);

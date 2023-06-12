@@ -75,12 +75,6 @@ __attribute__((used)) static u16 nxt200x_crc(u16 crc, u8 c)
 	return crc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int crc = 100;
+        
           int c = 100;
+        
           int benchRet = nxt200x_crc(crc,c);
           printf("%d\n", benchRet); 
         
@@ -107,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int crc = 255;
+        
           int c = 255;
+        
           int benchRet = nxt200x_crc(crc,c);
           printf("%d\n", benchRet); 
         
@@ -117,13 +115,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int crc = 10;
+        
           int c = 10;
+        
           int benchRet = nxt200x_crc(crc,c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

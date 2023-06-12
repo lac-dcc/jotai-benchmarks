@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void tipc_group_self(struct tipc_group *grp, struct tipc_name_seq *seq,
 	*scope = grp->scope;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,28 +79,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_grp0 = 65025;
+          struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].scope = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].instance = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_seq0 = 65025;
+          struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
+          for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
+              seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_scope0 = 65025;
+          int * scope = (int *) malloc(_len_scope0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
+            scope[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          tipc_group_self(grp,seq,scope);
+          free(grp);
+          free(seq);
+          free(scope);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_grp0 = 100;
+          struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].scope = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].instance = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_seq0 = 100;
+          struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
+          for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
+              seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_scope0 = 100;
+          int * scope = (int *) malloc(_len_scope0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
+            scope[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          tipc_group_self(grp,seq,scope);
+          free(grp);
+          free(seq);
+          free(scope);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_grp0 = 1;
           struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].scope = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].instance = ((-2 * (next_i()%2)) + 1) * next_i();
-        grp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].scope = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].instance = ((-2 * (next_i()%2)) + 1) * next_i();
+          grp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_seq0 = 1;
           struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
           for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
-            seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
-        seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
-        seq[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_scope0 = 1;
           int * scope = (int *) malloc(_len_scope0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_scope0; _i0++) {
             scope[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           tipc_group_self(grp,seq,scope);
           free(grp);
           free(seq);

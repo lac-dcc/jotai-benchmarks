@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool test_use_bitmap(struct btrfs_free_space_ctl *c
 	return ctl->free_extents > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ctl0 = 65025;
+          struct btrfs_free_space_ctl * ctl = (struct btrfs_free_space_ctl *) malloc(_len_ctl0*sizeof(struct btrfs_free_space_ctl));
+          for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
+              ctl[_i0].free_extents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 65025;
+          struct btrfs_free_space * info = (struct btrfs_free_space *) malloc(_len_info0*sizeof(struct btrfs_free_space));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = test_use_bitmap(ctl,info);
+          printf("%d\n", benchRet); 
+          free(ctl);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ctl0 = 100;
+          struct btrfs_free_space_ctl * ctl = (struct btrfs_free_space_ctl *) malloc(_len_ctl0*sizeof(struct btrfs_free_space_ctl));
+          for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
+              ctl[_i0].free_extents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct btrfs_free_space * info = (struct btrfs_free_space *) malloc(_len_info0*sizeof(struct btrfs_free_space));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = test_use_bitmap(ctl,info);
+          printf("%d\n", benchRet); 
+          free(ctl);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_ctl0 = 1;
           struct btrfs_free_space_ctl * ctl = (struct btrfs_free_space_ctl *) malloc(_len_ctl0*sizeof(struct btrfs_free_space_ctl));
           for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
-            ctl[_i0].free_extents = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctl[_i0].free_extents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_info0 = 1;
           struct btrfs_free_space * info = (struct btrfs_free_space *) malloc(_len_info0*sizeof(struct btrfs_free_space));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = test_use_bitmap(ctl,info);
           printf("%d\n", benchRet); 
           free(ctl);

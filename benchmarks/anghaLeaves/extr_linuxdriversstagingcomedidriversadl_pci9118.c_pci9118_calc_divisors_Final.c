@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static void pci9118_calc_divisors(struct comedi_device *de
 	*tim1 = *div1 * *div2 * pacer->osc_base;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,50 +103,381 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           unsigned int flags = 100;
+        
           int chans = 100;
+        
           unsigned int chnsshfront = 100;
+        
           int _len_dev0 = 1;
           struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__pacer0 = 1;
           dev[_i0].pacer = (struct comedi_8254 *) malloc(_len_dev__i0__pacer0*sizeof(struct comedi_8254));
           for(int _j0 = 0; _j0 < _len_dev__i0__pacer0; _j0++) {
-            dev[_i0].pacer->osc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].pacer->osc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_s0 = 1;
           struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__async0 = 1;
           s[_i0].async = (struct TYPE_2__ *) malloc(_len_s__i0__async0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
-            s[_i0].async->cmd.convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].async->cmd.convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_tim10 = 1;
           unsigned int * tim1 = (unsigned int *) malloc(_len_tim10*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_tim10; _i0++) {
             tim1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tim20 = 1;
           unsigned int * tim2 = (unsigned int *) malloc(_len_tim20*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_tim20; _i0++) {
             tim2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_div10 = 1;
           unsigned int * div1 = (unsigned int *) malloc(_len_div10*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_div10; _i0++) {
             div1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_div20 = 1;
           unsigned int * div2 = (unsigned int *) malloc(_len_div20*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_div20; _i0++) {
             div2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          pci9118_calc_divisors(dev,s,tim1,tim2,flags,chans,div1,div2,chnsshfront);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pacer);
+          }
+          free(dev);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].async);
+          }
+          free(s);
+          free(tim1);
+          free(tim2);
+          free(div1);
+          free(div2);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          unsigned int flags = 255;
+        
+          int chans = 255;
+        
+          unsigned int chnsshfront = 255;
+        
+          int _len_dev0 = 65025;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pacer0 = 1;
+          dev[_i0].pacer = (struct comedi_8254 *) malloc(_len_dev__i0__pacer0*sizeof(struct comedi_8254));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pacer0; _j0++) {
+              dev[_i0].pacer->osc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_s0 = 65025;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__async0 = 1;
+          s[_i0].async = (struct TYPE_2__ *) malloc(_len_s__i0__async0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
+              s[_i0].async->cmd.convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_tim10 = 65025;
+          unsigned int * tim1 = (unsigned int *) malloc(_len_tim10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tim10; _i0++) {
+            tim1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tim20 = 65025;
+          unsigned int * tim2 = (unsigned int *) malloc(_len_tim20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tim20; _i0++) {
+            tim2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_div10 = 65025;
+          unsigned int * div1 = (unsigned int *) malloc(_len_div10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_div10; _i0++) {
+            div1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_div20 = 65025;
+          unsigned int * div2 = (unsigned int *) malloc(_len_div20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_div20; _i0++) {
+            div2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pci9118_calc_divisors(dev,s,tim1,tim2,flags,chans,div1,div2,chnsshfront);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pacer);
+          }
+          free(dev);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].async);
+          }
+          free(s);
+          free(tim1);
+          free(tim2);
+          free(div1);
+          free(div2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          unsigned int flags = 10;
+        
+          int chans = 10;
+        
+          unsigned int chnsshfront = 10;
+        
+          int _len_dev0 = 100;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pacer0 = 1;
+          dev[_i0].pacer = (struct comedi_8254 *) malloc(_len_dev__i0__pacer0*sizeof(struct comedi_8254));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pacer0; _j0++) {
+              dev[_i0].pacer->osc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_s0 = 100;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__async0 = 1;
+          s[_i0].async = (struct TYPE_2__ *) malloc(_len_s__i0__async0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
+              s[_i0].async->cmd.convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_tim10 = 100;
+          unsigned int * tim1 = (unsigned int *) malloc(_len_tim10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tim10; _i0++) {
+            tim1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tim20 = 100;
+          unsigned int * tim2 = (unsigned int *) malloc(_len_tim20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tim20; _i0++) {
+            tim2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_div10 = 100;
+          unsigned int * div1 = (unsigned int *) malloc(_len_div10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_div10; _i0++) {
+            div1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_div20 = 100;
+          unsigned int * div2 = (unsigned int *) malloc(_len_div20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_div20; _i0++) {
+            div2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          pci9118_calc_divisors(dev,s,tim1,tim2,flags,chans,div1,div2,chnsshfront);
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pacer);
+          }
+          free(dev);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].async);
+          }
+          free(s);
+          free(tim1);
+          free(tim2);
+          free(div1);
+          free(div2);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          unsigned int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int chans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int chnsshfront = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pacer0 = 1;
+          dev[_i0].pacer = (struct comedi_8254 *) malloc(_len_dev__i0__pacer0*sizeof(struct comedi_8254));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pacer0; _j0++) {
+              dev[_i0].pacer->osc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_s0 = 1;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__async0 = 1;
+          s[_i0].async = (struct TYPE_2__ *) malloc(_len_s__i0__async0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
+              s[_i0].async->cmd.convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_tim10 = 1;
+          unsigned int * tim1 = (unsigned int *) malloc(_len_tim10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tim10; _i0++) {
+            tim1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tim20 = 1;
+          unsigned int * tim2 = (unsigned int *) malloc(_len_tim20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_tim20; _i0++) {
+            tim2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_div10 = 1;
+          unsigned int * div1 = (unsigned int *) malloc(_len_div10*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_div10; _i0++) {
+            div1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_div20 = 1;
+          unsigned int * div2 = (unsigned int *) malloc(_len_div20*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_div20; _i0++) {
+            div2[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           pci9118_calc_divisors(dev,s,tim1,tim2,flags,chans,div1,div2,chnsshfront);
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
           free(dev[_aux].pacer);

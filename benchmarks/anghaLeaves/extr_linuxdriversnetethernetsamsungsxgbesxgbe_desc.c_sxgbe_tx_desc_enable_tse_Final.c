@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void sxgbe_tx_desc_enable_tse(struct sxgbe_tx_norm_
 	p->tdes23.tx_rd_des23.tx_pkt_len.tcp_payload_len  = tcp_payload_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,23 +92,118 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_tse = 100;
+        
           int total_hdr_len = 100;
+        
           int tcp_hdr_len = 100;
+        
           int tcp_payload_len = 100;
+        
           int _len_p0 = 1;
           struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tdes23.tx_rd_des23.tcp_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tdes23.tx_rd_des23.tx_pkt_len.tcp_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].tdes23.tx_rd_des23.tse_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tcp_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.tcp_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p[_i0].tdes23.tx_rd_des23.tse_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           sxgbe_tx_desc_enable_tse(p,is_tse,total_hdr_len,tcp_hdr_len,tcp_payload_len);
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_tse = 255;
+        
+          int total_hdr_len = 255;
+        
+          int tcp_hdr_len = 255;
+        
+          int tcp_payload_len = 255;
+        
+          int _len_p0 = 65025;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tcp_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.tcp_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p[_i0].tdes23.tx_rd_des23.tse_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_tx_desc_enable_tse(p,is_tse,total_hdr_len,tcp_hdr_len,tcp_payload_len);
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_tse = 10;
+        
+          int total_hdr_len = 10;
+        
+          int tcp_hdr_len = 10;
+        
+          int tcp_payload_len = 10;
+        
+          int _len_p0 = 100;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tcp_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.tcp_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p[_i0].tdes23.tx_rd_des23.tse_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_tx_desc_enable_tse(p,is_tse,total_hdr_len,tcp_hdr_len,tcp_payload_len);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_tse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int total_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tcp_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tcp_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct sxgbe_tx_norm_desc * p = (struct sxgbe_tx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_tx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].tdes23.tx_rd_des23.buf1_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tcp_hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].tdes23.tx_rd_des23.tx_pkt_len.tcp_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          p[_i0].tdes23.tx_rd_des23.tse_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_tx_desc_enable_tse(p,is_tse,total_hdr_len,tcp_hdr_len,tcp_payload_len);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

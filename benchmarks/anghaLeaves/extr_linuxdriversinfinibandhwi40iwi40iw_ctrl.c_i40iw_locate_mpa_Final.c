@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u8 *i40iw_locate_mpa(u8 *pkt)
 	return pkt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +80,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_pkt0 = 100;
+          int _len_pkt0 = 65025;
           int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
             pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int * benchRet = i40iw_locate_mpa(pkt);
           printf("%d\n", (*benchRet)); 
           free(pkt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pkt0 = 100;
+          int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+            pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = i40iw_locate_mpa(pkt);
+          printf("%d\n", (*benchRet)); 
+          free(pkt);
+        
+        break;
+    }
     default:
         usage();
         break;

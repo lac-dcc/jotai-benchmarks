@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static __inline__ void rtsdtr_ctrl(int bits)
     ciab.pra = ((bits & (SER_RTS | SER_DTR)) ^ (SER_RTS | SER_DTR)) | (ciab.pra & ~(SER_RTS | SER_DTR));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits = 100;
+        
           rtsdtr_ctrl(bits);
         
         break;
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bits = 255;
+        
           rtsdtr_ctrl(bits);
         
         break;
@@ -104,11 +101,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bits = 10;
+        
           rtsdtr_ctrl(bits);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rtsdtr_ctrl(bits);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static bool toneport_has_source_select(struct usb_line6_to
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,28 +87,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_toneport0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_toneport0 = 65025;
           struct usb_line6_toneport * toneport = (struct usb_line6_toneport *) malloc(_len_toneport0*sizeof(struct usb_line6_toneport));
           for(int _i0 = 0; _i0 < _len_toneport0; _i0++) {
-            toneport[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              toneport[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = toneport_has_source_select(toneport);
           printf("%d\n", benchRet); 
           free(toneport);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_toneport0 = 100;
           struct usb_line6_toneport * toneport = (struct usb_line6_toneport *) malloc(_len_toneport0*sizeof(struct usb_line6_toneport));
           for(int _i0 = 0; _i0 < _len_toneport0; _i0++) {
-            toneport[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              toneport[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = toneport_has_source_select(toneport);
+          printf("%d\n", benchRet); 
+          free(toneport);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_toneport0 = 1;
+          struct usb_line6_toneport * toneport = (struct usb_line6_toneport *) malloc(_len_toneport0*sizeof(struct usb_line6_toneport));
+          for(int _i0 = 0; _i0 < _len_toneport0; _i0++) {
+              toneport[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = toneport_has_source_select(toneport);
           printf("%d\n", benchRet); 
           free(toneport);

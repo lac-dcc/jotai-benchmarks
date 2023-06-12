@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +99,6 @@ __attribute__((used)) static void usb_set_lpm_pel(struct usb_device *udev,
 		udev_lpm_params->pel = hub_pel;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,28 +115,39 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int udev_exit_latency = 100;
+        
           unsigned int hub_exit_latency = 100;
+        
           unsigned int port_to_port_exit_latency = 100;
+        
           int _len_udev0 = 1;
           struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
-            udev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              udev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_udev_lpm_params0 = 1;
           struct usb3_lpm_parameters * udev_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_udev_lpm_params0*sizeof(struct usb3_lpm_parameters));
           for(int _i0 = 0; _i0 < _len_udev_lpm_params0; _i0++) {
-            udev_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+              udev_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_hub0 = 1;
           struct usb_hub * hub = (struct usb_hub *) malloc(_len_hub0*sizeof(struct usb_hub));
           for(int _i0 = 0; _i0 < _len_hub0; _i0++) {
-            hub[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hub[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_hub_lpm_params0 = 1;
           struct usb3_lpm_parameters * hub_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_hub_lpm_params0*sizeof(struct usb3_lpm_parameters));
           for(int _i0 = 0; _i0 < _len_hub_lpm_params0; _i0++) {
-            hub_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+              hub_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           usb_set_lpm_pel(udev,udev_lpm_params,udev_exit_latency,hub,hub_lpm_params,hub_exit_latency,port_to_port_exit_latency);
           free(udev);
           free(udev_lpm_params);
@@ -148,7 +156,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int udev_exit_latency = 255;
+        
+          unsigned int hub_exit_latency = 255;
+        
+          unsigned int port_to_port_exit_latency = 255;
+        
+          int _len_udev0 = 65025;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_udev_lpm_params0 = 65025;
+          struct usb3_lpm_parameters * udev_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_udev_lpm_params0*sizeof(struct usb3_lpm_parameters));
+          for(int _i0 = 0; _i0 < _len_udev_lpm_params0; _i0++) {
+              udev_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hub0 = 65025;
+          struct usb_hub * hub = (struct usb_hub *) malloc(_len_hub0*sizeof(struct usb_hub));
+          for(int _i0 = 0; _i0 < _len_hub0; _i0++) {
+              hub[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hub_lpm_params0 = 65025;
+          struct usb3_lpm_parameters * hub_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_hub_lpm_params0*sizeof(struct usb3_lpm_parameters));
+          for(int _i0 = 0; _i0 < _len_hub_lpm_params0; _i0++) {
+              hub_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usb_set_lpm_pel(udev,udev_lpm_params,udev_exit_latency,hub,hub_lpm_params,hub_exit_latency,port_to_port_exit_latency);
+          free(udev);
+          free(udev_lpm_params);
+          free(hub);
+          free(hub_lpm_params);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int udev_exit_latency = 10;
+        
+          unsigned int hub_exit_latency = 10;
+        
+          unsigned int port_to_port_exit_latency = 10;
+        
+          int _len_udev0 = 100;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_udev_lpm_params0 = 100;
+          struct usb3_lpm_parameters * udev_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_udev_lpm_params0*sizeof(struct usb3_lpm_parameters));
+          for(int _i0 = 0; _i0 < _len_udev_lpm_params0; _i0++) {
+              udev_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hub0 = 100;
+          struct usb_hub * hub = (struct usb_hub *) malloc(_len_hub0*sizeof(struct usb_hub));
+          for(int _i0 = 0; _i0 < _len_hub0; _i0++) {
+              hub[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hub_lpm_params0 = 100;
+          struct usb3_lpm_parameters * hub_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_hub_lpm_params0*sizeof(struct usb3_lpm_parameters));
+          for(int _i0 = 0; _i0 < _len_hub_lpm_params0; _i0++) {
+              hub_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usb_set_lpm_pel(udev,udev_lpm_params,udev_exit_latency,hub,hub_lpm_params,hub_exit_latency,port_to_port_exit_latency);
+          free(udev);
+          free(udev_lpm_params);
+          free(hub);
+          free(hub_lpm_params);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int udev_exit_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int hub_exit_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int port_to_port_exit_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_udev0 = 1;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              udev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_udev_lpm_params0 = 1;
+          struct usb3_lpm_parameters * udev_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_udev_lpm_params0*sizeof(struct usb3_lpm_parameters));
+          for(int _i0 = 0; _i0 < _len_udev_lpm_params0; _i0++) {
+              udev_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hub0 = 1;
+          struct usb_hub * hub = (struct usb_hub *) malloc(_len_hub0*sizeof(struct usb_hub));
+          for(int _i0 = 0; _i0 < _len_hub0; _i0++) {
+              hub[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_hub_lpm_params0 = 1;
+          struct usb3_lpm_parameters * hub_lpm_params = (struct usb3_lpm_parameters *) malloc(_len_hub_lpm_params0*sizeof(struct usb3_lpm_parameters));
+          for(int _i0 = 0; _i0 < _len_hub_lpm_params0; _i0++) {
+              hub_lpm_params[_i0].pel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usb_set_lpm_pel(udev,udev_lpm_params,udev_exit_latency,hub,hub_lpm_params,hub_exit_latency,port_to_port_exit_latency);
+          free(udev);
+          free(udev_lpm_params);
+          free(hub);
+          free(hub_lpm_params);
+        
+        break;
+    }
     default:
         usage();
         break;

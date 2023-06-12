@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int skl_get_pvtid_map(struct uuid_module *module, i
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int instance_id = 100;
+        
           int _len_module0 = 1;
           struct uuid_module * module = (struct uuid_module *) malloc(_len_module0*sizeof(struct uuid_module));
           for(int _i0 = 0; _i0 < _len_module0; _i0++) {
-            module[_i0].max_instance = ((-2 * (next_i()%2)) + 1) * next_i();
+              module[_i0].max_instance = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_module__i0__instance_id0 = 1;
           module[_i0].instance_id = (int *) malloc(_len_module__i0__instance_id0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_module__i0__instance_id0; _j0++) {
             module[_i0].instance_id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = skl_get_pvtid_map(module,instance_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_module0; _aux++) {
+          free(module[_aux].instance_id);
+          }
+          free(module);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int instance_id = 255;
+        
+          int _len_module0 = 65025;
+          struct uuid_module * module = (struct uuid_module *) malloc(_len_module0*sizeof(struct uuid_module));
+          for(int _i0 = 0; _i0 < _len_module0; _i0++) {
+              module[_i0].max_instance = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_module__i0__instance_id0 = 1;
+          module[_i0].instance_id = (int *) malloc(_len_module__i0__instance_id0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_module__i0__instance_id0; _j0++) {
+            module[_i0].instance_id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = skl_get_pvtid_map(module,instance_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_module0; _aux++) {
+          free(module[_aux].instance_id);
+          }
+          free(module);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int instance_id = 10;
+        
+          int _len_module0 = 100;
+          struct uuid_module * module = (struct uuid_module *) malloc(_len_module0*sizeof(struct uuid_module));
+          for(int _i0 = 0; _i0 < _len_module0; _i0++) {
+              module[_i0].max_instance = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_module__i0__instance_id0 = 1;
+          module[_i0].instance_id = (int *) malloc(_len_module__i0__instance_id0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_module__i0__instance_id0; _j0++) {
+            module[_i0].instance_id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = skl_get_pvtid_map(module,instance_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_module0; _aux++) {
+          free(module[_aux].instance_id);
+          }
+          free(module);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int instance_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_module0 = 1;
+          struct uuid_module * module = (struct uuid_module *) malloc(_len_module0*sizeof(struct uuid_module));
+          for(int _i0 = 0; _i0 < _len_module0; _i0++) {
+              module[_i0].max_instance = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_module__i0__instance_id0 = 1;
+          module[_i0].instance_id = (int *) malloc(_len_module__i0__instance_id0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_module__i0__instance_id0; _j0++) {
+            module[_i0].instance_id[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = skl_get_pvtid_map(module,instance_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_module0; _aux++) {

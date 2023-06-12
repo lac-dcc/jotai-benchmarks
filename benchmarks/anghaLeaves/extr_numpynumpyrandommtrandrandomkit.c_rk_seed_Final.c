@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ rk_seed(unsigned long seed, rk_state *state)
     state->has_binomial = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,10 +90,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned long seed = 100;
+        
           int _len_state0 = 1;
           struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
@@ -105,11 +126,169 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_state__i0__key0; _j0++) {
             state[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        state[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].has_binomial = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].has_gauss = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_binomial = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          rk_seed(seed,state);
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].key);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long seed = 255;
+        
+          int _len_state0 = 65025;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__key0 = 1;
+          state[_i0].key = (unsigned long *) malloc(_len_state__i0__key0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_state__i0__key0; _j0++) {
+            state[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          state[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_binomial = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rk_seed(seed,state);
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].key);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long seed = 10;
+        
+          int _len_state0 = 100;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__key0 = 1;
+          state[_i0].key = (unsigned long *) malloc(_len_state__i0__key0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_state__i0__key0; _j0++) {
+            state[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          state[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_binomial = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rk_seed(seed,state);
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].key);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned long seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct TYPE_3__ * state = (struct TYPE_3__ *) malloc(_len_state0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__key0 = 1;
+          state[_i0].key = (unsigned long *) malloc(_len_state__i0__key0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_state__i0__key0; _j0++) {
+            state[_i0].key[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          state[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_binomial = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].has_gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].gauss = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           rk_seed(seed,state);
           for(int _aux = 0; _aux < _len_state0; _aux++) {
           free(state[_aux].key);

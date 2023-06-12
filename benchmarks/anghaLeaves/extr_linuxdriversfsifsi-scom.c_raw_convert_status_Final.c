@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void raw_convert_status(struct scom_access *acc, ui
 		acc->intf_errors |= SCOM_INTF_ERR_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,18 +101,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int status = 100;
+        
           int _len_acc0 = 1;
           struct scom_access * acc = (struct scom_access *) malloc(_len_acc0*sizeof(struct scom_access));
           for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
-            acc[_i0].pib_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        acc[_i0].intf_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+              acc[_i0].pib_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          acc[_i0].intf_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           raw_convert_status(acc,status);
           free(acc);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int status = 255;
+        
+          int _len_acc0 = 65025;
+          struct scom_access * acc = (struct scom_access *) malloc(_len_acc0*sizeof(struct scom_access));
+          for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
+              acc[_i0].pib_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          acc[_i0].intf_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          raw_convert_status(acc,status);
+          free(acc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int status = 10;
+        
+          int _len_acc0 = 100;
+          struct scom_access * acc = (struct scom_access *) malloc(_len_acc0*sizeof(struct scom_access));
+          for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
+              acc[_i0].pib_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          acc[_i0].intf_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          raw_convert_status(acc,status);
+          free(acc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_acc0 = 1;
+          struct scom_access * acc = (struct scom_access *) malloc(_len_acc0*sizeof(struct scom_access));
+          for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
+              acc[_i0].pib_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          acc[_i0].intf_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          raw_convert_status(acc,status);
+          free(acc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct ib_device *cma_get_ib_dev(struct cma_device *cma_dev)
 	return cma_dev->device;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cma_dev0 = 1;
+          int _len_cma_dev0 = 65025;
           struct cma_device * cma_dev = (struct cma_device *) malloc(_len_cma_dev0*sizeof(struct cma_device));
           for(int _i0 = 0; _i0 < _len_cma_dev0; _i0++) {
               int _len_cma_dev__i0__device0 = 1;
           cma_dev[_i0].device = (struct ib_device *) malloc(_len_cma_dev__i0__device0*sizeof(struct ib_device));
           for(int _j0 = 0; _j0 < _len_cma_dev__i0__device0; _j0++) {
-            cma_dev[_i0].device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cma_dev[_i0].device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct ib_device * benchRet = cma_get_ib_dev(cma_dev);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_cma_dev0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cma_dev0 = 100;
+          struct cma_device * cma_dev = (struct cma_device *) malloc(_len_cma_dev0*sizeof(struct cma_device));
+          for(int _i0 = 0; _i0 < _len_cma_dev0; _i0++) {
+              int _len_cma_dev__i0__device0 = 1;
+          cma_dev[_i0].device = (struct ib_device *) malloc(_len_cma_dev__i0__device0*sizeof(struct ib_device));
+          for(int _j0 = 0; _j0 < _len_cma_dev__i0__device0; _j0++) {
+              cma_dev[_i0].device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ib_device * benchRet = cma_get_ib_dev(cma_dev);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_cma_dev0; _aux++) {
+          free(cma_dev[_aux].device);
+          }
+          free(cma_dev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cma_dev0 = 1;
+          struct cma_device * cma_dev = (struct cma_device *) malloc(_len_cma_dev0*sizeof(struct cma_device));
+          for(int _i0 = 0; _i0 < _len_cma_dev0; _i0++) {
+              int _len_cma_dev__i0__device0 = 1;
+          cma_dev[_i0].device = (struct ib_device *) malloc(_len_cma_dev__i0__device0*sizeof(struct ib_device));
+          for(int _j0 = 0; _j0 < _len_cma_dev__i0__device0; _j0++) {
+              cma_dev[_i0].device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ib_device * benchRet = cma_get_ib_dev(cma_dev);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_cma_dev0; _aux++) {
+          free(cma_dev[_aux].device);
+          }
+          free(cma_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

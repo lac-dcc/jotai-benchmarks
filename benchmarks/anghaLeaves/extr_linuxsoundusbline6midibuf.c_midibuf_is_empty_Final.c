@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static int midibuf_is_empty(struct midi_buffer *this)
 	return (this->pos_read == this->pos_write) && !this->full;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,23 +74,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_this0 = 1;
+          int _len_this0 = 65025;
           struct midi_buffer * this = (struct midi_buffer *) malloc(_len_this0*sizeof(struct midi_buffer));
           for(int _i0 = 0; _i0 < _len_this0; _i0++) {
-            this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
-        this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+              this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = midibuf_is_empty(this);
           printf("%d\n", benchRet); 
           free(this);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_this0 = 100;
+          struct midi_buffer * this = (struct midi_buffer *) malloc(_len_this0*sizeof(struct midi_buffer));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = midibuf_is_empty(this);
+          printf("%d\n", benchRet); 
+          free(this);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_this0 = 1;
+          struct midi_buffer * this = (struct midi_buffer *) malloc(_len_this0*sizeof(struct midi_buffer));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = midibuf_is_empty(this);
+          printf("%d\n", benchRet); 
+          free(this);
+        
+        break;
+    }
     default:
         usage();
         break;

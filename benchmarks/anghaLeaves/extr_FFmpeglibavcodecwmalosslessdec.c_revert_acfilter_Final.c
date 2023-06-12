@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +94,6 @@ __attribute__((used)) static void revert_acfilter(WmallDecodeCtx *s, int tile_si
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,6 +110,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tile_size = 100;
+        
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
@@ -121,9 +119,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_s__i0__acfilter_coeffs0; _j0++) {
             s[_i0].acfilter_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        s[_i0].acfilter_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].acfilter_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].acfilter_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].acfilter_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__acfilter_prevvalues0 = 1;
           s[_i0].acfilter_prevvalues = (int **) malloc(_len_s__i0__acfilter_prevvalues0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_s__i0__acfilter_prevvalues0; _j0++) {
@@ -142,7 +140,9 @@ int main(int argc, char *argv[]) {
               s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
           revert_acfilter(s,tile_size);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].acfilter_coeffs);
@@ -159,7 +159,165 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int tile_size = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__acfilter_coeffs0 = 1;
+          s[_i0].acfilter_coeffs = (int *) malloc(_len_s__i0__acfilter_coeffs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__acfilter_coeffs0; _j0++) {
+            s[_i0].acfilter_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].acfilter_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].acfilter_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__acfilter_prevvalues0 = 1;
+          s[_i0].acfilter_prevvalues = (int **) malloc(_len_s__i0__acfilter_prevvalues0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__acfilter_prevvalues0; _j0++) {
+            int _len_s__i0__acfilter_prevvalues1 = 1;
+            s[_i0].acfilter_prevvalues[_j0] = (int *) malloc(_len_s__i0__acfilter_prevvalues1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__acfilter_prevvalues1; _j1++) {
+              s[_i0].acfilter_prevvalues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__channel_residues0 = 1;
+          s[_i0].channel_residues = (int **) malloc(_len_s__i0__channel_residues0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
+            int _len_s__i0__channel_residues1 = 1;
+            s[_i0].channel_residues[_j0] = (int *) malloc(_len_s__i0__channel_residues1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__channel_residues1; _j1++) {
+              s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          revert_acfilter(s,tile_size);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].acfilter_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].acfilter_prevvalues));
+        free(s[_aux].acfilter_prevvalues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].channel_residues));
+        free(s[_aux].channel_residues);
+          }
+          free(s);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int tile_size = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__acfilter_coeffs0 = 1;
+          s[_i0].acfilter_coeffs = (int *) malloc(_len_s__i0__acfilter_coeffs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__acfilter_coeffs0; _j0++) {
+            s[_i0].acfilter_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].acfilter_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].acfilter_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__acfilter_prevvalues0 = 1;
+          s[_i0].acfilter_prevvalues = (int **) malloc(_len_s__i0__acfilter_prevvalues0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__acfilter_prevvalues0; _j0++) {
+            int _len_s__i0__acfilter_prevvalues1 = 1;
+            s[_i0].acfilter_prevvalues[_j0] = (int *) malloc(_len_s__i0__acfilter_prevvalues1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__acfilter_prevvalues1; _j1++) {
+              s[_i0].acfilter_prevvalues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__channel_residues0 = 1;
+          s[_i0].channel_residues = (int **) malloc(_len_s__i0__channel_residues0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
+            int _len_s__i0__channel_residues1 = 1;
+            s[_i0].channel_residues[_j0] = (int *) malloc(_len_s__i0__channel_residues1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__channel_residues1; _j1++) {
+              s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          revert_acfilter(s,tile_size);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].acfilter_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].acfilter_prevvalues));
+        free(s[_aux].acfilter_prevvalues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].channel_residues));
+        free(s[_aux].channel_residues);
+          }
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int tile_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__acfilter_coeffs0 = 1;
+          s[_i0].acfilter_coeffs = (int *) malloc(_len_s__i0__acfilter_coeffs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__acfilter_coeffs0; _j0++) {
+            s[_i0].acfilter_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].acfilter_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].acfilter_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__acfilter_prevvalues0 = 1;
+          s[_i0].acfilter_prevvalues = (int **) malloc(_len_s__i0__acfilter_prevvalues0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__acfilter_prevvalues0; _j0++) {
+            int _len_s__i0__acfilter_prevvalues1 = 1;
+            s[_i0].acfilter_prevvalues[_j0] = (int *) malloc(_len_s__i0__acfilter_prevvalues1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__acfilter_prevvalues1; _j1++) {
+              s[_i0].acfilter_prevvalues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__channel_residues0 = 1;
+          s[_i0].channel_residues = (int **) malloc(_len_s__i0__channel_residues0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
+            int _len_s__i0__channel_residues1 = 1;
+            s[_i0].channel_residues[_j0] = (int *) malloc(_len_s__i0__channel_residues1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_s__i0__channel_residues1; _j1++) {
+              s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          revert_acfilter(s,tile_size);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].acfilter_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].acfilter_prevvalues));
+        free(s[_aux].acfilter_prevvalues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].channel_residues));
+        free(s[_aux].channel_residues);
+          }
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

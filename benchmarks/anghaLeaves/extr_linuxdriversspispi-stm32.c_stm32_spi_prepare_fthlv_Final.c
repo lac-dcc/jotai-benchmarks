@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static u32 stm32_spi_prepare_fthlv(struct stm32_spi *spi)
 	return fthlv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,15 +93,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_spi0 = 65025;
+          struct stm32_spi * spi = (struct stm32_spi *) malloc(_len_spi0*sizeof(struct stm32_spi));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].cur_bpw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stm32_spi_prepare_fthlv(spi);
+          printf("%d\n", benchRet); 
+          free(spi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_spi0 = 100;
+          struct stm32_spi * spi = (struct stm32_spi *) malloc(_len_spi0*sizeof(struct stm32_spi));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].cur_bpw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stm32_spi_prepare_fthlv(spi);
+          printf("%d\n", benchRet); 
+          free(spi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_spi0 = 1;
           struct stm32_spi * spi = (struct stm32_spi *) malloc(_len_spi0*sizeof(struct stm32_spi));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        spi[_i0].cur_bpw = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].cur_bpw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stm32_spi_prepare_fthlv(spi);
           printf("%d\n", benchRet); 
           free(spi);

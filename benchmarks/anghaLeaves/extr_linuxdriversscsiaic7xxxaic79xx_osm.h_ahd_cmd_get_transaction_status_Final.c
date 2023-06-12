@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ uint32_t ahd_cmd_get_transaction_status(struct scsi_cmnd *cmd)
 	return ((cmd->result >> 16) & CAM_STATUS_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ahd_cmd_get_transaction_status(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_cmd0 = 100;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ahd_cmd_get_transaction_status(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ahd_cmd_get_transaction_status(cmd);
+          printf("%d\n", benchRet); 
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

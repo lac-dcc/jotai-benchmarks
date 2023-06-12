@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void mark_all_dirty(struct vmcb *vmcb)
 	vmcb->control.clean = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vmcb0 = 1;
+          int _len_vmcb0 = 65025;
           struct vmcb * vmcb = (struct vmcb *) malloc(_len_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_vmcb0; _i0++) {
-            vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mark_all_dirty(vmcb);
           free(vmcb);
         
@@ -100,14 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_vmcb0 = 100;
           struct vmcb * vmcb = (struct vmcb *) malloc(_len_vmcb0*sizeof(struct vmcb));
           for(int _i0 = 0; _i0 < _len_vmcb0; _i0++) {
-            vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+              vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mark_all_dirty(vmcb);
           free(vmcb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vmcb0 = 1;
+          struct vmcb * vmcb = (struct vmcb *) malloc(_len_vmcb0*sizeof(struct vmcb));
+          for(int _i0 = 0; _i0 < _len_vmcb0; _i0++) {
+              vmcb[_i0].control.clean = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mark_all_dirty(vmcb);
+          free(vmcb);
+        
+        break;
+    }
     default:
         usage();
         break;

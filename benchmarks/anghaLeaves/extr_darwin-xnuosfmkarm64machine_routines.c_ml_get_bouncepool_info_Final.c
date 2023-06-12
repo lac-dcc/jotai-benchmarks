@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ml_get_bouncepool_info(vm_offset_t * phys_addr, vm_size_t * size)
 	*size = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_phys_addr0 = 65025;
+          long * phys_addr = (long *) malloc(_len_phys_addr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
+            phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 65025;
+          long * size = (long *) malloc(_len_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ml_get_bouncepool_info(phys_addr,size);
+          free(phys_addr);
+          free(size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_phys_addr0 = 100;
+          long * phys_addr = (long *) malloc(_len_phys_addr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
+            phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 100;
+          long * size = (long *) malloc(_len_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ml_get_bouncepool_info(phys_addr,size);
+          free(phys_addr);
+          free(size);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_phys_addr0 = 1;
           long * phys_addr = (long *) malloc(_len_phys_addr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
             phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_size0 = 1;
           long * size = (long *) malloc(_len_size0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ml_get_bouncepool_info(phys_addr,size);
           free(phys_addr);
           free(size);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void mv3310_update_interface(struct phy_device *phy
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,16 +91,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_phydev0 = 65025;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              phydev[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+          phydev[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          phydev[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mv3310_update_interface(phydev);
+          free(phydev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_phydev0 = 100;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              phydev[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+          phydev[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          phydev[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mv3310_update_interface(phydev);
+          free(phydev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_phydev0 = 1;
           struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
-            phydev[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
-        phydev[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        phydev[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+              phydev[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+          phydev[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          phydev[_i0].link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mv3310_update_interface(phydev);
           free(phydev);
         

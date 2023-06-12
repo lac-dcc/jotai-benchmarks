@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static u16 roundup_to_multiple_of_64(u16 number)
 	return 0xFFC0 & (0x3F + number);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int number = 100;
+        
           int benchRet = roundup_to_multiple_of_64(number);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int number = 255;
+        
           int benchRet = roundup_to_multiple_of_64(number);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int number = 10;
+        
           int benchRet = roundup_to_multiple_of_64(number);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = roundup_to_multiple_of_64(number);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

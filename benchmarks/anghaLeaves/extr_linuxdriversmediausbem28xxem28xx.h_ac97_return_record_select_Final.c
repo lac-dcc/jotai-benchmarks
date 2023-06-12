@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int ac97_return_record_select(int a_out)
 	return (a_out & 0x700) >> 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a_out = 100;
+        
           int benchRet = ac97_return_record_select(a_out);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int a_out = 255;
+        
           int benchRet = ac97_return_record_select(a_out);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int a_out = 10;
+        
           int benchRet = ac97_return_record_select(a_out);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ac97_return_record_select(a_out);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

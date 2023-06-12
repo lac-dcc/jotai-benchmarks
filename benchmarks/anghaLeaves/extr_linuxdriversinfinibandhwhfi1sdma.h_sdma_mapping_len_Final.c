@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline size_t sdma_mapping_len(struct sdma_desc *d)
 		>> SDMA_DESC0_BYTE_COUNT_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_d0 = 65025;
+          struct sdma_desc * d = (struct sdma_desc *) malloc(_len_d0*sizeof(struct sdma_desc));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              int _len_d__i0__qw0 = 1;
+          d[_i0].qw = (unsigned long *) malloc(_len_d__i0__qw0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_d__i0__qw0; _j0++) {
+            d[_i0].qw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = sdma_mapping_len(d);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(d[_aux].qw);
+          }
+          free(d);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_d0 = 100;
+          struct sdma_desc * d = (struct sdma_desc *) malloc(_len_d0*sizeof(struct sdma_desc));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              int _len_d__i0__qw0 = 1;
+          d[_i0].qw = (unsigned long *) malloc(_len_d__i0__qw0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_d__i0__qw0; _j0++) {
+            d[_i0].qw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = sdma_mapping_len(d);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(d[_aux].qw);
+          }
+          free(d);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_d0 = 1;
           struct sdma_desc * d = (struct sdma_desc *) malloc(_len_d0*sizeof(struct sdma_desc));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
@@ -92,7 +205,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_d__i0__qw0; _j0++) {
             d[_i0].qw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned long benchRet = sdma_mapping_len(d);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_d0; _aux++) {

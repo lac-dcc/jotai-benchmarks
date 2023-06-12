@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void inc_ep_stats_bytes(struct pxa_ep *ep, int coun
 		ep->stats.out_bytes += count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,17 +80,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int count = 100;
+        
           int is_in = 100;
+        
           int _len_ep0 = 1;
           struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].stats.in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].stats.out_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].stats.in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.out_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          inc_ep_stats_bytes(ep,count,is_in);
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int count = 255;
+        
+          int is_in = 255;
+        
+          int _len_ep0 = 65025;
+          struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].stats.in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.out_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          inc_ep_stats_bytes(ep,count,is_in);
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int count = 10;
+        
+          int is_in = 10;
+        
+          int _len_ep0 = 100;
+          struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].stats.in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.out_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          inc_ep_stats_bytes(ep,count,is_in);
+          free(ep);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ep0 = 1;
+          struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].stats.in_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.out_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           inc_ep_stats_bytes(ep,count,is_in);
           free(ep);
         

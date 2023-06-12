@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ __attribute__((used)) static inline int is_ipv6_localhost (unsigned char ipv6[16
   return !*(long long *)ipv6 && ((long long *)ipv6)[1] == 1LL << 56;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,14 +72,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ipv60 = 16;
+          int _len_ipv60 = 65025;
           unsigned char * ipv6 = (unsigned char *) malloc(_len_ipv60*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_ipv60; _i0++) {
             ipv6[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_ipv6_localhost(ipv6);
           printf("%d\n", benchRet); 
           free(ipv6);
@@ -99,13 +95,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_ipv60; _i0++) {
             ipv6[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_ipv6_localhost(ipv6);
           printf("%d\n", benchRet); 
           free(ipv6);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ipv60 = 16;
+          unsigned char * ipv6 = (unsigned char *) malloc(_len_ipv60*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_ipv60; _i0++) {
+            ipv6[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_ipv6_localhost(ipv6);
+          printf("%d\n", benchRet); 
+          free(ipv6);
+        
+        break;
+    }
     default:
         usage();
         break;

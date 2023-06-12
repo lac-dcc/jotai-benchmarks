@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static bool nfsd4_cb_channel_good(struct nfs4_client *clp)
 	return clp->cl_minorversion && clp->cl_cb_state == NFSD4_CB_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_clp0 = 1;
+          int _len_clp0 = 65025;
           struct nfs4_client * clp = (struct nfs4_client *) malloc(_len_clp0*sizeof(struct nfs4_client));
           for(int _i0 = 0; _i0 < _len_clp0; _i0++) {
-            clp[_i0].cl_cb_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        clp[_i0].cl_minorversion = ((-2 * (next_i()%2)) + 1) * next_i();
+              clp[_i0].cl_cb_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          clp[_i0].cl_minorversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfsd4_cb_channel_good(clp);
           printf("%d\n", benchRet); 
           free(clp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_clp0 = 100;
+          struct nfs4_client * clp = (struct nfs4_client *) malloc(_len_clp0*sizeof(struct nfs4_client));
+          for(int _i0 = 0; _i0 < _len_clp0; _i0++) {
+              clp[_i0].cl_cb_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          clp[_i0].cl_minorversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfsd4_cb_channel_good(clp);
+          printf("%d\n", benchRet); 
+          free(clp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_clp0 = 1;
+          struct nfs4_client * clp = (struct nfs4_client *) malloc(_len_clp0*sizeof(struct nfs4_client));
+          for(int _i0 = 0; _i0 < _len_clp0; _i0++) {
+              clp[_i0].cl_cb_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          clp[_i0].cl_minorversion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfsd4_cb_channel_good(clp);
+          printf("%d\n", benchRet); 
+          free(clp);
+        
+        break;
+    }
     default:
         usage();
         break;

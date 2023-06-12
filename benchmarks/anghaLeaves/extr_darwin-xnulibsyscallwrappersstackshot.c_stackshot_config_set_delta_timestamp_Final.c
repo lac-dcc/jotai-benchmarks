@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ stackshot_config_set_delta_timestamp(stackshot_config_t *stackshot_config, uint6
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +85,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int delta_timestamp = 100;
+        
           int _len_stackshot_config0 = 1;
           struct TYPE_3__ * stackshot_config = (struct TYPE_3__ *) malloc(_len_stackshot_config0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stackshot_config0; _i0++) {
-            stackshot_config[_i0].sc_delta_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        stackshot_config[_i0].sc_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+              stackshot_config[_i0].sc_delta_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          stackshot_config[_i0].sc_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = stackshot_config_set_delta_timestamp(stackshot_config,delta_timestamp);
+          printf("%d\n", benchRet); 
+          free(stackshot_config);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int delta_timestamp = 255;
+        
+          int _len_stackshot_config0 = 65025;
+          struct TYPE_3__ * stackshot_config = (struct TYPE_3__ *) malloc(_len_stackshot_config0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stackshot_config0; _i0++) {
+              stackshot_config[_i0].sc_delta_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          stackshot_config[_i0].sc_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stackshot_config_set_delta_timestamp(stackshot_config,delta_timestamp);
+          printf("%d\n", benchRet); 
+          free(stackshot_config);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int delta_timestamp = 10;
+        
+          int _len_stackshot_config0 = 100;
+          struct TYPE_3__ * stackshot_config = (struct TYPE_3__ *) malloc(_len_stackshot_config0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stackshot_config0; _i0++) {
+              stackshot_config[_i0].sc_delta_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          stackshot_config[_i0].sc_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stackshot_config_set_delta_timestamp(stackshot_config,delta_timestamp);
+          printf("%d\n", benchRet); 
+          free(stackshot_config);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int delta_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stackshot_config0 = 1;
+          struct TYPE_3__ * stackshot_config = (struct TYPE_3__ *) malloc(_len_stackshot_config0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stackshot_config0; _i0++) {
+              stackshot_config[_i0].sc_delta_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          stackshot_config[_i0].sc_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = stackshot_config_set_delta_timestamp(stackshot_config,delta_timestamp);
           printf("%d\n", benchRet); 
           free(stackshot_config);

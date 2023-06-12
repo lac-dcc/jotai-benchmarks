@@ -67,12 +67,6 @@ UINT8 galois_mul2(UINT8 value)
 		return value<<1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 100;
+        
           int benchRet = galois_mul2(value);
           printf("%d\n", benchRet); 
         
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int value = 255;
+        
           int benchRet = galois_mul2(value);
           printf("%d\n", benchRet); 
         
@@ -107,12 +103,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int value = 10;
+        
           int benchRet = galois_mul2(value);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline struct blame_origin *blame_origin_incref(str
 	return o;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_o0 = 1;
+          int _len_o0 = 65025;
           struct blame_origin * o = (struct blame_origin *) malloc(_len_o0*sizeof(struct blame_origin));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct blame_origin * benchRet = blame_origin_incref(o);
           printf("%d\n", (*benchRet).refcnt);
           free(o);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_o0 = 100;
           struct blame_origin * o = (struct blame_origin *) malloc(_len_o0*sizeof(struct blame_origin));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct blame_origin * benchRet = blame_origin_incref(o);
           printf("%d\n", (*benchRet).refcnt);
           free(o);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_o0 = 1;
+          struct blame_origin * o = (struct blame_origin *) malloc(_len_o0*sizeof(struct blame_origin));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct blame_origin * benchRet = blame_origin_incref(o);
+          printf("%d\n", (*benchRet).refcnt);
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

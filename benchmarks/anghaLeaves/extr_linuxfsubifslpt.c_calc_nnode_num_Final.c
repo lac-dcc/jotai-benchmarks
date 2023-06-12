@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static int calc_nnode_num(int row, int col)
 	return num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +84,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 2314
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 711
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 569
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 569
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 569
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 710
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 910
+          // ------------------------------- 
+
           int row = 100;
+        
           int col = 100;
+        
           int benchRet = calc_nnode_num(row,col);
           printf("%d\n", benchRet); 
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 5879
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 1796
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 1427
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 1427
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 1427
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 1795
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 2305
+          // ------------------------------- 
+
+          int row = 255;
+        
+          int col = 255;
+        
+          int benchRet = calc_nnode_num(row,col);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 244
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 81
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 78
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 78
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 78
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 80
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 100
+          // ------------------------------- 
+
           int row = 10;
+        
           int col = 10;
+        
           int benchRet = calc_nnode_num(row,col);
           printf("%d\n", benchRet); 
         

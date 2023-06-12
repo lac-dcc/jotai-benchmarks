@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ mbuf_get_flowid(mbuf_t m, u_int16_t *flowid)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,21 +92,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.drv_flowid = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_flowid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_flowid0 = 1;
+        
+          int _len_flowid0 = 65025;
           long * flowid = (long *) malloc(_len_flowid0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_flowid0; _i0++) {
             flowid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mbuf_get_flowid(m,flowid);
           printf("%d\n", benchRet); 
           free(m);
@@ -118,7 +118,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m0 = 100;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_flowid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_flowid0 = 100;
+          long * flowid = (long *) malloc(_len_flowid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_flowid0; _i0++) {
+            flowid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mbuf_get_flowid(m,flowid);
+          printf("%d\n", benchRet); 
+          free(m);
+          free(flowid);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_flowid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_flowid0 = 1;
+          long * flowid = (long *) malloc(_len_flowid0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_flowid0; _i0++) {
+            flowid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mbuf_get_flowid(m,flowid);
+          printf("%d\n", benchRet); 
+          free(m);
+          free(flowid);
+        
+        break;
+    }
     default:
         usage();
         break;

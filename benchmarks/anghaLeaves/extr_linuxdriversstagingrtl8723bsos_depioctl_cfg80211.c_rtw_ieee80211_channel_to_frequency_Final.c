@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static int rtw_ieee80211_channel_to_frequency(int chan, in
 	return 0; /* not supported */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int chan = 100;
+        
           int band = 100;
+        
           int benchRet = rtw_ieee80211_channel_to_frequency(chan,band);
           printf("%d\n", benchRet); 
         
@@ -103,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int chan = 255;
+        
           int band = 255;
+        
           int benchRet = rtw_ieee80211_channel_to_frequency(chan,band);
           printf("%d\n", benchRet); 
         
@@ -113,13 +112,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int chan = 10;
+        
           int band = 10;
+        
           int benchRet = rtw_ieee80211_channel_to_frequency(chan,band);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rtw_ieee80211_channel_to_frequency(chan,band);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

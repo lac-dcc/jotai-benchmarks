@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -72,12 +72,6 @@ void exclusive_image(image src)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,18 +84,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           struct TYPE_3__ src;
-        src.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        src.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        src.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          src.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          src.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          src.c = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_src_data0 = 1;
           src.data = (long *) malloc(_len_src_data0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_src_data0; _j0++) {
             src.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           exclusive_image(src);
           free(src.data);
         

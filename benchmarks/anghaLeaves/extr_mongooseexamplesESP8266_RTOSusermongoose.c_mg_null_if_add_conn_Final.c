@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void mg_null_if_add_conn(struct mg_connection *c) {
   c->flags |= MG_F_CLOSE_IMMEDIATELY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_c0 = 65025;
+          struct mg_connection * c = (struct mg_connection *) malloc(_len_c0*sizeof(struct mg_connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].sock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mg_null_if_add_conn(c);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_c0 = 100;
+          struct mg_connection * c = (struct mg_connection *) malloc(_len_c0*sizeof(struct mg_connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].sock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mg_null_if_add_conn(c);
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_c0 = 1;
           struct mg_connection * c = (struct mg_connection *) malloc(_len_c0*sizeof(struct mg_connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].sock = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].sock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mg_null_if_add_conn(c);
           free(c);
         

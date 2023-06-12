@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static int kxtj9_update_g_range(struct kxtj9_data *tj9, u8
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +97,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int new_g_range = 100;
+        
           int _len_tj90 = 1;
           struct kxtj9_data * tj9 = (struct kxtj9_data *) malloc(_len_tj90*sizeof(struct kxtj9_data));
           for(int _i0 = 0; _i0 < _len_tj90; _i0++) {
-            tj9[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        tj9[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              tj9[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          tj9[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = kxtj9_update_g_range(tj9,new_g_range);
+          printf("%d\n", benchRet); 
+          free(tj9);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int new_g_range = 255;
+        
+          int _len_tj90 = 65025;
+          struct kxtj9_data * tj9 = (struct kxtj9_data *) malloc(_len_tj90*sizeof(struct kxtj9_data));
+          for(int _i0 = 0; _i0 < _len_tj90; _i0++) {
+              tj9[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          tj9[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kxtj9_update_g_range(tj9,new_g_range);
+          printf("%d\n", benchRet); 
+          free(tj9);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int new_g_range = 10;
+        
+          int _len_tj90 = 100;
+          struct kxtj9_data * tj9 = (struct kxtj9_data *) malloc(_len_tj90*sizeof(struct kxtj9_data));
+          for(int _i0 = 0; _i0 < _len_tj90; _i0++) {
+              tj9[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          tj9[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kxtj9_update_g_range(tj9,new_g_range);
+          printf("%d\n", benchRet); 
+          free(tj9);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int new_g_range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tj90 = 1;
+          struct kxtj9_data * tj9 = (struct kxtj9_data *) malloc(_len_tj90*sizeof(struct kxtj9_data));
+          for(int _i0 = 0; _i0 < _len_tj90; _i0++) {
+              tj9[_i0].shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          tj9[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = kxtj9_update_g_range(tj9,new_g_range);
           printf("%d\n", benchRet); 
           free(tj9);

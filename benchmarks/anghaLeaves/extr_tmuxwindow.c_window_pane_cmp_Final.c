@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ window_pane_cmp(struct window_pane *wp1, struct window_pane *wp2)
 	return (wp1->id - wp2->id);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_wp10 = 65025;
+          struct window_pane * wp1 = (struct window_pane *) malloc(_len_wp10*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp10; _i0++) {
+              wp1[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wp20 = 65025;
+          struct window_pane * wp2 = (struct window_pane *) malloc(_len_wp20*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp20; _i0++) {
+              wp2[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = window_pane_cmp(wp1,wp2);
+          printf("%d\n", benchRet); 
+          free(wp1);
+          free(wp2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_wp10 = 100;
+          struct window_pane * wp1 = (struct window_pane *) malloc(_len_wp10*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp10; _i0++) {
+              wp1[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wp20 = 100;
+          struct window_pane * wp2 = (struct window_pane *) malloc(_len_wp20*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp20; _i0++) {
+              wp2[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = window_pane_cmp(wp1,wp2);
+          printf("%d\n", benchRet); 
+          free(wp1);
+          free(wp2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_wp10 = 1;
           struct window_pane * wp1 = (struct window_pane *) malloc(_len_wp10*sizeof(struct window_pane));
           for(int _i0 = 0; _i0 < _len_wp10; _i0++) {
-            wp1[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              wp1[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_wp20 = 1;
           struct window_pane * wp2 = (struct window_pane *) malloc(_len_wp20*sizeof(struct window_pane));
           for(int _i0 = 0; _i0 < _len_wp20; _i0++) {
-            wp2[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              wp2[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = window_pane_cmp(wp1,wp2);
           printf("%d\n", benchRet); 
           free(wp1);

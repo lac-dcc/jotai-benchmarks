@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ bool iommu_present(struct bus_type *bus)
 	return bus->iommu_ops != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bus0 = 1;
+          int _len_bus0 = 65025;
           struct bus_type * bus = (struct bus_type *) malloc(_len_bus0*sizeof(struct bus_type));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
               int _len_bus__i0__iommu_ops0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_bus__i0__iommu_ops0; _j0++) {
             bus[_i0].iommu_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = iommu_present(bus);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bus0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bus0 = 100;
+          struct bus_type * bus = (struct bus_type *) malloc(_len_bus0*sizeof(struct bus_type));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              int _len_bus__i0__iommu_ops0 = 1;
+          bus[_i0].iommu_ops = (int *) malloc(_len_bus__i0__iommu_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_bus__i0__iommu_ops0; _j0++) {
+            bus[_i0].iommu_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = iommu_present(bus);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].iommu_ops);
+          }
+          free(bus);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bus0 = 1;
+          struct bus_type * bus = (struct bus_type *) malloc(_len_bus0*sizeof(struct bus_type));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              int _len_bus__i0__iommu_ops0 = 1;
+          bus[_i0].iommu_ops = (int *) malloc(_len_bus__i0__iommu_ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_bus__i0__iommu_ops0; _j0++) {
+            bus[_i0].iommu_ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = iommu_present(bus);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].iommu_ops);
+          }
+          free(bus);
+        
+        break;
+    }
     default:
         usage();
         break;

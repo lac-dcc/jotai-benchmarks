@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ get_vmmap_size(
 	return(map->size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_map0 = 1;
+          int _len_map0 = 65025;
           struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_vmmap_size(map);
           printf("%d\n", benchRet); 
           free(map);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_map0 = 100;
           struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_vmmap_size(map);
           printf("%d\n", benchRet); 
           free(map);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_map0 = 1;
+          struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_vmmap_size(map);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

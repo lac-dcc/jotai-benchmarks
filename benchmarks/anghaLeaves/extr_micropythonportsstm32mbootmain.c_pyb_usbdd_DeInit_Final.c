@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static uint8_t pyb_usbdd_DeInit(USBD_HandleTypeDef *pdev, 
     return USBD_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cfgidx = 100;
+        
           int _len_pdev0 = 1;
           struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
-            pdev[_i0].pClassData = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev[_i0].pClassData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pyb_usbdd_DeInit(pdev,cfgidx);
+          printf("%d\n", benchRet); 
+          free(pdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cfgidx = 255;
+        
+          int _len_pdev0 = 65025;
+          struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].pClassData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pyb_usbdd_DeInit(pdev,cfgidx);
           printf("%d\n", benchRet); 
           free(pdev);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cfgidx = 10;
+        
           int _len_pdev0 = 100;
           struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
-            pdev[_i0].pClassData = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev[_i0].pClassData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pyb_usbdd_DeInit(pdev,cfgidx);
           printf("%d\n", benchRet); 
           free(pdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cfgidx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdev0 = 1;
+          struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].pClassData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pyb_usbdd_DeInit(pdev,cfgidx);
+          printf("%d\n", benchRet); 
+          free(pdev);
+        
+        break;
+    }
     default:
         usage();
         break;

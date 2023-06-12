@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static int has_duration(AVFormatContext *ic)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +90,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ic0 = 1;
+          int _len_ic0 = 65025;
           struct TYPE_5__ * ic = (struct TYPE_5__ *) malloc(_len_ic0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
-            ic[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
-        ic[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+              ic[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+          ic[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ic__i0__streams0 = 1;
           ic[_i0].streams = (struct TYPE_4__ **) malloc(_len_ic__i0__streams0*sizeof(struct TYPE_4__ *));
           for(int _j0 = 0; _j0 < _len_ic__i0__streams0; _j0++) {
             int _len_ic__i0__streams1 = 1;
             ic[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_ic__i0__streams1*sizeof(struct TYPE_4__));
             for(int _j1 = 0; _j1 < _len_ic__i0__streams1; _j1++) {
-              ic[_i0].streams[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+                ic[_i0].streams[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = has_duration(ic);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ic0; _aux++) {
@@ -122,7 +121,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ic0 = 100;
+          struct TYPE_5__ * ic = (struct TYPE_5__ *) malloc(_len_ic0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              ic[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+          ic[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ic__i0__streams0 = 1;
+          ic[_i0].streams = (struct TYPE_4__ **) malloc(_len_ic__i0__streams0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_ic__i0__streams0; _j0++) {
+            int _len_ic__i0__streams1 = 1;
+            ic[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_ic__i0__streams1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_ic__i0__streams1; _j1++) {
+                ic[_i0].streams[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = has_duration(ic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ic0; _aux++) {
+          free(*(ic[_aux].streams));
+        free(ic[_aux].streams);
+          }
+          free(ic);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ic0 = 1;
+          struct TYPE_5__ * ic = (struct TYPE_5__ *) malloc(_len_ic0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              ic[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+          ic[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ic__i0__streams0 = 1;
+          ic[_i0].streams = (struct TYPE_4__ **) malloc(_len_ic__i0__streams0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_ic__i0__streams0; _j0++) {
+            int _len_ic__i0__streams1 = 1;
+            ic[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_ic__i0__streams1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_ic__i0__streams1; _j1++) {
+                ic[_i0].streams[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = has_duration(ic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ic0; _aux++) {
+          free(*(ic[_aux].streams));
+        free(ic[_aux].streams);
+          }
+          free(ic);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool use_pbo_rendering(GameContext* gc) {
   return gc->pbos.supported && gc->pbos.enabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_gc0 = 65025;
+          struct TYPE_5__ * gc = (struct TYPE_5__ *) malloc(_len_gc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              gc[_i0].pbos.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].pbos.supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = use_pbo_rendering(gc);
+          printf("%d\n", benchRet); 
+          free(gc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_gc0 = 100;
+          struct TYPE_5__ * gc = (struct TYPE_5__ *) malloc(_len_gc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              gc[_i0].pbos.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].pbos.supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = use_pbo_rendering(gc);
+          printf("%d\n", benchRet); 
+          free(gc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_gc0 = 1;
           struct TYPE_5__ * gc = (struct TYPE_5__ *) malloc(_len_gc0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
-            gc[_i0].pbos.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc[_i0].pbos.supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc[_i0].pbos.enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].pbos.supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = use_pbo_rendering(gc);
           printf("%d\n", benchRet); 
           free(gc);

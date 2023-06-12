@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool has_unit(struct perf_evsel *counter)
 	return counter->unit && *counter->unit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_counter0 = 65025;
+          struct perf_evsel * counter = (struct perf_evsel *) malloc(_len_counter0*sizeof(struct perf_evsel));
+          for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
+              int _len_counter__i0__unit0 = 1;
+          counter[_i0].unit = (long *) malloc(_len_counter__i0__unit0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_counter__i0__unit0; _j0++) {
+            counter[_i0].unit[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = has_unit(counter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_counter0; _aux++) {
+          free(counter[_aux].unit);
+          }
+          free(counter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_counter0 = 100;
+          struct perf_evsel * counter = (struct perf_evsel *) malloc(_len_counter0*sizeof(struct perf_evsel));
+          for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
+              int _len_counter__i0__unit0 = 1;
+          counter[_i0].unit = (long *) malloc(_len_counter__i0__unit0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_counter__i0__unit0; _j0++) {
+            counter[_i0].unit[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = has_unit(counter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_counter0; _aux++) {
+          free(counter[_aux].unit);
+          }
+          free(counter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_counter0 = 1;
           struct perf_evsel * counter = (struct perf_evsel *) malloc(_len_counter0*sizeof(struct perf_evsel));
           for(int _i0 = 0; _i0 < _len_counter0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_counter__i0__unit0; _j0++) {
             counter[_i0].unit[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = has_unit(counter);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_counter0; _aux++) {

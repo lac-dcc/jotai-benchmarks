@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool smc_cdc_rxed_any_close(struct smc_conne
 	       conn->local_rx_ctrl.conn_state_flags.peer_conn_closed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_conn0 = 1;
+          int _len_conn0 = 65025;
           struct smc_connection * conn = (struct smc_connection *) malloc(_len_conn0*sizeof(struct smc_connection));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_closed = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_closed = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = smc_cdc_rxed_any_close(conn);
           printf("%d\n", benchRet); 
           free(conn);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_conn0 = 100;
+          struct smc_connection * conn = (struct smc_connection *) malloc(_len_conn0*sizeof(struct smc_connection));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_closed = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = smc_cdc_rxed_any_close(conn);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_conn0 = 1;
+          struct smc_connection * conn = (struct smc_connection *) malloc(_len_conn0*sizeof(struct smc_connection));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_closed = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].local_rx_ctrl.conn_state_flags.peer_conn_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = smc_cdc_rxed_any_close(conn);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
     default:
         usage();
         break;

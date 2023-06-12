@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void ucma_copy_conn_param(struct rdma_cm_id *id,
 	dst->qkey = (id->route.addr.src_addr.ss_family == AF_IB) ? src->qkey : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,42 +94,51 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_id0 = 1;
+          int _len_id0 = 65025;
           struct rdma_cm_id * id = (struct rdma_cm_id *) malloc(_len_id0*sizeof(struct rdma_cm_id));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].route.addr.src_addr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].route.addr.src_addr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
-          int _len_dst0 = 1;
+        
+          int _len_dst0 = 65025;
           struct rdma_conn_param * dst = (struct rdma_conn_param *) malloc(_len_dst0*sizeof(struct rdma_conn_param));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct rdma_ucm_conn_param * src = (struct rdma_ucm_conn_param *) malloc(_len_src0*sizeof(struct rdma_ucm_conn_param));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ucma_copy_conn_param(id,dst,src);
           free(id);
           free(dst);
@@ -141,7 +146,110 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_id0 = 100;
+          struct rdma_cm_id * id = (struct rdma_cm_id *) malloc(_len_id0*sizeof(struct rdma_cm_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].route.addr.src_addr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int _len_dst0 = 100;
+          struct rdma_conn_param * dst = (struct rdma_conn_param *) malloc(_len_dst0*sizeof(struct rdma_conn_param));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct rdma_ucm_conn_param * src = (struct rdma_ucm_conn_param *) malloc(_len_src0*sizeof(struct rdma_ucm_conn_param));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ucma_copy_conn_param(id,dst,src);
+          free(id);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_id0 = 1;
+          struct rdma_cm_id * id = (struct rdma_cm_id *) malloc(_len_id0*sizeof(struct rdma_cm_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].route.addr.src_addr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int _len_dst0 = 1;
+          struct rdma_conn_param * dst = (struct rdma_conn_param *) malloc(_len_dst0*sizeof(struct rdma_conn_param));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 1;
+          struct rdma_ucm_conn_param * src = (struct rdma_ucm_conn_param *) malloc(_len_src0*sizeof(struct rdma_ucm_conn_param));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].qkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].qp_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].rnr_retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].retry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].flow_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].initiator_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].responder_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ucma_copy_conn_param(id,dst,src);
+          free(id);
+          free(dst);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

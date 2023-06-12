@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ vm_page_set_offset(vm_page_t page, vm_object_offset_t offset)
 	page->vmp_offset = offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,29 +79,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int offset = 100;
+        
           int _len_page0 = 1;
           struct TYPE_3__ * page = (struct TYPE_3__ *) malloc(_len_page0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_page0; _i0++) {
-            page[_i0].vmp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              page[_i0].vmp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vm_page_set_offset(page,offset);
           free(page);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int _len_page0 = 65025;
+          struct TYPE_3__ * page = (struct TYPE_3__ *) malloc(_len_page0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_page0; _i0++) {
+              page[_i0].vmp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vm_page_set_offset(page,offset);
+          free(page);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int offset = 10;
+        
           int _len_page0 = 100;
           struct TYPE_3__ * page = (struct TYPE_3__ *) malloc(_len_page0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_page0; _i0++) {
-            page[_i0].vmp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              page[_i0].vmp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          vm_page_set_offset(page,offset);
+          free(page);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_page0 = 1;
+          struct TYPE_3__ * page = (struct TYPE_3__ *) malloc(_len_page0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_page0; _i0++) {
+              page[_i0].vmp_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           vm_page_set_offset(page,offset);
           free(page);
         

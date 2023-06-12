@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -61,7 +62,6 @@ __attribute__((used)) static void merge_query_nodes_lists (struct query_nodes_li
   }
   p->next = q;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -113,7 +113,6 @@ void _delete_q(struct query_nodes_list *aux_q[], int aux_q_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,13 +125,77 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 70005
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 40007
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 40007
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 40007
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 40007
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 40005
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 40005
+          // ------------------------------- 
+
+          struct query_nodes_list * aux_p[10000];
+          struct query_nodes_list * p = _allocate_p(10000, aux_p);
+        
+          struct query_nodes_list * aux_q[10000];
+          struct query_nodes_list * q = _allocate_q(10000, aux_q);
+        
+          merge_query_nodes_lists(p,q);
+          _delete_p(aux_p, 10000);
+          _delete_q(aux_q, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           struct query_nodes_list * aux_p[1];
           struct query_nodes_list * p = _allocate_p(1, aux_p);
+        
           struct query_nodes_list * aux_q[1];
           struct query_nodes_list * q = _allocate_q(1, aux_q);
+        
           merge_query_nodes_lists(p,q);
           _delete_p(aux_p, 1);
           _delete_q(aux_q, 1);

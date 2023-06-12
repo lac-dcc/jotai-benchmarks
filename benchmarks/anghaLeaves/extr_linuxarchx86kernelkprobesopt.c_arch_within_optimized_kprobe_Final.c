@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ int arch_within_optimized_kprobe(struct optimized_kprobe *op,
 		(unsigned long)op->kp.addr + op->optinsn.size > addr);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +85,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long addr = 100;
+        
           int _len_op0 = 1;
           struct optimized_kprobe * op = (struct optimized_kprobe *) malloc(_len_op0*sizeof(struct optimized_kprobe));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
-            op[_i0].optinsn.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].kp.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              op[_i0].optinsn.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          op[_i0].kp.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = arch_within_optimized_kprobe(op,addr);
           printf("%d\n", benchRet); 
           free(op);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long addr = 255;
+        
+          int _len_op0 = 65025;
+          struct optimized_kprobe * op = (struct optimized_kprobe *) malloc(_len_op0*sizeof(struct optimized_kprobe));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].optinsn.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          op[_i0].kp.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arch_within_optimized_kprobe(op,addr);
+          printf("%d\n", benchRet); 
+          free(op);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long addr = 10;
+        
+          int _len_op0 = 100;
+          struct optimized_kprobe * op = (struct optimized_kprobe *) malloc(_len_op0*sizeof(struct optimized_kprobe));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].optinsn.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          op[_i0].kp.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arch_within_optimized_kprobe(op,addr);
+          printf("%d\n", benchRet); 
+          free(op);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_op0 = 1;
+          struct optimized_kprobe * op = (struct optimized_kprobe *) malloc(_len_op0*sizeof(struct optimized_kprobe));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].optinsn.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          op[_i0].kp.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = arch_within_optimized_kprobe(op,addr);
+          printf("%d\n", benchRet); 
+          free(op);
+        
+        break;
+    }
     default:
         usage();
         break;

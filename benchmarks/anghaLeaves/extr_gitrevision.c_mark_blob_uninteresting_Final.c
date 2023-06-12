@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static void mark_blob_uninteresting(struct blob *blob)
 	blob->object.flags |= UNINTERESTING;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_blob0 = 1;
+          int _len_blob0 = 65025;
           struct blob * blob = (struct blob *) malloc(_len_blob0*sizeof(struct blob));
           for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
-            blob[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              blob[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mark_blob_uninteresting(blob);
           free(blob);
         
@@ -105,14 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_blob0 = 100;
           struct blob * blob = (struct blob *) malloc(_len_blob0*sizeof(struct blob));
           for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
-            blob[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              blob[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           mark_blob_uninteresting(blob);
           free(blob);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_blob0 = 1;
+          struct blob * blob = (struct blob *) malloc(_len_blob0*sizeof(struct blob));
+          for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
+              blob[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mark_blob_uninteresting(blob);
+          free(blob);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool bcm_qspi_bspi_ver_three(struct bcm_qspi
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_qspi0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_qspi0 = 65025;
           struct bcm_qspi * qspi = (struct bcm_qspi *) malloc(_len_qspi0*sizeof(struct bcm_qspi));
           for(int _i0 = 0; _i0 < _len_qspi0; _i0++) {
-            qspi[_i0].bspi_maj_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+              qspi[_i0].bspi_maj_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bcm_qspi_bspi_ver_three(qspi);
           printf("%d\n", benchRet); 
           free(qspi);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_qspi0 = 100;
           struct bcm_qspi * qspi = (struct bcm_qspi *) malloc(_len_qspi0*sizeof(struct bcm_qspi));
           for(int _i0 = 0; _i0 < _len_qspi0; _i0++) {
-            qspi[_i0].bspi_maj_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+              qspi[_i0].bspi_maj_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bcm_qspi_bspi_ver_three(qspi);
+          printf("%d\n", benchRet); 
+          free(qspi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_qspi0 = 1;
+          struct bcm_qspi * qspi = (struct bcm_qspi *) malloc(_len_qspi0*sizeof(struct bcm_qspi));
+          for(int _i0 = 0; _i0 < _len_qspi0; _i0++) {
+              qspi[_i0].bspi_maj_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bcm_qspi_bspi_ver_three(qspi);
           printf("%d\n", benchRet); 
           free(qspi);

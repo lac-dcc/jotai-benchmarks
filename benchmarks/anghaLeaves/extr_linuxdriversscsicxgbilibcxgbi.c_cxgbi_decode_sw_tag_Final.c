@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline void cxgbi_decode_sw_tag(u32 sw_tag, int *id
 		*idx = (sw_tag >> 16) & 0x7FFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +78,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int sw_tag = 100;
+        
           int _len_idx0 = 1;
           int * idx = (int *) malloc(_len_idx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
             idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_age0 = 1;
           int * age = (int *) malloc(_len_age0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_age0; _i0++) {
             age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          cxgbi_decode_sw_tag(sw_tag,idx,age);
+          free(idx);
+          free(age);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int sw_tag = 255;
+        
+          int _len_idx0 = 65025;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_age0 = 65025;
+          int * age = (int *) malloc(_len_age0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_age0; _i0++) {
+            age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cxgbi_decode_sw_tag(sw_tag,idx,age);
+          free(idx);
+          free(age);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int sw_tag = 10;
+        
+          int _len_idx0 = 100;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_age0 = 100;
+          int * age = (int *) malloc(_len_age0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_age0; _i0++) {
+            age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cxgbi_decode_sw_tag(sw_tag,idx,age);
+          free(idx);
+          free(age);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int sw_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_idx0 = 1;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_age0 = 1;
+          int * age = (int *) malloc(_len_age0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_age0; _i0++) {
+            age[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           cxgbi_decode_sw_tag(sw_tag,idx,age);
           free(idx);
           free(age);

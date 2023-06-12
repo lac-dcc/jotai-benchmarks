@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int Z_AvailableZoneMemory( memzone_t *zone ) {
 	return zone->size - zone->used;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zone0 = 1;
+          int _len_zone0 = 65025;
           struct TYPE_3__ * zone = (struct TYPE_3__ *) malloc(_len_zone0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_zone0; _i0++) {
-            zone[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        zone[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+              zone[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          zone[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = Z_AvailableZoneMemory(zone);
           printf("%d\n", benchRet); 
           free(zone);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_zone0 = 100;
+          struct TYPE_3__ * zone = (struct TYPE_3__ *) malloc(_len_zone0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_zone0; _i0++) {
+              zone[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          zone[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = Z_AvailableZoneMemory(zone);
+          printf("%d\n", benchRet); 
+          free(zone);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_zone0 = 1;
+          struct TYPE_3__ * zone = (struct TYPE_3__ *) malloc(_len_zone0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_zone0; _i0++) {
+              zone[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          zone[_i0].used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = Z_AvailableZoneMemory(zone);
+          printf("%d\n", benchRet); 
+          free(zone);
+        
+        break;
+    }
     default:
         usage();
         break;

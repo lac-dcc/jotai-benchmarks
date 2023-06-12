@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static inline u32 sdma_build_ahg_descriptor(
 		SDMA_AHG_VALUE_SHIFT));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,9 +102,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long data = 100;
+        
           unsigned long dwindex = 100;
+        
           unsigned long startbit = 100;
+        
           unsigned long bits = 100;
+        
           int benchRet = sdma_build_ahg_descriptor(data,dwindex,startbit,bits);
           printf("%d\n", benchRet); 
         
@@ -119,9 +118,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long data = 255;
+        
           unsigned long dwindex = 255;
+        
           unsigned long startbit = 255;
+        
           unsigned long bits = 255;
+        
           int benchRet = sdma_build_ahg_descriptor(data,dwindex,startbit,bits);
           printf("%d\n", benchRet); 
         
@@ -131,15 +134,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long data = 10;
+        
           unsigned long dwindex = 10;
+        
           unsigned long startbit = 10;
+        
           unsigned long bits = 10;
+        
           int benchRet = sdma_build_ahg_descriptor(data,dwindex,startbit,bits);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long dwindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long startbit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sdma_build_ahg_descriptor(data,dwindex,startbit,bits);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

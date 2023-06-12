@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ unsigned int lola_sample_rate_convert(unsigned int coded)
 	return freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int coded = 100;
+        
           unsigned int benchRet = lola_sample_rate_convert(coded);
           printf("%u\n", benchRet); 
         
@@ -120,6 +116,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int coded = 255;
+        
           unsigned int benchRet = lola_sample_rate_convert(coded);
           printf("%u\n", benchRet); 
         
@@ -129,12 +126,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int coded = 10;
+        
           unsigned int benchRet = lola_sample_rate_convert(coded);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int coded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = lola_sample_rate_convert(coded);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

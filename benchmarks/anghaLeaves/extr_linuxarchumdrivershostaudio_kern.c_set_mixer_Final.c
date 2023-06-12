@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static int set_mixer(char *name, int *add)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_name0 = 65025;
+          char * name = (char *) malloc(_len_name0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_name0; _i0++) {
+            name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_add0 = 65025;
+          int * add = (int *) malloc(_len_add0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_add0; _i0++) {
+            add[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = set_mixer(name,add);
+          printf("%d\n", benchRet); 
+          free(name);
+          free(add);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_name0 = 100;
+          char * name = (char *) malloc(_len_name0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_name0; _i0++) {
+            name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_add0 = 100;
+          int * add = (int *) malloc(_len_add0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_add0; _i0++) {
+            add[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = set_mixer(name,add);
+          printf("%d\n", benchRet); 
+          free(name);
+          free(add);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_name0 = 1;
           char * name = (char *) malloc(_len_name0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_name0; _i0++) {
             name[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_add0 = 1;
           int * add = (int *) malloc(_len_add0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_add0; _i0++) {
             add[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = set_mixer(name,add);
           printf("%d\n", benchRet); 
           free(name);

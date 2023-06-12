@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ void TIM_ICStructInit(TIM_ICInitTypeDef* TIM_ICInitStruct)
   TIM_ICInitStruct->TIM_ICFilter = 0x00;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,24 +85,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_TIM_ICInitStruct0 = 1;
+          int _len_TIM_ICInitStruct0 = 65025;
           struct TYPE_3__ * TIM_ICInitStruct = (struct TYPE_3__ *) malloc(_len_TIM_ICInitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_TIM_ICInitStruct0; _i0++) {
-            TIM_ICInitStruct[_i0].TIM_ICFilter = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_ICInitStruct[_i0].TIM_ICPrescaler = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_ICInitStruct[_i0].TIM_ICSelection = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_ICInitStruct[_i0].TIM_ICPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_ICInitStruct[_i0].TIM_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              TIM_ICInitStruct[_i0].TIM_ICFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICPrescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           TIM_ICStructInit(TIM_ICInitStruct);
           free(TIM_ICInitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_TIM_ICInitStruct0 = 100;
+          struct TYPE_3__ * TIM_ICInitStruct = (struct TYPE_3__ *) malloc(_len_TIM_ICInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM_ICInitStruct0; _i0++) {
+              TIM_ICInitStruct[_i0].TIM_ICFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICPrescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          TIM_ICStructInit(TIM_ICInitStruct);
+          free(TIM_ICInitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_TIM_ICInitStruct0 = 1;
+          struct TYPE_3__ * TIM_ICInitStruct = (struct TYPE_3__ *) malloc(_len_TIM_ICInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM_ICInitStruct0; _i0++) {
+              TIM_ICInitStruct[_i0].TIM_ICFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICPrescaler = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICSelection = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_ICPolarity = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_ICInitStruct[_i0].TIM_Channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          TIM_ICStructInit(TIM_ICInitStruct);
+          free(TIM_ICInitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

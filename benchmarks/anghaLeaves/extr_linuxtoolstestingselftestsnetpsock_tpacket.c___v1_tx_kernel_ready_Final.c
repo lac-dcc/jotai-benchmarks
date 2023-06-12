@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int __v1_tx_kernel_ready(struct tpacket_hdr 
 	return !(hdr->tp_status & (TP_STATUS_SEND_REQUEST | TP_STATUS_SENDING));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdr0 = 1;
+          int _len_hdr0 = 65025;
           struct tpacket_hdr * hdr = (struct tpacket_hdr *) malloc(_len_hdr0*sizeof(struct tpacket_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __v1_tx_kernel_ready(hdr);
           printf("%d\n", benchRet); 
           free(hdr);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_hdr0 = 100;
           struct tpacket_hdr * hdr = (struct tpacket_hdr *) malloc(_len_hdr0*sizeof(struct tpacket_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __v1_tx_kernel_ready(hdr);
           printf("%d\n", benchRet); 
           free(hdr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hdr0 = 1;
+          struct tpacket_hdr * hdr = (struct tpacket_hdr *) malloc(_len_hdr0*sizeof(struct tpacket_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].tp_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __v1_tx_kernel_ready(hdr);
+          printf("%d\n", benchRet); 
+          free(hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void init_features(struct cache_features *cf)
 	cf->metadata_version = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cf0 = 1;
+          int _len_cf0 = 65025;
           struct cache_features * cf = (struct cache_features *) malloc(_len_cf0*sizeof(struct cache_features));
           for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
-            cf[_i0].metadata_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        cf[_i0].io_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              cf[_i0].metadata_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          cf[_i0].io_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_features(cf);
           free(cf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cf0 = 100;
+          struct cache_features * cf = (struct cache_features *) malloc(_len_cf0*sizeof(struct cache_features));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+              cf[_i0].metadata_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          cf[_i0].io_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_features(cf);
+          free(cf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cf0 = 1;
+          struct cache_features * cf = (struct cache_features *) malloc(_len_cf0*sizeof(struct cache_features));
+          for(int _i0 = 0; _i0 < _len_cf0; _i0++) {
+              cf[_i0].metadata_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          cf[_i0].io_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cf[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_features(cf);
+          free(cf);
+        
+        break;
+    }
     default:
         usage();
         break;

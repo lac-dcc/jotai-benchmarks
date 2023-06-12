@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void sctp_transport_burst_limited(struct sctp_transport *t)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +87,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct sctp_transport * t = (struct sctp_transport *) malloc(_len_t0*sizeof(struct sctp_transport));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].flight_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].flight_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_t__i0__asoc0 = 1;
           t[_i0].asoc = (struct sctp_association *) malloc(_len_t__i0__asoc0*sizeof(struct sctp_association));
           for(int _j0 = 0; _j0 < _len_t__i0__asoc0; _j0++) {
-            t[_i0].asoc->max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].asoc->pathmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].asoc->max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].asoc->pathmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           sctp_transport_burst_limited(t);
           for(int _aux = 0; _aux < _len_t0; _aux++) {
           free(t[_aux].asoc);
@@ -115,7 +114,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_t0 = 100;
+          struct sctp_transport * t = (struct sctp_transport *) malloc(_len_t0*sizeof(struct sctp_transport));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].flight_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_t__i0__asoc0 = 1;
+          t[_i0].asoc = (struct sctp_association *) malloc(_len_t__i0__asoc0*sizeof(struct sctp_association));
+          for(int _j0 = 0; _j0 < _len_t__i0__asoc0; _j0++) {
+              t[_i0].asoc->max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].asoc->pathmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          sctp_transport_burst_limited(t);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].asoc);
+          }
+          free(t);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct sctp_transport * t = (struct sctp_transport *) malloc(_len_t0*sizeof(struct sctp_transport));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].flight_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].burst_limited = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_t__i0__asoc0 = 1;
+          t[_i0].asoc = (struct sctp_association *) malloc(_len_t__i0__asoc0*sizeof(struct sctp_association));
+          for(int _j0 = 0; _j0 < _len_t__i0__asoc0; _j0++) {
+              t[_i0].asoc->max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].asoc->pathmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          sctp_transport_burst_limited(t);
+          for(int _aux = 0; _aux < _len_t0; _aux++) {
+          free(t[_aux].asoc);
+          }
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

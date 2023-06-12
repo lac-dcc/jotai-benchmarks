@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static inline bool check_cookie(struct ath9k_htc_priv *pri
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,22 +103,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cookie = 100;
+        
           long epid = 100;
+        
           int _len_priv0 = 1;
           struct ath9k_htc_priv * priv = (struct ath9k_htc_priv *) malloc(_len_priv0*sizeof(struct ath9k_htc_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].mgmt_ep = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].data_bk_ep = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].data_be_ep = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].data_vi_ep = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].data_vo_ep = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].cab_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].mgmt_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_bk_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_be_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_vi_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_vo_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cab_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_cookie(priv,skb,cookie,epid);
           printf("%d\n", benchRet); 
           free(priv);
@@ -130,7 +132,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long cookie = 255;
+        
+          long epid = 255;
+        
+          int _len_priv0 = 65025;
+          struct ath9k_htc_priv * priv = (struct ath9k_htc_priv *) malloc(_len_priv0*sizeof(struct ath9k_htc_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].mgmt_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_bk_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_be_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_vi_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_vo_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cab_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_cookie(priv,skb,cookie,epid);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(skb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long cookie = 10;
+        
+          long epid = 10;
+        
+          int _len_priv0 = 100;
+          struct ath9k_htc_priv * priv = (struct ath9k_htc_priv *) malloc(_len_priv0*sizeof(struct ath9k_htc_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].mgmt_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_bk_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_be_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_vi_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].data_vo_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].cab_ep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_cookie(priv,skb,cookie,epid);
+          printf("%d\n", benchRet); 
+          free(priv);
+          free(skb);
+        
+        break;
+    }
     default:
         usage();
         break;

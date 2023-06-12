@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -101,12 +102,6 @@ unsigned int vnt_get_frame_time(u8 preamble_type, u8 pkt_type,
 	return 20 + frame_time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,9 +118,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int preamble_type = 100;
+        
           int pkt_type = 100;
+        
           unsigned int frame_length = 100;
+        
           unsigned long tx_rate = 100;
+        
           unsigned int benchRet = vnt_get_frame_time(preamble_type,pkt_type,frame_length,tx_rate);
           printf("%u\n", benchRet); 
         
@@ -135,9 +134,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int preamble_type = 255;
+        
           int pkt_type = 255;
+        
           unsigned int frame_length = 255;
+        
           unsigned long tx_rate = 255;
+        
           unsigned int benchRet = vnt_get_frame_time(preamble_type,pkt_type,frame_length,tx_rate);
           printf("%u\n", benchRet); 
         
@@ -147,15 +150,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int preamble_type = 10;
+        
           int pkt_type = 10;
+        
           unsigned int frame_length = 10;
+        
           unsigned long tx_rate = 10;
+        
           unsigned int benchRet = vnt_get_frame_time(preamble_type,pkt_type,frame_length,tx_rate);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int preamble_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int frame_length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long tx_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = vnt_get_frame_time(preamble_type,pkt_type,frame_length,tx_rate);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

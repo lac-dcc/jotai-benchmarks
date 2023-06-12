@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -117,12 +119,6 @@ __attribute__((used)) static inline void convert_filter(enum gs_sample_filter fi
 	*mag_filter = GL_NEAREST;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,27 +131,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum gs_sample_filter filter = 0;
-          int _len_min_filter0 = 1;
+        
+          int _len_min_filter0 = 65025;
           int * min_filter = (int *) malloc(_len_min_filter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_min_filter0; _i0++) {
             min_filter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_mag_filter0 = 1;
+        
+          int _len_mag_filter0 = 65025;
           int * mag_filter = (int *) malloc(_len_mag_filter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mag_filter0; _i0++) {
             mag_filter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           convert_filter(filter,min_filter,mag_filter);
           free(min_filter);
           free(mag_filter);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum gs_sample_filter filter = 0;
+        
+          int _len_min_filter0 = 100;
+          int * min_filter = (int *) malloc(_len_min_filter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_min_filter0; _i0++) {
+            min_filter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mag_filter0 = 100;
+          int * mag_filter = (int *) malloc(_len_mag_filter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mag_filter0; _i0++) {
+            mag_filter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          convert_filter(filter,min_filter,mag_filter);
+          free(min_filter);
+          free(mag_filter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum gs_sample_filter filter = 0;
+        
+          int _len_min_filter0 = 1;
+          int * min_filter = (int *) malloc(_len_min_filter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_min_filter0; _i0++) {
+            min_filter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mag_filter0 = 1;
+          int * mag_filter = (int *) malloc(_len_mag_filter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mag_filter0; _i0++) {
+            mag_filter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          convert_filter(filter,min_filter,mag_filter);
+          free(min_filter);
+          free(mag_filter);
+        
+        break;
+    }
     default:
         usage();
         break;

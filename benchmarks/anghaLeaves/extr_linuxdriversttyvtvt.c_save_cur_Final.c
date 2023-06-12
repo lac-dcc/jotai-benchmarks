@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void save_cur(struct vc_data *vc)
 	vc->vc_saved_G1		= vc->vc_G1_charset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,35 +84,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_vc0 = 65025;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_G1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_G1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_G0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_G0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_underline = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_underline = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          save_cur(vc);
+          free(vc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_vc0 = 100;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_G1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_G1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_G0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_G0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_underline = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_underline = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          save_cur(vc);
+          free(vc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_vc0 = 1;
           struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
-            vc[_i0].vc_G1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_saved_G1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_G0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_saved_G0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_color = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_color = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_charset = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_blink = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_blink = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_underline = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_underline = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_italic = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_italic = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_s_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_saved_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_saved_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              vc[_i0].vc_G1_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_G1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_G0_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_G0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_charset = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_reverse = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_blink = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_underline = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_underline = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_italic = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_s_intensity = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_saved_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           save_cur(vc);
           free(vc);
         

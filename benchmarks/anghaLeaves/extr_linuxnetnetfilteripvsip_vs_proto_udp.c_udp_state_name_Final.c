@@ -65,12 +65,6 @@ __attribute__((used)) static const char * udp_state_name(int state)
 	return udp_state_name_table[state] ? udp_state_name_table[state] : "?";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int state = 100;
+        
           const char * benchRet = udp_state_name(state);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int state = 255;
+        
           const char * benchRet = udp_state_name(state);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -105,12 +101,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int state = 10;
+        
           const char * benchRet = udp_state_name(state);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

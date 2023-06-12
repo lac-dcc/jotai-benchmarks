@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int security_mls_enabled(struct selinux_state *state)
 	return p->mls_enabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct selinux_state * state = (struct selinux_state *) malloc(_len_state0*sizeof(struct selinux_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__ss0 = 1;
+          state[_i0].ss = (struct TYPE_2__ *) malloc(_len_state__i0__ss0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_state__i0__ss0; _j0++) {
+              state[_i0].ss->policydb.mls_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = security_mls_enabled(state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].ss);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct selinux_state * state = (struct selinux_state *) malloc(_len_state0*sizeof(struct selinux_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__ss0 = 1;
+          state[_i0].ss = (struct TYPE_2__ *) malloc(_len_state__i0__ss0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_state__i0__ss0; _j0++) {
+              state[_i0].ss->policydb.mls_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = security_mls_enabled(state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].ss);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct selinux_state * state = (struct selinux_state *) malloc(_len_state0*sizeof(struct selinux_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
               int _len_state__i0__ss0 = 1;
           state[_i0].ss = (struct TYPE_2__ *) malloc(_len_state__i0__ss0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_state__i0__ss0; _j0++) {
-            state[_i0].ss->policydb.mls_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].ss->policydb.mls_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = security_mls_enabled(state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_state0; _aux++) {

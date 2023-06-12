@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline bool ef4_phy_mode_disabled(enum ef4_phy_mode
 	return !!(mode & ~PHY_MODE_TX_DISABLED);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum ef4_phy_mode mode = 0;
+        
           int benchRet = ef4_phy_mode_disabled(mode);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ int RAND_DRBG_set_reseed_defaults(
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,9 +104,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int _master_reseed_interval = 100;
+        
           unsigned int _slave_reseed_interval = 100;
+        
           long _master_reseed_time_interval = 100;
+        
           long _slave_reseed_time_interval = 100;
+        
           int benchRet = RAND_DRBG_set_reseed_defaults(_master_reseed_interval,_slave_reseed_interval,_master_reseed_time_interval,_slave_reseed_time_interval);
           printf("%d\n", benchRet); 
         
@@ -121,9 +120,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int _master_reseed_interval = 255;
+        
           unsigned int _slave_reseed_interval = 255;
+        
           long _master_reseed_time_interval = 255;
+        
           long _slave_reseed_time_interval = 255;
+        
           int benchRet = RAND_DRBG_set_reseed_defaults(_master_reseed_interval,_slave_reseed_interval,_master_reseed_time_interval,_slave_reseed_time_interval);
           printf("%d\n", benchRet); 
         
@@ -133,15 +136,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int _master_reseed_interval = 10;
+        
           unsigned int _slave_reseed_interval = 10;
+        
           long _master_reseed_time_interval = 10;
+        
           long _slave_reseed_time_interval = 10;
+        
           int benchRet = RAND_DRBG_set_reseed_defaults(_master_reseed_interval,_slave_reseed_interval,_master_reseed_time_interval,_slave_reseed_time_interval);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int _master_reseed_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int _slave_reseed_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long _master_reseed_time_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long _slave_reseed_time_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = RAND_DRBG_set_reseed_defaults(_master_reseed_interval,_slave_reseed_interval,_master_reseed_time_interval,_slave_reseed_time_interval);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

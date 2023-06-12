@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ void rtw_hal_antdiv_rssi_compared(struct adapter *Adapter, struct wlan_bssid_ex 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,30 +85,39 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Adapter0 = 1;
+          int _len_Adapter0 = 65025;
           struct adapter * Adapter = (struct adapter *) malloc(_len_Adapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_Adapter0; _i0++) {
               int _len_Adapter__i0__HalData0 = 1;
           Adapter[_i0].HalData = (struct TYPE_3__ *) malloc(_len_Adapter__i0__HalData0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_Adapter__i0__HalData0; _j0++) {
-            Adapter[_i0].HalData->AntDivCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+              Adapter[_i0].HalData->AntDivCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_dst0 = 1;
+        
+          int _len_dst0 = 65025;
           struct wlan_bssid_ex * dst = (struct wlan_bssid_ex *) malloc(_len_dst0*sizeof(struct wlan_bssid_ex));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct wlan_bssid_ex * src = (struct wlan_bssid_ex *) malloc(_len_src0*sizeof(struct wlan_bssid_ex));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           rtw_hal_antdiv_rssi_compared(Adapter,dst,src);
           for(int _aux = 0; _aux < _len_Adapter0; _aux++) {
           free(Adapter[_aux].HalData);
@@ -123,7 +128,92 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_Adapter0 = 100;
+          struct adapter * Adapter = (struct adapter *) malloc(_len_Adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_Adapter0; _i0++) {
+              int _len_Adapter__i0__HalData0 = 1;
+          Adapter[_i0].HalData = (struct TYPE_3__ *) malloc(_len_Adapter__i0__HalData0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_Adapter__i0__HalData0; _j0++) {
+              Adapter[_i0].HalData->AntDivCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dst0 = 100;
+          struct wlan_bssid_ex * dst = (struct wlan_bssid_ex *) malloc(_len_dst0*sizeof(struct wlan_bssid_ex));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_src0 = 100;
+          struct wlan_bssid_ex * src = (struct wlan_bssid_ex *) malloc(_len_src0*sizeof(struct wlan_bssid_ex));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rtw_hal_antdiv_rssi_compared(Adapter,dst,src);
+          for(int _aux = 0; _aux < _len_Adapter0; _aux++) {
+          free(Adapter[_aux].HalData);
+          }
+          free(Adapter);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_Adapter0 = 1;
+          struct adapter * Adapter = (struct adapter *) malloc(_len_Adapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_Adapter0; _i0++) {
+              int _len_Adapter__i0__HalData0 = 1;
+          Adapter[_i0].HalData = (struct TYPE_3__ *) malloc(_len_Adapter__i0__HalData0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_Adapter__i0__HalData0; _j0++) {
+              Adapter[_i0].HalData->AntDivCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dst0 = 1;
+          struct wlan_bssid_ex * dst = (struct wlan_bssid_ex *) malloc(_len_dst0*sizeof(struct wlan_bssid_ex));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_src0 = 1;
+          struct wlan_bssid_ex * src = (struct wlan_bssid_ex *) malloc(_len_src0*sizeof(struct wlan_bssid_ex));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].Rssi = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].PhyInfo.Optimum_antenna = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rtw_hal_antdiv_rssi_compared(Adapter,dst,src);
+          for(int _aux = 0; _aux < _len_Adapter0; _aux++) {
+          free(Adapter[_aux].HalData);
+          }
+          free(Adapter);
+          free(dst);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

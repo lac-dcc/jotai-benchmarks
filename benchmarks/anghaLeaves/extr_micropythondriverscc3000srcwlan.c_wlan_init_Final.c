@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +95,6 @@ void wlan_init(		tWlanCB	 	sWlanCB,
 	tSLInformation.InformHostOnTxComplete = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,13 +111,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sWlanCB = 100;
+        
           int sFWPatches = 100;
+        
           int sDriverPatches = 100;
+        
           int sBootLoaderPatches = 100;
+        
           int sReadWlanInterruptPin = 100;
+        
           int sWlanInterruptEnable = 100;
+        
           int sWlanInterruptDisable = 100;
+        
           int sWriteWlanPin = 100;
+        
           wlan_init(sWlanCB,sFWPatches,sDriverPatches,sBootLoaderPatches,sReadWlanInterruptPin,sWlanInterruptEnable,sWlanInterruptDisable,sWriteWlanPin);
         
         break;
@@ -131,13 +134,21 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sWlanCB = 255;
+        
           int sFWPatches = 255;
+        
           int sDriverPatches = 255;
+        
           int sBootLoaderPatches = 255;
+        
           int sReadWlanInterruptPin = 255;
+        
           int sWlanInterruptEnable = 255;
+        
           int sWlanInterruptDisable = 255;
+        
           int sWriteWlanPin = 255;
+        
           wlan_init(sWlanCB,sFWPatches,sDriverPatches,sBootLoaderPatches,sReadWlanInterruptPin,sWlanInterruptEnable,sWlanInterruptDisable,sWriteWlanPin);
         
         break;
@@ -146,18 +157,48 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sWlanCB = 10;
+        
           int sFWPatches = 10;
+        
           int sDriverPatches = 10;
+        
           int sBootLoaderPatches = 10;
+        
           int sReadWlanInterruptPin = 10;
+        
           int sWlanInterruptEnable = 10;
+        
           int sWlanInterruptDisable = 10;
+        
           int sWriteWlanPin = 10;
+        
           wlan_init(sWlanCB,sFWPatches,sDriverPatches,sBootLoaderPatches,sReadWlanInterruptPin,sWlanInterruptEnable,sWlanInterruptDisable,sWriteWlanPin);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sWlanCB = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sFWPatches = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sDriverPatches = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sBootLoaderPatches = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sReadWlanInterruptPin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sWlanInterruptEnable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sWlanInterruptDisable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sWriteWlanPin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wlan_init(sWlanCB,sFWPatches,sDriverPatches,sBootLoaderPatches,sReadWlanInterruptPin,sWlanInterruptEnable,sWlanInterruptDisable,sWriteWlanPin);
+        
+        break;
+    }
     default:
         usage();
         break;

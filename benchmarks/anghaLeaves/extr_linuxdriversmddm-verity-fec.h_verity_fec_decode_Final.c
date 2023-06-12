@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline int verity_fec_decode(struct dm_verity *v,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,31 +85,264 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           enum verity_block_type type = 0;
+        
           int block = 100;
+        
           int _len_v0 = 1;
           struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_io0 = 1;
           struct dm_verity_io * io = (struct dm_verity_io *) malloc(_len_io0*sizeof(struct dm_verity_io));
           for(int _i0 = 0; _i0 < _len_io0; _i0++) {
-            io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dest0 = 1;
           int * dest = (int *) malloc(_len_dest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_iter0 = 1;
           struct bvec_iter * iter = (struct bvec_iter *) malloc(_len_iter0*sizeof(struct bvec_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = verity_fec_decode(v,io,type,block,dest,iter);
+          printf("%d\n", benchRet); 
+          free(v);
+          free(io);
+          free(dest);
+          free(iter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum verity_block_type type = 0;
+        
+          int block = 255;
+        
+          int _len_v0 = 65025;
+          struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_io0 = 65025;
+          struct dm_verity_io * io = (struct dm_verity_io *) malloc(_len_io0*sizeof(struct dm_verity_io));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dest0 = 65025;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_iter0 = 65025;
+          struct bvec_iter * iter = (struct bvec_iter *) malloc(_len_iter0*sizeof(struct bvec_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verity_fec_decode(v,io,type,block,dest,iter);
+          printf("%d\n", benchRet); 
+          free(v);
+          free(io);
+          free(dest);
+          free(iter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum verity_block_type type = 0;
+        
+          int block = 10;
+        
+          int _len_v0 = 100;
+          struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_io0 = 100;
+          struct dm_verity_io * io = (struct dm_verity_io *) malloc(_len_io0*sizeof(struct dm_verity_io));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dest0 = 100;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_iter0 = 100;
+          struct bvec_iter * iter = (struct bvec_iter *) malloc(_len_iter0*sizeof(struct bvec_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = verity_fec_decode(v,io,type,block,dest,iter);
+          printf("%d\n", benchRet); 
+          free(v);
+          free(io);
+          free(dest);
+          free(iter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          enum verity_block_type type = 0;
+        
+          int block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_v0 = 1;
+          struct dm_verity * v = (struct dm_verity *) malloc(_len_v0*sizeof(struct dm_verity));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_io0 = 1;
+          struct dm_verity_io * io = (struct dm_verity_io *) malloc(_len_io0*sizeof(struct dm_verity_io));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dest0 = 1;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_iter0 = 1;
+          struct bvec_iter * iter = (struct bvec_iter *) malloc(_len_iter0*sizeof(struct bvec_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = verity_fec_decode(v,io,type,block,dest,iter);
           printf("%d\n", benchRet); 
           free(v);

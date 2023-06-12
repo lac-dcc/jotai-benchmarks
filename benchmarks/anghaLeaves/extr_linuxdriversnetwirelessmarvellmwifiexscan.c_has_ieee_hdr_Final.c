@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ has_ieee_hdr(struct ieee_types_generic *ie, u8 key)
 	return (ie && ie->ieee_hdr.element_id == key);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long key = 100;
+        
           int _len_ie0 = 1;
           struct ieee_types_generic * ie = (struct ieee_types_generic *) malloc(_len_ie0*sizeof(struct ieee_types_generic));
           for(int _i0 = 0; _i0 < _len_ie0; _i0++) {
-            ie[_i0].ieee_hdr.element_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              ie[_i0].ieee_hdr.element_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = has_ieee_hdr(ie,key);
+          printf("%d\n", benchRet); 
+          free(ie);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long key = 255;
+        
+          int _len_ie0 = 65025;
+          struct ieee_types_generic * ie = (struct ieee_types_generic *) malloc(_len_ie0*sizeof(struct ieee_types_generic));
+          for(int _i0 = 0; _i0 < _len_ie0; _i0++) {
+              ie[_i0].ieee_hdr.element_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = has_ieee_hdr(ie,key);
           printf("%d\n", benchRet); 
           free(ie);
@@ -99,21 +118,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long key = 10;
+        
           int _len_ie0 = 100;
           struct ieee_types_generic * ie = (struct ieee_types_generic *) malloc(_len_ie0*sizeof(struct ieee_types_generic));
           for(int _i0 = 0; _i0 < _len_ie0; _i0++) {
-            ie[_i0].ieee_hdr.element_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              ie[_i0].ieee_hdr.element_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = has_ieee_hdr(ie,key);
           printf("%d\n", benchRet); 
           free(ie);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ie0 = 1;
+          struct ieee_types_generic * ie = (struct ieee_types_generic *) malloc(_len_ie0*sizeof(struct ieee_types_generic));
+          for(int _i0 = 0; _i0 < _len_ie0; _i0++) {
+              ie[_i0].ieee_hdr.element_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = has_ieee_hdr(ie,key);
+          printf("%d\n", benchRet); 
+          free(ie);
+        
+        break;
+    }
     default:
         usage();
         break;

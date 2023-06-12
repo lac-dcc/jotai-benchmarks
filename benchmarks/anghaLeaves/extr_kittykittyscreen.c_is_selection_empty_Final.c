@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ is_selection_empty(Screen *self, unsigned int start_x, unsigned int start_y, uns
     return (start_x >= self->columns || start_y >= self->lines || end_x >= self->columns || end_y >= self->lines || (start_x == end_x && start_y == end_y)) ? true : false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +81,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int start_x = 100;
+        
           unsigned int start_y = 100;
+        
           unsigned int end_x = 100;
+        
           unsigned int end_y = 100;
+        
           int _len_self0 = 1;
           struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
-        self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_selection_empty(self,start_x,start_y,end_x,end_y);
           printf("%d\n", benchRet); 
           free(self);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int start_x = 255;
+        
+          unsigned int start_y = 255;
+        
+          unsigned int end_x = 255;
+        
+          unsigned int end_y = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_selection_empty(self,start_x,start_y,end_x,end_y);
+          printf("%d\n", benchRet); 
+          free(self);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int start_x = 10;
+        
+          unsigned int start_y = 10;
+        
+          unsigned int end_x = 10;
+        
+          unsigned int end_y = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_selection_empty(self,start_x,start_y,end_x,end_y);
+          printf("%d\n", benchRet); 
+          free(self);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_selection_empty(self,start_x,start_y,end_x,end_y);
+          printf("%d\n", benchRet); 
+          free(self);
+        
+        break;
+    }
     default:
         usage();
         break;

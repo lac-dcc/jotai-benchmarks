@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -171,12 +173,6 @@ __attribute__((used)) static uint16_t compute_tps(struct dtv_frontend_properties
 	return tps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -189,19 +185,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 40
+          // dynamic_instructions_O1 : 40
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
+          int _len_op0 = 65025;
+          struct dtv_frontend_properties * op = (struct dtv_frontend_properties *) malloc(_len_op0*sizeof(struct dtv_frontend_properties));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].code_rate_HP = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].code_rate_LP = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].transmission_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].guard_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].hierarchy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = compute_tps(op);
+          printf("%d\n", benchRet); 
+          free(op);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 40
+          // dynamic_instructions_O1 : 40
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
+          int _len_op0 = 100;
+          struct dtv_frontend_properties * op = (struct dtv_frontend_properties *) malloc(_len_op0*sizeof(struct dtv_frontend_properties));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].code_rate_HP = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].code_rate_LP = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].transmission_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].guard_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].hierarchy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = compute_tps(op);
+          printf("%d\n", benchRet); 
+          free(op);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 40
+          // dynamic_instructions_O1 : 40
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 40
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
           int _len_op0 = 1;
           struct dtv_frontend_properties * op = (struct dtv_frontend_properties *) malloc(_len_op0*sizeof(struct dtv_frontend_properties));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
-            op[_i0].code_rate_HP = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].code_rate_LP = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].transmission_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].guard_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].hierarchy = ((-2 * (next_i()%2)) + 1) * next_i();
+              op[_i0].code_rate_HP = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].code_rate_LP = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].transmission_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].guard_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].hierarchy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = compute_tps(op);
           printf("%d\n", benchRet); 
           free(op);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool rcu_segcblist_empty(struct rcu_segcblis
 	return !rsclp->head;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rsclp0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rsclp0 = 65025;
           struct rcu_segcblist * rsclp = (struct rcu_segcblist *) malloc(_len_rsclp0*sizeof(struct rcu_segcblist));
           for(int _i0 = 0; _i0 < _len_rsclp0; _i0++) {
-            rsclp[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsclp[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rcu_segcblist_empty(rsclp);
           printf("%d\n", benchRet); 
           free(rsclp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_rsclp0 = 100;
           struct rcu_segcblist * rsclp = (struct rcu_segcblist *) malloc(_len_rsclp0*sizeof(struct rcu_segcblist));
           for(int _i0 = 0; _i0 < _len_rsclp0; _i0++) {
-            rsclp[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsclp[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rcu_segcblist_empty(rsclp);
+          printf("%d\n", benchRet); 
+          free(rsclp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_rsclp0 = 1;
+          struct rcu_segcblist * rsclp = (struct rcu_segcblist *) malloc(_len_rsclp0*sizeof(struct rcu_segcblist));
+          for(int _i0 = 0; _i0 < _len_rsclp0; _i0++) {
+              rsclp[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rcu_segcblist_empty(rsclp);
           printf("%d\n", benchRet); 
           free(rsclp);

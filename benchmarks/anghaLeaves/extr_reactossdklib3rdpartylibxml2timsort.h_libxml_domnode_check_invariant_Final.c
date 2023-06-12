@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static int CHECK_INVARIANT(TIM_SORT_RUN_T *stack, const in
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,15 +100,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          const int stack_curr = 255;
+        
+          int _len_stack0 = 65025;
+          struct TYPE_3__ * stack = (struct TYPE_3__ *) malloc(_len_stack0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stack0; _i0++) {
+              stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = CHECK_INVARIANT(stack,stack_curr);
+          printf("%d\n", benchRet); 
+          free(stack);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           const int stack_curr = 10;
+        
           int _len_stack0 = 100;
           struct TYPE_3__ * stack = (struct TYPE_3__ *) malloc(_len_stack0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stack0; _i0++) {
-            stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = CHECK_INVARIANT(stack,stack_curr);
+          printf("%d\n", benchRet); 
+          free(stack);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          const int stack_curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stack0 = 1;
+          struct TYPE_3__ * stack = (struct TYPE_3__ *) malloc(_len_stack0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stack0; _i0++) {
+              stack[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = CHECK_INVARIANT(stack,stack_curr);
           printf("%d\n", benchRet); 
           free(stack);

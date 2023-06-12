@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static inline uint8_t set_Vcc_value(u_char Vcc)
 	return VCC_3V;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Vcc = 100;
+        
           int benchRet = set_Vcc_value(Vcc);
           printf("%d\n", benchRet); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int Vcc = 255;
+        
           int benchRet = set_Vcc_value(Vcc);
           printf("%d\n", benchRet); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int Vcc = 10;
+        
           int benchRet = set_Vcc_value(Vcc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int Vcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = set_Vcc_value(Vcc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

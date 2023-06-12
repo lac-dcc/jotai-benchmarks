@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void ide_cdrom_release_real(struct cdrom_device_info *cdi)
 		drive->atapi_flags &= ~IDE_AFLAG_TOC_VALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cdi0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cdi0 = 65025;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
-            cdi[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cdi__i0__handle0 = 1;
           cdi[_i0].handle = (struct TYPE_2__ *) malloc(_len_cdi__i0__handle0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
-            cdi[_i0].handle->atapi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].handle->atapi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          ide_cdrom_release_real(cdi);
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cdi0 = 100;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              cdi[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct TYPE_2__ *) malloc(_len_cdi__i0__handle0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->atapi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ide_cdrom_release_real(cdi);
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cdi0 = 1;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              cdi[_i0].use_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct TYPE_2__ *) malloc(_len_cdi__i0__handle0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->atapi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           ide_cdrom_release_real(cdi);
           for(int _aux = 0; _aux < _len_cdi0; _aux++) {
           free(cdi[_aux].handle);

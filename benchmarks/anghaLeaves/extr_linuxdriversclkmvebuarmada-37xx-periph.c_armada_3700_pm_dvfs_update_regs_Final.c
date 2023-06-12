@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void armada_3700_pm_dvfs_update_regs(unsigned int l
 		*offset += ARMADA_37XX_NB_CONFIG_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,23 +93,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int load_level = 100;
+        
           int _len_reg0 = 1;
           unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
             reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offset0 = 1;
           unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           armada_3700_pm_dvfs_update_regs(load_level,reg,offset);
           free(reg);
           free(offset);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int load_level = 255;
+        
+          int _len_reg0 = 65025;
+          unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 65025;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          armada_3700_pm_dvfs_update_regs(load_level,reg,offset);
+          free(reg);
+          free(offset);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int load_level = 10;
+        
+          int _len_reg0 = 100;
+          unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 100;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          armada_3700_pm_dvfs_update_regs(load_level,reg,offset);
+          free(reg);
+          free(offset);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int load_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_reg0 = 1;
+          unsigned int * reg = (unsigned int *) malloc(_len_reg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+            reg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 1;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          armada_3700_pm_dvfs_update_regs(load_level,reg,offset);
+          free(reg);
+          free(offset);
+        
+        break;
+    }
     default:
         usage();
         break;

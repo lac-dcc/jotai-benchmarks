@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static unsigned int floppy_check_events(struct gendisk *di
 	return fs->ejected ? DISK_EVENT_MEDIA_CHANGE : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int clearing = 100;
+        
           int _len_disk0 = 1;
           struct gendisk * disk = (struct gendisk *) malloc(_len_disk0*sizeof(struct gendisk));
           for(int _i0 = 0; _i0 < _len_disk0; _i0++) {
               int _len_disk__i0__private_data0 = 1;
           disk[_i0].private_data = (struct floppy_state *) malloc(_len_disk__i0__private_data0*sizeof(struct floppy_state));
           for(int _j0 = 0; _j0 < _len_disk__i0__private_data0; _j0++) {
-            disk[_i0].private_data->ejected = ((-2 * (next_i()%2)) + 1) * next_i();
+              disk[_i0].private_data->ejected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = floppy_check_events(disk,clearing);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_disk0; _aux++) {
+          free(disk[_aux].private_data);
+          }
+          free(disk);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int clearing = 255;
+        
+          int _len_disk0 = 65025;
+          struct gendisk * disk = (struct gendisk *) malloc(_len_disk0*sizeof(struct gendisk));
+          for(int _i0 = 0; _i0 < _len_disk0; _i0++) {
+              int _len_disk__i0__private_data0 = 1;
+          disk[_i0].private_data = (struct floppy_state *) malloc(_len_disk__i0__private_data0*sizeof(struct floppy_state));
+          for(int _j0 = 0; _j0 < _len_disk__i0__private_data0; _j0++) {
+              disk[_i0].private_data->ejected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = floppy_check_events(disk,clearing);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_disk0; _aux++) {
+          free(disk[_aux].private_data);
+          }
+          free(disk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int clearing = 10;
+        
+          int _len_disk0 = 100;
+          struct gendisk * disk = (struct gendisk *) malloc(_len_disk0*sizeof(struct gendisk));
+          for(int _i0 = 0; _i0 < _len_disk0; _i0++) {
+              int _len_disk__i0__private_data0 = 1;
+          disk[_i0].private_data = (struct floppy_state *) malloc(_len_disk__i0__private_data0*sizeof(struct floppy_state));
+          for(int _j0 = 0; _j0 < _len_disk__i0__private_data0; _j0++) {
+              disk[_i0].private_data->ejected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = floppy_check_events(disk,clearing);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_disk0; _aux++) {
+          free(disk[_aux].private_data);
+          }
+          free(disk);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int clearing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_disk0 = 1;
+          struct gendisk * disk = (struct gendisk *) malloc(_len_disk0*sizeof(struct gendisk));
+          for(int _i0 = 0; _i0 < _len_disk0; _i0++) {
+              int _len_disk__i0__private_data0 = 1;
+          disk[_i0].private_data = (struct floppy_state *) malloc(_len_disk__i0__private_data0*sizeof(struct floppy_state));
+          for(int _j0 = 0; _j0 < _len_disk__i0__private_data0; _j0++) {
+              disk[_i0].private_data->ejected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = floppy_check_events(disk,clearing);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_disk0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,8 +78,50 @@ void AAS_LinkCache(aas_routingcache_t *cache)
 	aasworld.newestcache = cache;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_4__ *_allocate_Dlinked_cache(int length, struct TYPE_4__ *aux_dlinked_cache[] ) {
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_dlinked_cache[0] = walker;
+  walker->time_next = NULL;
+  walker->time_prev = NULL;
+
+  struct TYPE_4__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->time_prev = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+    walker->time_prev->time_next = walker;
+    walker = walker->time_prev;
+    aux_dlinked_cache[i] = walker;
+    if (i == (length - 1)) 
+      walker->time_prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_cache(struct TYPE_4__ *aux_dlinked_cache[], int aux_dlinked_cache_size) {
+  for(int i = 0; i < aux_dlinked_cache_size; i++) 
+    if(aux_dlinked_cache[i])
+      free(aux_dlinked_cache[i]);
+}
+
+struct TYPE_4__ *_allocateBinTree_cache(int length, struct TYPE_4__ *aux_tree_cache[], int *counter_cache) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_tree_cache[*counter_cache] = walker;
+  (*counter_cache)++;
+  walker->time_next = _allocateBinTree_cache(length - 1, aux_tree_cache, counter_cache);
+  walker->time_prev = _allocateBinTree_cache(length - 1, aux_tree_cache, counter_cache);
+  return walker;
+}
+
+void _deleteBinTree_cache(struct TYPE_4__ *aux_tree_cache[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_cache[i])
+      free(aux_tree_cache[i]);
+}
 
 struct TYPE_4__ *_allocate_cache(int length, struct TYPE_4__ *aux_cache[]) {
   struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
@@ -109,7 +153,6 @@ void _delete_cache(struct TYPE_4__ *aux_cache[], int aux_cache_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,11 +165,106 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // dlinked
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          struct TYPE_4__ * aux_dlinked_cache[10000];
+          struct TYPE_4__ * cache = _allocate_Dlinked_cache(10000, aux_dlinked_cache);
+        
+          AAS_LinkCache(cache);
+          _delete_Dlinked_cache(aux_dlinked_cache, 10000);
+        
+        break;
+    }
+
+
+    // bintree
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int counter_cache= 0;
+          struct TYPE_4__ *  aux_tree_cache[1023];
+          struct TYPE_4__ * cache = _allocateBinTree_cache(10, aux_tree_cache, &counter_cache);
+        
+          AAS_LinkCache(cache);
+          _deleteBinTree_cache(aux_tree_cache);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_cache[1];
           struct TYPE_4__ * cache = _allocate_cache(1, aux_cache);
+        
           AAS_LinkCache(cache);
           _delete_cache(aux_cache, 1);
         

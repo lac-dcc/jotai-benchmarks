@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u32 dispc_ovl_get_burst_size(struct dispc_device *d
 	return dispc->feat->burst_size_unit * 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +80,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum omap_plane_id plane = 0;
-          int _len_dispc0 = 1;
+        
+          int _len_dispc0 = 65025;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
               int _len_dispc__i0__feat0 = 1;
           dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
-            dispc[_i0].feat->burst_size_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].feat->burst_size_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = dispc_ovl_get_burst_size(dispc,plane);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dispc0; _aux++) {
@@ -111,15 +110,19 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum omap_plane_id plane = 0;
+        
           int _len_dispc0 = 100;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
               int _len_dispc__i0__feat0 = 1;
           dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
-            dispc[_i0].feat->burst_size_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].feat->burst_size_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = dispc_ovl_get_burst_size(dispc,plane);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dispc0; _aux++) {
@@ -129,7 +132,32 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum omap_plane_id plane = 0;
+        
+          int _len_dispc0 = 1;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->burst_size_unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dispc_ovl_get_burst_size(dispc,plane);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
     default:
         usage();
         break;

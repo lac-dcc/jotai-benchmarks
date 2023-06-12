@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ xlimit_for_line(Line *line) {
     return xlimit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,24 +88,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_line0 = 1;
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_line0 = 65025;
           struct TYPE_7__ * line = (struct TYPE_7__ *) malloc(_len_line0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_line0; _i0++) {
-            line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_line__i0__gpu_cells0 = 1;
           line[_i0].gpu_cells = (struct TYPE_6__ *) malloc(_len_line__i0__gpu_cells0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_line__i0__gpu_cells0; _j0++) {
-            line[_i0].gpu_cells->attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+              line[_i0].gpu_cells->attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_line__i0__cpu_cells0 = 1;
           line[_i0].cpu_cells = (struct TYPE_5__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
-            line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = xlimit_for_line(line);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].gpu_cells);
+          }
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].cpu_cells);
+          }
+          free(line);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_line0 = 100;
+          struct TYPE_7__ * line = (struct TYPE_7__ *) malloc(_len_line0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_line__i0__gpu_cells0 = 1;
+          line[_i0].gpu_cells = (struct TYPE_6__ *) malloc(_len_line__i0__gpu_cells0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_line__i0__gpu_cells0; _j0++) {
+              line[_i0].gpu_cells->attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_line__i0__cpu_cells0 = 1;
+          line[_i0].cpu_cells = (struct TYPE_5__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xlimit_for_line(line);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].gpu_cells);
+          }
+          for(int _aux = 0; _aux < _len_line0; _aux++) {
+          free(line[_aux].cpu_cells);
+          }
+          free(line);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_line0 = 1;
+          struct TYPE_7__ * line = (struct TYPE_7__ *) malloc(_len_line0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_line0; _i0++) {
+              line[_i0].xnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_line__i0__gpu_cells0 = 1;
+          line[_i0].gpu_cells = (struct TYPE_6__ *) malloc(_len_line__i0__gpu_cells0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_line__i0__gpu_cells0; _j0++) {
+              line[_i0].gpu_cells->attrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_line__i0__cpu_cells0 = 1;
+          line[_i0].cpu_cells = (struct TYPE_5__ *) malloc(_len_line__i0__cpu_cells0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_line__i0__cpu_cells0; _j0++) {
+              line[_i0].cpu_cells->ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = xlimit_for_line(line);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_line0; _aux++) {

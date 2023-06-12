@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int qeth_card_hw_is_reachable(struct qeth_card *card)
 		(card->state == CARD_STATE_UP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_card0 = 1;
+          int _len_card0 = 65025;
           struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qeth_card_hw_is_reachable(card);
           printf("%d\n", benchRet); 
           free(card);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_card0 = 100;
           struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qeth_card_hw_is_reachable(card);
           printf("%d\n", benchRet); 
           free(card);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_card0 = 1;
+          struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qeth_card_hw_is_reachable(card);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ HexValue(CHAR ch)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char ch = 100;
+        
           char benchRet = HexValue(ch);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char ch = 255;
+        
           char benchRet = HexValue(ch);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char ch = 10;
+        
           char benchRet = HexValue(ch);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char benchRet = HexValue(ch);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

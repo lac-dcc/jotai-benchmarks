@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ const char * get_freg_str(ut8 key, char * str)
 	return table[ key & 15 ];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 100;
+        
           int _len_str0 = 1;
           char * str = (char *) malloc(_len_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          const char * benchRet = get_freg_str(key,str);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(str);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int key = 255;
+        
+          int _len_str0 = 65025;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           const char * benchRet = get_freg_str(key,str);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(str);
@@ -100,21 +115,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int key = 10;
+        
           int _len_str0 = 100;
           char * str = (char *) malloc(_len_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           const char * benchRet = get_freg_str(key,str);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(str);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_str0 = 1;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          const char * benchRet = get_freg_str(key,str);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(str);
+        
+        break;
+    }
     default:
         usage();
         break;

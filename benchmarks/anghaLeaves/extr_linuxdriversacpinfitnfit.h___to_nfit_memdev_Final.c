@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline struct acpi_nfit_memory_map *__to_nfit_memde
 	return nfit_mem->memdev_pmem;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_nfit_mem0 = 65025;
+          struct nfit_mem * nfit_mem = (struct nfit_mem *) malloc(_len_nfit_mem0*sizeof(struct nfit_mem));
+          for(int _i0 = 0; _i0 < _len_nfit_mem0; _i0++) {
+              int _len_nfit_mem__i0__memdev_pmem0 = 1;
+          nfit_mem[_i0].memdev_pmem = (struct acpi_nfit_memory_map *) malloc(_len_nfit_mem__i0__memdev_pmem0*sizeof(struct acpi_nfit_memory_map));
+          for(int _j0 = 0; _j0 < _len_nfit_mem__i0__memdev_pmem0; _j0++) {
+              nfit_mem[_i0].memdev_pmem->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_nfit_mem__i0__memdev_dcr0 = 1;
+          nfit_mem[_i0].memdev_dcr = (struct acpi_nfit_memory_map *) malloc(_len_nfit_mem__i0__memdev_dcr0*sizeof(struct acpi_nfit_memory_map));
+          for(int _j0 = 0; _j0 < _len_nfit_mem__i0__memdev_dcr0; _j0++) {
+              nfit_mem[_i0].memdev_dcr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct acpi_nfit_memory_map * benchRet = __to_nfit_memdev(nfit_mem);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_nfit_mem0; _aux++) {
+          free(nfit_mem[_aux].memdev_pmem);
+          }
+          for(int _aux = 0; _aux < _len_nfit_mem0; _aux++) {
+          free(nfit_mem[_aux].memdev_dcr);
+          }
+          free(nfit_mem);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_nfit_mem0 = 100;
+          struct nfit_mem * nfit_mem = (struct nfit_mem *) malloc(_len_nfit_mem0*sizeof(struct nfit_mem));
+          for(int _i0 = 0; _i0 < _len_nfit_mem0; _i0++) {
+              int _len_nfit_mem__i0__memdev_pmem0 = 1;
+          nfit_mem[_i0].memdev_pmem = (struct acpi_nfit_memory_map *) malloc(_len_nfit_mem__i0__memdev_pmem0*sizeof(struct acpi_nfit_memory_map));
+          for(int _j0 = 0; _j0 < _len_nfit_mem__i0__memdev_pmem0; _j0++) {
+              nfit_mem[_i0].memdev_pmem->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_nfit_mem__i0__memdev_dcr0 = 1;
+          nfit_mem[_i0].memdev_dcr = (struct acpi_nfit_memory_map *) malloc(_len_nfit_mem__i0__memdev_dcr0*sizeof(struct acpi_nfit_memory_map));
+          for(int _j0 = 0; _j0 < _len_nfit_mem__i0__memdev_dcr0; _j0++) {
+              nfit_mem[_i0].memdev_dcr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct acpi_nfit_memory_map * benchRet = __to_nfit_memdev(nfit_mem);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_nfit_mem0; _aux++) {
+          free(nfit_mem[_aux].memdev_pmem);
+          }
+          for(int _aux = 0; _aux < _len_nfit_mem0; _aux++) {
+          free(nfit_mem[_aux].memdev_dcr);
+          }
+          free(nfit_mem);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_nfit_mem0 = 1;
           struct nfit_mem * nfit_mem = (struct nfit_mem *) malloc(_len_nfit_mem0*sizeof(struct nfit_mem));
           for(int _i0 = 0; _i0 < _len_nfit_mem0; _i0++) {
               int _len_nfit_mem__i0__memdev_pmem0 = 1;
           nfit_mem[_i0].memdev_pmem = (struct acpi_nfit_memory_map *) malloc(_len_nfit_mem__i0__memdev_pmem0*sizeof(struct acpi_nfit_memory_map));
           for(int _j0 = 0; _j0 < _len_nfit_mem__i0__memdev_pmem0; _j0++) {
-            nfit_mem[_i0].memdev_pmem->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nfit_mem[_i0].memdev_pmem->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_nfit_mem__i0__memdev_dcr0 = 1;
           nfit_mem[_i0].memdev_dcr = (struct acpi_nfit_memory_map *) malloc(_len_nfit_mem__i0__memdev_dcr0*sizeof(struct acpi_nfit_memory_map));
           for(int _j0 = 0; _j0 < _len_nfit_mem__i0__memdev_dcr0; _j0++) {
-            nfit_mem[_i0].memdev_dcr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nfit_mem[_i0].memdev_dcr->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct acpi_nfit_memory_map * benchRet = __to_nfit_memdev(nfit_mem);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_nfit_mem0; _aux++) {

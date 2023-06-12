@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline unsigned int vnic_rq_desc_used(struct vnic_r
 	return rq->ring.desc_count - rq->ring.desc_avail - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rq0 = 1;
+          int _len_rq0 = 65025;
           struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = vnic_rq_desc_used(rq);
           printf("%u\n", benchRet); 
           free(rq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rq0 = 100;
+          struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = vnic_rq_desc_used(rq);
+          printf("%u\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rq0 = 1;
+          struct vnic_rq * rq = (struct vnic_rq *) malloc(_len_rq0*sizeof(struct vnic_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].ring.desc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].ring.desc_avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = vnic_rq_desc_used(rq);
+          printf("%u\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
     default:
         usage();
         break;

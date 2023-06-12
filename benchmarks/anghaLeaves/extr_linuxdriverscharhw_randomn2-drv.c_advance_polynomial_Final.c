@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static u64 advance_polynomial(u64 poly, u64 val, int count
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +88,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int poly = 10;
+        
           int val = 10;
+        
           int count = 10;
+        
           int benchRet = advance_polynomial(poly,val,count);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          int poly = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = advance_polynomial(poly,val,count);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

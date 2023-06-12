@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ update_size(lzma_vli *size, lzma_vli add, lzma_vli limit)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,12 +89,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long add = 100;
+        
           long limit = 100;
+        
           int _len_size0 = 1;
           long * size = (long *) malloc(_len_size0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = update_size(size,add,limit);
+          printf("%d\n", benchRet); 
+          free(size);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long add = 255;
+        
+          long limit = 255;
+        
+          int _len_size0 = 65025;
+          long * size = (long *) malloc(_len_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = update_size(size,add,limit);
           printf("%d\n", benchRet); 
           free(size);
@@ -106,22 +124,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long add = 10;
+        
           long limit = 10;
+        
           int _len_size0 = 100;
           long * size = (long *) malloc(_len_size0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = update_size(size,add,limit);
           printf("%d\n", benchRet); 
           free(size);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long add = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_size0 = 1;
+          long * size = (long *) malloc(_len_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = update_size(size,add,limit);
+          printf("%d\n", benchRet); 
+          free(size);
+        
+        break;
+    }
     default:
         usage();
         break;

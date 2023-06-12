@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline bool wcn36xx_is_fw_version(struct wcn36xx *w
 		wcn->fw_revision == revision);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long major = 100;
+        
           long minor = 100;
+        
           long version = 100;
+        
           long revision = 100;
+        
           int _len_wcn0 = 1;
           struct wcn36xx * wcn = (struct wcn36xx *) malloc(_len_wcn0*sizeof(struct wcn36xx));
           for(int _i0 = 0; _i0 < _len_wcn0; _i0++) {
-            wcn[_i0].fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
-        wcn[_i0].fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
-        wcn[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        wcn[_i0].fw_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+              wcn[_i0].fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = wcn36xx_is_fw_version(wcn,major,minor,version,revision);
+          printf("%d\n", benchRet); 
+          free(wcn);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long major = 255;
+        
+          long minor = 255;
+        
+          long version = 255;
+        
+          long revision = 255;
+        
+          int _len_wcn0 = 65025;
+          struct wcn36xx * wcn = (struct wcn36xx *) malloc(_len_wcn0*sizeof(struct wcn36xx));
+          for(int _i0 = 0; _i0 < _len_wcn0; _i0++) {
+              wcn[_i0].fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wcn36xx_is_fw_version(wcn,major,minor,version,revision);
+          printf("%d\n", benchRet); 
+          free(wcn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long major = 10;
+        
+          long minor = 10;
+        
+          long version = 10;
+        
+          long revision = 10;
+        
+          int _len_wcn0 = 100;
+          struct wcn36xx * wcn = (struct wcn36xx *) malloc(_len_wcn0*sizeof(struct wcn36xx));
+          for(int _i0 = 0; _i0 < _len_wcn0; _i0++) {
+              wcn[_i0].fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wcn36xx_is_fw_version(wcn,major,minor,version,revision);
+          printf("%d\n", benchRet); 
+          free(wcn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wcn0 = 1;
+          struct wcn36xx * wcn = (struct wcn36xx *) malloc(_len_wcn0*sizeof(struct wcn36xx));
+          for(int _i0 = 0; _i0 < _len_wcn0; _i0++) {
+              wcn[_i0].fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          wcn[_i0].fw_revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = wcn36xx_is_fw_version(wcn,major,minor,version,revision);
           printf("%d\n", benchRet); 
           free(wcn);

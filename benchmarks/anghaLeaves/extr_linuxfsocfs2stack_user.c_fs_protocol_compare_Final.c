@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int fs_protocol_compare(struct ocfs2_protocol_versi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_existing0 = 65025;
+          struct ocfs2_protocol_version * existing = (struct ocfs2_protocol_version *) malloc(_len_existing0*sizeof(struct ocfs2_protocol_version));
+          for(int _i0 = 0; _i0 < _len_existing0; _i0++) {
+              existing[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          existing[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_request0 = 65025;
+          struct ocfs2_protocol_version * request = (struct ocfs2_protocol_version *) malloc(_len_request0*sizeof(struct ocfs2_protocol_version));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fs_protocol_compare(existing,request);
+          printf("%d\n", benchRet); 
+          free(existing);
+          free(request);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_existing0 = 100;
+          struct ocfs2_protocol_version * existing = (struct ocfs2_protocol_version *) malloc(_len_existing0*sizeof(struct ocfs2_protocol_version));
+          for(int _i0 = 0; _i0 < _len_existing0; _i0++) {
+              existing[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          existing[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_request0 = 100;
+          struct ocfs2_protocol_version * request = (struct ocfs2_protocol_version *) malloc(_len_request0*sizeof(struct ocfs2_protocol_version));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fs_protocol_compare(existing,request);
+          printf("%d\n", benchRet); 
+          free(existing);
+          free(request);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_existing0 = 1;
           struct ocfs2_protocol_version * existing = (struct ocfs2_protocol_version *) malloc(_len_existing0*sizeof(struct ocfs2_protocol_version));
           for(int _i0 = 0; _i0 < _len_existing0; _i0++) {
-            existing[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
-        existing[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+              existing[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          existing[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_request0 = 1;
           struct ocfs2_protocol_version * request = (struct ocfs2_protocol_version *) malloc(_len_request0*sizeof(struct ocfs2_protocol_version));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
-        request[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].pv_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].pv_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fs_protocol_compare(existing,request);
           printf("%d\n", benchRet); 
           free(existing);

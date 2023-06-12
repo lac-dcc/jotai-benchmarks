@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void dss_sp_scale_vector(int32_t *vec, int bits, in
             vec[i] = vec[i] * (1 << bits);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +80,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 184
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 54
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 62
+          // ------------------------------- 
+
           int bits = 10;
+        
           int size = 10;
+        
           int _len_vec0 = 100;
           int * vec = (int *) malloc(_len_vec0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
             vec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          dss_sp_scale_vector(vec,bits,size);
+          free(vec);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vec0 = 1;
+          int * vec = (int *) malloc(_len_vec0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+            vec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           dss_sp_scale_vector(vec,bits,size);
           free(vec);
         

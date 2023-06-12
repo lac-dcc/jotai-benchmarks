@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void mb_cache_entry_touch(struct mb_cache *cache,
 	entry->e_referenced = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,26 +76,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cache0 = 1;
+          int _len_cache0 = 65025;
           struct mb_cache * cache = (struct mb_cache *) malloc(_len_cache0*sizeof(struct mb_cache));
           for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
-            cache[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cache[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_entry0 = 1;
+        
+          int _len_entry0 = 65025;
           struct mb_cache_entry * entry = (struct mb_cache_entry *) malloc(_len_entry0*sizeof(struct mb_cache_entry));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].e_referenced = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].e_referenced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mb_cache_entry_touch(cache,entry);
           free(cache);
           free(entry);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cache0 = 100;
+          struct mb_cache * cache = (struct mb_cache *) malloc(_len_cache0*sizeof(struct mb_cache));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              cache[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_entry0 = 100;
+          struct mb_cache_entry * entry = (struct mb_cache_entry *) malloc(_len_entry0*sizeof(struct mb_cache_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].e_referenced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mb_cache_entry_touch(cache,entry);
+          free(cache);
+          free(entry);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cache0 = 1;
+          struct mb_cache * cache = (struct mb_cache *) malloc(_len_cache0*sizeof(struct mb_cache));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              cache[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_entry0 = 1;
+          struct mb_cache_entry * entry = (struct mb_cache_entry *) malloc(_len_entry0*sizeof(struct mb_cache_entry));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].e_referenced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mb_cache_entry_touch(cache,entry);
+          free(cache);
+          free(entry);
+        
+        break;
+    }
     default:
         usage();
         break;

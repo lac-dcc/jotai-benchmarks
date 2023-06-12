@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int ihe_sgn (tree_t *T, iheap_en_t *A) {
   return T->word < A->word ? -1 : (T->word > A->word ? 1 : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_T0 = 1;
+          int _len_T0 = 65025;
           struct TYPE_5__ * T = (struct TYPE_5__ *) malloc(_len_T0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_T0; _i0++) {
-            T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_A0 = 1;
+        
+          int _len_A0 = 65025;
           struct TYPE_6__ * A = (struct TYPE_6__ *) malloc(_len_A0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_A0; _i0++) {
-            A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ihe_sgn(T,A);
           printf("%d\n", benchRet); 
           free(T);
@@ -102,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_T0 = 100;
+          struct TYPE_5__ * T = (struct TYPE_5__ *) malloc(_len_T0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_A0 = 100;
+          struct TYPE_6__ * A = (struct TYPE_6__ *) malloc(_len_A0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ihe_sgn(T,A);
+          printf("%d\n", benchRet); 
+          free(T);
+          free(A);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_T0 = 1;
+          struct TYPE_5__ * T = (struct TYPE_5__ *) malloc(_len_T0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_A0 = 1;
+          struct TYPE_6__ * A = (struct TYPE_6__ *) malloc(_len_A0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ihe_sgn(T,A);
+          printf("%d\n", benchRet); 
+          free(T);
+          free(A);
+        
+        break;
+    }
     default:
         usage();
         break;

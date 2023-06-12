@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ struct pps_bind_args {int dummy; } ;
 __attribute__((used)) static inline int pps_kc_bind(struct pps_device *pps,
 		struct pps_bind_args *bind_args) { return -EOPNOTSUPP; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,19 +74,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pps0 = 65025;
+          struct pps_device * pps = (struct pps_device *) malloc(_len_pps0*sizeof(struct pps_device));
+          for(int _i0 = 0; _i0 < _len_pps0; _i0++) {
+              pps[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bind_args0 = 65025;
+          struct pps_bind_args * bind_args = (struct pps_bind_args *) malloc(_len_bind_args0*sizeof(struct pps_bind_args));
+          for(int _i0 = 0; _i0 < _len_bind_args0; _i0++) {
+              bind_args[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pps_kc_bind(pps,bind_args);
+          printf("%d\n", benchRet); 
+          free(pps);
+          free(bind_args);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pps0 = 100;
+          struct pps_device * pps = (struct pps_device *) malloc(_len_pps0*sizeof(struct pps_device));
+          for(int _i0 = 0; _i0 < _len_pps0; _i0++) {
+              pps[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bind_args0 = 100;
+          struct pps_bind_args * bind_args = (struct pps_bind_args *) malloc(_len_bind_args0*sizeof(struct pps_bind_args));
+          for(int _i0 = 0; _i0 < _len_bind_args0; _i0++) {
+              bind_args[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pps_kc_bind(pps,bind_args);
+          printf("%d\n", benchRet); 
+          free(pps);
+          free(bind_args);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_pps0 = 1;
           struct pps_device * pps = (struct pps_device *) malloc(_len_pps0*sizeof(struct pps_device));
           for(int _i0 = 0; _i0 < _len_pps0; _i0++) {
-            pps[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pps[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bind_args0 = 1;
           struct pps_bind_args * bind_args = (struct pps_bind_args *) malloc(_len_bind_args0*sizeof(struct pps_bind_args));
           for(int _i0 = 0; _i0 < _len_bind_args0; _i0++) {
-            bind_args[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bind_args[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pps_kc_bind(pps,bind_args);
           printf("%d\n", benchRet); 
           free(pps);

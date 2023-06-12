@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int qp_idle(struct rvt_qp *qp)
 		qp->s_tail == qp->s_head;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,25 +78,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qp0 = 1;
+          int _len_qp0 = 65025;
           struct rvt_qp * qp = (struct rvt_qp *) malloc(_len_qp0*sizeof(struct rvt_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].s_last = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].s_acked = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].s_cur = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].s_tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].s_head = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].s_last = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_acked = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qp_idle(qp);
           printf("%d\n", benchRet); 
           free(qp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_qp0 = 100;
+          struct rvt_qp * qp = (struct rvt_qp *) malloc(_len_qp0*sizeof(struct rvt_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].s_last = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_acked = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qp_idle(qp);
+          printf("%d\n", benchRet); 
+          free(qp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_qp0 = 1;
+          struct rvt_qp * qp = (struct rvt_qp *) malloc(_len_qp0*sizeof(struct rvt_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].s_last = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_acked = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].s_head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qp_idle(qp);
+          printf("%d\n", benchRet); 
+          free(qp);
+        
+        break;
+    }
     default:
         usage();
         break;

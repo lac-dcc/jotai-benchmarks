@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ void int_to_ascii(int n, char str[]) {
     /* TODO: implement "reverse" */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +81,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 58
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 57
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 40
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_str0 = 65025;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int_to_ascii(n,str);
+          free(str);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 43
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 43
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 43
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 43
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 42
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int n = 10;
+        
           int _len_str0 = 100;
           char * str = (char *) malloc(_len_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int_to_ascii(n,str);
           free(str);
         

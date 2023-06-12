@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ int zone_instance_to_index(int zone_inst)
 	return -ENOENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int zone_inst = 100;
+        
           int benchRet = zone_instance_to_index(zone_inst);
           printf("%d\n", benchRet); 
         
@@ -103,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int zone_inst = 255;
+        
           int benchRet = zone_instance_to_index(zone_inst);
           printf("%d\n", benchRet); 
         
@@ -112,12 +109,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int zone_inst = 10;
+        
           int benchRet = zone_instance_to_index(zone_inst);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int zone_inst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = zone_instance_to_index(zone_inst);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

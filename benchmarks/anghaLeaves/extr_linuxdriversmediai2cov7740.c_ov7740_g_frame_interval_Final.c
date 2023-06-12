@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int ov7740_g_frame_interval(struct v4l2_subdev *sd,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sd0 = 1;
+          int _len_sd0 = 65025;
           struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ival0 = 1;
+        
+          int _len_ival0 = 65025;
           struct v4l2_subdev_frame_interval * ival = (struct v4l2_subdev_frame_interval *) malloc(_len_ival0*sizeof(struct v4l2_subdev_frame_interval));
           for(int _i0 = 0; _i0 < _len_ival0; _i0++) {
-            ival[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
-        ival[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+              ival[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          ival[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ov7740_g_frame_interval(sd,ival);
           printf("%d\n", benchRet); 
           free(sd);
@@ -108,7 +109,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sd0 = 100;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ival0 = 100;
+          struct v4l2_subdev_frame_interval * ival = (struct v4l2_subdev_frame_interval *) malloc(_len_ival0*sizeof(struct v4l2_subdev_frame_interval));
+          for(int _i0 = 0; _i0 < _len_ival0; _i0++) {
+              ival[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          ival[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ov7740_g_frame_interval(sd,ival);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(ival);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sd0 = 1;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ival0 = 1;
+          struct v4l2_subdev_frame_interval * ival = (struct v4l2_subdev_frame_interval *) malloc(_len_ival0*sizeof(struct v4l2_subdev_frame_interval));
+          for(int _i0 = 0; _i0 < _len_ival0; _i0++) {
+              ival[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          ival[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ov7740_g_frame_interval(sd,ival);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(ival);
+        
+        break;
+    }
     default:
         usage();
         break;

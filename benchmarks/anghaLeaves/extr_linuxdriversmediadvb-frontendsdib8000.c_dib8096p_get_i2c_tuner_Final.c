@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static struct i2c_adapter *dib8096p_get_i2c_tuner(struct d
 	return &st->dib8096p_tuner_adap;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_fe0 = 65025;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__demodulator_priv0 = 1;
+          fe[_i0].demodulator_priv = (struct dib8000_state *) malloc(_len_fe__i0__demodulator_priv0*sizeof(struct dib8000_state));
+          for(int _j0 = 0; _j0 < _len_fe__i0__demodulator_priv0; _j0++) {
+              fe[_i0].demodulator_priv->dib8096p_tuner_adap.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct i2c_adapter * benchRet = dib8096p_get_i2c_tuner(fe);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].demodulator_priv);
+          }
+          free(fe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_fe0 = 100;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__demodulator_priv0 = 1;
+          fe[_i0].demodulator_priv = (struct dib8000_state *) malloc(_len_fe__i0__demodulator_priv0*sizeof(struct dib8000_state));
+          for(int _j0 = 0; _j0 < _len_fe__i0__demodulator_priv0; _j0++) {
+              fe[_i0].demodulator_priv->dib8096p_tuner_adap.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct i2c_adapter * benchRet = dib8096p_get_i2c_tuner(fe);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].demodulator_priv);
+          }
+          free(fe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_fe0 = 1;
           struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
           for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
               int _len_fe__i0__demodulator_priv0 = 1;
           fe[_i0].demodulator_priv = (struct dib8000_state *) malloc(_len_fe__i0__demodulator_priv0*sizeof(struct dib8000_state));
           for(int _j0 = 0; _j0 < _len_fe__i0__demodulator_priv0; _j0++) {
-            fe[_i0].demodulator_priv->dib8096p_tuner_adap.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fe[_i0].demodulator_priv->dib8096p_tuner_adap.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct i2c_adapter * benchRet = dib8096p_get_i2c_tuner(fe);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_fe0; _aux++) {

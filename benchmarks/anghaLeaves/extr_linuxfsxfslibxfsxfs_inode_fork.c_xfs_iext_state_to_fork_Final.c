@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ xfs_iext_state_to_fork(
 	return &ip->i_df;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +85,237 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int state = 100;
+        
           int _len_ip0 = 1;
           struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
           for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
-            ip[_i0].i_df.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].i_df.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_ip__i0__i_afp0 = 1;
           ip[_i0].i_afp = (struct xfs_ifork *) malloc(_len_ip__i0__i_afp0*sizeof(struct xfs_ifork));
           for(int _j0 = 0; _j0 < _len_ip__i0__i_afp0; _j0++) {
-            ip[_i0].i_afp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].i_afp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_ip__i0__i_cowfp0 = 1;
           ip[_i0].i_cowfp = (struct xfs_ifork *) malloc(_len_ip__i0__i_cowfp0*sizeof(struct xfs_ifork));
           for(int _j0 = 0; _j0 < _len_ip__i0__i_cowfp0; _j0++) {
-            ip[_i0].i_cowfp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].i_cowfp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct xfs_ifork * benchRet = xfs_iext_state_to_fork(ip,state);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_afp);
+          }
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_cowfp);
+          }
+          free(ip);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int state = 255;
+        
+          int _len_ip0 = 65025;
+          struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].i_df.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ip__i0__i_afp0 = 1;
+          ip[_i0].i_afp = (struct xfs_ifork *) malloc(_len_ip__i0__i_afp0*sizeof(struct xfs_ifork));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_afp0; _j0++) {
+              ip[_i0].i_afp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ip__i0__i_cowfp0 = 1;
+          ip[_i0].i_cowfp = (struct xfs_ifork *) malloc(_len_ip__i0__i_cowfp0*sizeof(struct xfs_ifork));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_cowfp0; _j0++) {
+              ip[_i0].i_cowfp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_ifork * benchRet = xfs_iext_state_to_fork(ip,state);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_afp);
+          }
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_cowfp);
+          }
+          free(ip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int state = 10;
+        
+          int _len_ip0 = 100;
+          struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].i_df.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ip__i0__i_afp0 = 1;
+          ip[_i0].i_afp = (struct xfs_ifork *) malloc(_len_ip__i0__i_afp0*sizeof(struct xfs_ifork));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_afp0; _j0++) {
+              ip[_i0].i_afp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ip__i0__i_cowfp0 = 1;
+          ip[_i0].i_cowfp = (struct xfs_ifork *) malloc(_len_ip__i0__i_cowfp0*sizeof(struct xfs_ifork));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_cowfp0; _j0++) {
+              ip[_i0].i_cowfp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xfs_ifork * benchRet = xfs_iext_state_to_fork(ip,state);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_afp);
+          }
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_cowfp);
+          }
+          free(ip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ip0 = 1;
+          struct xfs_inode * ip = (struct xfs_inode *) malloc(_len_ip0*sizeof(struct xfs_inode));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              ip[_i0].i_df.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ip__i0__i_afp0 = 1;
+          ip[_i0].i_afp = (struct xfs_ifork *) malloc(_len_ip__i0__i_afp0*sizeof(struct xfs_ifork));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_afp0; _j0++) {
+              ip[_i0].i_afp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ip__i0__i_cowfp0 = 1;
+          ip[_i0].i_cowfp = (struct xfs_ifork *) malloc(_len_ip__i0__i_cowfp0*sizeof(struct xfs_ifork));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_cowfp0; _j0++) {
+              ip[_i0].i_cowfp->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct xfs_ifork * benchRet = xfs_iext_state_to_fork(ip,state);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ip0; _aux++) {

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static HRESULT GopherProtocol_start_downloading(Protocol *
     return S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_prot0 = 1;
+          int _len_prot0 = 65025;
           int * prot = (int *) malloc(_len_prot0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_prot0; _i0++) {
             prot[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = GopherProtocol_start_downloading(prot);
           printf("%d\n", benchRet); 
           free(prot);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_prot0; _i0++) {
             prot[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = GopherProtocol_start_downloading(prot);
           printf("%d\n", benchRet); 
           free(prot);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_prot0 = 1;
+          int * prot = (int *) malloc(_len_prot0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_prot0; _i0++) {
+            prot[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = GopherProtocol_start_downloading(prot);
+          printf("%d\n", benchRet); 
+          free(prot);
+        
+        break;
+    }
     default:
         usage();
         break;

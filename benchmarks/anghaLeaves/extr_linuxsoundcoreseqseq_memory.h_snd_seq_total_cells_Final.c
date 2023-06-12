@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int snd_seq_total_cells(struct snd_seq_pool 
 	return pool ? pool->total_elements : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pool0 = 1;
+          int _len_pool0 = 65025;
           struct snd_seq_pool * pool = (struct snd_seq_pool *) malloc(_len_pool0*sizeof(struct snd_seq_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].total_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].total_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_seq_total_cells(pool);
           printf("%d\n", benchRet); 
           free(pool);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_pool0 = 100;
           struct snd_seq_pool * pool = (struct snd_seq_pool *) malloc(_len_pool0*sizeof(struct snd_seq_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].total_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].total_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_seq_total_cells(pool);
           printf("%d\n", benchRet); 
           free(pool);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pool0 = 1;
+          struct snd_seq_pool * pool = (struct snd_seq_pool *) malloc(_len_pool0*sizeof(struct snd_seq_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].total_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_seq_total_cells(pool);
+          printf("%d\n", benchRet); 
+          free(pool);
+        
+        break;
+    }
     default:
         usage();
         break;

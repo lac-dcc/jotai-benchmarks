@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +97,6 @@ __attribute__((used)) static u32 drm_rotation_to_tiler(unsigned int drm_rot)
 	return orient;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,6 +113,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int drm_rot = 100;
+        
           int benchRet = drm_rotation_to_tiler(drm_rot);
           printf("%d\n", benchRet); 
         
@@ -127,6 +123,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int drm_rot = 255;
+        
           int benchRet = drm_rotation_to_tiler(drm_rot);
           printf("%d\n", benchRet); 
         
@@ -136,12 +133,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int drm_rot = 10;
+        
           int benchRet = drm_rotation_to_tiler(drm_rot);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int drm_rot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = drm_rotation_to_tiler(drm_rot);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

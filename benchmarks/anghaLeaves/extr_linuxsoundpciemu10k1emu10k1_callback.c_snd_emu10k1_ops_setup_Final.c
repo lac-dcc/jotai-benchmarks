@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ snd_emu10k1_ops_setup(struct snd_emux *emux)
 	emux->ops = emu10k1_ops;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_emux0 = 1;
+          int _len_emux0 = 65025;
           struct snd_emux * emux = (struct snd_emux *) malloc(_len_emux0*sizeof(struct snd_emux));
           for(int _i0 = 0; _i0 < _len_emux0; _i0++) {
-            emux[_i0].ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              emux[_i0].ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_emu10k1_ops_setup(emux);
           free(emux);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_emux0 = 100;
           struct snd_emux * emux = (struct snd_emux *) malloc(_len_emux0*sizeof(struct snd_emux));
           for(int _i0 = 0; _i0 < _len_emux0; _i0++) {
-            emux[_i0].ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              emux[_i0].ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_emu10k1_ops_setup(emux);
           free(emux);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_emux0 = 1;
+          struct snd_emux * emux = (struct snd_emux *) malloc(_len_emux0*sizeof(struct snd_emux));
+          for(int _i0 = 0; _i0 < _len_emux0; _i0++) {
+              emux[_i0].ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_emu10k1_ops_setup(emux);
+          free(emux);
+        
+        break;
+    }
     default:
         usage();
         break;

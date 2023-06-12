@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct dm_dev *dm_snap_origin(struct dm_snapshot *s)
 	return s->origin;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          struct dm_snapshot * s = (struct dm_snapshot *) malloc(_len_s0*sizeof(struct dm_snapshot));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__origin0 = 1;
+          s[_i0].origin = (struct dm_dev *) malloc(_len_s__i0__origin0*sizeof(struct dm_dev));
+          for(int _j0 = 0; _j0 < _len_s__i0__origin0; _j0++) {
+              s[_i0].origin->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_dev * benchRet = dm_snap_origin(s);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].origin);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct dm_snapshot * s = (struct dm_snapshot *) malloc(_len_s0*sizeof(struct dm_snapshot));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__origin0 = 1;
+          s[_i0].origin = (struct dm_dev *) malloc(_len_s__i0__origin0*sizeof(struct dm_dev));
+          for(int _j0 = 0; _j0 < _len_s__i0__origin0; _j0++) {
+              s[_i0].origin->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dm_dev * benchRet = dm_snap_origin(s);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].origin);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_s0 = 1;
           struct dm_snapshot * s = (struct dm_snapshot *) malloc(_len_s0*sizeof(struct dm_snapshot));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__origin0 = 1;
           s[_i0].origin = (struct dm_dev *) malloc(_len_s__i0__origin0*sizeof(struct dm_dev));
           for(int _j0 = 0; _j0 < _len_s__i0__origin0; _j0++) {
-            s[_i0].origin->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].origin->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dm_dev * benchRet = dm_snap_origin(s);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_s0; _aux++) {

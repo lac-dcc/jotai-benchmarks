@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int igbvf_set_wol(struct net_device *netdev,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_netdev0 = 1;
+          int _len_netdev0 = 65025;
           struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
-            netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_wol0 = 1;
+        
+          int _len_wol0 = 65025;
           struct ethtool_wolinfo * wol = (struct ethtool_wolinfo *) malloc(_len_wol0*sizeof(struct ethtool_wolinfo));
           for(int _i0 = 0; _i0 < _len_wol0; _i0++) {
-            wol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              wol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = igbvf_set_wol(netdev,wol);
           printf("%d\n", benchRet); 
           free(netdev);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_netdev0 = 100;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wol0 = 100;
+          struct ethtool_wolinfo * wol = (struct ethtool_wolinfo *) malloc(_len_wol0*sizeof(struct ethtool_wolinfo));
+          for(int _i0 = 0; _i0 < _len_wol0; _i0++) {
+              wol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = igbvf_set_wol(netdev,wol);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(wol);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_netdev0 = 1;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wol0 = 1;
+          struct ethtool_wolinfo * wol = (struct ethtool_wolinfo *) malloc(_len_wol0*sizeof(struct ethtool_wolinfo));
+          for(int _i0 = 0; _i0 < _len_wol0; _i0++) {
+              wol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = igbvf_set_wol(netdev,wol);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(wol);
+        
+        break;
+    }
     default:
         usage();
         break;

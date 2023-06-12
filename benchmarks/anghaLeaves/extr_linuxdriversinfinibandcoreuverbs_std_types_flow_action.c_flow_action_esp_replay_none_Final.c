@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int flow_action_esp_replay_none(struct ib_flow_acti
 	return is_modify ? 0 : -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,30 +82,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int is_modify = 100;
+        
           int _len_replay0 = 1;
           struct ib_flow_action_attrs_esp_replays * replay = (struct ib_flow_action_attrs_esp_replays *) malloc(_len_replay0*sizeof(struct ib_flow_action_attrs_esp_replays));
           for(int _i0 = 0; _i0 < _len_replay0; _i0++) {
-            replay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              replay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = flow_action_esp_replay_none(replay,is_modify);
           printf("%d\n", benchRet); 
           free(replay);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int is_modify = 255;
+        
+          int _len_replay0 = 65025;
+          struct ib_flow_action_attrs_esp_replays * replay = (struct ib_flow_action_attrs_esp_replays *) malloc(_len_replay0*sizeof(struct ib_flow_action_attrs_esp_replays));
+          for(int _i0 = 0; _i0 < _len_replay0; _i0++) {
+              replay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = flow_action_esp_replay_none(replay,is_modify);
+          printf("%d\n", benchRet); 
+          free(replay);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int is_modify = 10;
+        
           int _len_replay0 = 100;
           struct ib_flow_action_attrs_esp_replays * replay = (struct ib_flow_action_attrs_esp_replays *) malloc(_len_replay0*sizeof(struct ib_flow_action_attrs_esp_replays));
           for(int _i0 = 0; _i0 < _len_replay0; _i0++) {
-            replay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              replay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = flow_action_esp_replay_none(replay,is_modify);
+          printf("%d\n", benchRet); 
+          free(replay);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int is_modify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_replay0 = 1;
+          struct ib_flow_action_attrs_esp_replays * replay = (struct ib_flow_action_attrs_esp_replays *) malloc(_len_replay0*sizeof(struct ib_flow_action_attrs_esp_replays));
+          for(int _i0 = 0; _i0 < _len_replay0; _i0++) {
+              replay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = flow_action_esp_replay_none(replay,is_modify);
           printf("%d\n", benchRet); 
           free(replay);

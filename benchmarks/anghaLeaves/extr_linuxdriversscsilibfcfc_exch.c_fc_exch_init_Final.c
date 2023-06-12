@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ int fc_exch_init(struct fc_lport *lport)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lport0 = 1;
+          int _len_lport0 = 65025;
           struct fc_lport * lport = (struct fc_lport *) malloc(_len_lport0*sizeof(struct fc_lport));
           for(int _i0 = 0; _i0 < _len_lport0; _i0++) {
-            lport[_i0].tt.exch_mgr_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+              lport[_i0].tt.exch_mgr_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = fc_exch_init(lport);
           printf("%d\n", benchRet); 
           free(lport);
@@ -105,15 +103,34 @@ int main(int argc, char *argv[]) {
           int _len_lport0 = 100;
           struct fc_lport * lport = (struct fc_lport *) malloc(_len_lport0*sizeof(struct fc_lport));
           for(int _i0 = 0; _i0 < _len_lport0; _i0++) {
-            lport[_i0].tt.exch_mgr_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+              lport[_i0].tt.exch_mgr_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = fc_exch_init(lport);
           printf("%d\n", benchRet); 
           free(lport);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_lport0 = 1;
+          struct fc_lport * lport = (struct fc_lport *) malloc(_len_lport0*sizeof(struct fc_lport));
+          for(int _i0 = 0; _i0 < _len_lport0; _i0++) {
+              lport[_i0].tt.exch_mgr_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fc_exch_init(lport);
+          printf("%d\n", benchRet); 
+          free(lport);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -145,12 +148,6 @@ void fsl_ssi_dbg_isr(struct fsl_ssi_dbg *dbg, u32 sisr)
 		dbg->stats.tfe0++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -167,37 +164,154 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sisr = 100;
+        
           int _len_dbg0 = 1;
           struct fsl_ssi_dbg * dbg = (struct fsl_ssi_dbg *) malloc(_len_dbg0*sizeof(struct fsl_ssi_dbg));
           for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
-            dbg[_i0].stats.tfe0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tfe1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rff0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rff1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rls = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tls = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rfs = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tfs = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tue0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tue1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.roe0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.roe1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tde0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tde1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rdr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rdr1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rxt = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.cmddu = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.cmdau = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.tfrc = ((-2 * (next_i()%2)) + 1) * next_i();
-        dbg[_i0].stats.rfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+              dbg[_i0].stats.tfe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rxt = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmddu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmdau = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           fsl_ssi_dbg_isr(dbg,sisr);
           free(dbg);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int sisr = 255;
+        
+          int _len_dbg0 = 65025;
+          struct fsl_ssi_dbg * dbg = (struct fsl_ssi_dbg *) malloc(_len_dbg0*sizeof(struct fsl_ssi_dbg));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].stats.tfe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rxt = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmddu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmdau = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          fsl_ssi_dbg_isr(dbg,sisr);
+          free(dbg);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int sisr = 10;
+        
+          int _len_dbg0 = 100;
+          struct fsl_ssi_dbg * dbg = (struct fsl_ssi_dbg *) malloc(_len_dbg0*sizeof(struct fsl_ssi_dbg));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].stats.tfe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rxt = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmddu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmdau = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          fsl_ssi_dbg_isr(dbg,sisr);
+          free(dbg);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int sisr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dbg0 = 1;
+          struct fsl_ssi_dbg * dbg = (struct fsl_ssi_dbg *) malloc(_len_dbg0*sizeof(struct fsl_ssi_dbg));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].stats.tfe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rff1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tls = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfs = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tue1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.roe1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tde1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rdr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rxt = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmddu = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.cmdau = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.tfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          dbg[_i0].stats.rfrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          fsl_ssi_dbg_isr(dbg,sisr);
+          free(dbg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static sint32_t myspiffs_vfs_fscfg( uint32_t *phys_addr, u
   return VFS_RES_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phys_addr0 = 1;
+          int _len_phys_addr0 = 65025;
           int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
             phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_phys_size0 = 1;
+        
+          int _len_phys_size0 = 65025;
           int * phys_size = (int *) malloc(_len_phys_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phys_size0; _i0++) {
             phys_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = myspiffs_vfs_fscfg(phys_addr,phys_size);
           printf("%d\n", benchRet); 
           free(phys_addr);
@@ -106,7 +104,50 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_phys_addr0 = 100;
+          int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
+            phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_phys_size0 = 100;
+          int * phys_size = (int *) malloc(_len_phys_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phys_size0; _i0++) {
+            phys_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = myspiffs_vfs_fscfg(phys_addr,phys_size);
+          printf("%d\n", benchRet); 
+          free(phys_addr);
+          free(phys_size);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_phys_addr0 = 1;
+          int * phys_addr = (int *) malloc(_len_phys_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phys_addr0; _i0++) {
+            phys_addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_phys_size0 = 1;
+          int * phys_size = (int *) malloc(_len_phys_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phys_size0; _i0++) {
+            phys_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = myspiffs_vfs_fscfg(phys_addr,phys_size);
+          printf("%d\n", benchRet); 
+          free(phys_addr);
+          free(phys_size);
+        
+        break;
+    }
     default:
         usage();
         break;

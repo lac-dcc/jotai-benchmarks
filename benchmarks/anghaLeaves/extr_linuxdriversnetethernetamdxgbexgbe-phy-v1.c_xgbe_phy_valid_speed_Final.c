@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static bool xgbe_phy_valid_speed(struct xgbe_prv_data *pda
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +96,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int speed = 100;
+        
           int _len_pdata0 = 1;
           struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
               int _len_pdata__i0__phy_data0 = 1;
           pdata[_i0].phy_data = (struct xgbe_phy_data *) malloc(_len_pdata__i0__phy_data0*sizeof(struct xgbe_phy_data));
           for(int _j0 = 0; _j0 < _len_pdata__i0__phy_data0; _j0++) {
-            pdata[_i0].phy_data->speed_set = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].phy_data->speed_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = xgbe_phy_valid_speed(pdata,speed);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pdata0; _aux++) {
+          free(pdata[_aux].phy_data);
+          }
+          free(pdata);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int speed = 255;
+        
+          int _len_pdata0 = 65025;
+          struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              int _len_pdata__i0__phy_data0 = 1;
+          pdata[_i0].phy_data = (struct xgbe_phy_data *) malloc(_len_pdata__i0__phy_data0*sizeof(struct xgbe_phy_data));
+          for(int _j0 = 0; _j0 < _len_pdata__i0__phy_data0; _j0++) {
+              pdata[_i0].phy_data->speed_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xgbe_phy_valid_speed(pdata,speed);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pdata0; _aux++) {
+          free(pdata[_aux].phy_data);
+          }
+          free(pdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int speed = 10;
+        
+          int _len_pdata0 = 100;
+          struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              int _len_pdata__i0__phy_data0 = 1;
+          pdata[_i0].phy_data = (struct xgbe_phy_data *) malloc(_len_pdata__i0__phy_data0*sizeof(struct xgbe_phy_data));
+          for(int _j0 = 0; _j0 < _len_pdata__i0__phy_data0; _j0++) {
+              pdata[_i0].phy_data->speed_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xgbe_phy_valid_speed(pdata,speed);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pdata0; _aux++) {
+          free(pdata[_aux].phy_data);
+          }
+          free(pdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdata0 = 1;
+          struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              int _len_pdata__i0__phy_data0 = 1;
+          pdata[_i0].phy_data = (struct xgbe_phy_data *) malloc(_len_pdata__i0__phy_data0*sizeof(struct xgbe_phy_data));
+          for(int _j0 = 0; _j0 < _len_pdata__i0__phy_data0; _j0++) {
+              pdata[_i0].phy_data->speed_set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = xgbe_phy_valid_speed(pdata,speed);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pdata0; _aux++) {

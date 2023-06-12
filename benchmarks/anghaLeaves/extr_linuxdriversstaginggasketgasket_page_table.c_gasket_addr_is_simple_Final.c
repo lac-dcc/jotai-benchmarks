@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline bool gasket_addr_is_simple(struct gasket_pag
 	return !((addr) & (pg_tbl)->extended_flag);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int _len_pg_tbl0 = 1;
           struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
           for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
-            pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = gasket_addr_is_simple(pg_tbl,addr);
+          printf("%d\n", benchRet); 
+          free(pg_tbl);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int addr = 255;
+        
+          int _len_pg_tbl0 = 65025;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = gasket_addr_is_simple(pg_tbl,addr);
           printf("%d\n", benchRet); 
           free(pg_tbl);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int addr = 10;
+        
           int _len_pg_tbl0 = 100;
           struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
           for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
-            pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gasket_addr_is_simple(pg_tbl,addr);
           printf("%d\n", benchRet); 
           free(pg_tbl);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pg_tbl0 = 1;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gasket_addr_is_simple(pg_tbl,addr);
+          printf("%d\n", benchRet); 
+          free(pg_tbl);
+        
+        break;
+    }
     default:
         usage();
         break;

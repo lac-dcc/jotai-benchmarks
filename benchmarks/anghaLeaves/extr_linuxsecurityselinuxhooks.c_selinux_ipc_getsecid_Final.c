@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void selinux_ipc_getsecid(struct kern_ipc_perm *ipc
 	*secid = isec->sid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ipcp0 = 1;
+          int _len_ipcp0 = 65025;
           struct kern_ipc_perm * ipcp = (struct kern_ipc_perm *) malloc(_len_ipcp0*sizeof(struct kern_ipc_perm));
           for(int _i0 = 0; _i0 < _len_ipcp0; _i0++) {
               int _len_ipcp__i0__security0 = 1;
           ipcp[_i0].security = (struct ipc_security_struct *) malloc(_len_ipcp__i0__security0*sizeof(struct ipc_security_struct));
           for(int _j0 = 0; _j0 < _len_ipcp__i0__security0; _j0++) {
-            ipcp[_i0].security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipcp[_i0].security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_secid0 = 1;
+        
+          int _len_secid0 = 65025;
           int * secid = (int *) malloc(_len_secid0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_secid0; _i0++) {
             secid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           selinux_ipc_getsecid(ipcp,secid);
           for(int _aux = 0; _aux < _len_ipcp0; _aux++) {
           free(ipcp[_aux].security);
@@ -107,7 +107,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ipcp0 = 100;
+          struct kern_ipc_perm * ipcp = (struct kern_ipc_perm *) malloc(_len_ipcp0*sizeof(struct kern_ipc_perm));
+          for(int _i0 = 0; _i0 < _len_ipcp0; _i0++) {
+              int _len_ipcp__i0__security0 = 1;
+          ipcp[_i0].security = (struct ipc_security_struct *) malloc(_len_ipcp__i0__security0*sizeof(struct ipc_security_struct));
+          for(int _j0 = 0; _j0 < _len_ipcp__i0__security0; _j0++) {
+              ipcp[_i0].security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_secid0 = 100;
+          int * secid = (int *) malloc(_len_secid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_secid0; _i0++) {
+            secid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          selinux_ipc_getsecid(ipcp,secid);
+          for(int _aux = 0; _aux < _len_ipcp0; _aux++) {
+          free(ipcp[_aux].security);
+          }
+          free(ipcp);
+          free(secid);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ipcp0 = 1;
+          struct kern_ipc_perm * ipcp = (struct kern_ipc_perm *) malloc(_len_ipcp0*sizeof(struct kern_ipc_perm));
+          for(int _i0 = 0; _i0 < _len_ipcp0; _i0++) {
+              int _len_ipcp__i0__security0 = 1;
+          ipcp[_i0].security = (struct ipc_security_struct *) malloc(_len_ipcp__i0__security0*sizeof(struct ipc_security_struct));
+          for(int _j0 = 0; _j0 < _len_ipcp__i0__security0; _j0++) {
+              ipcp[_i0].security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_secid0 = 1;
+          int * secid = (int *) malloc(_len_secid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_secid0; _i0++) {
+            secid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          selinux_ipc_getsecid(ipcp,secid);
+          for(int _aux = 0; _aux < _len_ipcp0; _aux++) {
+          free(ipcp[_aux].security);
+          }
+          free(ipcp);
+          free(secid);
+        
+        break;
+    }
     default:
         usage();
         break;

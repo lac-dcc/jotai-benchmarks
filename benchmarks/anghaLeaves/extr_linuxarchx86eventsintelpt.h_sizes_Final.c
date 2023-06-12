@@ -60,12 +60,6 @@ __attribute__((used)) static inline unsigned int sizes(unsigned int tsz)
 	return 1 << (tsz + TOPA_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,12 +76,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int tsz = 10;
+        
           unsigned int benchRet = sizes(tsz);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ ifnet_get_wake_flags(ifnet_t interface)
 	return (flags);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_interface0 = 1;
+          int _len_interface0 = 65025;
           struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ifnet_get_wake_flags(interface);
           printf("%d\n", benchRet); 
           free(interface);
@@ -113,15 +110,32 @@ int main(int argc, char *argv[]) {
           int _len_interface0 = 100;
           struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
-            interface[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              interface[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ifnet_get_wake_flags(interface);
           printf("%d\n", benchRet); 
           free(interface);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_interface0 = 1;
+          struct TYPE_3__ * interface = (struct TYPE_3__ *) malloc(_len_interface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_interface0; _i0++) {
+              interface[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ifnet_get_wake_flags(interface);
+          printf("%d\n", benchRet); 
+          free(interface);
+        
+        break;
+    }
     default:
         usage();
         break;

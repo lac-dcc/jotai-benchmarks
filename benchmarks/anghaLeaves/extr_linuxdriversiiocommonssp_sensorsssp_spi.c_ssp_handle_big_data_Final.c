@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int ssp_handle_big_data(struct ssp_data *data, char
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,24 +76,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_data0 = 1;
+          int _len_data0 = 65025;
           struct ssp_data * data = (struct ssp_data *) malloc(_len_data0*sizeof(struct ssp_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dataframe0 = 1;
+        
+          int _len_dataframe0 = 65025;
           char * dataframe = (char *) malloc(_len_dataframe0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_dataframe0; _i0++) {
             dataframe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_idx0 = 1;
+        
+          int _len_idx0 = 65025;
           int * idx = (int *) malloc(_len_idx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
             idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ssp_handle_big_data(data,dataframe,idx);
           printf("%d\n", benchRet); 
           free(data);
@@ -106,7 +106,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_data0 = 100;
+          struct ssp_data * data = (struct ssp_data *) malloc(_len_data0*sizeof(struct ssp_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dataframe0 = 100;
+          char * dataframe = (char *) malloc(_len_dataframe0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_dataframe0; _i0++) {
+            dataframe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_idx0 = 100;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ssp_handle_big_data(data,dataframe,idx);
+          printf("%d\n", benchRet); 
+          free(data);
+          free(dataframe);
+          free(idx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_data0 = 1;
+          struct ssp_data * data = (struct ssp_data *) malloc(_len_data0*sizeof(struct ssp_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dataframe0 = 1;
+          char * dataframe = (char *) malloc(_len_dataframe0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_dataframe0; _i0++) {
+            dataframe[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_idx0 = 1;
+          int * idx = (int *) malloc(_len_idx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idx0; _i0++) {
+            idx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ssp_handle_big_data(data,dataframe,idx);
+          printf("%d\n", benchRet); 
+          free(data);
+          free(dataframe);
+          free(idx);
+        
+        break;
+    }
     default:
         usage();
         break;

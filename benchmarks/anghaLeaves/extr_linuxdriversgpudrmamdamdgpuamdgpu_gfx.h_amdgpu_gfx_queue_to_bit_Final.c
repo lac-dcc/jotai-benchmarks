@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static inline int amdgpu_gfx_queue_to_bit(struct amdgpu_de
 	return bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,18 +87,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int mec = 100;
+        
           int pipe = 100;
+        
           int queue = 100;
+        
           int _len_adev0 = 1;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].gfx.mec.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
-        adev[_i0].gfx.mec.num_queue_per_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].gfx.mec.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].gfx.mec.num_queue_per_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = amdgpu_gfx_queue_to_bit(adev,mec,pipe,queue);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int mec = 255;
+        
+          int pipe = 255;
+        
+          int queue = 255;
+        
+          int _len_adev0 = 65025;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].gfx.mec.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].gfx.mec.num_queue_per_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = amdgpu_gfx_queue_to_bit(adev,mec,pipe,queue);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int mec = 10;
+        
+          int pipe = 10;
+        
+          int queue = 10;
+        
+          int _len_adev0 = 100;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].gfx.mec.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].gfx.mec.num_queue_per_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = amdgpu_gfx_queue_to_bit(adev,mec,pipe,queue);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int mec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].gfx.mec.num_pipe_per_mec = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].gfx.mec.num_queue_per_pipe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = amdgpu_gfx_queue_to_bit(adev,mec,pipe,queue);
           printf("%d\n", benchRet); 
           free(adev);

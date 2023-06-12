@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static uint64_t gmc_v7_0_get_vm_pte_flags(struct amdgpu_de
 	return pte_flag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,11 +97,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_adev0 = 1;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = gmc_v7_0_get_vm_pte_flags(adev,flags);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_adev0 = 65025;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = gmc_v7_0_get_vm_pte_flags(adev,flags);
           printf("%d\n", benchRet); 
           free(adev);
@@ -113,21 +130,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_adev0 = 100;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gmc_v7_0_get_vm_pte_flags(adev,flags);
           printf("%d\n", benchRet); 
           free(adev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gmc_v7_0_get_vm_pte_flags(adev,flags);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
     default:
         usage();
         break;

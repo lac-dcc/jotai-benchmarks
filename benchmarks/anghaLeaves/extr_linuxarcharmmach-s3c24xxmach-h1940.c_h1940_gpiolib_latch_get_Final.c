@@ -62,12 +62,6 @@ __attribute__((used)) static int h1940_gpiolib_latch_get(struct gpio_chip *chip,
 	return (latch_state >> (offset + 16)) & 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +78,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 10;
+        
           int _len_chip0 = 100;
           struct gpio_chip * chip = (struct gpio_chip *) malloc(_len_chip0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = h1940_gpiolib_latch_get(chip,offset);
           printf("%d\n", benchRet); 
           free(chip);
         
         break;
     }
-
     default:
         usage();
         break;

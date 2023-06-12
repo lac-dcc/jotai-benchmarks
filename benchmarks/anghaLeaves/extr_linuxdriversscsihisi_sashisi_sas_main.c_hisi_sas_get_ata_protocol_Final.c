@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -186,12 +189,6 @@ u8 hisi_sas_get_ata_protocol(struct host_to_dev_fis *fis, int direction)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -204,16 +201,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int direction = 100;
+        
           int _len_fis0 = 1;
           struct host_to_dev_fis * fis = (struct host_to_dev_fis *) malloc(_len_fis0*sizeof(struct host_to_dev_fis));
           for(int _i0 = 0; _i0 < _len_fis0; _i0++) {
-            fis[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
-        fis[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+              fis[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          fis[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hisi_sas_get_ata_protocol(fis,direction);
+          printf("%d\n", benchRet); 
+          free(fis);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int direction = 255;
+        
+          int _len_fis0 = 65025;
+          struct host_to_dev_fis * fis = (struct host_to_dev_fis *) malloc(_len_fis0*sizeof(struct host_to_dev_fis));
+          for(int _i0 = 0; _i0 < _len_fis0; _i0++) {
+              fis[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          fis[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hisi_sas_get_ata_protocol(fis,direction);
+          printf("%d\n", benchRet); 
+          free(fis);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int direction = 10;
+        
+          int _len_fis0 = 100;
+          struct host_to_dev_fis * fis = (struct host_to_dev_fis *) malloc(_len_fis0*sizeof(struct host_to_dev_fis));
+          for(int _i0 = 0; _i0 < _len_fis0; _i0++) {
+              fis[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          fis[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hisi_sas_get_ata_protocol(fis,direction);
+          printf("%d\n", benchRet); 
+          free(fis);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fis0 = 1;
+          struct host_to_dev_fis * fis = (struct host_to_dev_fis *) malloc(_len_fis0*sizeof(struct host_to_dev_fis));
+          for(int _i0 = 0; _i0 < _len_fis0; _i0++) {
+              fis[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          fis[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hisi_sas_get_ata_protocol(fis,direction);
           printf("%d\n", benchRet); 
           free(fis);

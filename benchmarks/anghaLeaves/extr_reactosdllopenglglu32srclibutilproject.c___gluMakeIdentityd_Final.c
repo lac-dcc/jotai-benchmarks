@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void __gluMakeIdentityd(GLdouble m[16])
     m[3+4*0] = 0; m[3+4*1] = 0; m[3+4*2] = 0; m[3+4*3] = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 16;
+          int _len_m0 = 65025;
           int * m = (int *) malloc(_len_m0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
             m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           __gluMakeIdentityd(m);
           free(m);
         
@@ -103,12 +99,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
             m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           __gluMakeIdentityd(m);
           free(m);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_m0 = 16;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          __gluMakeIdentityd(m);
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

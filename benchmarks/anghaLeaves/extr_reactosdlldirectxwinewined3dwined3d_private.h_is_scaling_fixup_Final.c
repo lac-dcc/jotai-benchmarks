@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline BOOL is_scaling_fixup(struct color_fixup_des
     return fixup.x_sign_fixup || fixup.y_sign_fixup || fixup.z_sign_fixup || fixup.w_sign_fixup;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +73,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           struct color_fixup_desc fixup;
-        fixup.w_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixup.z_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixup.y_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixup.x_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixup.w_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixup.z_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixup.y_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixup.x_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_scaling_fixup(fixup);
           printf("%d\n", benchRet); 
         

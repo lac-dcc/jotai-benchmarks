@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static void seq_set_overflow(struct seq_file *m)
 	m->count = m->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +74,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           seq_set_overflow(m);
           free(m);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m0 = 100;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          seq_set_overflow(m);
+          free(m);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          seq_set_overflow(m);
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

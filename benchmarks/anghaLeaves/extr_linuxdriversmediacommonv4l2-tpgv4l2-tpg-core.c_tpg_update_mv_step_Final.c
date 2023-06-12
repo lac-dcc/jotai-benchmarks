@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -110,12 +112,6 @@ void tpg_update_mv_step(struct tpg_data *tpg)
 		tpg->mv_vert_step = tpg->src_height - tpg->mv_vert_step;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,26 +124,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tpg0 = 1;
+          int _len_tpg0 = 65025;
           struct tpg_data * tpg = (struct tpg_data *) malloc(_len_tpg0*sizeof(struct tpg_data));
           for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
-            tpg[_i0].mv_hor_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].mv_hor_step = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].mv_vert_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].mv_vert_step = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        tpg[_i0].hflip = ((-2 * (next_i()%2)) + 1) * next_i();
+              tpg[_i0].mv_hor_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_hor_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_vert_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_vert_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].hflip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tpg_update_mv_step(tpg);
           free(tpg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tpg0 = 100;
+          struct tpg_data * tpg = (struct tpg_data *) malloc(_len_tpg0*sizeof(struct tpg_data));
+          for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
+              tpg[_i0].mv_hor_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_hor_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_vert_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_vert_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].hflip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tpg_update_mv_step(tpg);
+          free(tpg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tpg0 = 1;
+          struct tpg_data * tpg = (struct tpg_data *) malloc(_len_tpg0*sizeof(struct tpg_data));
+          for(int _i0 = 0; _i0 < _len_tpg0; _i0++) {
+              tpg[_i0].mv_hor_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_hor_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_vert_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].mv_vert_step = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].src_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          tpg[_i0].hflip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tpg_update_mv_step(tpg);
+          free(tpg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static bool storvsc_scsi_cmd_ok(struct scsi_cmnd *scmnd)
 	return allowed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,9 +95,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_scmnd0 = 65025;
+          struct scsi_cmnd * scmnd = (struct scsi_cmnd *) malloc(_len_scmnd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_scmnd0; _i0++) {
+              int _len_scmnd__i0__cmnd0 = 1;
+          scmnd[_i0].cmnd = (int *) malloc(_len_scmnd__i0__cmnd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_scmnd__i0__cmnd0; _j0++) {
+            scmnd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          scmnd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = storvsc_scsi_cmd_ok(scmnd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scmnd0; _aux++) {
+          free(scmnd[_aux].cmnd);
+          }
+          free(scmnd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_scmnd0 = 100;
+          struct scsi_cmnd * scmnd = (struct scsi_cmnd *) malloc(_len_scmnd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_scmnd0; _i0++) {
+              int _len_scmnd__i0__cmnd0 = 1;
+          scmnd[_i0].cmnd = (int *) malloc(_len_scmnd__i0__cmnd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_scmnd__i0__cmnd0; _j0++) {
+            scmnd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          scmnd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = storvsc_scsi_cmd_ok(scmnd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scmnd0; _aux++) {
+          free(scmnd[_aux].cmnd);
+          }
+          free(scmnd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_scmnd0 = 1;
           struct scsi_cmnd * scmnd = (struct scsi_cmnd *) malloc(_len_scmnd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_scmnd0; _i0++) {
@@ -110,8 +225,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_scmnd__i0__cmnd0; _j0++) {
             scmnd[_i0].cmnd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        scmnd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+          scmnd[_i0].result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = storvsc_scsi_cmd_ok(scmnd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_scmnd0; _aux++) {

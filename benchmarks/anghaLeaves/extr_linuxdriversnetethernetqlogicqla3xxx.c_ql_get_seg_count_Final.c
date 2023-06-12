@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int ql_get_seg_count(struct ql3_adapter *qdev, unsi
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,30 +89,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           unsigned short frags = 100;
+        
           int _len_qdev0 = 1;
           struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
           for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
-            qdev[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdev[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ql_get_seg_count(qdev,frags);
           printf("%d\n", benchRet); 
           free(qdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned short frags = 255;
+        
+          int _len_qdev0 = 65025;
+          struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ql_get_seg_count(qdev,frags);
+          printf("%d\n", benchRet); 
+          free(qdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned short frags = 10;
+        
           int _len_qdev0 = 100;
           struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
           for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
-            qdev[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdev[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ql_get_seg_count(qdev,frags);
+          printf("%d\n", benchRet); 
+          free(qdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned short frags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_qdev0 = 1;
+          struct ql3_adapter * qdev = (struct ql3_adapter *) malloc(_len_qdev0*sizeof(struct ql3_adapter));
+          for(int _i0 = 0; _i0 < _len_qdev0; _i0++) {
+              qdev[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ql_get_seg_count(qdev,frags);
           printf("%d\n", benchRet); 
           free(qdev);

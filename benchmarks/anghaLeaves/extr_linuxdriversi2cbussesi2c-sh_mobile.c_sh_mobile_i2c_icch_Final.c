@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static u32 sh_mobile_i2c_icch(unsigned long count_khz, u32
 	return (((count_khz * (tHIGH + tf)) + 5000) / 10000);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long count_khz = 100;
+        
           unsigned long tHIGH = 100;
+        
           unsigned long tf = 100;
+        
           unsigned long benchRet = sh_mobile_i2c_icch(count_khz,tHIGH,tf);
           printf("%lu\n", benchRet); 
         
@@ -109,8 +107,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long count_khz = 255;
+        
           unsigned long tHIGH = 255;
+        
           unsigned long tf = 255;
+        
           unsigned long benchRet = sh_mobile_i2c_icch(count_khz,tHIGH,tf);
           printf("%lu\n", benchRet); 
         
@@ -120,14 +121,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long count_khz = 10;
+        
           unsigned long tHIGH = 10;
+        
           unsigned long tf = 10;
+        
           unsigned long benchRet = sh_mobile_i2c_icch(count_khz,tHIGH,tf);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long count_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long tHIGH = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long tf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = sh_mobile_i2c_icch(count_khz,tHIGH,tf);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

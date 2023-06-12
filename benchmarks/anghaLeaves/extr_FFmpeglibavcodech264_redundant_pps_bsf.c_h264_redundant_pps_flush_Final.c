@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void h264_redundant_pps_flush(AVBSFContext *bsf)
     ctx->current_pic_init_qp = ctx->extradata_pic_init_qp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_bsf0 = 65025;
+          struct TYPE_5__ * bsf = (struct TYPE_5__ *) malloc(_len_bsf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_bsf0; _i0++) {
+              int _len_bsf__i0__priv_data0 = 1;
+          bsf[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_bsf__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bsf__i0__priv_data0; _j0++) {
+              bsf[_i0].priv_data->extradata_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          bsf[_i0].priv_data->current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          h264_redundant_pps_flush(bsf);
+          for(int _aux = 0; _aux < _len_bsf0; _aux++) {
+          free(bsf[_aux].priv_data);
+          }
+          free(bsf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_bsf0 = 100;
+          struct TYPE_5__ * bsf = (struct TYPE_5__ *) malloc(_len_bsf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_bsf0; _i0++) {
+              int _len_bsf__i0__priv_data0 = 1;
+          bsf[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_bsf__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bsf__i0__priv_data0; _j0++) {
+              bsf[_i0].priv_data->extradata_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          bsf[_i0].priv_data->current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          h264_redundant_pps_flush(bsf);
+          for(int _aux = 0; _aux < _len_bsf0; _aux++) {
+          free(bsf[_aux].priv_data);
+          }
+          free(bsf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_bsf0 = 1;
           struct TYPE_5__ * bsf = (struct TYPE_5__ *) malloc(_len_bsf0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_bsf0; _i0++) {
               int _len_bsf__i0__priv_data0 = 1;
           bsf[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_bsf__i0__priv_data0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_bsf__i0__priv_data0; _j0++) {
-            bsf[_i0].priv_data->extradata_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
-        bsf[_i0].priv_data->current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+              bsf[_i0].priv_data->extradata_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+          bsf[_i0].priv_data->current_pic_init_qp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           h264_redundant_pps_flush(bsf);
           for(int _aux = 0; _aux < _len_bsf0; _aux++) {
           free(bsf[_aux].priv_data);

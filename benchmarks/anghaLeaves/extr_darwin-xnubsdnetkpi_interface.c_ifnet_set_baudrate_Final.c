@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ ifnet_set_baudrate(struct ifnet *ifp, u_int64_t baudrate)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int baudrate = 100;
+        
           int _len_ifp0 = 1;
           struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
           for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
-            ifp[_i0].if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_output_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        ifp[_i0].if_output_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifp[_i0].if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ifp[_i0].if_output_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_output_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = ifnet_set_baudrate(ifp,baudrate);
+          printf("%d\n", benchRet); 
+          free(ifp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int baudrate = 255;
+        
+          int _len_ifp0 = 65025;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ifp[_i0].if_output_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_output_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ifnet_set_baudrate(ifp,baudrate);
+          printf("%d\n", benchRet); 
+          free(ifp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int baudrate = 10;
+        
+          int _len_ifp0 = 100;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ifp[_i0].if_output_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_output_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ifnet_set_baudrate(ifp,baudrate);
+          printf("%d\n", benchRet); 
+          free(ifp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ifp0 = 1;
+          struct ifnet * ifp = (struct ifnet *) malloc(_len_ifp0*sizeof(struct ifnet));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_baudrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_input_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ifp[_i0].if_output_bw.max_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          ifp[_i0].if_output_bw.eff_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = ifnet_set_baudrate(ifp,baudrate);
           printf("%d\n", benchRet); 
           free(ifp);

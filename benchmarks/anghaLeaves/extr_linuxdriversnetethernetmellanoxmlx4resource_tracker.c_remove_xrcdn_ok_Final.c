@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static int remove_xrcdn_ok(struct res_xrcdn *res)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_res0 = 1;
+          int _len_res0 = 65025;
           struct res_xrcdn * res = (struct res_xrcdn *) malloc(_len_res0*sizeof(struct res_xrcdn));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].com.state = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].com.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = remove_xrcdn_ok(res);
           printf("%d\n", benchRet); 
           free(res);
@@ -110,15 +108,34 @@ int main(int argc, char *argv[]) {
           int _len_res0 = 100;
           struct res_xrcdn * res = (struct res_xrcdn *) malloc(_len_res0*sizeof(struct res_xrcdn));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].com.state = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].com.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = remove_xrcdn_ok(res);
           printf("%d\n", benchRet); 
           free(res);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_res0 = 1;
+          struct res_xrcdn * res = (struct res_xrcdn *) malloc(_len_res0*sizeof(struct res_xrcdn));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].com.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = remove_xrcdn_ok(res);
+          printf("%d\n", benchRet); 
+          free(res);
+        
+        break;
+    }
     default:
         usage();
         break;

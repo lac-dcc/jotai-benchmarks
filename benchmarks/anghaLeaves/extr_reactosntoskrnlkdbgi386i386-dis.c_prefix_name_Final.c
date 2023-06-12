@@ -128,12 +128,6 @@ prefix_name (int pref, int sizeflag)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -150,13 +144,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pref = 100;
+        
           int sizeflag = 100;
+        
           const char * benchRet = prefix_name(pref,sizeflag);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

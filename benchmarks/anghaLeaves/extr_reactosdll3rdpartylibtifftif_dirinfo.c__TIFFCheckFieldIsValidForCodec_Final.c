@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -212,12 +214,6 @@ _TIFFCheckFieldIsValidForCodec(TIFF *tif, ttag_t tag)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -234,11 +230,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tag = 100;
+        
           int _len_tif0 = 1;
           struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_dir.td_compression = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_dir.td_compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = _TIFFCheckFieldIsValidForCodec(tif,tag);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int tag = 255;
+        
+          int _len_tif0 = 65025;
+          struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_dir.td_compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = _TIFFCheckFieldIsValidForCodec(tif,tag);
           printf("%d\n", benchRet); 
           free(tif);
@@ -246,21 +265,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int tag = 10;
+        
           int _len_tif0 = 100;
           struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
-            tif[_i0].tif_dir.td_compression = ((-2 * (next_i()%2)) + 1) * next_i();
+              tif[_i0].tif_dir.td_compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = _TIFFCheckFieldIsValidForCodec(tif,tag);
           printf("%d\n", benchRet); 
           free(tif);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tif0 = 1;
+          struct TYPE_5__ * tif = (struct TYPE_5__ *) malloc(_len_tif0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_tif0; _i0++) {
+              tif[_i0].tif_dir.td_compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = _TIFFCheckFieldIsValidForCodec(tif,tag);
+          printf("%d\n", benchRet); 
+          free(tif);
+        
+        break;
+    }
     default:
         usage();
         break;

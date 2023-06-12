@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int hdsp_read_gain (struct hdsp *hdsp, unsigned int
 	return hdsp->mixer_matrix[addr];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int addr = 100;
+        
           int _len_hdsp0 = 1;
           struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
           for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
@@ -94,7 +92,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hdsp__i0__mixer_matrix0; _j0++) {
             hdsp[_i0].mixer_matrix[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = hdsp_read_gain(hdsp,addr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hdsp0; _aux++) {
@@ -104,7 +104,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int addr = 255;
+        
+          int _len_hdsp0 = 65025;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              int _len_hdsp__i0__mixer_matrix0 = 1;
+          hdsp[_i0].mixer_matrix = (int *) malloc(_len_hdsp__i0__mixer_matrix0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdsp__i0__mixer_matrix0; _j0++) {
+            hdsp[_i0].mixer_matrix[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hdsp_read_gain(hdsp,addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdsp0; _aux++) {
+          free(hdsp[_aux].mixer_matrix);
+          }
+          free(hdsp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int addr = 10;
+        
+          int _len_hdsp0 = 100;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              int _len_hdsp__i0__mixer_matrix0 = 1;
+          hdsp[_i0].mixer_matrix = (int *) malloc(_len_hdsp__i0__mixer_matrix0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdsp__i0__mixer_matrix0; _j0++) {
+            hdsp[_i0].mixer_matrix[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hdsp_read_gain(hdsp,addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdsp0; _aux++) {
+          free(hdsp[_aux].mixer_matrix);
+          }
+          free(hdsp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdsp0 = 1;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              int _len_hdsp__i0__mixer_matrix0 = 1;
+          hdsp[_i0].mixer_matrix = (int *) malloc(_len_hdsp__i0__mixer_matrix0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdsp__i0__mixer_matrix0; _j0++) {
+            hdsp[_i0].mixer_matrix[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hdsp_read_gain(hdsp,addr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdsp0; _aux++) {
+          free(hdsp[_aux].mixer_matrix);
+          }
+          free(hdsp);
+        
+        break;
+    }
     default:
         usage();
         break;

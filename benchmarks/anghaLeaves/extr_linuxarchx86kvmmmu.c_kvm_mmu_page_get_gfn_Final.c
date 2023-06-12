@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static gfn_t kvm_mmu_page_get_gfn(struct kvm_mmu_page *sp,
 	return sp->gfn + (index << ((sp->role.level - 1) * PT64_LEVEL_BITS));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,155 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int index = 100;
+        
           int _len_sp0 = 1;
           struct kvm_mmu_page * sp = (struct kvm_mmu_page *) malloc(_len_sp0*sizeof(struct kvm_mmu_page));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
-            sp[_i0].role.level = ((-2 * (next_i()%2)) + 1) * next_i();
-        sp[_i0].role.direct = ((-2 * (next_i()%2)) + 1) * next_i();
-        sp[_i0].gfn = ((-2 * (next_i()%2)) + 1) * next_i();
+              sp[_i0].role.level = ((-2 * (next_i()%2)) + 1) * next_i();
+          sp[_i0].role.direct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sp[_i0].gfn = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sp__i0__gfns0 = 1;
           sp[_i0].gfns = (long *) malloc(_len_sp__i0__gfns0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_sp__i0__gfns0; _j0++) {
             sp[_i0].gfns[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          long benchRet = kvm_mmu_page_get_gfn(sp,index);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sp0; _aux++) {
+          free(sp[_aux].gfns);
+          }
+          free(sp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int index = 255;
+        
+          int _len_sp0 = 65025;
+          struct kvm_mmu_page * sp = (struct kvm_mmu_page *) malloc(_len_sp0*sizeof(struct kvm_mmu_page));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+              sp[_i0].role.level = ((-2 * (next_i()%2)) + 1) * next_i();
+          sp[_i0].role.direct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sp[_i0].gfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sp__i0__gfns0 = 1;
+          sp[_i0].gfns = (long *) malloc(_len_sp__i0__gfns0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_sp__i0__gfns0; _j0++) {
+            sp[_i0].gfns[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = kvm_mmu_page_get_gfn(sp,index);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sp0; _aux++) {
+          free(sp[_aux].gfns);
+          }
+          free(sp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int index = 10;
+        
+          int _len_sp0 = 100;
+          struct kvm_mmu_page * sp = (struct kvm_mmu_page *) malloc(_len_sp0*sizeof(struct kvm_mmu_page));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+              sp[_i0].role.level = ((-2 * (next_i()%2)) + 1) * next_i();
+          sp[_i0].role.direct = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sp[_i0].gfn = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sp__i0__gfns0 = 1;
+          sp[_i0].gfns = (long *) malloc(_len_sp__i0__gfns0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_sp__i0__gfns0; _j0++) {
+            sp[_i0].gfns[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           long benchRet = kvm_mmu_page_get_gfn(sp,index);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_sp0; _aux++) {

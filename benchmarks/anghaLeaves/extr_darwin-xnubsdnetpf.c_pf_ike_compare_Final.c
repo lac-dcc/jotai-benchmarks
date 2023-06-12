@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ pf_ike_compare(struct pf_app_state *a, struct pf_app_state *b)
 	return ((d > 0) ? 1 : ((d < 0) ? -1 : 0));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct pf_app_state * a = (struct pf_app_state *) malloc(_len_a0*sizeof(struct pf_app_state));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct pf_app_state * b = (struct pf_app_state *) malloc(_len_b0*sizeof(struct pf_app_state));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = pf_ike_compare(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct pf_app_state * a = (struct pf_app_state *) malloc(_len_a0*sizeof(struct pf_app_state));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_b0 = 100;
+          struct pf_app_state * b = (struct pf_app_state *) malloc(_len_b0*sizeof(struct pf_app_state));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = pf_ike_compare(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct pf_app_state * a = (struct pf_app_state *) malloc(_len_a0*sizeof(struct pf_app_state));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_b0 = 1;
           struct pf_app_state * b = (struct pf_app_state *) malloc(_len_b0*sizeof(struct pf_app_state));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].u.ike.cookie = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = pf_ike_compare(a,b);
           printf("%d\n", benchRet); 
           free(a);

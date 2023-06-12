@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ unsigned int hw_atl_utils_mbps_2_speed_index(unsigned int mbps)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int mbps = 100;
+        
           unsigned int benchRet = hw_atl_utils_mbps_2_speed_index(mbps);
           printf("%u\n", benchRet); 
         
@@ -118,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int mbps = 255;
+        
           unsigned int benchRet = hw_atl_utils_mbps_2_speed_index(mbps);
           printf("%u\n", benchRet); 
         
@@ -127,12 +124,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int mbps = 10;
+        
           unsigned int benchRet = hw_atl_utils_mbps_2_speed_index(mbps);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int mbps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = hw_atl_utils_mbps_2_speed_index(mbps);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

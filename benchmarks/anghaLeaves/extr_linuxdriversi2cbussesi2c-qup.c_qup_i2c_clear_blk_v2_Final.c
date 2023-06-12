@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void qup_i2c_clear_blk_v2(struct qup_i2c_block *blk
 	blk->fifo_available = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,29 +84,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_blk0 = 1;
+          int _len_blk0 = 65025;
           struct qup_i2c_block * blk = (struct qup_i2c_block *) malloc(_len_blk0*sizeof(struct qup_i2c_block));
           for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
-            blk[_i0].send_last_word = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].tx_tags_sent = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].rx_tags_fetched = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].rx_bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].fifo_available = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].rx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].rx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].tx_fifo_free = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].tx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        blk[_i0].tx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              blk[_i0].send_last_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_tags_sent = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_tags_fetched = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].fifo_available = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qup_i2c_clear_blk_v2(blk);
           free(blk);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_blk0 = 100;
+          struct qup_i2c_block * blk = (struct qup_i2c_block *) malloc(_len_blk0*sizeof(struct qup_i2c_block));
+          for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
+              blk[_i0].send_last_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_tags_sent = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_tags_fetched = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].fifo_available = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qup_i2c_clear_blk_v2(blk);
+          free(blk);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_blk0 = 1;
+          struct qup_i2c_block * blk = (struct qup_i2c_block *) malloc(_len_blk0*sizeof(struct qup_i2c_block));
+          for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
+              blk[_i0].send_last_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_tags_sent = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_tags_fetched = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_bytes_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].fifo_available = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].rx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_free = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_data_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          blk[_i0].tx_fifo_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qup_i2c_clear_blk_v2(blk);
+          free(blk);
+        
+        break;
+    }
     default:
         usage();
         break;

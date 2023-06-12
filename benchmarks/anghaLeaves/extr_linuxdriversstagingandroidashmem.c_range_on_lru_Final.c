@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool range_on_lru(struct ashmem_range *range
 	return range->purged == ASHMEM_NOT_PURGED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_range0 = 1;
+          int _len_range0 = 65025;
           struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].purged = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].purged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = range_on_lru(range);
           printf("%d\n", benchRet); 
           free(range);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_range0 = 100;
           struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].purged = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].purged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = range_on_lru(range);
           printf("%d\n", benchRet); 
           free(range);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_range0 = 1;
+          struct ashmem_range * range = (struct ashmem_range *) malloc(_len_range0*sizeof(struct ashmem_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].purged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = range_on_lru(range);
+          printf("%d\n", benchRet); 
+          free(range);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ __attribute__((used)) static void skeleton_fill_pix_format(struct skeleton *skel
 	pix->priv = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,30 +113,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_skel0 = 65025;
+          struct skeleton * skel = (struct skeleton *) malloc(_len_skel0*sizeof(struct skeleton));
+          for(int _i0 = 0; _i0 < _len_skel0; _i0++) {
+              skel[_i0].input = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pix0 = 65025;
+          struct v4l2_pix_format * pix = (struct v4l2_pix_format *) malloc(_len_pix0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          skeleton_fill_pix_format(skel,pix);
+          free(skel);
+          free(pix);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_skel0 = 100;
+          struct skeleton * skel = (struct skeleton *) malloc(_len_skel0*sizeof(struct skeleton));
+          for(int _i0 = 0; _i0 < _len_skel0; _i0++) {
+              skel[_i0].input = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pix0 = 100;
+          struct v4l2_pix_format * pix = (struct v4l2_pix_format *) malloc(_len_pix0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          skeleton_fill_pix_format(skel,pix);
+          free(skel);
+          free(pix);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int _len_skel0 = 1;
           struct skeleton * skel = (struct skeleton *) malloc(_len_skel0*sizeof(struct skeleton));
           for(int _i0 = 0; _i0 < _len_skel0; _i0++) {
-            skel[_i0].input = ((-2 * (next_i()%2)) + 1) * next_i();
-        skel[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
-        skel[_i0].timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        skel[_i0].timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        skel[_i0].timings.bt.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+              skel[_i0].input = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          skel[_i0].timings.bt.interlaced = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_pix0 = 1;
           struct v4l2_pix_format * pix = (struct v4l2_pix_format *) malloc(_len_pix0*sizeof(struct v4l2_pix_format));
           for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
-            pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+              pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].sizeimage = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].priv = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].field = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           skeleton_fill_pix_format(skel,pix);
           free(skel);
           free(pix);

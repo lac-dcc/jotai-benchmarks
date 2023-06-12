@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static ssize_t fuse_get_res_by_io(struct fuse_io_priv *io)
 	return io->bytes < 0 ? io->size : io->bytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_io0 = 65025;
+          struct fuse_io_priv * io = (struct fuse_io_priv *) malloc(_len_io0*sizeof(struct fuse_io_priv));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = fuse_get_res_by_io(io);
+          printf("%ld\n", benchRet); 
+          free(io);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_io0 = 100;
+          struct fuse_io_priv * io = (struct fuse_io_priv *) malloc(_len_io0*sizeof(struct fuse_io_priv));
+          for(int _i0 = 0; _i0 < _len_io0; _i0++) {
+              io[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = fuse_get_res_by_io(io);
+          printf("%ld\n", benchRet); 
+          free(io);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_io0 = 1;
           struct fuse_io_priv * io = (struct fuse_io_priv *) malloc(_len_io0*sizeof(struct fuse_io_priv));
           for(int _i0 = 0; _i0 < _len_io0; _i0++) {
-            io[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
-        io[_i0].bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        io[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        io[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+              io[_i0].err = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          io[_i0].write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = fuse_get_res_by_io(io);
           printf("%ld\n", benchRet); 
           free(io);

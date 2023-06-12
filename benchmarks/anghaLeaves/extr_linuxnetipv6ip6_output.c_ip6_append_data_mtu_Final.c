@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static void ip6_append_data_mtu(unsigned int *mtu,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,32 +99,265 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned int fragheaderlen = 100;
+        
           unsigned int orig_mtu = 100;
+        
           int _len_mtu0 = 1;
           unsigned int * mtu = (unsigned int *) malloc(_len_mtu0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_mtu0; _i0++) {
             mtu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_maxfraglen0 = 1;
           int * maxfraglen = (int *) malloc(_len_maxfraglen0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_maxfraglen0; _i0++) {
             maxfraglen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rt0 = 1;
           struct rt6_info * rt = (struct rt6_info *) malloc(_len_rt0*sizeof(struct rt6_info));
           for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
-            rt[_i0].dst.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rt[_i0].dst.header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              rt[_i0].dst.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          ip6_append_data_mtu(mtu,maxfraglen,fragheaderlen,skb,rt,orig_mtu);
+          free(mtu);
+          free(maxfraglen);
+          free(skb);
+          free(rt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned int fragheaderlen = 255;
+        
+          unsigned int orig_mtu = 255;
+        
+          int _len_mtu0 = 65025;
+          unsigned int * mtu = (unsigned int *) malloc(_len_mtu0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mtu0; _i0++) {
+            mtu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxfraglen0 = 65025;
+          int * maxfraglen = (int *) malloc(_len_maxfraglen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxfraglen0; _i0++) {
+            maxfraglen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rt0 = 65025;
+          struct rt6_info * rt = (struct rt6_info *) malloc(_len_rt0*sizeof(struct rt6_info));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].dst.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ip6_append_data_mtu(mtu,maxfraglen,fragheaderlen,skb,rt,orig_mtu);
+          free(mtu);
+          free(maxfraglen);
+          free(skb);
+          free(rt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned int fragheaderlen = 10;
+        
+          unsigned int orig_mtu = 10;
+        
+          int _len_mtu0 = 100;
+          unsigned int * mtu = (unsigned int *) malloc(_len_mtu0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mtu0; _i0++) {
+            mtu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxfraglen0 = 100;
+          int * maxfraglen = (int *) malloc(_len_maxfraglen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxfraglen0; _i0++) {
+            maxfraglen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rt0 = 100;
+          struct rt6_info * rt = (struct rt6_info *) malloc(_len_rt0*sizeof(struct rt6_info));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].dst.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ip6_append_data_mtu(mtu,maxfraglen,fragheaderlen,skb,rt,orig_mtu);
+          free(mtu);
+          free(maxfraglen);
+          free(skb);
+          free(rt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned int fragheaderlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int orig_mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mtu0 = 1;
+          unsigned int * mtu = (unsigned int *) malloc(_len_mtu0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mtu0; _i0++) {
+            mtu[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxfraglen0 = 1;
+          int * maxfraglen = (int *) malloc(_len_maxfraglen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_maxfraglen0; _i0++) {
+            maxfraglen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rt0 = 1;
+          struct rt6_info * rt = (struct rt6_info *) malloc(_len_rt0*sizeof(struct rt6_info));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].dst.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rt[_i0].dst.header_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           ip6_append_data_mtu(mtu,maxfraglen,fragheaderlen,skb,rt,orig_mtu);
           free(mtu);
           free(maxfraglen);

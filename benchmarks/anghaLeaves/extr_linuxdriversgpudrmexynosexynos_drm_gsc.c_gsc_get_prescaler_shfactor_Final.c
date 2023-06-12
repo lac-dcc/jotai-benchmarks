@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void gsc_get_prescaler_shfactor(u32 hratio, u32 vra
 		*shfactor = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,33 +91,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hratio = 100;
+        
           int vratio = 100;
+        
           int _len_shfactor0 = 1;
           int * shfactor = (int *) malloc(_len_shfactor0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_shfactor0; _i0++) {
             shfactor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          gsc_get_prescaler_shfactor(hratio,vratio,shfactor);
+          free(shfactor);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int hratio = 255;
+        
+          int vratio = 255;
+        
+          int _len_shfactor0 = 65025;
+          int * shfactor = (int *) malloc(_len_shfactor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shfactor0; _i0++) {
+            shfactor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           gsc_get_prescaler_shfactor(hratio,vratio,shfactor);
           free(shfactor);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int hratio = 10;
+        
           int vratio = 10;
+        
           int _len_shfactor0 = 100;
           int * shfactor = (int *) malloc(_len_shfactor0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_shfactor0; _i0++) {
             shfactor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           gsc_get_prescaler_shfactor(hratio,vratio,shfactor);
           free(shfactor);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_shfactor0 = 1;
+          int * shfactor = (int *) malloc(_len_shfactor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shfactor0; _i0++) {
+            shfactor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          gsc_get_prescaler_shfactor(hratio,vratio,shfactor);
+          free(shfactor);
+        
+        break;
+    }
     default:
         usage();
         break;

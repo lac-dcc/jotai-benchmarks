@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct xenbus_device *xen_blkbk_xenbus(struct backend_info *be)
 	return be->dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_be0 = 1;
+          int _len_be0 = 65025;
           struct backend_info * be = (struct backend_info *) malloc(_len_be0*sizeof(struct backend_info));
           for(int _i0 = 0; _i0 < _len_be0; _i0++) {
               int _len_be__i0__dev0 = 1;
           be[_i0].dev = (struct xenbus_device *) malloc(_len_be__i0__dev0*sizeof(struct xenbus_device));
           for(int _j0 = 0; _j0 < _len_be__i0__dev0; _j0++) {
-            be[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              be[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct xenbus_device * benchRet = xen_blkbk_xenbus(be);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_be0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_be0 = 100;
+          struct backend_info * be = (struct backend_info *) malloc(_len_be0*sizeof(struct backend_info));
+          for(int _i0 = 0; _i0 < _len_be0; _i0++) {
+              int _len_be__i0__dev0 = 1;
+          be[_i0].dev = (struct xenbus_device *) malloc(_len_be__i0__dev0*sizeof(struct xenbus_device));
+          for(int _j0 = 0; _j0 < _len_be__i0__dev0; _j0++) {
+              be[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xenbus_device * benchRet = xen_blkbk_xenbus(be);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_be0; _aux++) {
+          free(be[_aux].dev);
+          }
+          free(be);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_be0 = 1;
+          struct backend_info * be = (struct backend_info *) malloc(_len_be0*sizeof(struct backend_info));
+          for(int _i0 = 0; _i0 < _len_be0; _i0++) {
+              int _len_be__i0__dev0 = 1;
+          be[_i0].dev = (struct xenbus_device *) malloc(_len_be__i0__dev0*sizeof(struct xenbus_device));
+          for(int _j0 = 0; _j0 < _len_be__i0__dev0; _j0++) {
+              be[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct xenbus_device * benchRet = xen_blkbk_xenbus(be);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_be0; _aux++) {
+          free(be[_aux].dev);
+          }
+          free(be);
+        
+        break;
+    }
     default:
         usage();
         break;

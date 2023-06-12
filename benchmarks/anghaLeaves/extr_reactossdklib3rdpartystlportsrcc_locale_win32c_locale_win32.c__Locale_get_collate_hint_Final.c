@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ typedef  TYPE_1__ _Locale_collate_t ;
 _Locale_lcid_t* _Locale_get_collate_hint(_Locale_collate_t* lcollate)
 { return (lcollate != 0) ? &lcollate->lc : 0; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lcollate0 = 1;
+          int _len_lcollate0 = 65025;
           struct TYPE_3__ * lcollate = (struct TYPE_3__ *) malloc(_len_lcollate0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_lcollate0; _i0++) {
-            lcollate[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+              lcollate[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = _Locale_get_collate_hint(lcollate);
           printf("%d\n", (*benchRet)); 
           free(lcollate);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_lcollate0 = 100;
           struct TYPE_3__ * lcollate = (struct TYPE_3__ *) malloc(_len_lcollate0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_lcollate0; _i0++) {
-            lcollate[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+              lcollate[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = _Locale_get_collate_hint(lcollate);
           printf("%d\n", (*benchRet)); 
           free(lcollate);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_lcollate0 = 1;
+          struct TYPE_3__ * lcollate = (struct TYPE_3__ *) malloc(_len_lcollate0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_lcollate0; _i0++) {
+              lcollate[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = _Locale_get_collate_hint(lcollate);
+          printf("%d\n", (*benchRet)); 
+          free(lcollate);
+        
+        break;
+    }
     default:
         usage();
         break;

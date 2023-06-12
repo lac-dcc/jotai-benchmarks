@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void evaluate_utility_inc(elbg_data *elbg)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +84,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_elbg0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_elbg0 = 65025;
           struct TYPE_3__ * elbg = (struct TYPE_3__ *) malloc(_len_elbg0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_elbg0; _i0++) {
-            elbg[_i0].numCB = ((-2 * (next_i()%2)) + 1) * next_i();
+              elbg[_i0].numCB = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_elbg__i0__utility0 = 1;
           elbg[_i0].utility = (int *) malloc(_len_elbg__i0__utility0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_elbg__i0__utility0; _j0++) {
             elbg[_i0].utility[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        elbg[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          elbg[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_elbg__i0__utility_inc0 = 1;
           elbg[_i0].utility_inc = (int *) malloc(_len_elbg__i0__utility_inc0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_elbg__i0__utility_inc0; _j0++) {
             elbg[_i0].utility_inc[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          evaluate_utility_inc(elbg);
+          for(int _aux = 0; _aux < _len_elbg0; _aux++) {
+          free(elbg[_aux].utility);
+          }
+          for(int _aux = 0; _aux < _len_elbg0; _aux++) {
+          free(elbg[_aux].utility_inc);
+          }
+          free(elbg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_elbg0 = 100;
+          struct TYPE_3__ * elbg = (struct TYPE_3__ *) malloc(_len_elbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_elbg0; _i0++) {
+              elbg[_i0].numCB = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_elbg__i0__utility0 = 1;
+          elbg[_i0].utility = (int *) malloc(_len_elbg__i0__utility0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elbg__i0__utility0; _j0++) {
+            elbg[_i0].utility[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          elbg[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_elbg__i0__utility_inc0 = 1;
+          elbg[_i0].utility_inc = (int *) malloc(_len_elbg__i0__utility_inc0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elbg__i0__utility_inc0; _j0++) {
+            elbg[_i0].utility_inc[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          evaluate_utility_inc(elbg);
+          for(int _aux = 0; _aux < _len_elbg0; _aux++) {
+          free(elbg[_aux].utility);
+          }
+          for(int _aux = 0; _aux < _len_elbg0; _aux++) {
+          free(elbg[_aux].utility_inc);
+          }
+          free(elbg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_elbg0 = 1;
+          struct TYPE_3__ * elbg = (struct TYPE_3__ *) malloc(_len_elbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_elbg0; _i0++) {
+              elbg[_i0].numCB = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_elbg__i0__utility0 = 1;
+          elbg[_i0].utility = (int *) malloc(_len_elbg__i0__utility0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elbg__i0__utility0; _j0++) {
+            elbg[_i0].utility[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          elbg[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_elbg__i0__utility_inc0 = 1;
+          elbg[_i0].utility_inc = (int *) malloc(_len_elbg__i0__utility_inc0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_elbg__i0__utility_inc0; _j0++) {
+            elbg[_i0].utility_inc[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           evaluate_utility_inc(elbg);
           for(int _aux = 0; _aux < _len_elbg0; _aux++) {
           free(elbg[_aux].utility);

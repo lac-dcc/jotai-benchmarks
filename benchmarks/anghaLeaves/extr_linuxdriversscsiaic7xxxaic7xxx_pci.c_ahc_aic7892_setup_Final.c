@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ ahc_aic7892_setup(struct ahc_softc *ahc)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +86,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_ahc0 = 65025;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].instruction_ram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].chip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ahc_aic7892_setup(ahc);
+          printf("%d\n", benchRet); 
+          free(ahc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_ahc0 = 100;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].instruction_ram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].chip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ahc_aic7892_setup(ahc);
+          printf("%d\n", benchRet); 
+          free(ahc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_ahc0 = 1;
           struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
           for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
-            ahc[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
-        ahc[_i0].instruction_ram_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        ahc[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ahc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
-        ahc[_i0].chip = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahc[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].instruction_ram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].bugs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+          ahc[_i0].chip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ahc_aic7892_setup(ahc);
           printf("%d\n", benchRet); 
           free(ahc);

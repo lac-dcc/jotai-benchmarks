@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ bool NnIsActiveEx(VH *v, bool *is_ipraw_mode)
 	return v->NativeNat->Active;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,25 +102,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_v0 = 65025;
+          struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__NativeNat0 = 1;
+          v[_i0].NativeNat = (struct TYPE_4__ *) malloc(_len_v__i0__NativeNat0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_v__i0__NativeNat0; _j0++) {
+              v[_i0].NativeNat->PublicIP = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].NativeNat->Active = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].NativeNat->IsRawIpMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_is_ipraw_mode0 = 65025;
+          int * is_ipraw_mode = (int *) malloc(_len_is_ipraw_mode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_is_ipraw_mode0; _i0++) {
+            is_ipraw_mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NnIsActiveEx(v,is_ipraw_mode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].NativeNat);
+          }
+          free(v);
+          free(is_ipraw_mode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_v0 = 100;
+          struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              int _len_v__i0__NativeNat0 = 1;
+          v[_i0].NativeNat = (struct TYPE_4__ *) malloc(_len_v__i0__NativeNat0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_v__i0__NativeNat0; _j0++) {
+              v[_i0].NativeNat->PublicIP = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].NativeNat->Active = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].NativeNat->IsRawIpMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_is_ipraw_mode0 = 100;
+          int * is_ipraw_mode = (int *) malloc(_len_is_ipraw_mode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_is_ipraw_mode0; _i0++) {
+            is_ipraw_mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = NnIsActiveEx(v,is_ipraw_mode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_v0; _aux++) {
+          free(v[_aux].NativeNat);
+          }
+          free(v);
+          free(is_ipraw_mode);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_v0 = 1;
           struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
               int _len_v__i0__NativeNat0 = 1;
           v[_i0].NativeNat = (struct TYPE_4__ *) malloc(_len_v__i0__NativeNat0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_v__i0__NativeNat0; _j0++) {
-            v[_i0].NativeNat->PublicIP = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].NativeNat->Active = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].NativeNat->IsRawIpMode = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].NativeNat->PublicIP = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].NativeNat->Active = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].NativeNat->IsRawIpMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_is_ipraw_mode0 = 1;
           int * is_ipraw_mode = (int *) malloc(_len_is_ipraw_mode0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_is_ipraw_mode0; _i0++) {
             is_ipraw_mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = NnIsActiveEx(v,is_ipraw_mode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_v0; _aux++) {

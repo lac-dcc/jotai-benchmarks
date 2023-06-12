@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ tuple_conversion_needed(TupleDesc indesc, TupleDesc outdesc)
 	return (indesc->natts != outdesc->natts || indesc->tdhasoid != outdesc->tdhasoid);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_indesc0 = 65025;
+          struct TYPE_4__ * indesc = (struct TYPE_4__ *) malloc(_len_indesc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_indesc0; _i0++) {
+              indesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          indesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_outdesc0 = 65025;
+          struct TYPE_4__ * outdesc = (struct TYPE_4__ *) malloc(_len_outdesc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_outdesc0; _i0++) {
+              outdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          outdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tuple_conversion_needed(indesc,outdesc);
+          printf("%d\n", benchRet); 
+          free(indesc);
+          free(outdesc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_indesc0 = 100;
+          struct TYPE_4__ * indesc = (struct TYPE_4__ *) malloc(_len_indesc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_indesc0; _i0++) {
+              indesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          indesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_outdesc0 = 100;
+          struct TYPE_4__ * outdesc = (struct TYPE_4__ *) malloc(_len_outdesc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_outdesc0; _i0++) {
+              outdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          outdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tuple_conversion_needed(indesc,outdesc);
+          printf("%d\n", benchRet); 
+          free(indesc);
+          free(outdesc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_indesc0 = 1;
           struct TYPE_4__ * indesc = (struct TYPE_4__ *) malloc(_len_indesc0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_indesc0; _i0++) {
-            indesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
-        indesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+              indesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          indesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_outdesc0 = 1;
           struct TYPE_4__ * outdesc = (struct TYPE_4__ *) malloc(_len_outdesc0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_outdesc0; _i0++) {
-            outdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
-        outdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+              outdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          outdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tuple_conversion_needed(indesc,outdesc);
           printf("%d\n", benchRet); 
           free(indesc);

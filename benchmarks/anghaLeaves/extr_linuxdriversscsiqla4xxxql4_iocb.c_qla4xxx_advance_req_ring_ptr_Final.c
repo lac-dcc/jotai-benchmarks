@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void qla4xxx_advance_req_ring_ptr(struct scsi_qla_h
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ha0 = 1;
+          int _len_ha0 = 65025;
           struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
-            ha[_i0].request_in = ((-2 * (next_i()%2)) + 1) * next_i();
-        ha[_i0].request_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ha[_i0].request_ring = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].request_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          ha[_i0].request_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ha[_i0].request_ring = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qla4xxx_advance_req_ring_ptr(ha);
           free(ha);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ha0 = 100;
+          struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].request_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          ha[_i0].request_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ha[_i0].request_ring = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qla4xxx_advance_req_ring_ptr(ha);
+          free(ha);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ha0 = 1;
+          struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].request_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          ha[_i0].request_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ha[_i0].request_ring = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qla4xxx_advance_req_ring_ptr(ha);
+          free(ha);
+        
+        break;
+    }
     default:
         usage();
         break;

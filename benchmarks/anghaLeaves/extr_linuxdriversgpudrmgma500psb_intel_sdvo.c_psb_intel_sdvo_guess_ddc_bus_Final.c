@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +101,6 @@ psb_intel_sdvo_guess_ddc_bus(struct psb_intel_sdvo *sdvo)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,27 +113,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sdvo0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_sdvo0 = 65025;
           struct psb_intel_sdvo * sdvo = (struct psb_intel_sdvo *) malloc(_len_sdvo0*sizeof(struct psb_intel_sdvo));
           for(int _i0 = 0; _i0 < _len_sdvo0; _i0++) {
-            sdvo[_i0].ddc_bus = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdvo[_i0].ddc_bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           psb_intel_sdvo_guess_ddc_bus(sdvo);
           free(sdvo);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_sdvo0 = 100;
           struct psb_intel_sdvo * sdvo = (struct psb_intel_sdvo *) malloc(_len_sdvo0*sizeof(struct psb_intel_sdvo));
           for(int _i0 = 0; _i0 < _len_sdvo0; _i0++) {
-            sdvo[_i0].ddc_bus = ((-2 * (next_i()%2)) + 1) * next_i();
+              sdvo[_i0].ddc_bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          psb_intel_sdvo_guess_ddc_bus(sdvo);
+          free(sdvo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_sdvo0 = 1;
+          struct psb_intel_sdvo * sdvo = (struct psb_intel_sdvo *) malloc(_len_sdvo0*sizeof(struct psb_intel_sdvo));
+          for(int _i0 = 0; _i0 < _len_sdvo0; _i0++) {
+              sdvo[_i0].ddc_bus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           psb_intel_sdvo_guess_ddc_bus(sdvo);
           free(sdvo);
         

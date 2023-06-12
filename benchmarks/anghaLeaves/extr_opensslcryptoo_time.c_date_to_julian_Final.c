@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static long date_to_julian(int y, int m, int d)
         (3 * ((y + 4900 + (m - 14) / 12) / 100)) / 4 + d - 32075;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,34 +76,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
           int y = 100;
+        
           int m = 100;
+        
           int d = 100;
+        
           long benchRet = date_to_julian(y,m,d);
           printf("%ld\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
           int y = 255;
+        
           int m = 255;
+        
           int d = 255;
+        
           long benchRet = date_to_julian(y,m,d);
           printf("%ld\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
           int y = 10;
+        
           int m = 10;
+        
           int d = 10;
+        
+          long benchRet = date_to_julian(y,m,d);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 67
+          // dynamic_instructions_O0 : 67
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 48
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 48
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 48
+          // ------------------------------- 
+          // static_instructions_Os : 48
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           long benchRet = date_to_julian(y,m,d);
           printf("%ld\n", benchRet); 
         

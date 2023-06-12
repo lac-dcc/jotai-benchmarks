@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -62,12 +62,6 @@ __attribute__((used)) static inline u8 ccdc_data_size_max_bit(enum vpfe_ccdc_dat
 	return sz == VPFE_CCDC_DATA_8BITS ? 7 : 15 - sz;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum vpfe_ccdc_data_size sz = 0;
+        
           int benchRet = ccdc_data_size_max_bit(sz);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

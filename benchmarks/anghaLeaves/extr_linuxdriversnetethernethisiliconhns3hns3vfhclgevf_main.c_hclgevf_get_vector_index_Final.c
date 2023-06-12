@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int hclgevf_get_vector_index(struct hclgevf_dev *hd
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int vector = 100;
+        
           int _len_hdev0 = 1;
           struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].num_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].num_msi = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hdev__i0__vector_irq0 = 1;
           hdev[_i0].vector_irq = (int *) malloc(_len_hdev__i0__vector_irq0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_hdev__i0__vector_irq0; _j0++) {
             hdev[_i0].vector_irq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = hclgevf_get_vector_index(hdev,vector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdev0; _aux++) {
+          free(hdev[_aux].vector_irq);
+          }
+          free(hdev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int vector = 255;
+        
+          int _len_hdev0 = 65025;
+          struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].num_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdev__i0__vector_irq0 = 1;
+          hdev[_i0].vector_irq = (int *) malloc(_len_hdev__i0__vector_irq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdev__i0__vector_irq0; _j0++) {
+            hdev[_i0].vector_irq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hclgevf_get_vector_index(hdev,vector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdev0; _aux++) {
+          free(hdev[_aux].vector_irq);
+          }
+          free(hdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int vector = 10;
+        
+          int _len_hdev0 = 100;
+          struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].num_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdev__i0__vector_irq0 = 1;
+          hdev[_i0].vector_irq = (int *) malloc(_len_hdev__i0__vector_irq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdev__i0__vector_irq0; _j0++) {
+            hdev[_i0].vector_irq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hclgevf_get_vector_index(hdev,vector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdev0; _aux++) {
+          free(hdev[_aux].vector_irq);
+          }
+          free(hdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int vector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdev0 = 1;
+          struct hclgevf_dev * hdev = (struct hclgevf_dev *) malloc(_len_hdev0*sizeof(struct hclgevf_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].num_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdev__i0__vector_irq0 = 1;
+          hdev[_i0].vector_irq = (int *) malloc(_len_hdev__i0__vector_irq0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdev__i0__vector_irq0; _j0++) {
+            hdev[_i0].vector_irq[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = hclgevf_get_vector_index(hdev,vector);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hdev0; _aux++) {

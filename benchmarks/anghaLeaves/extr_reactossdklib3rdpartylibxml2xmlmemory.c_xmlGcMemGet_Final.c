@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ xmlGcMemGet(xmlFreeFunc *freeFunc, xmlMallocFunc *mallocFunc,
     return(0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,34 +89,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_freeFunc0 = 65025;
+          int * freeFunc = (int *) malloc(_len_freeFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freeFunc0; _i0++) {
+            freeFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mallocFunc0 = 65025;
+          int * mallocFunc = (int *) malloc(_len_mallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mallocFunc0; _i0++) {
+            mallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mallocAtomicFunc0 = 65025;
+          int * mallocAtomicFunc = (int *) malloc(_len_mallocAtomicFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mallocAtomicFunc0; _i0++) {
+            mallocAtomicFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reallocFunc0 = 65025;
+          int * reallocFunc = (int *) malloc(_len_reallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reallocFunc0; _i0++) {
+            reallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_strdupFunc0 = 65025;
+          int * strdupFunc = (int *) malloc(_len_strdupFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_strdupFunc0; _i0++) {
+            strdupFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xmlGcMemGet(freeFunc,mallocFunc,mallocAtomicFunc,reallocFunc,strdupFunc);
+          printf("%d\n", benchRet); 
+          free(freeFunc);
+          free(mallocFunc);
+          free(mallocAtomicFunc);
+          free(reallocFunc);
+          free(strdupFunc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_freeFunc0 = 100;
+          int * freeFunc = (int *) malloc(_len_freeFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_freeFunc0; _i0++) {
+            freeFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mallocFunc0 = 100;
+          int * mallocFunc = (int *) malloc(_len_mallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mallocFunc0; _i0++) {
+            mallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mallocAtomicFunc0 = 100;
+          int * mallocAtomicFunc = (int *) malloc(_len_mallocAtomicFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mallocAtomicFunc0; _i0++) {
+            mallocAtomicFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_reallocFunc0 = 100;
+          int * reallocFunc = (int *) malloc(_len_reallocFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reallocFunc0; _i0++) {
+            reallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_strdupFunc0 = 100;
+          int * strdupFunc = (int *) malloc(_len_strdupFunc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_strdupFunc0; _i0++) {
+            strdupFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xmlGcMemGet(freeFunc,mallocFunc,mallocAtomicFunc,reallocFunc,strdupFunc);
+          printf("%d\n", benchRet); 
+          free(freeFunc);
+          free(mallocFunc);
+          free(mallocAtomicFunc);
+          free(reallocFunc);
+          free(strdupFunc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_freeFunc0 = 1;
           int * freeFunc = (int *) malloc(_len_freeFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_freeFunc0; _i0++) {
             freeFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_mallocFunc0 = 1;
           int * mallocFunc = (int *) malloc(_len_mallocFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mallocFunc0; _i0++) {
             mallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_mallocAtomicFunc0 = 1;
           int * mallocAtomicFunc = (int *) malloc(_len_mallocAtomicFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mallocAtomicFunc0; _i0++) {
             mallocAtomicFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_reallocFunc0 = 1;
           int * reallocFunc = (int *) malloc(_len_reallocFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reallocFunc0; _i0++) {
             reallocFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_strdupFunc0 = 1;
           int * strdupFunc = (int *) malloc(_len_strdupFunc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_strdupFunc0; _i0++) {
             strdupFunc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xmlGcMemGet(freeFunc,mallocFunc,mallocAtomicFunc,reallocFunc,strdupFunc);
           printf("%d\n", benchRet); 
           free(freeFunc);

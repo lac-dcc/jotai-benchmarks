@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ acornfb_validate_timing(struct fb_var_screeninfo *var,
 		hs >= monspecs->hfmin && hs <= monspecs->hfmax) ? 0 : -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,30 +94,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_monspecs0 = 65025;
+          struct fb_monspecs * monspecs = (struct fb_monspecs *) malloc(_len_monspecs0*sizeof(struct fb_monspecs));
+          for(int _i0 = 0; _i0 < _len_monspecs0; _i0++) {
+              monspecs[_i0].vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = acornfb_validate_timing(var,monspecs);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(monspecs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_monspecs0 = 100;
+          struct fb_monspecs * monspecs = (struct fb_monspecs *) malloc(_len_monspecs0*sizeof(struct fb_monspecs));
+          for(int _i0 = 0; _i0 < _len_monspecs0; _i0++) {
+              monspecs[_i0].vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = acornfb_validate_timing(var,monspecs);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(monspecs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].pixclock = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].left_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].right_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].hsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].upper_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].lower_margin = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].vsync_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_monspecs0 = 1;
           struct fb_monspecs * monspecs = (struct fb_monspecs *) malloc(_len_monspecs0*sizeof(struct fb_monspecs));
           for(int _i0 = 0; _i0 < _len_monspecs0; _i0++) {
-            monspecs[_i0].vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        monspecs[_i0].vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
-        monspecs[_i0].hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        monspecs[_i0].hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+              monspecs[_i0].vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          monspecs[_i0].hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = acornfb_validate_timing(var,monspecs);
           printf("%d\n", benchRet); 
           free(var);

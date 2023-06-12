@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int freq_table_get_index(struct cpufreq_stats *stat
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int freq = 100;
+        
           int _len_stats0 = 1;
           struct cpufreq_stats * stats = (struct cpufreq_stats *) malloc(_len_stats0*sizeof(struct cpufreq_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].max_state = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_stats__i0__freq_table0 = 1;
           stats[_i0].freq_table = (unsigned int *) malloc(_len_stats__i0__freq_table0*sizeof(unsigned int));
           for(int _j0 = 0; _j0 < _len_stats__i0__freq_table0; _j0++) {
             stats[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = freq_table_get_index(stats,freq);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_stats0; _aux++) {
@@ -105,7 +105,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int freq = 255;
+        
+          int _len_stats0 = 65025;
+          struct cpufreq_stats * stats = (struct cpufreq_stats *) malloc(_len_stats0*sizeof(struct cpufreq_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stats__i0__freq_table0 = 1;
+          stats[_i0].freq_table = (unsigned int *) malloc(_len_stats__i0__freq_table0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_stats__i0__freq_table0; _j0++) {
+            stats[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = freq_table_get_index(stats,freq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stats0; _aux++) {
+          free(stats[_aux].freq_table);
+          }
+          free(stats);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int freq = 10;
+        
+          int _len_stats0 = 100;
+          struct cpufreq_stats * stats = (struct cpufreq_stats *) malloc(_len_stats0*sizeof(struct cpufreq_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stats__i0__freq_table0 = 1;
+          stats[_i0].freq_table = (unsigned int *) malloc(_len_stats__i0__freq_table0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_stats__i0__freq_table0; _j0++) {
+            stats[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = freq_table_get_index(stats,freq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stats0; _aux++) {
+          free(stats[_aux].freq_table);
+          }
+          free(stats);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stats0 = 1;
+          struct cpufreq_stats * stats = (struct cpufreq_stats *) malloc(_len_stats0*sizeof(struct cpufreq_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stats__i0__freq_table0 = 1;
+          stats[_i0].freq_table = (unsigned int *) malloc(_len_stats__i0__freq_table0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_stats__i0__freq_table0; _j0++) {
+            stats[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = freq_table_get_index(stats,freq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stats0; _aux++) {
+          free(stats[_aux].freq_table);
+          }
+          free(stats);
+        
+        break;
+    }
     default:
         usage();
         break;

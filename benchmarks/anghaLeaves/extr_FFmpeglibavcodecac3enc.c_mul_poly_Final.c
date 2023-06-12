@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static unsigned int mul_poly(unsigned int a, unsigned int 
     return c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,34 +85,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 139
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 100
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 100
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 100
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 100
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 100
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
           unsigned int a = 100;
+        
           unsigned int b = 100;
+        
           unsigned int poly = 100;
+        
           unsigned int benchRet = mul_poly(a,b,poly);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 171
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 113
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 113
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 113
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 113
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 113
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 120
+          // ------------------------------- 
+
           unsigned int a = 255;
+        
           unsigned int b = 255;
+        
           unsigned int poly = 255;
+        
           unsigned int benchRet = mul_poly(a,b,poly);
           printf("%u\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 61
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 61
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 61
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 61
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 61
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 64
+          // ------------------------------- 
+
           unsigned int a = 10;
+        
           unsigned int b = 10;
+        
           unsigned int poly = 10;
+        
+          unsigned int benchRet = mul_poly(a,b,poly);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 690
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 425
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 425
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 425
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 425
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 425
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 456
+          // ------------------------------- 
+
+          unsigned int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int poly = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned int benchRet = mul_poly(a,b,poly);
           printf("%u\n", benchRet); 
         

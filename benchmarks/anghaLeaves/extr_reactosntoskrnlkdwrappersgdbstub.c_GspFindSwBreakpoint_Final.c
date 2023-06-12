@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ GspFindSwBreakpoint(ULONG_PTR Address, PULONG PIndex)
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,11 +101,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long Address = 100;
+        
           int _len_PIndex0 = 1;
           unsigned long * PIndex = (unsigned long *) malloc(_len_PIndex0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_PIndex0; _i0++) {
             PIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = GspFindSwBreakpoint(Address,PIndex);
+          printf("%d\n", benchRet); 
+          free(PIndex);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long Address = 255;
+        
+          int _len_PIndex0 = 65025;
+          unsigned long * PIndex = (unsigned long *) malloc(_len_PIndex0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_PIndex0; _i0++) {
+            PIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = GspFindSwBreakpoint(Address,PIndex);
           printf("%d\n", benchRet); 
           free(PIndex);
@@ -117,21 +132,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long Address = 10;
+        
           int _len_PIndex0 = 100;
           unsigned long * PIndex = (unsigned long *) malloc(_len_PIndex0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_PIndex0; _i0++) {
             PIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = GspFindSwBreakpoint(Address,PIndex);
           printf("%d\n", benchRet); 
           free(PIndex);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long Address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_PIndex0 = 1;
+          unsigned long * PIndex = (unsigned long *) malloc(_len_PIndex0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_PIndex0; _i0++) {
+            PIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = GspFindSwBreakpoint(Address,PIndex);
+          printf("%d\n", benchRet); 
+          free(PIndex);
+        
+        break;
+    }
     default:
         usage();
         break;

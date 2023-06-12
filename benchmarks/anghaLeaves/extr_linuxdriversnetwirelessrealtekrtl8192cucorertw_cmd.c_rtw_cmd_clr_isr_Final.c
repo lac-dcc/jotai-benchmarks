@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ _func_enter_;
 _func_exit_;		
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pcmdpriv0 = 1;
+          int _len_pcmdpriv0 = 65025;
           struct cmd_priv * pcmdpriv = (struct cmd_priv *) malloc(_len_pcmdpriv0*sizeof(struct cmd_priv));
           for(int _i0 = 0; _i0 < _len_pcmdpriv0; _i0++) {
-            pcmdpriv[_i0].cmd_done_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcmdpriv[_i0].cmd_done_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rtw_cmd_clr_isr(pcmdpriv);
           free(pcmdpriv);
         
@@ -103,14 +100,30 @@ int main(int argc, char *argv[]) {
           int _len_pcmdpriv0 = 100;
           struct cmd_priv * pcmdpriv = (struct cmd_priv *) malloc(_len_pcmdpriv0*sizeof(struct cmd_priv));
           for(int _i0 = 0; _i0 < _len_pcmdpriv0; _i0++) {
-            pcmdpriv[_i0].cmd_done_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcmdpriv[_i0].cmd_done_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rtw_cmd_clr_isr(pcmdpriv);
           free(pcmdpriv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pcmdpriv0 = 1;
+          struct cmd_priv * pcmdpriv = (struct cmd_priv *) malloc(_len_pcmdpriv0*sizeof(struct cmd_priv));
+          for(int _i0 = 0; _i0 < _len_pcmdpriv0; _i0++) {
+              pcmdpriv[_i0].cmd_done_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rtw_cmd_clr_isr(pcmdpriv);
+          free(pcmdpriv);
+        
+        break;
+    }
     default:
         usage();
         break;

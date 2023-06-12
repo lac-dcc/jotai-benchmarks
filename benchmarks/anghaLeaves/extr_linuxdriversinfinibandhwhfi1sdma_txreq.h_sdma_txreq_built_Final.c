@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int sdma_txreq_built(struct sdma_txreq *tx)
 	return tx->num_desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tx0 = 1;
+          int _len_tx0 = 65025;
           struct sdma_txreq * tx = (struct sdma_txreq *) malloc(_len_tx0*sizeof(struct sdma_txreq));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
-            tx[_i0].num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx[_i0].num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sdma_txreq_built(tx);
           printf("%d\n", benchRet); 
           free(tx);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_tx0 = 100;
           struct sdma_txreq * tx = (struct sdma_txreq *) malloc(_len_tx0*sizeof(struct sdma_txreq));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
-            tx[_i0].num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx[_i0].num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sdma_txreq_built(tx);
           printf("%d\n", benchRet); 
           free(tx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tx0 = 1;
+          struct sdma_txreq * tx = (struct sdma_txreq *) malloc(_len_tx0*sizeof(struct sdma_txreq));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+              tx[_i0].num_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sdma_txreq_built(tx);
+          printf("%d\n", benchRet); 
+          free(tx);
+        
+        break;
+    }
     default:
         usage();
         break;

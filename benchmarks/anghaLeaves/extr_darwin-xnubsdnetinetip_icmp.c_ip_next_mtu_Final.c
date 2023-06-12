@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ ip_next_mtu(int mtu, int dir)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,7 +104,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mtu = 100;
+        
           int dir = 100;
+        
           int benchRet = ip_next_mtu(mtu,dir);
           printf("%d\n", benchRet); 
         
@@ -119,7 +116,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mtu = 255;
+        
           int dir = 255;
+        
           int benchRet = ip_next_mtu(mtu,dir);
           printf("%d\n", benchRet); 
         
@@ -129,13 +128,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mtu = 10;
+        
           int dir = 10;
+        
           int benchRet = ip_next_mtu(mtu,dir);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ip_next_mtu(mtu,dir);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int stb_not_crap(int best, int dist)
           || (best > 7  &&  dist <= 0x80000));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int best = 100;
+        
           int dist = 100;
+        
           int benchRet = stb_not_crap(best,dist);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int best = 255;
+        
           int dist = 255;
+        
           int benchRet = stb_not_crap(best,dist);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int best = 10;
+        
           int dist = 10;
+        
           int benchRet = stb_not_crap(best,dist);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int best = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = stb_not_crap(best,dist);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

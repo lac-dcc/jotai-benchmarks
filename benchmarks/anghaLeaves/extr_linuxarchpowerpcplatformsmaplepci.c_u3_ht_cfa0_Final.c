@@ -62,12 +62,6 @@ __attribute__((used)) static unsigned long u3_ht_cfa0(u8 devfn, u8 off)
 	return (devfn << 8) | off;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int devfn = 100;
+        
           int off = 100;
+        
           unsigned long benchRet = u3_ht_cfa0(devfn,off);
           printf("%lu\n", benchRet); 
         
@@ -94,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int devfn = 255;
+        
           int off = 255;
+        
           unsigned long benchRet = u3_ht_cfa0(devfn,off);
           printf("%lu\n", benchRet); 
         
@@ -104,13 +102,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int devfn = 10;
+        
           int off = 10;
+        
           unsigned long benchRet = u3_ht_cfa0(devfn,off);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

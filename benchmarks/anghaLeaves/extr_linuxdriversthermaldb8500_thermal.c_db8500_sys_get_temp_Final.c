@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int db8500_sys_get_temp(struct thermal_zone_device 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +84,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_thermal0 = 1;
+          int _len_thermal0 = 65025;
           struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
           for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
               int _len_thermal__i0__devdata0 = 1;
           thermal[_i0].devdata = (struct db8500_thermal_zone *) malloc(_len_thermal__i0__devdata0*sizeof(struct db8500_thermal_zone));
           for(int _j0 = 0; _j0 < _len_thermal__i0__devdata0; _j0++) {
-            thermal[_i0].devdata->cur_temp_pseudo = ((-2 * (next_i()%2)) + 1) * next_i();
+              thermal[_i0].devdata->cur_temp_pseudo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_temp0 = 1;
+        
+          int _len_temp0 = 65025;
           int * temp = (int *) malloc(_len_temp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
             temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = db8500_sys_get_temp(thermal,temp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_thermal0; _aux++) {
@@ -115,7 +115,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_thermal0 = 100;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              int _len_thermal__i0__devdata0 = 1;
+          thermal[_i0].devdata = (struct db8500_thermal_zone *) malloc(_len_thermal__i0__devdata0*sizeof(struct db8500_thermal_zone));
+          for(int _j0 = 0; _j0 < _len_thermal__i0__devdata0; _j0++) {
+              thermal[_i0].devdata->cur_temp_pseudo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_temp0 = 100;
+          int * temp = (int *) malloc(_len_temp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
+            temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = db8500_sys_get_temp(thermal,temp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thermal0; _aux++) {
+          free(thermal[_aux].devdata);
+          }
+          free(thermal);
+          free(temp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_thermal0 = 1;
+          struct thermal_zone_device * thermal = (struct thermal_zone_device *) malloc(_len_thermal0*sizeof(struct thermal_zone_device));
+          for(int _i0 = 0; _i0 < _len_thermal0; _i0++) {
+              int _len_thermal__i0__devdata0 = 1;
+          thermal[_i0].devdata = (struct db8500_thermal_zone *) malloc(_len_thermal__i0__devdata0*sizeof(struct db8500_thermal_zone));
+          for(int _j0 = 0; _j0 < _len_thermal__i0__devdata0; _j0++) {
+              thermal[_i0].devdata->cur_temp_pseudo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_temp0 = 1;
+          int * temp = (int *) malloc(_len_temp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
+            temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = db8500_sys_get_temp(thermal,temp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thermal0; _aux++) {
+          free(thermal[_aux].devdata);
+          }
+          free(thermal);
+          free(temp);
+        
+        break;
+    }
     default:
         usage();
         break;

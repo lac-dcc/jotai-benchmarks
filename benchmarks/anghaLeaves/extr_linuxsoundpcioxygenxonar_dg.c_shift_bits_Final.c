@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static inline unsigned int shift_bits(unsigned int value,
 		return (value >> (shift_from - shift_to)) & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,9 +84,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int value = 100;
+        
           unsigned int shift_from = 100;
+        
           unsigned int shift_to = 100;
+        
           unsigned int mask = 100;
+        
           unsigned int benchRet = shift_bits(value,shift_from,shift_to,mask);
           printf("%u\n", benchRet); 
         
@@ -101,9 +100,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int value = 255;
+        
           unsigned int shift_from = 255;
+        
           unsigned int shift_to = 255;
+        
           unsigned int mask = 255;
+        
           unsigned int benchRet = shift_bits(value,shift_from,shift_to,mask);
           printf("%u\n", benchRet); 
         
@@ -113,15 +116,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int value = 10;
+        
           unsigned int shift_from = 10;
+        
           unsigned int shift_to = 10;
+        
           unsigned int mask = 10;
+        
           unsigned int benchRet = shift_bits(value,shift_from,shift_to,mask);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int shift_from = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int shift_to = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = shift_bits(value,shift_from,shift_to,mask);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ __attribute__((used)) static void _setup_ctl_ops(struct dpu_hw_ctl_ops *ops,
 	ops->get_bitmask_cdm = dpu_hw_ctl_get_bitmask_cdm;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,30 +107,224 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           unsigned long cap = 100;
+        
           int _len_ops0 = 1;
           struct dpu_hw_ctl_ops * ops = (struct dpu_hw_ctl_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_ctl_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].get_bitmask_cdm = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_bitmask_intf = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_bitmask_mixer = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_bitmask_sspp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_blendstage = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].clear_all_blendstages = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].wait_reset_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].setup_intf_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].trigger_pending = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_flush_register = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].trigger_flush = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].update_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].clear_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].get_bitmask_cdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_intf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_mixer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_sspp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_blendstage = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_blendstages = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_reset_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_intf_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_flush_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].update_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          _setup_ctl_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          unsigned long cap = 255;
+        
+          int _len_ops0 = 65025;
+          struct dpu_hw_ctl_ops * ops = (struct dpu_hw_ctl_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_ctl_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_bitmask_cdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_intf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_mixer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_sspp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_blendstage = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_blendstages = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_reset_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_intf_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_flush_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].update_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_ctl_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          unsigned long cap = 10;
+        
+          int _len_ops0 = 100;
+          struct dpu_hw_ctl_ops * ops = (struct dpu_hw_ctl_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_ctl_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_bitmask_cdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_intf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_mixer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_sspp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_blendstage = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_blendstages = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_reset_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_intf_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_flush_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].update_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _setup_ctl_ops(ops,cap);
+          free(ops);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          unsigned long cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ops0 = 1;
+          struct dpu_hw_ctl_ops * ops = (struct dpu_hw_ctl_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_ctl_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_bitmask_cdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_intf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_mixer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_bitmask_sspp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_blendstage = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_blendstages = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_reset_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].setup_intf_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_flush_register = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].update_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_pending_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           _setup_ctl_ops(ops,cap);
           free(ops);
         

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u32 usba_int_enb_get(struct usba_udc *udc)
 	return udc->int_enb_cache;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_udc0 = 1;
+          int _len_udc0 = 65025;
           struct usba_udc * udc = (struct usba_udc *) malloc(_len_udc0*sizeof(struct usba_udc));
           for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
-            udc[_i0].int_enb_cache = ((-2 * (next_i()%2)) + 1) * next_i();
+              udc[_i0].int_enb_cache = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = usba_int_enb_get(udc);
           printf("%d\n", benchRet); 
           free(udc);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_udc0 = 100;
           struct usba_udc * udc = (struct usba_udc *) malloc(_len_udc0*sizeof(struct usba_udc));
           for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
-            udc[_i0].int_enb_cache = ((-2 * (next_i()%2)) + 1) * next_i();
+              udc[_i0].int_enb_cache = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = usba_int_enb_get(udc);
           printf("%d\n", benchRet); 
           free(udc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_udc0 = 1;
+          struct usba_udc * udc = (struct usba_udc *) malloc(_len_udc0*sizeof(struct usba_udc));
+          for(int _i0 = 0; _i0 < _len_udc0; _i0++) {
+              udc[_i0].int_enb_cache = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usba_int_enb_get(udc);
+          printf("%d\n", benchRet); 
+          free(udc);
+        
+        break;
+    }
     default:
         usage();
         break;

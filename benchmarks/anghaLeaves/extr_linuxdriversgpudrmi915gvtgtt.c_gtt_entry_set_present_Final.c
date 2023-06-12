@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void gtt_entry_set_present(struct intel_gvt_gtt_ent
 	e->val64 |= _PAGE_PRESENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_e0 = 1;
+          int _len_e0 = 65025;
           struct intel_gvt_gtt_entry * e = (struct intel_gvt_gtt_entry *) malloc(_len_e0*sizeof(struct intel_gvt_gtt_entry));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].val64 = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].val64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gtt_entry_set_present(e);
           free(e);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_e0 = 100;
           struct intel_gvt_gtt_entry * e = (struct intel_gvt_gtt_entry *) malloc(_len_e0*sizeof(struct intel_gvt_gtt_entry));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].val64 = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].val64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gtt_entry_set_present(e);
           free(e);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_e0 = 1;
+          struct intel_gvt_gtt_entry * e = (struct intel_gvt_gtt_entry *) malloc(_len_e0*sizeof(struct intel_gvt_gtt_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].val64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gtt_entry_set_present(e);
+          free(e);
+        
+        break;
+    }
     default:
         usage();
         break;

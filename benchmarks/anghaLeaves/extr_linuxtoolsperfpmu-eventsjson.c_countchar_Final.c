@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int countchar(char *map, char c, int end)
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +78,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 3584
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 1795
+          // ------------------------------- 
+          // static_instructions_O2 : 88
+          // dynamic_instructions_O2 : 508
+          // ------------------------------- 
+          // static_instructions_O3 : 88
+          // dynamic_instructions_O3 : 508
+          // ------------------------------- 
+          // static_instructions_Ofast : 88
+          // dynamic_instructions_Ofast : 508
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 1795
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 2050
+          // ------------------------------- 
+
+          char c = 255;
+        
+          int end = 255;
+        
+          int _len_map0 = 65025;
+          char * map = (char *) malloc(_len_map0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = countchar(map,c,end);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 154
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 80
+          // ------------------------------- 
+          // static_instructions_O2 : 56
+          // dynamic_instructions_O2 : 63
+          // ------------------------------- 
+          // static_instructions_O3 : 56
+          // dynamic_instructions_O3 : 63
+          // ------------------------------- 
+          // static_instructions_Ofast : 56
+          // dynamic_instructions_Ofast : 63
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 80
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 90
+          // ------------------------------- 
+
           char c = 10;
+        
           int end = 10;
+        
           int _len_map0 = 100;
           char * map = (char *) malloc(_len_map0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
             map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = countchar(map,c,end);
+          printf("%d\n", benchRet); 
+          free(map);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_map0 = 1;
+          char * map = (char *) malloc(_len_map0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+            map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = countchar(map,c,end);
           printf("%d\n", benchRet); 
           free(map);

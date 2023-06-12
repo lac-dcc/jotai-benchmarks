@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static inline int pblk_addr_in_cache(struct ppa_addr ppa)
 	return (ppa.ppa != ADDR_EMPTY && ppa.c.is_cached);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,12 +75,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           struct ppa_addr ppa;
-        ppa.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa.c.is_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa.c.is_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int benchRet = pblk_addr_in_cache(ppa);
           printf("%d\n", benchRet); 
         

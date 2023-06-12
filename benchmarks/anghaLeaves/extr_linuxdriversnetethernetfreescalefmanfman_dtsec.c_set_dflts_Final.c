@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static void set_dflts(struct dtsec_cfg *cfg)
 	cfg->maximum_frame = DEFAULT_MAXIMUM_FRAME;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,33 +99,90 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfg0 = 1;
+          int _len_cfg0 = 65025;
           struct dtsec_cfg * cfg = (struct dtsec_cfg *) malloc(_len_cfg0*sizeof(struct dtsec_cfg));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].tx_pad_crc = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].ptp_tsu_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].ptp_exception_en = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].maximum_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].back_to_back_ipg = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].min_ifg_enforcement = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].non_back_to_back_ipg2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].non_back_to_back_ipg1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].tx_pause_time_extd = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].preamble_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].rx_prepend = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].tx_pause_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].halfdup_coll_window = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].halfdup_retransmit = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].tx_pad_crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ptp_tsu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ptp_exception_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].maximum_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].back_to_back_ipg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].min_ifg_enforcement = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].non_back_to_back_ipg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].non_back_to_back_ipg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_pause_time_extd = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].preamble_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].rx_prepend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_pause_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].halfdup_coll_window = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].halfdup_retransmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_dflts(cfg);
           free(cfg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cfg0 = 100;
+          struct dtsec_cfg * cfg = (struct dtsec_cfg *) malloc(_len_cfg0*sizeof(struct dtsec_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].tx_pad_crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ptp_tsu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ptp_exception_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].maximum_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].back_to_back_ipg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].min_ifg_enforcement = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].non_back_to_back_ipg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].non_back_to_back_ipg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_pause_time_extd = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].preamble_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].rx_prepend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_pause_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].halfdup_coll_window = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].halfdup_retransmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_dflts(cfg);
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cfg0 = 1;
+          struct dtsec_cfg * cfg = (struct dtsec_cfg *) malloc(_len_cfg0*sizeof(struct dtsec_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].tx_pad_crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ptp_tsu_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].ptp_exception_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].maximum_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].back_to_back_ipg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].min_ifg_enforcement = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].non_back_to_back_ipg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].non_back_to_back_ipg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_pause_time_extd = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].preamble_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].rx_prepend = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].tx_pause_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].halfdup_coll_window = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].halfdup_retransmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_dflts(cfg);
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

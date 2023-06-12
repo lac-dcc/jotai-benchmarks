@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static u32 bbt_get_ver_offs(struct mtd_info *mtd, struct n
 	return ver_offs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +81,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mtd0 = 1;
+          int _len_mtd0 = 65025;
           struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].writesize = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].writesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_td0 = 1;
+        
+          int _len_td0 = 65025;
           struct nand_bbt_descr * td = (struct nand_bbt_descr *) malloc(_len_td0*sizeof(struct nand_bbt_descr));
           for(int _i0 = 0; _i0 < _len_td0; _i0++) {
-            td[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-        td[_i0].veroffs = ((-2 * (next_i()%2)) + 1) * next_i();
+              td[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          td[_i0].veroffs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bbt_get_ver_offs(mtd,td);
           printf("%d\n", benchRet); 
           free(mtd);
@@ -106,7 +106,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mtd0 = 100;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].writesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_td0 = 100;
+          struct nand_bbt_descr * td = (struct nand_bbt_descr *) malloc(_len_td0*sizeof(struct nand_bbt_descr));
+          for(int _i0 = 0; _i0 < _len_td0; _i0++) {
+              td[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          td[_i0].veroffs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bbt_get_ver_offs(mtd,td);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(td);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mtd0 = 1;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].writesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_td0 = 1;
+          struct nand_bbt_descr * td = (struct nand_bbt_descr *) malloc(_len_td0*sizeof(struct nand_bbt_descr));
+          for(int _i0 = 0; _i0 < _len_td0; _i0++) {
+              td[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          td[_i0].veroffs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bbt_get_ver_offs(mtd,td);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(td);
+        
+        break;
+    }
     default:
         usage();
         break;

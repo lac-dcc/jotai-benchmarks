@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static float colour_to_float(DWORD colour, DWORD mask)
     return (float)(colour & mask) / (float)mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int colour = 100;
+        
           int mask = 100;
+        
           float benchRet = colour_to_float(colour,mask);
           printf("%f\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int colour = 255;
+        
           int mask = 255;
+        
           float benchRet = colour_to_float(colour,mask);
           printf("%f\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int colour = 10;
+        
           int mask = 10;
+        
           float benchRet = colour_to_float(colour,mask);
           printf("%f\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int colour = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          float benchRet = colour_to_float(colour,mask);
+          printf("%f\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

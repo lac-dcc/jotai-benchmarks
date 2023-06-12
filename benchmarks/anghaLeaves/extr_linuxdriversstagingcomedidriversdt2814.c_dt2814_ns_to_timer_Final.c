@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int dt2814_ns_to_timer(unsigned int *ns, unsigned i
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,30 +88,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 126
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 83
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 82
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 89
+          // ------------------------------- 
+
           unsigned int flags = 100;
+        
           int _len_ns0 = 1;
           unsigned int * ns = (unsigned int *) malloc(_len_ns0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_ns0; _i0++) {
             ns[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dt2814_ns_to_timer(ns,flags);
           printf("%d\n", benchRet); 
           free(ns);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 126
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 83
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 82
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 89
+          // ------------------------------- 
+
+          unsigned int flags = 255;
+        
+          int _len_ns0 = 65025;
+          unsigned int * ns = (unsigned int *) malloc(_len_ns0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_ns0; _i0++) {
+            ns[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dt2814_ns_to_timer(ns,flags);
+          printf("%d\n", benchRet); 
+          free(ns);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 126
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 83
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 82
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 89
+          // ------------------------------- 
+
           unsigned int flags = 10;
+        
           int _len_ns0 = 100;
           unsigned int * ns = (unsigned int *) malloc(_len_ns0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_ns0; _i0++) {
             ns[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = dt2814_ns_to_timer(ns,flags);
+          printf("%d\n", benchRet); 
+          free(ns);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 126
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 83
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 82
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 89
+          // ------------------------------- 
+
+          unsigned int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ns0 = 1;
+          unsigned int * ns = (unsigned int *) malloc(_len_ns0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_ns0; _i0++) {
+            ns[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = dt2814_ns_to_timer(ns,flags);
           printf("%d\n", benchRet); 
           free(ns);

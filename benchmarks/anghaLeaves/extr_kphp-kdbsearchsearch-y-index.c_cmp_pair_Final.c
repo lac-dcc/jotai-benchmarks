@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static inline int cmp_pair (pair_t *X, pair_t *Y) {
   return X->position - Y->position;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,23 +87,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_X0 = 1;
+          int _len_X0 = 65025;
           struct TYPE_4__ * X = (struct TYPE_4__ *) malloc(_len_X0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_X0; _i0++) {
-            X[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
-        X[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        X[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+              X[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          X[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          X[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_Y0 = 1;
+        
+          int _len_Y0 = 65025;
           struct TYPE_4__ * Y = (struct TYPE_4__ *) malloc(_len_Y0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
-            Y[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
-        Y[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        Y[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+              Y[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmp_pair(X,Y);
           printf("%d\n", benchRet); 
           free(X);
@@ -115,7 +115,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_X0 = 100;
+          struct TYPE_4__ * X = (struct TYPE_4__ *) malloc(_len_X0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+              X[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          X[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          X[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Y0 = 100;
+          struct TYPE_4__ * Y = (struct TYPE_4__ *) malloc(_len_Y0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
+              Y[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_pair(X,Y);
+          printf("%d\n", benchRet); 
+          free(X);
+          free(Y);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_X0 = 1;
+          struct TYPE_4__ * X = (struct TYPE_4__ *) malloc(_len_X0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+              X[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          X[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          X[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_Y0 = 1;
+          struct TYPE_4__ * Y = (struct TYPE_4__ *) malloc(_len_Y0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_Y0; _i0++) {
+              Y[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y[_i0].doc_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y[_i0].position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_pair(X,Y);
+          printf("%d\n", benchRet); 
+          free(X);
+          free(Y);
+        
+        break;
+    }
     default:
         usage();
         break;

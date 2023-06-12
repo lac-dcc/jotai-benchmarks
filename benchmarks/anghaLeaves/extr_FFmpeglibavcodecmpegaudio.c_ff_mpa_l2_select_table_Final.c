@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ int ff_mpa_l2_select_table(int bitrate, int nb_channels, int freq, int lsf)
     return table;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,9 +94,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bitrate = 100;
+        
           int nb_channels = 100;
+        
           int freq = 100;
+        
           int lsf = 100;
+        
           int benchRet = ff_mpa_l2_select_table(bitrate,nb_channels,freq,lsf);
           printf("%d\n", benchRet); 
         
@@ -111,9 +110,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bitrate = 255;
+        
           int nb_channels = 255;
+        
           int freq = 255;
+        
           int lsf = 255;
+        
           int benchRet = ff_mpa_l2_select_table(bitrate,nb_channels,freq,lsf);
           printf("%d\n", benchRet); 
         
@@ -123,15 +126,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bitrate = 10;
+        
           int nb_channels = 10;
+        
           int freq = 10;
+        
           int lsf = 10;
+        
           int benchRet = ff_mpa_l2_select_table(bitrate,nb_channels,freq,lsf);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bitrate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nb_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int lsf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ff_mpa_l2_select_table(bitrate,nb_channels,freq,lsf);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

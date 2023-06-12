@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ GetVersionNumber(BOOL bLocal, LPOSVERSIONINFOEX osvi, LPSERVER_INFO_102 pBuf102)
 	return VersionNumber;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,22 +95,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long bLocal = 100;
+        
           int _len_osvi0 = 1;
           struct TYPE_6__ * osvi = (struct TYPE_6__ *) malloc(_len_osvi0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
-            osvi[_i0].dwMajorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
-        osvi[_i0].dwMinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+              osvi[_i0].dwMajorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          osvi[_i0].dwMinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pBuf1020 = 1;
           struct TYPE_5__ * pBuf102 = (struct TYPE_5__ *) malloc(_len_pBuf1020*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_pBuf1020; _i0++) {
-            pBuf102[_i0].sv102_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
-        pBuf102[_i0].sv102_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+              pBuf102[_i0].sv102_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBuf102[_i0].sv102_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = GetVersionNumber(bLocal,osvi,pBuf102);
+          printf("%d\n", benchRet); 
+          free(osvi);
+          free(pBuf102);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long bLocal = 255;
+        
+          int _len_osvi0 = 65025;
+          struct TYPE_6__ * osvi = (struct TYPE_6__ *) malloc(_len_osvi0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].dwMajorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          osvi[_i0].dwMinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pBuf1020 = 65025;
+          struct TYPE_5__ * pBuf102 = (struct TYPE_5__ *) malloc(_len_pBuf1020*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pBuf1020; _i0++) {
+              pBuf102[_i0].sv102_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBuf102[_i0].sv102_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = GetVersionNumber(bLocal,osvi,pBuf102);
+          printf("%d\n", benchRet); 
+          free(osvi);
+          free(pBuf102);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long bLocal = 10;
+        
+          int _len_osvi0 = 100;
+          struct TYPE_6__ * osvi = (struct TYPE_6__ *) malloc(_len_osvi0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].dwMajorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          osvi[_i0].dwMinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pBuf1020 = 100;
+          struct TYPE_5__ * pBuf102 = (struct TYPE_5__ *) malloc(_len_pBuf1020*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pBuf1020; _i0++) {
+              pBuf102[_i0].sv102_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBuf102[_i0].sv102_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = GetVersionNumber(bLocal,osvi,pBuf102);
+          printf("%d\n", benchRet); 
+          free(osvi);
+          free(pBuf102);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long bLocal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_osvi0 = 1;
+          struct TYPE_6__ * osvi = (struct TYPE_6__ *) malloc(_len_osvi0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_osvi0; _i0++) {
+              osvi[_i0].dwMajorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          osvi[_i0].dwMinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pBuf1020 = 1;
+          struct TYPE_5__ * pBuf102 = (struct TYPE_5__ *) malloc(_len_pBuf1020*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_pBuf1020; _i0++) {
+              pBuf102[_i0].sv102_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBuf102[_i0].sv102_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = GetVersionNumber(bLocal,osvi,pBuf102);
           printf("%d\n", benchRet); 
           free(osvi);

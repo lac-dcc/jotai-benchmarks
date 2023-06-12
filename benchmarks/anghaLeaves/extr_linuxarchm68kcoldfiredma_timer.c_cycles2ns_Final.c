@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static unsigned long long cycles2ns(unsigned long cycl)
 			CYC2NS_SCALE) >> CYC2NS_SCALE_FACTOR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long cycl = 100;
+        
           unsigned long long benchRet = cycles2ns(cycl);
           printf("%llu\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long cycl = 255;
+        
           unsigned long long benchRet = cycles2ns(cycl);
           printf("%llu\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long cycl = 10;
+        
           unsigned long long benchRet = cycles2ns(cycl);
           printf("%llu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long cycl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long long benchRet = cycles2ns(cycl);
+          printf("%llu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

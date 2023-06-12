@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int __promote(struct dm_bio_prison_v2 *prison,
 	return cell->shared_count > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +83,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned int new_lock_level = 100;
+        
           int _len_prison0 = 1;
           struct dm_bio_prison_v2 * prison = (struct dm_bio_prison_v2 *) malloc(_len_prison0*sizeof(struct dm_bio_prison_v2));
           for(int _i0 = 0; _i0 < _len_prison0; _i0++) {
-            prison[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              prison[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cell0 = 1;
           struct dm_bio_prison_cell_v2 * cell = (struct dm_bio_prison_cell_v2 *) malloc(_len_cell0*sizeof(struct dm_bio_prison_cell_v2));
           for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
-            cell[_i0].exclusive_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].shared_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].exclusive_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              cell[_i0].exclusive_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].shared_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].exclusive_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __promote(prison,cell,new_lock_level);
+          printf("%d\n", benchRet); 
+          free(prison);
+          free(cell);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int new_lock_level = 255;
+        
+          int _len_prison0 = 65025;
+          struct dm_bio_prison_v2 * prison = (struct dm_bio_prison_v2 *) malloc(_len_prison0*sizeof(struct dm_bio_prison_v2));
+          for(int _i0 = 0; _i0 < _len_prison0; _i0++) {
+              prison[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cell0 = 65025;
+          struct dm_bio_prison_cell_v2 * cell = (struct dm_bio_prison_cell_v2 *) malloc(_len_cell0*sizeof(struct dm_bio_prison_cell_v2));
+          for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
+              cell[_i0].exclusive_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].shared_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].exclusive_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __promote(prison,cell,new_lock_level);
+          printf("%d\n", benchRet); 
+          free(prison);
+          free(cell);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int new_lock_level = 10;
+        
+          int _len_prison0 = 100;
+          struct dm_bio_prison_v2 * prison = (struct dm_bio_prison_v2 *) malloc(_len_prison0*sizeof(struct dm_bio_prison_v2));
+          for(int _i0 = 0; _i0 < _len_prison0; _i0++) {
+              prison[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cell0 = 100;
+          struct dm_bio_prison_cell_v2 * cell = (struct dm_bio_prison_cell_v2 *) malloc(_len_cell0*sizeof(struct dm_bio_prison_cell_v2));
+          for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
+              cell[_i0].exclusive_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].shared_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].exclusive_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __promote(prison,cell,new_lock_level);
+          printf("%d\n", benchRet); 
+          free(prison);
+          free(cell);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int new_lock_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_prison0 = 1;
+          struct dm_bio_prison_v2 * prison = (struct dm_bio_prison_v2 *) malloc(_len_prison0*sizeof(struct dm_bio_prison_v2));
+          for(int _i0 = 0; _i0 < _len_prison0; _i0++) {
+              prison[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cell0 = 1;
+          struct dm_bio_prison_cell_v2 * cell = (struct dm_bio_prison_cell_v2 *) malloc(_len_cell0*sizeof(struct dm_bio_prison_cell_v2));
+          for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
+              cell[_i0].exclusive_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].shared_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].exclusive_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __promote(prison,cell,new_lock_level);
           printf("%d\n", benchRet); 
           free(prison);

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -57,12 +58,6 @@ typedef  int /*<<< orphan*/  uint8_t ;
 
 __attribute__((used)) static inline uint8_t mqtt_get_connect_ret_code(uint8_t* buffer) { return (buffer[3]); }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -75,21 +70,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_buffer0 = 100;
+          int _len_buffer0 = 65025;
           int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mqtt_get_connect_ret_code(buffer);
           printf("%d\n", benchRet); 
           free(buffer);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_buffer0 = 100;
+          int * buffer = (int *) malloc(_len_buffer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mqtt_get_connect_ret_code(buffer);
+          printf("%d\n", benchRet); 
+          free(buffer);
+        
+        break;
+    }
     default:
         usage();
         break;

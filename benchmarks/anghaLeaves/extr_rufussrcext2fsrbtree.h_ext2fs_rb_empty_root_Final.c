@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int ext2fs_rb_empty_root(struct rb_root *roo
 	return root->rb_node == NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_root0 = 65025;
+          struct rb_root * root = (struct rb_root *) malloc(_len_root0*sizeof(struct rb_root));
+          for(int _i0 = 0; _i0 < _len_root0; _i0++) {
+              int _len_root__i0__rb_node0 = 1;
+          root[_i0].rb_node = (int *) malloc(_len_root__i0__rb_node0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_root__i0__rb_node0; _j0++) {
+            root[_i0].rb_node[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ext2fs_rb_empty_root(root);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_root0; _aux++) {
+          free(root[_aux].rb_node);
+          }
+          free(root);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_root0 = 100;
+          struct rb_root * root = (struct rb_root *) malloc(_len_root0*sizeof(struct rb_root));
+          for(int _i0 = 0; _i0 < _len_root0; _i0++) {
+              int _len_root__i0__rb_node0 = 1;
+          root[_i0].rb_node = (int *) malloc(_len_root__i0__rb_node0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_root__i0__rb_node0; _j0++) {
+            root[_i0].rb_node[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ext2fs_rb_empty_root(root);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_root0; _aux++) {
+          free(root[_aux].rb_node);
+          }
+          free(root);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_root0 = 1;
           struct rb_root * root = (struct rb_root *) malloc(_len_root0*sizeof(struct rb_root));
           for(int _i0 = 0; _i0 < _len_root0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_root__i0__rb_node0; _j0++) {
             root[_i0].rb_node[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ext2fs_rb_empty_root(root);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_root0; _aux++) {

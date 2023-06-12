@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +106,6 @@ __attribute__((used)) static int clip_1d(int *x0, int *y0, int *x1, int *y1, int
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,30 +118,244 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int maxdim = 100;
+        
           int _len_x00 = 1;
           int * x0 = (int *) malloc(_len_x00*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x00; _i0++) {
             x0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_y00 = 1;
           int * y0 = (int *) malloc(_len_y00*sizeof(int));
           for(int _i0 = 0; _i0 < _len_y00; _i0++) {
             y0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_x10 = 1;
           int * x1 = (int *) malloc(_len_x10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x10; _i0++) {
             x1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_y10 = 1;
           int * y1 = (int *) malloc(_len_y10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_y10; _i0++) {
             y1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = clip_1d(x0,y0,x1,y1,maxdim);
+          printf("%d\n", benchRet); 
+          free(x0);
+          free(y0);
+          free(x1);
+          free(y1);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int maxdim = 255;
+        
+          int _len_x00 = 65025;
+          int * x0 = (int *) malloc(_len_x00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x00; _i0++) {
+            x0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y00 = 65025;
+          int * y0 = (int *) malloc(_len_y00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y00; _i0++) {
+            y0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_x10 = 65025;
+          int * x1 = (int *) malloc(_len_x10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x10; _i0++) {
+            x1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y10 = 65025;
+          int * y1 = (int *) malloc(_len_y10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y10; _i0++) {
+            y1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = clip_1d(x0,y0,x1,y1,maxdim);
+          printf("%d\n", benchRet); 
+          free(x0);
+          free(y0);
+          free(x1);
+          free(y1);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int maxdim = 10;
+        
+          int _len_x00 = 100;
+          int * x0 = (int *) malloc(_len_x00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x00; _i0++) {
+            x0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y00 = 100;
+          int * y0 = (int *) malloc(_len_y00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y00; _i0++) {
+            y0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_x10 = 100;
+          int * x1 = (int *) malloc(_len_x10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x10; _i0++) {
+            x1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y10 = 100;
+          int * y1 = (int *) malloc(_len_y10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y10; _i0++) {
+            y1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = clip_1d(x0,y0,x1,y1,maxdim);
+          printf("%d\n", benchRet); 
+          free(x0);
+          free(y0);
+          free(x1);
+          free(y1);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int maxdim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_x00 = 1;
+          int * x0 = (int *) malloc(_len_x00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x00; _i0++) {
+            x0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y00 = 1;
+          int * y0 = (int *) malloc(_len_y00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y00; _i0++) {
+            y0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_x10 = 1;
+          int * x1 = (int *) malloc(_len_x10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x10; _i0++) {
+            x1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y10 = 1;
+          int * y1 = (int *) malloc(_len_y10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_y10; _i0++) {
+            y1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = clip_1d(x0,y0,x1,y1,maxdim);
           printf("%d\n", benchRet); 
           free(x0);

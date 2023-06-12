@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ mb_set_largest_free_order(struct super_block *sb, struct ext4_group_info *grp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +87,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sb0 = 1;
+          int _len_sb0 = 65025;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].s_blocksize_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_blocksize_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_grp0 = 1;
+        
+          int _len_grp0 = 65025;
           struct ext4_group_info * grp = (struct ext4_group_info *) malloc(_len_grp0*sizeof(struct ext4_group_info));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].bb_largest_free_order = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].bb_largest_free_order = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_grp__i0__bb_counters0 = 1;
           grp[_i0].bb_counters = (long *) malloc(_len_grp__i0__bb_counters0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_grp__i0__bb_counters0; _j0++) {
             grp[_i0].bb_counters[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           mb_set_largest_free_order(sb,grp);
           free(sb);
           for(int _aux = 0; _aux < _len_grp0; _aux++) {
@@ -118,7 +118,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sb0 = 100;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_blocksize_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_grp0 = 100;
+          struct ext4_group_info * grp = (struct ext4_group_info *) malloc(_len_grp0*sizeof(struct ext4_group_info));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].bb_largest_free_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_grp__i0__bb_counters0 = 1;
+          grp[_i0].bb_counters = (long *) malloc(_len_grp__i0__bb_counters0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_grp__i0__bb_counters0; _j0++) {
+            grp[_i0].bb_counters[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mb_set_largest_free_order(sb,grp);
+          free(sb);
+          for(int _aux = 0; _aux < _len_grp0; _aux++) {
+          free(grp[_aux].bb_counters);
+          }
+          free(grp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sb0 = 1;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_blocksize_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_grp0 = 1;
+          struct ext4_group_info * grp = (struct ext4_group_info *) malloc(_len_grp0*sizeof(struct ext4_group_info));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].bb_largest_free_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_grp__i0__bb_counters0 = 1;
+          grp[_i0].bb_counters = (long *) malloc(_len_grp__i0__bb_counters0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_grp__i0__bb_counters0; _j0++) {
+            grp[_i0].bb_counters[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          mb_set_largest_free_order(sb,grp);
+          free(sb);
+          for(int _aux = 0; _aux < _len_grp0; _aux++) {
+          free(grp[_aux].bb_counters);
+          }
+          free(grp);
+        
+        break;
+    }
     default:
         usage();
         break;

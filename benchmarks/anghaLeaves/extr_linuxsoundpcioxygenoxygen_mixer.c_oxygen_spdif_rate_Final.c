@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +94,6 @@ __attribute__((used)) static unsigned int oxygen_spdif_rate(unsigned int oxygen_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,6 +110,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int oxygen_rate = 100;
+        
           unsigned int benchRet = oxygen_spdif_rate(oxygen_rate);
           printf("%u\n", benchRet); 
         
@@ -124,6 +120,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int oxygen_rate = 255;
+        
           unsigned int benchRet = oxygen_spdif_rate(oxygen_rate);
           printf("%u\n", benchRet); 
         
@@ -133,12 +130,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int oxygen_rate = 10;
+        
           unsigned int benchRet = oxygen_spdif_rate(oxygen_rate);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int oxygen_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = oxygen_spdif_rate(oxygen_rate);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

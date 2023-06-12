@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ count_targets(struct aoedev *d, int *untainted)
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,28 +85,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_d0 = 1;
+          int _len_d0 = 65025;
           struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].ntargets = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].ntargets = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_d__i0__targets0 = 1;
           d[_i0].targets = (struct TYPE_2__ **) malloc(_len_d__i0__targets0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_d__i0__targets0; _j0++) {
             int _len_d__i0__targets1 = 1;
             d[_i0].targets[_j0] = (struct TYPE_2__ *) malloc(_len_d__i0__targets1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_d__i0__targets1; _j1++) {
-              d[_i0].targets[_j0]->taint = ((-2 * (next_i()%2)) + 1) * next_i();
+                d[_i0].targets[_j0]->taint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
-          int _len_untainted0 = 1;
+        
+          int _len_untainted0 = 65025;
           int * untainted = (int *) malloc(_len_untainted0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_untainted0; _i0++) {
             untainted[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = count_targets(d,untainted);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_d0; _aux++) {
@@ -122,7 +122,80 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_d0 = 100;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].ntargets = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_d__i0__targets0 = 1;
+          d[_i0].targets = (struct TYPE_2__ **) malloc(_len_d__i0__targets0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_d__i0__targets0; _j0++) {
+            int _len_d__i0__targets1 = 1;
+            d[_i0].targets[_j0] = (struct TYPE_2__ *) malloc(_len_d__i0__targets1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_d__i0__targets1; _j1++) {
+                d[_i0].targets[_j0]->taint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_untainted0 = 100;
+          int * untainted = (int *) malloc(_len_untainted0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_untainted0; _i0++) {
+            untainted[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = count_targets(d,untainted);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(*(d[_aux].targets));
+        free(d[_aux].targets);
+          }
+          free(d);
+          free(untainted);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_d0 = 1;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].ntargets = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_d__i0__targets0 = 1;
+          d[_i0].targets = (struct TYPE_2__ **) malloc(_len_d__i0__targets0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_d__i0__targets0; _j0++) {
+            int _len_d__i0__targets1 = 1;
+            d[_i0].targets[_j0] = (struct TYPE_2__ *) malloc(_len_d__i0__targets1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_d__i0__targets1; _j1++) {
+                d[_i0].targets[_j0]->taint = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_untainted0 = 1;
+          int * untainted = (int *) malloc(_len_untainted0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_untainted0; _i0++) {
+            untainted[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = count_targets(d,untainted);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(*(d[_aux].targets));
+        free(d[_aux].targets);
+          }
+          free(d);
+          free(untainted);
+        
+        break;
+    }
     default:
         usage();
         break;

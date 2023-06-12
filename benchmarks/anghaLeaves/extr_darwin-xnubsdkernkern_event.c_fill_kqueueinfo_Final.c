@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ fill_kqueueinfo(struct kqueue *kq, struct kqueue_info * kinfo)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,24 +109,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_kq0 = 1;
+          int _len_kq0 = 65025;
           struct kqueue * kq = (struct kqueue *) malloc(_len_kq0*sizeof(struct kqueue));
           for(int _i0 = 0; _i0 < _len_kq0; _i0++) {
-            kq[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        kq[_i0].kq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              kq[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          kq[_i0].kq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_kinfo0 = 1;
+        
+          int _len_kinfo0 = 65025;
           struct kqueue_info * kinfo = (struct kqueue_info *) malloc(_len_kinfo0*sizeof(struct kqueue_info));
           for(int _i0 = 0; _i0 < _len_kinfo0; _i0++) {
-            kinfo[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        kinfo[_i0].kq_stat.vst_blksize = ((-2 * (next_i()%2)) + 1) * next_i();
-        kinfo[_i0].kq_stat.vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
-        kinfo[_i0].kq_stat.vst_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        kinfo[_i0].kq_stat.vst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              kinfo[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_blksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = fill_kqueueinfo(kq,kinfo);
           printf("%d\n", benchRet); 
           free(kq);
@@ -138,7 +139,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_kq0 = 100;
+          struct kqueue * kq = (struct kqueue *) malloc(_len_kq0*sizeof(struct kqueue));
+          for(int _i0 = 0; _i0 < _len_kq0; _i0++) {
+              kq[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          kq[_i0].kq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_kinfo0 = 100;
+          struct kqueue_info * kinfo = (struct kqueue_info *) malloc(_len_kinfo0*sizeof(struct kqueue_info));
+          for(int _i0 = 0; _i0 < _len_kinfo0; _i0++) {
+              kinfo[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_blksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fill_kqueueinfo(kq,kinfo);
+          printf("%d\n", benchRet); 
+          free(kq);
+          free(kinfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_kq0 = 1;
+          struct kqueue * kq = (struct kqueue *) malloc(_len_kq0*sizeof(struct kqueue));
+          for(int _i0 = 0; _i0 < _len_kq0; _i0++) {
+              kq[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          kq[_i0].kq_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_kinfo0 = 1;
+          struct kqueue_info * kinfo = (struct kqueue_info *) malloc(_len_kinfo0*sizeof(struct kqueue_info));
+          for(int _i0 = 0; _i0 < _len_kinfo0; _i0++) {
+              kinfo[_i0].kq_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_blksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_ino = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          kinfo[_i0].kq_stat.vst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = fill_kqueueinfo(kq,kinfo);
+          printf("%d\n", benchRet); 
+          free(kq);
+          free(kinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

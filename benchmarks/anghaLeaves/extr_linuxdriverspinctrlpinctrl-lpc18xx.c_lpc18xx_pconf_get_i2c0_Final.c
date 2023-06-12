@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -117,12 +119,6 @@ __attribute__((used)) static int lpc18xx_pconf_get_i2c0(enum pin_config_param pa
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,13 +135,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum pin_config_param param = 0;
+        
           int reg = 100;
+        
           unsigned int pin = 100;
+        
           int _len_arg0 = 1;
           int * arg = (int *) malloc(_len_arg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = lpc18xx_pconf_get_i2c0(param,arg,reg,pin);
+          printf("%d\n", benchRet); 
+          free(arg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          enum pin_config_param param = 0;
+        
+          int reg = 255;
+        
+          unsigned int pin = 255;
+        
+          int _len_arg0 = 65025;
+          int * arg = (int *) malloc(_len_arg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = lpc18xx_pconf_get_i2c0(param,arg,reg,pin);
           printf("%d\n", benchRet); 
           free(arg);
@@ -153,23 +174,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           enum pin_config_param param = 0;
+        
           int reg = 10;
+        
           unsigned int pin = 10;
+        
           int _len_arg0 = 100;
           int * arg = (int *) malloc(_len_arg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = lpc18xx_pconf_get_i2c0(param,arg,reg,pin);
           printf("%d\n", benchRet); 
           free(arg);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum pin_config_param param = 0;
+        
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_arg0 = 1;
+          int * arg = (int *) malloc(_len_arg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lpc18xx_pconf_get_i2c0(param,arg,reg,pin);
+          printf("%d\n", benchRet); 
+          free(arg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void dso__set_sorted_by_name(struct dso *dso)
 	dso->sorted_by_name = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dso0 = 1;
+          int _len_dso0 = 65025;
           struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
           for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
-            dso[_i0].sorted_by_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              dso[_i0].sorted_by_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dso__set_sorted_by_name(dso);
           free(dso);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_dso0 = 100;
           struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
           for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
-            dso[_i0].sorted_by_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              dso[_i0].sorted_by_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dso__set_sorted_by_name(dso);
           free(dso);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dso0 = 1;
+          struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
+          for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
+              dso[_i0].sorted_by_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dso__set_sorted_by_name(dso);
+          free(dso);
+        
+        break;
+    }
     default:
         usage();
         break;

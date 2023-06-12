@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ int make_tag (char *tag, int type, unsigned value) {
   return p - tag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +80,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int type = 10;
-          unsigned int value = 10;
-          int _len_tag0 = 100;
+          int type = 255;
+        
+          unsigned int value = 255;
+        
+          int _len_tag0 = 65025;
           char * tag = (char *) malloc(_len_tag0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
             tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = make_tag(tag,type,value);
           printf("%d\n", benchRet); 
           free(tag);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int type = 10;
+        
+          unsigned int value = 10;
+        
+          int _len_tag0 = 100;
+          char * tag = (char *) malloc(_len_tag0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = make_tag(tag,type,value);
+          printf("%d\n", benchRet); 
+          free(tag);
+        
+        break;
+    }
     default:
         usage();
         break;

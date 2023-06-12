@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline bool mp_media_ready_to_start(mp_media_t *m)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_m0 = 65025;
+          struct TYPE_7__ * m = (struct TYPE_7__ *) malloc(_len_m0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_media_ready_to_start(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_m0 = 100;
+          struct TYPE_7__ * m = (struct TYPE_7__ *) malloc(_len_m0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mp_media_ready_to_start(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_m0 = 1;
           struct TYPE_7__ * m = (struct TYPE_7__ *) malloc(_len_m0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].v.eof = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].a.eof = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].v.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].v.eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.frame_ready = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].a.eof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          m[_i0].has_audio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mp_media_ready_to_start(m);
           printf("%d\n", benchRet); 
           free(m);

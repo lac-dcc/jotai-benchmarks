@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static void qeth_l3_fill_netmask(u8 *netmask, unsigned int
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +83,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 297
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 184
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 167
+          // ------------------------------- 
+          // static_instructions_O3 : 83
+          // dynamic_instructions_O3 : 83
+          // ------------------------------- 
+          // static_instructions_Ofast : 83
+          // dynamic_instructions_Ofast : 83
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 184
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 202
+          // ------------------------------- 
+
+          unsigned int len = 255;
+        
+          int _len_netmask0 = 65025;
+          int * netmask = (int *) malloc(_len_netmask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_netmask0; _i0++) {
+            netmask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qeth_l3_fill_netmask(netmask,len);
+          free(netmask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 331
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 184
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 167
+          // ------------------------------- 
+          // static_instructions_O3 : 145
+          // dynamic_instructions_O3 : 145
+          // ------------------------------- 
+          // static_instructions_Ofast : 145
+          // dynamic_instructions_Ofast : 145
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 184
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 202
+          // ------------------------------- 
+
           unsigned int len = 10;
+        
           int _len_netmask0 = 100;
           int * netmask = (int *) malloc(_len_netmask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_netmask0; _i0++) {
             netmask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qeth_l3_fill_netmask(netmask,len);
           free(netmask);
         

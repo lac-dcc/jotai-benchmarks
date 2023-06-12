@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ __attribute__((used)) static unsigned long tcon_ch1_calc_divider(unsigned long r
 	return best_rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,17 +111,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rate = 100;
+        
           unsigned long parent_rate = 100;
+        
           int _len_div0 = 1;
           int * div = (int *) malloc(_len_div0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_div0; _i0++) {
             div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_half0 = 1;
           int * half = (int *) malloc(_len_half0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_half0; _i0++) {
             half[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = tcon_ch1_calc_divider(rate,parent_rate,div,half);
           printf("%lu\n", benchRet); 
           free(div);
@@ -132,7 +133,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long rate = 255;
+        
+          unsigned long parent_rate = 255;
+        
+          int _len_div0 = 65025;
+          int * div = (int *) malloc(_len_div0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_div0; _i0++) {
+            div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_half0 = 65025;
+          int * half = (int *) malloc(_len_half0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_half0; _i0++) {
+            half[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = tcon_ch1_calc_divider(rate,parent_rate,div,half);
+          printf("%lu\n", benchRet); 
+          free(div);
+          free(half);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long rate = 10;
+        
+          unsigned long parent_rate = 10;
+        
+          int _len_div0 = 100;
+          int * div = (int *) malloc(_len_div0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_div0; _i0++) {
+            div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_half0 = 100;
+          int * half = (int *) malloc(_len_half0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_half0; _i0++) {
+            half[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = tcon_ch1_calc_divider(rate,parent_rate,div,half);
+          printf("%lu\n", benchRet); 
+          free(div);
+          free(half);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long parent_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_div0 = 1;
+          int * div = (int *) malloc(_len_div0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_div0; _i0++) {
+            div[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_half0 = 1;
+          int * half = (int *) malloc(_len_half0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_half0; _i0++) {
+            half[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = tcon_ch1_calc_divider(rate,parent_rate,div,half);
+          printf("%lu\n", benchRet); 
+          free(div);
+          free(half);
+        
+        break;
+    }
     default:
         usage();
         break;

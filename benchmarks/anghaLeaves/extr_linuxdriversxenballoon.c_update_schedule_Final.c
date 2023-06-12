@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -94,12 +94,6 @@ __attribute__((used)) static enum bp_state update_schedule(enum bp_state state)
 	return BP_EAGAIN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,15 +106,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum bp_state state = 0;
+        
           enum bp_state benchRet = update_schedule(state);
         
         break;
     }
-
     default:
         usage();
         break;

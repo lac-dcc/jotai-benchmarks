@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ void wil_init_txrx_ops_legacy_dma(struct wil6210_priv *wil)
 	wil->txrx_ops.rx_fini = wil_rx_fini;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,30 +113,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int _len_wil0 = 65025;
+          struct wil6210_priv * wil = (struct wil6210_priv *) malloc(_len_wil0*sizeof(struct wil6210_priv));
+          for(int _i0 = 0; _i0 < _len_wil0; _i0++) {
+              wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.is_rx_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_error_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_crypto_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.get_netif_rx_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.get_reorder_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.wmi_addba_rx_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_init_bcast = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_fini_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_init_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_ring_tso = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_desc_unmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_desc_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.configure_interrupt_moderation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          wil_init_txrx_ops_legacy_dma(wil);
+          free(wil);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int _len_wil0 = 100;
+          struct wil6210_priv * wil = (struct wil6210_priv *) malloc(_len_wil0*sizeof(struct wil6210_priv));
+          for(int _i0 = 0; _i0 < _len_wil0; _i0++) {
+              wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.is_rx_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_error_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_crypto_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.get_netif_rx_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.get_reorder_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.wmi_addba_rx_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_init_bcast = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_fini_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_init_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_ring_tso = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_desc_unmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_desc_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.configure_interrupt_moderation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          wil_init_txrx_ops_legacy_dma(wil);
+          free(wil);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
           int _len_wil0 = 1;
           struct wil6210_priv * wil = (struct wil6210_priv *) malloc(_len_wil0*sizeof(struct wil6210_priv));
           for(int _i0 = 0; _i0 < _len_wil0; _i0++) {
-            wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.is_rx_idle = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_error_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_crypto_check = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.get_netif_rx_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.get_reorder_params = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.wmi_addba_rx_resp = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.rx_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_init = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_init_bcast = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_fini_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.ring_init_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_ring_tso = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_desc_unmap = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.tx_desc_map = ((-2 * (next_i()%2)) + 1) * next_i();
-        wil[_i0].txrx_ops.configure_interrupt_moderation = ((-2 * (next_i()%2)) + 1) * next_i();
+              wil[_i0].txrx_ops.rx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.is_rx_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_error_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_crypto_check = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.get_netif_rx_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.get_reorder_params = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.wmi_addba_rx_resp = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.rx_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_fini = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_init = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_init_bcast = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_fini_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.ring_init_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_ring_tso = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_desc_unmap = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.tx_desc_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          wil[_i0].txrx_ops.configure_interrupt_moderation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           wil_init_txrx_ops_legacy_dma(wil);
           free(wil);
         

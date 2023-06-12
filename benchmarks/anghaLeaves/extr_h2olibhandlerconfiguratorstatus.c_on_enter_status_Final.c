@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int on_enter_status(h2o_configurator_t *_conf, h2o_configurator_context_t *ctx, 
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len__conf0 = 65025;
+          int * _conf = (int *) malloc(_len__conf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__conf0; _i0++) {
+            _conf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ctx0 = 65025;
+          int * ctx = (int *) malloc(_len_ctx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+            ctx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_node0 = 65025;
+          int * node = (int *) malloc(_len_node0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+            node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = on_enter_status(_conf,ctx,node);
+          printf("%d\n", benchRet); 
+          free(_conf);
+          free(ctx);
+          free(node);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len__conf0 = 100;
+          int * _conf = (int *) malloc(_len__conf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__conf0; _i0++) {
+            _conf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ctx0 = 100;
+          int * ctx = (int *) malloc(_len_ctx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+            ctx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_node0 = 100;
+          int * node = (int *) malloc(_len_node0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+            node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = on_enter_status(_conf,ctx,node);
+          printf("%d\n", benchRet); 
+          free(_conf);
+          free(ctx);
+          free(node);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len__conf0 = 1;
           int * _conf = (int *) malloc(_len__conf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len__conf0; _i0++) {
             _conf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ctx0 = 1;
           int * ctx = (int *) malloc(_len_ctx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
             ctx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_node0 = 1;
           int * node = (int *) malloc(_len_node0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
             node[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = on_enter_status(_conf,ctx,node);
           printf("%d\n", benchRet); 
           free(_conf);

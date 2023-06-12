@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void kuhl_m_sekurlsa_utils_NlpMakeRelativeOrAbsoluteString(PVOID BaseAddress, PL
 		String->Buffer = (PWSTR) ((ULONG_PTR)(String->Buffer) + ((relative ? -1 : 1) * (ULONG_PTR)(BaseAddress)));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long BaseAddress = 100;
+        
           long relative = 100;
+        
           int _len_String0 = 1;
           struct TYPE_3__ * String = (struct TYPE_3__ *) malloc(_len_String0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_String0; _i0++) {
-            String[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+              String[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           kuhl_m_sekurlsa_utils_NlpMakeRelativeOrAbsoluteString(BaseAddress,String,relative);
           free(String);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long BaseAddress = 255;
+        
+          long relative = 255;
+        
+          int _len_String0 = 65025;
+          struct TYPE_3__ * String = (struct TYPE_3__ *) malloc(_len_String0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_String0; _i0++) {
+              String[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kuhl_m_sekurlsa_utils_NlpMakeRelativeOrAbsoluteString(BaseAddress,String,relative);
+          free(String);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long BaseAddress = 10;
+        
           long relative = 10;
+        
           int _len_String0 = 100;
           struct TYPE_3__ * String = (struct TYPE_3__ *) malloc(_len_String0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_String0; _i0++) {
-            String[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+              String[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          kuhl_m_sekurlsa_utils_NlpMakeRelativeOrAbsoluteString(BaseAddress,String,relative);
+          free(String);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long BaseAddress = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long relative = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_String0 = 1;
+          struct TYPE_3__ * String = (struct TYPE_3__ *) malloc(_len_String0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_String0; _i0++) {
+              String[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           kuhl_m_sekurlsa_utils_NlpMakeRelativeOrAbsoluteString(BaseAddress,String,relative);
           free(String);
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ unsigned long lpEncodeBacklen(unsigned char *buf, uint64_t l) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,11 +111,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int l = 100;
+        
           int _len_buf0 = 1;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = lpEncodeBacklen(buf,l);
+          printf("%lu\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int l = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = lpEncodeBacklen(buf,l);
           printf("%lu\n", benchRet); 
           free(buf);
@@ -127,21 +142,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int l = 10;
+        
           int _len_buf0 = 100;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = lpEncodeBacklen(buf,l);
           printf("%lu\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = lpEncodeBacklen(buf,l);
+          printf("%lu\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

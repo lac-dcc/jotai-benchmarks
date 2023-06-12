@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ intel_get_crtc_for_plane(struct drm_i915_private *dev_priv, enum i9xx_plane_id p
 	return dev_priv->plane_to_crtc_mapping[plane];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,11 +77,12 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum i9xx_plane_id plane = 0;
-          int _len_dev_priv0 = 1;
+        
+          int _len_dev_priv0 = 65025;
           struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
               int _len_dev_priv__i0__plane_to_crtc_mapping0 = 1;
@@ -94,10 +91,13 @@ int main(int argc, char *argv[]) {
             int _len_dev_priv__i0__plane_to_crtc_mapping1 = 1;
             dev_priv[_i0].plane_to_crtc_mapping[_j0] = (struct intel_crtc *) malloc(_len_dev_priv__i0__plane_to_crtc_mapping1*sizeof(struct intel_crtc));
             for(int _j1 = 0; _j1 < _len_dev_priv__i0__plane_to_crtc_mapping1; _j1++) {
-              dev_priv[_i0].plane_to_crtc_mapping[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                dev_priv[_i0].plane_to_crtc_mapping[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           struct intel_crtc * benchRet = intel_get_crtc_for_plane(dev_priv,plane);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_dev_priv0; _aux++) {
@@ -108,7 +108,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum i9xx_plane_id plane = 0;
+        
+          int _len_dev_priv0 = 100;
+          struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              int _len_dev_priv__i0__plane_to_crtc_mapping0 = 1;
+          dev_priv[_i0].plane_to_crtc_mapping = (struct intel_crtc **) malloc(_len_dev_priv__i0__plane_to_crtc_mapping0*sizeof(struct intel_crtc *));
+          for(int _j0 = 0; _j0 < _len_dev_priv__i0__plane_to_crtc_mapping0; _j0++) {
+            int _len_dev_priv__i0__plane_to_crtc_mapping1 = 1;
+            dev_priv[_i0].plane_to_crtc_mapping[_j0] = (struct intel_crtc *) malloc(_len_dev_priv__i0__plane_to_crtc_mapping1*sizeof(struct intel_crtc));
+            for(int _j1 = 0; _j1 < _len_dev_priv__i0__plane_to_crtc_mapping1; _j1++) {
+                dev_priv[_i0].plane_to_crtc_mapping[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct intel_crtc * benchRet = intel_get_crtc_for_plane(dev_priv,plane);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dev_priv0; _aux++) {
+          free(*(dev_priv[_aux].plane_to_crtc_mapping));
+        free(dev_priv[_aux].plane_to_crtc_mapping);
+          }
+          free(dev_priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum i9xx_plane_id plane = 0;
+        
+          int _len_dev_priv0 = 1;
+          struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              int _len_dev_priv__i0__plane_to_crtc_mapping0 = 1;
+          dev_priv[_i0].plane_to_crtc_mapping = (struct intel_crtc **) malloc(_len_dev_priv__i0__plane_to_crtc_mapping0*sizeof(struct intel_crtc *));
+          for(int _j0 = 0; _j0 < _len_dev_priv__i0__plane_to_crtc_mapping0; _j0++) {
+            int _len_dev_priv__i0__plane_to_crtc_mapping1 = 1;
+            dev_priv[_i0].plane_to_crtc_mapping[_j0] = (struct intel_crtc *) malloc(_len_dev_priv__i0__plane_to_crtc_mapping1*sizeof(struct intel_crtc));
+            for(int _j1 = 0; _j1 < _len_dev_priv__i0__plane_to_crtc_mapping1; _j1++) {
+                dev_priv[_i0].plane_to_crtc_mapping[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct intel_crtc * benchRet = intel_get_crtc_for_plane(dev_priv,plane);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dev_priv0; _aux++) {
+          free(*(dev_priv[_aux].plane_to_crtc_mapping));
+        free(dev_priv[_aux].plane_to_crtc_mapping);
+          }
+          free(dev_priv);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline void rcar_drif_bufs_clear(struct rcar_drif_h
 		buf[i]->status &= ~bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +80,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int bit = 100;
+        
           int _len_buf0 = 1;
           struct rcar_drif_hwbuf ** buf = (struct rcar_drif_hwbuf **) malloc(_len_buf0*sizeof(struct rcar_drif_hwbuf *));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             int _len_buf1 = 1;
             buf[_i0] = (struct rcar_drif_hwbuf *) malloc(_len_buf1*sizeof(struct rcar_drif_hwbuf));
             for(int _i1 = 0; _i1 < _len_buf1; _i1++) {
-              buf[_i0][_i1].status = ((-2 * (next_i()%2)) + 1) * next_i();
+                buf[_i0][_i1].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           rcar_drif_bufs_clear(buf,bit);
           for(int i1 = 0; i1 < _len_buf0; i1++) {
+              free(buf[i1]);
+          }
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int bit = 255;
+        
+          int _len_buf0 = 65025;
+          struct rcar_drif_hwbuf ** buf = (struct rcar_drif_hwbuf **) malloc(_len_buf0*sizeof(struct rcar_drif_hwbuf *));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             int _len_buf1 = 1;
+            buf[_i0] = (struct rcar_drif_hwbuf *) malloc(_len_buf1*sizeof(struct rcar_drif_hwbuf));
+            for(int _i1 = 0; _i1 < _len_buf1; _i1++) {
+                buf[_i0][_i1].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          rcar_drif_bufs_clear(buf,bit);
+          for(int i1 = 0; i1 < _len_buf0; i1++) {
+              free(buf[i1]);
+          }
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int bit = 10;
+        
+          int _len_buf0 = 100;
+          struct rcar_drif_hwbuf ** buf = (struct rcar_drif_hwbuf **) malloc(_len_buf0*sizeof(struct rcar_drif_hwbuf *));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            int _len_buf1 = 1;
+            buf[_i0] = (struct rcar_drif_hwbuf *) malloc(_len_buf1*sizeof(struct rcar_drif_hwbuf));
+            for(int _i1 = 0; _i1 < _len_buf1; _i1++) {
+                buf[_i0][_i1].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          rcar_drif_bufs_clear(buf,bit);
+          for(int i1 = 0; i1 < _len_buf0; i1++) {
+              free(buf[i1]);
+          }
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          struct rcar_drif_hwbuf ** buf = (struct rcar_drif_hwbuf **) malloc(_len_buf0*sizeof(struct rcar_drif_hwbuf *));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            int _len_buf1 = 1;
+            buf[_i0] = (struct rcar_drif_hwbuf *) malloc(_len_buf1*sizeof(struct rcar_drif_hwbuf));
+            for(int _i1 = 0; _i1 < _len_buf1; _i1++) {
+                buf[_i0][_i1].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          rcar_drif_bufs_clear(buf,bit);
+          for(int i1 = 0; i1 < _len_buf0; i1++) {
               free(buf[i1]);
           }
           free(buf);

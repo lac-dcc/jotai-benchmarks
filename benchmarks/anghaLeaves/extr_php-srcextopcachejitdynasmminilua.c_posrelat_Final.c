@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ if(pos<0)pos+=(ptrdiff_t)len+1;
 return(pos>=0)?pos:0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pos = 100;
+        
           unsigned long len = 100;
+        
           int benchRet = posrelat(pos,len);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pos = 255;
+        
           unsigned long len = 255;
+        
           int benchRet = posrelat(pos,len);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pos = 10;
+        
           unsigned long len = 10;
+        
           int benchRet = posrelat(pos,len);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = posrelat(pos,len);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

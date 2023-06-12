@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ int gcov_info_is_compatible(struct gcov_info *info1, struct gcov_info *info2)
 	return (info1->stamp == info2->stamp);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,19 +74,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_info10 = 65025;
+          struct gcov_info * info1 = (struct gcov_info *) malloc(_len_info10*sizeof(struct gcov_info));
+          for(int _i0 = 0; _i0 < _len_info10; _i0++) {
+              info1[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info20 = 65025;
+          struct gcov_info * info2 = (struct gcov_info *) malloc(_len_info20*sizeof(struct gcov_info));
+          for(int _i0 = 0; _i0 < _len_info20; _i0++) {
+              info2[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gcov_info_is_compatible(info1,info2);
+          printf("%d\n", benchRet); 
+          free(info1);
+          free(info2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_info10 = 100;
+          struct gcov_info * info1 = (struct gcov_info *) malloc(_len_info10*sizeof(struct gcov_info));
+          for(int _i0 = 0; _i0 < _len_info10; _i0++) {
+              info1[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info20 = 100;
+          struct gcov_info * info2 = (struct gcov_info *) malloc(_len_info20*sizeof(struct gcov_info));
+          for(int _i0 = 0; _i0 < _len_info20; _i0++) {
+              info2[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gcov_info_is_compatible(info1,info2);
+          printf("%d\n", benchRet); 
+          free(info1);
+          free(info2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_info10 = 1;
           struct gcov_info * info1 = (struct gcov_info *) malloc(_len_info10*sizeof(struct gcov_info));
           for(int _i0 = 0; _i0 < _len_info10; _i0++) {
-            info1[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              info1[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_info20 = 1;
           struct gcov_info * info2 = (struct gcov_info *) malloc(_len_info20*sizeof(struct gcov_info));
           for(int _i0 = 0; _i0 < _len_info20; _i0++) {
-            info2[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              info2[_i0].stamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gcov_info_is_compatible(info1,info2);
           printf("%d\n", benchRet); 
           free(info1);

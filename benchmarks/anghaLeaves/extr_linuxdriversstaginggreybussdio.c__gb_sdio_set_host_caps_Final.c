@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -136,12 +139,6 @@ __attribute__((used)) static void _gb_sdio_set_host_caps(struct gb_sdio_host *ho
 		host->card_present = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -154,21 +151,201 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 250
+          // dynamic_instructions_O0 : 250
+          // ------------------------------- 
+          // static_instructions_O1 : 105
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 105
+          // dynamic_instructions_O2 : 105
+          // ------------------------------- 
+          // static_instructions_O3 : 105
+          // dynamic_instructions_O3 : 105
+          // ------------------------------- 
+          // static_instructions_Ofast : 105
+          // dynamic_instructions_Ofast : 105
+          // ------------------------------- 
+          // static_instructions_Os : 105
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 105
+          // dynamic_instructions_Oz : 105
+          // ------------------------------- 
+
           int r = 100;
+        
           int _len_host0 = 1;
           struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].card_present = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].card_present = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_host__i0__mmc0 = 1;
           host[_i0].mmc = (struct TYPE_2__ *) malloc(_len_host__i0__mmc0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_host__i0__mmc0; _j0++) {
-            host[_i0].mmc->caps = ((-2 * (next_i()%2)) + 1) * next_i();
-        host[_i0].mmc->caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].mmc->caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].mmc->caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          _gb_sdio_set_host_caps(host,r);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].mmc);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 250
+          // dynamic_instructions_O0 : 250
+          // ------------------------------- 
+          // static_instructions_O1 : 105
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 105
+          // dynamic_instructions_O2 : 105
+          // ------------------------------- 
+          // static_instructions_O3 : 105
+          // dynamic_instructions_O3 : 105
+          // ------------------------------- 
+          // static_instructions_Ofast : 105
+          // dynamic_instructions_Ofast : 105
+          // ------------------------------- 
+          // static_instructions_Os : 105
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 105
+          // dynamic_instructions_Oz : 105
+          // ------------------------------- 
+
+          int r = 255;
+        
+          int _len_host0 = 65025;
+          struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].card_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_host__i0__mmc0 = 1;
+          host[_i0].mmc = (struct TYPE_2__ *) malloc(_len_host__i0__mmc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__mmc0; _j0++) {
+              host[_i0].mmc->caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].mmc->caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          _gb_sdio_set_host_caps(host,r);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].mmc);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 250
+          // dynamic_instructions_O0 : 250
+          // ------------------------------- 
+          // static_instructions_O1 : 105
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 105
+          // dynamic_instructions_O2 : 105
+          // ------------------------------- 
+          // static_instructions_O3 : 105
+          // dynamic_instructions_O3 : 105
+          // ------------------------------- 
+          // static_instructions_Ofast : 105
+          // dynamic_instructions_Ofast : 105
+          // ------------------------------- 
+          // static_instructions_Os : 105
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 105
+          // dynamic_instructions_Oz : 105
+          // ------------------------------- 
+
+          int r = 10;
+        
+          int _len_host0 = 100;
+          struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].card_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_host__i0__mmc0 = 1;
+          host[_i0].mmc = (struct TYPE_2__ *) malloc(_len_host__i0__mmc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__mmc0; _j0++) {
+              host[_i0].mmc->caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].mmc->caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          _gb_sdio_set_host_caps(host,r);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].mmc);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 250
+          // dynamic_instructions_O0 : 250
+          // ------------------------------- 
+          // static_instructions_O1 : 105
+          // dynamic_instructions_O1 : 105
+          // ------------------------------- 
+          // static_instructions_O2 : 105
+          // dynamic_instructions_O2 : 105
+          // ------------------------------- 
+          // static_instructions_O3 : 105
+          // dynamic_instructions_O3 : 105
+          // ------------------------------- 
+          // static_instructions_Ofast : 105
+          // dynamic_instructions_Ofast : 105
+          // ------------------------------- 
+          // static_instructions_Os : 105
+          // dynamic_instructions_Os : 105
+          // ------------------------------- 
+          // static_instructions_Oz : 105
+          // dynamic_instructions_Oz : 105
+          // ------------------------------- 
+
+          int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_host0 = 1;
+          struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].card_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_host__i0__mmc0 = 1;
+          host[_i0].mmc = (struct TYPE_2__ *) malloc(_len_host__i0__mmc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__mmc0; _j0++) {
+              host[_i0].mmc->caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].mmc->caps2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           _gb_sdio_set_host_caps(host,r);
           for(int _aux = 0; _aux < _len_host0; _aux++) {
           free(host[_aux].mmc);

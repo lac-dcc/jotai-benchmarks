@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ ccw_device_accumulate_esw_valid(struct irb *irb)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +89,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_irb0 = 65025;
+          struct irb * irb = (struct irb *) malloc(_len_irb0*sizeof(struct irb));
+          for(int _i0 = 0; _i0 < _len_irb0; _i0++) {
+              irb[_i0].scsw.cmd.stctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          irb[_i0].scsw.cmd.actl = ((-2 * (next_i()%2)) + 1) * next_i();
+          irb[_i0].scsw.cmd.eswf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = ccw_device_accumulate_esw_valid(irb);
+          printf("%d\n", benchRet); 
+          free(irb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_irb0 = 100;
+          struct irb * irb = (struct irb *) malloc(_len_irb0*sizeof(struct irb));
+          for(int _i0 = 0; _i0 < _len_irb0; _i0++) {
+              irb[_i0].scsw.cmd.stctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          irb[_i0].scsw.cmd.actl = ((-2 * (next_i()%2)) + 1) * next_i();
+          irb[_i0].scsw.cmd.eswf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = ccw_device_accumulate_esw_valid(irb);
+          printf("%d\n", benchRet); 
+          free(irb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_irb0 = 1;
           struct irb * irb = (struct irb *) malloc(_len_irb0*sizeof(struct irb));
           for(int _i0 = 0; _i0 < _len_irb0; _i0++) {
-            irb[_i0].scsw.cmd.stctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        irb[_i0].scsw.cmd.actl = ((-2 * (next_i()%2)) + 1) * next_i();
-        irb[_i0].scsw.cmd.eswf = ((-2 * (next_i()%2)) + 1) * next_i();
+              irb[_i0].scsw.cmd.stctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          irb[_i0].scsw.cmd.actl = ((-2 * (next_i()%2)) + 1) * next_i();
+          irb[_i0].scsw.cmd.eswf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = ccw_device_accumulate_esw_valid(irb);
           printf("%d\n", benchRet); 
           free(irb);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int dst_read_status(struct dvb_frontend *fe, enum f
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,24 +91,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fe0 = 1;
+          int _len_fe0 = 65025;
           struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
           for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
               int _len_fe__i0__demodulator_priv0 = 1;
           fe[_i0].demodulator_priv = (struct dst_state *) malloc(_len_fe__i0__demodulator_priv0*sizeof(struct dst_state));
           for(int _j0 = 0; _j0 < _len_fe__i0__demodulator_priv0; _j0++) {
-            fe[_i0].demodulator_priv->diseq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].demodulator_priv->decode_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              fe[_i0].demodulator_priv->diseq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].demodulator_priv->decode_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_status0 = 1;
+        
+          int _len_status0 = 65025;
           enum fe_status * status = (enum fe_status *) malloc(_len_status0*sizeof(enum fe_status));
           for(int _i0 = 0; _i0 < _len_status0; _i0++) {
             status[_i0] = 0;
           }
+        
           int benchRet = dst_read_status(fe,status);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fe0; _aux++) {
@@ -123,7 +123,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fe0 = 100;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__demodulator_priv0 = 1;
+          fe[_i0].demodulator_priv = (struct dst_state *) malloc(_len_fe__i0__demodulator_priv0*sizeof(struct dst_state));
+          for(int _j0 = 0; _j0 < _len_fe__i0__demodulator_priv0; _j0++) {
+              fe[_i0].demodulator_priv->diseq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].demodulator_priv->decode_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_status0 = 100;
+          enum fe_status * status = (enum fe_status *) malloc(_len_status0*sizeof(enum fe_status));
+          for(int _i0 = 0; _i0 < _len_status0; _i0++) {
+            status[_i0] = 0;
+          }
+        
+          int benchRet = dst_read_status(fe,status);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].demodulator_priv);
+          }
+          free(fe);
+          free(status);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fe0 = 1;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__demodulator_priv0 = 1;
+          fe[_i0].demodulator_priv = (struct dst_state *) malloc(_len_fe__i0__demodulator_priv0*sizeof(struct dst_state));
+          for(int _j0 = 0; _j0 < _len_fe__i0__demodulator_priv0; _j0++) {
+              fe[_i0].demodulator_priv->diseq_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].demodulator_priv->decode_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_status0 = 1;
+          enum fe_status * status = (enum fe_status *) malloc(_len_status0*sizeof(enum fe_status));
+          for(int _i0 = 0; _i0 < _len_status0; _i0++) {
+            status[_i0] = 0;
+          }
+        
+          int benchRet = dst_read_status(fe,status);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].demodulator_priv);
+          }
+          free(fe);
+          free(status);
+        
+        break;
+    }
     default:
         usage();
         break;

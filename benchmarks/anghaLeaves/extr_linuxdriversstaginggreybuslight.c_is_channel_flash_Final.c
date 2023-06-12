@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static bool is_channel_flash(struct gb_channel *channel)
 				   | GB_CHANNEL_MODE_INDICATOR));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_channel0 = 1;
+          int _len_channel0 = 65025;
           struct gb_channel * channel = (struct gb_channel *) malloc(_len_channel0*sizeof(struct gb_channel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_channel_flash(channel);
           printf("%d\n", benchRet); 
           free(channel);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_channel0 = 100;
           struct gb_channel * channel = (struct gb_channel *) malloc(_len_channel0*sizeof(struct gb_channel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_channel_flash(channel);
           printf("%d\n", benchRet); 
           free(channel);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_channel0 = 1;
+          struct gb_channel * channel = (struct gb_channel *) malloc(_len_channel0*sizeof(struct gb_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_channel_flash(channel);
+          printf("%d\n", benchRet); 
+          free(channel);
+        
+        break;
+    }
     default:
         usage();
         break;

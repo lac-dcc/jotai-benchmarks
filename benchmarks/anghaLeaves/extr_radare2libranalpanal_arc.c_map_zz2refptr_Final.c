@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void map_zz2refptr(RAnalOp *op, ut8 mode_zz) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,18 +89,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode_zz = 100;
+        
           int _len_op0 = 1;
           struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
-            op[_i0].refptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              op[_i0].refptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           map_zz2refptr(op,mode_zz);
           free(op);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mode_zz = 255;
+        
+          int _len_op0 = 65025;
+          struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].refptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_zz2refptr(op,mode_zz);
+          free(op);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mode_zz = 10;
+        
+          int _len_op0 = 100;
+          struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].refptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_zz2refptr(op,mode_zz);
+          free(op);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mode_zz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_op0 = 1;
+          struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].refptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_zz2refptr(op,mode_zz);
+          free(op);
+        
+        break;
+    }
     default:
         usage();
         break;

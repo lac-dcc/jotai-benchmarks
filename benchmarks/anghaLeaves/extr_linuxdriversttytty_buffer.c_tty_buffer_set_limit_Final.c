@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int tty_buffer_set_limit(struct tty_port *port, int limit)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int limit = 100;
+        
           int _len_port0 = 1;
           struct tty_port * port = (struct tty_port *) malloc(_len_port0*sizeof(struct tty_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].buf.mem_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].buf.mem_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = tty_buffer_set_limit(port,limit);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int limit = 255;
+        
+          int _len_port0 = 65025;
+          struct tty_port * port = (struct tty_port *) malloc(_len_port0*sizeof(struct tty_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].buf.mem_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = tty_buffer_set_limit(port,limit);
           printf("%d\n", benchRet); 
           free(port);
@@ -102,21 +121,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int limit = 10;
+        
           int _len_port0 = 100;
           struct tty_port * port = (struct tty_port *) malloc(_len_port0*sizeof(struct tty_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].buf.mem_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].buf.mem_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = tty_buffer_set_limit(port,limit);
           printf("%d\n", benchRet); 
           free(port);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct tty_port * port = (struct tty_port *) malloc(_len_port0*sizeof(struct tty_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].buf.mem_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = tty_buffer_set_limit(port,limit);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

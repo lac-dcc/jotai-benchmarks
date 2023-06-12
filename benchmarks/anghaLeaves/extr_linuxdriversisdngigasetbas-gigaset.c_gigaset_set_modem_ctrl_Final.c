@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int gigaset_set_modem_ctrl(struct cardstate *cs, un
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int old_state = 100;
+        
           unsigned int new_state = 100;
+        
           int _len_cs0 = 1;
           struct cardstate * cs = (struct cardstate *) malloc(_len_cs0*sizeof(struct cardstate));
           for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
-            cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = gigaset_set_modem_ctrl(cs,old_state,new_state);
+          printf("%d\n", benchRet); 
+          free(cs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int old_state = 255;
+        
+          unsigned int new_state = 255;
+        
+          int _len_cs0 = 65025;
+          struct cardstate * cs = (struct cardstate *) malloc(_len_cs0*sizeof(struct cardstate));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = gigaset_set_modem_ctrl(cs,old_state,new_state);
           printf("%d\n", benchRet); 
           free(cs);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int old_state = 10;
+        
           unsigned int new_state = 10;
+        
           int _len_cs0 = 100;
           struct cardstate * cs = (struct cardstate *) malloc(_len_cs0*sizeof(struct cardstate));
           for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
-            cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gigaset_set_modem_ctrl(cs,old_state,new_state);
           printf("%d\n", benchRet); 
           free(cs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int old_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int new_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cs0 = 1;
+          struct cardstate * cs = (struct cardstate *) malloc(_len_cs0*sizeof(struct cardstate));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gigaset_set_modem_ctrl(cs,old_state,new_state);
+          printf("%d\n", benchRet); 
+          free(cs);
+        
+        break;
+    }
     default:
         usage();
         break;

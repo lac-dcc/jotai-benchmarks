@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 isc_to_int_word(u8 isc)
 	return ((u32)isc << 27) | 0x80000000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long isc = 10;
+        
           int benchRet = isc_to_int_word(isc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

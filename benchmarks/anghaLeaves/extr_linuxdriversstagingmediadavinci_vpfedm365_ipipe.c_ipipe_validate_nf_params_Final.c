@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static int ipipe_validate_nf_params(struct vpfe_ipipe_nf *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,18 +99,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_nf_param0 = 1;
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_nf_param0 = 65025;
           struct vpfe_ipipe_nf * nf_param = (struct vpfe_ipipe_nf *) malloc(_len_nf_param0*sizeof(struct vpfe_ipipe_nf));
           for(int _i0 = 0; _i0 < _len_nf_param0; _i0++) {
-            nf_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        nf_param[_i0].shft_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        nf_param[_i0].spread_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        nf_param[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        nf_param[_i0].edge_det_min_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        nf_param[_i0].edge_det_max_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+              nf_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].shft_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].spread_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].edge_det_min_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].edge_det_max_thr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_nf_param__i0__thr0 = 1;
           nf_param[_i0].thr = (long *) malloc(_len_nf_param__i0__thr0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_nf_param__i0__thr0; _j0++) {
@@ -125,7 +144,131 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_nf_param__i0__str0; _j0++) {
             nf_param[_i0].str[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = ipipe_validate_nf_params(nf_param);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nf_param0; _aux++) {
+          free(nf_param[_aux].thr);
+          }
+          for(int _aux = 0; _aux < _len_nf_param0; _aux++) {
+          free(nf_param[_aux].str);
+          }
+          free(nf_param);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_nf_param0 = 100;
+          struct vpfe_ipipe_nf * nf_param = (struct vpfe_ipipe_nf *) malloc(_len_nf_param0*sizeof(struct vpfe_ipipe_nf));
+          for(int _i0 = 0; _i0 < _len_nf_param0; _i0++) {
+              nf_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].shft_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].spread_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].edge_det_min_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].edge_det_max_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nf_param__i0__thr0 = 1;
+          nf_param[_i0].thr = (long *) malloc(_len_nf_param__i0__thr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_nf_param__i0__thr0; _j0++) {
+            nf_param[_i0].thr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_nf_param__i0__str0 = 1;
+          nf_param[_i0].str = (long *) malloc(_len_nf_param__i0__str0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_nf_param__i0__str0; _j0++) {
+            nf_param[_i0].str[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ipipe_validate_nf_params(nf_param);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nf_param0; _aux++) {
+          free(nf_param[_aux].thr);
+          }
+          for(int _aux = 0; _aux < _len_nf_param0; _aux++) {
+          free(nf_param[_aux].str);
+          }
+          free(nf_param);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_nf_param0 = 1;
+          struct vpfe_ipipe_nf * nf_param = (struct vpfe_ipipe_nf *) malloc(_len_nf_param0*sizeof(struct vpfe_ipipe_nf));
+          for(int _i0 = 0; _i0 < _len_nf_param0; _i0++) {
+              nf_param[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].shft_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].spread_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].apply_lsc_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].edge_det_min_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          nf_param[_i0].edge_det_max_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nf_param__i0__thr0 = 1;
+          nf_param[_i0].thr = (long *) malloc(_len_nf_param__i0__thr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_nf_param__i0__thr0; _j0++) {
+            nf_param[_i0].thr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_nf_param__i0__str0 = 1;
+          nf_param[_i0].str = (long *) malloc(_len_nf_param__i0__str0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_nf_param__i0__str0; _j0++) {
+            nf_param[_i0].str[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = ipipe_validate_nf_params(nf_param);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_nf_param0; _aux++) {

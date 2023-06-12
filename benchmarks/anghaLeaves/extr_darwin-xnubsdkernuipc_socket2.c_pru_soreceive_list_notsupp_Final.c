@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ pru_soreceive_list_notsupp(struct socket *so,
 	return (EOPNOTSUPP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,25 +81,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int uiocnt = 100;
+        
           int _len_so0 = 1;
           struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
           for(int _i0 = 0; _i0 < _len_so0; _i0++) {
-            so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_recv_msg_array0 = 1;
           struct recv_msg_elem * recv_msg_array = (struct recv_msg_elem *) malloc(_len_recv_msg_array0*sizeof(struct recv_msg_elem));
           for(int _i0 = 0; _i0 < _len_recv_msg_array0; _i0++) {
-            recv_msg_array[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              recv_msg_array[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_flagsp0 = 1;
           int * flagsp = (int *) malloc(_len_flagsp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flagsp0; _i0++) {
             flagsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = pru_soreceive_list_notsupp(so,recv_msg_array,uiocnt,flagsp);
+          printf("%d\n", benchRet); 
+          free(so);
+          free(recv_msg_array);
+          free(flagsp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int uiocnt = 255;
+        
+          int _len_so0 = 65025;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_recv_msg_array0 = 65025;
+          struct recv_msg_elem * recv_msg_array = (struct recv_msg_elem *) malloc(_len_recv_msg_array0*sizeof(struct recv_msg_elem));
+          for(int _i0 = 0; _i0 < _len_recv_msg_array0; _i0++) {
+              recv_msg_array[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_flagsp0 = 65025;
+          int * flagsp = (int *) malloc(_len_flagsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flagsp0; _i0++) {
+            flagsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pru_soreceive_list_notsupp(so,recv_msg_array,uiocnt,flagsp);
+          printf("%d\n", benchRet); 
+          free(so);
+          free(recv_msg_array);
+          free(flagsp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int uiocnt = 10;
+        
+          int _len_so0 = 100;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_recv_msg_array0 = 100;
+          struct recv_msg_elem * recv_msg_array = (struct recv_msg_elem *) malloc(_len_recv_msg_array0*sizeof(struct recv_msg_elem));
+          for(int _i0 = 0; _i0 < _len_recv_msg_array0; _i0++) {
+              recv_msg_array[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_flagsp0 = 100;
+          int * flagsp = (int *) malloc(_len_flagsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flagsp0; _i0++) {
+            flagsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pru_soreceive_list_notsupp(so,recv_msg_array,uiocnt,flagsp);
+          printf("%d\n", benchRet); 
+          free(so);
+          free(recv_msg_array);
+          free(flagsp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int uiocnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_so0 = 1;
+          struct socket * so = (struct socket *) malloc(_len_so0*sizeof(struct socket));
+          for(int _i0 = 0; _i0 < _len_so0; _i0++) {
+              so[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_recv_msg_array0 = 1;
+          struct recv_msg_elem * recv_msg_array = (struct recv_msg_elem *) malloc(_len_recv_msg_array0*sizeof(struct recv_msg_elem));
+          for(int _i0 = 0; _i0 < _len_recv_msg_array0; _i0++) {
+              recv_msg_array[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_flagsp0 = 1;
+          int * flagsp = (int *) malloc(_len_flagsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flagsp0; _i0++) {
+            flagsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = pru_soreceive_list_notsupp(so,recv_msg_array,uiocnt,flagsp);
           printf("%d\n", benchRet); 
           free(so);

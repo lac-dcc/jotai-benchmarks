@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void pwm_fan_update_state(struct pwm_fan_ctx *ctx, 
 	ctx->pwm_fan_state = i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +81,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned long pwm = 100;
+        
           int _len_ctx0 = 1;
           struct pwm_fan_ctx * ctx = (struct pwm_fan_ctx *) malloc(_len_ctx0*sizeof(struct pwm_fan_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].pwm_fan_max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].pwm_fan_max_state = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ctx__i0__pwm_fan_cooling_levels0 = 1;
           ctx[_i0].pwm_fan_cooling_levels = (unsigned long *) malloc(_len_ctx__i0__pwm_fan_cooling_levels0*sizeof(unsigned long));
           for(int _j0 = 0; _j0 < _len_ctx__i0__pwm_fan_cooling_levels0; _j0++) {
             ctx[_i0].pwm_fan_cooling_levels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        ctx[_i0].pwm_fan_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].pwm_fan_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pwm_fan_update_state(ctx,pwm);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].pwm_fan_cooling_levels);
+          }
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long pwm = 255;
+        
+          int _len_ctx0 = 65025;
+          struct pwm_fan_ctx * ctx = (struct pwm_fan_ctx *) malloc(_len_ctx0*sizeof(struct pwm_fan_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pwm_fan_max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__pwm_fan_cooling_levels0 = 1;
+          ctx[_i0].pwm_fan_cooling_levels = (unsigned long *) malloc(_len_ctx__i0__pwm_fan_cooling_levels0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__pwm_fan_cooling_levels0; _j0++) {
+            ctx[_i0].pwm_fan_cooling_levels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ctx[_i0].pwm_fan_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pwm_fan_update_state(ctx,pwm);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].pwm_fan_cooling_levels);
+          }
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long pwm = 10;
+        
+          int _len_ctx0 = 100;
+          struct pwm_fan_ctx * ctx = (struct pwm_fan_ctx *) malloc(_len_ctx0*sizeof(struct pwm_fan_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pwm_fan_max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__pwm_fan_cooling_levels0 = 1;
+          ctx[_i0].pwm_fan_cooling_levels = (unsigned long *) malloc(_len_ctx__i0__pwm_fan_cooling_levels0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__pwm_fan_cooling_levels0; _j0++) {
+            ctx[_i0].pwm_fan_cooling_levels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ctx[_i0].pwm_fan_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pwm_fan_update_state(ctx,pwm);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].pwm_fan_cooling_levels);
+          }
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long pwm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct pwm_fan_ctx * ctx = (struct pwm_fan_ctx *) malloc(_len_ctx0*sizeof(struct pwm_fan_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].pwm_fan_max_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__pwm_fan_cooling_levels0 = 1;
+          ctx[_i0].pwm_fan_cooling_levels = (unsigned long *) malloc(_len_ctx__i0__pwm_fan_cooling_levels0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__pwm_fan_cooling_levels0; _j0++) {
+            ctx[_i0].pwm_fan_cooling_levels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ctx[_i0].pwm_fan_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pwm_fan_update_state(ctx,pwm);
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
           free(ctx[_aux].pwm_fan_cooling_levels);

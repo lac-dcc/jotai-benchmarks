@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ wlc_phy_get_pwrdet_offsets(struct brcms_phy *pi, s8 *cckoffset, s8 *ofdmoffset)
 	*ofdmoffset = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,24 +77,157 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pi0 = 65025;
+          struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cckoffset0 = 65025;
+          long * cckoffset = (long *) malloc(_len_cckoffset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_cckoffset0; _i0++) {
+            cckoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ofdmoffset0 = 65025;
+          long * ofdmoffset = (long *) malloc(_len_ofdmoffset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_ofdmoffset0; _i0++) {
+            ofdmoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wlc_phy_get_pwrdet_offsets(pi,cckoffset,ofdmoffset);
+          free(pi);
+          free(cckoffset);
+          free(ofdmoffset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pi0 = 100;
+          struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cckoffset0 = 100;
+          long * cckoffset = (long *) malloc(_len_cckoffset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_cckoffset0; _i0++) {
+            cckoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ofdmoffset0 = 100;
+          long * ofdmoffset = (long *) malloc(_len_ofdmoffset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_ofdmoffset0; _i0++) {
+            ofdmoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wlc_phy_get_pwrdet_offsets(pi,cckoffset,ofdmoffset);
+          free(pi);
+          free(cckoffset);
+          free(ofdmoffset);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_pi0 = 1;
           struct brcms_phy * pi = (struct brcms_phy *) malloc(_len_pi0*sizeof(struct brcms_phy));
           for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
-            pi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cckoffset0 = 1;
           long * cckoffset = (long *) malloc(_len_cckoffset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_cckoffset0; _i0++) {
             cckoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ofdmoffset0 = 1;
           long * ofdmoffset = (long *) malloc(_len_ofdmoffset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_ofdmoffset0; _i0++) {
             ofdmoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wlc_phy_get_pwrdet_offsets(pi,cckoffset,ofdmoffset);
           free(pi);
           free(cckoffset);

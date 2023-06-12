@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ const char *sti_plane_to_str(struct sti_plane *plane)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,14 +95,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_plane0 = 1;
+          int _len_plane0 = 65025;
           struct sti_plane * plane = (struct sti_plane *) malloc(_len_plane0*sizeof(struct sti_plane));
           for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
-            plane[_i0].desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane[_i0].desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = sti_plane_to_str(plane);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(plane);
@@ -120,15 +117,32 @@ int main(int argc, char *argv[]) {
           int _len_plane0 = 100;
           struct sti_plane * plane = (struct sti_plane *) malloc(_len_plane0*sizeof(struct sti_plane));
           for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
-            plane[_i0].desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane[_i0].desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = sti_plane_to_str(plane);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(plane);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_plane0 = 1;
+          struct sti_plane * plane = (struct sti_plane *) malloc(_len_plane0*sizeof(struct sti_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              plane[_i0].desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          const char * benchRet = sti_plane_to_str(plane);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(plane);
+        
+        break;
+    }
     default:
         usage();
         break;

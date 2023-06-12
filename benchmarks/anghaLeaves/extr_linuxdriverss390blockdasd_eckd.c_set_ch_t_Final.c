@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void set_ch_t(struct ch_t *geo, __u32 cyl, __u8 hea
 	geo->head |= head;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,62 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cyl = 100;
+        
           int head = 100;
+        
           int _len_geo0 = 1;
           struct ch_t * geo = (struct ch_t *) malloc(_len_geo0*sizeof(struct ch_t));
           for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
-            geo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
-        geo[_i0].cyl = ((-2 * (next_i()%2)) + 1) * next_i();
+              geo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].cyl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_ch_t(geo,cyl,head);
           free(geo);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cyl = 255;
+        
+          int head = 255;
+        
+          int _len_geo0 = 65025;
+          struct ch_t * geo = (struct ch_t *) malloc(_len_geo0*sizeof(struct ch_t));
+          for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
+              geo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].cyl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_ch_t(geo,cyl,head);
+          free(geo);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cyl = 10;
+        
+          int head = 10;
+        
+          int _len_geo0 = 100;
+          struct ch_t * geo = (struct ch_t *) malloc(_len_geo0*sizeof(struct ch_t));
+          for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
+              geo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].cyl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_ch_t(geo,cyl,head);
+          free(geo);
+        
+        break;
+    }
     default:
         usage();
         break;

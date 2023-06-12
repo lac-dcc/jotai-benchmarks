@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int tx_header_fit_operation(u32 tx_size, u32 count,
 	return tx_size + headers_size > data_max ? 0 : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,8 +86,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tx_size = 100;
+        
           int count = 100;
+        
           unsigned long data_max = 100;
+        
           int benchRet = tx_header_fit_operation(tx_size,count,data_max);
           printf("%d\n", benchRet); 
         
@@ -102,8 +100,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tx_size = 255;
+        
           int count = 255;
+        
           unsigned long data_max = 255;
+        
           int benchRet = tx_header_fit_operation(tx_size,count,data_max);
           printf("%d\n", benchRet); 
         
@@ -113,14 +114,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tx_size = 10;
+        
           int count = 10;
+        
           unsigned long data_max = 10;
+        
           int benchRet = tx_header_fit_operation(tx_size,count,data_max);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tx_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long data_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tx_header_fit_operation(tx_size,count,data_max);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

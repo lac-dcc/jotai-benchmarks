@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int zend_op_array_calc(zend_call_graph *call_graph,
 	return SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_call_graph0 = 1;
+          int _len_call_graph0 = 65025;
           struct TYPE_3__ * call_graph = (struct TYPE_3__ *) malloc(_len_call_graph0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_call_graph0; _i0++) {
-            call_graph[_i0].op_arrays_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              call_graph[_i0].op_arrays_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_op_array0 = 1;
+        
+          int _len_op_array0 = 65025;
           int * op_array = (int *) malloc(_len_op_array0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_op_array0; _i0++) {
             op_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = zend_op_array_calc(call_graph,op_array);
           printf("%d\n", benchRet); 
           free(call_graph);
@@ -105,7 +104,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_call_graph0 = 100;
+          struct TYPE_3__ * call_graph = (struct TYPE_3__ *) malloc(_len_call_graph0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_call_graph0; _i0++) {
+              call_graph[_i0].op_arrays_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_op_array0 = 100;
+          int * op_array = (int *) malloc(_len_op_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op_array0; _i0++) {
+            op_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zend_op_array_calc(call_graph,op_array);
+          printf("%d\n", benchRet); 
+          free(call_graph);
+          free(op_array);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_call_graph0 = 1;
+          struct TYPE_3__ * call_graph = (struct TYPE_3__ *) malloc(_len_call_graph0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_call_graph0; _i0++) {
+              call_graph[_i0].op_arrays_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_op_array0 = 1;
+          int * op_array = (int *) malloc(_len_op_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op_array0; _i0++) {
+            op_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zend_op_array_calc(call_graph,op_array);
+          printf("%d\n", benchRet); 
+          free(call_graph);
+          free(op_array);
+        
+        break;
+    }
     default:
         usage();
         break;

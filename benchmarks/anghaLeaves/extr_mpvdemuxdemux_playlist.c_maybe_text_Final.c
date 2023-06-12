@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -67,12 +67,6 @@ __attribute__((used)) static bool maybe_text(bstr d)
     return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ d;
-        d.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          d.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_d_start0 = 1;
           d.start = (unsigned char *) malloc(_len_d_start0*sizeof(unsigned char));
           for(int _j0 = 0; _j0 < _len_d_start0; _j0++) {
             d.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = maybe_text(d);
           printf("%d\n", benchRet); 
           free(d.start);
         
         break;
     }
-
     default:
         usage();
         break;

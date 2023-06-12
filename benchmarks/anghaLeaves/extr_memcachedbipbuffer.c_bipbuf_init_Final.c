@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ void bipbuf_init(bipbuf_t* me, const unsigned int size)
     me->b_inuse = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +79,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           const unsigned int size = 100;
+        
           int _len_me0 = 1;
           struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_me0; _i0++) {
-            me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bipbuf_init(me,size);
+          free(me);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          const unsigned int size = 255;
+        
+          int _len_me0 = 65025;
+          struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bipbuf_init(me,size);
+          free(me);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          const unsigned int size = 10;
+        
+          int _len_me0 = 100;
+          struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bipbuf_init(me,size);
+          free(me);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          const unsigned int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_me0 = 1;
+          struct TYPE_3__ * me = (struct TYPE_3__ *) malloc(_len_me0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_me0; _i0++) {
+              me[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_inuse = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].b_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          me[_i0].a_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bipbuf_init(me,size);
           free(me);
         

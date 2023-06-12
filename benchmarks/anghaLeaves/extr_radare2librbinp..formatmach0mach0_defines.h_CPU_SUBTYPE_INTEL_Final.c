@@ -60,12 +60,6 @@ __attribute__((used)) static inline int CPU_SUBTYPE_INTEL(int Family, int Model)
 	return Family | (Model << 4);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,7 +76,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Family = 100;
+        
           int Model = 100;
+        
           int benchRet = CPU_SUBTYPE_INTEL(Family,Model);
           printf("%d\n", benchRet); 
         
@@ -92,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int Family = 255;
+        
           int Model = 255;
+        
           int benchRet = CPU_SUBTYPE_INTEL(Family,Model);
           printf("%d\n", benchRet); 
         
@@ -102,13 +100,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int Family = 10;
+        
           int Model = 10;
+        
           int benchRet = CPU_SUBTYPE_INTEL(Family,Model);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

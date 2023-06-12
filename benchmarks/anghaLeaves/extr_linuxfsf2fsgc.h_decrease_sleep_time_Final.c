@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static inline void decrease_sleep_time(struct f2fs_gc_kthr
 		*wait -= min_time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +83,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gc_th0 = 1;
+          int _len_gc_th0 = 65025;
           struct f2fs_gc_kthread * gc_th = (struct f2fs_gc_kthread *) malloc(_len_gc_th0*sizeof(struct f2fs_gc_kthread));
           for(int _i0 = 0; _i0 < _len_gc_th0; _i0++) {
-            gc_th[_i0].min_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc_th[_i0].no_gc_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc_th[_i0].max_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc_th[_i0].min_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc_th[_i0].no_gc_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc_th[_i0].max_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_wait0 = 1;
+        
+          int _len_wait0 = 65025;
           unsigned int * wait = (unsigned int *) malloc(_len_wait0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
             wait[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           decrease_sleep_time(gc_th,wait);
           free(gc_th);
           free(wait);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gc_th0 = 100;
+          struct f2fs_gc_kthread * gc_th = (struct f2fs_gc_kthread *) malloc(_len_gc_th0*sizeof(struct f2fs_gc_kthread));
+          for(int _i0 = 0; _i0 < _len_gc_th0; _i0++) {
+              gc_th[_i0].min_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc_th[_i0].no_gc_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc_th[_i0].max_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wait0 = 100;
+          unsigned int * wait = (unsigned int *) malloc(_len_wait0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+            wait[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          decrease_sleep_time(gc_th,wait);
+          free(gc_th);
+          free(wait);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gc_th0 = 1;
+          struct f2fs_gc_kthread * gc_th = (struct f2fs_gc_kthread *) malloc(_len_gc_th0*sizeof(struct f2fs_gc_kthread));
+          for(int _i0 = 0; _i0 < _len_gc_th0; _i0++) {
+              gc_th[_i0].min_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc_th[_i0].no_gc_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc_th[_i0].max_sleep_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wait0 = 1;
+          unsigned int * wait = (unsigned int *) malloc(_len_wait0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+            wait[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          decrease_sleep_time(gc_th,wait);
+          free(gc_th);
+          free(wait);
+        
+        break;
+    }
     default:
         usage();
         break;

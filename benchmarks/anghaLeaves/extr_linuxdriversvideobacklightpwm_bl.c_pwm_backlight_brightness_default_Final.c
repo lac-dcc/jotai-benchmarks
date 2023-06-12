@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ int pwm_backlight_brightness_default(struct device *dev,
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int period = 100;
+        
           int _len_dev0 = 1;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_data0 = 1;
           struct platform_pwm_backlight_data * data = (struct platform_pwm_backlight_data *) malloc(_len_data0*sizeof(struct platform_pwm_backlight_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pwm_backlight_brightness_default(dev,data,period);
           printf("%d\n", benchRet); 
           free(dev);
@@ -104,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int period = 255;
+        
+          int _len_dev0 = 65025;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 65025;
+          struct platform_pwm_backlight_data * data = (struct platform_pwm_backlight_data *) malloc(_len_data0*sizeof(struct platform_pwm_backlight_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pwm_backlight_brightness_default(dev,data,period);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int period = 10;
+        
+          int _len_dev0 = 100;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct platform_pwm_backlight_data * data = (struct platform_pwm_backlight_data *) malloc(_len_data0*sizeof(struct platform_pwm_backlight_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pwm_backlight_brightness_default(dev,data,period);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          struct platform_pwm_backlight_data * data = (struct platform_pwm_backlight_data *) malloc(_len_data0*sizeof(struct platform_pwm_backlight_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pwm_backlight_brightness_default(dev,data,period);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

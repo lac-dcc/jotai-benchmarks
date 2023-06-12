@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static void overlay_fill(SDL_VoutOverlay *overlay, AVFrame
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +86,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int planes = 100;
+        
           int _len_overlay0 = 1;
           struct TYPE_5__ * overlay = (struct TYPE_5__ *) malloc(_len_overlay0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
-            overlay[_i0].planes = ((-2 * (next_i()%2)) + 1) * next_i();
+              overlay[_i0].planes = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_overlay__i0__pitches0 = 1;
           overlay[_i0].pitches = (int *) malloc(_len_overlay__i0__pitches0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_overlay__i0__pitches0; _j0++) {
@@ -107,7 +128,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_overlay__i0__pixels0; _j0++) {
             overlay[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_frame0 = 1;
           struct TYPE_6__ * frame = (struct TYPE_6__ *) malloc(_len_frame0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
@@ -121,7 +144,249 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
             frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          overlay_fill(overlay,frame,planes);
+          for(int _aux = 0; _aux < _len_overlay0; _aux++) {
+          free(overlay[_aux].pitches);
+          }
+          for(int _aux = 0; _aux < _len_overlay0; _aux++) {
+          free(overlay[_aux].pixels);
+          }
+          free(overlay);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int planes = 255;
+        
+          int _len_overlay0 = 65025;
+          struct TYPE_5__ * overlay = (struct TYPE_5__ *) malloc(_len_overlay0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
+              overlay[_i0].planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_overlay__i0__pitches0 = 1;
+          overlay[_i0].pitches = (int *) malloc(_len_overlay__i0__pitches0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_overlay__i0__pitches0; _j0++) {
+            overlay[_i0].pitches[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_overlay__i0__pixels0 = 1;
+          overlay[_i0].pixels = (int *) malloc(_len_overlay__i0__pixels0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_overlay__i0__pixels0; _j0++) {
+            overlay[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_frame0 = 65025;
+          struct TYPE_6__ * frame = (struct TYPE_6__ *) malloc(_len_frame0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          overlay_fill(overlay,frame,planes);
+          for(int _aux = 0; _aux < _len_overlay0; _aux++) {
+          free(overlay[_aux].pitches);
+          }
+          for(int _aux = 0; _aux < _len_overlay0; _aux++) {
+          free(overlay[_aux].pixels);
+          }
+          free(overlay);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int planes = 10;
+        
+          int _len_overlay0 = 100;
+          struct TYPE_5__ * overlay = (struct TYPE_5__ *) malloc(_len_overlay0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
+              overlay[_i0].planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_overlay__i0__pitches0 = 1;
+          overlay[_i0].pitches = (int *) malloc(_len_overlay__i0__pitches0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_overlay__i0__pitches0; _j0++) {
+            overlay[_i0].pitches[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_overlay__i0__pixels0 = 1;
+          overlay[_i0].pixels = (int *) malloc(_len_overlay__i0__pixels0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_overlay__i0__pixels0; _j0++) {
+            overlay[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_frame0 = 100;
+          struct TYPE_6__ * frame = (struct TYPE_6__ *) malloc(_len_frame0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          overlay_fill(overlay,frame,planes);
+          for(int _aux = 0; _aux < _len_overlay0; _aux++) {
+          free(overlay[_aux].pitches);
+          }
+          for(int _aux = 0; _aux < _len_overlay0; _aux++) {
+          free(overlay[_aux].pixels);
+          }
+          free(overlay);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int planes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_overlay0 = 1;
+          struct TYPE_5__ * overlay = (struct TYPE_5__ *) malloc(_len_overlay0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
+              overlay[_i0].planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_overlay__i0__pitches0 = 1;
+          overlay[_i0].pitches = (int *) malloc(_len_overlay__i0__pitches0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_overlay__i0__pitches0; _j0++) {
+            overlay[_i0].pitches[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_overlay__i0__pixels0 = 1;
+          overlay[_i0].pixels = (int *) malloc(_len_overlay__i0__pixels0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_overlay__i0__pixels0; _j0++) {
+            overlay[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_frame0 = 1;
+          struct TYPE_6__ * frame = (struct TYPE_6__ *) malloc(_len_frame0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           overlay_fill(overlay,frame,planes);
           for(int _aux = 0; _aux < _len_overlay0; _aux++) {
           free(overlay[_aux].pitches);

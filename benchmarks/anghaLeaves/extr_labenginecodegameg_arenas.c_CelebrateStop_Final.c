@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static void CelebrateStop( gentity_t *player ) {
 	player->s.torsoAnim = ( ( player->s.torsoAnim & ANIM_TOGGLEBIT ) ^ ANIM_TOGGLEBIT ) | anim;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +89,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_player0 = 1;
+          int _len_player0 = 65025;
           struct TYPE_5__ * player = (struct TYPE_5__ *) malloc(_len_player0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_player0; _i0++) {
-            player[_i0].s.weapon = ((-2 * (next_i()%2)) + 1) * next_i();
-        player[_i0].s.torsoAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+              player[_i0].s.weapon = ((-2 * (next_i()%2)) + 1) * next_i();
+          player[_i0].s.torsoAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           CelebrateStop(player);
           free(player);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_player0 = 100;
+          struct TYPE_5__ * player = (struct TYPE_5__ *) malloc(_len_player0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_player0; _i0++) {
+              player[_i0].s.weapon = ((-2 * (next_i()%2)) + 1) * next_i();
+          player[_i0].s.torsoAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          CelebrateStop(player);
+          free(player);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_player0 = 1;
+          struct TYPE_5__ * player = (struct TYPE_5__ *) malloc(_len_player0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_player0; _i0++) {
+              player[_i0].s.weapon = ((-2 * (next_i()%2)) + 1) * next_i();
+          player[_i0].s.torsoAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          CelebrateStop(player);
+          free(player);
+        
+        break;
+    }
     default:
         usage();
         break;

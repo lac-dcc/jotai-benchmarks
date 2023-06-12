@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ void wpp_set_debug( int lex_debug, int parser_debug, int msg_debug )
     pp_status.debug = msg_debug;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,8 +85,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lex_debug = 100;
+        
           int parser_debug = 100;
+        
           int msg_debug = 100;
+        
           wpp_set_debug(lex_debug,parser_debug,msg_debug);
         
         break;
@@ -100,8 +98,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int lex_debug = 255;
+        
           int parser_debug = 255;
+        
           int msg_debug = 255;
+        
           wpp_set_debug(lex_debug,parser_debug,msg_debug);
         
         break;
@@ -110,13 +111,28 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int lex_debug = 10;
+        
           int parser_debug = 10;
+        
           int msg_debug = 10;
+        
           wpp_set_debug(lex_debug,parser_debug,msg_debug);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int lex_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int parser_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int msg_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          wpp_set_debug(lex_debug,parser_debug,msg_debug);
+        
+        break;
+    }
     default:
         usage();
         break;

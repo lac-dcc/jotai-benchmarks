@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -98,12 +100,6 @@ __attribute__((used)) static struct dc_link_settings get_max_link_cap(struct dc_
 	return max_link_cap;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,22 +112,174 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_link0 = 1;
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_link0 = 65025;
           struct dc_link * link = (struct dc_link *) malloc(_len_link0*sizeof(struct dc_link));
           for(int _i0 = 0; _i0 < _len_link0; _i0++) {
-            link[_i0].reported_link_cap.lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        link[_i0].reported_link_cap.link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        link[_i0].reported_link_cap.link_spread = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].reported_link_cap.lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].reported_link_cap.link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].reported_link_cap.link_spread = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_link__i0__link_enc0 = 1;
           link[_i0].link_enc = (struct TYPE_9__ *) malloc(_len_link__i0__link_enc0*sizeof(struct TYPE_9__));
           for(int _j0 = 0; _j0 < _len_link__i0__link_enc0; _j0++) {
-            link[_i0].link_enc->features.flags.bits.IS_HBR3_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
-        link[_i0].link_enc->features.flags.bits.IS_HBR2_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].link_enc->features.flags.bits.IS_HBR3_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].link_enc->features.flags.bits.IS_HBR2_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           }
+        
+          struct dc_link_settings benchRet = get_max_link_cap(link);
+          printf("%ld\n", benchRet.link_rate);
+          printf("%ld\n", benchRet.lane_count);
+          printf("%ld\n", benchRet.link_spread);
+          printf("%d\n", benchRet.member_2);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_0);
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].link_enc);
+          }
+          free(link);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_link0 = 100;
+          struct dc_link * link = (struct dc_link *) malloc(_len_link0*sizeof(struct dc_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].reported_link_cap.lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].reported_link_cap.link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].reported_link_cap.link_spread = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_link__i0__link_enc0 = 1;
+          link[_i0].link_enc = (struct TYPE_9__ *) malloc(_len_link__i0__link_enc0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_link__i0__link_enc0; _j0++) {
+              link[_i0].link_enc->features.flags.bits.IS_HBR3_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].link_enc->features.flags.bits.IS_HBR2_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          }
+        
+          struct dc_link_settings benchRet = get_max_link_cap(link);
+          printf("%ld\n", benchRet.link_rate);
+          printf("%ld\n", benchRet.lane_count);
+          printf("%ld\n", benchRet.link_spread);
+          printf("%d\n", benchRet.member_2);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_0);
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].link_enc);
+          }
+          free(link);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 34
+          // dynamic_instructions_O1 : 34
+          // ------------------------------- 
+          // static_instructions_O2 : 34
+          // dynamic_instructions_O2 : 34
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 34
+          // dynamic_instructions_Os : 34
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 34
+          // ------------------------------- 
+
+          int _len_link0 = 1;
+          struct dc_link * link = (struct dc_link *) malloc(_len_link0*sizeof(struct dc_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].reported_link_cap.lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].reported_link_cap.link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].reported_link_cap.link_spread = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_link__i0__link_enc0 = 1;
+          link[_i0].link_enc = (struct TYPE_9__ *) malloc(_len_link__i0__link_enc0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_link__i0__link_enc0; _j0++) {
+              link[_i0].link_enc->features.flags.bits.IS_HBR3_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].link_enc->features.flags.bits.IS_HBR2_CAPABLE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          }
+        
           struct dc_link_settings benchRet = get_max_link_cap(link);
           printf("%ld\n", benchRet.link_rate);
           printf("%ld\n", benchRet.lane_count);

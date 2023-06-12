@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ void ata_unpack_xfermask(unsigned long xfer_mask, unsigned long *pio_mask,
 		*udma_mask = (xfer_mask & ATA_MASK_UDMA) >> ATA_SHIFT_UDMA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +90,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long xfer_mask = 100;
+        
           int _len_pio_mask0 = 1;
           unsigned long * pio_mask = (unsigned long *) malloc(_len_pio_mask0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pio_mask0; _i0++) {
             pio_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_mwdma_mask0 = 1;
           unsigned long * mwdma_mask = (unsigned long *) malloc(_len_mwdma_mask0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_mwdma_mask0; _i0++) {
             mwdma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_udma_mask0 = 1;
           unsigned long * udma_mask = (unsigned long *) malloc(_len_udma_mask0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_udma_mask0; _i0++) {
             udma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ata_unpack_xfermask(xfer_mask,pio_mask,mwdma_mask,udma_mask);
           free(pio_mask);
           free(mwdma_mask);
@@ -115,7 +116,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long xfer_mask = 255;
+        
+          int _len_pio_mask0 = 65025;
+          unsigned long * pio_mask = (unsigned long *) malloc(_len_pio_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pio_mask0; _i0++) {
+            pio_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mwdma_mask0 = 65025;
+          unsigned long * mwdma_mask = (unsigned long *) malloc(_len_mwdma_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_mwdma_mask0; _i0++) {
+            mwdma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_udma_mask0 = 65025;
+          unsigned long * udma_mask = (unsigned long *) malloc(_len_udma_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_udma_mask0; _i0++) {
+            udma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ata_unpack_xfermask(xfer_mask,pio_mask,mwdma_mask,udma_mask);
+          free(pio_mask);
+          free(mwdma_mask);
+          free(udma_mask);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long xfer_mask = 10;
+        
+          int _len_pio_mask0 = 100;
+          unsigned long * pio_mask = (unsigned long *) malloc(_len_pio_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pio_mask0; _i0++) {
+            pio_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mwdma_mask0 = 100;
+          unsigned long * mwdma_mask = (unsigned long *) malloc(_len_mwdma_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_mwdma_mask0; _i0++) {
+            mwdma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_udma_mask0 = 100;
+          unsigned long * udma_mask = (unsigned long *) malloc(_len_udma_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_udma_mask0; _i0++) {
+            udma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ata_unpack_xfermask(xfer_mask,pio_mask,mwdma_mask,udma_mask);
+          free(pio_mask);
+          free(mwdma_mask);
+          free(udma_mask);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long xfer_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pio_mask0 = 1;
+          unsigned long * pio_mask = (unsigned long *) malloc(_len_pio_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pio_mask0; _i0++) {
+            pio_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mwdma_mask0 = 1;
+          unsigned long * mwdma_mask = (unsigned long *) malloc(_len_mwdma_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_mwdma_mask0; _i0++) {
+            mwdma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_udma_mask0 = 1;
+          unsigned long * udma_mask = (unsigned long *) malloc(_len_udma_mask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_udma_mask0; _i0++) {
+            udma_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ata_unpack_xfermask(xfer_mask,pio_mask,mwdma_mask,udma_mask);
+          free(pio_mask);
+          free(mwdma_mask);
+          free(udma_mask);
+        
+        break;
+    }
     default:
         usage();
         break;

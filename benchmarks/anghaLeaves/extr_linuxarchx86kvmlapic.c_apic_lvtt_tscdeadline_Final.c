@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int apic_lvtt_tscdeadline(struct kvm_lapic *
 	return apic->lapic_timer.timer_mode == APIC_LVT_TIMER_TSCDEADLINE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_apic0 = 1;
+          int _len_apic0 = 65025;
           struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
           for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
-            apic[_i0].lapic_timer.timer_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              apic[_i0].lapic_timer.timer_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = apic_lvtt_tscdeadline(apic);
           printf("%d\n", benchRet); 
           free(apic);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_apic0 = 100;
           struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
           for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
-            apic[_i0].lapic_timer.timer_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              apic[_i0].lapic_timer.timer_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = apic_lvtt_tscdeadline(apic);
           printf("%d\n", benchRet); 
           free(apic);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_apic0 = 1;
+          struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
+          for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
+              apic[_i0].lapic_timer.timer_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = apic_lvtt_tscdeadline(apic);
+          printf("%d\n", benchRet); 
+          free(apic);
+        
+        break;
+    }
     default:
         usage();
         break;

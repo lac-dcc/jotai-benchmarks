@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +99,6 @@ __attribute__((used)) static u8 fm10k_iov_supported_xcast_mode_pf(struct fm10k_v
 	return FM10K_XCAST_MODE_DISABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,11 +115,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int _len_vf_info0 = 1;
           struct fm10k_vf_info * vf_info = (struct fm10k_vf_info *) malloc(_len_vf_info0*sizeof(struct fm10k_vf_info));
           for(int _i0 = 0; _i0 < _len_vf_info0; _i0++) {
-            vf_info[_i0].vf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vf_info[_i0].vf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fm10k_iov_supported_xcast_mode_pf(vf_info,mode);
+          printf("%d\n", benchRet); 
+          free(vf_info);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          int _len_vf_info0 = 65025;
+          struct fm10k_vf_info * vf_info = (struct fm10k_vf_info *) malloc(_len_vf_info0*sizeof(struct fm10k_vf_info));
+          for(int _i0 = 0; _i0 < _len_vf_info0; _i0++) {
+              vf_info[_i0].vf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fm10k_iov_supported_xcast_mode_pf(vf_info,mode);
           printf("%d\n", benchRet); 
           free(vf_info);
@@ -131,21 +148,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mode = 10;
+        
           int _len_vf_info0 = 100;
           struct fm10k_vf_info * vf_info = (struct fm10k_vf_info *) malloc(_len_vf_info0*sizeof(struct fm10k_vf_info));
           for(int _i0 = 0; _i0 < _len_vf_info0; _i0++) {
-            vf_info[_i0].vf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vf_info[_i0].vf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fm10k_iov_supported_xcast_mode_pf(vf_info,mode);
           printf("%d\n", benchRet); 
           free(vf_info);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vf_info0 = 1;
+          struct fm10k_vf_info * vf_info = (struct fm10k_vf_info *) malloc(_len_vf_info0*sizeof(struct fm10k_vf_info));
+          for(int _i0 = 0; _i0 < _len_vf_info0; _i0++) {
+              vf_info[_i0].vf_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_iov_supported_xcast_mode_pf(vf_info,mode);
+          printf("%d\n", benchRet); 
+          free(vf_info);
+        
+        break;
+    }
     default:
         usage();
         break;

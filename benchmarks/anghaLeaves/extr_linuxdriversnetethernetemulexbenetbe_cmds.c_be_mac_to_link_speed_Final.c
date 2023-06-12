@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static int be_mac_to_link_speed(int mac_speed)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mac_speed = 100;
+        
           int benchRet = be_mac_to_link_speed(mac_speed);
           printf("%d\n", benchRet); 
         
@@ -118,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mac_speed = 255;
+        
           int benchRet = be_mac_to_link_speed(mac_speed);
           printf("%d\n", benchRet); 
         
@@ -127,12 +124,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mac_speed = 10;
+        
           int benchRet = be_mac_to_link_speed(mac_speed);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mac_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = be_mac_to_link_speed(mac_speed);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

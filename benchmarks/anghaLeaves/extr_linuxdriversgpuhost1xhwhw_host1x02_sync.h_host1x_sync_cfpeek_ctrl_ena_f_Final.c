@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 host1x_sync_cfpeek_ctrl_ena_f(u32 v)
 	return (v & 0x1) << 31;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v = 100;
+        
           int benchRet = host1x_sync_cfpeek_ctrl_ena_f(v);
           printf("%d\n", benchRet); 
         
@@ -92,12 +87,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int v = 10;
+        
           int benchRet = host1x_sync_cfpeek_ctrl_ena_f(v);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

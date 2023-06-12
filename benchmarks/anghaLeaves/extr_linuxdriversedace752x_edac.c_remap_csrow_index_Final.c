@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline int remap_csrow_index(struct mem_ctl_info *m
 	return (index);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +85,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int _len_mci0 = 1;
           struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
           for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
               int _len_mci__i0__pvt_info0 = 1;
           mci[_i0].pvt_info = (struct e752x_pvt *) malloc(_len_mci__i0__pvt_info0*sizeof(struct e752x_pvt));
           for(int _j0 = 0; _j0 < _len_mci__i0__pvt_info0; _j0++) {
-            mci[_i0].pvt_info->map_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              mci[_i0].pvt_info->map_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = remap_csrow_index(mci,index);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mci0; _aux++) {
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int _len_mci0 = 65025;
+          struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
+          for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
+              int _len_mci__i0__pvt_info0 = 1;
+          mci[_i0].pvt_info = (struct e752x_pvt *) malloc(_len_mci__i0__pvt_info0*sizeof(struct e752x_pvt));
+          for(int _j0 = 0; _j0 < _len_mci__i0__pvt_info0; _j0++) {
+              mci[_i0].pvt_info->map_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = remap_csrow_index(mci,index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mci0; _aux++) {
+          free(mci[_aux].pvt_info);
+          }
+          free(mci);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int index = 10;
+        
+          int _len_mci0 = 100;
+          struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
+          for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
+              int _len_mci__i0__pvt_info0 = 1;
+          mci[_i0].pvt_info = (struct e752x_pvt *) malloc(_len_mci__i0__pvt_info0*sizeof(struct e752x_pvt));
+          for(int _j0 = 0; _j0 < _len_mci__i0__pvt_info0; _j0++) {
+              mci[_i0].pvt_info->map_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = remap_csrow_index(mci,index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mci0; _aux++) {
+          free(mci[_aux].pvt_info);
+          }
+          free(mci);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mci0 = 1;
+          struct mem_ctl_info * mci = (struct mem_ctl_info *) malloc(_len_mci0*sizeof(struct mem_ctl_info));
+          for(int _i0 = 0; _i0 < _len_mci0; _i0++) {
+              int _len_mci__i0__pvt_info0 = 1;
+          mci[_i0].pvt_info = (struct e752x_pvt *) malloc(_len_mci__i0__pvt_info0*sizeof(struct e752x_pvt));
+          for(int _j0 = 0; _j0 < _len_mci__i0__pvt_info0; _j0++) {
+              mci[_i0].pvt_info->map_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = remap_csrow_index(mci,index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mci0; _aux++) {
+          free(mci[_aux].pvt_info);
+          }
+          free(mci);
+        
+        break;
+    }
     default:
         usage();
         break;

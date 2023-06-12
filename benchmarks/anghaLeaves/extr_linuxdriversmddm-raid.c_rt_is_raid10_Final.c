@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool rt_is_raid10(struct raid_type *rt)
 	return rt->level == 10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rt0 = 1;
+          int _len_rt0 = 65025;
           struct raid_type * rt = (struct raid_type *) malloc(_len_rt0*sizeof(struct raid_type));
           for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
-            rt[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+              rt[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rt_is_raid10(rt);
           printf("%d\n", benchRet); 
           free(rt);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_rt0 = 100;
           struct raid_type * rt = (struct raid_type *) malloc(_len_rt0*sizeof(struct raid_type));
           for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
-            rt[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+              rt[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rt_is_raid10(rt);
           printf("%d\n", benchRet); 
           free(rt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rt0 = 1;
+          struct raid_type * rt = (struct raid_type *) malloc(_len_rt0*sizeof(struct raid_type));
+          for(int _i0 = 0; _i0 < _len_rt0; _i0++) {
+              rt[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rt_is_raid10(rt);
+          printf("%d\n", benchRet); 
+          free(rt);
+        
+        break;
+    }
     default:
         usage();
         break;

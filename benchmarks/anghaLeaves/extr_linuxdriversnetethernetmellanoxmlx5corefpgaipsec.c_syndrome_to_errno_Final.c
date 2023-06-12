@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -78,12 +78,6 @@ int syndrome_to_errno(enum mlx5_ifc_fpga_ipsec_response_syndrome syndrome)
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +90,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum mlx5_ifc_fpga_ipsec_response_syndrome syndrome = 0;
+        
           int benchRet = syndrome_to_errno(syndrome);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

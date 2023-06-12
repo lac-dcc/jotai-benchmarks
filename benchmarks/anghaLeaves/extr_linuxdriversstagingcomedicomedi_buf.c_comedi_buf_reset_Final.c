@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ void comedi_buf_reset(struct comedi_subdevice *s)
 	async->events = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,30 +92,174 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__async0 = 1;
+          s[_i0].async = (struct comedi_async *) malloc(_len_s__i0__async0*sizeof(struct comedi_async));
+          for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
+              s[_i0].async->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->scan_progress = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->scans_done = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->cur_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          comedi_buf_reset(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].async);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__async0 = 1;
+          s[_i0].async = (struct comedi_async *) malloc(_len_s__i0__async0*sizeof(struct comedi_async));
+          for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
+              s[_i0].async->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->scan_progress = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->scans_done = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->cur_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          comedi_buf_reset(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].async);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_s0 = 1;
           struct comedi_subdevice * s = (struct comedi_subdevice *) malloc(_len_s0*sizeof(struct comedi_subdevice));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__async0 = 1;
           s[_i0].async = (struct comedi_async *) malloc(_len_s__i0__async0*sizeof(struct comedi_async));
           for(int _j0 = 0; _j0 < _len_s__i0__async0; _j0++) {
-            s[_i0].async->events = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->munge_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->munge_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->munge_chan = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->scan_progress = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->scans_done = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->cur_chan = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->buf_read_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->buf_write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->buf_read_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->buf_read_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->buf_write_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].async->buf_write_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].async->events = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->munge_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->scan_progress = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->scans_done = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->cur_chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_read_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].async->buf_write_alloc_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           comedi_buf_reset(s);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].async);

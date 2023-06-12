@@ -60,12 +60,6 @@ __attribute__((used)) static inline u32 amap_mask(u32 bitsize)
 	return (bitsize == 32 ? 0xFFFFFFFF : (1 << bitsize) - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,12 +76,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bitsize = 10;
+        
           int benchRet = amap_mask(bitsize);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

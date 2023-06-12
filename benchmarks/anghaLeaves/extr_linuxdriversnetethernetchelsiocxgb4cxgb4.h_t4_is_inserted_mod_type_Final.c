@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline bool t4_is_inserted_mod_type(unsigned int fw
 		fw_mod_type != FW_PORT_MOD_TYPE_ERROR);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int fw_mod_type = 100;
+        
           int benchRet = t4_is_inserted_mod_type(fw_mod_type);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int fw_mod_type = 255;
+        
           int benchRet = t4_is_inserted_mod_type(fw_mod_type);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int fw_mod_type = 10;
+        
           int benchRet = t4_is_inserted_mod_type(fw_mod_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int fw_mod_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = t4_is_inserted_mod_type(fw_mod_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void ui_browser__refresh_dimensions(struct ui_browser *browser)
 	browser->x = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_browser0 = 65025;
+          struct ui_browser * browser = (struct ui_browser *) malloc(_len_browser0*sizeof(struct ui_browser));
+          for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
+              browser[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].extra_title_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ui_browser__refresh_dimensions(browser);
+          free(browser);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_browser0 = 100;
+          struct ui_browser * browser = (struct ui_browser *) malloc(_len_browser0*sizeof(struct ui_browser));
+          for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
+              browser[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].extra_title_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ui_browser__refresh_dimensions(browser);
+          free(browser);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_browser0 = 1;
           struct ui_browser * browser = (struct ui_browser *) malloc(_len_browser0*sizeof(struct ui_browser));
           for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
-            browser[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        browser[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        browser[_i0].extra_title_lines = ((-2 * (next_i()%2)) + 1) * next_i();
-        browser[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
-        browser[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        browser[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              browser[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].extra_title_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          browser[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ui_browser__refresh_dimensions(browser);
           free(browser);
         

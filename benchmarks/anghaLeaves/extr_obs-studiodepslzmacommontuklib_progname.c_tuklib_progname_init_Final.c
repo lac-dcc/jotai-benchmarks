@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ tuklib_progname_init(char **argv)
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,8 +99,50 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_argv0 = 65025;
+          char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            int _len_argv1 = 1;
+            argv[_i0] = (char *) malloc(_len_argv1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_argv1; _i1++) {
+              argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          tuklib_progname_init(argv);
+          for(int i1 = 0; i1 < _len_argv0; i1++) {
+              free(argv[i1]);
+          }
+          free(argv);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_argv0 = 100;
+          char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            int _len_argv1 = 1;
+            argv[_i0] = (char *) malloc(_len_argv1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_argv1; _i1++) {
+              argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          tuklib_progname_init(argv);
+          for(int i1 = 0; i1 < _len_argv0; i1++) {
+              free(argv[i1]);
+          }
+          free(argv);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_argv0 = 1;
           char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
@@ -115,16 +153,15 @@ int main(int argc, char *argv[]) {
               argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           tuklib_progname_init(argv);
           for(int i1 = 0; i1 < _len_argv0; i1++) {
-            int _len_argv1 = 1;
               free(argv[i1]);
           }
           free(argv);
         
         break;
     }
-
     default:
         usage();
         break;

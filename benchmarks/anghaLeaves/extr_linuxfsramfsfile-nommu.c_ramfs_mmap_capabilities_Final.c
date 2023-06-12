@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static unsigned ramfs_mmap_capabilities(struct file *file)
 		NOMMU_MAP_WRITE | NOMMU_MAP_EXEC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_file0 = 1;
+          int _len_file0 = 65025;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ramfs_mmap_capabilities(file);
           printf("%u\n", benchRet); 
           free(file);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_file0 = 100;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ramfs_mmap_capabilities(file);
           printf("%u\n", benchRet); 
           free(file);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_file0 = 1;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ramfs_mmap_capabilities(file);
+          printf("%u\n", benchRet); 
+          free(file);
+        
+        break;
+    }
     default:
         usage();
         break;

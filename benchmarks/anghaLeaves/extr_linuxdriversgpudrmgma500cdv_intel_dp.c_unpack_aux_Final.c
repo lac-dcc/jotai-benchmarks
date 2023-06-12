@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ unpack_aux(uint32_t src, uint8_t *dst, int dst_bytes)
 		dst[i] = src >> ((3-i) * 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +80,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 43
+          // ------------------------------- 
+          // static_instructions_O2 : 62
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 62
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 62
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 54
+          // dynamic_instructions_Os : 84
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
+          int src = 255;
+        
+          int dst_bytes = 255;
+        
+          int _len_dst0 = 65025;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unpack_aux(src,dst,dst_bytes);
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 43
+          // ------------------------------- 
+          // static_instructions_O2 : 62
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 62
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 62
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 54
+          // dynamic_instructions_Os : 84
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
           int src = 10;
+        
           int dst_bytes = 10;
+        
           int _len_dst0 = 100;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unpack_aux(src,dst,dst_bytes);
+          free(dst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unpack_aux(src,dst,dst_bytes);
           free(dst);
         

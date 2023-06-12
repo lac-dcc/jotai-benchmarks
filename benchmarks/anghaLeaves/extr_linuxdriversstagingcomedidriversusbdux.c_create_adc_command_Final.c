@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static u8 create_adc_command(unsigned int chan, unsigned i
 	return (chan << 4) | ((p == 1) << 2) | ((r == 1) << 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int chan = 100;
+        
           unsigned int range = 100;
+        
           int benchRet = create_adc_command(chan,range);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int chan = 255;
+        
           unsigned int range = 255;
+        
           int benchRet = create_adc_command(chan,range);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int chan = 10;
+        
           unsigned int range = 10;
+        
           int benchRet = create_adc_command(chan,range);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = create_adc_command(chan,range);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

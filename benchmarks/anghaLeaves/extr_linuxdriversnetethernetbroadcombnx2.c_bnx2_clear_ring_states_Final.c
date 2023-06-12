@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ bnx2_clear_ring_states(struct bnx2 *bp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,24 +97,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bp0 = 65025;
           struct bnx2 * bp = (struct bnx2 *) malloc(_len_bp0*sizeof(struct bnx2));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
               int _len_bp__i0__bnx2_napi0 = 1;
           bp[_i0].bnx2_napi = (struct bnx2_napi *) malloc(_len_bp__i0__bnx2_napi0*sizeof(struct bnx2_napi));
           for(int _j0 = 0; _j0 < _len_bp__i0__bnx2_napi0; _j0++) {
-            bp[_i0].bnx2_napi->rx_ring.rx_pg_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_pg_prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_prod_bseq = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->tx_ring.hw_tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->tx_ring.tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].bnx2_napi->rx_ring.rx_pg_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_pg_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod_bseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          bp[_i0].bnx2_napi->tx_ring.hw_tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->tx_ring.tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           bnx2_clear_ring_states(bp);
           for(int _aux = 0; _aux < _len_bp0; _aux++) {
           free(bp[_aux].bnx2_napi);
@@ -127,24 +151,163 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bp0 = 100;
+          struct bnx2 * bp = (struct bnx2 *) malloc(_len_bp0*sizeof(struct bnx2));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              int _len_bp__i0__bnx2_napi0 = 1;
+          bp[_i0].bnx2_napi = (struct bnx2_napi *) malloc(_len_bp__i0__bnx2_napi0*sizeof(struct bnx2_napi));
+          for(int _j0 = 0; _j0 < _len_bp__i0__bnx2_napi0; _j0++) {
+              bp[_i0].bnx2_napi->rx_ring.rx_pg_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_pg_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod_bseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          bp[_i0].bnx2_napi->tx_ring.hw_tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->tx_ring.tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          bnx2_clear_ring_states(bp);
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].bnx2_napi);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_bp0 = 1;
           struct bnx2 * bp = (struct bnx2 *) malloc(_len_bp0*sizeof(struct bnx2));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
               int _len_bp__i0__bnx2_napi0 = 1;
           bp[_i0].bnx2_napi = (struct bnx2_napi *) malloc(_len_bp__i0__bnx2_napi0*sizeof(struct bnx2_napi));
           for(int _j0 = 0; _j0 < _len_bp__i0__bnx2_napi0; _j0++) {
-            bp[_i0].bnx2_napi->rx_ring.rx_pg_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_pg_prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->rx_ring.rx_prod_bseq = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->tx_ring.hw_tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].bnx2_napi->tx_ring.tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].bnx2_napi->rx_ring.rx_pg_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_pg_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod_bseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          bp[_i0].bnx2_napi->tx_ring.hw_tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->tx_ring.tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          bnx2_clear_ring_states(bp);
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].bnx2_napi);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_bp0 = 1;
+          struct bnx2 * bp = (struct bnx2 *) malloc(_len_bp0*sizeof(struct bnx2));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              int _len_bp__i0__bnx2_napi0 = 1;
+          bp[_i0].bnx2_napi = (struct bnx2_napi *) malloc(_len_bp__i0__bnx2_napi0*sizeof(struct bnx2_napi));
+          for(int _j0 = 0; _j0 < _len_bp__i0__bnx2_napi0; _j0++) {
+              bp[_i0].bnx2_napi->rx_ring.rx_pg_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_pg_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->rx_ring.rx_prod_bseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          bp[_i0].bnx2_napi->tx_ring.hw_tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].bnx2_napi->tx_ring.tx_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           bnx2_clear_ring_states(bp);
           for(int _aux = 0; _aux < _len_bp0; _aux++) {
           free(bp[_aux].bnx2_napi);

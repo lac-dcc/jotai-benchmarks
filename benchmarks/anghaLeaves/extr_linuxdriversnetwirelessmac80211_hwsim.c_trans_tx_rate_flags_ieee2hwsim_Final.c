@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -109,12 +110,6 @@ __attribute__((used)) static inline u16 trans_tx_rate_flags_ieee2hwsim(struct ie
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,28 +122,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rate0 = 1;
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 47
+          // dynamic_instructions_O1 : 47
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 47
+          // dynamic_instructions_Os : 47
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
+          int _len_rate0 = 65025;
           struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
           for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
-            rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trans_tx_rate_flags_ieee2hwsim(rate);
           printf("%d\n", benchRet); 
           free(rate);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 47
+          // dynamic_instructions_O1 : 47
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 47
+          // dynamic_instructions_Os : 47
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
           int _len_rate0 = 100;
           struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
           for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
-            rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = trans_tx_rate_flags_ieee2hwsim(rate);
+          printf("%d\n", benchRet); 
+          free(rate);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 47
+          // dynamic_instructions_O1 : 47
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 47
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 47
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 47
+          // ------------------------------- 
+          // static_instructions_Os : 47
+          // dynamic_instructions_Os : 47
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
+          int _len_rate0 = 1;
+          struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
+          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
+              rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = trans_tx_rate_flags_ieee2hwsim(rate);
           printf("%d\n", benchRet); 
           free(rate);

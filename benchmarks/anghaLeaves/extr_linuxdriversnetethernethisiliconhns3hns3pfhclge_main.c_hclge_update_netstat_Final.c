@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static void hclge_update_netstat(struct hclge_hw_stats *hw
 		hw_stats->mac_stats.mac_rx_oversize_pkt_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,34 +100,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 75
+          // dynamic_instructions_O0 : 75
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_hw_stats0 = 65025;
+          struct hclge_hw_stats * hw_stats = (struct hclge_hw_stats *) malloc(_len_hw_stats0*sizeof(struct hclge_hw_stats));
+          for(int _i0 = 0; _i0 < _len_hw_stats0; _i0++) {
+              hw_stats[_i0].mac_stats.mac_rx_oversize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_undersize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_fcs_err_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_tx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw_stats[_i0].all_32_bit_stats.igu_rx_no_sof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.igu_rx_no_eof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ssu_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ppp_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ssu_full_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_net_stats0 = 65025;
+          struct net_device_stats * net_stats = (struct net_device_stats *) malloc(_len_net_stats0*sizeof(struct net_device_stats));
+          for(int _i0 = 0; _i0 < _len_net_stats0; _i0++) {
+              net_stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hclge_update_netstat(hw_stats,net_stats);
+          free(hw_stats);
+          free(net_stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 75
+          // dynamic_instructions_O0 : 75
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_hw_stats0 = 100;
+          struct hclge_hw_stats * hw_stats = (struct hclge_hw_stats *) malloc(_len_hw_stats0*sizeof(struct hclge_hw_stats));
+          for(int _i0 = 0; _i0 < _len_hw_stats0; _i0++) {
+              hw_stats[_i0].mac_stats.mac_rx_oversize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_undersize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_fcs_err_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_tx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw_stats[_i0].all_32_bit_stats.igu_rx_no_sof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.igu_rx_no_eof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ssu_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ppp_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ssu_full_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_net_stats0 = 100;
+          struct net_device_stats * net_stats = (struct net_device_stats *) malloc(_len_net_stats0*sizeof(struct net_device_stats));
+          for(int _i0 = 0; _i0 < _len_net_stats0; _i0++) {
+              net_stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hclge_update_netstat(hw_stats,net_stats);
+          free(hw_stats);
+          free(net_stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 75
+          // dynamic_instructions_O0 : 75
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_hw_stats0 = 1;
           struct hclge_hw_stats * hw_stats = (struct hclge_hw_stats *) malloc(_len_hw_stats0*sizeof(struct hclge_hw_stats));
           for(int _i0 = 0; _i0 < _len_hw_stats0; _i0++) {
-            hw_stats[_i0].mac_stats.mac_rx_oversize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].mac_stats.mac_rx_undersize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].mac_stats.mac_rx_fcs_err_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].mac_stats.mac_rx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].mac_stats.mac_tx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].all_32_bit_stats.igu_rx_no_sof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].all_32_bit_stats.igu_rx_no_eof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].all_32_bit_stats.ssu_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].all_32_bit_stats.ppp_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_stats[_i0].all_32_bit_stats.ssu_full_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw_stats[_i0].mac_stats.mac_rx_oversize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_undersize_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_fcs_err_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_rx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].mac_stats.mac_tx_multi_pkt_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw_stats[_i0].all_32_bit_stats.igu_rx_no_sof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.igu_rx_no_eof_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ssu_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ppp_key_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_stats[_i0].all_32_bit_stats.ssu_full_drop_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_net_stats0 = 1;
           struct net_device_stats * net_stats = (struct net_device_stats *) malloc(_len_net_stats0*sizeof(struct net_device_stats));
           for(int _i0 = 0; _i0 < _len_net_stats0; _i0++) {
-            net_stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        net_stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        net_stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        net_stats[_i0].multicast = ((-2 * (next_i()%2)) + 1) * next_i();
-        net_stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        net_stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
-        net_stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+              net_stats[_i0].rx_over_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_length_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_crc_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].multicast = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].rx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+          net_stats[_i0].tx_dropped = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hclge_update_netstat(hw_stats,net_stats);
           free(hw_stats);
           free(net_stats);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int rsv_is_empty(struct ext2_reserve_window 
 	return (rsv->_rsv_end == EXT2_RESERVE_WINDOW_NOT_ALLOCATED);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rsv0 = 1;
+          int _len_rsv0 = 65025;
           struct ext2_reserve_window * rsv = (struct ext2_reserve_window *) malloc(_len_rsv0*sizeof(struct ext2_reserve_window));
           for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
-            rsv[_i0]._rsv_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsv[_i0]._rsv_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rsv_is_empty(rsv);
           printf("%d\n", benchRet); 
           free(rsv);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_rsv0 = 100;
           struct ext2_reserve_window * rsv = (struct ext2_reserve_window *) malloc(_len_rsv0*sizeof(struct ext2_reserve_window));
           for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
-            rsv[_i0]._rsv_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsv[_i0]._rsv_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rsv_is_empty(rsv);
           printf("%d\n", benchRet); 
           free(rsv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rsv0 = 1;
+          struct ext2_reserve_window * rsv = (struct ext2_reserve_window *) malloc(_len_rsv0*sizeof(struct ext2_reserve_window));
+          for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
+              rsv[_i0]._rsv_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rsv_is_empty(rsv);
+          printf("%d\n", benchRet); 
+          free(rsv);
+        
+        break;
+    }
     default:
         usage();
         break;

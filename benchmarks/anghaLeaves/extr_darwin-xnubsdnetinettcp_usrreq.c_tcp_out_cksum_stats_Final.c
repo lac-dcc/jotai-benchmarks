@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ tcp_out_cksum_stats(u_int32_t len)
 	tcpstat.tcps_snd_swcsum_bytes += len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long len = 100;
+        
           tcp_out_cksum_stats(len);
         
         break;
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long len = 255;
+        
           tcp_out_cksum_stats(len);
         
         break;
@@ -105,11 +102,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long len = 10;
+        
           tcp_out_cksum_stats(len);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tcp_out_cksum_stats(len);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void stm32_mdma_set_bus(struct stm32_mdma_device *d
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,26 +88,228 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int ctbr_mask = 100;
+        
           int src_addr = 100;
+        
           int _len_dmadev0 = 1;
           struct stm32_mdma_device * dmadev = (struct stm32_mdma_device *) malloc(_len_dmadev0*sizeof(struct stm32_mdma_device));
           for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
-            dmadev[_i0].nr_ahb_addr_masks = ((-2 * (next_i()%2)) + 1) * next_i();
+              dmadev[_i0].nr_ahb_addr_masks = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dmadev__i0__ahb_addr_masks0 = 1;
           dmadev[_i0].ahb_addr_masks = (int *) malloc(_len_dmadev__i0__ahb_addr_masks0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_dmadev__i0__ahb_addr_masks0; _j0++) {
             dmadev[_i0].ahb_addr_masks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_ctbr0 = 1;
           int * ctbr = (int *) malloc(_len_ctbr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ctbr0; _i0++) {
             ctbr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          stm32_mdma_set_bus(dmadev,ctbr,ctbr_mask,src_addr);
+          for(int _aux = 0; _aux < _len_dmadev0; _aux++) {
+          free(dmadev[_aux].ahb_addr_masks);
+          }
+          free(dmadev);
+          free(ctbr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int ctbr_mask = 255;
+        
+          int src_addr = 255;
+        
+          int _len_dmadev0 = 65025;
+          struct stm32_mdma_device * dmadev = (struct stm32_mdma_device *) malloc(_len_dmadev0*sizeof(struct stm32_mdma_device));
+          for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
+              dmadev[_i0].nr_ahb_addr_masks = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dmadev__i0__ahb_addr_masks0 = 1;
+          dmadev[_i0].ahb_addr_masks = (int *) malloc(_len_dmadev__i0__ahb_addr_masks0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dmadev__i0__ahb_addr_masks0; _j0++) {
+            dmadev[_i0].ahb_addr_masks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ctbr0 = 65025;
+          int * ctbr = (int *) malloc(_len_ctbr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctbr0; _i0++) {
+            ctbr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stm32_mdma_set_bus(dmadev,ctbr,ctbr_mask,src_addr);
+          for(int _aux = 0; _aux < _len_dmadev0; _aux++) {
+          free(dmadev[_aux].ahb_addr_masks);
+          }
+          free(dmadev);
+          free(ctbr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int ctbr_mask = 10;
+        
+          int src_addr = 10;
+        
+          int _len_dmadev0 = 100;
+          struct stm32_mdma_device * dmadev = (struct stm32_mdma_device *) malloc(_len_dmadev0*sizeof(struct stm32_mdma_device));
+          for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
+              dmadev[_i0].nr_ahb_addr_masks = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dmadev__i0__ahb_addr_masks0 = 1;
+          dmadev[_i0].ahb_addr_masks = (int *) malloc(_len_dmadev__i0__ahb_addr_masks0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dmadev__i0__ahb_addr_masks0; _j0++) {
+            dmadev[_i0].ahb_addr_masks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ctbr0 = 100;
+          int * ctbr = (int *) malloc(_len_ctbr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctbr0; _i0++) {
+            ctbr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          stm32_mdma_set_bus(dmadev,ctbr,ctbr_mask,src_addr);
+          for(int _aux = 0; _aux < _len_dmadev0; _aux++) {
+          free(dmadev[_aux].ahb_addr_masks);
+          }
+          free(dmadev);
+          free(ctbr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int ctbr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int src_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dmadev0 = 1;
+          struct stm32_mdma_device * dmadev = (struct stm32_mdma_device *) malloc(_len_dmadev0*sizeof(struct stm32_mdma_device));
+          for(int _i0 = 0; _i0 < _len_dmadev0; _i0++) {
+              dmadev[_i0].nr_ahb_addr_masks = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dmadev__i0__ahb_addr_masks0 = 1;
+          dmadev[_i0].ahb_addr_masks = (int *) malloc(_len_dmadev__i0__ahb_addr_masks0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dmadev__i0__ahb_addr_masks0; _j0++) {
+            dmadev[_i0].ahb_addr_masks[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_ctbr0 = 1;
+          int * ctbr = (int *) malloc(_len_ctbr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctbr0; _i0++) {
+            ctbr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           stm32_mdma_set_bus(dmadev,ctbr,ctbr_mask,src_addr);
           for(int _aux = 0; _aux < _len_dmadev0; _aux++) {
           free(dmadev[_aux].ahb_addr_masks);

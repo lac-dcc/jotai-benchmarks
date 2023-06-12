@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ ngx_http_upstream_check_ajp_reinit(ngx_http_upstream_check_peer_t *peer)
     ctx->recv.pos = ctx->recv.last = ctx->recv.start;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,24 +91,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_peer0 = 65025;
+          struct TYPE_8__ * peer = (struct TYPE_8__ *) malloc(_len_peer0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              int _len_peer__i0__check_data0 = 1;
+          peer[_i0].check_data = (struct TYPE_9__ *) malloc(_len_peer__i0__check_data0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_peer__i0__check_data0; _j0++) {
+              peer[_i0].check_data->recv.start = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->recv.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->recv.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          peer[_i0].check_data->send.end = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.start = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          ngx_http_upstream_check_ajp_reinit(peer);
+          for(int _aux = 0; _aux < _len_peer0; _aux++) {
+          free(peer[_aux].check_data);
+          }
+          free(peer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_peer0 = 100;
+          struct TYPE_8__ * peer = (struct TYPE_8__ *) malloc(_len_peer0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              int _len_peer__i0__check_data0 = 1;
+          peer[_i0].check_data = (struct TYPE_9__ *) malloc(_len_peer__i0__check_data0*sizeof(struct TYPE_9__));
+          for(int _j0 = 0; _j0 < _len_peer__i0__check_data0; _j0++) {
+              peer[_i0].check_data->recv.start = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->recv.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->recv.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          peer[_i0].check_data->send.end = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.start = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          ngx_http_upstream_check_ajp_reinit(peer);
+          for(int _aux = 0; _aux < _len_peer0; _aux++) {
+          free(peer[_aux].check_data);
+          }
+          free(peer);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_peer0 = 1;
           struct TYPE_8__ * peer = (struct TYPE_8__ *) malloc(_len_peer0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
               int _len_peer__i0__check_data0 = 1;
           peer[_i0].check_data = (struct TYPE_9__ *) malloc(_len_peer__i0__check_data0*sizeof(struct TYPE_9__));
           for(int _j0 = 0; _j0 < _len_peer__i0__check_data0; _j0++) {
-            peer[_i0].check_data->recv.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->recv.last = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->recv.pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.end = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.last = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.start = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].check_data->send.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].check_data->recv.start = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->recv.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->recv.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          peer[_i0].check_data->send.end = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.start = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].check_data->send.pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           ngx_http_upstream_check_ajp_reinit(peer);
           for(int _aux = 0; _aux < _len_peer0; _aux++) {
           free(peer[_aux].check_data);

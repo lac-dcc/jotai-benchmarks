@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static int isl29501_set_shadow_coeff(struct isl29501_priva
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,11 +108,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           enum isl29501_register_name reg = 0;
+        
           unsigned int val = 100;
+        
           int _len_isl295010 = 1;
           struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
           for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
@@ -124,7 +146,162 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_isl29501__i0__shadow_coeffs0; _j0++) {
             isl29501[_i0].shadow_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = isl29501_set_shadow_coeff(isl29501,reg,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isl295010; _aux++) {
+          free(isl29501[_aux].shadow_coeffs);
+          }
+          free(isl29501);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          enum isl29501_register_name reg = 0;
+        
+          unsigned int val = 255;
+        
+          int _len_isl295010 = 65025;
+          struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
+          for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
+              int _len_isl29501__i0__shadow_coeffs0 = 1;
+          isl29501[_i0].shadow_coeffs = (unsigned int *) malloc(_len_isl29501__i0__shadow_coeffs0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_isl29501__i0__shadow_coeffs0; _j0++) {
+            isl29501[_i0].shadow_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = isl29501_set_shadow_coeff(isl29501,reg,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isl295010; _aux++) {
+          free(isl29501[_aux].shadow_coeffs);
+          }
+          free(isl29501);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          enum isl29501_register_name reg = 0;
+        
+          unsigned int val = 10;
+        
+          int _len_isl295010 = 100;
+          struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
+          for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
+              int _len_isl29501__i0__shadow_coeffs0 = 1;
+          isl29501[_i0].shadow_coeffs = (unsigned int *) malloc(_len_isl29501__i0__shadow_coeffs0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_isl29501__i0__shadow_coeffs0; _j0++) {
+            isl29501[_i0].shadow_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = isl29501_set_shadow_coeff(isl29501,reg,val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isl295010; _aux++) {
+          free(isl29501[_aux].shadow_coeffs);
+          }
+          free(isl29501);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          enum isl29501_register_name reg = 0;
+        
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_isl295010 = 1;
+          struct isl29501_private * isl29501 = (struct isl29501_private *) malloc(_len_isl295010*sizeof(struct isl29501_private));
+          for(int _i0 = 0; _i0 < _len_isl295010; _i0++) {
+              int _len_isl29501__i0__shadow_coeffs0 = 1;
+          isl29501[_i0].shadow_coeffs = (unsigned int *) malloc(_len_isl29501__i0__shadow_coeffs0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_isl29501__i0__shadow_coeffs0; _j0++) {
+            isl29501[_i0].shadow_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = isl29501_set_shadow_coeff(isl29501,reg,val);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_isl295010; _aux++) {

@@ -63,12 +63,6 @@ __attribute__((used)) static st64 get_immed_sgnext(const ut64 insn, const ut8 nb
 		| (((insn & ((ut64)1 << nbit)) >> nbit) * mask));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,13 +79,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int insn = 10;
+        
           const int nbit = 10;
+        
           int benchRet = get_immed_sgnext(insn,nbit);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

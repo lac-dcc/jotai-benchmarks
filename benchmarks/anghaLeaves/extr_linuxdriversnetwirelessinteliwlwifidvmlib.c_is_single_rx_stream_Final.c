@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool is_single_rx_stream(struct iwl_priv *priv)
 	       priv->current_ht_config.single_chain_sufficient;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = is_single_rx_stream(priv);
           printf("%d\n", benchRet); 
           free(priv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_single_rx_stream(priv);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_single_rx_stream(priv);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

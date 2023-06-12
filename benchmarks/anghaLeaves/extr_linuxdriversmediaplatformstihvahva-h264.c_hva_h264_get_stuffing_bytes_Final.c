@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static u32 hva_h264_get_stuffing_bytes(struct hva_h264_tas
 	return po->stuffing_bits >> 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct hva_h264_task * task = (struct hva_h264_task *) malloc(_len_task0*sizeof(struct hva_h264_task));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].po.stuffing_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].po.stuffing_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hva_h264_get_stuffing_bytes(task);
           printf("%d\n", benchRet); 
           free(task);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_task0 = 100;
           struct hva_h264_task * task = (struct hva_h264_task *) malloc(_len_task0*sizeof(struct hva_h264_task));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].po.stuffing_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].po.stuffing_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hva_h264_get_stuffing_bytes(task);
           printf("%d\n", benchRet); 
           free(task);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct hva_h264_task * task = (struct hva_h264_task *) malloc(_len_task0*sizeof(struct hva_h264_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].po.stuffing_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hva_h264_get_stuffing_bytes(task);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void marshal_rele_to_resize(struct dk_cxlflash_rele
 	resize->rsrc_handle = release->rsrc_handle;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_release0 = 65025;
+          struct dk_cxlflash_release * release = (struct dk_cxlflash_release *) malloc(_len_release0*sizeof(struct dk_cxlflash_release));
+          for(int _i0 = 0; _i0 < _len_release0; _i0++) {
+              release[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_resize0 = 65025;
+          struct dk_cxlflash_resize * resize = (struct dk_cxlflash_resize *) malloc(_len_resize0*sizeof(struct dk_cxlflash_resize));
+          for(int _i0 = 0; _i0 < _len_resize0; _i0++) {
+              resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          marshal_rele_to_resize(release,resize);
+          free(release);
+          free(resize);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_release0 = 100;
+          struct dk_cxlflash_release * release = (struct dk_cxlflash_release *) malloc(_len_release0*sizeof(struct dk_cxlflash_release));
+          for(int _i0 = 0; _i0 < _len_release0; _i0++) {
+              release[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_resize0 = 100;
+          struct dk_cxlflash_resize * resize = (struct dk_cxlflash_resize *) malloc(_len_resize0*sizeof(struct dk_cxlflash_resize));
+          for(int _i0 = 0; _i0 < _len_resize0; _i0++) {
+              resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          marshal_rele_to_resize(release,resize);
+          free(release);
+          free(resize);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_release0 = 1;
           struct dk_cxlflash_release * release = (struct dk_cxlflash_release *) malloc(_len_release0*sizeof(struct dk_cxlflash_release));
           for(int _i0 = 0; _i0 < _len_release0; _i0++) {
-            release[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              release[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          release[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_resize0 = 1;
           struct dk_cxlflash_resize * resize = (struct dk_cxlflash_resize *) malloc(_len_resize0*sizeof(struct dk_cxlflash_resize));
           for(int _i0 = 0; _i0 < _len_resize0; _i0++) {
-            resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           marshal_rele_to_resize(release,resize);
           free(release);
           free(resize);

@@ -63,12 +63,6 @@ __attribute__((used)) static inline int before48(const u64 seq1, const u64 seq2)
 	return (s64)((seq2 << 16) - (seq1 << 16)) > 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int seq1 = 100;
+        
           const int seq2 = 100;
+        
           int benchRet = before48(seq1,seq2);
           printf("%d\n", benchRet); 
         
@@ -95,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int seq1 = 255;
+        
           const int seq2 = 255;
+        
           int benchRet = before48(seq1,seq2);
           printf("%d\n", benchRet); 
         
@@ -105,13 +103,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int seq1 = 10;
+        
           const int seq2 = 10;
+        
           int benchRet = before48(seq1,seq2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

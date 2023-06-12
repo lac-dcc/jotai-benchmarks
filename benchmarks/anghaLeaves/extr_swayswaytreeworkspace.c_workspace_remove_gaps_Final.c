@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ void workspace_remove_gaps(struct sway_workspace *ws) {
 	ws->current_gaps.left = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +88,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_ws0 = 65025;
+          struct sway_workspace * ws = (struct sway_workspace *) malloc(_len_ws0*sizeof(struct sway_workspace));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].current_gaps.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ws[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          workspace_remove_gaps(ws);
+          free(ws);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_ws0 = 100;
+          struct sway_workspace * ws = (struct sway_workspace *) malloc(_len_ws0*sizeof(struct sway_workspace));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].current_gaps.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ws[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          workspace_remove_gaps(ws);
+          free(ws);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_ws0 = 1;
           struct sway_workspace * ws = (struct sway_workspace *) malloc(_len_ws0*sizeof(struct sway_workspace));
           for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
-            ws[_i0].current_gaps.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].current_gaps.right = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].current_gaps.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].current_gaps.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              ws[_i0].current_gaps.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.right = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].current_gaps.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ws[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           workspace_remove_gaps(ws);
           free(ws);
         

@@ -60,12 +60,6 @@ __attribute__((used)) static inline u64 pci_rebar_size_to_bytes(int size)
 	return 1ULL << (size + 20);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,12 +76,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int size = 10;
+        
           unsigned long long benchRet = pci_rebar_size_to_bytes(size);
           printf("%llu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,8 +71,50 @@ __attribute__((used)) static IARTN_Q * ia_deque_rtn_q (IARTN_Q *que) {
    return tmpdata;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_4__ *_allocate_Dlinked_que(int length, struct TYPE_4__ *aux_dlinked_que[] ) {
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_dlinked_que[0] = walker;
+  walker->next = NULL;
+  walker->tail = NULL;
+
+  struct TYPE_4__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->tail = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+    walker->tail->next = walker;
+    walker = walker->tail;
+    aux_dlinked_que[i] = walker;
+    if (i == (length - 1)) 
+      walker->tail = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_que(struct TYPE_4__ *aux_dlinked_que[], int aux_dlinked_que_size) {
+  for(int i = 0; i < aux_dlinked_que_size; i++) 
+    if(aux_dlinked_que[i])
+      free(aux_dlinked_que[i]);
+}
+
+struct TYPE_4__ *_allocateBinTree_que(int length, struct TYPE_4__ *aux_tree_que[], int *counter_que) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_tree_que[*counter_que] = walker;
+  (*counter_que)++;
+  walker->next = _allocateBinTree_que(length - 1, aux_tree_que, counter_que);
+  walker->tail = _allocateBinTree_que(length - 1, aux_tree_que, counter_que);
+  return walker;
+}
+
+void _deleteBinTree_que(struct TYPE_4__ *aux_tree_que[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_que[i])
+      free(aux_tree_que[i]);
+}
 
 struct TYPE_4__ *_allocate_que(int length, struct TYPE_4__ *aux_que[]) {
   struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
@@ -102,7 +146,6 @@ void _delete_que(struct TYPE_4__ *aux_que[], int aux_que_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,11 +158,106 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // dlinked
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          struct TYPE_4__ * aux_dlinked_que[10000];
+          struct TYPE_4__ * que = _allocate_Dlinked_que(10000, aux_dlinked_que);
+        
+          struct TYPE_4__ * benchRet = ia_deque_rtn_q(que);
+          _delete_Dlinked_que(aux_dlinked_que, 10000);
+        
+        break;
+    }
+
+
+    // bintree
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int counter_que= 0;
+          struct TYPE_4__ *  aux_tree_que[1023];
+          struct TYPE_4__ * que = _allocateBinTree_que(10, aux_tree_que, &counter_que);
+        
+          struct TYPE_4__ * benchRet = ia_deque_rtn_q(que);
+          _deleteBinTree_que(aux_tree_que);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_que[1];
           struct TYPE_4__ * que = _allocate_que(1, aux_que);
+        
           struct TYPE_4__ * benchRet = ia_deque_rtn_q(que);
           _delete_que(aux_que, 1);
         

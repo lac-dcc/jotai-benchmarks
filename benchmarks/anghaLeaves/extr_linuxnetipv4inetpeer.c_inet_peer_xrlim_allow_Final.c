@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ bool inet_peer_xrlim_allow(struct inet_peer *peer, int timeout)
 	return rc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,16 +94,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int timeout = 100;
+        
           int _len_peer0 = 1;
           struct inet_peer * peer = (struct inet_peer *) malloc(_len_peer0*sizeof(struct inet_peer));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-            peer[_i0].rate_tokens = ((-2 * (next_i()%2)) + 1) * next_i();
-        peer[_i0].rate_last = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].rate_tokens = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].rate_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = inet_peer_xrlim_allow(peer,timeout);
+          printf("%d\n", benchRet); 
+          free(peer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int timeout = 255;
+        
+          int _len_peer0 = 65025;
+          struct inet_peer * peer = (struct inet_peer *) malloc(_len_peer0*sizeof(struct inet_peer));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].rate_tokens = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].rate_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = inet_peer_xrlim_allow(peer,timeout);
+          printf("%d\n", benchRet); 
+          free(peer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int timeout = 10;
+        
+          int _len_peer0 = 100;
+          struct inet_peer * peer = (struct inet_peer *) malloc(_len_peer0*sizeof(struct inet_peer));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].rate_tokens = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].rate_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = inet_peer_xrlim_allow(peer,timeout);
+          printf("%d\n", benchRet); 
+          free(peer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_peer0 = 1;
+          struct inet_peer * peer = (struct inet_peer *) malloc(_len_peer0*sizeof(struct inet_peer));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].rate_tokens = ((-2 * (next_i()%2)) + 1) * next_i();
+          peer[_i0].rate_last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = inet_peer_xrlim_allow(peer,timeout);
           printf("%d\n", benchRet); 
           free(peer);

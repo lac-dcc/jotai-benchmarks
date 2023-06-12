@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int xadc_get_seq_mode(struct xadc *xadc, unsigned l
 	return XADC_CONF1_SEQ_SIMULTANEOUS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,30 +87,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned long scan_mode = 100;
+        
           int _len_xadc0 = 1;
           struct xadc * xadc = (struct xadc *) malloc(_len_xadc0*sizeof(struct xadc));
           for(int _i0 = 0; _i0 < _len_xadc0; _i0++) {
-            xadc[_i0].external_mux_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              xadc[_i0].external_mux_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xadc_get_seq_mode(xadc,scan_mode);
           printf("%d\n", benchRet); 
           free(xadc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long scan_mode = 255;
+        
+          int _len_xadc0 = 65025;
+          struct xadc * xadc = (struct xadc *) malloc(_len_xadc0*sizeof(struct xadc));
+          for(int _i0 = 0; _i0 < _len_xadc0; _i0++) {
+              xadc[_i0].external_mux_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xadc_get_seq_mode(xadc,scan_mode);
+          printf("%d\n", benchRet); 
+          free(xadc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned long scan_mode = 10;
+        
           int _len_xadc0 = 100;
           struct xadc * xadc = (struct xadc *) malloc(_len_xadc0*sizeof(struct xadc));
           for(int _i0 = 0; _i0 < _len_xadc0; _i0++) {
-            xadc[_i0].external_mux_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              xadc[_i0].external_mux_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = xadc_get_seq_mode(xadc,scan_mode);
+          printf("%d\n", benchRet); 
+          free(xadc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long scan_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xadc0 = 1;
+          struct xadc * xadc = (struct xadc *) malloc(_len_xadc0*sizeof(struct xadc));
+          for(int _i0 = 0; _i0 < _len_xadc0; _i0++) {
+              xadc[_i0].external_mux_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = xadc_get_seq_mode(xadc,scan_mode);
           printf("%d\n", benchRet); 
           free(xadc);

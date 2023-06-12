@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static BOOL arm64_stack_walk(struct cpu_stack_walk* csw, L
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +83,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int frame = 100;
+        
           int _len_csw0 = 1;
           struct cpu_stack_walk * csw = (struct cpu_stack_walk *) malloc(_len_csw0*sizeof(struct cpu_stack_walk));
           for(int _i0 = 0; _i0 < _len_csw0; _i0++) {
-            csw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              csw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_context0 = 1;
           int * context = (int *) malloc(_len_context0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
             context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = arm64_stack_walk(csw,frame,context);
           printf("%d\n", benchRet); 
           free(csw);
@@ -103,7 +104,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int frame = 255;
+        
+          int _len_csw0 = 65025;
+          struct cpu_stack_walk * csw = (struct cpu_stack_walk *) malloc(_len_csw0*sizeof(struct cpu_stack_walk));
+          for(int _i0 = 0; _i0 < _len_csw0; _i0++) {
+              csw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_context0 = 65025;
+          int * context = (int *) malloc(_len_context0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+            context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = arm64_stack_walk(csw,frame,context);
+          printf("%d\n", benchRet); 
+          free(csw);
+          free(context);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int frame = 10;
+        
+          int _len_csw0 = 100;
+          struct cpu_stack_walk * csw = (struct cpu_stack_walk *) malloc(_len_csw0*sizeof(struct cpu_stack_walk));
+          for(int _i0 = 0; _i0 < _len_csw0; _i0++) {
+              csw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_context0 = 100;
+          int * context = (int *) malloc(_len_context0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+            context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = arm64_stack_walk(csw,frame,context);
+          printf("%d\n", benchRet); 
+          free(csw);
+          free(context);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int frame = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_csw0 = 1;
+          struct cpu_stack_walk * csw = (struct cpu_stack_walk *) malloc(_len_csw0*sizeof(struct cpu_stack_walk));
+          for(int _i0 = 0; _i0 < _len_csw0; _i0++) {
+              csw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_context0 = 1;
+          int * context = (int *) malloc(_len_context0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+            context[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = arm64_stack_walk(csw,frame,context);
+          printf("%d\n", benchRet); 
+          free(csw);
+          free(context);
+        
+        break;
+    }
     default:
         usage();
         break;

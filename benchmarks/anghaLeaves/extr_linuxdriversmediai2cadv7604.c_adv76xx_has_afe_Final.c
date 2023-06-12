@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool adv76xx_has_afe(struct adv76xx_state *state)
 	return state->info->has_afe;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct adv76xx_state * state = (struct adv76xx_state *) malloc(_len_state0*sizeof(struct adv76xx_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__info0 = 1;
+          state[_i0].info = (struct TYPE_2__ *) malloc(_len_state__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_state__i0__info0; _j0++) {
+              state[_i0].info->has_afe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = adv76xx_has_afe(state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].info);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct adv76xx_state * state = (struct adv76xx_state *) malloc(_len_state0*sizeof(struct adv76xx_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__info0 = 1;
+          state[_i0].info = (struct TYPE_2__ *) malloc(_len_state__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_state__i0__info0; _j0++) {
+              state[_i0].info->has_afe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = adv76xx_has_afe(state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].info);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct adv76xx_state * state = (struct adv76xx_state *) malloc(_len_state0*sizeof(struct adv76xx_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
               int _len_state__i0__info0 = 1;
           state[_i0].info = (struct TYPE_2__ *) malloc(_len_state__i0__info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_state__i0__info0; _j0++) {
-            state[_i0].info->has_afe = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].info->has_afe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = adv76xx_has_afe(state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_state0; _aux++) {

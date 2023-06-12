@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline bool max77693_fled_used(struct max77693_led_
 	return led->fled_mask & fled_bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fled_id = 100;
+        
           int _len_led0 = 1;
           struct max77693_led_device * led = (struct max77693_led_device *) malloc(_len_led0*sizeof(struct max77693_led_device));
           for(int _i0 = 0; _i0 < _len_led0; _i0++) {
-            led[_i0].fled_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              led[_i0].fled_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = max77693_fled_used(led,fled_id);
+          printf("%d\n", benchRet); 
+          free(led);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int fled_id = 255;
+        
+          int _len_led0 = 65025;
+          struct max77693_led_device * led = (struct max77693_led_device *) malloc(_len_led0*sizeof(struct max77693_led_device));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              led[_i0].fled_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = max77693_fled_used(led,fled_id);
           printf("%d\n", benchRet); 
           free(led);
@@ -102,21 +119,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int fled_id = 10;
+        
           int _len_led0 = 100;
           struct max77693_led_device * led = (struct max77693_led_device *) malloc(_len_led0*sizeof(struct max77693_led_device));
           for(int _i0 = 0; _i0 < _len_led0; _i0++) {
-            led[_i0].fled_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              led[_i0].fled_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = max77693_fled_used(led,fled_id);
           printf("%d\n", benchRet); 
           free(led);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fled_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_led0 = 1;
+          struct max77693_led_device * led = (struct max77693_led_device *) malloc(_len_led0*sizeof(struct max77693_led_device));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              led[_i0].fled_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = max77693_fled_used(led,fled_id);
+          printf("%d\n", benchRet); 
+          free(led);
+        
+        break;
+    }
     default:
         usage();
         break;

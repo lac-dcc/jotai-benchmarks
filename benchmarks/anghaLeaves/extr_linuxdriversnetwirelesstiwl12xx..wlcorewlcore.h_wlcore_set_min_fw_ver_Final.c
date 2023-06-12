@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ wlcore_set_min_fw_ver(struct wl1271 *wl, unsigned int chip,
 	wl->min_mr_fw_ver[FW_VER_MINOR] = minor_mr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,18 +95,50 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           unsigned int chip = 100;
+        
           unsigned int iftype_sr = 100;
+        
           unsigned int major_sr = 100;
+        
           unsigned int subtype_sr = 100;
+        
           unsigned int minor_sr = 100;
+        
           unsigned int iftype_mr = 100;
+        
           unsigned int major_mr = 100;
+        
           unsigned int subtype_mr = 100;
+        
           unsigned int minor_mr = 100;
+        
           int _len_wl0 = 1;
           struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
           for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
@@ -123,7 +152,225 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_wl__i0__min_mr_fw_ver0; _j0++) {
             wl[_i0].min_mr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          wlcore_set_min_fw_ver(wl,chip,iftype_sr,major_sr,subtype_sr,minor_sr,iftype_mr,major_mr,subtype_mr,minor_mr);
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].min_sr_fw_ver);
+          }
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].min_mr_fw_ver);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          unsigned int chip = 255;
+        
+          unsigned int iftype_sr = 255;
+        
+          unsigned int major_sr = 255;
+        
+          unsigned int subtype_sr = 255;
+        
+          unsigned int minor_sr = 255;
+        
+          unsigned int iftype_mr = 255;
+        
+          unsigned int major_mr = 255;
+        
+          unsigned int subtype_mr = 255;
+        
+          unsigned int minor_mr = 255;
+        
+          int _len_wl0 = 65025;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__min_sr_fw_ver0 = 1;
+          wl[_i0].min_sr_fw_ver = (unsigned int *) malloc(_len_wl__i0__min_sr_fw_ver0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_wl__i0__min_sr_fw_ver0; _j0++) {
+            wl[_i0].min_sr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_wl__i0__min_mr_fw_ver0 = 1;
+          wl[_i0].min_mr_fw_ver = (unsigned int *) malloc(_len_wl__i0__min_mr_fw_ver0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_wl__i0__min_mr_fw_ver0; _j0++) {
+            wl[_i0].min_mr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          wlcore_set_min_fw_ver(wl,chip,iftype_sr,major_sr,subtype_sr,minor_sr,iftype_mr,major_mr,subtype_mr,minor_mr);
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].min_sr_fw_ver);
+          }
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].min_mr_fw_ver);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          unsigned int chip = 10;
+        
+          unsigned int iftype_sr = 10;
+        
+          unsigned int major_sr = 10;
+        
+          unsigned int subtype_sr = 10;
+        
+          unsigned int minor_sr = 10;
+        
+          unsigned int iftype_mr = 10;
+        
+          unsigned int major_mr = 10;
+        
+          unsigned int subtype_mr = 10;
+        
+          unsigned int minor_mr = 10;
+        
+          int _len_wl0 = 100;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__min_sr_fw_ver0 = 1;
+          wl[_i0].min_sr_fw_ver = (unsigned int *) malloc(_len_wl__i0__min_sr_fw_ver0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_wl__i0__min_sr_fw_ver0; _j0++) {
+            wl[_i0].min_sr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_wl__i0__min_mr_fw_ver0 = 1;
+          wl[_i0].min_mr_fw_ver = (unsigned int *) malloc(_len_wl__i0__min_mr_fw_ver0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_wl__i0__min_mr_fw_ver0; _j0++) {
+            wl[_i0].min_mr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          wlcore_set_min_fw_ver(wl,chip,iftype_sr,major_sr,subtype_sr,minor_sr,iftype_mr,major_mr,subtype_mr,minor_mr);
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].min_sr_fw_ver);
+          }
+          for(int _aux = 0; _aux < _len_wl0; _aux++) {
+          free(wl[_aux].min_mr_fw_ver);
+          }
+          free(wl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          unsigned int chip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int iftype_sr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int major_sr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int subtype_sr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int minor_sr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int iftype_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int major_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int subtype_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int minor_mr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wl0 = 1;
+          struct wl1271 * wl = (struct wl1271 *) malloc(_len_wl0*sizeof(struct wl1271));
+          for(int _i0 = 0; _i0 < _len_wl0; _i0++) {
+              int _len_wl__i0__min_sr_fw_ver0 = 1;
+          wl[_i0].min_sr_fw_ver = (unsigned int *) malloc(_len_wl__i0__min_sr_fw_ver0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_wl__i0__min_sr_fw_ver0; _j0++) {
+            wl[_i0].min_sr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_wl__i0__min_mr_fw_ver0 = 1;
+          wl[_i0].min_mr_fw_ver = (unsigned int *) malloc(_len_wl__i0__min_mr_fw_ver0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_wl__i0__min_mr_fw_ver0; _j0++) {
+            wl[_i0].min_mr_fw_ver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           wlcore_set_min_fw_ver(wl,chip,iftype_sr,major_sr,subtype_sr,minor_sr,iftype_mr,major_mr,subtype_mr,minor_mr);
           for(int _aux = 0; _aux < _len_wl0; _aux++) {
           free(wl[_aux].min_sr_fw_ver);

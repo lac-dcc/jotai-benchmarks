@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int can_newlink(struct net *src_net, struct net_dev
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,53 +80,61 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_src_net0 = 1;
+          int _len_src_net0 = 65025;
           struct net * src_net = (struct net *) malloc(_len_src_net0*sizeof(struct net));
           for(int _i0 = 0; _i0 < _len_src_net0; _i0++) {
-            src_net[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              src_net[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_dev0 = 1;
+        
+          int _len_dev0 = 65025;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_tb0 = 1;
+        
+          int _len_tb0 = 65025;
           struct nlattr ** tb = (struct nlattr **) malloc(_len_tb0*sizeof(struct nlattr *));
           for(int _i0 = 0; _i0 < _len_tb0; _i0++) {
             int _len_tb1 = 1;
             tb[_i0] = (struct nlattr *) malloc(_len_tb1*sizeof(struct nlattr));
             for(int _i1 = 0; _i1 < _len_tb1; _i1++) {
-              tb[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                tb[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
-          int _len_data0 = 1;
+        
+          int _len_data0 = 65025;
           struct nlattr ** data = (struct nlattr **) malloc(_len_data0*sizeof(struct nlattr *));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             int _len_data1 = 1;
             data[_i0] = (struct nlattr *) malloc(_len_data1*sizeof(struct nlattr));
             for(int _i1 = 0; _i1 < _len_data1; _i1++) {
-              data[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                data[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
-          int _len_extack0 = 1;
+        
+          int _len_extack0 = 65025;
           struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
           for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
-            extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = can_newlink(src_net,dev,tb,data,extack);
           printf("%d\n", benchRet); 
           free(src_net);
           free(dev);
           for(int i1 = 0; i1 < _len_tb0; i1++) {
-            int _len_tb1 = 1;
               free(tb[i1]);
           }
           free(tb);
           for(int i1 = 0; i1 < _len_data0; i1++) {
-            int _len_data1 = 1;
               free(data[i1]);
           }
           free(data);
@@ -138,7 +142,130 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_src_net0 = 100;
+          struct net * src_net = (struct net *) malloc(_len_src_net0*sizeof(struct net));
+          for(int _i0 = 0; _i0 < _len_src_net0; _i0++) {
+              src_net[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tb0 = 100;
+          struct nlattr ** tb = (struct nlattr **) malloc(_len_tb0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_tb0; _i0++) {
+            int _len_tb1 = 1;
+            tb[_i0] = (struct nlattr *) malloc(_len_tb1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_tb1; _i1++) {
+                tb[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_data0 = 100;
+          struct nlattr ** data = (struct nlattr **) malloc(_len_data0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            int _len_data1 = 1;
+            data[_i0] = (struct nlattr *) malloc(_len_data1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_data1; _i1++) {
+                data[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_extack0 = 100;
+          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
+          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = can_newlink(src_net,dev,tb,data,extack);
+          printf("%d\n", benchRet); 
+          free(src_net);
+          free(dev);
+          for(int i1 = 0; i1 < _len_tb0; i1++) {
+              free(tb[i1]);
+          }
+          free(tb);
+          for(int i1 = 0; i1 < _len_data0; i1++) {
+              free(data[i1]);
+          }
+          free(data);
+          free(extack);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_src_net0 = 1;
+          struct net * src_net = (struct net *) malloc(_len_src_net0*sizeof(struct net));
+          for(int _i0 = 0; _i0 < _len_src_net0; _i0++) {
+              src_net[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tb0 = 1;
+          struct nlattr ** tb = (struct nlattr **) malloc(_len_tb0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_tb0; _i0++) {
+            int _len_tb1 = 1;
+            tb[_i0] = (struct nlattr *) malloc(_len_tb1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_tb1; _i1++) {
+                tb[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_data0 = 1;
+          struct nlattr ** data = (struct nlattr **) malloc(_len_data0*sizeof(struct nlattr *));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            int _len_data1 = 1;
+            data[_i0] = (struct nlattr *) malloc(_len_data1*sizeof(struct nlattr));
+            for(int _i1 = 0; _i1 < _len_data1; _i1++) {
+                data[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_extack0 = 1;
+          struct netlink_ext_ack * extack = (struct netlink_ext_ack *) malloc(_len_extack0*sizeof(struct netlink_ext_ack));
+          for(int _i0 = 0; _i0 < _len_extack0; _i0++) {
+              extack[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = can_newlink(src_net,dev,tb,data,extack);
+          printf("%d\n", benchRet); 
+          free(src_net);
+          free(dev);
+          for(int i1 = 0; i1 < _len_tb0; i1++) {
+              free(tb[i1]);
+          }
+          free(tb);
+          for(int i1 = 0; i1 < _len_data0; i1++) {
+              free(data[i1]);
+          }
+          free(data);
+          free(extack);
+        
+        break;
+    }
     default:
         usage();
         break;

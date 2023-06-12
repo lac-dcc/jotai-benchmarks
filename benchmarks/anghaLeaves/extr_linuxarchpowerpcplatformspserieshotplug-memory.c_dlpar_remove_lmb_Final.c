@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int dlpar_remove_lmb(struct drmem_lmb *lmb)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lmb0 = 1;
+          int _len_lmb0 = 65025;
           struct drmem_lmb * lmb = (struct drmem_lmb *) malloc(_len_lmb0*sizeof(struct drmem_lmb));
           for(int _i0 = 0; _i0 < _len_lmb0; _i0++) {
-            lmb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lmb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dlpar_remove_lmb(lmb);
           printf("%d\n", benchRet); 
           free(lmb);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_lmb0 = 100;
           struct drmem_lmb * lmb = (struct drmem_lmb *) malloc(_len_lmb0*sizeof(struct drmem_lmb));
           for(int _i0 = 0; _i0 < _len_lmb0; _i0++) {
-            lmb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lmb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dlpar_remove_lmb(lmb);
           printf("%d\n", benchRet); 
           free(lmb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_lmb0 = 1;
+          struct drmem_lmb * lmb = (struct drmem_lmb *) malloc(_len_lmb0*sizeof(struct drmem_lmb));
+          for(int _i0 = 0; _i0 < _len_lmb0; _i0++) {
+              lmb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dlpar_remove_lmb(lmb);
+          printf("%d\n", benchRet); 
+          free(lmb);
+        
+        break;
+    }
     default:
         usage();
         break;

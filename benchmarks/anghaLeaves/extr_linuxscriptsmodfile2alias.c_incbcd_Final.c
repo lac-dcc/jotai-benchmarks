@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ __attribute__((used)) static unsigned int incbcd(unsigned int *bcd,
 	return init;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,34 +106,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int inc = 100;
+        
           unsigned char max = 100;
+        
           unsigned long chars = 100;
+        
           int _len_bcd0 = 1;
           unsigned int * bcd = (unsigned int *) malloc(_len_bcd0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_bcd0; _i0++) {
             bcd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = incbcd(bcd,inc,max,chars);
           printf("%u\n", benchRet); 
           free(bcd);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int inc = 255;
+        
+          unsigned char max = 255;
+        
+          unsigned long chars = 255;
+        
+          int _len_bcd0 = 65025;
+          unsigned int * bcd = (unsigned int *) malloc(_len_bcd0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bcd0; _i0++) {
+            bcd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = incbcd(bcd,inc,max,chars);
+          printf("%u\n", benchRet); 
+          free(bcd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int inc = 10;
+        
           unsigned char max = 10;
+        
           unsigned long chars = 10;
+        
           int _len_bcd0 = 100;
           unsigned int * bcd = (unsigned int *) malloc(_len_bcd0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_bcd0; _i0++) {
             bcd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = incbcd(bcd,inc,max,chars);
+          printf("%u\n", benchRet); 
+          free(bcd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long chars = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bcd0 = 1;
+          unsigned int * bcd = (unsigned int *) malloc(_len_bcd0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_bcd0; _i0++) {
+            bcd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = incbcd(bcd,inc,max,chars);
           printf("%u\n", benchRet); 
           free(bcd);

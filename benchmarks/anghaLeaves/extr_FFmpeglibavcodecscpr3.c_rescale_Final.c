@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void rescale(PixelModel3 *m, int *totfr)
     *totfr = a;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,24 +85,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct TYPE_3__ * m = (struct TYPE_3__ *) malloc(_len_m0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_m__i0__freqs0 = 1;
           m[_i0].freqs = (int *) malloc(_len_m__i0__freqs0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_m__i0__freqs0; _j0++) {
             m[_i0].freqs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_totfr0 = 1;
+        
+          int _len_totfr0 = 65025;
           int * totfr = (int *) malloc(_len_totfr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_totfr0; _i0++) {
             totfr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           rescale(m,totfr);
           for(int _aux = 0; _aux < _len_m0; _aux++) {
           free(m[_aux].freqs);
@@ -116,7 +115,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m0 = 100;
+          struct TYPE_3__ * m = (struct TYPE_3__ *) malloc(_len_m0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__freqs0 = 1;
+          m[_i0].freqs = (int *) malloc(_len_m__i0__freqs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__freqs0; _j0++) {
+            m[_i0].freqs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_totfr0 = 100;
+          int * totfr = (int *) malloc(_len_totfr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_totfr0; _i0++) {
+            totfr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rescale(m,totfr);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].freqs);
+          }
+          free(m);
+          free(totfr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct TYPE_3__ * m = (struct TYPE_3__ *) malloc(_len_m0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_m__i0__freqs0 = 1;
+          m[_i0].freqs = (int *) malloc(_len_m__i0__freqs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_m__i0__freqs0; _j0++) {
+            m[_i0].freqs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_totfr0 = 1;
+          int * totfr = (int *) malloc(_len_totfr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_totfr0; _i0++) {
+            totfr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rescale(m,totfr);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].freqs);
+          }
+          free(m);
+          free(totfr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static u32 mlx4_bitmap_masked_value(struct mlx4_bitmap *bi
 	return obj & (bitmap->max + bitmap->reserved_top - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +76,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int obj = 100;
+        
           int _len_bitmap0 = 1;
           struct mlx4_bitmap * bitmap = (struct mlx4_bitmap *) malloc(_len_bitmap0*sizeof(struct mlx4_bitmap));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
-            bitmap[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
-        bitmap[_i0].reserved_top = ((-2 * (next_i()%2)) + 1) * next_i();
+              bitmap[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          bitmap[_i0].reserved_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mlx4_bitmap_masked_value(bitmap,obj);
+          printf("%d\n", benchRet); 
+          free(bitmap);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int obj = 255;
+        
+          int _len_bitmap0 = 65025;
+          struct mlx4_bitmap * bitmap = (struct mlx4_bitmap *) malloc(_len_bitmap0*sizeof(struct mlx4_bitmap));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+              bitmap[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          bitmap[_i0].reserved_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_bitmap_masked_value(bitmap,obj);
+          printf("%d\n", benchRet); 
+          free(bitmap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int obj = 10;
+        
+          int _len_bitmap0 = 100;
+          struct mlx4_bitmap * bitmap = (struct mlx4_bitmap *) malloc(_len_bitmap0*sizeof(struct mlx4_bitmap));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+              bitmap[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          bitmap[_i0].reserved_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx4_bitmap_masked_value(bitmap,obj);
+          printf("%d\n", benchRet); 
+          free(bitmap);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int obj = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bitmap0 = 1;
+          struct mlx4_bitmap * bitmap = (struct mlx4_bitmap *) malloc(_len_bitmap0*sizeof(struct mlx4_bitmap));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+              bitmap[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          bitmap[_i0].reserved_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mlx4_bitmap_masked_value(bitmap,obj);
           printf("%d\n", benchRet); 
           free(bitmap);

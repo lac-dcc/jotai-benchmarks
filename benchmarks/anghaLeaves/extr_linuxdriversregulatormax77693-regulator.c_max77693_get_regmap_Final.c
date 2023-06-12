@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static struct regmap *max77693_get_regmap(enum max77693_ty
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,25 +95,237 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum max77693_types type = 0;
+        
           int reg_id = 100;
+        
           int _len_max776930 = 1;
           struct max77693_dev * max77693 = (struct max77693_dev *) malloc(_len_max776930*sizeof(struct max77693_dev));
           for(int _i0 = 0; _i0 < _len_max776930; _i0++) {
               int _len_max77693__i0__regmap0 = 1;
           max77693[_i0].regmap = (struct regmap *) malloc(_len_max77693__i0__regmap0*sizeof(struct regmap));
           for(int _j0 = 0; _j0 < _len_max77693__i0__regmap0; _j0++) {
-            max77693[_i0].regmap->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              max77693[_i0].regmap->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_max77693__i0__regmap_chg0 = 1;
           max77693[_i0].regmap_chg = (struct regmap *) malloc(_len_max77693__i0__regmap_chg0*sizeof(struct regmap));
           for(int _j0 = 0; _j0 < _len_max77693__i0__regmap_chg0; _j0++) {
-            max77693[_i0].regmap_chg->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              max77693[_i0].regmap_chg->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct regmap * benchRet = max77693_get_regmap(type,max77693,reg_id);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_max776930; _aux++) {
+          free(max77693[_aux].regmap);
+          }
+          for(int _aux = 0; _aux < _len_max776930; _aux++) {
+          free(max77693[_aux].regmap_chg);
+          }
+          free(max77693);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum max77693_types type = 0;
+        
+          int reg_id = 255;
+        
+          int _len_max776930 = 65025;
+          struct max77693_dev * max77693 = (struct max77693_dev *) malloc(_len_max776930*sizeof(struct max77693_dev));
+          for(int _i0 = 0; _i0 < _len_max776930; _i0++) {
+              int _len_max77693__i0__regmap0 = 1;
+          max77693[_i0].regmap = (struct regmap *) malloc(_len_max77693__i0__regmap0*sizeof(struct regmap));
+          for(int _j0 = 0; _j0 < _len_max77693__i0__regmap0; _j0++) {
+              max77693[_i0].regmap->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_max77693__i0__regmap_chg0 = 1;
+          max77693[_i0].regmap_chg = (struct regmap *) malloc(_len_max77693__i0__regmap_chg0*sizeof(struct regmap));
+          for(int _j0 = 0; _j0 < _len_max77693__i0__regmap_chg0; _j0++) {
+              max77693[_i0].regmap_chg->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct regmap * benchRet = max77693_get_regmap(type,max77693,reg_id);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_max776930; _aux++) {
+          free(max77693[_aux].regmap);
+          }
+          for(int _aux = 0; _aux < _len_max776930; _aux++) {
+          free(max77693[_aux].regmap_chg);
+          }
+          free(max77693);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum max77693_types type = 0;
+        
+          int reg_id = 10;
+        
+          int _len_max776930 = 100;
+          struct max77693_dev * max77693 = (struct max77693_dev *) malloc(_len_max776930*sizeof(struct max77693_dev));
+          for(int _i0 = 0; _i0 < _len_max776930; _i0++) {
+              int _len_max77693__i0__regmap0 = 1;
+          max77693[_i0].regmap = (struct regmap *) malloc(_len_max77693__i0__regmap0*sizeof(struct regmap));
+          for(int _j0 = 0; _j0 < _len_max77693__i0__regmap0; _j0++) {
+              max77693[_i0].regmap->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_max77693__i0__regmap_chg0 = 1;
+          max77693[_i0].regmap_chg = (struct regmap *) malloc(_len_max77693__i0__regmap_chg0*sizeof(struct regmap));
+          for(int _j0 = 0; _j0 < _len_max77693__i0__regmap_chg0; _j0++) {
+              max77693[_i0].regmap_chg->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct regmap * benchRet = max77693_get_regmap(type,max77693,reg_id);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_max776930; _aux++) {
+          free(max77693[_aux].regmap);
+          }
+          for(int _aux = 0; _aux < _len_max776930; _aux++) {
+          free(max77693[_aux].regmap_chg);
+          }
+          free(max77693);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum max77693_types type = 0;
+        
+          int reg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_max776930 = 1;
+          struct max77693_dev * max77693 = (struct max77693_dev *) malloc(_len_max776930*sizeof(struct max77693_dev));
+          for(int _i0 = 0; _i0 < _len_max776930; _i0++) {
+              int _len_max77693__i0__regmap0 = 1;
+          max77693[_i0].regmap = (struct regmap *) malloc(_len_max77693__i0__regmap0*sizeof(struct regmap));
+          for(int _j0 = 0; _j0 < _len_max77693__i0__regmap0; _j0++) {
+              max77693[_i0].regmap->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_max77693__i0__regmap_chg0 = 1;
+          max77693[_i0].regmap_chg = (struct regmap *) malloc(_len_max77693__i0__regmap_chg0*sizeof(struct regmap));
+          for(int _j0 = 0; _j0 < _len_max77693__i0__regmap_chg0; _j0++) {
+              max77693[_i0].regmap_chg->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct regmap * benchRet = max77693_get_regmap(type,max77693,reg_id);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_max776930; _aux++) {

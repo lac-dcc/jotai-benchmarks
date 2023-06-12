@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline bool allocated(struct pipe_buffer *buf)
 	return buf->ops == &default_pipe_buf_ops;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,10 +75,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_buf0 = 1;
+          int _len_buf0 = 65025;
           struct pipe_buffer * buf = (struct pipe_buffer *) malloc(_len_buf0*sizeof(struct pipe_buffer));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
               int _len_buf__i0__ops0 = 1;
@@ -90,7 +86,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_buf__i0__ops0; _j0++) {
             buf[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = allocated(buf);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_buf0; _aux++) {
@@ -100,7 +98,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_buf0 = 100;
+          struct pipe_buffer * buf = (struct pipe_buffer *) malloc(_len_buf0*sizeof(struct pipe_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              int _len_buf__i0__ops0 = 1;
+          buf[_i0].ops = (int *) malloc(_len_buf__i0__ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_buf__i0__ops0; _j0++) {
+            buf[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = allocated(buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].ops);
+          }
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_buf0 = 1;
+          struct pipe_buffer * buf = (struct pipe_buffer *) malloc(_len_buf0*sizeof(struct pipe_buffer));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              int _len_buf__i0__ops0 = 1;
+          buf[_i0].ops = (int *) malloc(_len_buf__i0__ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_buf__i0__ops0; _j0++) {
+            buf[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = allocated(buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].ops);
+          }
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

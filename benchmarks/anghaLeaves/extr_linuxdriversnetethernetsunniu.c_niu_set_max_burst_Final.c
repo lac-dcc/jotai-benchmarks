@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void niu_set_max_burst(struct niu *np, struct tx_ri
 		rp->max_burst = 4096;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +84,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_np0 = 1;
+          int _len_np0 = 65025;
           struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
               int _len_np__i0__dev0 = 1;
           np[_i0].dev = (struct TYPE_2__ *) malloc(_len_np__i0__dev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_np__i0__dev0; _j0++) {
-            np[_i0].dev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].dev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_rp0 = 1;
+        
+          int _len_rp0 = 65025;
           struct tx_ring_info * rp = (struct tx_ring_info *) malloc(_len_rp0*sizeof(struct tx_ring_info));
           for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
-            rp[_i0].max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+              rp[_i0].max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           niu_set_max_burst(np,rp);
           for(int _aux = 0; _aux < _len_np0; _aux++) {
           free(np[_aux].dev);
@@ -114,7 +115,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_np0 = 100;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__dev0 = 1;
+          np[_i0].dev = (struct TYPE_2__ *) malloc(_len_np__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_np__i0__dev0; _j0++) {
+              np[_i0].dev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_rp0 = 100;
+          struct tx_ring_info * rp = (struct tx_ring_info *) malloc(_len_rp0*sizeof(struct tx_ring_info));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          niu_set_max_burst(np,rp);
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].dev);
+          }
+          free(np);
+          free(rp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_np0 = 1;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              int _len_np__i0__dev0 = 1;
+          np[_i0].dev = (struct TYPE_2__ *) malloc(_len_np__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_np__i0__dev0; _j0++) {
+              np[_i0].dev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_rp0 = 1;
+          struct tx_ring_info * rp = (struct tx_ring_info *) malloc(_len_rp0*sizeof(struct tx_ring_info));
+          for(int _i0 = 0; _i0 < _len_rp0; _i0++) {
+              rp[_i0].max_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          niu_set_max_burst(np,rp);
+          for(int _aux = 0; _aux < _len_np0; _aux++) {
+          free(np[_aux].dev);
+          }
+          free(np);
+          free(rp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static int GetReal (fInt A)
 	return (A.full >> SHIFT_AMOUNT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,17 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ A;
-        A.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          A.full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = GetReal(A);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

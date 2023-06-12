@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void cxl_perst_reloads_same_image(struct cxl_afu *afu,
 	afu->adapter->perst_same_image = perst_reloads_same_image;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +78,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int perst_reloads_same_image = 100;
+        
           int _len_afu0 = 1;
           struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
           for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
               int _len_afu__i0__adapter0 = 1;
           afu[_i0].adapter = (struct TYPE_2__ *) malloc(_len_afu__i0__adapter0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_afu__i0__adapter0; _j0++) {
-            afu[_i0].adapter->perst_same_image = ((-2 * (next_i()%2)) + 1) * next_i();
+              afu[_i0].adapter->perst_same_image = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          cxl_perst_reloads_same_image(afu,perst_reloads_same_image);
+          for(int _aux = 0; _aux < _len_afu0; _aux++) {
+          free(afu[_aux].adapter);
+          }
+          free(afu);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int perst_reloads_same_image = 255;
+        
+          int _len_afu0 = 65025;
+          struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
+          for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
+              int _len_afu__i0__adapter0 = 1;
+          afu[_i0].adapter = (struct TYPE_2__ *) malloc(_len_afu__i0__adapter0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_afu__i0__adapter0; _j0++) {
+              afu[_i0].adapter->perst_same_image = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cxl_perst_reloads_same_image(afu,perst_reloads_same_image);
+          for(int _aux = 0; _aux < _len_afu0; _aux++) {
+          free(afu[_aux].adapter);
+          }
+          free(afu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int perst_reloads_same_image = 10;
+        
+          int _len_afu0 = 100;
+          struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
+          for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
+              int _len_afu__i0__adapter0 = 1;
+          afu[_i0].adapter = (struct TYPE_2__ *) malloc(_len_afu__i0__adapter0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_afu__i0__adapter0; _j0++) {
+              afu[_i0].adapter->perst_same_image = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cxl_perst_reloads_same_image(afu,perst_reloads_same_image);
+          for(int _aux = 0; _aux < _len_afu0; _aux++) {
+          free(afu[_aux].adapter);
+          }
+          free(afu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int perst_reloads_same_image = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_afu0 = 1;
+          struct cxl_afu * afu = (struct cxl_afu *) malloc(_len_afu0*sizeof(struct cxl_afu));
+          for(int _i0 = 0; _i0 < _len_afu0; _i0++) {
+              int _len_afu__i0__adapter0 = 1;
+          afu[_i0].adapter = (struct TYPE_2__ *) malloc(_len_afu__i0__adapter0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_afu__i0__adapter0; _j0++) {
+              afu[_i0].adapter->perst_same_image = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           cxl_perst_reloads_same_image(afu,perst_reloads_same_image);
           for(int _aux = 0; _aux < _len_afu0; _aux++) {
           free(afu[_aux].adapter);

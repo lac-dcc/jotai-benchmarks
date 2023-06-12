@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static int sol_codec_type(int magic, int type)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int magic = 100;
+        
           int type = 100;
+        
           int benchRet = sol_codec_type(magic,type);
           printf("%d\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int magic = 255;
+        
           int type = 255;
+        
           int benchRet = sol_codec_type(magic,type);
           printf("%d\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int magic = 10;
+        
           int type = 10;
+        
           int benchRet = sol_codec_type(magic,type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sol_codec_type(magic,type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

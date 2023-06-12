@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void coda_set_default_colorspace(struct v4l2_pix_fo
 	fmt->quantization = V4L2_QUANTIZATION_DEFAULT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,26 +94,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fmt0 = 1;
+          int _len_fmt0 = 65025;
           struct v4l2_pix_format * fmt = (struct v4l2_pix_format *) malloc(_len_fmt0*sizeof(struct v4l2_pix_format));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].quantization = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].ycbcr_enc = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmt[_i0].xfer_func = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].quantization = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].ycbcr_enc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].xfer_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           coda_set_default_colorspace(fmt);
           free(fmt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fmt0 = 100;
+          struct v4l2_pix_format * fmt = (struct v4l2_pix_format *) malloc(_len_fmt0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].quantization = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].ycbcr_enc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].xfer_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          coda_set_default_colorspace(fmt);
+          free(fmt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fmt0 = 1;
+          struct v4l2_pix_format * fmt = (struct v4l2_pix_format *) malloc(_len_fmt0*sizeof(struct v4l2_pix_format));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].quantization = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].ycbcr_enc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmt[_i0].xfer_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          coda_set_default_colorspace(fmt);
+          free(fmt);
+        
+        break;
+    }
     default:
         usage();
         break;

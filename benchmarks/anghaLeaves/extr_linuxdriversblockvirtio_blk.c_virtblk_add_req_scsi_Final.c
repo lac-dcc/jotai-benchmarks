@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline int virtblk_add_req_scsi(struct virtqueue *v
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +84,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int have_data = 100;
+        
           int _len_vq0 = 1;
           struct virtqueue * vq = (struct virtqueue *) malloc(_len_vq0*sizeof(struct virtqueue));
           for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
-            vq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_vbr0 = 1;
           struct virtblk_req * vbr = (struct virtblk_req *) malloc(_len_vbr0*sizeof(struct virtblk_req));
           for(int _i0 = 0; _i0 < _len_vbr0; _i0++) {
-            vbr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vbr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_data_sg0 = 1;
           struct scatterlist * data_sg = (struct scatterlist *) malloc(_len_data_sg0*sizeof(struct scatterlist));
           for(int _i0 = 0; _i0 < _len_data_sg0; _i0++) {
-            data_sg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data_sg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = virtblk_add_req_scsi(vq,vbr,data_sg,have_data);
           printf("%d\n", benchRet); 
           free(vq);
@@ -110,7 +114,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int have_data = 255;
+        
+          int _len_vq0 = 65025;
+          struct virtqueue * vq = (struct virtqueue *) malloc(_len_vq0*sizeof(struct virtqueue));
+          for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
+              vq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vbr0 = 65025;
+          struct virtblk_req * vbr = (struct virtblk_req *) malloc(_len_vbr0*sizeof(struct virtblk_req));
+          for(int _i0 = 0; _i0 < _len_vbr0; _i0++) {
+              vbr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data_sg0 = 65025;
+          struct scatterlist * data_sg = (struct scatterlist *) malloc(_len_data_sg0*sizeof(struct scatterlist));
+          for(int _i0 = 0; _i0 < _len_data_sg0; _i0++) {
+              data_sg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = virtblk_add_req_scsi(vq,vbr,data_sg,have_data);
+          printf("%d\n", benchRet); 
+          free(vq);
+          free(vbr);
+          free(data_sg);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int have_data = 10;
+        
+          int _len_vq0 = 100;
+          struct virtqueue * vq = (struct virtqueue *) malloc(_len_vq0*sizeof(struct virtqueue));
+          for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
+              vq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vbr0 = 100;
+          struct virtblk_req * vbr = (struct virtblk_req *) malloc(_len_vbr0*sizeof(struct virtblk_req));
+          for(int _i0 = 0; _i0 < _len_vbr0; _i0++) {
+              vbr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data_sg0 = 100;
+          struct scatterlist * data_sg = (struct scatterlist *) malloc(_len_data_sg0*sizeof(struct scatterlist));
+          for(int _i0 = 0; _i0 < _len_data_sg0; _i0++) {
+              data_sg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = virtblk_add_req_scsi(vq,vbr,data_sg,have_data);
+          printf("%d\n", benchRet); 
+          free(vq);
+          free(vbr);
+          free(data_sg);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int have_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vq0 = 1;
+          struct virtqueue * vq = (struct virtqueue *) malloc(_len_vq0*sizeof(struct virtqueue));
+          for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
+              vq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vbr0 = 1;
+          struct virtblk_req * vbr = (struct virtblk_req *) malloc(_len_vbr0*sizeof(struct virtblk_req));
+          for(int _i0 = 0; _i0 < _len_vbr0; _i0++) {
+              vbr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data_sg0 = 1;
+          struct scatterlist * data_sg = (struct scatterlist *) malloc(_len_data_sg0*sizeof(struct scatterlist));
+          for(int _i0 = 0; _i0 < _len_data_sg0; _i0++) {
+              data_sg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = virtblk_add_req_scsi(vq,vbr,data_sg,have_data);
+          printf("%d\n", benchRet); 
+          free(vq);
+          free(vbr);
+          free(data_sg);
+        
+        break;
+    }
     default:
         usage();
         break;

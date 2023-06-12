@@ -61,12 +61,6 @@ __attribute__((used)) static inline u64 cyc_to_ns(u64 cyc, u32 mult, u32 shift)
 	return (cyc * mult) >> shift;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +77,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cyc = 10;
+        
           int mult = 10;
+        
           int shift = 10;
+        
           int benchRet = cyc_to_ns(cyc,mult,shift);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

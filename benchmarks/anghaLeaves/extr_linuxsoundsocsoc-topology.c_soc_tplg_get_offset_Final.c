@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline unsigned long soc_tplg_get_offset(struct soc
 	return (unsigned long)(tplg->pos - tplg->fw->data);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tplg0 = 1;
+          int _len_tplg0 = 65025;
           struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
           for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
               int _len_tplg__i0__fw0 = 1;
           tplg[_i0].fw = (struct TYPE_2__ *) malloc(_len_tplg__i0__fw0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_tplg__i0__fw0; _j0++) {
-            tplg[_i0].fw->data = ((-2 * (next_i()%2)) + 1) * next_i();
+              tplg[_i0].fw->data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        tplg[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          tplg[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = soc_tplg_get_offset(tplg);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_tplg0; _aux++) {
@@ -102,7 +101,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tplg0 = 100;
+          struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
+          for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
+              int _len_tplg__i0__fw0 = 1;
+          tplg[_i0].fw = (struct TYPE_2__ *) malloc(_len_tplg__i0__fw0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tplg__i0__fw0; _j0++) {
+              tplg[_i0].fw->data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          tplg[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = soc_tplg_get_offset(tplg);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tplg0; _aux++) {
+          free(tplg[_aux].fw);
+          }
+          free(tplg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tplg0 = 1;
+          struct soc_tplg * tplg = (struct soc_tplg *) malloc(_len_tplg0*sizeof(struct soc_tplg));
+          for(int _i0 = 0; _i0 < _len_tplg0; _i0++) {
+              int _len_tplg__i0__fw0 = 1;
+          tplg[_i0].fw = (struct TYPE_2__ *) malloc(_len_tplg__i0__fw0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tplg__i0__fw0; _j0++) {
+              tplg[_i0].fw->data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          tplg[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = soc_tplg_get_offset(tplg);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tplg0; _aux++) {
+          free(tplg[_aux].fw);
+          }
+          free(tplg);
+        
+        break;
+    }
     default:
         usage();
         break;

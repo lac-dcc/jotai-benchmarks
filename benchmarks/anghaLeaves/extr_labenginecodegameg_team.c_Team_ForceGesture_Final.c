@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ void Team_ForceGesture(int team) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int team = 100;
+        
           Team_ForceGesture(team);
         
         break;
@@ -113,6 +109,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int team = 255;
+        
           Team_ForceGesture(team);
         
         break;
@@ -121,11 +118,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int team = 10;
+        
           Team_ForceGesture(team);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int team = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          Team_ForceGesture(team);
+        
+        break;
+    }
     default:
         usage();
         break;

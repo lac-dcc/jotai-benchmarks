@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ bool ath10k_mac_tx_frm_has_freq(struct ath10k *ar)
 		ar->running_fw->fw_file.htt_op_version == ATH10K_FW_HTT_OP_VERSION_TLV);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,20 +89,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ar0 = 1;
+          int _len_ar0 = 65025;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
               int _len_ar__i0__running_fw0 = 1;
           ar[_i0].running_fw = (struct TYPE_6__ *) malloc(_len_ar__i0__running_fw0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_ar__i0__running_fw0; _j0++) {
-            ar[_i0].running_fw->fw_file.htt_op_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].running_fw->fw_file.htt_op_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        ar[_i0].htt.target_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
-        ar[_i0].htt.target_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].htt.target_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].htt.target_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ath10k_mac_tx_frm_has_freq(ar);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ar0; _aux++) {
@@ -116,7 +117,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ar0 = 100;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              int _len_ar__i0__running_fw0 = 1;
+          ar[_i0].running_fw = (struct TYPE_6__ *) malloc(_len_ar__i0__running_fw0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_ar__i0__running_fw0; _j0++) {
+              ar[_i0].running_fw->fw_file.htt_op_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          ar[_i0].htt.target_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].htt.target_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ath10k_mac_tx_frm_has_freq(ar);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ar0; _aux++) {
+          free(ar[_aux].running_fw);
+          }
+          free(ar);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ar0 = 1;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              int _len_ar__i0__running_fw0 = 1;
+          ar[_i0].running_fw = (struct TYPE_6__ *) malloc(_len_ar__i0__running_fw0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_ar__i0__running_fw0; _j0++) {
+              ar[_i0].running_fw->fw_file.htt_op_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          ar[_i0].htt.target_version_major = ((-2 * (next_i()%2)) + 1) * next_i();
+          ar[_i0].htt.target_version_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ath10k_mac_tx_frm_has_freq(ar);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ar0; _aux++) {
+          free(ar[_aux].running_fw);
+          }
+          free(ar);
+        
+        break;
+    }
     default:
         usage();
         break;

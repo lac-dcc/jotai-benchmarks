@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ u8 ixgbe_calculate_checksum(u8 *buffer, u32 length)
 	return (u8) (0 - sum);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +83,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 3077
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 1033
+          // ------------------------------- 
+          // static_instructions_O2 : 72
+          // dynamic_instructions_O2 : 360
+          // ------------------------------- 
+          // static_instructions_O3 : 72
+          // dynamic_instructions_O3 : 360
+          // ------------------------------- 
+          // static_instructions_Ofast : 72
+          // dynamic_instructions_Ofast : 360
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1031
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 1286
+          // ------------------------------- 
+
+          unsigned long length = 255;
+        
+          int _len_buffer0 = 65025;
+          long * buffer = (long *) malloc(_len_buffer0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = ixgbe_calculate_checksum(buffer,length);
+          printf("%ld\n", benchRet); 
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 137
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 53
+          // ------------------------------- 
+          // static_instructions_O2 : 51
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 51
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 51
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 51
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 61
+          // ------------------------------- 
+
           unsigned long length = 10;
+        
           int _len_buffer0 = 100;
           long * buffer = (long *) malloc(_len_buffer0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = ixgbe_calculate_checksum(buffer,length);
           printf("%ld\n", benchRet); 
           free(buffer);

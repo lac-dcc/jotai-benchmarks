@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ hyperspace_get_num_dimensions_by_type(Hyperspace *hs, DimensionType type)
 	return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,20 +91,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long type = 100;
+        
           int _len_hs0 = 1;
           struct TYPE_5__ * hs = (struct TYPE_5__ *) malloc(_len_hs0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
-            hs[_i0].num_dimensions = ((-2 * (next_i()%2)) + 1) * next_i();
+              hs[_i0].num_dimensions = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hs__i0__dimensions0 = 1;
           hs[_i0].dimensions = (struct TYPE_4__ *) malloc(_len_hs__i0__dimensions0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_hs__i0__dimensions0; _j0++) {
-            hs[_i0].dimensions->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hs[_i0].dimensions->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = hyperspace_get_num_dimensions_by_type(hs,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hs0; _aux++) {
+          free(hs[_aux].dimensions);
+          }
+          free(hs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long type = 255;
+        
+          int _len_hs0 = 65025;
+          struct TYPE_5__ * hs = (struct TYPE_5__ *) malloc(_len_hs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
+              hs[_i0].num_dimensions = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hs__i0__dimensions0 = 1;
+          hs[_i0].dimensions = (struct TYPE_4__ *) malloc(_len_hs__i0__dimensions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_hs__i0__dimensions0; _j0++) {
+              hs[_i0].dimensions->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = hyperspace_get_num_dimensions_by_type(hs,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hs0; _aux++) {
+          free(hs[_aux].dimensions);
+          }
+          free(hs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long type = 10;
+        
+          int _len_hs0 = 100;
+          struct TYPE_5__ * hs = (struct TYPE_5__ *) malloc(_len_hs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
+              hs[_i0].num_dimensions = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hs__i0__dimensions0 = 1;
+          hs[_i0].dimensions = (struct TYPE_4__ *) malloc(_len_hs__i0__dimensions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_hs__i0__dimensions0; _j0++) {
+              hs[_i0].dimensions->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = hyperspace_get_num_dimensions_by_type(hs,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hs0; _aux++) {
+          free(hs[_aux].dimensions);
+          }
+          free(hs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hs0 = 1;
+          struct TYPE_5__ * hs = (struct TYPE_5__ *) malloc(_len_hs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_hs0; _i0++) {
+              hs[_i0].num_dimensions = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hs__i0__dimensions0 = 1;
+          hs[_i0].dimensions = (struct TYPE_4__ *) malloc(_len_hs__i0__dimensions0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_hs__i0__dimensions0; _j0++) {
+              hs[_i0].dimensions->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = hyperspace_get_num_dimensions_by_type(hs,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hs0; _aux++) {

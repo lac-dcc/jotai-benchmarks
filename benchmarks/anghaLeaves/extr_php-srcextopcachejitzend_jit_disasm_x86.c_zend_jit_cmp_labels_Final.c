@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int zend_jit_cmp_labels(Bucket *b1, Bucket *b2)
 	return ((b1->h > b2->h) > 0) ? 1 : -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_b10 = 65025;
+          struct TYPE_4__ * b1 = (struct TYPE_4__ *) malloc(_len_b10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_b10; _i0++) {
+              b1[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b20 = 65025;
+          struct TYPE_4__ * b2 = (struct TYPE_4__ *) malloc(_len_b20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_b20; _i0++) {
+              b2[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = zend_jit_cmp_labels(b1,b2);
+          printf("%d\n", benchRet); 
+          free(b1);
+          free(b2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_b10 = 100;
+          struct TYPE_4__ * b1 = (struct TYPE_4__ *) malloc(_len_b10*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_b10; _i0++) {
+              b1[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b20 = 100;
+          struct TYPE_4__ * b2 = (struct TYPE_4__ *) malloc(_len_b20*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_b20; _i0++) {
+              b2[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = zend_jit_cmp_labels(b1,b2);
+          printf("%d\n", benchRet); 
+          free(b1);
+          free(b2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_b10 = 1;
           struct TYPE_4__ * b1 = (struct TYPE_4__ *) malloc(_len_b10*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_b10; _i0++) {
-            b1[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+              b1[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b20 = 1;
           struct TYPE_4__ * b2 = (struct TYPE_4__ *) malloc(_len_b20*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_b20; _i0++) {
-            b2[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+              b2[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = zend_jit_cmp_labels(b1,b2);
           printf("%d\n", benchRet); 
           free(b1);

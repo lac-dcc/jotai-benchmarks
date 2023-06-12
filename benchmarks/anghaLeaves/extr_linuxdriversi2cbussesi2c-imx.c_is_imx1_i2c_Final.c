@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int is_imx1_i2c(struct imx_i2c_struct *i2c_i
 	return i2c_imx->hwdata->devtype == IMX1_I2C;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_i2c_imx0 = 1;
+          int _len_i2c_imx0 = 65025;
           struct imx_i2c_struct * i2c_imx = (struct imx_i2c_struct *) malloc(_len_i2c_imx0*sizeof(struct imx_i2c_struct));
           for(int _i0 = 0; _i0 < _len_i2c_imx0; _i0++) {
               int _len_i2c_imx__i0__hwdata0 = 1;
           i2c_imx[_i0].hwdata = (struct TYPE_2__ *) malloc(_len_i2c_imx__i0__hwdata0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_i2c_imx__i0__hwdata0; _j0++) {
-            i2c_imx[_i0].hwdata->devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_imx[_i0].hwdata->devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_imx1_i2c(i2c_imx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_i2c_imx0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_i2c_imx0 = 100;
+          struct imx_i2c_struct * i2c_imx = (struct imx_i2c_struct *) malloc(_len_i2c_imx0*sizeof(struct imx_i2c_struct));
+          for(int _i0 = 0; _i0 < _len_i2c_imx0; _i0++) {
+              int _len_i2c_imx__i0__hwdata0 = 1;
+          i2c_imx[_i0].hwdata = (struct TYPE_2__ *) malloc(_len_i2c_imx__i0__hwdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_i2c_imx__i0__hwdata0; _j0++) {
+              i2c_imx[_i0].hwdata->devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_imx1_i2c(i2c_imx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_i2c_imx0; _aux++) {
+          free(i2c_imx[_aux].hwdata);
+          }
+          free(i2c_imx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_i2c_imx0 = 1;
+          struct imx_i2c_struct * i2c_imx = (struct imx_i2c_struct *) malloc(_len_i2c_imx0*sizeof(struct imx_i2c_struct));
+          for(int _i0 = 0; _i0 < _len_i2c_imx0; _i0++) {
+              int _len_i2c_imx__i0__hwdata0 = 1;
+          i2c_imx[_i0].hwdata = (struct TYPE_2__ *) malloc(_len_i2c_imx__i0__hwdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_i2c_imx__i0__hwdata0; _j0++) {
+              i2c_imx[_i0].hwdata->devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_imx1_i2c(i2c_imx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_i2c_imx0; _aux++) {
+          free(i2c_imx[_aux].hwdata);
+          }
+          free(i2c_imx);
+        
+        break;
+    }
     default:
         usage();
         break;

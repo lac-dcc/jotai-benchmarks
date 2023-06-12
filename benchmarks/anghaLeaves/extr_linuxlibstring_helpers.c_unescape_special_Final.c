@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static bool unescape_special(char **src, char **dst)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,9 +93,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_src0 = 65025;
+          char ** src = (char **) malloc(_len_src0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            int _len_src1 = 1;
+            src[_i0] = (char *) malloc(_len_src1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_src1; _i1++) {
+              src[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_dst0 = 65025;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = unescape_special(src,dst);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_src0; i1++) {
+              free(src[i1]);
+          }
+          free(src);
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_src0 = 100;
+          char ** src = (char **) malloc(_len_src0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            int _len_src1 = 1;
+            src[_i0] = (char *) malloc(_len_src1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_src1; _i1++) {
+              src[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_dst0 = 100;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = unescape_special(src,dst);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_src0; i1++) {
+              free(src[i1]);
+          }
+          free(src);
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_src0 = 1;
           char ** src = (char **) malloc(_len_src0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
@@ -109,6 +248,7 @@ int main(int argc, char *argv[]) {
               src[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_dst0 = 1;
           char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
@@ -118,15 +258,14 @@ int main(int argc, char *argv[]) {
               dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = unescape_special(src,dst);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_src0; i1++) {
-            int _len_src1 = 1;
               free(src[i1]);
           }
           free(src);
           for(int i1 = 0; i1 < _len_dst0; i1++) {
-            int _len_dst1 = 1;
               free(dst[i1]);
           }
           free(dst);

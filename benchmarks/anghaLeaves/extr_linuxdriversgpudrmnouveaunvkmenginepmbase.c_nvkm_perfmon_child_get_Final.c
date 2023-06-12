@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ nvkm_perfmon_child_get(struct nvkm_object *object, int index,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,19 +94,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int _len_object0 = 1;
           struct nvkm_object * object = (struct nvkm_object *) malloc(_len_object0*sizeof(struct nvkm_object));
           for(int _i0 = 0; _i0 < _len_object0; _i0++) {
-            object[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              object[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_oclass0 = 1;
           struct nvkm_oclass * oclass = (struct nvkm_oclass *) malloc(_len_oclass0*sizeof(struct nvkm_oclass));
           for(int _i0 = 0; _i0 < _len_oclass0; _i0++) {
-            oclass[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
-        oclass[_i0].base.maxver = ((-2 * (next_i()%2)) + 1) * next_i();
-        oclass[_i0].base.minver = ((-2 * (next_i()%2)) + 1) * next_i();
-        oclass[_i0].base.oclass = ((-2 * (next_i()%2)) + 1) * next_i();
+              oclass[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.maxver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.minver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.oclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = nvkm_perfmon_child_get(object,index,oclass);
           printf("%d\n", benchRet); 
           free(object);
@@ -117,7 +120,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int _len_object0 = 65025;
+          struct nvkm_object * object = (struct nvkm_object *) malloc(_len_object0*sizeof(struct nvkm_object));
+          for(int _i0 = 0; _i0 < _len_object0; _i0++) {
+              object[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_oclass0 = 65025;
+          struct nvkm_oclass * oclass = (struct nvkm_oclass *) malloc(_len_oclass0*sizeof(struct nvkm_oclass));
+          for(int _i0 = 0; _i0 < _len_oclass0; _i0++) {
+              oclass[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.maxver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.minver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.oclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nvkm_perfmon_child_get(object,index,oclass);
+          printf("%d\n", benchRet); 
+          free(object);
+          free(oclass);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int index = 10;
+        
+          int _len_object0 = 100;
+          struct nvkm_object * object = (struct nvkm_object *) malloc(_len_object0*sizeof(struct nvkm_object));
+          for(int _i0 = 0; _i0 < _len_object0; _i0++) {
+              object[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_oclass0 = 100;
+          struct nvkm_oclass * oclass = (struct nvkm_oclass *) malloc(_len_oclass0*sizeof(struct nvkm_oclass));
+          for(int _i0 = 0; _i0 < _len_oclass0; _i0++) {
+              oclass[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.maxver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.minver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.oclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nvkm_perfmon_child_get(object,index,oclass);
+          printf("%d\n", benchRet); 
+          free(object);
+          free(oclass);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_object0 = 1;
+          struct nvkm_object * object = (struct nvkm_object *) malloc(_len_object0*sizeof(struct nvkm_object));
+          for(int _i0 = 0; _i0 < _len_object0; _i0++) {
+              object[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_oclass0 = 1;
+          struct nvkm_oclass * oclass = (struct nvkm_oclass *) malloc(_len_oclass0*sizeof(struct nvkm_oclass));
+          for(int _i0 = 0; _i0 < _len_oclass0; _i0++) {
+              oclass[_i0].ctor = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.maxver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.minver = ((-2 * (next_i()%2)) + 1) * next_i();
+          oclass[_i0].base.oclass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = nvkm_perfmon_child_get(object,index,oclass);
+          printf("%d\n", benchRet); 
+          free(object);
+          free(oclass);
+        
+        break;
+    }
     default:
         usage();
         break;

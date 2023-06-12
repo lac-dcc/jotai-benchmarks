@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ AMF3CD_GetProp(AMF3ClassDef *cd, int nIndex)
     return &cd->cd_props[nIndex];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nIndex = 100;
+        
           int _len_cd0 = 1;
           struct TYPE_3__ * cd = (struct TYPE_3__ *) malloc(_len_cd0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
-            cd[_i0].cd_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              cd[_i0].cd_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cd__i0__cd_props0 = 1;
           cd[_i0].cd_props = (int *) malloc(_len_cd__i0__cd_props0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_cd__i0__cd_props0; _j0++) {
             cd[_i0].cd_props[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = AMF3CD_GetProp(cd,nIndex);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_cd0; _aux++) {
@@ -108,7 +108,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int nIndex = 255;
+        
+          int _len_cd0 = 65025;
+          struct TYPE_3__ * cd = (struct TYPE_3__ *) malloc(_len_cd0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
+              cd[_i0].cd_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cd__i0__cd_props0 = 1;
+          cd[_i0].cd_props = (int *) malloc(_len_cd__i0__cd_props0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cd__i0__cd_props0; _j0++) {
+            cd[_i0].cd_props[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = AMF3CD_GetProp(cd,nIndex);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_cd0; _aux++) {
+          free(cd[_aux].cd_props);
+          }
+          free(cd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int nIndex = 10;
+        
+          int _len_cd0 = 100;
+          struct TYPE_3__ * cd = (struct TYPE_3__ *) malloc(_len_cd0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
+              cd[_i0].cd_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cd__i0__cd_props0 = 1;
+          cd[_i0].cd_props = (int *) malloc(_len_cd__i0__cd_props0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cd__i0__cd_props0; _j0++) {
+            cd[_i0].cd_props[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = AMF3CD_GetProp(cd,nIndex);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_cd0; _aux++) {
+          free(cd[_aux].cd_props);
+          }
+          free(cd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int nIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cd0 = 1;
+          struct TYPE_3__ * cd = (struct TYPE_3__ *) malloc(_len_cd0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cd0; _i0++) {
+              cd[_i0].cd_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cd__i0__cd_props0 = 1;
+          cd[_i0].cd_props = (int *) malloc(_len_cd__i0__cd_props0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cd__i0__cd_props0; _j0++) {
+            cd[_i0].cd_props[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = AMF3CD_GetProp(cd,nIndex);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_cd0; _aux++) {
+          free(cd[_aux].cd_props);
+          }
+          free(cd);
+        
+        break;
+    }
     default:
         usage();
         break;

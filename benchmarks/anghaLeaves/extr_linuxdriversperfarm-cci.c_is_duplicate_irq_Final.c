@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool is_duplicate_irq(int irq, int *irqs, int nr_ir
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +79,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 3328
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 1285
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 1285
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 1285
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 1285
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 1285
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 1541
+          // ------------------------------- 
+
+          int irq = 255;
+        
+          int nr_irqs = 255;
+        
+          int _len_irqs0 = 65025;
+          int * irqs = (int *) malloc(_len_irqs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irqs0; _i0++) {
+            irqs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_duplicate_irq(irq,irqs,nr_irqs);
+          printf("%d\n", benchRet); 
+          free(irqs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 143
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 60
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 60
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 60
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 60
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 60
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 71
+          // ------------------------------- 
+
           int irq = 10;
+        
           int nr_irqs = 10;
+        
           int _len_irqs0 = 100;
           int * irqs = (int *) malloc(_len_irqs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_irqs0; _i0++) {
             irqs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = is_duplicate_irq(irq,irqs,nr_irqs);
+          printf("%d\n", benchRet); 
+          free(irqs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nr_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_irqs0 = 1;
+          int * irqs = (int *) malloc(_len_irqs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irqs0; _i0++) {
+            irqs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = is_duplicate_irq(irq,irqs,nr_irqs);
           printf("%d\n", benchRet); 
           free(irqs);

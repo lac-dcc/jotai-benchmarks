@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ INSTALLSTATE msi_get_feature_action( MSIPACKAGE *package, MSIFEATURE *feature )
     return feature->ActionRequest;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +81,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_package0 = 1;
+          int _len_package0 = 65025;
           struct TYPE_5__ * package = (struct TYPE_5__ *) malloc(_len_package0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_package0; _i0++) {
-            package[_i0].need_rollback = ((-2 * (next_i()%2)) + 1) * next_i();
+              package[_i0].need_rollback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_feature0 = 1;
+        
+          int _len_feature0 = 65025;
           struct TYPE_6__ * feature = (struct TYPE_6__ *) malloc(_len_feature0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
-            feature[_i0].ActionRequest = ((-2 * (next_i()%2)) + 1) * next_i();
-        feature[_i0].Installed = ((-2 * (next_i()%2)) + 1) * next_i();
+              feature[_i0].ActionRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].Installed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = msi_get_feature_action(package,feature);
           printf("%d\n", benchRet); 
           free(package);
@@ -106,7 +106,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_package0 = 100;
+          struct TYPE_5__ * package = (struct TYPE_5__ *) malloc(_len_package0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_package0; _i0++) {
+              package[_i0].need_rollback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_feature0 = 100;
+          struct TYPE_6__ * feature = (struct TYPE_6__ *) malloc(_len_feature0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
+              feature[_i0].ActionRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].Installed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = msi_get_feature_action(package,feature);
+          printf("%d\n", benchRet); 
+          free(package);
+          free(feature);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_package0 = 1;
+          struct TYPE_5__ * package = (struct TYPE_5__ *) malloc(_len_package0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_package0; _i0++) {
+              package[_i0].need_rollback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_feature0 = 1;
+          struct TYPE_6__ * feature = (struct TYPE_6__ *) malloc(_len_feature0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_feature0; _i0++) {
+              feature[_i0].ActionRequest = ((-2 * (next_i()%2)) + 1) * next_i();
+          feature[_i0].Installed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = msi_get_feature_action(package,feature);
+          printf("%d\n", benchRet); 
+          free(package);
+          free(feature);
+        
+        break;
+    }
     default:
         usage();
         break;

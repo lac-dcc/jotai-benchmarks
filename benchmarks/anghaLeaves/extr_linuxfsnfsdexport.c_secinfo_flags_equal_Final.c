@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool secinfo_flags_equal(int f, int g)
 	return f == g;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int f = 100;
+        
           int g = 100;
+        
           int benchRet = secinfo_flags_equal(f,g);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int f = 255;
+        
           int g = 255;
+        
           int benchRet = secinfo_flags_equal(f,g);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int f = 10;
+        
           int g = 10;
+        
           int benchRet = secinfo_flags_equal(f,g);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int g = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = secinfo_flags_equal(f,g);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

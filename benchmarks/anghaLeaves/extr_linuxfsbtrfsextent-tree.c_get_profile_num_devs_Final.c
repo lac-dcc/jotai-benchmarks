@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static u64 get_profile_num_devs(struct btrfs_fs_info *fs_i
 	return num_dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,19 +95,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int type = 100;
+        
           int _len_fs_info0 = 1;
           struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
           for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
               int _len_fs_info__i0__fs_devices0 = 1;
           fs_info[_i0].fs_devices = (struct TYPE_2__ *) malloc(_len_fs_info__i0__fs_devices0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_fs_info__i0__fs_devices0; _j0++) {
-            fs_info[_i0].fs_devices->rw_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs_info[_i0].fs_devices->rw_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = get_profile_num_devs(fs_info,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs_info0; _aux++) {
+          free(fs_info[_aux].fs_devices);
+          }
+          free(fs_info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int type = 255;
+        
+          int _len_fs_info0 = 65025;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              int _len_fs_info__i0__fs_devices0 = 1;
+          fs_info[_i0].fs_devices = (struct TYPE_2__ *) malloc(_len_fs_info__i0__fs_devices0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fs_info__i0__fs_devices0; _j0++) {
+              fs_info[_i0].fs_devices->rw_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_profile_num_devs(fs_info,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs_info0; _aux++) {
+          free(fs_info[_aux].fs_devices);
+          }
+          free(fs_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int type = 10;
+        
+          int _len_fs_info0 = 100;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              int _len_fs_info__i0__fs_devices0 = 1;
+          fs_info[_i0].fs_devices = (struct TYPE_2__ *) malloc(_len_fs_info__i0__fs_devices0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fs_info__i0__fs_devices0; _j0++) {
+              fs_info[_i0].fs_devices->rw_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_profile_num_devs(fs_info,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs_info0; _aux++) {
+          free(fs_info[_aux].fs_devices);
+          }
+          free(fs_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs_info0 = 1;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              int _len_fs_info__i0__fs_devices0 = 1;
+          fs_info[_i0].fs_devices = (struct TYPE_2__ *) malloc(_len_fs_info__i0__fs_devices0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fs_info__i0__fs_devices0; _j0++) {
+              fs_info[_i0].fs_devices->rw_devices = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = get_profile_num_devs(fs_info,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fs_info0; _aux++) {

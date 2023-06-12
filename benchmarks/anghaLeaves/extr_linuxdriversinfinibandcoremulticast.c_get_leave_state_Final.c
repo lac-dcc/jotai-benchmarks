@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static u8 get_leave_state(struct mcast_group *group)
 	return leave_state & group->rec.join_state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_group0 = 1;
+          int _len_group0 = 65025;
           struct mcast_group * group = (struct mcast_group *) malloc(_len_group0*sizeof(struct mcast_group));
           for(int _i0 = 0; _i0 < _len_group0; _i0++) {
-            group[_i0].rec.join_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              group[_i0].rec.join_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_group__i0__members0 = 1;
           group[_i0].members = (int *) malloc(_len_group__i0__members0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_group__i0__members0; _j0++) {
             group[_i0].members[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = get_leave_state(group);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_group0; _aux++) {
@@ -111,7 +110,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_group0 = 100;
+          struct mcast_group * group = (struct mcast_group *) malloc(_len_group0*sizeof(struct mcast_group));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              group[_i0].rec.join_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_group__i0__members0 = 1;
+          group[_i0].members = (int *) malloc(_len_group__i0__members0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_group__i0__members0; _j0++) {
+            group[_i0].members[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_leave_state(group);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_group0; _aux++) {
+          free(group[_aux].members);
+          }
+          free(group);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_group0 = 1;
+          struct mcast_group * group = (struct mcast_group *) malloc(_len_group0*sizeof(struct mcast_group));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              group[_i0].rec.join_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_group__i0__members0 = 1;
+          group[_i0].members = (int *) malloc(_len_group__i0__members0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_group__i0__members0; _j0++) {
+            group[_i0].members[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_leave_state(group);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_group0; _aux++) {
+          free(group[_aux].members);
+          }
+          free(group);
+        
+        break;
+    }
     default:
         usage();
         break;

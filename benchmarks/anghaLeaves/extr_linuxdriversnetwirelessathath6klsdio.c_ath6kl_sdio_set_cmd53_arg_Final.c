@@ -70,12 +70,6 @@ __attribute__((used)) static inline void ath6kl_sdio_set_cmd53_arg(u32 *arg, u8 
 		(blksz & 0x1FF));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +86,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rw = 100;
+        
           int func = 100;
+        
           int mode = 100;
+        
           int opcode = 100;
+        
           int addr = 100;
+        
           int blksz = 100;
+        
           int _len_arg0 = 1;
           int * arg = (int *) malloc(_len_arg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ath6kl_sdio_set_cmd53_arg(arg,rw,func,mode,opcode,addr,blksz);
           free(arg);
         
@@ -111,22 +112,28 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int rw = 10;
+        
           int func = 10;
+        
           int mode = 10;
+        
           int opcode = 10;
+        
           int addr = 10;
+        
           int blksz = 10;
+        
           int _len_arg0 = 100;
           int * arg = (int *) malloc(_len_arg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ath6kl_sdio_set_cmd53_arg(arg,rw,func,mode,opcode,addr,blksz);
           free(arg);
         
         break;
     }
-
     default:
         usage();
         break;

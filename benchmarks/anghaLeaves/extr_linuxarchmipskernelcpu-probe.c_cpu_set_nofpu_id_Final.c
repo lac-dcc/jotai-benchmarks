@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static void cpu_set_nofpu_id(struct cpuinfo_mips *c)
 	c->fpu_id = value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,16 +100,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_c0 = 65025;
+          struct cpuinfo_mips * c = (struct cpuinfo_mips *) malloc(_len_c0*sizeof(struct cpuinfo_mips));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].isa_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].fpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cpu_set_nofpu_id(c);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_c0 = 100;
+          struct cpuinfo_mips * c = (struct cpuinfo_mips *) malloc(_len_c0*sizeof(struct cpuinfo_mips));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].isa_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].fpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cpu_set_nofpu_id(c);
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_c0 = 1;
           struct cpuinfo_mips * c = (struct cpuinfo_mips *) malloc(_len_c0*sizeof(struct cpuinfo_mips));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].isa_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].fpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].isa_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].fpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cpu_set_nofpu_id(c);
           free(c);
         

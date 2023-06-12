@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static inline unsigned int g450_vco2f(unsigned char p, uns
 	return (p & 0x40) ? fvco : fvco >> ((p & 3) + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,7 +77,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char p = 100;
+        
           unsigned int fvco = 100;
+        
           unsigned int benchRet = g450_vco2f(p,fvco);
           printf("%u\n", benchRet); 
         
@@ -92,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned char p = 255;
+        
           unsigned int fvco = 255;
+        
           unsigned int benchRet = g450_vco2f(p,fvco);
           printf("%u\n", benchRet); 
         
@@ -102,13 +101,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned char p = 10;
+        
           unsigned int fvco = 10;
+        
           unsigned int benchRet = g450_vco2f(p,fvco);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int fvco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = g450_vco2f(p,fvco);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

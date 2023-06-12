@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ __opdword(unsigned char opcode, unsigned char exopc, unsigned char xtype,
 	   (exopc << GRU_CB_EXOPC_SHFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,12 +99,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char opcode = 100;
+        
           unsigned char exopc = 100;
+        
           unsigned char xtype = 100;
+        
           unsigned char iaa0 = 100;
+        
           unsigned char iaa1 = 100;
+        
           unsigned long idef2 = 100;
+        
           unsigned char ima = 100;
+        
           unsigned long benchRet = __opdword(opcode,exopc,xtype,iaa0,iaa1,idef2,ima);
           printf("%lu\n", benchRet); 
         
@@ -119,12 +121,19 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned char opcode = 255;
+        
           unsigned char exopc = 255;
+        
           unsigned char xtype = 255;
+        
           unsigned char iaa0 = 255;
+        
           unsigned char iaa1 = 255;
+        
           unsigned long idef2 = 255;
+        
           unsigned char ima = 255;
+        
           unsigned long benchRet = __opdword(opcode,exopc,xtype,iaa0,iaa1,idef2,ima);
           printf("%lu\n", benchRet); 
         
@@ -134,18 +143,46 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned char opcode = 10;
+        
           unsigned char exopc = 10;
+        
           unsigned char xtype = 10;
+        
           unsigned char iaa0 = 10;
+        
           unsigned char iaa1 = 10;
+        
           unsigned long idef2 = 10;
+        
           unsigned char ima = 10;
+        
           unsigned long benchRet = __opdword(opcode,exopc,xtype,iaa0,iaa1,idef2,ima);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char exopc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char xtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char iaa0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char iaa1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long idef2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char ima = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = __opdword(opcode,exopc,xtype,iaa0,iaa1,idef2,ima);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

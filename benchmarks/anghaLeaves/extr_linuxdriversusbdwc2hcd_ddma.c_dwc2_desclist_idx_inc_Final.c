@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u16 dwc2_desclist_idx_inc(u16 idx, u16 inc, u8 spee
 		  MAX_DMA_DESC_NUM_GENERIC) - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,8 +85,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int inc = 100;
+        
           long speed = 100;
+        
           int benchRet = dwc2_desclist_idx_inc(idx,inc,speed);
           printf("%d\n", benchRet); 
         
@@ -101,8 +99,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int idx = 255;
+        
           int inc = 255;
+        
           long speed = 255;
+        
           int benchRet = dwc2_desclist_idx_inc(idx,inc,speed);
           printf("%d\n", benchRet); 
         
@@ -112,14 +113,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int idx = 10;
+        
           int inc = 10;
+        
           long speed = 10;
+        
           int benchRet = dwc2_desclist_idx_inc(idx,inc,speed);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int inc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dwc2_desclist_idx_inc(idx,inc,speed);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static void __setup_intr_ops(struct dpu_hw_intr_ops *ops)
 	ops->get_interrupt_status = dpu_hw_intr_get_interrupt_status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,25 +97,150 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_ops0 = 65025;
+          struct dpu_hw_intr_ops * ops = (struct dpu_hw_intr_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intr_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_intr_status_nolock = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_interrupt_statuses = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_valid_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].dispatch_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].irq_idx_lookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].set_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __setup_intr_ops(ops);
+          free(ops);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_ops0 = 100;
+          struct dpu_hw_intr_ops * ops = (struct dpu_hw_intr_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intr_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_intr_status_nolock = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_interrupt_statuses = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_valid_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].dispatch_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].irq_idx_lookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].set_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __setup_intr_ops(ops);
+          free(ops);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int _len_ops0 = 1;
           struct dpu_hw_intr_ops * ops = (struct dpu_hw_intr_ops *) malloc(_len_ops0*sizeof(struct dpu_hw_intr_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].get_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].clear_intr_status_nolock = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].clear_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_interrupt_statuses = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_valid_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].disable_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].clear_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].dispatch_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].enable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].irq_idx_lookup = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].set_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].get_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_intr_status_nolock = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_interrupt_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_interrupt_statuses = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_valid_interrupts = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].clear_all_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].dispatch_irqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].irq_idx_lookup = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].set_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __setup_intr_ops(ops);
           free(ops);
         

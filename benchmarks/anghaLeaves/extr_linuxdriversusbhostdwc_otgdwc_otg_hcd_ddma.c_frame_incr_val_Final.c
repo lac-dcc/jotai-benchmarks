@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline uint16_t frame_incr_val(dwc_otg_qh_t * qh)
 		: qh->interval);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qh0 = 1;
+          int _len_qh0 = 65025;
           struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
-            qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        qh[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          qh[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = frame_incr_val(qh);
           printf("%d\n", benchRet); 
           free(qh);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_qh0 = 100;
+          struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          qh[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = frame_incr_val(qh);
+          printf("%d\n", benchRet); 
+          free(qh);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_qh0 = 1;
+          struct TYPE_3__ * qh = (struct TYPE_3__ *) malloc(_len_qh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_qh0; _i0++) {
+              qh[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          qh[_i0].interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = frame_incr_val(qh);
+          printf("%d\n", benchRet); 
+          free(qh);
+        
+        break;
+    }
     default:
         usage();
         break;

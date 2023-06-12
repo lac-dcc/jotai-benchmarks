@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ id_to_hex(char * str, uint32_t id) {
 	str[9] = '\0';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +79,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 165
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 81
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 43
+          // ------------------------------- 
+          // static_instructions_O3 : 43
+          // dynamic_instructions_O3 : 43
+          // ------------------------------- 
+          // static_instructions_Ofast : 43
+          // dynamic_instructions_Ofast : 43
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 80
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 90
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_str0 = 65025;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          id_to_hex(str,id);
+          free(str);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 165
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 81
+          // ------------------------------- 
+          // static_instructions_O2 : 43
+          // dynamic_instructions_O2 : 43
+          // ------------------------------- 
+          // static_instructions_O3 : 43
+          // dynamic_instructions_O3 : 43
+          // ------------------------------- 
+          // static_instructions_Ofast : 43
+          // dynamic_instructions_Ofast : 43
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 80
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 90
+          // ------------------------------- 
+
           int id = 10;
+        
           int _len_str0 = 100;
           char * str = (char *) malloc(_len_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           id_to_hex(str,id);
           free(str);
         

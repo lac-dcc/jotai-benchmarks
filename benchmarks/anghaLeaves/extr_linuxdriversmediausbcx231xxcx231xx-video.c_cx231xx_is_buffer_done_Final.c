@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ u8 cx231xx_is_buffer_done(struct cx231xx *dev, struct cx231xx_dmaqueue *dma_q)
 	return buffer_complete;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct cx231xx * dev = (struct cx231xx *) malloc(_len_dev0*sizeof(struct cx231xx));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_q0 = 65025;
+          struct cx231xx_dmaqueue * dma_q = (struct cx231xx_dmaqueue *) malloc(_len_dma_q0*sizeof(struct cx231xx_dmaqueue));
+          for(int _i0 = 0; _i0 < _len_dma_q0; _i0++) {
+              dma_q[_i0].current_field = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].lines_completed = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].lines_per_field = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].field1_done = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cx231xx_is_buffer_done(dev,dma_q);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(dma_q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct cx231xx * dev = (struct cx231xx *) malloc(_len_dev0*sizeof(struct cx231xx));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_q0 = 100;
+          struct cx231xx_dmaqueue * dma_q = (struct cx231xx_dmaqueue *) malloc(_len_dma_q0*sizeof(struct cx231xx_dmaqueue));
+          for(int _i0 = 0; _i0 < _len_dma_q0; _i0++) {
+              dma_q[_i0].current_field = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].lines_completed = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].lines_per_field = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].field1_done = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cx231xx_is_buffer_done(dev,dma_q);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(dma_q);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct cx231xx * dev = (struct cx231xx *) malloc(_len_dev0*sizeof(struct cx231xx));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dma_q0 = 1;
           struct cx231xx_dmaqueue * dma_q = (struct cx231xx_dmaqueue *) malloc(_len_dma_q0*sizeof(struct cx231xx_dmaqueue));
           for(int _i0 = 0; _i0 < _len_dma_q0; _i0++) {
-            dma_q[_i0].current_field = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_q[_i0].lines_completed = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_q[_i0].lines_per_field = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_q[_i0].field1_done = ((-2 * (next_i()%2)) + 1) * next_i();
+              dma_q[_i0].current_field = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].lines_completed = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].lines_per_field = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_q[_i0].field1_done = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cx231xx_is_buffer_done(dev,dma_q);
           printf("%d\n", benchRet); 
           free(dev);

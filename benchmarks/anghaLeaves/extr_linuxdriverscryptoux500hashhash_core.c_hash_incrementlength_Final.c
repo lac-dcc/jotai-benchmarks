@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static void hash_incrementlength(struct hash_req_ctx *ctx,
 		ctx->state.length.high_word++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long incr = 100;
+        
           int _len_ctx0 = 1;
           struct hash_req_ctx * ctx = (struct hash_req_ctx *) malloc(_len_ctx0*sizeof(struct hash_req_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].state.length.low_word = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].state.length.high_word = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].state.length.low_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].state.length.high_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          hash_incrementlength(ctx,incr);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long incr = 255;
+        
+          int _len_ctx0 = 65025;
+          struct hash_req_ctx * ctx = (struct hash_req_ctx *) malloc(_len_ctx0*sizeof(struct hash_req_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].state.length.low_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].state.length.high_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          hash_incrementlength(ctx,incr);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long incr = 10;
+        
+          int _len_ctx0 = 100;
+          struct hash_req_ctx * ctx = (struct hash_req_ctx *) malloc(_len_ctx0*sizeof(struct hash_req_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].state.length.low_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].state.length.high_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          hash_incrementlength(ctx,incr);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long incr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct hash_req_ctx * ctx = (struct hash_req_ctx *) malloc(_len_ctx0*sizeof(struct hash_req_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].state.length.low_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].state.length.high_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           hash_incrementlength(ctx,incr);
           free(ctx);
         

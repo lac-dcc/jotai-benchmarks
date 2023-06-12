@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void increment_layer(layer *l, int steps)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,20 +88,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int steps = 100;
+        
           int _len_l0 = 1;
           struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          increment_layer(l,steps);
+          free(l);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int steps = 255;
+        
+          int _len_l0 = 65025;
+          struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          increment_layer(l,steps);
+          free(l);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int steps = 10;
+        
+          int _len_l0 = 100;
+          struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          increment_layer(l,steps);
+          free(l);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int steps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_l0 = 1;
+          struct TYPE_3__ * l = (struct TYPE_3__ *) malloc(_len_l0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].outputs = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].output = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].delta = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].x_norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           increment_layer(l,steps);
           free(l);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int mv88e6xxx_g2_set_switch_mac(struct mv88e
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chip0 = 1;
+          int _len_chip0 = 65025;
           struct mv88e6xxx_chip * chip = (struct mv88e6xxx_chip *) malloc(_len_chip0*sizeof(struct mv88e6xxx_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_addr0 = 1;
+        
+          int _len_addr0 = 65025;
           int * addr = (int *) malloc(_len_addr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
             addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mv88e6xxx_g2_set_switch_mac(chip,addr);
           printf("%d\n", benchRet); 
           free(chip);
@@ -101,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_chip0 = 100;
+          struct mv88e6xxx_chip * chip = (struct mv88e6xxx_chip *) malloc(_len_chip0*sizeof(struct mv88e6xxx_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addr0 = 100;
+          int * addr = (int *) malloc(_len_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+            addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mv88e6xxx_g2_set_switch_mac(chip,addr);
+          printf("%d\n", benchRet); 
+          free(chip);
+          free(addr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_chip0 = 1;
+          struct mv88e6xxx_chip * chip = (struct mv88e6xxx_chip *) malloc(_len_chip0*sizeof(struct mv88e6xxx_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addr0 = 1;
+          int * addr = (int *) malloc(_len_addr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_addr0; _i0++) {
+            addr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mv88e6xxx_g2_set_switch_mac(chip,addr);
+          printf("%d\n", benchRet); 
+          free(chip);
+          free(addr);
+        
+        break;
+    }
     default:
         usage();
         break;

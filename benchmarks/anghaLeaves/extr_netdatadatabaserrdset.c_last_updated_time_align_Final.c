@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void last_updated_time_align(RRDSET *st) {
     st->last_updated.tv_usec = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_st0 = 1;
+          int _len_st0 = 65025;
           struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].update_every = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].last_updated.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].last_updated.tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].update_every = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].last_updated.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].last_updated.tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           last_updated_time_align(st);
           free(st);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_st0 = 100;
+          struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].update_every = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].last_updated.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].last_updated.tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          last_updated_time_align(st);
+          free(st);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_st0 = 1;
+          struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].update_every = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].last_updated.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].last_updated.tv_usec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          last_updated_time_align(st);
+          free(st);
+        
+        break;
+    }
     default:
         usage();
         break;

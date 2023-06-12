@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ __attribute__((used)) static int abx500_get_gpio_num(struct abx500_pinctrl_soc_d
 	return npins;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,20 +108,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_soc0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_soc0 = 65025;
           struct abx500_pinctrl_soc_data * soc = (struct abx500_pinctrl_soc_data *) malloc(_len_soc0*sizeof(struct abx500_pinctrl_soc_data));
           for(int _i0 = 0; _i0 < _len_soc0; _i0++) {
-            soc[_i0].gpio_num_ranges = ((-2 * (next_i()%2)) + 1) * next_i();
+              soc[_i0].gpio_num_ranges = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_soc__i0__gpio_ranges0 = 1;
           soc[_i0].gpio_ranges = (struct abx500_pinrange *) malloc(_len_soc__i0__gpio_ranges0*sizeof(struct abx500_pinrange));
           for(int _j0 = 0; _j0 < _len_soc__i0__gpio_ranges0; _j0++) {
-            soc[_i0].gpio_ranges->offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        soc[_i0].gpio_ranges->npins = ((-2 * (next_i()%2)) + 1) * next_i();
+              soc[_i0].gpio_ranges->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          soc[_i0].gpio_ranges->npins = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = abx500_get_gpio_num(soc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_soc0; _aux++) {
+          free(soc[_aux].gpio_ranges);
+          }
+          free(soc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_soc0 = 100;
+          struct abx500_pinctrl_soc_data * soc = (struct abx500_pinctrl_soc_data *) malloc(_len_soc0*sizeof(struct abx500_pinctrl_soc_data));
+          for(int _i0 = 0; _i0 < _len_soc0; _i0++) {
+              soc[_i0].gpio_num_ranges = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_soc__i0__gpio_ranges0 = 1;
+          soc[_i0].gpio_ranges = (struct abx500_pinrange *) malloc(_len_soc__i0__gpio_ranges0*sizeof(struct abx500_pinrange));
+          for(int _j0 = 0; _j0 < _len_soc__i0__gpio_ranges0; _j0++) {
+              soc[_i0].gpio_ranges->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          soc[_i0].gpio_ranges->npins = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = abx500_get_gpio_num(soc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_soc0; _aux++) {
+          free(soc[_aux].gpio_ranges);
+          }
+          free(soc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_soc0 = 1;
+          struct abx500_pinctrl_soc_data * soc = (struct abx500_pinctrl_soc_data *) malloc(_len_soc0*sizeof(struct abx500_pinctrl_soc_data));
+          for(int _i0 = 0; _i0 < _len_soc0; _i0++) {
+              soc[_i0].gpio_num_ranges = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_soc__i0__gpio_ranges0 = 1;
+          soc[_i0].gpio_ranges = (struct abx500_pinrange *) malloc(_len_soc__i0__gpio_ranges0*sizeof(struct abx500_pinrange));
+          for(int _j0 = 0; _j0 < _len_soc__i0__gpio_ranges0; _j0++) {
+              soc[_i0].gpio_ranges->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          soc[_i0].gpio_ranges->npins = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = abx500_get_gpio_num(soc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_soc0; _aux++) {

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ necp_mark_packet_as_keepalive(struct mbuf *packet, bool is_keepalive)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int is_keepalive = 100;
+        
           int _len_packet0 = 1;
           struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = necp_mark_packet_as_keepalive(packet,is_keepalive);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_keepalive = 255;
+        
+          int _len_packet0 = 65025;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_as_keepalive(packet,is_keepalive);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_keepalive = 10;
+        
+          int _len_packet0 = 100;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_as_keepalive(packet,is_keepalive);
+          printf("%d\n", benchRet); 
+          free(packet);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int is_keepalive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_packet0 = 1;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = necp_mark_packet_as_keepalive(packet,is_keepalive);
           printf("%d\n", benchRet); 
           free(packet);

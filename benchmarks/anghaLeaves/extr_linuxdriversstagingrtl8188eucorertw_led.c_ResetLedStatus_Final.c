@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void ResetLedStatus(struct LED_871x *pLed)
 	pLed->bLedScanBlinkInProgress = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,28 +87,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pLed0 = 1;
+          int _len_pLed0 = 65025;
           struct LED_871x * pLed = (struct LED_871x *) malloc(_len_pLed0*sizeof(struct LED_871x));
           for(int _i0 = 0; _i0 < _len_pLed0; _i0++) {
-            pLed[_i0].bLedOn = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].bLedBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].bLedWPSBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].bLedNoLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].bLedLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].bLedScanBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
-        pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+              pLed[_i0].bLedOn = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedWPSBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedNoLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedScanBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ResetLedStatus(pLed);
           free(pLed);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pLed0 = 100;
+          struct LED_871x * pLed = (struct LED_871x *) malloc(_len_pLed0*sizeof(struct LED_871x));
+          for(int _i0 = 0; _i0 < _len_pLed0; _i0++) {
+              pLed[_i0].bLedOn = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedWPSBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedNoLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedScanBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ResetLedStatus(pLed);
+          free(pLed);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pLed0 = 1;
+          struct LED_871x * pLed = (struct LED_871x *) malloc(_len_pLed0*sizeof(struct LED_871x));
+          for(int _i0 = 0; _i0 < _len_pLed0; _i0++) {
+              pLed[_i0].bLedOn = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedWPSBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedNoLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedLinkBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].bLedScanBlinkInProgress = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkingLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].BlinkTimes = ((-2 * (next_i()%2)) + 1) * next_i();
+          pLed[_i0].CurrLedState = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ResetLedStatus(pLed);
+          free(pLed);
+        
+        break;
+    }
     default:
         usage();
         break;

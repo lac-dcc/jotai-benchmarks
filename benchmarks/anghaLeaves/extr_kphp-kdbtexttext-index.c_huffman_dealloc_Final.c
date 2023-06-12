@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ void huffman_dealloc (long long *table, long N) {
   dyn_cur += N * 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,31 +78,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long N = 100;
+        
           int _len_table0 = 1;
           long long * table = (long long *) malloc(_len_table0*sizeof(long long));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
             table[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          huffman_dealloc(table,N);
+          free(table);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long N = 255;
+        
+          int _len_table0 = 65025;
+          long long * table = (long long *) malloc(_len_table0*sizeof(long long));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            table[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           huffman_dealloc(table,N);
           free(table);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long N = 10;
+        
           int _len_table0 = 100;
           long long * table = (long long *) malloc(_len_table0*sizeof(long long));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
             table[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           huffman_dealloc(table,N);
           free(table);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_table0 = 1;
+          long long * table = (long long *) malloc(_len_table0*sizeof(long long));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+            table[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          huffman_dealloc(table,N);
+          free(table);
+        
+        break;
+    }
     default:
         usage();
         break;

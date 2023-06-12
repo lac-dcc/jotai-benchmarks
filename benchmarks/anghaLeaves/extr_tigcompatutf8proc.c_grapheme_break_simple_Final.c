@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -109,12 +110,6 @@ __attribute__((used)) static utf8proc_bool grapheme_break_simple(int lbc, int tb
     true; // GB999
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,7 +126,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lbc = 100;
+        
           int tbc = 100;
+        
           int benchRet = grapheme_break_simple(lbc,tbc);
           printf("%d\n", benchRet); 
         
@@ -141,7 +138,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int lbc = 255;
+        
           int tbc = 255;
+        
           int benchRet = grapheme_break_simple(lbc,tbc);
           printf("%d\n", benchRet); 
         
@@ -151,13 +150,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int lbc = 10;
+        
           int tbc = 10;
+        
           int benchRet = grapheme_break_simple(lbc,tbc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int lbc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tbc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = grapheme_break_simple(lbc,tbc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

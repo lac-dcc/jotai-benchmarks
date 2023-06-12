@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void usbip_pack_ret_submit(struct usbip_header *pdu
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,28 +94,235 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int pack = 100;
+        
           int _len_pdu0 = 1;
           struct usbip_header * pdu = (struct usbip_header *) malloc(_len_pdu0*sizeof(struct usbip_header));
           for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
-            pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_urb0 = 1;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          usbip_pack_ret_submit(pdu,urb,pack);
+          free(pdu);
+          free(urb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int pack = 255;
+        
+          int _len_pdu0 = 65025;
+          struct usbip_header * pdu = (struct usbip_header *) malloc(_len_pdu0*sizeof(struct usbip_header));
+          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
+              pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_urb0 = 65025;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usbip_pack_ret_submit(pdu,urb,pack);
+          free(pdu);
+          free(urb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int pack = 10;
+        
+          int _len_pdu0 = 100;
+          struct usbip_header * pdu = (struct usbip_header *) malloc(_len_pdu0*sizeof(struct usbip_header));
+          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
+              pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_urb0 = 100;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          usbip_pack_ret_submit(pdu,urb,pack);
+          free(pdu);
+          free(urb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int pack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdu0 = 1;
+          struct usbip_header * pdu = (struct usbip_header *) malloc(_len_pdu0*sizeof(struct usbip_header));
+          for(int _i0 = 0; _i0 < _len_pdu0; _i0++) {
+              pdu[_i0].u.ret_submit.error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          pdu[_i0].u.ret_submit.status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_urb0 = 1;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].error_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].start_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           usbip_pack_ret_submit(pdu,urb,pack);
           free(pdu);
           free(urb);

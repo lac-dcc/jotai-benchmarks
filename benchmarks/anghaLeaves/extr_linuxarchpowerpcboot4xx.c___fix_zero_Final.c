@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u32 __fix_zero(u32 v, u32 def)
 	return v ? v : def;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long v = 100;
+        
           long def = 100;
+        
           long benchRet = __fix_zero(v,def);
           printf("%ld\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long v = 255;
+        
           long def = 255;
+        
           long benchRet = __fix_zero(v,def);
           printf("%ld\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long v = 10;
+        
           long def = 10;
+        
           long benchRet = __fix_zero(v,def);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long def = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = __fix_zero(v,def);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void vdbeIncrMergerSetThreads(IncrMerger *pIncr){
   pIncr->pTask->file2.iEof -= pIncr->mxSz;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +80,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pIncr0 = 1;
+          int _len_pIncr0 = 65025;
           struct TYPE_7__ * pIncr = (struct TYPE_7__ *) malloc(_len_pIncr0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_pIncr0; _i0++) {
-            pIncr[_i0].bUseThread = ((-2 * (next_i()%2)) + 1) * next_i();
-        pIncr[_i0].mxSz = ((-2 * (next_i()%2)) + 1) * next_i();
+              pIncr[_i0].bUseThread = ((-2 * (next_i()%2)) + 1) * next_i();
+          pIncr[_i0].mxSz = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pIncr__i0__pTask0 = 1;
           pIncr[_i0].pTask = (struct TYPE_6__ *) malloc(_len_pIncr__i0__pTask0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_pIncr__i0__pTask0; _j0++) {
-            pIncr[_i0].pTask->file2.iEof = ((-2 * (next_i()%2)) + 1) * next_i();
+              pIncr[_i0].pTask->file2.iEof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           vdbeIncrMergerSetThreads(pIncr);
           for(int _aux = 0; _aux < _len_pIncr0; _aux++) {
           free(pIncr[_aux].pTask);
@@ -106,7 +106,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pIncr0 = 100;
+          struct TYPE_7__ * pIncr = (struct TYPE_7__ *) malloc(_len_pIncr0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_pIncr0; _i0++) {
+              pIncr[_i0].bUseThread = ((-2 * (next_i()%2)) + 1) * next_i();
+          pIncr[_i0].mxSz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pIncr__i0__pTask0 = 1;
+          pIncr[_i0].pTask = (struct TYPE_6__ *) malloc(_len_pIncr__i0__pTask0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_pIncr__i0__pTask0; _j0++) {
+              pIncr[_i0].pTask->file2.iEof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          vdbeIncrMergerSetThreads(pIncr);
+          for(int _aux = 0; _aux < _len_pIncr0; _aux++) {
+          free(pIncr[_aux].pTask);
+          }
+          free(pIncr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pIncr0 = 1;
+          struct TYPE_7__ * pIncr = (struct TYPE_7__ *) malloc(_len_pIncr0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_pIncr0; _i0++) {
+              pIncr[_i0].bUseThread = ((-2 * (next_i()%2)) + 1) * next_i();
+          pIncr[_i0].mxSz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pIncr__i0__pTask0 = 1;
+          pIncr[_i0].pTask = (struct TYPE_6__ *) malloc(_len_pIncr__i0__pTask0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_pIncr__i0__pTask0; _j0++) {
+              pIncr[_i0].pTask->file2.iEof = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          vdbeIncrMergerSetThreads(pIncr);
+          for(int _aux = 0; _aux < _len_pIncr0; _aux++) {
+          free(pIncr[_aux].pTask);
+          }
+          free(pIncr);
+        
+        break;
+    }
     default:
         usage();
         break;

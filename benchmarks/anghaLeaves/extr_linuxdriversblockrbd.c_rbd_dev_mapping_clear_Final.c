@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void rbd_dev_mapping_clear(struct rbd_device *rbd_d
 	rbd_dev->mapping.features = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rbd_dev0 = 1;
+          int _len_rbd_dev0 = 65025;
           struct rbd_device * rbd_dev = (struct rbd_device *) malloc(_len_rbd_dev0*sizeof(struct rbd_device));
           for(int _i0 = 0; _i0 < _len_rbd_dev0; _i0++) {
-            rbd_dev[_i0].mapping.features = ((-2 * (next_i()%2)) + 1) * next_i();
-        rbd_dev[_i0].mapping.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rbd_dev[_i0].mapping.features = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbd_dev[_i0].mapping.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           rbd_dev_mapping_clear(rbd_dev);
           free(rbd_dev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rbd_dev0 = 100;
+          struct rbd_device * rbd_dev = (struct rbd_device *) malloc(_len_rbd_dev0*sizeof(struct rbd_device));
+          for(int _i0 = 0; _i0 < _len_rbd_dev0; _i0++) {
+              rbd_dev[_i0].mapping.features = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbd_dev[_i0].mapping.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rbd_dev_mapping_clear(rbd_dev);
+          free(rbd_dev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rbd_dev0 = 1;
+          struct rbd_device * rbd_dev = (struct rbd_device *) malloc(_len_rbd_dev0*sizeof(struct rbd_device));
+          for(int _i0 = 0; _i0 < _len_rbd_dev0; _i0++) {
+              rbd_dev[_i0].mapping.features = ((-2 * (next_i()%2)) + 1) * next_i();
+          rbd_dev[_i0].mapping.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rbd_dev_mapping_clear(rbd_dev);
+          free(rbd_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

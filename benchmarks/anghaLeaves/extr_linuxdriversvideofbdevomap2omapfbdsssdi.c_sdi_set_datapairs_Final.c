@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void sdi_set_datapairs(struct omap_dss_device *dssd
 	sdi.datapairs = datapairs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int datapairs = 100;
+        
           int _len_dssdev0 = 1;
           struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
           for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
-            dssdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dssdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          sdi_set_datapairs(dssdev,datapairs);
+          free(dssdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int datapairs = 255;
+        
+          int _len_dssdev0 = 65025;
+          struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
+          for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
+              dssdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           sdi_set_datapairs(dssdev,datapairs);
           free(dssdev);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int datapairs = 10;
+        
           int _len_dssdev0 = 100;
           struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
           for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
-            dssdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dssdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sdi_set_datapairs(dssdev,datapairs);
           free(dssdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int datapairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dssdev0 = 1;
+          struct omap_dss_device * dssdev = (struct omap_dss_device *) malloc(_len_dssdev0*sizeof(struct omap_dss_device));
+          for(int _i0 = 0; _i0 < _len_dssdev0; _i0++) {
+              dssdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sdi_set_datapairs(dssdev,datapairs);
+          free(dssdev);
+        
+        break;
+    }
     default:
         usage();
         break;

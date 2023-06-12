@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void calculate_output_format_register(struct saa714
 	*clip_format |=  (( ((palette&0xf00)>>8) << 30) | ((palette&0x00f) << 24) | (((palette&0x0f0)>>4) << 16));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int palette = 100;
+        
           int _len_saa0 = 1;
           struct saa7146_dev * saa = (struct saa7146_dev *) malloc(_len_saa0*sizeof(struct saa7146_dev));
           for(int _i0 = 0; _i0 < _len_saa0; _i0++) {
-            saa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              saa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_clip_format0 = 1;
           int * clip_format = (int *) malloc(_len_clip_format0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_clip_format0; _i0++) {
             clip_format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           calculate_output_format_register(saa,palette,clip_format);
           free(saa);
           free(clip_format);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int palette = 255;
+        
+          int _len_saa0 = 65025;
+          struct saa7146_dev * saa = (struct saa7146_dev *) malloc(_len_saa0*sizeof(struct saa7146_dev));
+          for(int _i0 = 0; _i0 < _len_saa0; _i0++) {
+              saa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clip_format0 = 65025;
+          int * clip_format = (int *) malloc(_len_clip_format0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clip_format0; _i0++) {
+            clip_format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calculate_output_format_register(saa,palette,clip_format);
+          free(saa);
+          free(clip_format);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int palette = 10;
+        
+          int _len_saa0 = 100;
+          struct saa7146_dev * saa = (struct saa7146_dev *) malloc(_len_saa0*sizeof(struct saa7146_dev));
+          for(int _i0 = 0; _i0 < _len_saa0; _i0++) {
+              saa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_clip_format0 = 100;
+          int * clip_format = (int *) malloc(_len_clip_format0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_clip_format0; _i0++) {
+            clip_format[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calculate_output_format_register(saa,palette,clip_format);
+          free(saa);
+          free(clip_format);
+        
+        break;
+    }
     default:
         usage();
         break;

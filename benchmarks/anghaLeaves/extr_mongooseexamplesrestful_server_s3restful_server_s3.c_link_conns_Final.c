@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -59,7 +60,6 @@ __attribute__((used)) static void link_conns(struct mg_connection *nc1, struct m
   nc1->user_data = nc2;
   nc2->user_data = nc1;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -111,7 +111,6 @@ void _delete_nc2(struct mg_connection *aux_nc2[], int aux_nc2_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,13 +123,77 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          struct mg_connection * aux_nc1[10000];
+          struct mg_connection * nc1 = _allocate_nc1(10000, aux_nc1);
+        
+          struct mg_connection * aux_nc2[10000];
+          struct mg_connection * nc2 = _allocate_nc2(10000, aux_nc2);
+        
+          link_conns(nc1,nc2);
+          _delete_nc1(aux_nc1, 10000);
+          _delete_nc2(aux_nc2, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           struct mg_connection * aux_nc1[1];
           struct mg_connection * nc1 = _allocate_nc1(1, aux_nc1);
+        
           struct mg_connection * aux_nc2[1];
           struct mg_connection * nc2 = _allocate_nc2(1, aux_nc2);
+        
           link_conns(nc1,nc2);
           _delete_nc1(aux_nc1, 1);
           _delete_nc2(aux_nc2, 1);

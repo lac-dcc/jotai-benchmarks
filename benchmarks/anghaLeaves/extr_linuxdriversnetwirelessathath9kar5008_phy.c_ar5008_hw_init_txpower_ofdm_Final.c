@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void ar5008_hw_init_txpower_ofdm(struct ath_hw *ah,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,10 +83,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int offset = 100;
+        
           int _len_ah0 = 1;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
@@ -98,12 +119,180 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ah__i0__tx_power0; _j0++) {
             ah[_i0].tx_power[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_rate_array0 = 1;
           int * rate_array = (int *) malloc(_len_rate_array0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rate_array0; _i0++) {
             rate_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          ar5008_hw_init_txpower_ofdm(ah,rate_array,offset);
+          for(int _aux = 0; _aux < _len_ah0; _aux++) {
+          free(ah[_aux].tx_power);
+          }
+          free(ah);
+          free(rate_array);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int _len_ah0 = 65025;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              int _len_ah__i0__tx_power0 = 1;
+          ah[_i0].tx_power = (int *) malloc(_len_ah__i0__tx_power0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ah__i0__tx_power0; _j0++) {
+            ah[_i0].tx_power[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_rate_array0 = 65025;
+          int * rate_array = (int *) malloc(_len_rate_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rate_array0; _i0++) {
+            rate_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ar5008_hw_init_txpower_ofdm(ah,rate_array,offset);
+          for(int _aux = 0; _aux < _len_ah0; _aux++) {
+          free(ah[_aux].tx_power);
+          }
+          free(ah);
+          free(rate_array);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int offset = 10;
+        
+          int _len_ah0 = 100;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              int _len_ah__i0__tx_power0 = 1;
+          ah[_i0].tx_power = (int *) malloc(_len_ah__i0__tx_power0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ah__i0__tx_power0; _j0++) {
+            ah[_i0].tx_power[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_rate_array0 = 100;
+          int * rate_array = (int *) malloc(_len_rate_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rate_array0; _i0++) {
+            rate_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ar5008_hw_init_txpower_ofdm(ah,rate_array,offset);
+          for(int _aux = 0; _aux < _len_ah0; _aux++) {
+          free(ah[_aux].tx_power);
+          }
+          free(ah);
+          free(rate_array);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              int _len_ah__i0__tx_power0 = 1;
+          ah[_i0].tx_power = (int *) malloc(_len_ah__i0__tx_power0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ah__i0__tx_power0; _j0++) {
+            ah[_i0].tx_power[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_rate_array0 = 1;
+          int * rate_array = (int *) malloc(_len_rate_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rate_array0; _i0++) {
+            rate_array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           ar5008_hw_init_txpower_ofdm(ah,rate_array,offset);
           for(int _aux = 0; _aux < _len_ah0; _aux++) {
           free(ah[_aux].tx_power);

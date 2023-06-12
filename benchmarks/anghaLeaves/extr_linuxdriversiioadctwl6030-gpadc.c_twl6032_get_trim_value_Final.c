@@ -69,12 +69,6 @@ __attribute__((used)) static int twl6032_get_trim_value(u8 *trim_regs, unsigned 
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +85,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg0 = 10;
+        
           unsigned int reg1 = 10;
+        
           unsigned int mask0 = 10;
+        
           unsigned int mask1 = 10;
+        
           unsigned int shift0 = 10;
+        
           int _len_trim_regs0 = 100;
           unsigned int * trim_regs = (unsigned int *) malloc(_len_trim_regs0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_trim_regs0; _i0++) {
             trim_regs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = twl6032_get_trim_value(trim_regs,reg0,reg1,mask0,mask1,shift0);
           printf("%d\n", benchRet); 
           free(trim_regs);
         
         break;
     }
-
     default:
         usage();
         break;

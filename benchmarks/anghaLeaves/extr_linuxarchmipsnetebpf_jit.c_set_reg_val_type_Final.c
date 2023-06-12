@@ -62,12 +62,6 @@ __attribute__((used)) static void set_reg_val_type(u64 *rvt, int reg, enum reg_v
 	*rvt |= ((u64)type << (reg * 3));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +74,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int reg = 10;
+        
           enum reg_val_type type = 0;
+        
           int _len_rvt0 = 100;
           unsigned long long * rvt = (unsigned long long *) malloc(_len_rvt0*sizeof(unsigned long long));
           for(int _i0 = 0; _i0 < _len_rvt0; _i0++) {
             rvt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           set_reg_val_type(rvt,reg,type);
           free(rvt);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static uint32_t  func_41(int32_t  p_42, uint16_t * p_43, i
     return l_580;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,18 +94,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int p_42 = 100;
+        
           int p_44 = 100;
+        
           int p_45 = 100;
+        
           int _len_p_430 = 1;
           int * p_43 = (int *) malloc(_len_p_430*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_430; _i0++) {
             p_43[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p_460 = 1;
           int * p_46 = (int *) malloc(_len_p_460*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_460; _i0++) {
             p_46[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = func_41(p_42,p_43,p_44,p_45,p_46);
           printf("%d\n", benchRet); 
           free(p_43);
@@ -116,7 +118,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int p_42 = 255;
+        
+          int p_44 = 255;
+        
+          int p_45 = 255;
+        
+          int _len_p_430 = 65025;
+          int * p_43 = (int *) malloc(_len_p_430*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_430; _i0++) {
+            p_43[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_460 = 65025;
+          int * p_46 = (int *) malloc(_len_p_460*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_460; _i0++) {
+            p_46[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = func_41(p_42,p_43,p_44,p_45,p_46);
+          printf("%d\n", benchRet); 
+          free(p_43);
+          free(p_46);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int p_42 = 10;
+        
+          int p_44 = 10;
+        
+          int p_45 = 10;
+        
+          int _len_p_430 = 100;
+          int * p_43 = (int *) malloc(_len_p_430*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_430; _i0++) {
+            p_43[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_460 = 100;
+          int * p_46 = (int *) malloc(_len_p_460*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_460; _i0++) {
+            p_46[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = func_41(p_42,p_43,p_44,p_45,p_46);
+          printf("%d\n", benchRet); 
+          free(p_43);
+          free(p_46);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int p_42 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int p_44 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int p_45 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_430 = 1;
+          int * p_43 = (int *) malloc(_len_p_430*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_430; _i0++) {
+            p_43[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_460 = 1;
+          int * p_46 = (int *) malloc(_len_p_460*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_460; _i0++) {
+            p_46[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = func_41(p_42,p_43,p_44,p_45,p_46);
+          printf("%d\n", benchRet); 
+          free(p_43);
+          free(p_46);
+        
+        break;
+    }
     default:
         usage();
         break;

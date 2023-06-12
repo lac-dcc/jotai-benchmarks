@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline int sctp_cacc_skip_3_1_f(struct sctp_transpo
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int count_of_newacks = 100;
+        
           int _len_transport0 = 1;
           struct sctp_transport * transport = (struct sctp_transport *) malloc(_len_transport0*sizeof(struct sctp_transport));
           for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
-            transport[_i0].cacc.cacc_saw_newack = ((-2 * (next_i()%2)) + 1) * next_i();
+              transport[_i0].cacc.cacc_saw_newack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = sctp_cacc_skip_3_1_f(transport,count_of_newacks);
+          printf("%d\n", benchRet); 
+          free(transport);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int count_of_newacks = 255;
+        
+          int _len_transport0 = 65025;
+          struct sctp_transport * transport = (struct sctp_transport *) malloc(_len_transport0*sizeof(struct sctp_transport));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+              transport[_i0].cacc.cacc_saw_newack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = sctp_cacc_skip_3_1_f(transport,count_of_newacks);
           printf("%d\n", benchRet); 
           free(transport);
@@ -101,21 +120,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int count_of_newacks = 10;
+        
           int _len_transport0 = 100;
           struct sctp_transport * transport = (struct sctp_transport *) malloc(_len_transport0*sizeof(struct sctp_transport));
           for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
-            transport[_i0].cacc.cacc_saw_newack = ((-2 * (next_i()%2)) + 1) * next_i();
+              transport[_i0].cacc.cacc_saw_newack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sctp_cacc_skip_3_1_f(transport,count_of_newacks);
           printf("%d\n", benchRet); 
           free(transport);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int count_of_newacks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_transport0 = 1;
+          struct sctp_transport * transport = (struct sctp_transport *) malloc(_len_transport0*sizeof(struct sctp_transport));
+          for(int _i0 = 0; _i0 < _len_transport0; _i0++) {
+              transport[_i0].cacc.cacc_saw_newack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = sctp_cacc_skip_3_1_f(transport,count_of_newacks);
+          printf("%d\n", benchRet); 
+          free(transport);
+        
+        break;
+    }
     default:
         usage();
         break;

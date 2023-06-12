@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int dst_set_fec(struct dst_state *state, enum fe_co
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum fe_code_rate fec = 0;
-          int _len_state0 = 1;
+        
+          int _len_state0 = 65025;
           struct dst_state * state = (struct dst_state *) malloc(_len_state0*sizeof(struct dst_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].fec = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].fec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dst_set_fec(state,fec);
           printf("%d\n", benchRet); 
           free(state);
@@ -100,18 +98,38 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum fe_code_rate fec = 0;
+        
           int _len_state0 = 100;
           struct dst_state * state = (struct dst_state *) malloc(_len_state0*sizeof(struct dst_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].fec = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].fec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dst_set_fec(state,fec);
           printf("%d\n", benchRet); 
           free(state);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum fe_code_rate fec = 0;
+        
+          int _len_state0 = 1;
+          struct dst_state * state = (struct dst_state *) malloc(_len_state0*sizeof(struct dst_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].fec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dst_set_fec(state,fec);
+          printf("%d\n", benchRet); 
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

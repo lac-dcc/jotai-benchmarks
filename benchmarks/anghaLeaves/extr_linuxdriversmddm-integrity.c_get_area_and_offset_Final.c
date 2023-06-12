@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void get_area_and_offset(struct dm_integrity_c *ic,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,30 +87,251 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned int data_sector = 100;
+        
           int _len_ic0 = 1;
           struct dm_integrity_c * ic = (struct dm_integrity_c *) malloc(_len_ic0*sizeof(struct dm_integrity_c));
           for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
               int _len_ic__i0__sb0 = 1;
           ic[_i0].sb = (struct TYPE_2__ *) malloc(_len_ic__i0__sb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ic__i0__sb0; _j0++) {
-            ic[_i0].sb->log2_interleave_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+              ic[_i0].sb->log2_interleave_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        ic[_i0].meta_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+          ic[_i0].meta_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_area0 = 1;
           unsigned int * area = (unsigned int *) malloc(_len_area0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_area0; _i0++) {
             area[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offset0 = 1;
           unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          get_area_and_offset(ic,data_sector,area,offset);
+          for(int _aux = 0; _aux < _len_ic0; _aux++) {
+          free(ic[_aux].sb);
+          }
+          free(ic);
+          free(area);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int data_sector = 255;
+        
+          int _len_ic0 = 65025;
+          struct dm_integrity_c * ic = (struct dm_integrity_c *) malloc(_len_ic0*sizeof(struct dm_integrity_c));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              int _len_ic__i0__sb0 = 1;
+          ic[_i0].sb = (struct TYPE_2__ *) malloc(_len_ic__i0__sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ic__i0__sb0; _j0++) {
+              ic[_i0].sb->log2_interleave_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ic[_i0].meta_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_area0 = 65025;
+          unsigned int * area = (unsigned int *) malloc(_len_area0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_area0; _i0++) {
+            area[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 65025;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_area_and_offset(ic,data_sector,area,offset);
+          for(int _aux = 0; _aux < _len_ic0; _aux++) {
+          free(ic[_aux].sb);
+          }
+          free(ic);
+          free(area);
+          free(offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int data_sector = 10;
+        
+          int _len_ic0 = 100;
+          struct dm_integrity_c * ic = (struct dm_integrity_c *) malloc(_len_ic0*sizeof(struct dm_integrity_c));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              int _len_ic__i0__sb0 = 1;
+          ic[_i0].sb = (struct TYPE_2__ *) malloc(_len_ic__i0__sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ic__i0__sb0; _j0++) {
+              ic[_i0].sb->log2_interleave_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ic[_i0].meta_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_area0 = 100;
+          unsigned int * area = (unsigned int *) malloc(_len_area0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_area0; _i0++) {
+            area[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 100;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_area_and_offset(ic,data_sector,area,offset);
+          for(int _aux = 0; _aux < _len_ic0; _aux++) {
+          free(ic[_aux].sb);
+          }
+          free(ic);
+          free(area);
+          free(offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int data_sector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ic0 = 1;
+          struct dm_integrity_c * ic = (struct dm_integrity_c *) malloc(_len_ic0*sizeof(struct dm_integrity_c));
+          for(int _i0 = 0; _i0 < _len_ic0; _i0++) {
+              int _len_ic__i0__sb0 = 1;
+          ic[_i0].sb = (struct TYPE_2__ *) malloc(_len_ic__i0__sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ic__i0__sb0; _j0++) {
+              ic[_i0].sb->log2_interleave_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          ic[_i0].meta_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_area0 = 1;
+          unsigned int * area = (unsigned int *) malloc(_len_area0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_area0; _i0++) {
+            area[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 1;
+          unsigned int * offset = (unsigned int *) malloc(_len_offset0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           get_area_and_offset(ic,data_sector,area,offset);
           for(int _aux = 0; _aux < _len_ic0; _aux++) {
           free(ic[_aux].sb);

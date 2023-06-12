@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static inline int is_pe_hdr(unsigned char *pe_hdr) {
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +88,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_pe_hdr0 = 100;
+          int _len_pe_hdr0 = 65025;
           unsigned char * pe_hdr = (unsigned char *) malloc(_len_pe_hdr0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_pe_hdr0; _i0++) {
             pe_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_pe_hdr(pe_hdr);
           printf("%d\n", benchRet); 
           free(pe_hdr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pe_hdr0 = 100;
+          unsigned char * pe_hdr = (unsigned char *) malloc(_len_pe_hdr0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pe_hdr0; _i0++) {
+            pe_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_pe_hdr(pe_hdr);
+          printf("%d\n", benchRet); 
+          free(pe_hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

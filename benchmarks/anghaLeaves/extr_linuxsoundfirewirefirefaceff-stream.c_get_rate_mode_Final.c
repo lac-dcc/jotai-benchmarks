@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int get_rate_mode(unsigned int rate, unsigned int *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,11 +93,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rate = 100;
+        
           int _len_mode0 = 1;
           unsigned int * mode = (unsigned int *) malloc(_len_mode0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = get_rate_mode(rate,mode);
+          printf("%d\n", benchRet); 
+          free(mode);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int rate = 255;
+        
+          int _len_mode0 = 65025;
+          unsigned int * mode = (unsigned int *) malloc(_len_mode0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = get_rate_mode(rate,mode);
           printf("%d\n", benchRet); 
           free(mode);
@@ -109,21 +124,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int rate = 10;
+        
           int _len_mode0 = 100;
           unsigned int * mode = (unsigned int *) malloc(_len_mode0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = get_rate_mode(rate,mode);
           printf("%d\n", benchRet); 
           free(mode);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mode0 = 1;
+          unsigned int * mode = (unsigned int *) malloc(_len_mode0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_rate_mode(rate,mode);
+          printf("%d\n", benchRet); 
+          free(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

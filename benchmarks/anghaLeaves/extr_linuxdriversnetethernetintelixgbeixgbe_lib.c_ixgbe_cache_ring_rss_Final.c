@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static bool ixgbe_cache_ring_rss(struct ixgbe_adapter *ada
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,22 +91,46 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_adapter0 = 65025;
           struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].num_rx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].num_xdp_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].num_rx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].num_xdp_queues = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adapter__i0__xdp_ring0 = 1;
           adapter[_i0].xdp_ring = (struct TYPE_6__ **) malloc(_len_adapter__i0__xdp_ring0*sizeof(struct TYPE_6__ *));
           for(int _j0 = 0; _j0 < _len_adapter__i0__xdp_ring0; _j0++) {
             int _len_adapter__i0__xdp_ring1 = 1;
             adapter[_i0].xdp_ring[_j0] = (struct TYPE_6__ *) malloc(_len_adapter__i0__xdp_ring1*sizeof(struct TYPE_6__));
             for(int _j1 = 0; _j1 < _len_adapter__i0__xdp_ring1; _j1++) {
-              adapter[_i0].xdp_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+                adapter[_i0].xdp_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_adapter__i0__tx_ring0 = 1;
@@ -119,21 +139,197 @@ int main(int argc, char *argv[]) {
             int _len_adapter__i0__tx_ring1 = 1;
             adapter[_i0].tx_ring[_j0] = (struct TYPE_5__ *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct TYPE_5__));
             for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
-              adapter[_i0].tx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+                adapter[_i0].tx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
-        adapter[_i0].netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].netdev = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adapter__i0__rx_ring0 = 1;
           adapter[_i0].rx_ring = (struct TYPE_4__ **) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_4__ *));
           for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
             int _len_adapter__i0__rx_ring1 = 1;
             adapter[_i0].rx_ring[_j0] = (struct TYPE_4__ *) malloc(_len_adapter__i0__rx_ring1*sizeof(struct TYPE_4__));
             for(int _j1 = 0; _j1 < _len_adapter__i0__rx_ring1; _j1++) {
-              adapter[_i0].rx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].rx_ring[_j0]->netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+                adapter[_i0].rx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].rx_ring[_j0]->netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = ixgbe_cache_ring_rss(adapter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].xdp_ring));
+        free(adapter[_aux].xdp_ring);
+          }
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].rx_ring));
+        free(adapter[_aux].rx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_adapter0 = 100;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_rx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].num_xdp_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__xdp_ring0 = 1;
+          adapter[_i0].xdp_ring = (struct TYPE_6__ **) malloc(_len_adapter__i0__xdp_ring0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__xdp_ring0; _j0++) {
+            int _len_adapter__i0__xdp_ring1 = 1;
+            adapter[_i0].xdp_ring[_j0] = (struct TYPE_6__ *) malloc(_len_adapter__i0__xdp_ring1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__xdp_ring1; _j1++) {
+                adapter[_i0].xdp_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct TYPE_5__ **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct TYPE_5__ *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct TYPE_5__ *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct TYPE_5__));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          adapter[_i0].netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__rx_ring0 = 1;
+          adapter[_i0].rx_ring = (struct TYPE_4__ **) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
+            int _len_adapter__i0__rx_ring1 = 1;
+            adapter[_i0].rx_ring[_j0] = (struct TYPE_4__ *) malloc(_len_adapter__i0__rx_ring1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__rx_ring1; _j1++) {
+                adapter[_i0].rx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].rx_ring[_j0]->netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ixgbe_cache_ring_rss(adapter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].xdp_ring));
+        free(adapter[_aux].xdp_ring);
+          }
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].rx_ring));
+        free(adapter[_aux].rx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_adapter0 = 1;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_rx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].num_xdp_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__xdp_ring0 = 1;
+          adapter[_i0].xdp_ring = (struct TYPE_6__ **) malloc(_len_adapter__i0__xdp_ring0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__xdp_ring0; _j0++) {
+            int _len_adapter__i0__xdp_ring1 = 1;
+            adapter[_i0].xdp_ring[_j0] = (struct TYPE_6__ *) malloc(_len_adapter__i0__xdp_ring1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__xdp_ring1; _j1++) {
+                adapter[_i0].xdp_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct TYPE_5__ **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct TYPE_5__ *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct TYPE_5__ *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct TYPE_5__));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          adapter[_i0].netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__rx_ring0 = 1;
+          adapter[_i0].rx_ring = (struct TYPE_4__ **) malloc(_len_adapter__i0__rx_ring0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__rx_ring0; _j0++) {
+            int _len_adapter__i0__rx_ring1 = 1;
+            adapter[_i0].rx_ring[_j0] = (struct TYPE_4__ *) malloc(_len_adapter__i0__rx_ring1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__rx_ring1; _j1++) {
+                adapter[_i0].rx_ring[_j0]->reg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].rx_ring[_j0]->netdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = ixgbe_cache_ring_rss(adapter);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {

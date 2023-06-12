@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ unsigned queue_has_more_items(struct Queue * queue)
   return queue->m_head != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_queue0 = 1;
+          int _len_queue0 = 65025;
           struct Queue * queue = (struct Queue *) malloc(_len_queue0*sizeof(struct Queue));
           for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
               int _len_queue__i0__m_head0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_queue__i0__m_head0; _j0++) {
             queue[_i0].m_head[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned int benchRet = queue_has_more_items(queue);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_queue0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_queue0 = 100;
+          struct Queue * queue = (struct Queue *) malloc(_len_queue0*sizeof(struct Queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              int _len_queue__i0__m_head0 = 1;
+          queue[_i0].m_head = (int *) malloc(_len_queue__i0__m_head0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_queue__i0__m_head0; _j0++) {
+            queue[_i0].m_head[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = queue_has_more_items(queue);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_queue0; _aux++) {
+          free(queue[_aux].m_head);
+          }
+          free(queue);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_queue0 = 1;
+          struct Queue * queue = (struct Queue *) malloc(_len_queue0*sizeof(struct Queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              int _len_queue__i0__m_head0 = 1;
+          queue[_i0].m_head = (int *) malloc(_len_queue__i0__m_head0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_queue__i0__m_head0; _j0++) {
+            queue[_i0].m_head[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = queue_has_more_items(queue);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_queue0; _aux++) {
+          free(queue[_aux].m_head);
+          }
+          free(queue);
+        
+        break;
+    }
     default:
         usage();
         break;

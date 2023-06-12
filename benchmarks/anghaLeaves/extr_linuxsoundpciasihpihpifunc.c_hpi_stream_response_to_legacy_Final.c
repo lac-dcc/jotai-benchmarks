@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void hpi_stream_response_to_legacy(struct hpi_stream_res *pSR)
 	pSR->u.legacy_stream_info.state = pSR->u.stream_info.state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +82,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pSR0 = 65025;
+          struct hpi_stream_res * pSR = (struct hpi_stream_res *) malloc(_len_pSR0*sizeof(struct hpi_stream_res));
+          for(int _i0 = 0; _i0 < _len_pSR0; _i0++) {
+              pSR[_i0].u.stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pSR[_i0].u.stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pSR[_i0].u.legacy_stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pSR[_i0].u.legacy_stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          hpi_stream_response_to_legacy(pSR);
+          free(pSR);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pSR0 = 100;
+          struct hpi_stream_res * pSR = (struct hpi_stream_res *) malloc(_len_pSR0*sizeof(struct hpi_stream_res));
+          for(int _i0 = 0; _i0 < _len_pSR0; _i0++) {
+              pSR[_i0].u.stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pSR[_i0].u.stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pSR[_i0].u.legacy_stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pSR[_i0].u.legacy_stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          hpi_stream_response_to_legacy(pSR);
+          free(pSR);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_pSR0 = 1;
           struct hpi_stream_res * pSR = (struct hpi_stream_res *) malloc(_len_pSR0*sizeof(struct hpi_stream_res));
           for(int _i0 = 0; _i0 < _len_pSR0; _i0++) {
-            pSR[_i0].u.stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
-        pSR[_i0].u.stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
-        pSR[_i0].u.legacy_stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
-        pSR[_i0].u.legacy_stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+              pSR[_i0].u.stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pSR[_i0].u.stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pSR[_i0].u.legacy_stream_info.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pSR[_i0].u.legacy_stream_info.auxiliary_data_available = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           hpi_stream_response_to_legacy(pSR);
           free(pSR);
         

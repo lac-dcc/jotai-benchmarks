@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ u8 tdls_hdl(struct adapter *padapter, unsigned char *pbuf)
 	return H2C_REJECTED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_padapter0 = 65025;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pbuf0 = 65025;
+          unsigned char * pbuf = (unsigned char *) malloc(_len_pbuf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+            pbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tdls_hdl(padapter,pbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pbuf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_padapter0 = 100;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pbuf0 = 100;
+          unsigned char * pbuf = (unsigned char *) malloc(_len_pbuf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+            pbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tdls_hdl(padapter,pbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pbuf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_padapter0 = 1;
           struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pbuf0 = 1;
           unsigned char * pbuf = (unsigned char *) malloc(_len_pbuf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
             pbuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tdls_hdl(padapter,pbuf);
           printf("%d\n", benchRet); 
           free(padapter);

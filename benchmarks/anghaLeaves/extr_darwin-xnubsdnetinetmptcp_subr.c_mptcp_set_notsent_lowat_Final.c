@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ mptcp_set_notsent_lowat(struct mptses *mpte, int optval)
 	return (error);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,24 +92,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int optval = 100;
+        
           int _len_mpte0 = 1;
           struct mptses * mpte = (struct mptses *) malloc(_len_mpte0*sizeof(struct mptses));
           for(int _i0 = 0; _i0 < _len_mpte0; _i0++) {
               int _len_mpte__i0__mpte_mptcb0 = 1;
           mpte[_i0].mpte_mptcb = (struct mptcb *) malloc(_len_mpte__i0__mpte_mptcb0*sizeof(struct mptcb));
           for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mptcb0; _j0++) {
-            mpte[_i0].mpte_mptcb->mpt_notsent_lowat = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpte[_i0].mpte_mptcb->mpt_notsent_lowat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_mpte__i0__mpte_mppcb0 = 1;
           mpte[_i0].mpte_mppcb = (struct TYPE_2__ *) malloc(_len_mpte__i0__mpte_mppcb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mppcb0; _j0++) {
-            mpte[_i0].mpte_mppcb->mpp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpte[_i0].mpte_mppcb->mpp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = mptcp_set_notsent_lowat(mpte,optval);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mpte0; _aux++) {
+          free(mpte[_aux].mpte_mptcb);
+          }
+          for(int _aux = 0; _aux < _len_mpte0; _aux++) {
+          free(mpte[_aux].mpte_mppcb);
+          }
+          free(mpte);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int optval = 255;
+        
+          int _len_mpte0 = 65025;
+          struct mptses * mpte = (struct mptses *) malloc(_len_mpte0*sizeof(struct mptses));
+          for(int _i0 = 0; _i0 < _len_mpte0; _i0++) {
+              int _len_mpte__i0__mpte_mptcb0 = 1;
+          mpte[_i0].mpte_mptcb = (struct mptcb *) malloc(_len_mpte__i0__mpte_mptcb0*sizeof(struct mptcb));
+          for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mptcb0; _j0++) {
+              mpte[_i0].mpte_mptcb->mpt_notsent_lowat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_mpte__i0__mpte_mppcb0 = 1;
+          mpte[_i0].mpte_mppcb = (struct TYPE_2__ *) malloc(_len_mpte__i0__mpte_mppcb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mppcb0; _j0++) {
+              mpte[_i0].mpte_mppcb->mpp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mptcp_set_notsent_lowat(mpte,optval);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mpte0; _aux++) {
+          free(mpte[_aux].mpte_mptcb);
+          }
+          for(int _aux = 0; _aux < _len_mpte0; _aux++) {
+          free(mpte[_aux].mpte_mppcb);
+          }
+          free(mpte);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int optval = 10;
+        
+          int _len_mpte0 = 100;
+          struct mptses * mpte = (struct mptses *) malloc(_len_mpte0*sizeof(struct mptses));
+          for(int _i0 = 0; _i0 < _len_mpte0; _i0++) {
+              int _len_mpte__i0__mpte_mptcb0 = 1;
+          mpte[_i0].mpte_mptcb = (struct mptcb *) malloc(_len_mpte__i0__mpte_mptcb0*sizeof(struct mptcb));
+          for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mptcb0; _j0++) {
+              mpte[_i0].mpte_mptcb->mpt_notsent_lowat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_mpte__i0__mpte_mppcb0 = 1;
+          mpte[_i0].mpte_mppcb = (struct TYPE_2__ *) malloc(_len_mpte__i0__mpte_mppcb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mppcb0; _j0++) {
+              mpte[_i0].mpte_mppcb->mpp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mptcp_set_notsent_lowat(mpte,optval);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mpte0; _aux++) {
+          free(mpte[_aux].mpte_mptcb);
+          }
+          for(int _aux = 0; _aux < _len_mpte0; _aux++) {
+          free(mpte[_aux].mpte_mppcb);
+          }
+          free(mpte);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int optval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mpte0 = 1;
+          struct mptses * mpte = (struct mptses *) malloc(_len_mpte0*sizeof(struct mptses));
+          for(int _i0 = 0; _i0 < _len_mpte0; _i0++) {
+              int _len_mpte__i0__mpte_mptcb0 = 1;
+          mpte[_i0].mpte_mptcb = (struct mptcb *) malloc(_len_mpte__i0__mpte_mptcb0*sizeof(struct mptcb));
+          for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mptcb0; _j0++) {
+              mpte[_i0].mpte_mptcb->mpt_notsent_lowat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_mpte__i0__mpte_mppcb0 = 1;
+          mpte[_i0].mpte_mppcb = (struct TYPE_2__ *) malloc(_len_mpte__i0__mpte_mppcb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mpte__i0__mpte_mppcb0; _j0++) {
+              mpte[_i0].mpte_mppcb->mpp_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = mptcp_set_notsent_lowat(mpte,optval);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mpte0; _aux++) {

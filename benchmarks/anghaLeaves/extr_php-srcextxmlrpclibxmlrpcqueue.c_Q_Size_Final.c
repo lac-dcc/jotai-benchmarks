@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int Q_Size(queue *q)
    return q ? q->size : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          int _len_q0 = 65025;
           struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = Q_Size(q);
           printf("%d\n", benchRet); 
           free(q);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_q0 = 100;
           struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = Q_Size(q);
           printf("%d\n", benchRet); 
           free(q);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_q0 = 1;
+          struct TYPE_3__ * q = (struct TYPE_3__ *) malloc(_len_q0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = Q_Size(q);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

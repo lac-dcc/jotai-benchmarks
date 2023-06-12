@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int get_reflog_recno_by_time(struct complete_reflog
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +87,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long timestamp = 100;
+        
           int _len_array0 = 1;
           struct complete_reflogs * array = (struct complete_reflogs *) malloc(_len_array0*sizeof(struct complete_reflogs));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
-            array[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              array[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_array__i0__items0 = 1;
           array[_i0].items = (struct TYPE_2__ *) malloc(_len_array__i0__items0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_array__i0__items0; _j0++) {
-            array[_i0].items->timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              array[_i0].items->timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = get_reflog_recno_by_time(array,timestamp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_array0; _aux++) {
@@ -109,7 +110,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long timestamp = 255;
+        
+          int _len_array0 = 65025;
+          struct complete_reflogs * array = (struct complete_reflogs *) malloc(_len_array0*sizeof(struct complete_reflogs));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_array__i0__items0 = 1;
+          array[_i0].items = (struct TYPE_2__ *) malloc(_len_array__i0__items0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_array__i0__items0; _j0++) {
+              array[_i0].items->timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_reflog_recno_by_time(array,timestamp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_array0; _aux++) {
+          free(array[_aux].items);
+          }
+          free(array);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long timestamp = 10;
+        
+          int _len_array0 = 100;
+          struct complete_reflogs * array = (struct complete_reflogs *) malloc(_len_array0*sizeof(struct complete_reflogs));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_array__i0__items0 = 1;
+          array[_i0].items = (struct TYPE_2__ *) malloc(_len_array__i0__items0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_array__i0__items0; _j0++) {
+              array[_i0].items->timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_reflog_recno_by_time(array,timestamp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_array0; _aux++) {
+          free(array[_aux].items);
+          }
+          free(array);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_array0 = 1;
+          struct complete_reflogs * array = (struct complete_reflogs *) malloc(_len_array0*sizeof(struct complete_reflogs));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+              array[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_array__i0__items0 = 1;
+          array[_i0].items = (struct TYPE_2__ *) malloc(_len_array__i0__items0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_array__i0__items0; _j0++) {
+              array[_i0].items->timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = get_reflog_recno_by_time(array,timestamp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_array0; _aux++) {
+          free(array[_aux].items);
+          }
+          free(array);
+        
+        break;
+    }
     default:
         usage();
         break;

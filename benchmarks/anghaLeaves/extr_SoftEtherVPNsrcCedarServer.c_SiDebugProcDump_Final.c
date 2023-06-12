@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ UINT SiDebugProcDump(SERVER *s, char *in_str, char *ret_str, UINT ret_str_size)
 	return ERR_NO_ERROR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,25 +91,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int ret_str_size = 100;
+        
           int _len_s0 = 1;
           int * s = (int *) malloc(_len_s0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_in_str0 = 1;
           char * in_str = (char *) malloc(_len_in_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_in_str0; _i0++) {
             in_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ret_str0 = 1;
           char * ret_str = (char *) malloc(_len_ret_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_ret_str0; _i0++) {
             ret_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = SiDebugProcDump(s,in_str,ret_str,ret_str_size);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(in_str);
+          free(ret_str);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int ret_str_size = 255;
+        
+          int _len_s0 = 65025;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_in_str0 = 65025;
+          char * in_str = (char *) malloc(_len_in_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_in_str0; _i0++) {
+            in_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret_str0 = 65025;
+          char * ret_str = (char *) malloc(_len_ret_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_ret_str0; _i0++) {
+            ret_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = SiDebugProcDump(s,in_str,ret_str,ret_str_size);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(in_str);
+          free(ret_str);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int ret_str_size = 10;
+        
+          int _len_s0 = 100;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_in_str0 = 100;
+          char * in_str = (char *) malloc(_len_in_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_in_str0; _i0++) {
+            in_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret_str0 = 100;
+          char * ret_str = (char *) malloc(_len_ret_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_ret_str0; _i0++) {
+            ret_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = SiDebugProcDump(s,in_str,ret_str,ret_str_size);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(in_str);
+          free(ret_str);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int ret_str_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_in_str0 = 1;
+          char * in_str = (char *) malloc(_len_in_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_in_str0; _i0++) {
+            in_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret_str0 = 1;
+          char * ret_str = (char *) malloc(_len_ret_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_ret_str0; _i0++) {
+            ret_str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = SiDebugProcDump(s,in_str,ret_str,ret_str_size);
           printf("%d\n", benchRet); 
           free(s);

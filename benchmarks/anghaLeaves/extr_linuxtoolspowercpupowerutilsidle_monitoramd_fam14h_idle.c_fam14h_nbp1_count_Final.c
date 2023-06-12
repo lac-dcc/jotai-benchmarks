@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int fam14h_nbp1_count(unsigned int id, unsigned lon
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,12 +88,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int id = 100;
+        
           unsigned int cpu = 100;
+        
           int _len_count0 = 1;
           unsigned long long * count = (unsigned long long *) malloc(_len_count0*sizeof(unsigned long long));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = fam14h_nbp1_count(id,count,cpu);
+          printf("%d\n", benchRet); 
+          free(count);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int id = 255;
+        
+          unsigned int cpu = 255;
+        
+          int _len_count0 = 65025;
+          unsigned long long * count = (unsigned long long *) malloc(_len_count0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = fam14h_nbp1_count(id,count,cpu);
           printf("%d\n", benchRet); 
           free(count);
@@ -105,22 +123,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int id = 10;
+        
           unsigned int cpu = 10;
+        
           int _len_count0 = 100;
           unsigned long long * count = (unsigned long long *) malloc(_len_count0*sizeof(unsigned long long));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = fam14h_nbp1_count(id,count,cpu);
           printf("%d\n", benchRet); 
           free(count);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_count0 = 1;
+          unsigned long long * count = (unsigned long long *) malloc(_len_count0*sizeof(unsigned long long));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fam14h_nbp1_count(id,count,cpu);
+          printf("%d\n", benchRet); 
+          free(count);
+        
+        break;
+    }
     default:
         usage();
         break;

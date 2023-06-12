@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline u16 q922_to_dlci(u8 *hdr)
 	return ((hdr[0] & 0xFC) << 2) | ((hdr[1] & 0xF0) >> 4);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,21 +74,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_hdr0 = 100;
+          int _len_hdr0 = 65025;
           int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
             hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = q922_to_dlci(hdr);
           printf("%d\n", benchRet); 
           free(hdr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hdr0 = 100;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = q922_to_dlci(hdr);
+          printf("%d\n", benchRet); 
+          free(hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

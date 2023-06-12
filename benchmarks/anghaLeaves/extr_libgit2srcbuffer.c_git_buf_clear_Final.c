@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ void git_buf_clear(git_buf *buf)
 		buf->ptr[0] = '\0';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +85,56 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_buf0 = 65025;
+          struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              int _len_buf__i0__ptr0 = 1;
+          buf[_i0].ptr = (char *) malloc(_len_buf__i0__ptr0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_buf__i0__ptr0; _j0++) {
+            buf[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          buf[_i0].asize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          git_buf_clear(buf);
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].ptr);
+          }
+          free(buf);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_buf0 = 100;
+          struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              int _len_buf__i0__ptr0 = 1;
+          buf[_i0].ptr = (char *) malloc(_len_buf__i0__ptr0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_buf__i0__ptr0; _j0++) {
+            buf[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          buf[_i0].asize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          git_buf_clear(buf);
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].ptr);
+          }
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_buf0 = 1;
           struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
@@ -100,9 +144,11 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_buf__i0__ptr0; _j0++) {
             buf[_i0].ptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        buf[_i0].asize = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].asize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           git_buf_clear(buf);
           for(int _aux = 0; _aux < _len_buf0; _aux++) {
           free(buf[_aux].ptr);
@@ -111,7 +157,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

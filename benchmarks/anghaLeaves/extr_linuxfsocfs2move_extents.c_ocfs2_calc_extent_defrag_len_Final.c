@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void ocfs2_calc_extent_defrag_len(u32 *alloc_size, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,25 +97,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long threshold = 100;
+        
           int _len_alloc_size0 = 1;
           long * alloc_size = (long *) malloc(_len_alloc_size0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_alloc_size0; _i0++) {
             alloc_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_len_defraged0 = 1;
           long * len_defraged = (long *) malloc(_len_len_defraged0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_len_defraged0; _i0++) {
             len_defraged[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_skip0 = 1;
           int * skip = (int *) malloc(_len_skip0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_skip0; _i0++) {
             skip[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          ocfs2_calc_extent_defrag_len(alloc_size,len_defraged,threshold,skip);
+          free(alloc_size);
+          free(len_defraged);
+          free(skip);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long threshold = 255;
+        
+          int _len_alloc_size0 = 65025;
+          long * alloc_size = (long *) malloc(_len_alloc_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_alloc_size0; _i0++) {
+            alloc_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len_defraged0 = 65025;
+          long * len_defraged = (long *) malloc(_len_len_defraged0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_len_defraged0; _i0++) {
+            len_defraged[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_skip0 = 65025;
+          int * skip = (int *) malloc(_len_skip0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_skip0; _i0++) {
+            skip[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ocfs2_calc_extent_defrag_len(alloc_size,len_defraged,threshold,skip);
+          free(alloc_size);
+          free(len_defraged);
+          free(skip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long threshold = 10;
+        
+          int _len_alloc_size0 = 100;
+          long * alloc_size = (long *) malloc(_len_alloc_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_alloc_size0; _i0++) {
+            alloc_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len_defraged0 = 100;
+          long * len_defraged = (long *) malloc(_len_len_defraged0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_len_defraged0; _i0++) {
+            len_defraged[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_skip0 = 100;
+          int * skip = (int *) malloc(_len_skip0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_skip0; _i0++) {
+            skip[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ocfs2_calc_extent_defrag_len(alloc_size,len_defraged,threshold,skip);
+          free(alloc_size);
+          free(len_defraged);
+          free(skip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_alloc_size0 = 1;
+          long * alloc_size = (long *) malloc(_len_alloc_size0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_alloc_size0; _i0++) {
+            alloc_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len_defraged0 = 1;
+          long * len_defraged = (long *) malloc(_len_len_defraged0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_len_defraged0; _i0++) {
+            len_defraged[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_skip0 = 1;
+          int * skip = (int *) malloc(_len_skip0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_skip0; _i0++) {
+            skip[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           ocfs2_calc_extent_defrag_len(alloc_size,len_defraged,threshold,skip);
           free(alloc_size);
           free(len_defraged);

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -117,12 +117,6 @@ __attribute__((used)) static inline GLenum convert_gs_internal_format(enum gs_co
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,16 +129,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum gs_color_format format = 0;
+        
           int benchRet = convert_gs_internal_format(format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

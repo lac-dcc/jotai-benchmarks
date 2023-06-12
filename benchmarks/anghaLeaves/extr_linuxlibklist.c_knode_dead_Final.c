@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool knode_dead(struct klist_node *knode)
 	return (unsigned long)knode->n_klist & KNODE_DEAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_knode0 = 1;
+          int _len_knode0 = 65025;
           struct klist_node * knode = (struct klist_node *) malloc(_len_knode0*sizeof(struct klist_node));
           for(int _i0 = 0; _i0 < _len_knode0; _i0++) {
-            knode[_i0].n_klist = ((-2 * (next_i()%2)) + 1) * next_i();
+              knode[_i0].n_klist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = knode_dead(knode);
           printf("%d\n", benchRet); 
           free(knode);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_knode0 = 100;
           struct klist_node * knode = (struct klist_node *) malloc(_len_knode0*sizeof(struct klist_node));
           for(int _i0 = 0; _i0 < _len_knode0; _i0++) {
-            knode[_i0].n_klist = ((-2 * (next_i()%2)) + 1) * next_i();
+              knode[_i0].n_klist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = knode_dead(knode);
           printf("%d\n", benchRet); 
           free(knode);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_knode0 = 1;
+          struct klist_node * knode = (struct klist_node *) malloc(_len_knode0*sizeof(struct klist_node));
+          for(int _i0 = 0; _i0 < _len_knode0; _i0++) {
+              knode[_i0].n_klist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = knode_dead(knode);
+          printf("%d\n", benchRet); 
+          free(knode);
+        
+        break;
+    }
     default:
         usage();
         break;

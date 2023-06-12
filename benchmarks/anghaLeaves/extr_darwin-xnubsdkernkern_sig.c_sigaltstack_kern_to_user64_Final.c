@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ sigaltstack_kern_to_user64(struct kern_sigaltstack *in, struct user64_sigaltstac
 	out->ss_flags	= in->ss_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_in0 = 1;
+          int _len_in0 = 65025;
           struct kern_sigaltstack * in = (struct kern_sigaltstack *) malloc(_len_in0*sizeof(struct kern_sigaltstack));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
-            in[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+              in[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_out0 = 1;
+        
+          int _len_out0 = 65025;
           struct user64_sigaltstack * out = (struct user64_sigaltstack *) malloc(_len_out0*sizeof(struct user64_sigaltstack));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
-            out[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+              out[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sigaltstack_kern_to_user64(in,out);
           free(in);
           free(out);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_in0 = 100;
+          struct kern_sigaltstack * in = (struct kern_sigaltstack *) malloc(_len_in0*sizeof(struct kern_sigaltstack));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_out0 = 100;
+          struct user64_sigaltstack * out = (struct user64_sigaltstack *) malloc(_len_out0*sizeof(struct user64_sigaltstack));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sigaltstack_kern_to_user64(in,out);
+          free(in);
+          free(out);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_in0 = 1;
+          struct kern_sigaltstack * in = (struct kern_sigaltstack *) malloc(_len_in0*sizeof(struct kern_sigaltstack));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_out0 = 1;
+          struct user64_sigaltstack * out = (struct user64_sigaltstack *) malloc(_len_out0*sizeof(struct user64_sigaltstack));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].ss_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].ss_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].ss_sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sigaltstack_kern_to_user64(in,out);
+          free(in);
+          free(out);
+        
+        break;
+    }
     default:
         usage();
         break;

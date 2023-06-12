@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ qboolean AAS_inPHS(vec3_t p1, vec3_t p2)
 	return qtrue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int p1 = 100;
+        
           int p2 = 100;
+        
           int benchRet = AAS_inPHS(p1,p2);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int p1 = 255;
+        
           int p2 = 255;
+        
           int benchRet = AAS_inPHS(p1,p2);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int p1 = 10;
+        
           int p2 = 10;
+        
           int benchRet = AAS_inPHS(p1,p2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int p1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int p2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = AAS_inPHS(p1,p2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

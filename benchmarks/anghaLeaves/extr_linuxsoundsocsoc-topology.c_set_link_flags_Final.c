@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void set_link_flags(struct snd_soc_dai_link *link,
 		1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,19 +97,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned int flag_mask = 100;
+        
           unsigned int flags = 100;
+        
           int _len_link0 = 1;
           struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
           for(int _i0 = 0; _i0 < _len_link0; _i0++) {
-            link[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
-        link[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        link[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
-        link[_i0].ignore_suspend = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].ignore_suspend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_link_flags(link,flag_mask,flags);
+          free(link);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int flag_mask = 255;
+        
+          unsigned int flags = 255;
+        
+          int _len_link0 = 65025;
+          struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].ignore_suspend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_link_flags(link,flag_mask,flags);
+          free(link);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int flag_mask = 10;
+        
+          unsigned int flags = 10;
+        
+          int _len_link0 = 100;
+          struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].ignore_suspend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_link_flags(link,flag_mask,flags);
+          free(link);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int flag_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_link0 = 1;
+          struct snd_soc_dai_link * link = (struct snd_soc_dai_link *) malloc(_len_link0*sizeof(struct snd_soc_dai_link));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              link[_i0].symmetric_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].symmetric_samplebits = ((-2 * (next_i()%2)) + 1) * next_i();
+          link[_i0].ignore_suspend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_link_flags(link,flag_mask,flags);
           free(link);
         

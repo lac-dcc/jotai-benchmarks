@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static char *dax_hv_errno(unsigned long hv_ret, int *ret)
 	return "UNKNOWN";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,30 +105,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long hv_ret = 100;
+        
           int _len_ret0 = 1;
           int * ret = (int *) malloc(_len_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
             ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = dax_hv_errno(hv_ret,ret);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(ret);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long hv_ret = 255;
+        
+          int _len_ret0 = 65025;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = dax_hv_errno(hv_ret,ret);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(ret);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long hv_ret = 10;
+        
           int _len_ret0 = 100;
           int * ret = (int *) malloc(_len_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
             ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          char * benchRet = dax_hv_errno(hv_ret,ret);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(ret);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long hv_ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ret0 = 1;
+          int * ret = (int *) malloc(_len_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+            ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           char * benchRet = dax_hv_errno(hv_ret,ret);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(ret);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void ice_vsi_set_tc_cfg(struct ice_vsi *vsi)
 	vsi->tc_cfg.numtc = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vsi0 = 65025;
+          struct ice_vsi * vsi = (struct ice_vsi *) malloc(_len_vsi0*sizeof(struct ice_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              vsi[_i0].tc_cfg.numtc = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsi[_i0].tc_cfg.ena_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ice_vsi_set_tc_cfg(vsi);
+          free(vsi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vsi0 = 100;
+          struct ice_vsi * vsi = (struct ice_vsi *) malloc(_len_vsi0*sizeof(struct ice_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              vsi[_i0].tc_cfg.numtc = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsi[_i0].tc_cfg.ena_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ice_vsi_set_tc_cfg(vsi);
+          free(vsi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_vsi0 = 1;
           struct ice_vsi * vsi = (struct ice_vsi *) malloc(_len_vsi0*sizeof(struct ice_vsi));
           for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
-            vsi[_i0].tc_cfg.numtc = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsi[_i0].tc_cfg.ena_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsi[_i0].tc_cfg.numtc = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsi[_i0].tc_cfg.ena_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ice_vsi_set_tc_cfg(vsi);
           free(vsi);
         

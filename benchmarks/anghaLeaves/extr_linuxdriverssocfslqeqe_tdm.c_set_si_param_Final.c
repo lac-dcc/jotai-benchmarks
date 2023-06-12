@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void set_si_param(struct ucc_tdm *utdm, struct ucc_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,27 +82,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_utdm0 = 1;
+          int _len_utdm0 = 65025;
           struct ucc_tdm * utdm = (struct ucc_tdm *) malloc(_len_utdm0*sizeof(struct ucc_tdm));
           for(int _i0 = 0; _i0 < _len_utdm0; _i0++) {
-            utdm[_i0].tdm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              utdm[_i0].tdm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ut_info0 = 1;
+        
+          int _len_ut_info0 = 65025;
           struct ucc_tdm_info * ut_info = (struct ucc_tdm_info *) malloc(_len_ut_info0*sizeof(struct ucc_tdm_info));
           for(int _i0 = 0; _i0 < _len_ut_info0; _i0++) {
-            ut_info[_i0].si_info.simr_crt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ut_info[_i0].si_info.simr_rfsd = ((-2 * (next_i()%2)) + 1) * next_i();
+              ut_info[_i0].si_info.simr_crt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ut_info[_i0].si_info.simr_rfsd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           set_si_param(utdm,ut_info);
           free(utdm);
           free(ut_info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_utdm0 = 100;
+          struct ucc_tdm * utdm = (struct ucc_tdm *) malloc(_len_utdm0*sizeof(struct ucc_tdm));
+          for(int _i0 = 0; _i0 < _len_utdm0; _i0++) {
+              utdm[_i0].tdm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ut_info0 = 100;
+          struct ucc_tdm_info * ut_info = (struct ucc_tdm_info *) malloc(_len_ut_info0*sizeof(struct ucc_tdm_info));
+          for(int _i0 = 0; _i0 < _len_ut_info0; _i0++) {
+              ut_info[_i0].si_info.simr_crt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ut_info[_i0].si_info.simr_rfsd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_si_param(utdm,ut_info);
+          free(utdm);
+          free(ut_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_utdm0 = 1;
+          struct ucc_tdm * utdm = (struct ucc_tdm *) malloc(_len_utdm0*sizeof(struct ucc_tdm));
+          for(int _i0 = 0; _i0 < _len_utdm0; _i0++) {
+              utdm[_i0].tdm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ut_info0 = 1;
+          struct ucc_tdm_info * ut_info = (struct ucc_tdm_info *) malloc(_len_ut_info0*sizeof(struct ucc_tdm_info));
+          for(int _i0 = 0; _i0 < _len_ut_info0; _i0++) {
+              ut_info[_i0].si_info.simr_crt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ut_info[_i0].si_info.simr_rfsd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_si_param(utdm,ut_info);
+          free(utdm);
+          free(ut_info);
+        
+        break;
+    }
     default:
         usage();
         break;

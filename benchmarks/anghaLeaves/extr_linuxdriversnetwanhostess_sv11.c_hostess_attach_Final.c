@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int hostess_attach(struct net_device *dev, unsigned
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,12 +85,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short encoding = 100;
+        
           unsigned short parity = 100;
+        
           int _len_dev0 = 1;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hostess_attach(dev,encoding,parity);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned short encoding = 255;
+        
+          unsigned short parity = 255;
+        
+          int _len_dev0 = 65025;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hostess_attach(dev,encoding,parity);
           printf("%d\n", benchRet); 
           free(dev);
@@ -102,22 +122,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned short encoding = 10;
+        
           unsigned short parity = 10;
+        
           int _len_dev0 = 100;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hostess_attach(dev,encoding,parity);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short parity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hostess_attach(dev,encoding,parity);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

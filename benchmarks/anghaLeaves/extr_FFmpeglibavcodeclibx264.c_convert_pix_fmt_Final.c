@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -111,12 +111,6 @@ __attribute__((used)) static int convert_pix_fmt(enum AVPixelFormat pix_fmt)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,16 +123,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum AVPixelFormat pix_fmt = 0;
+        
           int benchRet = convert_pix_fmt(pix_fmt);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

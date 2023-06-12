@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static inline int is_ack_index_in_range(struct vnic_wq_cop
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +93,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long request_out = 100;
+        
           int _len_wq0 = 1;
           struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
-            wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].to_use_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].to_use_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_ack_index_in_range(wq,request_out);
           printf("%d\n", benchRet); 
           free(wq);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long request_out = 255;
+        
+          int _len_wq0 = 65025;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].to_use_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ack_index_in_range(wq,request_out);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long request_out = 10;
+        
+          int _len_wq0 = 100;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].to_use_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ack_index_in_range(wq,request_out);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long request_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wq0 = 1;
+          struct vnic_wq_copy * wq = (struct vnic_wq_copy *) malloc(_len_wq0*sizeof(struct vnic_wq_copy));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].to_clean_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].to_use_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_ack_index_in_range(wq,request_out);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
     default:
         usage();
         break;

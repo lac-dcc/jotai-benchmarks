@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static struct stv0900_inode *find_inode(struct i2c_adapter
 	return temp_chip;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,29 +95,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           long i2c_addr = 100;
+        
           int _len_i2c_adap0 = 1;
           struct i2c_adapter * i2c_adap = (struct i2c_adapter *) malloc(_len_i2c_adap0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_i2c_adap0; _i0++) {
-            i2c_adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct stv0900_inode * benchRet = find_inode(i2c_adap,i2c_addr);
           free(i2c_adap);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long i2c_addr = 255;
+        
+          int _len_i2c_adap0 = 65025;
+          struct i2c_adapter * i2c_adap = (struct i2c_adapter *) malloc(_len_i2c_adap0*sizeof(struct i2c_adapter));
+          for(int _i0 = 0; _i0 < _len_i2c_adap0; _i0++) {
+              i2c_adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct stv0900_inode * benchRet = find_inode(i2c_adap,i2c_addr);
+          free(i2c_adap);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           long i2c_addr = 10;
+        
           int _len_i2c_adap0 = 100;
           struct i2c_adapter * i2c_adap = (struct i2c_adapter *) malloc(_len_i2c_adap0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_i2c_adap0; _i0++) {
-            i2c_adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          struct stv0900_inode * benchRet = find_inode(i2c_adap,i2c_addr);
+          free(i2c_adap);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          long i2c_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_i2c_adap0 = 1;
+          struct i2c_adapter * i2c_adap = (struct i2c_adapter *) malloc(_len_i2c_adap0*sizeof(struct i2c_adapter));
+          for(int _i0 = 0; _i0 < _len_i2c_adap0; _i0++) {
+              i2c_adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           struct stv0900_inode * benchRet = find_inode(i2c_adap,i2c_addr);
           free(i2c_adap);
         

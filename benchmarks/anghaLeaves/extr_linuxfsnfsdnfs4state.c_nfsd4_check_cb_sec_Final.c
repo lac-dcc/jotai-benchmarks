@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static __be32 nfsd4_check_cb_sec(struct nfsd4_cb_sec *cbs)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,28 +92,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cbs0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cbs0 = 65025;
           struct nfsd4_cb_sec * cbs = (struct nfsd4_cb_sec *) malloc(_len_cbs0*sizeof(struct nfsd4_cb_sec));
           for(int _i0 = 0; _i0 < _len_cbs0; _i0++) {
-            cbs[_i0].flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbs[_i0].flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfsd4_check_cb_sec(cbs);
           printf("%d\n", benchRet); 
           free(cbs);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_cbs0 = 100;
           struct nfsd4_cb_sec * cbs = (struct nfsd4_cb_sec *) malloc(_len_cbs0*sizeof(struct nfsd4_cb_sec));
           for(int _i0 = 0; _i0 < _len_cbs0; _i0++) {
-            cbs[_i0].flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbs[_i0].flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nfsd4_check_cb_sec(cbs);
+          printf("%d\n", benchRet); 
+          free(cbs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cbs0 = 1;
+          struct nfsd4_cb_sec * cbs = (struct nfsd4_cb_sec *) malloc(_len_cbs0*sizeof(struct nfsd4_cb_sec));
+          for(int _i0 = 0; _i0 < _len_cbs0; _i0++) {
+              cbs[_i0].flavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nfsd4_check_cb_sec(cbs);
           printf("%d\n", benchRet); 
           free(cbs);

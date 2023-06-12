@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void efx_filter_set_encap_type(struct efx_fi
 	spec->encap_type = encap_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum efx_encap_type encap_type = 0;
-          int _len_spec0 = 1;
+        
+          int _len_spec0 = 65025;
           struct efx_filter_spec * spec = (struct efx_filter_spec *) malloc(_len_spec0*sizeof(struct efx_filter_spec));
           for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
-            spec[_i0].encap_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              spec[_i0].encap_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           efx_filter_set_encap_type(spec,encap_type);
           free(spec);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum efx_encap_type encap_type = 0;
+        
+          int _len_spec0 = 100;
+          struct efx_filter_spec * spec = (struct efx_filter_spec *) malloc(_len_spec0*sizeof(struct efx_filter_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].encap_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          efx_filter_set_encap_type(spec,encap_type);
+          free(spec);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum efx_encap_type encap_type = 0;
+        
+          int _len_spec0 = 1;
+          struct efx_filter_spec * spec = (struct efx_filter_spec *) malloc(_len_spec0*sizeof(struct efx_filter_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].encap_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          spec[_i0].match_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          efx_filter_set_encap_type(spec,encap_type);
+          free(spec);
+        
+        break;
+    }
     default:
         usage();
         break;

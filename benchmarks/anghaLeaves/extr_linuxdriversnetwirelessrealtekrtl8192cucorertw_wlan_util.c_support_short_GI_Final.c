@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ int support_short_GI(_adapter *padapter, struct HT_caps_element *pHT_caps)
 	}		
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,21 +106,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           struct TYPE_7__ * padapter = (struct TYPE_7__ *) malloc(_len_padapter0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        padapter[_i0].mlmeextpriv.mlmext_info.HT_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.HT_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_pHT_caps0 = 1;
+        
+          int _len_pHT_caps0 = 65025;
           struct HT_caps_element * pHT_caps = (struct HT_caps_element *) malloc(_len_pHT_caps0*sizeof(struct HT_caps_element));
           for(int _i0 = 0; _i0 < _len_pHT_caps0; _i0++) {
-            pHT_caps[_i0].u.HT_cap_element.HT_caps_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              pHT_caps[_i0].u.HT_cap_element.HT_caps_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = support_short_GI(padapter,pHT_caps);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -132,7 +136,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          struct TYPE_7__ * padapter = (struct TYPE_7__ *) malloc(_len_padapter0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.HT_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pHT_caps0 = 100;
+          struct HT_caps_element * pHT_caps = (struct HT_caps_element *) malloc(_len_pHT_caps0*sizeof(struct HT_caps_element));
+          for(int _i0 = 0; _i0 < _len_pHT_caps0; _i0++) {
+              pHT_caps[_i0].u.HT_cap_element.HT_caps_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = support_short_GI(padapter,pHT_caps);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pHT_caps);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          struct TYPE_7__ * padapter = (struct TYPE_7__ *) malloc(_len_padapter0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].mlmeextpriv.cur_bwmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.assoc_AP_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          padapter[_i0].mlmeextpriv.mlmext_info.HT_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_pHT_caps0 = 1;
+          struct HT_caps_element * pHT_caps = (struct HT_caps_element *) malloc(_len_pHT_caps0*sizeof(struct HT_caps_element));
+          for(int _i0 = 0; _i0 < _len_pHT_caps0; _i0++) {
+              pHT_caps[_i0].u.HT_cap_element.HT_caps_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = support_short_GI(padapter,pHT_caps);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(pHT_caps);
+        
+        break;
+    }
     default:
         usage();
         break;

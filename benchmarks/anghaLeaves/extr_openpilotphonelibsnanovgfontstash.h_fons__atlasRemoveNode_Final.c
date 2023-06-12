@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void fons__atlasRemoveNode(FONSatlas* atlas, int id
 	atlas->nnodes--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int idx = 100;
+        
           int _len_atlas0 = 1;
           struct TYPE_3__ * atlas = (struct TYPE_3__ *) malloc(_len_atlas0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_atlas0; _i0++) {
-            atlas[_i0].nnodes = ((-2 * (next_i()%2)) + 1) * next_i();
+              atlas[_i0].nnodes = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_atlas__i0__nodes0 = 1;
           atlas[_i0].nodes = (int *) malloc(_len_atlas__i0__nodes0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_atlas__i0__nodes0; _j0++) {
             atlas[_i0].nodes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          fons__atlasRemoveNode(atlas,idx);
+          for(int _aux = 0; _aux < _len_atlas0; _aux++) {
+          free(atlas[_aux].nodes);
+          }
+          free(atlas);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int idx = 255;
+        
+          int _len_atlas0 = 65025;
+          struct TYPE_3__ * atlas = (struct TYPE_3__ *) malloc(_len_atlas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_atlas0; _i0++) {
+              atlas[_i0].nnodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_atlas__i0__nodes0 = 1;
+          atlas[_i0].nodes = (int *) malloc(_len_atlas__i0__nodes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_atlas__i0__nodes0; _j0++) {
+            atlas[_i0].nodes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          fons__atlasRemoveNode(atlas,idx);
+          for(int _aux = 0; _aux < _len_atlas0; _aux++) {
+          free(atlas[_aux].nodes);
+          }
+          free(atlas);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int idx = 10;
+        
+          int _len_atlas0 = 100;
+          struct TYPE_3__ * atlas = (struct TYPE_3__ *) malloc(_len_atlas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_atlas0; _i0++) {
+              atlas[_i0].nnodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_atlas__i0__nodes0 = 1;
+          atlas[_i0].nodes = (int *) malloc(_len_atlas__i0__nodes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_atlas__i0__nodes0; _j0++) {
+            atlas[_i0].nodes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          fons__atlasRemoveNode(atlas,idx);
+          for(int _aux = 0; _aux < _len_atlas0; _aux++) {
+          free(atlas[_aux].nodes);
+          }
+          free(atlas);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_atlas0 = 1;
+          struct TYPE_3__ * atlas = (struct TYPE_3__ *) malloc(_len_atlas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_atlas0; _i0++) {
+              atlas[_i0].nnodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_atlas__i0__nodes0 = 1;
+          atlas[_i0].nodes = (int *) malloc(_len_atlas__i0__nodes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_atlas__i0__nodes0; _j0++) {
+            atlas[_i0].nodes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           fons__atlasRemoveNode(atlas,idx);
           for(int _aux = 0; _aux < _len_atlas0; _aux++) {
           free(atlas[_aux].nodes);

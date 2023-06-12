@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ __attribute__((used)) static void mkv_stereo_mode_display_mul(int stereo_mode,
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,23 +111,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stereo_mode = 100;
+        
           int _len_h_width0 = 1;
           int * h_width = (int *) malloc(_len_h_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_h_width0; _i0++) {
             h_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_h_height0 = 1;
           int * h_height = (int *) malloc(_len_h_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_h_height0; _i0++) {
             h_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mkv_stereo_mode_display_mul(stereo_mode,h_width,h_height);
           free(h_width);
           free(h_height);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int stereo_mode = 255;
+        
+          int _len_h_width0 = 65025;
+          int * h_width = (int *) malloc(_len_h_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_width0; _i0++) {
+            h_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h_height0 = 65025;
+          int * h_height = (int *) malloc(_len_h_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_height0; _i0++) {
+            h_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mkv_stereo_mode_display_mul(stereo_mode,h_width,h_height);
+          free(h_width);
+          free(h_height);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int stereo_mode = 10;
+        
+          int _len_h_width0 = 100;
+          int * h_width = (int *) malloc(_len_h_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_width0; _i0++) {
+            h_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h_height0 = 100;
+          int * h_height = (int *) malloc(_len_h_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_height0; _i0++) {
+            h_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mkv_stereo_mode_display_mul(stereo_mode,h_width,h_height);
+          free(h_width);
+          free(h_height);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int stereo_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_h_width0 = 1;
+          int * h_width = (int *) malloc(_len_h_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_width0; _i0++) {
+            h_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h_height0 = 1;
+          int * h_height = (int *) malloc(_len_h_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h_height0; _i0++) {
+            h_height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mkv_stereo_mode_display_mul(stereo_mode,h_width,h_height);
+          free(h_width);
+          free(h_height);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static unsigned long adjust_hunk_tail(struct sline *sline,
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,34 +87,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned long all_mask = 100;
+        
           unsigned long hunk_begin = 100;
+        
           unsigned long i = 100;
+        
           int _len_sline0 = 1;
           struct sline * sline = (struct sline *) malloc(_len_sline0*sizeof(struct sline));
           for(int _i0 = 0; _i0 < _len_sline0; _i0++) {
-            sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = adjust_hunk_tail(sline,all_mask,hunk_begin,i);
           printf("%lu\n", benchRet); 
           free(sline);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long all_mask = 255;
+        
+          unsigned long hunk_begin = 255;
+        
+          unsigned long i = 255;
+        
+          int _len_sline0 = 65025;
+          struct sline * sline = (struct sline *) malloc(_len_sline0*sizeof(struct sline));
+          for(int _i0 = 0; _i0 < _len_sline0; _i0++) {
+              sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = adjust_hunk_tail(sline,all_mask,hunk_begin,i);
+          printf("%lu\n", benchRet); 
+          free(sline);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned long all_mask = 10;
+        
           unsigned long hunk_begin = 10;
+        
           unsigned long i = 10;
+        
           int _len_sline0 = 100;
           struct sline * sline = (struct sline *) malloc(_len_sline0*sizeof(struct sline));
           for(int _i0 = 0; _i0 < _len_sline0; _i0++) {
-            sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = adjust_hunk_tail(sline,all_mask,hunk_begin,i);
+          printf("%lu\n", benchRet); 
+          free(sline);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long all_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long hunk_begin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sline0 = 1;
+          struct sline * sline = (struct sline *) malloc(_len_sline0*sizeof(struct sline));
+          for(int _i0 = 0; _i0 < _len_sline0; _i0++) {
+              sline[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = adjust_hunk_tail(sline,all_mask,hunk_begin,i);
           printf("%lu\n", benchRet); 
           free(sline);

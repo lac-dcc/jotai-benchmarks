@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void ixgbevf_save_reset_stats(struct ixgbevf_adapte
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,28 +88,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_adapter0 = 65025;
+          struct ixgbevf_adapter * adapter = (struct ixgbevf_adapter *) malloc(_len_adapter0*sizeof(struct ixgbevf_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].stats.base_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ixgbevf_save_reset_stats(adapter);
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_adapter0 = 100;
+          struct ixgbevf_adapter * adapter = (struct ixgbevf_adapter *) malloc(_len_adapter0*sizeof(struct ixgbevf_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].stats.base_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ixgbevf_save_reset_stats(adapter);
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_adapter0 = 1;
           struct ixgbevf_adapter * adapter = (struct ixgbevf_adapter *) malloc(_len_adapter0*sizeof(struct ixgbevf_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].stats.base_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.saved_reset_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.base_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.saved_reset_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.base_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.saved_reset_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.base_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.saved_reset_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.base_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].stats.saved_reset_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].stats.base_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfmprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgotc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgorc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgptc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.base_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].stats.saved_reset_vfgprc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ixgbevf_save_reset_stats(adapter);
           free(adapter);
         

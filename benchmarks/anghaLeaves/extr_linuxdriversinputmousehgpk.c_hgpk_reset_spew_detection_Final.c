@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void hgpk_reset_spew_detection(struct hgpk_data *pr
 	priv->spew_flag = NO_SPEW;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct hgpk_data * priv = (struct hgpk_data *) malloc(_len_priv0*sizeof(struct hgpk_data));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].spew_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].y_tally = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].x_tally = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].dupe_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].spew_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].spew_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].y_tally = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].x_tally = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].dupe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].spew_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hgpk_reset_spew_detection(priv);
           free(priv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct hgpk_data * priv = (struct hgpk_data *) malloc(_len_priv0*sizeof(struct hgpk_data));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].spew_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].y_tally = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].x_tally = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].dupe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].spew_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hgpk_reset_spew_detection(priv);
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct hgpk_data * priv = (struct hgpk_data *) malloc(_len_priv0*sizeof(struct hgpk_data));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].spew_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].y_tally = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].x_tally = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].dupe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].spew_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hgpk_reset_spew_detection(priv);
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void hists__set_col_len(struct hists *hists, enum hist_column col, u16 len)
 	hists->col_len[col] = len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,11 +77,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum hist_column col = 0;
+        
           int len = 100;
+        
           int _len_hists0 = 1;
           struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
           for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
@@ -93,7 +115,159 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hists__i0__col_len0; _j0++) {
             hists[_i0].col_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          hists__set_col_len(hists,col,len);
+          for(int _aux = 0; _aux < _len_hists0; _aux++) {
+          free(hists[_aux].col_len);
+          }
+          free(hists);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum hist_column col = 0;
+        
+          int len = 255;
+        
+          int _len_hists0 = 65025;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              int _len_hists__i0__col_len0 = 1;
+          hists[_i0].col_len = (int *) malloc(_len_hists__i0__col_len0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hists__i0__col_len0; _j0++) {
+            hists[_i0].col_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          hists__set_col_len(hists,col,len);
+          for(int _aux = 0; _aux < _len_hists0; _aux++) {
+          free(hists[_aux].col_len);
+          }
+          free(hists);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum hist_column col = 0;
+        
+          int len = 10;
+        
+          int _len_hists0 = 100;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              int _len_hists__i0__col_len0 = 1;
+          hists[_i0].col_len = (int *) malloc(_len_hists__i0__col_len0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hists__i0__col_len0; _j0++) {
+            hists[_i0].col_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          hists__set_col_len(hists,col,len);
+          for(int _aux = 0; _aux < _len_hists0; _aux++) {
+          free(hists[_aux].col_len);
+          }
+          free(hists);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum hist_column col = 0;
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hists0 = 1;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              int _len_hists__i0__col_len0 = 1;
+          hists[_i0].col_len = (int *) malloc(_len_hists__i0__col_len0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hists__i0__col_len0; _j0++) {
+            hists[_i0].col_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           hists__set_col_len(hists,col,len);
           for(int _aux = 0; _aux < _len_hists0; _aux++) {
           free(hists[_aux].col_len);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int ds1287_set_next_event(unsigned long delta,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long delta = 100;
+        
           int _len_evt0 = 1;
           struct clock_event_device * evt = (struct clock_event_device *) malloc(_len_evt0*sizeof(struct clock_event_device));
           for(int _i0 = 0; _i0 < _len_evt0; _i0++) {
-            evt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              evt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ds1287_set_next_event(delta,evt);
+          printf("%d\n", benchRet); 
+          free(evt);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long delta = 255;
+        
+          int _len_evt0 = 65025;
+          struct clock_event_device * evt = (struct clock_event_device *) malloc(_len_evt0*sizeof(struct clock_event_device));
+          for(int _i0 = 0; _i0 < _len_evt0; _i0++) {
+              evt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ds1287_set_next_event(delta,evt);
           printf("%d\n", benchRet); 
           free(evt);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long delta = 10;
+        
           int _len_evt0 = 100;
           struct clock_event_device * evt = (struct clock_event_device *) malloc(_len_evt0*sizeof(struct clock_event_device));
           for(int _i0 = 0; _i0 < _len_evt0; _i0++) {
-            evt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              evt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ds1287_set_next_event(delta,evt);
           printf("%d\n", benchRet); 
           free(evt);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_evt0 = 1;
+          struct clock_event_device * evt = (struct clock_event_device *) malloc(_len_evt0*sizeof(struct clock_event_device));
+          for(int _i0 = 0; _i0 < _len_evt0; _i0++) {
+              evt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ds1287_set_next_event(delta,evt);
+          printf("%d\n", benchRet); 
+          free(evt);
+        
+        break;
+    }
     default:
         usage();
         break;

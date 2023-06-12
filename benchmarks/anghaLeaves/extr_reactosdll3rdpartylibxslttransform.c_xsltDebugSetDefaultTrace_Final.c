@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void xsltDebugSetDefaultTrace(xsltDebugTraceCodes val) {
 	xsltDefaultTrace = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           xsltDebugSetDefaultTrace(val);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           xsltDebugSetDefaultTrace(val);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           xsltDebugSetDefaultTrace(val);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          xsltDebugSetDefaultTrace(val);
+        
+        break;
+    }
     default:
         usage();
         break;

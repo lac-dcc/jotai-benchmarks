@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static u32 jz4780_i2c_functionality(struct i2c_adapter *ad
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adap0 = 1;
+          int _len_adap0 = 65025;
           struct i2c_adapter * adap = (struct i2c_adapter *) malloc(_len_adap0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
-            adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = jz4780_i2c_functionality(adap);
           printf("%d\n", benchRet); 
           free(adap);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_adap0 = 100;
           struct i2c_adapter * adap = (struct i2c_adapter *) malloc(_len_adap0*sizeof(struct i2c_adapter));
           for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
-            adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = jz4780_i2c_functionality(adap);
           printf("%d\n", benchRet); 
           free(adap);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_adap0 = 1;
+          struct i2c_adapter * adap = (struct i2c_adapter *) malloc(_len_adap0*sizeof(struct i2c_adapter));
+          for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
+              adap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jz4780_i2c_functionality(adap);
+          printf("%d\n", benchRet); 
+          free(adap);
+        
+        break;
+    }
     default:
         usage();
         break;

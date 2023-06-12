@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline phys_addr_t omap_iommu_translate(u32 d, u32 
 	return (d & mask) | (va & (~mask));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +80,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int d = 100;
+        
           int va = 100;
+        
           int mask = 100;
+        
           int benchRet = omap_iommu_translate(d,va,mask);
           printf("%d\n", benchRet); 
         
@@ -96,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int d = 255;
+        
           int va = 255;
+        
           int mask = 255;
+        
           int benchRet = omap_iommu_translate(d,va,mask);
           printf("%d\n", benchRet); 
         
@@ -107,14 +108,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int d = 10;
+        
           int va = 10;
+        
           int mask = 10;
+        
           int benchRet = omap_iommu_translate(d,va,mask);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int va = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = omap_iommu_translate(d,va,mask);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

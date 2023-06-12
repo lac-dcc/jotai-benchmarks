@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int platform_drv_probe_fail(struct device *_dev)
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len__dev0 = 1;
+          int _len__dev0 = 65025;
           struct device * _dev = (struct device *) malloc(_len__dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len__dev0; _i0++) {
-            _dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              _dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = platform_drv_probe_fail(_dev);
           printf("%d\n", benchRet); 
           free(_dev);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len__dev0 = 100;
           struct device * _dev = (struct device *) malloc(_len__dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len__dev0; _i0++) {
-            _dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              _dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = platform_drv_probe_fail(_dev);
           printf("%d\n", benchRet); 
           free(_dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len__dev0 = 1;
+          struct device * _dev = (struct device *) malloc(_len__dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len__dev0; _i0++) {
+              _dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = platform_drv_probe_fail(_dev);
+          printf("%d\n", benchRet); 
+          free(_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

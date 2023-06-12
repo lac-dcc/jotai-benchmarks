@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -113,12 +114,6 @@ __attribute__((used)) static u32 _gb_sdio_get_host_ocr(u32 ocr)
 		);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,6 +130,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ocr = 100;
+        
           int benchRet = _gb_sdio_get_host_ocr(ocr);
           printf("%d\n", benchRet); 
         
@@ -144,6 +140,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ocr = 255;
+        
           int benchRet = _gb_sdio_get_host_ocr(ocr);
           printf("%d\n", benchRet); 
         
@@ -153,12 +150,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ocr = 10;
+        
           int benchRet = _gb_sdio_get_host_ocr(ocr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ocr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = _gb_sdio_get_host_ocr(ocr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

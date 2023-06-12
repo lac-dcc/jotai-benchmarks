@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ nilfs_terminate_segment(struct the_nilfs *nilfs, sector_t seg_start,
 	nilfs->ns_pseg_offset = seg_end - seg_start + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,33 +83,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long seg_start = 100;
+        
           long seg_end = 100;
+        
           int _len_nilfs0 = 1;
           struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
           for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
-            nilfs[_i0].ns_pseg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              nilfs[_i0].ns_pseg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nilfs_terminate_segment(nilfs,seg_start,seg_end);
+          free(nilfs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long seg_start = 255;
+        
+          long seg_end = 255;
+        
+          int _len_nilfs0 = 65025;
+          struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
+          for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
+              nilfs[_i0].ns_pseg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nilfs_terminate_segment(nilfs,seg_start,seg_end);
           free(nilfs);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long seg_start = 10;
+        
           long seg_end = 10;
+        
           int _len_nilfs0 = 100;
           struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
           for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
-            nilfs[_i0].ns_pseg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              nilfs[_i0].ns_pseg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nilfs_terminate_segment(nilfs,seg_start,seg_end);
           free(nilfs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long seg_start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long seg_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nilfs0 = 1;
+          struct the_nilfs * nilfs = (struct the_nilfs *) malloc(_len_nilfs0*sizeof(struct the_nilfs));
+          for(int _i0 = 0; _i0 < _len_nilfs0; _i0++) {
+              nilfs[_i0].ns_pseg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nilfs_terminate_segment(nilfs,seg_start,seg_end);
+          free(nilfs);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool has_new_snaps(struct ceph_snap_context *o,
 	return n->snaps[0] > o->seq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,31 +78,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_o0 = 1;
+          int _len_o0 = 65025;
           struct ceph_snap_context * o = (struct ceph_snap_context *) malloc(_len_o0*sizeof(struct ceph_snap_context));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_o__i0__snaps0 = 1;
           o[_i0].snaps = (long *) malloc(_len_o__i0__snaps0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_o__i0__snaps0; _j0++) {
             o[_i0].snaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        o[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_n0 = 1;
+        
+          int _len_n0 = 65025;
           struct ceph_snap_context * n = (struct ceph_snap_context *) malloc(_len_n0*sizeof(struct ceph_snap_context));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
-            n[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_n__i0__snaps0 = 1;
           n[_i0].snaps = (long *) malloc(_len_n__i0__snaps0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_n__i0__snaps0; _j0++) {
             n[_i0].snaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        n[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          n[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = has_new_snaps(o,n);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_o0; _aux++) {
@@ -120,7 +120,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_o0 = 100;
+          struct ceph_snap_context * o = (struct ceph_snap_context *) malloc(_len_o0*sizeof(struct ceph_snap_context));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_o__i0__snaps0 = 1;
+          o[_i0].snaps = (long *) malloc(_len_o__i0__snaps0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_o__i0__snaps0; _j0++) {
+            o[_i0].snaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          o[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 100;
+          struct ceph_snap_context * n = (struct ceph_snap_context *) malloc(_len_n0*sizeof(struct ceph_snap_context));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_n__i0__snaps0 = 1;
+          n[_i0].snaps = (long *) malloc(_len_n__i0__snaps0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_n__i0__snaps0; _j0++) {
+            n[_i0].snaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          n[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_new_snaps(o,n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_o0; _aux++) {
+          free(o[_aux].snaps);
+          }
+          free(o);
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].snaps);
+          }
+          free(n);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_o0 = 1;
+          struct ceph_snap_context * o = (struct ceph_snap_context *) malloc(_len_o0*sizeof(struct ceph_snap_context));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_o__i0__snaps0 = 1;
+          o[_i0].snaps = (long *) malloc(_len_o__i0__snaps0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_o__i0__snaps0; _j0++) {
+            o[_i0].snaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          o[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_n0 = 1;
+          struct ceph_snap_context * n = (struct ceph_snap_context *) malloc(_len_n0*sizeof(struct ceph_snap_context));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              n[_i0].num_snaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_n__i0__snaps0 = 1;
+          n[_i0].snaps = (long *) malloc(_len_n__i0__snaps0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_n__i0__snaps0; _j0++) {
+            n[_i0].snaps[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          n[_i0].seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_new_snaps(o,n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_o0; _aux++) {
+          free(o[_aux].snaps);
+          }
+          free(o);
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].snaps);
+          }
+          free(n);
+        
+        break;
+    }
     default:
         usage();
         break;

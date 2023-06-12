@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u8 cm_rej_get_msg_rejected(struct cm_rej_msg
 	return (u8) (rej_msg->offset8 >> 6);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rej_msg0 = 1;
+          int _len_rej_msg0 = 65025;
           struct cm_rej_msg * rej_msg = (struct cm_rej_msg *) malloc(_len_rej_msg0*sizeof(struct cm_rej_msg));
           for(int _i0 = 0; _i0 < _len_rej_msg0; _i0++) {
-            rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cm_rej_get_msg_rejected(rej_msg);
           printf("%d\n", benchRet); 
           free(rej_msg);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_rej_msg0 = 100;
           struct cm_rej_msg * rej_msg = (struct cm_rej_msg *) malloc(_len_rej_msg0*sizeof(struct cm_rej_msg));
           for(int _i0 = 0; _i0 < _len_rej_msg0; _i0++) {
-            rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+              rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cm_rej_get_msg_rejected(rej_msg);
           printf("%d\n", benchRet); 
           free(rej_msg);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rej_msg0 = 1;
+          struct cm_rej_msg * rej_msg = (struct cm_rej_msg *) malloc(_len_rej_msg0*sizeof(struct cm_rej_msg));
+          for(int _i0 = 0; _i0 < _len_rej_msg0; _i0++) {
+              rej_msg[_i0].offset8 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cm_rej_get_msg_rejected(rej_msg);
+          printf("%d\n", benchRet); 
+          free(rej_msg);
+        
+        break;
+    }
     default:
         usage();
         break;

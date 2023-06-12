@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -227,12 +228,6 @@ mptcp_sopt2str(int level, int optname)
 	return ("unknown");
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -249,7 +244,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int level = 100;
+        
           int optname = 100;
+        
           const char * benchRet = mptcp_sopt2str(level,optname);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -259,7 +256,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int level = 255;
+        
           int optname = 255;
+        
           const char * benchRet = mptcp_sopt2str(level,optname);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -269,13 +268,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int level = 10;
+        
           int optname = 10;
+        
           const char * benchRet = mptcp_sopt2str(level,optname);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int optname = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = mptcp_sopt2str(level,optname);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

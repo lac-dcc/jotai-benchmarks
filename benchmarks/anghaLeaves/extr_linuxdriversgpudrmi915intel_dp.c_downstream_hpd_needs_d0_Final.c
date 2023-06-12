@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static bool downstream_hpd_needs_d0(struct intel_dp *intel
 		intel_dp->downstream_ports[0] & DP_DS_PORT_HPD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,8 +88,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_intel_dp0 = 65025;
+          struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
+          for(int _i0 = 0; _i0 < _len_intel_dp0; _i0++) {
+              int _len_intel_dp__i0__dpcd0 = 1;
+          intel_dp[_i0].dpcd = (int *) malloc(_len_intel_dp__i0__dpcd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_intel_dp__i0__dpcd0; _j0++) {
+            intel_dp[_i0].dpcd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_intel_dp__i0__downstream_ports0 = 1;
+          intel_dp[_i0].downstream_ports = (int *) malloc(_len_intel_dp__i0__downstream_ports0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_intel_dp__i0__downstream_ports0; _j0++) {
+            intel_dp[_i0].downstream_ports[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = downstream_hpd_needs_d0(intel_dp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_intel_dp0; _aux++) {
+          free(intel_dp[_aux].dpcd);
+          }
+          for(int _aux = 0; _aux < _len_intel_dp0; _aux++) {
+          free(intel_dp[_aux].downstream_ports);
+          }
+          free(intel_dp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_intel_dp0 = 100;
+          struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
+          for(int _i0 = 0; _i0 < _len_intel_dp0; _i0++) {
+              int _len_intel_dp__i0__dpcd0 = 1;
+          intel_dp[_i0].dpcd = (int *) malloc(_len_intel_dp__i0__dpcd0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_intel_dp__i0__dpcd0; _j0++) {
+            intel_dp[_i0].dpcd[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_intel_dp__i0__downstream_ports0 = 1;
+          intel_dp[_i0].downstream_ports = (int *) malloc(_len_intel_dp__i0__downstream_ports0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_intel_dp__i0__downstream_ports0; _j0++) {
+            intel_dp[_i0].downstream_ports[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = downstream_hpd_needs_d0(intel_dp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_intel_dp0; _aux++) {
+          free(intel_dp[_aux].dpcd);
+          }
+          for(int _aux = 0; _aux < _len_intel_dp0; _aux++) {
+          free(intel_dp[_aux].downstream_ports);
+          }
+          free(intel_dp);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_intel_dp0 = 1;
           struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
@@ -108,7 +166,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_intel_dp__i0__downstream_ports0; _j0++) {
             intel_dp[_i0].downstream_ports[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = downstream_hpd_needs_d0(intel_dp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_intel_dp0; _aux++) {
@@ -121,7 +181,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

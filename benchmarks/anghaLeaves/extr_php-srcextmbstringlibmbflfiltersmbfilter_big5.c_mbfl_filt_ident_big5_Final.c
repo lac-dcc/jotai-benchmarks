@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int mbfl_filt_ident_big5(int c, mbfl_identify_filte
 	return c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,21 +100,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int c = 100;
+        
           int _len_filter0 = 1;
           struct TYPE_5__ * filter = (struct TYPE_5__ *) malloc(_len_filter0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
-            filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_filter__i0__encoding0 = 1;
           filter[_i0].encoding = (struct TYPE_4__ *) malloc(_len_filter__i0__encoding0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_filter__i0__encoding0; _j0++) {
-            filter[_i0].encoding->no_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+              filter[_i0].encoding->no_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = mbfl_filt_ident_big5(c,filter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].encoding);
+          }
+          free(filter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int c = 255;
+        
+          int _len_filter0 = 65025;
+          struct TYPE_5__ * filter = (struct TYPE_5__ *) malloc(_len_filter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_filter__i0__encoding0 = 1;
+          filter[_i0].encoding = (struct TYPE_4__ *) malloc(_len_filter__i0__encoding0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_filter__i0__encoding0; _j0++) {
+              filter[_i0].encoding->no_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mbfl_filt_ident_big5(c,filter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].encoding);
+          }
+          free(filter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int c = 10;
+        
+          int _len_filter0 = 100;
+          struct TYPE_5__ * filter = (struct TYPE_5__ *) malloc(_len_filter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_filter__i0__encoding0 = 1;
+          filter[_i0].encoding = (struct TYPE_4__ *) malloc(_len_filter__i0__encoding0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_filter__i0__encoding0; _j0++) {
+              filter[_i0].encoding->no_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mbfl_filt_ident_big5(c,filter);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].encoding);
+          }
+          free(filter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_filter0 = 1;
+          struct TYPE_5__ * filter = (struct TYPE_5__ *) malloc(_len_filter0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              filter[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          filter[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_filter__i0__encoding0 = 1;
+          filter[_i0].encoding = (struct TYPE_4__ *) malloc(_len_filter__i0__encoding0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_filter__i0__encoding0; _j0++) {
+              filter[_i0].encoding->no_encoding = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = mbfl_filt_ident_big5(c,filter);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_filter0; _aux++) {

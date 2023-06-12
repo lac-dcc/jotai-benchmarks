@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ rpc_authflavor_t gss_svc_to_pseudoflavor(struct gss_api_mech *gm, u32 qop,
 	return RPC_AUTH_MAXFLAVOR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +93,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long qop = 100;
+        
           long service = 100;
+        
           int _len_gm0 = 1;
           struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
           for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
-            gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gm__i0__gm_pfs0 = 1;
           gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
-            gm[_i0].gm_pfs->qop = ((-2 * (next_i()%2)) + 1) * next_i();
-        gm[_i0].gm_pfs->service = ((-2 * (next_i()%2)) + 1) * next_i();
-        gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+              gm[_i0].gm_pfs->qop = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->service = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = gss_svc_to_pseudoflavor(gm,qop,service);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_gm0; _aux++) {
@@ -118,7 +120,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long qop = 255;
+        
+          long service = 255;
+        
+          int _len_gm0 = 65025;
+          struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
+          for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gm__i0__gm_pfs0 = 1;
+          gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
+              gm[_i0].gm_pfs->qop = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->service = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gss_svc_to_pseudoflavor(gm,qop,service);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gm0; _aux++) {
+          free(gm[_aux].gm_pfs);
+          }
+          free(gm);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long qop = 10;
+        
+          long service = 10;
+        
+          int _len_gm0 = 100;
+          struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
+          for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gm__i0__gm_pfs0 = 1;
+          gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
+              gm[_i0].gm_pfs->qop = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->service = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gss_svc_to_pseudoflavor(gm,qop,service);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gm0; _aux++) {
+          free(gm[_aux].gm_pfs);
+          }
+          free(gm);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long qop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long service = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gm0 = 1;
+          struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
+          for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gm__i0__gm_pfs0 = 1;
+          gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
+              gm[_i0].gm_pfs->qop = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->service = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gss_svc_to_pseudoflavor(gm,qop,service);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gm0; _aux++) {
+          free(gm[_aux].gm_pfs);
+          }
+          free(gm);
+        
+        break;
+    }
     default:
         usage();
         break;

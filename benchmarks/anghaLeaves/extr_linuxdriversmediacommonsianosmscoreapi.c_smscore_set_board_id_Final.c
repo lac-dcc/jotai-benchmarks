@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void smscore_set_board_id(struct smscore_device_t *core, int id)
 	core->board_id = id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           int _len_core0 = 1;
           struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          smscore_set_board_id(core,id);
+          free(core);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int id = 255;
+        
+          int _len_core0 = 65025;
+          struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           smscore_set_board_id(core,id);
           free(core);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int id = 10;
+        
           int _len_core0 = 100;
           struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           smscore_set_board_id(core,id);
           free(core);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_core0 = 1;
+          struct smscore_device_t * core = (struct smscore_device_t *) malloc(_len_core0*sizeof(struct smscore_device_t));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].board_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          smscore_set_board_id(core,id);
+          free(core);
+        
+        break;
+    }
     default:
         usage();
         break;

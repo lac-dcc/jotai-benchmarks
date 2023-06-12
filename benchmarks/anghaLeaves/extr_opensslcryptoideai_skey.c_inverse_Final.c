@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static IDEA_INT inverse(unsigned int xin)
     return (IDEA_INT)b2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,28 +100,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 193
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 107
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 170
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 170
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 170
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 116
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 92
+          // ------------------------------- 
+
           unsigned int xin = 100;
+        
           int benchRet = inverse(xin);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 70
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 70
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 70
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 44
+          // ------------------------------- 
+
           unsigned int xin = 255;
+        
           int benchRet = inverse(xin);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 115
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 65
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 95
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 95
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 95
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 68
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 56
+          // ------------------------------- 
+
           unsigned int xin = 10;
+        
+          int benchRet = inverse(xin);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 47
+          // dynamic_instructions_O0 : 223
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 121
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 195
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 195
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 195
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 132
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 104
+          // ------------------------------- 
+
+          unsigned int xin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = inverse(xin);
           printf("%d\n", benchRet); 
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void nfs_super_set_maxbytes(struct super_block *sb, __u64 maxfilesize)
 		sb->s_maxbytes = MAX_LFS_FILESIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +81,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long maxfilesize = 100;
+        
           int _len_sb0 = 1;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfs_super_set_maxbytes(sb,maxfilesize);
           free(sb);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long maxfilesize = 255;
+        
+          int _len_sb0 = 65025;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_super_set_maxbytes(sb,maxfilesize);
+          free(sb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long maxfilesize = 10;
+        
           int _len_sb0 = 100;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nfs_super_set_maxbytes(sb,maxfilesize);
+          free(sb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long maxfilesize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sb0 = 1;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nfs_super_set_maxbytes(sb,maxfilesize);
           free(sb);
         

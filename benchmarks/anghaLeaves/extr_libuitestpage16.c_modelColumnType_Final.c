@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static uiTableValueType modelColumnType(uiTableModelHandle
 	return uiTableValueTypeString;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int column = 100;
+        
           int _len_mh0 = 1;
           int * mh = (int *) malloc(_len_mh0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mh0; _i0++) {
             mh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_m0 = 1;
           int * m = (int *) malloc(_len_m0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
             m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = modelColumnType(mh,m,column);
           printf("%d\n", benchRet); 
           free(mh);
@@ -111,7 +111,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int column = 255;
+        
+          int _len_mh0 = 65025;
+          int * mh = (int *) malloc(_len_mh0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mh0; _i0++) {
+            mh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m0 = 65025;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = modelColumnType(mh,m,column);
+          printf("%d\n", benchRet); 
+          free(mh);
+          free(m);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int column = 10;
+        
+          int _len_mh0 = 100;
+          int * mh = (int *) malloc(_len_mh0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mh0; _i0++) {
+            mh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m0 = 100;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = modelColumnType(mh,m,column);
+          printf("%d\n", benchRet); 
+          free(mh);
+          free(m);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int column = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mh0 = 1;
+          int * mh = (int *) malloc(_len_mh0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mh0; _i0++) {
+            mh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m0 = 1;
+          int * m = (int *) malloc(_len_m0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+            m[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = modelColumnType(mh,m,column);
+          printf("%d\n", benchRet); 
+          free(mh);
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

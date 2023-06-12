@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -76,12 +76,6 @@ __attribute__((used)) static int ima_appraise_flag(enum ima_hooks func)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum ima_hooks func = 0;
+        
           int benchRet = ima_appraise_flag(func);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int dove_audio1_ctrl_gpio_dir(struct mvebu_mpp_ctrl
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,12 +83,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pid = 100;
+        
           int input = 100;
+        
           int _len_data0 = 1;
           struct mvebu_mpp_ctrl_data * data = (struct mvebu_mpp_ctrl_data *) malloc(_len_data0*sizeof(struct mvebu_mpp_ctrl_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dove_audio1_ctrl_gpio_dir(data,pid,input);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int pid = 255;
+        
+          int input = 255;
+        
+          int _len_data0 = 65025;
+          struct mvebu_mpp_ctrl_data * data = (struct mvebu_mpp_ctrl_data *) malloc(_len_data0*sizeof(struct mvebu_mpp_ctrl_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dove_audio1_ctrl_gpio_dir(data,pid,input);
           printf("%d\n", benchRet); 
           free(data);
@@ -100,22 +120,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int pid = 10;
+        
           int input = 10;
+        
           int _len_data0 = 100;
           struct mvebu_mpp_ctrl_data * data = (struct mvebu_mpp_ctrl_data *) malloc(_len_data0*sizeof(struct mvebu_mpp_ctrl_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dove_audio1_ctrl_gpio_dir(data,pid,input);
           printf("%d\n", benchRet); 
           free(data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct mvebu_mpp_ctrl_data * data = (struct mvebu_mpp_ctrl_data *) malloc(_len_data0*sizeof(struct mvebu_mpp_ctrl_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dove_audio1_ctrl_gpio_dir(data,pid,input);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

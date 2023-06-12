@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int wdt_ping(struct watchdog_device *wdd)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wdd0 = 1;
+          int _len_wdd0 = 65025;
           struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
-            wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wdt_ping(wdd);
           printf("%d\n", benchRet); 
           free(wdd);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_wdd0 = 100;
           struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
-            wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wdt_ping(wdd);
           printf("%d\n", benchRet); 
           free(wdd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_wdd0 = 1;
+          struct watchdog_device * wdd = (struct watchdog_device *) malloc(_len_wdd0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdd0; _i0++) {
+              wdd[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wdt_ping(wdd);
+          printf("%d\n", benchRet); 
+          free(wdd);
+        
+        break;
+    }
     default:
         usage();
         break;

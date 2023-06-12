@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ int sparc32_classify_syscall(unsigned int syscall)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int syscall = 100;
+        
           int benchRet = sparc32_classify_syscall(syscall);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int syscall = 255;
+        
           int benchRet = sparc32_classify_syscall(syscall);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int syscall = 10;
+        
           int benchRet = sparc32_classify_syscall(syscall);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int syscall = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sparc32_classify_syscall(syscall);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

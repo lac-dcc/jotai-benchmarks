@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static uint32_t dal_ddc_i2c_payloads_get_count(struct i2c_
 	return p->payloads.count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct i2c_payloads * p = (struct i2c_payloads *) malloc(_len_p0*sizeof(struct i2c_payloads));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].payloads.count = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].payloads.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = dal_ddc_i2c_payloads_get_count(p);
           printf("%d\n", benchRet); 
           free(p);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct i2c_payloads * p = (struct i2c_payloads *) malloc(_len_p0*sizeof(struct i2c_payloads));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].payloads.count = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].payloads.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = dal_ddc_i2c_payloads_get_count(p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct i2c_payloads * p = (struct i2c_payloads *) malloc(_len_p0*sizeof(struct i2c_payloads));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].payloads.count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = dal_ddc_i2c_payloads_get_count(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

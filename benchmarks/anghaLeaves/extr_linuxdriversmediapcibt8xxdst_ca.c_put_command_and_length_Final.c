@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void put_command_and_length(u8 *data, int command, 
 	data[3] = length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +76,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int command = 10;
-          int length = 10;
-          int _len_data0 = 100;
+          int command = 255;
+        
+          int length = 255;
+        
+          int _len_data0 = 65025;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           put_command_and_length(data,command,length);
           free(data);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int command = 10;
+        
+          int length = 10;
+        
+          int _len_data0 = 100;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          put_command_and_length(data,command,length);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

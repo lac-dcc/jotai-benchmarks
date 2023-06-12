@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -157,12 +160,6 @@ vmcs_seg_desc_encoding(int seg, uint32_t *base, uint32_t *lim, uint32_t *acc)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -175,25 +172,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int seg = 100;
+        
           int _len_base0 = 1;
           int * base = (int *) malloc(_len_base0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
             base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_lim0 = 1;
           int * lim = (int *) malloc(_len_lim0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
             lim[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_acc0 = 1;
           int * acc = (int *) malloc(_len_acc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
             acc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = vmcs_seg_desc_encoding(seg,base,lim,acc);
+          printf("%d\n", benchRet); 
+          free(base);
+          free(lim);
+          free(acc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int seg = 255;
+        
+          int _len_base0 = 65025;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lim0 = 65025;
+          int * lim = (int *) malloc(_len_lim0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
+            lim[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_acc0 = 65025;
+          int * acc = (int *) malloc(_len_acc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
+            acc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vmcs_seg_desc_encoding(seg,base,lim,acc);
+          printf("%d\n", benchRet); 
+          free(base);
+          free(lim);
+          free(acc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int seg = 10;
+        
+          int _len_base0 = 100;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lim0 = 100;
+          int * lim = (int *) malloc(_len_lim0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
+            lim[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_acc0 = 100;
+          int * acc = (int *) malloc(_len_acc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
+            acc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vmcs_seg_desc_encoding(seg,base,lim,acc);
+          printf("%d\n", benchRet); 
+          free(base);
+          free(lim);
+          free(acc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int seg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_base0 = 1;
+          int * base = (int *) malloc(_len_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+            base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_lim0 = 1;
+          int * lim = (int *) malloc(_len_lim0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lim0; _i0++) {
+            lim[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_acc0 = 1;
+          int * acc = (int *) malloc(_len_acc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_acc0; _i0++) {
+            acc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = vmcs_seg_desc_encoding(seg,base,lim,acc);
           printf("%d\n", benchRet); 
           free(base);

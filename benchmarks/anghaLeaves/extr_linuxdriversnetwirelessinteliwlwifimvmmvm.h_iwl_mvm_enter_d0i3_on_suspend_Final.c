@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static inline bool iwl_mvm_enter_d0i3_on_suspend(struct iw
 		(mvm->trans->runtime_pm_mode != IWL_PLAT_PM_MODE_D0I3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_mvm0 = 65025;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              int _len_mvm__i0__trans0 = 1;
+          mvm[_i0].trans = (struct TYPE_2__ *) malloc(_len_mvm__i0__trans0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__trans0; _j0++) {
+              mvm[_i0].trans->system_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].trans->runtime_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = iwl_mvm_enter_d0i3_on_suspend(mvm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].trans);
+          }
+          free(mvm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_mvm0 = 100;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              int _len_mvm__i0__trans0 = 1;
+          mvm[_i0].trans = (struct TYPE_2__ *) malloc(_len_mvm__i0__trans0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__trans0; _j0++) {
+              mvm[_i0].trans->system_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].trans->runtime_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = iwl_mvm_enter_d0i3_on_suspend(mvm);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].trans);
+          }
+          free(mvm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_mvm0 = 1;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
               int _len_mvm__i0__trans0 = 1;
           mvm[_i0].trans = (struct TYPE_2__ *) malloc(_len_mvm__i0__trans0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mvm__i0__trans0; _j0++) {
-            mvm[_i0].trans->system_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        mvm[_i0].trans->runtime_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].trans->system_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          mvm[_i0].trans->runtime_pm_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = iwl_mvm_enter_d0i3_on_suspend(mvm);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mvm0; _aux++) {

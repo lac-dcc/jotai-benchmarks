@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static int b43_plcp_get_bitrate_idx_ofdm(struct b43_plcp_h
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,10 +96,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int ghz5 = 100;
+        
           int _len_plcp0 = 1;
           struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
           for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
@@ -111,7 +132,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
             plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = b43_plcp_get_bitrate_idx_ofdm(plcp,ghz5);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plcp0; _aux++) {
+          free(plcp[_aux].raw);
+          }
+          free(plcp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int ghz5 = 255;
+        
+          int _len_plcp0 = 65025;
+          struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+              int _len_plcp__i0__raw0 = 1;
+          plcp[_i0].raw = (int *) malloc(_len_plcp__i0__raw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
+            plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = b43_plcp_get_bitrate_idx_ofdm(plcp,ghz5);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plcp0; _aux++) {
+          free(plcp[_aux].raw);
+          }
+          free(plcp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int ghz5 = 10;
+        
+          int _len_plcp0 = 100;
+          struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+              int _len_plcp__i0__raw0 = 1;
+          plcp[_i0].raw = (int *) malloc(_len_plcp__i0__raw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
+            plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = b43_plcp_get_bitrate_idx_ofdm(plcp,ghz5);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plcp0; _aux++) {
+          free(plcp[_aux].raw);
+          }
+          free(plcp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int ghz5 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_plcp0 = 1;
+          struct b43_plcp_hdr6 * plcp = (struct b43_plcp_hdr6 *) malloc(_len_plcp0*sizeof(struct b43_plcp_hdr6));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+              int _len_plcp__i0__raw0 = 1;
+          plcp[_i0].raw = (int *) malloc(_len_plcp__i0__raw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_plcp__i0__raw0; _j0++) {
+            plcp[_i0].raw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = b43_plcp_get_bitrate_idx_ofdm(plcp,ghz5);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_plcp0; _aux++) {

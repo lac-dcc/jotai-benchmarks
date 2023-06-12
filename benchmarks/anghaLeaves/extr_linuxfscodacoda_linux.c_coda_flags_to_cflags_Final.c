@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +94,6 @@ unsigned short coda_flags_to_cflags(unsigned short flags)
 	return coda_flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,6 +110,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short flags = 100;
+        
           unsigned short benchRet = coda_flags_to_cflags(flags);
           printf("%hu\n", benchRet); 
         
@@ -124,6 +120,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned short flags = 255;
+        
           unsigned short benchRet = coda_flags_to_cflags(flags);
           printf("%hu\n", benchRet); 
         
@@ -133,12 +130,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned short flags = 10;
+        
           unsigned short benchRet = coda_flags_to_cflags(flags);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short benchRet = coda_flags_to_cflags(flags);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

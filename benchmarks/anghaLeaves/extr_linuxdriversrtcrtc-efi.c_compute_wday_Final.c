@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ compute_wday(efi_time_t *eft, int yday)
 	return ndays % 7;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,30 +88,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int yday = 100;
+        
           int _len_eft0 = 1;
           struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
-            eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
+              eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = compute_wday(eft,yday);
           printf("%d\n", benchRet); 
           free(eft);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int yday = 255;
+        
+          int _len_eft0 = 65025;
+          struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
+              eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = compute_wday(eft,yday);
+          printf("%d\n", benchRet); 
+          free(eft);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int yday = 10;
+        
           int _len_eft0 = 100;
           struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
-            eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
+              eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = compute_wday(eft,yday);
+          printf("%d\n", benchRet); 
+          free(eft);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 38
+          // dynamic_instructions_O1 : 38
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 38
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 38
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 38
+          // ------------------------------- 
+          // static_instructions_Os : 38
+          // dynamic_instructions_Os : 38
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int yday = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_eft0 = 1;
+          struct TYPE_3__ * eft = (struct TYPE_3__ *) malloc(_len_eft0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_eft0; _i0++) {
+              eft[_i0].year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = compute_wday(eft,yday);
           printf("%d\n", benchRet); 
           free(eft);

@@ -32,6 +32,7 @@ void usage() {
 \nARGS:\n\
        0            int-bounds\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ int wcwidth(wchar_t wc)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int wc = 100;
+        
           int benchRet = wcwidth(wc);
           printf("%d\n", benchRet); 
         
@@ -109,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int wc = 10;
+        
           int benchRet = wcwidth(wc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int wc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = wcwidth(wc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

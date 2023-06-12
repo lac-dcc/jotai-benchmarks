@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int xfs_inode_clean(xfs_inode_t *ip)
 	return !ip->i_itemp || !(ip->i_itemp->ili_fields & XFS_ILOG_ALL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ip0 = 1;
+          int _len_ip0 = 65025;
           struct TYPE_5__ * ip = (struct TYPE_5__ *) malloc(_len_ip0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
               int _len_ip__i0__i_itemp0 = 1;
           ip[_i0].i_itemp = (struct TYPE_4__ *) malloc(_len_ip__i0__i_itemp0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ip__i0__i_itemp0; _j0++) {
-            ip[_i0].i_itemp->ili_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+              ip[_i0].i_itemp->ili_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = xfs_inode_clean(ip);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ip0; _aux++) {
@@ -104,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ip0 = 100;
+          struct TYPE_5__ * ip = (struct TYPE_5__ *) malloc(_len_ip0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              int _len_ip__i0__i_itemp0 = 1;
+          ip[_i0].i_itemp = (struct TYPE_4__ *) malloc(_len_ip__i0__i_itemp0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_itemp0; _j0++) {
+              ip[_i0].i_itemp->ili_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xfs_inode_clean(ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_itemp);
+          }
+          free(ip);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ip0 = 1;
+          struct TYPE_5__ * ip = (struct TYPE_5__ *) malloc(_len_ip0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ip0; _i0++) {
+              int _len_ip__i0__i_itemp0 = 1;
+          ip[_i0].i_itemp = (struct TYPE_4__ *) malloc(_len_ip__i0__i_itemp0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ip__i0__i_itemp0; _j0++) {
+              ip[_i0].i_itemp->ili_fields = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xfs_inode_clean(ip);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ip0; _aux++) {
+          free(ip[_aux].i_itemp);
+          }
+          free(ip);
+        
+        break;
+    }
     default:
         usage();
         break;

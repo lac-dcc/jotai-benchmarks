@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void FindMinimumRSSI(struct adapter *pAdapter)
 	pdmpriv->MinUndecoratedPWDBForDM = pdmpriv->EntryMinUndecoratedSmoothedPWDB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pAdapter0 = 1;
+          int _len_pAdapter0 = 65025;
           struct adapter * pAdapter = (struct adapter *) malloc(_len_pAdapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_pAdapter0; _i0++) {
               int _len_pAdapter__i0__HalData0 = 1;
           pAdapter[_i0].HalData = (struct TYPE_2__ *) malloc(_len_pAdapter__i0__HalData0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pAdapter__i0__HalData0; _j0++) {
-            pAdapter[_i0].HalData->dmpriv.EntryMinUndecoratedSmoothedPWDB = ((-2 * (next_i()%2)) + 1) * next_i();
-        pAdapter[_i0].HalData->dmpriv.MinUndecoratedPWDBForDM = ((-2 * (next_i()%2)) + 1) * next_i();
+              pAdapter[_i0].HalData->dmpriv.EntryMinUndecoratedSmoothedPWDB = ((-2 * (next_i()%2)) + 1) * next_i();
+          pAdapter[_i0].HalData->dmpriv.MinUndecoratedPWDBForDM = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           FindMinimumRSSI(pAdapter);
           for(int _aux = 0; _aux < _len_pAdapter0; _aux++) {
           free(pAdapter[_aux].HalData);
@@ -105,7 +105,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pAdapter0 = 100;
+          struct adapter * pAdapter = (struct adapter *) malloc(_len_pAdapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_pAdapter0; _i0++) {
+              int _len_pAdapter__i0__HalData0 = 1;
+          pAdapter[_i0].HalData = (struct TYPE_2__ *) malloc(_len_pAdapter__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pAdapter__i0__HalData0; _j0++) {
+              pAdapter[_i0].HalData->dmpriv.EntryMinUndecoratedSmoothedPWDB = ((-2 * (next_i()%2)) + 1) * next_i();
+          pAdapter[_i0].HalData->dmpriv.MinUndecoratedPWDBForDM = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          FindMinimumRSSI(pAdapter);
+          for(int _aux = 0; _aux < _len_pAdapter0; _aux++) {
+          free(pAdapter[_aux].HalData);
+          }
+          free(pAdapter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pAdapter0 = 1;
+          struct adapter * pAdapter = (struct adapter *) malloc(_len_pAdapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_pAdapter0; _i0++) {
+              int _len_pAdapter__i0__HalData0 = 1;
+          pAdapter[_i0].HalData = (struct TYPE_2__ *) malloc(_len_pAdapter__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pAdapter__i0__HalData0; _j0++) {
+              pAdapter[_i0].HalData->dmpriv.EntryMinUndecoratedSmoothedPWDB = ((-2 * (next_i()%2)) + 1) * next_i();
+          pAdapter[_i0].HalData->dmpriv.MinUndecoratedPWDBForDM = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          FindMinimumRSSI(pAdapter);
+          for(int _aux = 0; _aux < _len_pAdapter0; _aux++) {
+          free(pAdapter[_aux].HalData);
+          }
+          free(pAdapter);
+        
+        break;
+    }
     default:
         usage();
         break;

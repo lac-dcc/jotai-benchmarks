@@ -72,12 +72,6 @@ __attribute__((used)) static inline void ath6kl_sdio_set_cmd52_arg(u32 *arg, u8 
 	       (val & 0xFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,14 +88,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int write = 100;
+        
           int raw = 100;
+        
           unsigned int address = 100;
+        
           unsigned char val = 100;
+        
           int _len_arg0 = 1;
           int * arg = (int *) malloc(_len_arg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ath6kl_sdio_set_cmd52_arg(arg,write,raw,address,val);
           free(arg);
         
@@ -111,20 +110,24 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int write = 10;
+        
           int raw = 10;
+        
           unsigned int address = 10;
+        
           unsigned char val = 10;
+        
           int _len_arg0 = 100;
           int * arg = (int *) malloc(_len_arg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ath6kl_sdio_set_cmd52_arg(arg,write,raw,address,val);
           free(arg);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -82,12 +82,6 @@ __attribute__((used)) static inline GLenum convert_gs_stencil_op(enum gs_stencil
 	return GL_KEEP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +94,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum gs_stencil_op_type op = 0;
+        
           int benchRet = convert_gs_stencil_op(op);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

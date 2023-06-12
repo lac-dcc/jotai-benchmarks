@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void mvpp2_txq_inc_get(struct mvpp2_txq_pcpu *txq_p
 		txq_pcpu->txq_get_index = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_txq_pcpu0 = 1;
+          int _len_txq_pcpu0 = 65025;
           struct mvpp2_txq_pcpu * txq_pcpu = (struct mvpp2_txq_pcpu *) malloc(_len_txq_pcpu0*sizeof(struct mvpp2_txq_pcpu));
           for(int _i0 = 0; _i0 < _len_txq_pcpu0; _i0++) {
-            txq_pcpu[_i0].txq_get_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        txq_pcpu[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              txq_pcpu[_i0].txq_get_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          txq_pcpu[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mvpp2_txq_inc_get(txq_pcpu);
           free(txq_pcpu);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_txq_pcpu0 = 100;
+          struct mvpp2_txq_pcpu * txq_pcpu = (struct mvpp2_txq_pcpu *) malloc(_len_txq_pcpu0*sizeof(struct mvpp2_txq_pcpu));
+          for(int _i0 = 0; _i0 < _len_txq_pcpu0; _i0++) {
+              txq_pcpu[_i0].txq_get_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          txq_pcpu[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_txq_inc_get(txq_pcpu);
+          free(txq_pcpu);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_txq_pcpu0 = 1;
+          struct mvpp2_txq_pcpu * txq_pcpu = (struct mvpp2_txq_pcpu *) malloc(_len_txq_pcpu0*sizeof(struct mvpp2_txq_pcpu));
+          for(int _i0 = 0; _i0 < _len_txq_pcpu0; _i0++) {
+              txq_pcpu[_i0].txq_get_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          txq_pcpu[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_txq_inc_get(txq_pcpu);
+          free(txq_pcpu);
+        
+        break;
+    }
     default:
         usage();
         break;

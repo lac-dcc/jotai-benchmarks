@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int is_overloaded(struct ip_vs_dest *dest)
 	return dest->flags & IP_VS_DEST_F_OVERLOAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dest0 = 1;
+          int _len_dest0 = 65025;
           struct ip_vs_dest * dest = (struct ip_vs_dest *) malloc(_len_dest0*sizeof(struct ip_vs_dest));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
-            dest[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dest[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_overloaded(dest);
           printf("%d\n", benchRet); 
           free(dest);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_dest0 = 100;
           struct ip_vs_dest * dest = (struct ip_vs_dest *) malloc(_len_dest0*sizeof(struct ip_vs_dest));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
-            dest[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              dest[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_overloaded(dest);
           printf("%d\n", benchRet); 
           free(dest);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dest0 = 1;
+          struct ip_vs_dest * dest = (struct ip_vs_dest *) malloc(_len_dest0*sizeof(struct ip_vs_dest));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+              dest[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_overloaded(dest);
+          printf("%d\n", benchRet); 
+          free(dest);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline BOOLEAN ValidateMcb(PDOS_MCB Mcb)
     return (Mcb->BlockType == 'M' || Mcb->BlockType == 'Z');
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Mcb0 = 1;
+          int _len_Mcb0 = 65025;
           struct TYPE_3__ * Mcb = (struct TYPE_3__ *) malloc(_len_Mcb0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_Mcb0; _i0++) {
-            Mcb[_i0].BlockType = ((-2 * (next_i()%2)) + 1) * next_i();
+              Mcb[_i0].BlockType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ValidateMcb(Mcb);
           printf("%d\n", benchRet); 
           free(Mcb);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_Mcb0 = 100;
           struct TYPE_3__ * Mcb = (struct TYPE_3__ *) malloc(_len_Mcb0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_Mcb0; _i0++) {
-            Mcb[_i0].BlockType = ((-2 * (next_i()%2)) + 1) * next_i();
+              Mcb[_i0].BlockType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ValidateMcb(Mcb);
           printf("%d\n", benchRet); 
           free(Mcb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_Mcb0 = 1;
+          struct TYPE_3__ * Mcb = (struct TYPE_3__ *) malloc(_len_Mcb0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_Mcb0; _i0++) {
+              Mcb[_i0].BlockType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ValidateMcb(Mcb);
+          printf("%d\n", benchRet); 
+          free(Mcb);
+        
+        break;
+    }
     default:
         usage();
         break;

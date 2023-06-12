@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static bool region_contains(struct pci_bus_region *region1
 	return region1->start <= region2->start && region1->end >= region2->end;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,21 +75,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_region10 = 65025;
+          struct pci_bus_region * region1 = (struct pci_bus_region *) malloc(_len_region10*sizeof(struct pci_bus_region));
+          for(int _i0 = 0; _i0 < _len_region10; _i0++) {
+              region1[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          region1[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_region20 = 65025;
+          struct pci_bus_region * region2 = (struct pci_bus_region *) malloc(_len_region20*sizeof(struct pci_bus_region));
+          for(int _i0 = 0; _i0 < _len_region20; _i0++) {
+              region2[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          region2[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = region_contains(region1,region2);
+          printf("%d\n", benchRet); 
+          free(region1);
+          free(region2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_region10 = 100;
+          struct pci_bus_region * region1 = (struct pci_bus_region *) malloc(_len_region10*sizeof(struct pci_bus_region));
+          for(int _i0 = 0; _i0 < _len_region10; _i0++) {
+              region1[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          region1[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_region20 = 100;
+          struct pci_bus_region * region2 = (struct pci_bus_region *) malloc(_len_region20*sizeof(struct pci_bus_region));
+          for(int _i0 = 0; _i0 < _len_region20; _i0++) {
+              region2[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          region2[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = region_contains(region1,region2);
+          printf("%d\n", benchRet); 
+          free(region1);
+          free(region2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_region10 = 1;
           struct pci_bus_region * region1 = (struct pci_bus_region *) malloc(_len_region10*sizeof(struct pci_bus_region));
           for(int _i0 = 0; _i0 < _len_region10; _i0++) {
-            region1[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        region1[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              region1[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          region1[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_region20 = 1;
           struct pci_bus_region * region2 = (struct pci_bus_region *) malloc(_len_region20*sizeof(struct pci_bus_region));
           for(int _i0 = 0; _i0 < _len_region20; _i0++) {
-            region2[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        region2[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              region2[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          region2[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = region_contains(region1,region2);
           printf("%d\n", benchRet); 
           free(region1);

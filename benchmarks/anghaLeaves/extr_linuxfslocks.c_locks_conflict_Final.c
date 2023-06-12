@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int locks_conflict(struct file_lock *caller_fl, str
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_caller_fl0 = 1;
+          int _len_caller_fl0 = 65025;
           struct file_lock * caller_fl = (struct file_lock *) malloc(_len_caller_fl0*sizeof(struct file_lock));
           for(int _i0 = 0; _i0 < _len_caller_fl0; _i0++) {
-            caller_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              caller_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_sys_fl0 = 1;
+        
+          int _len_sys_fl0 = 65025;
           struct file_lock * sys_fl = (struct file_lock *) malloc(_len_sys_fl0*sizeof(struct file_lock));
           for(int _i0 = 0; _i0 < _len_sys_fl0; _i0++) {
-            sys_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              sys_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = locks_conflict(caller_fl,sys_fl);
           printf("%d\n", benchRet); 
           free(caller_fl);
@@ -103,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_caller_fl0 = 100;
+          struct file_lock * caller_fl = (struct file_lock *) malloc(_len_caller_fl0*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_caller_fl0; _i0++) {
+              caller_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sys_fl0 = 100;
+          struct file_lock * sys_fl = (struct file_lock *) malloc(_len_sys_fl0*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_sys_fl0; _i0++) {
+              sys_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = locks_conflict(caller_fl,sys_fl);
+          printf("%d\n", benchRet); 
+          free(caller_fl);
+          free(sys_fl);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_caller_fl0 = 1;
+          struct file_lock * caller_fl = (struct file_lock *) malloc(_len_caller_fl0*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_caller_fl0; _i0++) {
+              caller_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sys_fl0 = 1;
+          struct file_lock * sys_fl = (struct file_lock *) malloc(_len_sys_fl0*sizeof(struct file_lock));
+          for(int _i0 = 0; _i0 < _len_sys_fl0; _i0++) {
+              sys_fl[_i0].fl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = locks_conflict(caller_fl,sys_fl);
+          printf("%d\n", benchRet); 
+          free(caller_fl);
+          free(sys_fl);
+        
+        break;
+    }
     default:
         usage();
         break;

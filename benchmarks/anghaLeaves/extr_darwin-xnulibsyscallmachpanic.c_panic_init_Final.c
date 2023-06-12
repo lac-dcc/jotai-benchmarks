@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ panic_init(mach_port_t port)
 	master_host_port = port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int port = 100;
+        
           panic_init(port);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int port = 255;
+        
           panic_init(port);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int port = 10;
+        
           panic_init(port);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          panic_init(port);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -121,12 +123,6 @@ nstat_lim_activity_check(struct if_lim_perf_stat *st)
 	return (TRUE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,28 +135,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_st0 = 65025;
+          struct if_lim_perf_stat * st = (struct if_lim_perf_stat *) malloc(_len_st0*sizeof(struct if_lim_perf_stat));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].lim_total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_attempts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_packet_loss_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_retxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_packet_ooo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_timeout_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_timeouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_dl_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_dl_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_ul_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_rtt_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_ul_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_bk_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nstat_lim_activity_check(st);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_st0 = 100;
+          struct if_lim_perf_stat * st = (struct if_lim_perf_stat *) malloc(_len_st0*sizeof(struct if_lim_perf_stat));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].lim_total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_attempts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_packet_loss_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_retxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_packet_ooo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_timeout_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_timeouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_dl_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_dl_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_ul_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_rtt_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_ul_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_bk_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nstat_lim_activity_check(st);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_st0 = 1;
           struct if_lim_perf_stat * st = (struct if_lim_perf_stat *) malloc(_len_st0*sizeof(struct if_lim_perf_stat));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].lim_total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_conn_attempts = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_packet_loss_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_total_retxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_packet_ooo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_conn_timeout_percent = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_conn_timeouts = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_dl_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_dl_detected = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_ul_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_rtt_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_ul_detected = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].lim_bk_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].lim_total_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_rxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_attempts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_packet_loss_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_retxpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_packet_ooo_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_total_oopkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_timeout_percent = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_conn_timeouts = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_dl_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_dl_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_ul_max_bandwidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_rtt_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_ul_detected = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].lim_bk_txpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nstat_lim_activity_check(st);
           printf("%d\n", benchRet); 
           free(st);

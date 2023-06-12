@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -63,7 +64,6 @@ __attribute__((used)) static struct clk *lookup_root_clock(struct clk *clk)
 	return clk;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct clk *_allocate_clk(int length, struct clk *aux_clk[]) {
@@ -91,7 +91,6 @@ void _delete_clk(struct clk *aux_clk[], int aux_clk_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,11 +103,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 70002
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 40006
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 40006
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 40006
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 40006
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 40004
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 40004
+          // ------------------------------- 
+
+          struct clk * aux_clk[10000];
+          struct clk * clk = _allocate_clk(10000, aux_clk);
+        
+          struct clk * benchRet = lookup_root_clock(clk);
+          _delete_clk(aux_clk, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           struct clk * aux_clk[1];
           struct clk * clk = _allocate_clk(1, aux_clk);
+        
           struct clk * benchRet = lookup_root_clock(clk);
           _delete_clk(aux_clk, 1);
         

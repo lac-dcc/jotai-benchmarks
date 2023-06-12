@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int altera_freeze_br_enable_show(struct fpga_bridge
 	return priv->enable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bridge0 = 1;
+          int _len_bridge0 = 65025;
           struct fpga_bridge * bridge = (struct fpga_bridge *) malloc(_len_bridge0*sizeof(struct fpga_bridge));
           for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
               int _len_bridge__i0__priv0 = 1;
           bridge[_i0].priv = (struct altera_freeze_br_data *) malloc(_len_bridge__i0__priv0*sizeof(struct altera_freeze_br_data));
           for(int _j0 = 0; _j0 < _len_bridge__i0__priv0; _j0++) {
-            bridge[_i0].priv->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              bridge[_i0].priv->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = altera_freeze_br_enable_show(bridge);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bridge0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bridge0 = 100;
+          struct fpga_bridge * bridge = (struct fpga_bridge *) malloc(_len_bridge0*sizeof(struct fpga_bridge));
+          for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
+              int _len_bridge__i0__priv0 = 1;
+          bridge[_i0].priv = (struct altera_freeze_br_data *) malloc(_len_bridge__i0__priv0*sizeof(struct altera_freeze_br_data));
+          for(int _j0 = 0; _j0 < _len_bridge__i0__priv0; _j0++) {
+              bridge[_i0].priv->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = altera_freeze_br_enable_show(bridge);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bridge0; _aux++) {
+          free(bridge[_aux].priv);
+          }
+          free(bridge);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bridge0 = 1;
+          struct fpga_bridge * bridge = (struct fpga_bridge *) malloc(_len_bridge0*sizeof(struct fpga_bridge));
+          for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
+              int _len_bridge__i0__priv0 = 1;
+          bridge[_i0].priv = (struct altera_freeze_br_data *) malloc(_len_bridge__i0__priv0*sizeof(struct altera_freeze_br_data));
+          for(int _j0 = 0; _j0 < _len_bridge__i0__priv0; _j0++) {
+              bridge[_i0].priv->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = altera_freeze_br_enable_show(bridge);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bridge0; _aux++) {
+          free(bridge[_aux].priv);
+          }
+          free(bridge);
+        
+        break;
+    }
     default:
         usage();
         break;

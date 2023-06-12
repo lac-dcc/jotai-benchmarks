@@ -59,12 +59,6 @@ __attribute__((used)) static inline int IN_FROM_REG(int reg, int nominal, int re
 	return (reg * nominal + (3 << (res - 3))) / (3 << (res - 2));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +75,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int reg = 10;
+        
           int nominal = 10;
+        
           int res = 10;
+        
           int benchRet = IN_FROM_REG(reg,nominal,res);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

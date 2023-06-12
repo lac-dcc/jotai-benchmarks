@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static int dcs_setup_backlight(struct intel_connector *con
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum pipe unused = 0;
-          int _len_connector0 = 1;
+        
+          int _len_connector0 = 65025;
           struct intel_connector * connector = (struct intel_connector *) malloc(_len_connector0*sizeof(struct intel_connector));
           for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
-              }
+            
+        
+        
+          }
+        
           int benchRet = dcs_setup_backlight(connector,unused);
           printf("%d\n", benchRet); 
           free(connector);
@@ -108,17 +108,40 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum pipe unused = 0;
+        
           int _len_connector0 = 100;
           struct intel_connector * connector = (struct intel_connector *) malloc(_len_connector0*sizeof(struct intel_connector));
           for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
-              }
+            
+        
+        
+          }
+        
           int benchRet = dcs_setup_backlight(connector,unused);
           printf("%d\n", benchRet); 
           free(connector);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum pipe unused = 0;
+        
+          int _len_connector0 = 1;
+          struct intel_connector * connector = (struct intel_connector *) malloc(_len_connector0*sizeof(struct intel_connector));
+          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
+            
+        
+        
+          }
+        
+          int benchRet = dcs_setup_backlight(connector,unused);
+          printf("%d\n", benchRet); 
+          free(connector);
+        
+        break;
+    }
     default:
         usage();
         break;

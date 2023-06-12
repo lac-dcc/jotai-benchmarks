@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ struct gpio_desc *mctrl_gpio_to_gpiod(struct mctrl_gpios *gpios,
 	return gpios->gpio[gidx];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +77,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum mctrl_gpio_idx gidx = 0;
+        
+          int _len_gpios0 = 65025;
+          struct mctrl_gpios * gpios = (struct mctrl_gpios *) malloc(_len_gpios0*sizeof(struct mctrl_gpios));
+          for(int _i0 = 0; _i0 < _len_gpios0; _i0++) {
+              int _len_gpios__i0__gpio0 = 1;
+          gpios[_i0].gpio = (struct gpio_desc **) malloc(_len_gpios__i0__gpio0*sizeof(struct gpio_desc *));
+          for(int _j0 = 0; _j0 < _len_gpios__i0__gpio0; _j0++) {
+            int _len_gpios__i0__gpio1 = 1;
+            gpios[_i0].gpio[_j0] = (struct gpio_desc *) malloc(_len_gpios__i0__gpio1*sizeof(struct gpio_desc));
+            for(int _j1 = 0; _j1 < _len_gpios__i0__gpio1; _j1++) {
+                gpios[_i0].gpio[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct gpio_desc * benchRet = mctrl_gpio_to_gpiod(gpios,gidx);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_gpios0; _aux++) {
+          free(*(gpios[_aux].gpio));
+        free(gpios[_aux].gpio);
+          }
+          free(gpios);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum mctrl_gpio_idx gidx = 0;
+        
+          int _len_gpios0 = 100;
+          struct mctrl_gpios * gpios = (struct mctrl_gpios *) malloc(_len_gpios0*sizeof(struct mctrl_gpios));
+          for(int _i0 = 0; _i0 < _len_gpios0; _i0++) {
+              int _len_gpios__i0__gpio0 = 1;
+          gpios[_i0].gpio = (struct gpio_desc **) malloc(_len_gpios__i0__gpio0*sizeof(struct gpio_desc *));
+          for(int _j0 = 0; _j0 < _len_gpios__i0__gpio0; _j0++) {
+            int _len_gpios__i0__gpio1 = 1;
+            gpios[_i0].gpio[_j0] = (struct gpio_desc *) malloc(_len_gpios__i0__gpio1*sizeof(struct gpio_desc));
+            for(int _j1 = 0; _j1 < _len_gpios__i0__gpio1; _j1++) {
+                gpios[_i0].gpio[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          struct gpio_desc * benchRet = mctrl_gpio_to_gpiod(gpios,gidx);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_gpios0; _aux++) {
+          free(*(gpios[_aux].gpio));
+        free(gpios[_aux].gpio);
+          }
+          free(gpios);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum mctrl_gpio_idx gidx = 0;
+        
           int _len_gpios0 = 1;
           struct mctrl_gpios * gpios = (struct mctrl_gpios *) malloc(_len_gpios0*sizeof(struct mctrl_gpios));
           for(int _i0 = 0; _i0 < _len_gpios0; _i0++) {
@@ -94,10 +224,13 @@ int main(int argc, char *argv[]) {
             int _len_gpios__i0__gpio1 = 1;
             gpios[_i0].gpio[_j0] = (struct gpio_desc *) malloc(_len_gpios__i0__gpio1*sizeof(struct gpio_desc));
             for(int _j1 = 0; _j1 < _len_gpios__i0__gpio1; _j1++) {
-              gpios[_i0].gpio[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                gpios[_i0].gpio[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           struct gpio_desc * benchRet = mctrl_gpio_to_gpiod(gpios,gidx);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_gpios0; _aux++) {

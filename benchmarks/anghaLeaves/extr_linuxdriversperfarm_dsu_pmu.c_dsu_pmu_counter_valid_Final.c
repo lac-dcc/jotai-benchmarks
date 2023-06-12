@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline bool dsu_pmu_counter_valid(struct dsu_pmu *d
 	       (idx == DSU_PMU_IDX_CYCLE_COUNTER);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long idx = 100;
+        
           int _len_dsu_pmu0 = 1;
           struct dsu_pmu * dsu_pmu = (struct dsu_pmu *) malloc(_len_dsu_pmu0*sizeof(struct dsu_pmu));
           for(int _i0 = 0; _i0 < _len_dsu_pmu0; _i0++) {
-            dsu_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsu_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dsu_pmu_counter_valid(dsu_pmu,idx);
+          printf("%d\n", benchRet); 
+          free(dsu_pmu);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long idx = 255;
+        
+          int _len_dsu_pmu0 = 65025;
+          struct dsu_pmu * dsu_pmu = (struct dsu_pmu *) malloc(_len_dsu_pmu0*sizeof(struct dsu_pmu));
+          for(int _i0 = 0; _i0 < _len_dsu_pmu0; _i0++) {
+              dsu_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dsu_pmu_counter_valid(dsu_pmu,idx);
           printf("%d\n", benchRet); 
           free(dsu_pmu);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long idx = 10;
+        
           int _len_dsu_pmu0 = 100;
           struct dsu_pmu * dsu_pmu = (struct dsu_pmu *) malloc(_len_dsu_pmu0*sizeof(struct dsu_pmu));
           for(int _i0 = 0; _i0 < _len_dsu_pmu0; _i0++) {
-            dsu_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsu_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dsu_pmu_counter_valid(dsu_pmu,idx);
           printf("%d\n", benchRet); 
           free(dsu_pmu);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dsu_pmu0 = 1;
+          struct dsu_pmu * dsu_pmu = (struct dsu_pmu *) malloc(_len_dsu_pmu0*sizeof(struct dsu_pmu));
+          for(int _i0 = 0; _i0 < _len_dsu_pmu0; _i0++) {
+              dsu_pmu[_i0].num_counters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dsu_pmu_counter_valid(dsu_pmu,idx);
+          printf("%d\n", benchRet); 
+          free(dsu_pmu);
+        
+        break;
+    }
     default:
         usage();
         break;

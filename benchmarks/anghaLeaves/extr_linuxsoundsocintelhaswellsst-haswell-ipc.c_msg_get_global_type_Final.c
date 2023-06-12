@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline u32 msg_get_global_type(u32 msg)
 	return (msg & IPC_GLB_TYPE_MASK) >> IPC_GLB_TYPE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int msg = 100;
+        
           int benchRet = msg_get_global_type(msg);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int msg = 255;
+        
           int benchRet = msg_get_global_type(msg);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int msg = 10;
+        
           int benchRet = msg_get_global_type(msg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = msg_get_global_type(msg);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

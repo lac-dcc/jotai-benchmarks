@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +97,6 @@ int dwc_otg_hcd_is_status_changed(dwc_otg_hcd_t * hcd, int port)
 	return retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,22 +113,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int port = 100;
+        
           int _len_hcd0 = 1;
           struct TYPE_7__ * hcd = (struct TYPE_7__ *) malloc(_len_hcd0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
-            hcd[_i0].flags.b.port_over_current_change = ((-2 * (next_i()%2)) + 1) * next_i();
-        hcd[_i0].flags.b.port_suspend_change = ((-2 * (next_i()%2)) + 1) * next_i();
-        hcd[_i0].flags.b.port_enable_change = ((-2 * (next_i()%2)) + 1) * next_i();
-        hcd[_i0].flags.b.port_reset_change = ((-2 * (next_i()%2)) + 1) * next_i();
-        hcd[_i0].flags.b.port_connect_status_change = ((-2 * (next_i()%2)) + 1) * next_i();
+              hcd[_i0].flags.b.port_over_current_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_suspend_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_enable_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_reset_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_connect_status_change = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = dwc_otg_hcd_is_status_changed(hcd,port);
           printf("%d\n", benchRet); 
           free(hcd);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int port = 255;
+        
+          int _len_hcd0 = 65025;
+          struct TYPE_7__ * hcd = (struct TYPE_7__ *) malloc(_len_hcd0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
+              hcd[_i0].flags.b.port_over_current_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_suspend_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_enable_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_reset_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_connect_status_change = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = dwc_otg_hcd_is_status_changed(hcd,port);
+          printf("%d\n", benchRet); 
+          free(hcd);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int port = 10;
+        
+          int _len_hcd0 = 100;
+          struct TYPE_7__ * hcd = (struct TYPE_7__ *) malloc(_len_hcd0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
+              hcd[_i0].flags.b.port_over_current_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_suspend_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_enable_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_reset_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_connect_status_change = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = dwc_otg_hcd_is_status_changed(hcd,port);
+          printf("%d\n", benchRet); 
+          free(hcd);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hcd0 = 1;
+          struct TYPE_7__ * hcd = (struct TYPE_7__ *) malloc(_len_hcd0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
+              hcd[_i0].flags.b.port_over_current_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_suspend_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_enable_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_reset_change = ((-2 * (next_i()%2)) + 1) * next_i();
+          hcd[_i0].flags.b.port_connect_status_change = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = dwc_otg_hcd_is_status_changed(hcd,port);
+          printf("%d\n", benchRet); 
+          free(hcd);
+        
+        break;
+    }
     default:
         usage();
         break;

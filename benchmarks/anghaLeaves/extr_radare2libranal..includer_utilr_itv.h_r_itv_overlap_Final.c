@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static inline bool r_itv_overlap(RInterval itv, RInterval 
 	return (!end1 || itv.addr < end1) && (!end || x.addr < end);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +75,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ itv;
-        itv.addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ x;
-        x.addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        x.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          x.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          x.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = r_itv_overlap(itv,x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

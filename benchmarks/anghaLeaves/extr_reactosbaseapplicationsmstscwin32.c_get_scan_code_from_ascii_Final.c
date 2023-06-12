@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -128,12 +129,6 @@ get_scan_code_from_ascii(int code)
   return rv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -150,6 +145,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int code = 100;
+        
           int benchRet = get_scan_code_from_ascii(code);
           printf("%d\n", benchRet); 
         
@@ -159,6 +155,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int code = 255;
+        
           int benchRet = get_scan_code_from_ascii(code);
           printf("%d\n", benchRet); 
         
@@ -168,12 +165,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int code = 10;
+        
           int benchRet = get_scan_code_from_ascii(code);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_scan_code_from_ascii(code);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

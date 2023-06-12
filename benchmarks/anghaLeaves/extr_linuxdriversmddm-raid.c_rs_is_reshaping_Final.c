@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool rs_is_reshaping(struct raid_set *rs)
 	return rs->md.reshape_position != MaxSector;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rs0 = 1;
+          int _len_rs0 = 65025;
           struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].md.reshape_position = ((-2 * (next_i()%2)) + 1) * next_i();
+              rs[_i0].md.reshape_position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rs_is_reshaping(rs);
           printf("%d\n", benchRet); 
           free(rs);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_rs0 = 100;
           struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].md.reshape_position = ((-2 * (next_i()%2)) + 1) * next_i();
+              rs[_i0].md.reshape_position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rs_is_reshaping(rs);
           printf("%d\n", benchRet); 
           free(rs);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rs0 = 1;
+          struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              rs[_i0].md.reshape_position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rs_is_reshaping(rs);
+          printf("%d\n", benchRet); 
+          free(rs);
+        
+        break;
+    }
     default:
         usage();
         break;

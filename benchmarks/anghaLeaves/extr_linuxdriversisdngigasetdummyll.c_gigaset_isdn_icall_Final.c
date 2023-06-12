@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int gigaset_isdn_icall(struct at_state_t *at_state)
 	return ICALL_IGNORE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_at_state0 = 1;
+          int _len_at_state0 = 65025;
           struct at_state_t * at_state = (struct at_state_t *) malloc(_len_at_state0*sizeof(struct at_state_t));
           for(int _i0 = 0; _i0 < _len_at_state0; _i0++) {
-            at_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              at_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gigaset_isdn_icall(at_state);
           printf("%d\n", benchRet); 
           free(at_state);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_at_state0 = 100;
           struct at_state_t * at_state = (struct at_state_t *) malloc(_len_at_state0*sizeof(struct at_state_t));
           for(int _i0 = 0; _i0 < _len_at_state0; _i0++) {
-            at_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              at_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gigaset_isdn_icall(at_state);
           printf("%d\n", benchRet); 
           free(at_state);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_at_state0 = 1;
+          struct at_state_t * at_state = (struct at_state_t *) malloc(_len_at_state0*sizeof(struct at_state_t));
+          for(int _i0 = 0; _i0 < _len_at_state0; _i0++) {
+              at_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gigaset_isdn_icall(at_state);
+          printf("%d\n", benchRet); 
+          free(at_state);
+        
+        break;
+    }
     default:
         usage();
         break;

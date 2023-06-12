@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int altera_poll_ci_slot_status(struct dvb_ca_en5022
 	return state->status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int slot = 100;
+        
           int open = 100;
+        
           int _len_en502210 = 1;
           struct dvb_ca_en50221 * en50221 = (struct dvb_ca_en50221 *) malloc(_len_en502210*sizeof(struct dvb_ca_en50221));
           for(int _i0 = 0; _i0 < _len_en502210; _i0++) {
               int _len_en50221__i0__data0 = 1;
           en50221[_i0].data = (struct altera_ci_state *) malloc(_len_en50221__i0__data0*sizeof(struct altera_ci_state));
           for(int _j0 = 0; _j0 < _len_en50221__i0__data0; _j0++) {
-            en50221[_i0].data->status = ((-2 * (next_i()%2)) + 1) * next_i();
+              en50221[_i0].data->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = altera_poll_ci_slot_status(en50221,slot,open);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_en502210; _aux++) {
+          free(en50221[_aux].data);
+          }
+          free(en50221);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int slot = 255;
+        
+          int open = 255;
+        
+          int _len_en502210 = 65025;
+          struct dvb_ca_en50221 * en50221 = (struct dvb_ca_en50221 *) malloc(_len_en502210*sizeof(struct dvb_ca_en50221));
+          for(int _i0 = 0; _i0 < _len_en502210; _i0++) {
+              int _len_en50221__i0__data0 = 1;
+          en50221[_i0].data = (struct altera_ci_state *) malloc(_len_en50221__i0__data0*sizeof(struct altera_ci_state));
+          for(int _j0 = 0; _j0 < _len_en50221__i0__data0; _j0++) {
+              en50221[_i0].data->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = altera_poll_ci_slot_status(en50221,slot,open);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_en502210; _aux++) {
+          free(en50221[_aux].data);
+          }
+          free(en50221);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int slot = 10;
+        
+          int open = 10;
+        
+          int _len_en502210 = 100;
+          struct dvb_ca_en50221 * en50221 = (struct dvb_ca_en50221 *) malloc(_len_en502210*sizeof(struct dvb_ca_en50221));
+          for(int _i0 = 0; _i0 < _len_en502210; _i0++) {
+              int _len_en50221__i0__data0 = 1;
+          en50221[_i0].data = (struct altera_ci_state *) malloc(_len_en50221__i0__data0*sizeof(struct altera_ci_state));
+          for(int _j0 = 0; _j0 < _len_en50221__i0__data0; _j0++) {
+              en50221[_i0].data->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = altera_poll_ci_slot_status(en50221,slot,open);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_en502210; _aux++) {
+          free(en50221[_aux].data);
+          }
+          free(en50221);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int slot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int open = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_en502210 = 1;
+          struct dvb_ca_en50221 * en50221 = (struct dvb_ca_en50221 *) malloc(_len_en502210*sizeof(struct dvb_ca_en50221));
+          for(int _i0 = 0; _i0 < _len_en502210; _i0++) {
+              int _len_en50221__i0__data0 = 1;
+          en50221[_i0].data = (struct altera_ci_state *) malloc(_len_en50221__i0__data0*sizeof(struct altera_ci_state));
+          for(int _j0 = 0; _j0 < _len_en50221__i0__data0; _j0++) {
+              en50221[_i0].data->status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = altera_poll_ci_slot_status(en50221,slot,open);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_en502210; _aux++) {

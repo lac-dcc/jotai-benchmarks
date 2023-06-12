@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ int classify_slave (struct related_binlog *R) {
   return r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,24 +91,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_R0 = 1;
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_R0 = 65025;
           struct related_binlog * R = (struct related_binlog *) malloc(_len_R0*sizeof(struct related_binlog));
           for(int _i0 = 0; _i0 < _len_R0; _i0++) {
-            R[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        R[_i0].targets = ((-2 * (next_i()%2)) + 1) * next_i();
+              R[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          R[_i0].targets = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_R__i0__client0 = 1;
           R[_i0].client = (struct TYPE_2__ **) malloc(_len_R__i0__client0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_R__i0__client0; _j0++) {
             int _len_R__i0__client1 = 1;
             R[_i0].client[_j0] = (struct TYPE_2__ *) malloc(_len_R__i0__client1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_R__i0__client1; _j1++) {
-              R[_i0].client[_j0]->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+                R[_i0].client[_j0]->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = classify_slave(R);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_R0; _aux++) {
+          free(*(R[_aux].client));
+        free(R[_aux].client);
+          }
+          free(R);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_R0 = 100;
+          struct related_binlog * R = (struct related_binlog *) malloc(_len_R0*sizeof(struct related_binlog));
+          for(int _i0 = 0; _i0 < _len_R0; _i0++) {
+              R[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          R[_i0].targets = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_R__i0__client0 = 1;
+          R[_i0].client = (struct TYPE_2__ **) malloc(_len_R__i0__client0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_R__i0__client0; _j0++) {
+            int _len_R__i0__client1 = 1;
+            R[_i0].client[_j0] = (struct TYPE_2__ *) malloc(_len_R__i0__client1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_R__i0__client1; _j1++) {
+                R[_i0].client[_j0]->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = classify_slave(R);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_R0; _aux++) {
+          free(*(R[_aux].client));
+        free(R[_aux].client);
+          }
+          free(R);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_R0 = 1;
+          struct related_binlog * R = (struct related_binlog *) malloc(_len_R0*sizeof(struct related_binlog));
+          for(int _i0 = 0; _i0 < _len_R0; _i0++) {
+              R[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          R[_i0].targets = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_R__i0__client0 = 1;
+          R[_i0].client = (struct TYPE_2__ **) malloc(_len_R__i0__client0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_R__i0__client0; _j0++) {
+            int _len_R__i0__client1 = 1;
+            R[_i0].client[_j0] = (struct TYPE_2__ *) malloc(_len_R__i0__client1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_R__i0__client1; _j1++) {
+                R[_i0].client[_j0]->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = classify_slave(R);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_R0; _aux++) {

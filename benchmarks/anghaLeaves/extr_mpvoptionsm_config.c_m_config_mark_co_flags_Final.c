@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void m_config_mark_co_flags(struct m_config_option *co, int flags)
         co->is_set_from_config = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +85,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_co0 = 1;
           struct m_config_option * co = (struct m_config_option *) malloc(_len_co0*sizeof(struct m_config_option));
           for(int _i0 = 0; _i0 < _len_co0; _i0++) {
-            co[_i0].is_set_from_cmdline = ((-2 * (next_i()%2)) + 1) * next_i();
-        co[_i0].is_set_from_config = ((-2 * (next_i()%2)) + 1) * next_i();
+              co[_i0].is_set_from_cmdline = ((-2 * (next_i()%2)) + 1) * next_i();
+          co[_i0].is_set_from_config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           m_config_mark_co_flags(co,flags);
           free(co);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_co0 = 65025;
+          struct m_config_option * co = (struct m_config_option *) malloc(_len_co0*sizeof(struct m_config_option));
+          for(int _i0 = 0; _i0 < _len_co0; _i0++) {
+              co[_i0].is_set_from_cmdline = ((-2 * (next_i()%2)) + 1) * next_i();
+          co[_i0].is_set_from_config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          m_config_mark_co_flags(co,flags);
+          free(co);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int flags = 10;
+        
+          int _len_co0 = 100;
+          struct m_config_option * co = (struct m_config_option *) malloc(_len_co0*sizeof(struct m_config_option));
+          for(int _i0 = 0; _i0 < _len_co0; _i0++) {
+              co[_i0].is_set_from_cmdline = ((-2 * (next_i()%2)) + 1) * next_i();
+          co[_i0].is_set_from_config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          m_config_mark_co_flags(co,flags);
+          free(co);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_co0 = 1;
+          struct m_config_option * co = (struct m_config_option *) malloc(_len_co0*sizeof(struct m_config_option));
+          for(int _i0 = 0; _i0 < _len_co0; _i0++) {
+              co[_i0].is_set_from_cmdline = ((-2 * (next_i()%2)) + 1) * next_i();
+          co[_i0].is_set_from_config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          m_config_mark_co_flags(co,flags);
+          free(co);
+        
+        break;
+    }
     default:
         usage();
         break;

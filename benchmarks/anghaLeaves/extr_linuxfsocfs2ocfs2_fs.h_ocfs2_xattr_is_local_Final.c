@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int ocfs2_xattr_is_local(struct ocfs2_xattr_
 	return xe->xe_type & OCFS2_XATTR_ENTRY_LOCAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_xe0 = 1;
+          int _len_xe0 = 65025;
           struct ocfs2_xattr_entry * xe = (struct ocfs2_xattr_entry *) malloc(_len_xe0*sizeof(struct ocfs2_xattr_entry));
           for(int _i0 = 0; _i0 < _len_xe0; _i0++) {
-            xe[_i0].xe_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              xe[_i0].xe_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocfs2_xattr_is_local(xe);
           printf("%d\n", benchRet); 
           free(xe);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_xe0 = 100;
           struct ocfs2_xattr_entry * xe = (struct ocfs2_xattr_entry *) malloc(_len_xe0*sizeof(struct ocfs2_xattr_entry));
           for(int _i0 = 0; _i0 < _len_xe0; _i0++) {
-            xe[_i0].xe_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              xe[_i0].xe_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocfs2_xattr_is_local(xe);
           printf("%d\n", benchRet); 
           free(xe);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_xe0 = 1;
+          struct ocfs2_xattr_entry * xe = (struct ocfs2_xattr_entry *) malloc(_len_xe0*sizeof(struct ocfs2_xattr_entry));
+          for(int _i0 = 0; _i0 < _len_xe0; _i0++) {
+              xe[_i0].xe_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocfs2_xattr_is_local(xe);
+          printf("%d\n", benchRet); 
+          free(xe);
+        
+        break;
+    }
     default:
         usage();
         break;

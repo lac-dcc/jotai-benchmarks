@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int write_to_bdev(struct zram *zram, struct bio_vec
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,26 +86,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int _len_zram0 = 1;
           struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
           for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
-            zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bvec0 = 1;
           struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
           for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
-            bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_parent0 = 1;
           struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
-            parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pentry0 = 1;
           unsigned long * pentry = (unsigned long *) malloc(_len_pentry0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pentry0; _i0++) {
             pentry[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = write_to_bdev(zram,bvec,index,parent,pentry);
           printf("%d\n", benchRet); 
           free(zram);
@@ -118,7 +123,129 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int index = 255;
+        
+          int _len_zram0 = 65025;
+          struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
+          for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bvec0 = 65025;
+          struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
+          for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent0 = 65025;
+          struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pentry0 = 65025;
+          unsigned long * pentry = (unsigned long *) malloc(_len_pentry0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pentry0; _i0++) {
+            pentry[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = write_to_bdev(zram,bvec,index,parent,pentry);
+          printf("%d\n", benchRet); 
+          free(zram);
+          free(bvec);
+          free(parent);
+          free(pentry);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int index = 10;
+        
+          int _len_zram0 = 100;
+          struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
+          for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bvec0 = 100;
+          struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
+          for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent0 = 100;
+          struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pentry0 = 100;
+          unsigned long * pentry = (unsigned long *) malloc(_len_pentry0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pentry0; _i0++) {
+            pentry[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = write_to_bdev(zram,bvec,index,parent,pentry);
+          printf("%d\n", benchRet); 
+          free(zram);
+          free(bvec);
+          free(parent);
+          free(pentry);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_zram0 = 1;
+          struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
+          for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bvec0 = 1;
+          struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
+          for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent0 = 1;
+          struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pentry0 = 1;
+          unsigned long * pentry = (unsigned long *) malloc(_len_pentry0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pentry0; _i0++) {
+            pentry[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = write_to_bdev(zram,bvec,index,parent,pentry);
+          printf("%d\n", benchRet); 
+          free(zram);
+          free(bvec);
+          free(parent);
+          free(pentry);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static sector_t cchhb2blk(struct vtoc_cchhb *ptr, struct h
 		ptr->b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +87,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_ptr0 = 65025;
+          struct vtoc_cchhb * ptr = (struct vtoc_cchhb *) malloc(_len_ptr0*sizeof(struct vtoc_cchhb));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].hh = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_geo0 = 65025;
+          struct hd_geometry * geo = (struct hd_geometry *) malloc(_len_geo0*sizeof(struct hd_geometry));
+          for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
+              geo[_i0].heads = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cchhb2blk(ptr,geo);
+          printf("%d\n", benchRet); 
+          free(ptr);
+          free(geo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_ptr0 = 100;
+          struct vtoc_cchhb * ptr = (struct vtoc_cchhb *) malloc(_len_ptr0*sizeof(struct vtoc_cchhb));
+          for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
+              ptr[_i0].hh = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_geo0 = 100;
+          struct hd_geometry * geo = (struct hd_geometry *) malloc(_len_geo0*sizeof(struct hd_geometry));
+          for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
+              geo[_i0].heads = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cchhb2blk(ptr,geo);
+          printf("%d\n", benchRet); 
+          free(ptr);
+          free(geo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_ptr0 = 1;
           struct vtoc_cchhb * ptr = (struct vtoc_cchhb *) malloc(_len_ptr0*sizeof(struct vtoc_cchhb));
           for(int _i0 = 0; _i0 < _len_ptr0; _i0++) {
-            ptr[_i0].hh = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptr[_i0].cc = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptr[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+              ptr[_i0].hh = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].cc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptr[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_geo0 = 1;
           struct hd_geometry * geo = (struct hd_geometry *) malloc(_len_geo0*sizeof(struct hd_geometry));
           for(int _i0 = 0; _i0 < _len_geo0; _i0++) {
-            geo[_i0].heads = ((-2 * (next_i()%2)) + 1) * next_i();
-        geo[_i0].sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+              geo[_i0].heads = ((-2 * (next_i()%2)) + 1) * next_i();
+          geo[_i0].sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cchhb2blk(ptr,geo);
           printf("%d\n", benchRet); 
           free(ptr);

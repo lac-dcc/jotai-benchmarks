@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ int arch_gnttab_map_shared(xen_pfn_t *frames, unsigned long nr_gframes,
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,27 +82,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long nr_gframes = 100;
+        
           unsigned long max_nr_gframes = 100;
+        
           int _len_frames0 = 1;
           int * frames = (int *) malloc(_len_frames0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
             frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len___shared0 = 1;
           void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
           }
+        
           int benchRet = arch_gnttab_map_shared(frames,nr_gframes,max_nr_gframes,__shared);
           printf("%d\n", benchRet); 
           free(frames);
           for(int i1 = 0; i1 < _len___shared0; i1++) {
-            int _len___shared1 = 1;
               }
           free(__shared);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long nr_gframes = 255;
+        
+          unsigned long max_nr_gframes = 255;
+        
+          int _len_frames0 = 65025;
+          int * frames = (int *) malloc(_len_frames0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
+            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len___shared0 = 65025;
+          void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
+          }
+        
+          int benchRet = arch_gnttab_map_shared(frames,nr_gframes,max_nr_gframes,__shared);
+          printf("%d\n", benchRet); 
+          free(frames);
+          for(int i1 = 0; i1 < _len___shared0; i1++) {
+              }
+          free(__shared);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long nr_gframes = 10;
+        
+          unsigned long max_nr_gframes = 10;
+        
+          int _len_frames0 = 100;
+          int * frames = (int *) malloc(_len_frames0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
+            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len___shared0 = 100;
+          void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
+          }
+        
+          int benchRet = arch_gnttab_map_shared(frames,nr_gframes,max_nr_gframes,__shared);
+          printf("%d\n", benchRet); 
+          free(frames);
+          for(int i1 = 0; i1 < _len___shared0; i1++) {
+              }
+          free(__shared);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long nr_gframes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long max_nr_gframes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_frames0 = 1;
+          int * frames = (int *) malloc(_len_frames0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
+            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len___shared0 = 1;
+          void ** __shared = (void **) malloc(_len___shared0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len___shared0; _i0++) {
+          }
+        
+          int benchRet = arch_gnttab_map_shared(frames,nr_gframes,max_nr_gframes,__shared);
+          printf("%d\n", benchRet); 
+          free(frames);
+          for(int i1 = 0; i1 < _len___shared0; i1++) {
+              }
+          free(__shared);
+        
+        break;
+    }
     default:
         usage();
         break;

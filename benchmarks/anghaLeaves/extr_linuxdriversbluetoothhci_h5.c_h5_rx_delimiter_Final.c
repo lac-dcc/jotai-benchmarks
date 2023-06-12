@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int h5_rx_delimiter(struct hci_uart *hu, unsigned c
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,15 +87,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char c = 100;
+        
           int _len_hu0 = 1;
           struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
           for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
               int _len_hu__i0__priv0 = 1;
           hu[_i0].priv = (struct h5 *) malloc(_len_hu__i0__priv0*sizeof(struct h5));
           for(int _j0 = 0; _j0 < _len_hu__i0__priv0; _j0++) {
-            hu[_i0].priv->rx_func = ((-2 * (next_i()%2)) + 1) * next_i();
+              hu[_i0].priv->rx_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = h5_rx_delimiter(hu,c);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hu0; _aux++) {
@@ -108,7 +109,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned char c = 255;
+        
+          int _len_hu0 = 65025;
+          struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
+          for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
+              int _len_hu__i0__priv0 = 1;
+          hu[_i0].priv = (struct h5 *) malloc(_len_hu__i0__priv0*sizeof(struct h5));
+          for(int _j0 = 0; _j0 < _len_hu__i0__priv0; _j0++) {
+              hu[_i0].priv->rx_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = h5_rx_delimiter(hu,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hu0; _aux++) {
+          free(hu[_aux].priv);
+          }
+          free(hu);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned char c = 10;
+        
+          int _len_hu0 = 100;
+          struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
+          for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
+              int _len_hu__i0__priv0 = 1;
+          hu[_i0].priv = (struct h5 *) malloc(_len_hu__i0__priv0*sizeof(struct h5));
+          for(int _j0 = 0; _j0 < _len_hu__i0__priv0; _j0++) {
+              hu[_i0].priv->rx_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = h5_rx_delimiter(hu,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hu0; _aux++) {
+          free(hu[_aux].priv);
+          }
+          free(hu);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hu0 = 1;
+          struct hci_uart * hu = (struct hci_uart *) malloc(_len_hu0*sizeof(struct hci_uart));
+          for(int _i0 = 0; _i0 < _len_hu0; _i0++) {
+              int _len_hu__i0__priv0 = 1;
+          hu[_i0].priv = (struct h5 *) malloc(_len_hu__i0__priv0*sizeof(struct h5));
+          for(int _j0 = 0; _j0 < _len_hu__i0__priv0; _j0++) {
+              hu[_i0].priv->rx_func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = h5_rx_delimiter(hu,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hu0; _aux++) {
+          free(hu[_aux].priv);
+          }
+          free(hu);
+        
+        break;
+    }
     default:
         usage();
         break;

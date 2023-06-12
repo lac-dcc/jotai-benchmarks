@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ ptw32_oll_OpenWithArrivals(ptw32_oll_csnzi_t* csnziPtr, size_t count, BOOL close
   csnziPtr->proxyRoot.counter.internal.state = (close ? ptw32_oll_snziRoot_closed : ptw32_oll_snziRoot_open);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,17 +88,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned long count = 100;
+        
           long close = 100;
+        
           int _len_csnziPtr0 = 1;
           struct TYPE_9__ * csnziPtr = (struct TYPE_9__ *) malloc(_len_csnziPtr0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_csnziPtr0; _i0++) {
-            csnziPtr[_i0].proxyRoot.counter.internal.count = ((-2 * (next_i()%2)) + 1) * next_i();
-        csnziPtr[_i0].proxyRoot.counter.internal.state = ((-2 * (next_i()%2)) + 1) * next_i();
+              csnziPtr[_i0].proxyRoot.counter.internal.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          csnziPtr[_i0].proxyRoot.counter.internal.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
+          ptw32_oll_OpenWithArrivals(csnziPtr,count,close);
+          free(csnziPtr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long count = 255;
+        
+          long close = 255;
+        
+          int _len_csnziPtr0 = 65025;
+          struct TYPE_9__ * csnziPtr = (struct TYPE_9__ *) malloc(_len_csnziPtr0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_csnziPtr0; _i0++) {
+              csnziPtr[_i0].proxyRoot.counter.internal.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          csnziPtr[_i0].proxyRoot.counter.internal.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ptw32_oll_OpenWithArrivals(csnziPtr,count,close);
+          free(csnziPtr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long count = 10;
+        
+          long close = 10;
+        
+          int _len_csnziPtr0 = 100;
+          struct TYPE_9__ * csnziPtr = (struct TYPE_9__ *) malloc(_len_csnziPtr0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_csnziPtr0; _i0++) {
+              csnziPtr[_i0].proxyRoot.counter.internal.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          csnziPtr[_i0].proxyRoot.counter.internal.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          ptw32_oll_OpenWithArrivals(csnziPtr,count,close);
+          free(csnziPtr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned long count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long close = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_csnziPtr0 = 1;
+          struct TYPE_9__ * csnziPtr = (struct TYPE_9__ *) malloc(_len_csnziPtr0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_csnziPtr0; _i0++) {
+              csnziPtr[_i0].proxyRoot.counter.internal.count = ((-2 * (next_i()%2)) + 1) * next_i();
+          csnziPtr[_i0].proxyRoot.counter.internal.state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
           ptw32_oll_OpenWithArrivals(csnziPtr,count,close);
           free(csnziPtr);
         

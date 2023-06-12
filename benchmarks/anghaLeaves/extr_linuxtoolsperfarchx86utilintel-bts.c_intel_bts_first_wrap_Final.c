@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static bool intel_bts_first_wrap(u64 *data, size_t buf_siz
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long buf_size = 100;
+        
           int _len_data0 = 1;
           long * data = (long *) malloc(_len_data0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = intel_bts_first_wrap(data,buf_size);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long buf_size = 255;
+        
+          int _len_data0 = 65025;
+          long * data = (long *) malloc(_len_data0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = intel_bts_first_wrap(data,buf_size);
           printf("%d\n", benchRet); 
           free(data);
@@ -107,21 +122,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long buf_size = 10;
+        
           int _len_data0 = 100;
           long * data = (long *) malloc(_len_data0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = intel_bts_first_wrap(data,buf_size);
           printf("%d\n", benchRet); 
           free(data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          long * data = (long *) malloc(_len_data0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = intel_bts_first_wrap(data,buf_size);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

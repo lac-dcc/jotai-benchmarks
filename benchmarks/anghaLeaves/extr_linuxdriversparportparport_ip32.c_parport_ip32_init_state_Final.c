@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static void parport_ip32_init_state(struct pardevice *dev,
 	s->u.ip32.ecr = ECR_MODE_PS2 | ECR_nERRINTR | ECR_SERVINTR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +86,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct pardevice * dev = (struct pardevice *) malloc(_len_dev0*sizeof(struct pardevice));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 65025;
+          struct parport_state * s = (struct parport_state *) malloc(_len_s0*sizeof(struct parport_state));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].u.ip32.dcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].u.ip32.ecr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          parport_ip32_init_state(dev,s);
+          free(dev);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct pardevice * dev = (struct pardevice *) malloc(_len_dev0*sizeof(struct pardevice));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 100;
+          struct parport_state * s = (struct parport_state *) malloc(_len_s0*sizeof(struct parport_state));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].u.ip32.dcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].u.ip32.ecr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          parport_ip32_init_state(dev,s);
+          free(dev);
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct pardevice * dev = (struct pardevice *) malloc(_len_dev0*sizeof(struct pardevice));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_s0 = 1;
           struct parport_state * s = (struct parport_state *) malloc(_len_s0*sizeof(struct parport_state));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].u.ip32.dcr = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].u.ip32.ecr = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].u.ip32.dcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].u.ip32.ecr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           parport_ip32_init_state(dev,s);
           free(dev);
           free(s);

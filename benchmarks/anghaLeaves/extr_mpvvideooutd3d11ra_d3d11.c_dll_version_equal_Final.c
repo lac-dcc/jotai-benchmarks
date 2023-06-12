@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static bool dll_version_equal(struct dll_version a, struct
            a.revision == b.revision;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +75,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           struct dll_version a;
-        a.major = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.minor = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.build = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.revision = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.major = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.build = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct dll_version b;
-        b.major = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.minor = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.build = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.revision = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.major = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.build = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.revision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = dll_version_equal(a,b);
           printf("%d\n", benchRet); 
         

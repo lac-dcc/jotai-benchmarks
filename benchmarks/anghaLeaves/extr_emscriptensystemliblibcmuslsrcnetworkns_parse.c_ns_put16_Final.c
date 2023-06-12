@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ void ns_put16(unsigned s, unsigned char *cp)
 	*cp++ = s;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +73,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int s = 10;
-          int _len_cp0 = 100;
+          unsigned int s = 255;
+        
+          int _len_cp0 = 65025;
           unsigned char * cp = (unsigned char *) malloc(_len_cp0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
             cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ns_put16(s,cp);
           free(cp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int s = 10;
+        
+          int _len_cp0 = 100;
+          unsigned char * cp = (unsigned char *) malloc(_len_cp0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+            cp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ns_put16(s,cp);
+          free(cp);
+        
+        break;
+    }
     default:
         usage();
         break;

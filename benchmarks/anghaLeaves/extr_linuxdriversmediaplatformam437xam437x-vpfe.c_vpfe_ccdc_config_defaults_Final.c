@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -112,12 +114,6 @@ __attribute__((used)) static void vpfe_ccdc_config_defaults(struct vpfe_ccdc *cc
 						VPFE_CCDC_GAMMA_BITS_09_0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,31 +126,189 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_ccdc0 = 65025;
+          struct vpfe_ccdc * ccdc = (struct vpfe_ccdc *) malloc(_len_ccdc0*sizeof(struct vpfe_ccdc));
+          for(int _i0 = 0; _i0 < _len_ccdc0; _i0++) {
+              ccdc[_i0].ccdc_cfg.bayer.config_params.alaw.gamma_wd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.config_params.data_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.ycbcr.bt656_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vpfe_ccdc_config_defaults(ccdc);
+          free(ccdc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_ccdc0 = 100;
+          struct vpfe_ccdc * ccdc = (struct vpfe_ccdc *) malloc(_len_ccdc0*sizeof(struct vpfe_ccdc));
+          for(int _i0 = 0; _i0 < _len_ccdc0; _i0++) {
+              ccdc[_i0].ccdc_cfg.bayer.config_params.alaw.gamma_wd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.config_params.data_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.ycbcr.bt656_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vpfe_ccdc_config_defaults(ccdc);
+          free(ccdc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           int _len_ccdc0 = 1;
           struct vpfe_ccdc * ccdc = (struct vpfe_ccdc *) malloc(_len_ccdc0*sizeof(struct vpfe_ccdc));
           for(int _i0 = 0; _i0 < _len_ccdc0; _i0++) {
-            ccdc[_i0].ccdc_cfg.bayer.config_params.alaw.gamma_wd = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.config_params.data_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.bt656_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccdc[_i0].ccdc_cfg.if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              ccdc[_i0].ccdc_cfg.bayer.config_params.alaw.gamma_wd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.config_params.data_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.ycbcr.bt656_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.top = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.win.left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccdc[_i0].ccdc_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ccdc[_i0].ccdc_cfg.if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           vpfe_ccdc_config_defaults(ccdc);
           free(ccdc);
         

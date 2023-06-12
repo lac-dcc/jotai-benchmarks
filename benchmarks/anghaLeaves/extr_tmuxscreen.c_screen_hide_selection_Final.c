@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ screen_hide_selection(struct screen *s)
 		s->sel->hidden = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          int _len_s0 = 65025;
           struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__sel0 = 1;
           s[_i0].sel = (struct TYPE_2__ *) malloc(_len_s__i0__sel0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
-            s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           screen_hide_selection(s);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].sel);
@@ -102,7 +101,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_s0 = 100;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__sel0 = 1;
+          s[_i0].sel = (struct TYPE_2__ *) malloc(_len_s__i0__sel0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
+              s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          screen_hide_selection(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].sel);
+          }
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_s0 = 1;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__sel0 = 1;
+          s[_i0].sel = (struct TYPE_2__ *) malloc(_len_s__i0__sel0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_s__i0__sel0; _j0++) {
+              s[_i0].sel->hidden = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          screen_hide_selection(s);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].sel);
+          }
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

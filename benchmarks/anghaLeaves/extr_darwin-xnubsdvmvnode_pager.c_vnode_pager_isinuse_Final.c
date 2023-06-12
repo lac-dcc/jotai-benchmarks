@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ vnode_pager_isinuse(struct vnode *vp)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vp0 = 1;
+          int _len_vp0 = 65025;
           struct vnode * vp = (struct vnode *) malloc(_len_vp0*sizeof(struct vnode));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
-            vp[_i0].v_usecount = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].v_kusecount = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_usecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].v_kusecount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vnode_pager_isinuse(vp);
           printf("%d\n", benchRet); 
           free(vp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vp0 = 100;
+          struct vnode * vp = (struct vnode *) malloc(_len_vp0*sizeof(struct vnode));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].v_usecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].v_kusecount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vnode_pager_isinuse(vp);
+          printf("%d\n", benchRet); 
+          free(vp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vp0 = 1;
+          struct vnode * vp = (struct vnode *) malloc(_len_vp0*sizeof(struct vnode));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].v_usecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].v_kusecount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vnode_pager_isinuse(vp);
+          printf("%d\n", benchRet); 
+          free(vp);
+        
+        break;
+    }
     default:
         usage();
         break;

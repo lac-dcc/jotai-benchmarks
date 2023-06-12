@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static struct hist_entry *hist_browser__selected_entry(str
 	return browser->he_selection;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_browser0 = 65025;
+          struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
+          for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
+              int _len_browser__i0__he_selection0 = 1;
+          browser[_i0].he_selection = (struct hist_entry *) malloc(_len_browser__i0__he_selection0*sizeof(struct hist_entry));
+          for(int _j0 = 0; _j0 < _len_browser__i0__he_selection0; _j0++) {
+              browser[_i0].he_selection->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct hist_entry * benchRet = hist_browser__selected_entry(browser);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_browser0; _aux++) {
+          free(browser[_aux].he_selection);
+          }
+          free(browser);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_browser0 = 100;
+          struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
+          for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
+              int _len_browser__i0__he_selection0 = 1;
+          browser[_i0].he_selection = (struct hist_entry *) malloc(_len_browser__i0__he_selection0*sizeof(struct hist_entry));
+          for(int _j0 = 0; _j0 < _len_browser__i0__he_selection0; _j0++) {
+              browser[_i0].he_selection->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct hist_entry * benchRet = hist_browser__selected_entry(browser);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_browser0; _aux++) {
+          free(browser[_aux].he_selection);
+          }
+          free(browser);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_browser0 = 1;
           struct hist_browser * browser = (struct hist_browser *) malloc(_len_browser0*sizeof(struct hist_browser));
           for(int _i0 = 0; _i0 < _len_browser0; _i0++) {
               int _len_browser__i0__he_selection0 = 1;
           browser[_i0].he_selection = (struct hist_entry *) malloc(_len_browser__i0__he_selection0*sizeof(struct hist_entry));
           for(int _j0 = 0; _j0 < _len_browser__i0__he_selection0; _j0++) {
-            browser[_i0].he_selection->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              browser[_i0].he_selection->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct hist_entry * benchRet = hist_browser__selected_entry(browser);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_browser0; _aux++) {

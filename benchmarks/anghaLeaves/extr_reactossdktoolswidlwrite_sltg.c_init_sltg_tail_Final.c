@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ __attribute__((used)) static void init_sltg_tail(struct sltg_tail *tail)
     tail->type_bytes = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,40 +100,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_tail0 = 65025;
+          struct sltg_tail * tail = (struct sltg_tail *) malloc(_len_tail0*sizeof(struct sltg_tail));
+          for(int _i0 = 0; _i0 < _len_tail0; _i0++) {
+              tail[_i0].funcs_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].vars_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].impls_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].funcs_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].vars_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].impls_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].tdescalias_vt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res16 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbAlignment = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res24 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res26 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2e = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res30 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].type_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbSizeVft = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbSizeInstance = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res1e = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].simple_alias = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res1a = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res18 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res06 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cImplTypes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cVars = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cFuncs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_sltg_tail(tail);
+          free(tail);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_tail0 = 100;
+          struct sltg_tail * tail = (struct sltg_tail *) malloc(_len_tail0*sizeof(struct sltg_tail));
+          for(int _i0 = 0; _i0 < _len_tail0; _i0++) {
+              tail[_i0].funcs_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].vars_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].impls_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].funcs_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].vars_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].impls_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].tdescalias_vt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res16 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbAlignment = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res24 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res26 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2e = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res30 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].type_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbSizeVft = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbSizeInstance = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res1e = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].simple_alias = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res1a = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res18 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res06 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cImplTypes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cVars = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cFuncs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_sltg_tail(tail);
+          free(tail);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 59
+          // dynamic_instructions_O0 : 59
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_tail0 = 1;
           struct sltg_tail * tail = (struct sltg_tail *) malloc(_len_tail0*sizeof(struct sltg_tail));
           for(int _i0 = 0; _i0 < _len_tail0; _i0++) {
-            tail[_i0].funcs_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].vars_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].impls_off = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].funcs_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].vars_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].impls_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].tdescalias_vt = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res16 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].cbAlignment = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res24 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res26 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res2a = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res2c = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res2e = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res30 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].type_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].cbSizeVft = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].cbSizeInstance = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res1e = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].simple_alias = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res1a = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res18 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].res06 = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].cImplTypes = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].cVars = ((-2 * (next_i()%2)) + 1) * next_i();
-        tail[_i0].cFuncs = ((-2 * (next_i()%2)) + 1) * next_i();
+              tail[_i0].funcs_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].vars_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].impls_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].funcs_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].vars_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].impls_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].tdescalias_vt = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res16 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbAlignment = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res24 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res26 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res2e = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res30 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].type_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbSizeVft = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cbSizeInstance = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res1e = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].simple_alias = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res1a = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res18 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].res06 = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cImplTypes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cVars = ((-2 * (next_i()%2)) + 1) * next_i();
+          tail[_i0].cFuncs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_sltg_tail(tail);
           free(tail);
         

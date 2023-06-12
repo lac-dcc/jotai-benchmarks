@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static GtkTreeModelFlags uiTableModel_get_flags(GtkTreeMod
 	return GTK_TREE_MODEL_LIST_ONLY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mb0 = 1;
+          int _len_mb0 = 65025;
           int * mb = (int *) malloc(_len_mb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mb0; _i0++) {
             mb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = uiTableModel_get_flags(mb);
           printf("%d\n", benchRet); 
           free(mb);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_mb0; _i0++) {
             mb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = uiTableModel_get_flags(mb);
           printf("%d\n", benchRet); 
           free(mb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mb0 = 1;
+          int * mb = (int *) malloc(_len_mb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mb0; _i0++) {
+            mb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = uiTableModel_get_flags(mb);
+          printf("%d\n", benchRet); 
+          free(mb);
+        
+        break;
+    }
     default:
         usage();
         break;

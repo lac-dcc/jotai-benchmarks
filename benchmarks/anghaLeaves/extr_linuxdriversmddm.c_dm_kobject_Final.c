@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ struct kobject *dm_kobject(struct mapped_device *md)
 	return &md->kobj_holder.kobj;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_md0 = 1;
+          int _len_md0 = 65025;
           struct mapped_device * md = (struct mapped_device *) malloc(_len_md0*sizeof(struct mapped_device));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].kobj_holder.kobj.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].kobj_holder.kobj.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           struct kobject * benchRet = dm_kobject(md);
           printf("%d\n", (*benchRet).dummy);
           free(md);
@@ -102,15 +101,36 @@ int main(int argc, char *argv[]) {
           int _len_md0 = 100;
           struct mapped_device * md = (struct mapped_device *) malloc(_len_md0*sizeof(struct mapped_device));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].kobj_holder.kobj.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].kobj_holder.kobj.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           struct kobject * benchRet = dm_kobject(md);
           printf("%d\n", (*benchRet).dummy);
           free(md);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_md0 = 1;
+          struct mapped_device * md = (struct mapped_device *) malloc(_len_md0*sizeof(struct mapped_device));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].kobj_holder.kobj.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          struct kobject * benchRet = dm_kobject(md);
+          printf("%d\n", (*benchRet).dummy);
+          free(md);
+        
+        break;
+    }
     default:
         usage();
         break;

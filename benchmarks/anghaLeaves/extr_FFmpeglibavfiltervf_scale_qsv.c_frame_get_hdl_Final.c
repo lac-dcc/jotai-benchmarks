@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static mfxStatus frame_get_hdl(mfxHDL pthis, mfxMemId mid,
     return MFX_ERR_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,12 +83,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pthis = 100;
+        
           int mid = 100;
+        
           int _len_hdl0 = 1;
           int * hdl = (int *) malloc(_len_hdl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdl0; _i0++) {
             hdl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = frame_get_hdl(pthis,mid,hdl);
+          printf("%d\n", benchRet); 
+          free(hdl);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pthis = 255;
+        
+          int mid = 255;
+        
+          int _len_hdl0 = 65025;
+          int * hdl = (int *) malloc(_len_hdl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdl0; _i0++) {
+            hdl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = frame_get_hdl(pthis,mid,hdl);
           printf("%d\n", benchRet); 
           free(hdl);
@@ -100,22 +118,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pthis = 10;
+        
           int mid = 10;
+        
           int _len_hdl0 = 100;
           int * hdl = (int *) malloc(_len_hdl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdl0; _i0++) {
             hdl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = frame_get_hdl(pthis,mid,hdl);
           printf("%d\n", benchRet); 
           free(hdl);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pthis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdl0 = 1;
+          int * hdl = (int *) malloc(_len_hdl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdl0; _i0++) {
+            hdl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = frame_get_hdl(pthis,mid,hdl);
+          printf("%d\n", benchRet); 
+          free(hdl);
+        
+        break;
+    }
     default:
         usage();
         break;

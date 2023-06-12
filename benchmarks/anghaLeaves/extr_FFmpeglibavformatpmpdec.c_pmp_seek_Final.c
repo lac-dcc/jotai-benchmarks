@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int pmp_seek(AVFormatContext *s, int stream_index, 
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,17 +88,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stream_index = 100;
+        
           int ts = 100;
+        
           int flags = 100;
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
               int _len_s__i0__priv_data0 = 1;
           s[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_s__i0__priv_data0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_s__i0__priv_data0; _j0++) {
-            s[_i0].priv_data->cur_stream = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].priv_data->cur_stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = pmp_seek(s,stream_index,ts,flags);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -111,7 +114,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int stream_index = 255;
+        
+          int ts = 255;
+        
+          int flags = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__priv_data0 = 1;
+          s[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_s__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__priv_data0; _j0++) {
+              s[_i0].priv_data->cur_stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pmp_seek(s,stream_index,ts,flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].priv_data);
+          }
+          free(s);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int stream_index = 10;
+        
+          int ts = 10;
+        
+          int flags = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__priv_data0 = 1;
+          s[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_s__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__priv_data0; _j0++) {
+              s[_i0].priv_data->cur_stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pmp_seek(s,stream_index,ts,flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].priv_data);
+          }
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int stream_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              int _len_s__i0__priv_data0 = 1;
+          s[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_s__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__priv_data0; _j0++) {
+              s[_i0].priv_data->cur_stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pmp_seek(s,stream_index,ts,flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].priv_data);
+          }
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

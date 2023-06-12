@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void he_stat__decay(struct he_stat *he_stat)
 	/* XXX need decay for weight too? */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_he_stat0 = 1;
+          int _len_he_stat0 = 65025;
           struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
           for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
-            he_stat[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
-        he_stat[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              he_stat[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           he_stat__decay(he_stat);
           free(he_stat);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_he_stat0 = 100;
+          struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
+              he_stat[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          he_stat__decay(he_stat);
+          free(he_stat);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_he_stat0 = 1;
+          struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
+              he_stat[_i0].period = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].nr_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          he_stat__decay(he_stat);
+          free(he_stat);
+        
+        break;
+    }
     default:
         usage();
         break;

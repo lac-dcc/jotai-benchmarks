@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int qib_7220_get_base_info(struct qib_ctxtdata *rcd
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +89,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_rcd0 = 65025;
+          struct qib_ctxtdata * rcd = (struct qib_ctxtdata *) malloc(_len_rcd0*sizeof(struct qib_ctxtdata));
+          for(int _i0 = 0; _i0 < _len_rcd0; _i0++) {
+              int _len_rcd__i0__dd0 = 1;
+          rcd[_i0].dd = (struct TYPE_2__ *) malloc(_len_rcd__i0__dd0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rcd__i0__dd0; _j0++) {
+              rcd[_i0].dd->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_kinfo0 = 65025;
+          struct qib_base_info * kinfo = (struct qib_base_info *) malloc(_len_kinfo0*sizeof(struct qib_base_info));
+          for(int _i0 = 0; _i0 < _len_kinfo0; _i0++) {
+              kinfo[_i0].spi_runtime_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qib_7220_get_base_info(rcd,kinfo);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rcd0; _aux++) {
+          free(rcd[_aux].dd);
+          }
+          free(rcd);
+          free(kinfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_rcd0 = 100;
+          struct qib_ctxtdata * rcd = (struct qib_ctxtdata *) malloc(_len_rcd0*sizeof(struct qib_ctxtdata));
+          for(int _i0 = 0; _i0 < _len_rcd0; _i0++) {
+              int _len_rcd__i0__dd0 = 1;
+          rcd[_i0].dd = (struct TYPE_2__ *) malloc(_len_rcd__i0__dd0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_rcd__i0__dd0; _j0++) {
+              rcd[_i0].dd->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_kinfo0 = 100;
+          struct qib_base_info * kinfo = (struct qib_base_info *) malloc(_len_kinfo0*sizeof(struct qib_base_info));
+          for(int _i0 = 0; _i0 < _len_kinfo0; _i0++) {
+              kinfo[_i0].spi_runtime_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qib_7220_get_base_info(rcd,kinfo);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rcd0; _aux++) {
+          free(rcd[_aux].dd);
+          }
+          free(rcd);
+          free(kinfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_rcd0 = 1;
           struct qib_ctxtdata * rcd = (struct qib_ctxtdata *) malloc(_len_rcd0*sizeof(struct qib_ctxtdata));
           for(int _i0 = 0; _i0 < _len_rcd0; _i0++) {
               int _len_rcd__i0__dd0 = 1;
           rcd[_i0].dd = (struct TYPE_2__ *) malloc(_len_rcd__i0__dd0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_rcd__i0__dd0; _j0++) {
-            rcd[_i0].dd->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              rcd[_i0].dd->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_kinfo0 = 1;
           struct qib_base_info * kinfo = (struct qib_base_info *) malloc(_len_kinfo0*sizeof(struct qib_base_info));
           for(int _i0 = 0; _i0 < _len_kinfo0; _i0++) {
-            kinfo[_i0].spi_runtime_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              kinfo[_i0].spi_runtime_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qib_7220_get_base_info(rcd,kinfo);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rcd0; _aux++) {

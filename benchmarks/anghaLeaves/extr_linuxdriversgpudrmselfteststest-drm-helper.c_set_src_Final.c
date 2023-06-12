@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void set_src(struct drm_plane_state *plane_state,
 	plane_state->src_h = src_h;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,23 +84,106 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int src_x = 100;
+        
           unsigned int src_y = 100;
+        
           unsigned int src_w = 100;
+        
           unsigned int src_h = 100;
+        
           int _len_plane_state0 = 1;
           struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
           for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
-            plane_state[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane_state[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane_state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane_state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane_state[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_src(plane_state,src_x,src_y,src_w,src_h);
           free(plane_state);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int src_x = 255;
+        
+          unsigned int src_y = 255;
+        
+          unsigned int src_w = 255;
+        
+          unsigned int src_h = 255;
+        
+          int _len_plane_state0 = 65025;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_src(plane_state,src_x,src_y,src_w,src_h);
+          free(plane_state);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int src_x = 10;
+        
+          unsigned int src_y = 10;
+        
+          unsigned int src_w = 10;
+        
+          unsigned int src_h = 10;
+        
+          int _len_plane_state0 = 100;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_src(plane_state,src_x,src_y,src_w,src_h);
+          free(plane_state);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_plane_state0 = 1;
+          struct drm_plane_state * plane_state = (struct drm_plane_state *) malloc(_len_plane_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane_state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_src(plane_state,src_x,src_y,src_w,src_h);
+          free(plane_state);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            linked\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,7 +72,6 @@ bool aa_ns_visible(struct aa_ns *curr, struct aa_ns *view, bool subns)
 
 	return false;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -122,7 +123,6 @@ void _delete_view(struct aa_ns *aux_view[], int aux_view_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,14 +135,124 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int subns = 100;
+        
           struct aa_ns * aux_curr[1];
           struct aa_ns * curr = _allocate_curr(1, aux_curr);
+        
           struct aa_ns * aux_view[1];
           struct aa_ns * view = _allocate_view(1, aux_view);
+        
+          int benchRet = aa_ns_visible(curr,view,subns);
+          printf("%d\n", benchRet); 
+          _delete_curr(aux_curr, 1);
+          _delete_view(aux_view, 1);
+        
+        break;
+    }
+
+
+    // linked
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 110017
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 50014
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 50014
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 50014
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 50014
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 50012
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 50012
+          // ------------------------------- 
+
+          int subns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct aa_ns * aux_curr[10000];
+          struct aa_ns * curr = _allocate_curr(10000, aux_curr);
+        
+          struct aa_ns * aux_view[10000];
+          struct aa_ns * view = _allocate_view(10000, aux_view);
+        
+          int benchRet = aa_ns_visible(curr,view,subns);
+          printf("%d\n", benchRet); 
+          _delete_curr(aux_curr, 10000);
+          _delete_view(aux_view, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int subns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct aa_ns * aux_curr[1];
+          struct aa_ns * curr = _allocate_curr(1, aux_curr);
+        
+          struct aa_ns * aux_view[1];
+          struct aa_ns * view = _allocate_view(1, aux_view);
+        
           int benchRet = aa_ns_visible(curr,view,subns);
           printf("%d\n", benchRet); 
           _delete_curr(aux_curr, 1);

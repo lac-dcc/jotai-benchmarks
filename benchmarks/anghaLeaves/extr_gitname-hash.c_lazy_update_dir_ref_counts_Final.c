@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline void lazy_update_dir_ref_counts(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +84,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_istate0 = 65025;
+          struct index_state * istate = (struct index_state *) malloc(_len_istate0*sizeof(struct index_state));
+          for(int _i0 = 0; _i0 < _len_istate0; _i0++) {
+              istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lazy_entries0 = 65025;
+          struct lazy_entry * lazy_entries = (struct lazy_entry *) malloc(_len_lazy_entries0*sizeof(struct lazy_entry));
+          for(int _i0 = 0; _i0 < _len_lazy_entries0; _i0++) {
+              int _len_lazy_entries__i0__dir0 = 1;
+          lazy_entries[_i0].dir = (struct TYPE_2__ *) malloc(_len_lazy_entries__i0__dir0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_lazy_entries__i0__dir0; _j0++) {
+              lazy_entries[_i0].dir->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          lazy_update_dir_ref_counts(istate,lazy_entries);
+          free(istate);
+          for(int _aux = 0; _aux < _len_lazy_entries0; _aux++) {
+          free(lazy_entries[_aux].dir);
+          }
+          free(lazy_entries);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_istate0 = 100;
+          struct index_state * istate = (struct index_state *) malloc(_len_istate0*sizeof(struct index_state));
+          for(int _i0 = 0; _i0 < _len_istate0; _i0++) {
+              istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_lazy_entries0 = 100;
+          struct lazy_entry * lazy_entries = (struct lazy_entry *) malloc(_len_lazy_entries0*sizeof(struct lazy_entry));
+          for(int _i0 = 0; _i0 < _len_lazy_entries0; _i0++) {
+              int _len_lazy_entries__i0__dir0 = 1;
+          lazy_entries[_i0].dir = (struct TYPE_2__ *) malloc(_len_lazy_entries__i0__dir0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_lazy_entries__i0__dir0; _j0++) {
+              lazy_entries[_i0].dir->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          lazy_update_dir_ref_counts(istate,lazy_entries);
+          free(istate);
+          for(int _aux = 0; _aux < _len_lazy_entries0; _aux++) {
+          free(lazy_entries[_aux].dir);
+          }
+          free(lazy_entries);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_istate0 = 1;
           struct index_state * istate = (struct index_state *) malloc(_len_istate0*sizeof(struct index_state));
           for(int _i0 = 0; _i0 < _len_istate0; _i0++) {
-            istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_lazy_entries0 = 1;
           struct lazy_entry * lazy_entries = (struct lazy_entry *) malloc(_len_lazy_entries0*sizeof(struct lazy_entry));
           for(int _i0 = 0; _i0 < _len_lazy_entries0; _i0++) {
               int _len_lazy_entries__i0__dir0 = 1;
           lazy_entries[_i0].dir = (struct TYPE_2__ *) malloc(_len_lazy_entries__i0__dir0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_lazy_entries__i0__dir0; _j0++) {
-            lazy_entries[_i0].dir->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              lazy_entries[_i0].dir->nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           lazy_update_dir_ref_counts(istate,lazy_entries);
           free(istate);
           for(int _aux = 0; _aux < _len_lazy_entries0; _aux++) {

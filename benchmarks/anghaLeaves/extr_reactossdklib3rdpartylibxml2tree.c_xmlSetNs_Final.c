@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ xmlSetNs(xmlNodePtr node, xmlNsPtr ns) {
 	node->ns = ns;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,18 +93,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ns = 100;
+        
           int _len_node0 = 1;
           struct TYPE_3__ * node = (struct TYPE_3__ *) malloc(_len_node0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        node[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xmlSetNs(node,ns);
           free(node);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int ns = 255;
+        
+          int _len_node0 = 65025;
+          struct TYPE_3__ * node = (struct TYPE_3__ *) malloc(_len_node0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xmlSetNs(node,ns);
+          free(node);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int ns = 10;
+        
+          int _len_node0 = 100;
+          struct TYPE_3__ * node = (struct TYPE_3__ *) malloc(_len_node0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xmlSetNs(node,ns);
+          free(node);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_node0 = 1;
+          struct TYPE_3__ * node = (struct TYPE_3__ *) malloc(_len_node0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          node[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xmlSetNs(node,ns);
+          free(node);
+        
+        break;
+    }
     default:
         usage();
         break;

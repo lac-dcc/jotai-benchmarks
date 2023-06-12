@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static u64 get_restripe_target(struct btrfs_fs_info *fs_in
 	return target;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,24 +104,228 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int flags = 100;
+        
           int _len_fs_info0 = 1;
           struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
           for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
               int _len_fs_info__i0__balance_ctl0 = 1;
           fs_info[_i0].balance_ctl = (struct btrfs_balance_control *) malloc(_len_fs_info__i0__balance_ctl0*sizeof(struct btrfs_balance_control));
           for(int _j0 = 0; _j0 < _len_fs_info__i0__balance_ctl0; _j0++) {
-            fs_info[_i0].balance_ctl->meta.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs_info[_i0].balance_ctl->meta.target = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs_info[_i0].balance_ctl->sys.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs_info[_i0].balance_ctl->sys.target = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs_info[_i0].balance_ctl->data.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs_info[_i0].balance_ctl->data.target = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs_info[_i0].balance_ctl->meta.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->meta.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->sys.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->sys.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->data.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->data.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = get_restripe_target(fs_info,flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs_info0; _aux++) {
+          free(fs_info[_aux].balance_ctl);
+          }
+          free(fs_info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int flags = 255;
+        
+          int _len_fs_info0 = 65025;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              int _len_fs_info__i0__balance_ctl0 = 1;
+          fs_info[_i0].balance_ctl = (struct btrfs_balance_control *) malloc(_len_fs_info__i0__balance_ctl0*sizeof(struct btrfs_balance_control));
+          for(int _j0 = 0; _j0 < _len_fs_info__i0__balance_ctl0; _j0++) {
+              fs_info[_i0].balance_ctl->meta.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->meta.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->sys.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->sys.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->data.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->data.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = get_restripe_target(fs_info,flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs_info0; _aux++) {
+          free(fs_info[_aux].balance_ctl);
+          }
+          free(fs_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int flags = 10;
+        
+          int _len_fs_info0 = 100;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              int _len_fs_info__i0__balance_ctl0 = 1;
+          fs_info[_i0].balance_ctl = (struct btrfs_balance_control *) malloc(_len_fs_info__i0__balance_ctl0*sizeof(struct btrfs_balance_control));
+          for(int _j0 = 0; _j0 < _len_fs_info__i0__balance_ctl0; _j0++) {
+              fs_info[_i0].balance_ctl->meta.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->meta.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->sys.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->sys.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->data.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->data.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = get_restripe_target(fs_info,flags);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs_info0; _aux++) {
+          free(fs_info[_aux].balance_ctl);
+          }
+          free(fs_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs_info0 = 1;
+          struct btrfs_fs_info * fs_info = (struct btrfs_fs_info *) malloc(_len_fs_info0*sizeof(struct btrfs_fs_info));
+          for(int _i0 = 0; _i0 < _len_fs_info0; _i0++) {
+              int _len_fs_info__i0__balance_ctl0 = 1;
+          fs_info[_i0].balance_ctl = (struct btrfs_balance_control *) malloc(_len_fs_info__i0__balance_ctl0*sizeof(struct btrfs_balance_control));
+          for(int _j0 = 0; _j0 < _len_fs_info__i0__balance_ctl0; _j0++) {
+              fs_info[_i0].balance_ctl->meta.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->meta.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->sys.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->sys.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fs_info[_i0].balance_ctl->data.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs_info[_i0].balance_ctl->data.target = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = get_restripe_target(fs_info,flags);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fs_info0; _aux++) {

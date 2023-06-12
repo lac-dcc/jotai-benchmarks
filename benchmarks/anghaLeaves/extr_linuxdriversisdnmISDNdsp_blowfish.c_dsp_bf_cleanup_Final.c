@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ dsp_bf_cleanup(struct dsp *dsp)
 	dsp->bf_enable = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,27 +75,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dsp0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dsp0 = 65025;
           struct dsp * dsp = (struct dsp *) malloc(_len_dsp0*sizeof(struct dsp));
           for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
-            dsp[_i0].bf_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsp[_i0].bf_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dsp_bf_cleanup(dsp);
           free(dsp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_dsp0 = 100;
           struct dsp * dsp = (struct dsp *) malloc(_len_dsp0*sizeof(struct dsp));
           for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
-            dsp[_i0].bf_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsp[_i0].bf_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dsp_bf_cleanup(dsp);
+          free(dsp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dsp0 = 1;
+          struct dsp * dsp = (struct dsp *) malloc(_len_dsp0*sizeof(struct dsp));
+          for(int _i0 = 0; _i0 < _len_dsp0; _i0++) {
+              dsp[_i0].bf_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dsp_bf_cleanup(dsp);
           free(dsp);
         

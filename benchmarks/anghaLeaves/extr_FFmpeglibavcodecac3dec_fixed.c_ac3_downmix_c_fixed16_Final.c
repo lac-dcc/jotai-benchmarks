@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static void ac3_downmix_c_fixed16(int16_t **samples, int16
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,12 +95,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int out_ch = 100;
+        
           int in_ch = 100;
+        
           int len = 100;
+        
           int _len_samples0 = 1;
           int ** samples = (int **) malloc(_len_samples0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_samples0; _i0++) {
@@ -113,6 +136,7 @@ int main(int argc, char *argv[]) {
               samples[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_matrix0 = 1;
           int ** matrix = (int **) malloc(_len_matrix0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_matrix0; _i0++) {
@@ -122,14 +146,208 @@ int main(int argc, char *argv[]) {
               matrix[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           ac3_downmix_c_fixed16(samples,matrix,out_ch,in_ch,len);
           for(int i1 = 0; i1 < _len_samples0; i1++) {
-            int _len_samples1 = 1;
               free(samples[i1]);
           }
           free(samples);
           for(int i1 = 0; i1 < _len_matrix0; i1++) {
+              free(matrix[i1]);
+          }
+          free(matrix);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int out_ch = 255;
+        
+          int in_ch = 255;
+        
+          int len = 255;
+        
+          int _len_samples0 = 65025;
+          int ** samples = (int **) malloc(_len_samples0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_samples0; _i0++) {
+            int _len_samples1 = 1;
+            samples[_i0] = (int *) malloc(_len_samples1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_samples1; _i1++) {
+              samples[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_matrix0 = 65025;
+          int ** matrix = (int **) malloc(_len_matrix0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_matrix0; _i0++) {
             int _len_matrix1 = 1;
+            matrix[_i0] = (int *) malloc(_len_matrix1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_matrix1; _i1++) {
+              matrix[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          ac3_downmix_c_fixed16(samples,matrix,out_ch,in_ch,len);
+          for(int i1 = 0; i1 < _len_samples0; i1++) {
+              free(samples[i1]);
+          }
+          free(samples);
+          for(int i1 = 0; i1 < _len_matrix0; i1++) {
+              free(matrix[i1]);
+          }
+          free(matrix);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int out_ch = 10;
+        
+          int in_ch = 10;
+        
+          int len = 10;
+        
+          int _len_samples0 = 100;
+          int ** samples = (int **) malloc(_len_samples0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_samples0; _i0++) {
+            int _len_samples1 = 1;
+            samples[_i0] = (int *) malloc(_len_samples1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_samples1; _i1++) {
+              samples[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_matrix0 = 100;
+          int ** matrix = (int **) malloc(_len_matrix0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_matrix0; _i0++) {
+            int _len_matrix1 = 1;
+            matrix[_i0] = (int *) malloc(_len_matrix1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_matrix1; _i1++) {
+              matrix[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          ac3_downmix_c_fixed16(samples,matrix,out_ch,in_ch,len);
+          for(int i1 = 0; i1 < _len_samples0; i1++) {
+              free(samples[i1]);
+          }
+          free(samples);
+          for(int i1 = 0; i1 < _len_matrix0; i1++) {
+              free(matrix[i1]);
+          }
+          free(matrix);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int out_ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int in_ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_samples0 = 1;
+          int ** samples = (int **) malloc(_len_samples0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_samples0; _i0++) {
+            int _len_samples1 = 1;
+            samples[_i0] = (int *) malloc(_len_samples1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_samples1; _i1++) {
+              samples[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_matrix0 = 1;
+          int ** matrix = (int **) malloc(_len_matrix0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_matrix0; _i0++) {
+            int _len_matrix1 = 1;
+            matrix[_i0] = (int *) malloc(_len_matrix1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_matrix1; _i1++) {
+              matrix[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          ac3_downmix_c_fixed16(samples,matrix,out_ch,in_ch,len);
+          for(int i1 = 0; i1 < _len_samples0; i1++) {
+              free(samples[i1]);
+          }
+          free(samples);
+          for(int i1 = 0; i1 < _len_matrix0; i1++) {
               free(matrix[i1]);
           }
           free(matrix);

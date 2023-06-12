@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void java_lang_reflect_Member_PUT_PUBLIC(JAVA_INT v)
     _STATIC_java_lang_reflect_Member_PUBLIC = v;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v = 100;
+        
           java_lang_reflect_Member_PUT_PUBLIC(v);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int v = 255;
+        
           java_lang_reflect_Member_PUT_PUBLIC(v);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int v = 10;
+        
           java_lang_reflect_Member_PUT_PUBLIC(v);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          java_lang_reflect_Member_PUT_PUBLIC(v);
+        
+        break;
+    }
     default:
         usage();
         break;

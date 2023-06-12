@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void hdcd_control(HDCDContext *ctx, hdcd_state *sta
     *target_gain = (state->control & 15) << 7;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,29 +80,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct TYPE_6__ * ctx = (struct TYPE_6__ *) malloc(_len_ctx0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].force_pe = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].force_pe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_state0 = 1;
+        
+          int _len_state0 = 65025;
           struct TYPE_5__ * state = (struct TYPE_5__ *) malloc(_len_state0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_peak_extend0 = 1;
+        
+          int _len_peak_extend0 = 65025;
           int * peak_extend = (int *) malloc(_len_peak_extend0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_peak_extend0; _i0++) {
             peak_extend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_target_gain0 = 1;
+        
+          int _len_target_gain0 = 65025;
           int * target_gain = (int *) malloc(_len_target_gain0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_target_gain0; _i0++) {
             target_gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           hdcd_control(ctx,state,peak_extend,target_gain);
           free(ctx);
           free(state);
@@ -115,7 +117,80 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct TYPE_6__ * ctx = (struct TYPE_6__ *) malloc(_len_ctx0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].force_pe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_state0 = 100;
+          struct TYPE_5__ * state = (struct TYPE_5__ *) malloc(_len_state0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_peak_extend0 = 100;
+          int * peak_extend = (int *) malloc(_len_peak_extend0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_peak_extend0; _i0++) {
+            peak_extend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_target_gain0 = 100;
+          int * target_gain = (int *) malloc(_len_target_gain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_target_gain0; _i0++) {
+            target_gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hdcd_control(ctx,state,peak_extend,target_gain);
+          free(ctx);
+          free(state);
+          free(peak_extend);
+          free(target_gain);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct TYPE_6__ * ctx = (struct TYPE_6__ *) malloc(_len_ctx0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].force_pe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_state0 = 1;
+          struct TYPE_5__ * state = (struct TYPE_5__ *) malloc(_len_state0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_peak_extend0 = 1;
+          int * peak_extend = (int *) malloc(_len_peak_extend0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_peak_extend0; _i0++) {
+            peak_extend[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_target_gain0 = 1;
+          int * target_gain = (int *) malloc(_len_target_gain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_target_gain0; _i0++) {
+            target_gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hdcd_control(ctx,state,peak_extend,target_gain);
+          free(ctx);
+          free(state);
+          free(peak_extend);
+          free(target_gain);
+        
+        break;
+    }
     default:
         usage();
         break;

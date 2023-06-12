@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -62,12 +62,6 @@ int convolutional_out_height(convolutional_layer l)
     return (l.h + 2*l.pad - l.size) / l.stride + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,20 +74,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ l;
-        l.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.pad = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        l.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          l.stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = convolutional_out_height(l);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

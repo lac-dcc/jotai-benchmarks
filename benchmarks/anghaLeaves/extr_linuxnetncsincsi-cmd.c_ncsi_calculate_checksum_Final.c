@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ u32 ncsi_calculate_checksum(unsigned char *data, int len)
 	return checksum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int len = 10;
-          int _len_data0 = 100;
+          int len = 255;
+        
+          int _len_data0 = 65025;
           unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ncsi_calculate_checksum(data,len);
           printf("%d\n", benchRet); 
           free(data);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int len = 10;
+        
+          int _len_data0 = 100;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ncsi_calculate_checksum(data,len);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          unsigned char * data = (unsigned char *) malloc(_len_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ncsi_calculate_checksum(data,len);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void m_property_unkey(int *action, void **arg)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_action0 = 65025;
+          int * action = (int *) malloc(_len_action0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_action0; _i0++) {
+            action[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg0 = 65025;
+          void ** arg = (void **) malloc(_len_arg0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+          }
+        
+          m_property_unkey(action,arg);
+          free(action);
+          for(int i1 = 0; i1 < _len_arg0; i1++) {
+              }
+          free(arg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_action0 = 100;
+          int * action = (int *) malloc(_len_action0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_action0; _i0++) {
+            action[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_arg0 = 100;
+          void ** arg = (void **) malloc(_len_arg0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+          }
+        
+          m_property_unkey(action,arg);
+          free(action);
+          for(int i1 = 0; i1 < _len_arg0; i1++) {
+              }
+          free(arg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_action0 = 1;
           int * action = (int *) malloc(_len_action0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_action0; _i0++) {
             action[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_arg0 = 1;
           void ** arg = (void **) malloc(_len_arg0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
           }
+        
           m_property_unkey(action,arg);
           free(action);
           for(int i1 = 0; i1 < _len_arg0; i1++) {
-            int _len_arg1 = 1;
               }
           free(arg);
         

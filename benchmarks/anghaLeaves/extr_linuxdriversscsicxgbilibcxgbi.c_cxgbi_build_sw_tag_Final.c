@@ -63,12 +63,6 @@ __attribute__((used)) static inline u32 cxgbi_build_sw_tag(u32 idx, u32 age)
 	return (idx << 16) | age;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int age = 100;
+        
           int benchRet = cxgbi_build_sw_tag(idx,age);
           printf("%d\n", benchRet); 
         
@@ -95,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int idx = 255;
+        
           int age = 255;
+        
           int benchRet = cxgbi_build_sw_tag(idx,age);
           printf("%d\n", benchRet); 
         
@@ -105,13 +103,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int idx = 10;
+        
           int age = 10;
+        
           int benchRet = cxgbi_build_sw_tag(idx,age);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

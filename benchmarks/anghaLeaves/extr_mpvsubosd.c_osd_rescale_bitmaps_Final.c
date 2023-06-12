@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ void osd_rescale_bitmaps(struct sub_bitmaps *imgs, int frame_w, int frame_h,
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,31 +98,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int frame_w = 100;
+        
           int frame_h = 100;
+        
           double compensate_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int _len_imgs0 = 1;
           struct sub_bitmaps * imgs = (struct sub_bitmaps *) malloc(_len_imgs0*sizeof(struct sub_bitmaps));
           for(int _i0 = 0; _i0 < _len_imgs0; _i0++) {
-            imgs[_i0].num_parts = ((-2 * (next_i()%2)) + 1) * next_i();
+              imgs[_i0].num_parts = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_imgs__i0__parts0 = 1;
           imgs[_i0].parts = (struct sub_bitmap *) malloc(_len_imgs__i0__parts0*sizeof(struct sub_bitmap));
           for(int _j0 = 0; _j0 < _len_imgs__i0__parts0; _j0++) {
-            imgs[_i0].parts->x = ((-2 * (next_i()%2)) + 1) * next_i();
-        imgs[_i0].parts->y = ((-2 * (next_i()%2)) + 1) * next_i();
-        imgs[_i0].parts->dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        imgs[_i0].parts->w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        imgs[_i0].parts->dh = ((-2 * (next_i()%2)) + 1) * next_i();
-        imgs[_i0].parts->h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              imgs[_i0].parts->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->y = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          imgs[_i0].parts->dh = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           }
+        
           struct mp_osd_res res;
-        res.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        res.ml = ((-2 * (next_i()%2)) + 1) * next_i();
-        res.mr = ((-2 * (next_i()%2)) + 1) * next_i();
-        res.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        res.mt = ((-2 * (next_i()%2)) + 1) * next_i();
-        res.mb = ((-2 * (next_i()%2)) + 1) * next_i();
-        res.display_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          res.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.ml = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mt = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mb = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.display_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           osd_rescale_bitmaps(imgs,frame_w,frame_h,res,compensate_par);
           for(int _aux = 0; _aux < _len_imgs0; _aux++) {
           free(imgs[_aux].parts);
@@ -134,7 +138,138 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int frame_w = 255;
+        
+          int frame_h = 255;
+        
+          double compensate_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_imgs0 = 65025;
+          struct sub_bitmaps * imgs = (struct sub_bitmaps *) malloc(_len_imgs0*sizeof(struct sub_bitmaps));
+          for(int _i0 = 0; _i0 < _len_imgs0; _i0++) {
+              imgs[_i0].num_parts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_imgs__i0__parts0 = 1;
+          imgs[_i0].parts = (struct sub_bitmap *) malloc(_len_imgs__i0__parts0*sizeof(struct sub_bitmap));
+          for(int _j0 = 0; _j0 < _len_imgs__i0__parts0; _j0++) {
+              imgs[_i0].parts->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->y = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          imgs[_i0].parts->dh = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          struct mp_osd_res res;
+          res.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.ml = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mt = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mb = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.display_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          osd_rescale_bitmaps(imgs,frame_w,frame_h,res,compensate_par);
+          for(int _aux = 0; _aux < _len_imgs0; _aux++) {
+          free(imgs[_aux].parts);
+          }
+          free(imgs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int frame_w = 10;
+        
+          int frame_h = 10;
+        
+          double compensate_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_imgs0 = 100;
+          struct sub_bitmaps * imgs = (struct sub_bitmaps *) malloc(_len_imgs0*sizeof(struct sub_bitmaps));
+          for(int _i0 = 0; _i0 < _len_imgs0; _i0++) {
+              imgs[_i0].num_parts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_imgs__i0__parts0 = 1;
+          imgs[_i0].parts = (struct sub_bitmap *) malloc(_len_imgs__i0__parts0*sizeof(struct sub_bitmap));
+          for(int _j0 = 0; _j0 < _len_imgs__i0__parts0; _j0++) {
+              imgs[_i0].parts->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->y = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          imgs[_i0].parts->dh = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          struct mp_osd_res res;
+          res.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.ml = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mt = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mb = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.display_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          osd_rescale_bitmaps(imgs,frame_w,frame_h,res,compensate_par);
+          for(int _aux = 0; _aux < _len_imgs0; _aux++) {
+          free(imgs[_aux].parts);
+          }
+          free(imgs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int frame_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int frame_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          double compensate_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_imgs0 = 1;
+          struct sub_bitmaps * imgs = (struct sub_bitmaps *) malloc(_len_imgs0*sizeof(struct sub_bitmaps));
+          for(int _i0 = 0; _i0 < _len_imgs0; _i0++) {
+              imgs[_i0].num_parts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_imgs__i0__parts0 = 1;
+          imgs[_i0].parts = (struct sub_bitmap *) malloc(_len_imgs__i0__parts0*sizeof(struct sub_bitmap));
+          for(int _j0 = 0; _j0 < _len_imgs__i0__parts0; _j0++) {
+              imgs[_i0].parts->x = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->y = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          imgs[_i0].parts->dh = ((-2 * (next_i()%2)) + 1) * next_i();
+          imgs[_i0].parts->h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          struct mp_osd_res res;
+          res.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.ml = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mr = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mt = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.mb = ((-2 * (next_i()%2)) + 1) * next_i();
+          res.display_par = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          osd_rescale_bitmaps(imgs,frame_w,frame_h,res,compensate_par);
+          for(int _aux = 0; _aux < _len_imgs0; _aux++) {
+          free(imgs[_aux].parts);
+          }
+          free(imgs);
+        
+        break;
+    }
     default:
         usage();
         break;

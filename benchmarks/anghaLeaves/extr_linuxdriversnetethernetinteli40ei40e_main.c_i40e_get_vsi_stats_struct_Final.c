@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ struct rtnl_link_stats64 *i40e_get_vsi_stats_struct(struct i40e_vsi *vsi)
 	return &vsi->net_stats;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vsi0 = 1;
+          int _len_vsi0 = 65025;
           struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
           for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
-            vsi[_i0].net_stats.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsi[_i0].net_stats.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct rtnl_link_stats64 * benchRet = i40e_get_vsi_stats_struct(vsi);
           printf("%d\n", (*benchRet).dummy);
           free(vsi);
@@ -100,15 +98,34 @@ int main(int argc, char *argv[]) {
           int _len_vsi0 = 100;
           struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
           for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
-            vsi[_i0].net_stats.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsi[_i0].net_stats.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct rtnl_link_stats64 * benchRet = i40e_get_vsi_stats_struct(vsi);
           printf("%d\n", (*benchRet).dummy);
           free(vsi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vsi0 = 1;
+          struct i40e_vsi * vsi = (struct i40e_vsi *) malloc(_len_vsi0*sizeof(struct i40e_vsi));
+          for(int _i0 = 0; _i0 < _len_vsi0; _i0++) {
+              vsi[_i0].net_stats.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct rtnl_link_stats64 * benchRet = i40e_get_vsi_stats_struct(vsi);
+          printf("%d\n", (*benchRet).dummy);
+          free(vsi);
+        
+        break;
+    }
     default:
         usage();
         break;

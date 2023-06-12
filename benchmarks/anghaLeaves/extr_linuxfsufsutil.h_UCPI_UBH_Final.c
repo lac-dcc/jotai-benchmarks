@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline struct ufs_buffer_head *UCPI_UBH(struct ufs_
 	return &cpi->c_ubh;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cpi0 = 1;
+          int _len_cpi0 = 65025;
           struct ufs_cg_private_info * cpi = (struct ufs_cg_private_info *) malloc(_len_cpi0*sizeof(struct ufs_cg_private_info));
           for(int _i0 = 0; _i0 < _len_cpi0; _i0++) {
-            cpi[_i0].c_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpi[_i0].c_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct ufs_buffer_head * benchRet = UCPI_UBH(cpi);
           printf("%d\n", (*benchRet).dummy);
           free(cpi);
@@ -100,15 +98,34 @@ int main(int argc, char *argv[]) {
           int _len_cpi0 = 100;
           struct ufs_cg_private_info * cpi = (struct ufs_cg_private_info *) malloc(_len_cpi0*sizeof(struct ufs_cg_private_info));
           for(int _i0 = 0; _i0 < _len_cpi0; _i0++) {
-            cpi[_i0].c_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpi[_i0].c_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct ufs_buffer_head * benchRet = UCPI_UBH(cpi);
           printf("%d\n", (*benchRet).dummy);
           free(cpi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cpi0 = 1;
+          struct ufs_cg_private_info * cpi = (struct ufs_cg_private_info *) malloc(_len_cpi0*sizeof(struct ufs_cg_private_info));
+          for(int _i0 = 0; _i0 < _len_cpi0; _i0++) {
+              cpi[_i0].c_ubh.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct ufs_buffer_head * benchRet = UCPI_UBH(cpi);
+          printf("%d\n", (*benchRet).dummy);
+          free(cpi);
+        
+        break;
+    }
     default:
         usage();
         break;

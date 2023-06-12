@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ diva_os_atomic_increment(diva_os_atomic_t *pv)
 	return (*pv);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pv0 = 1;
+          int _len_pv0 = 65025;
           int * pv = (int *) malloc(_len_pv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
             pv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = diva_os_atomic_increment(pv);
           printf("%d\n", benchRet); 
           free(pv);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
             pv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = diva_os_atomic_increment(pv);
           printf("%d\n", benchRet); 
           free(pv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pv0 = 1;
+          int * pv = (int *) malloc(_len_pv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pv0; _i0++) {
+            pv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = diva_os_atomic_increment(pv);
+          printf("%d\n", benchRet); 
+          free(pv);
+        
+        break;
+    }
     default:
         usage();
         break;

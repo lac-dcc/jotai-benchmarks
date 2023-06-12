@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ unsigned int vnic_dev_get_res_count(struct vnic_dev *vdev,
 	return vdev->res[type].count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum vnic_res_type type = 0;
+        
+          int _len_vdev0 = 65025;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              int _len_vdev__i0__res0 = 1;
+          vdev[_i0].res = (struct TYPE_2__ *) malloc(_len_vdev__i0__res0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__res0; _j0++) {
+              vdev[_i0].res->count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = vnic_dev_get_res_count(vdev,type);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].res);
+          }
+          free(vdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum vnic_res_type type = 0;
+        
+          int _len_vdev0 = 100;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              int _len_vdev__i0__res0 = 1;
+          vdev[_i0].res = (struct TYPE_2__ *) malloc(_len_vdev__i0__res0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__res0; _j0++) {
+              vdev[_i0].res->count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = vnic_dev_get_res_count(vdev,type);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].res);
+          }
+          free(vdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum vnic_res_type type = 0;
+        
           int _len_vdev0 = 1;
           struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
               int _len_vdev__i0__res0 = 1;
           vdev[_i0].res = (struct TYPE_2__ *) malloc(_len_vdev__i0__res0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vdev__i0__res0; _j0++) {
-            vdev[_i0].res->count = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].res->count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = vnic_dev_get_res_count(vdev,type);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_vdev0; _aux++) {

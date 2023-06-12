@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static inline void hil_mlc_clean_serio_map(hil_mlc *mlc)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,8 +90,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_mlc0 = 65025;
+          struct TYPE_5__ * mlc = (struct TYPE_5__ *) malloc(_len_mlc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mlc0; _i0++) {
+              int _len_mlc__i0__di_map0 = 1;
+          mlc[_i0].di_map = (int *) malloc(_len_mlc__i0__di_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mlc__i0__di_map0; _j0++) {
+            mlc[_i0].di_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_mlc__i0__serio_map0 = 1;
+          mlc[_i0].serio_map = (struct TYPE_4__ *) malloc(_len_mlc__i0__serio_map0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mlc__i0__serio_map0; _j0++) {
+              mlc[_i0].serio_map->di_revmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          hil_mlc_clean_serio_map(mlc);
+          for(int _aux = 0; _aux < _len_mlc0; _aux++) {
+          free(mlc[_aux].di_map);
+          }
+          for(int _aux = 0; _aux < _len_mlc0; _aux++) {
+          free(mlc[_aux].serio_map);
+          }
+          free(mlc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mlc0 = 100;
+          struct TYPE_5__ * mlc = (struct TYPE_5__ *) malloc(_len_mlc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mlc0; _i0++) {
+              int _len_mlc__i0__di_map0 = 1;
+          mlc[_i0].di_map = (int *) malloc(_len_mlc__i0__di_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mlc__i0__di_map0; _j0++) {
+            mlc[_i0].di_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_mlc__i0__serio_map0 = 1;
+          mlc[_i0].serio_map = (struct TYPE_4__ *) malloc(_len_mlc__i0__serio_map0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mlc__i0__serio_map0; _j0++) {
+              mlc[_i0].serio_map->di_revmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          hil_mlc_clean_serio_map(mlc);
+          for(int _aux = 0; _aux < _len_mlc0; _aux++) {
+          free(mlc[_aux].di_map);
+          }
+          for(int _aux = 0; _aux < _len_mlc0; _aux++) {
+          free(mlc[_aux].serio_map);
+          }
+          free(mlc);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_mlc0 = 1;
           struct TYPE_5__ * mlc = (struct TYPE_5__ *) malloc(_len_mlc0*sizeof(struct TYPE_5__));
@@ -108,9 +166,12 @@ int main(int argc, char *argv[]) {
           int _len_mlc__i0__serio_map0 = 1;
           mlc[_i0].serio_map = (struct TYPE_4__ *) malloc(_len_mlc__i0__serio_map0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mlc__i0__serio_map0; _j0++) {
-            mlc[_i0].serio_map->di_revmap = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlc[_i0].serio_map->di_revmap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           hil_mlc_clean_serio_map(mlc);
           for(int _aux = 0; _aux < _len_mlc0; _aux++) {
           free(mlc[_aux].di_map);
@@ -122,7 +183,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

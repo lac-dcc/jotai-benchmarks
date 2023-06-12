@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -166,12 +169,6 @@ pf_check_proto_cksum(pbuf_t *pbuf, int off, int len, u_int8_t p,
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -184,13 +181,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int off = 100;
+        
           int len = 100;
+        
           int p = 100;
+        
           int af = 100;
+        
           int _len_pbuf0 = 1;
           struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
@@ -204,8 +228,202 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_data0; _j0++) {
             pbuf[_i0].pb_csum_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pf_check_proto_cksum(pbuf,off,len,p,af);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
+          free(pbuf[_aux].pb_csum_flags);
+          }
+          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
+          free(pbuf[_aux].pb_csum_data);
+          }
+          free(pbuf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int off = 255;
+        
+          int len = 255;
+        
+          int p = 255;
+        
+          int af = 255;
+        
+          int _len_pbuf0 = 65025;
+          struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+              int _len_pbuf__i0__pb_csum_flags0 = 1;
+          pbuf[_i0].pb_csum_flags = (int *) malloc(_len_pbuf__i0__pb_csum_flags0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_flags0; _j0++) {
+            pbuf[_i0].pb_csum_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pbuf__i0__pb_csum_data0 = 1;
+          pbuf[_i0].pb_csum_data = (int *) malloc(_len_pbuf__i0__pb_csum_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_data0; _j0++) {
+            pbuf[_i0].pb_csum_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_check_proto_cksum(pbuf,off,len,p,af);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
+          free(pbuf[_aux].pb_csum_flags);
+          }
+          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
+          free(pbuf[_aux].pb_csum_data);
+          }
+          free(pbuf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int off = 10;
+        
+          int len = 10;
+        
+          int p = 10;
+        
+          int af = 10;
+        
+          int _len_pbuf0 = 100;
+          struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+              int _len_pbuf__i0__pb_csum_flags0 = 1;
+          pbuf[_i0].pb_csum_flags = (int *) malloc(_len_pbuf__i0__pb_csum_flags0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_flags0; _j0++) {
+            pbuf[_i0].pb_csum_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pbuf__i0__pb_csum_data0 = 1;
+          pbuf[_i0].pb_csum_data = (int *) malloc(_len_pbuf__i0__pb_csum_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_data0; _j0++) {
+            pbuf[_i0].pb_csum_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pf_check_proto_cksum(pbuf,off,len,p,af);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
+          free(pbuf[_aux].pb_csum_flags);
+          }
+          for(int _aux = 0; _aux < _len_pbuf0; _aux++) {
+          free(pbuf[_aux].pb_csum_data);
+          }
+          free(pbuf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int af = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pbuf0 = 1;
+          struct TYPE_6__ * pbuf = (struct TYPE_6__ *) malloc(_len_pbuf0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_pbuf0; _i0++) {
+              int _len_pbuf__i0__pb_csum_flags0 = 1;
+          pbuf[_i0].pb_csum_flags = (int *) malloc(_len_pbuf__i0__pb_csum_flags0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_flags0; _j0++) {
+            pbuf[_i0].pb_csum_flags[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pbuf__i0__pb_csum_data0 = 1;
+          pbuf[_i0].pb_csum_data = (int *) malloc(_len_pbuf__i0__pb_csum_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pbuf__i0__pb_csum_data0; _j0++) {
+            pbuf[_i0].pb_csum_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pbuf[_i0].pb_packet_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pf_check_proto_cksum(pbuf,off,len,p,af);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pbuf0; _aux++) {

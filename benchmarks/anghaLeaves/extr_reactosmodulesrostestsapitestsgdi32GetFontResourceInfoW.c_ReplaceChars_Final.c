@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ ReplaceChars(WCHAR *pch, INT Len, WCHAR From, WCHAR To)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,17 +85,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 3325
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 1538
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 792
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 792
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 792
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 1537
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 1791
+          // ------------------------------- 
+
+          long Len = 255;
+        
+          long From = 255;
+        
+          long To = 255;
+        
+          int _len_pch0 = 65025;
+          long * pch = (long *) malloc(_len_pch0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pch0; _i0++) {
+            pch[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ReplaceChars(pch,Len,From,To);
+          free(pch);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 140
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 68
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 54
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 54
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 54
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 67
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 76
+          // ------------------------------- 
+
           long Len = 10;
+        
           long From = 10;
+        
           long To = 10;
+        
           int _len_pch0 = 100;
           long * pch = (long *) malloc(_len_pch0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_pch0; _i0++) {
             pch[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          ReplaceChars(pch,Len,From,To);
+          free(pch);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          long Len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long From = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long To = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pch0 = 1;
+          long * pch = (long *) malloc(_len_pch0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_pch0; _i0++) {
+            pch[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           ReplaceChars(pch,Len,From,To);
           free(pch);
         

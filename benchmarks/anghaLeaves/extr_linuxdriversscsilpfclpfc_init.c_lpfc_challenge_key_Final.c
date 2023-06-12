@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ lpfc_challenge_key(uint32_t * RandomChallenge, uint32_t * HashWorking)
 	*HashWorking = (*RandomChallenge ^ *HashWorking);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,26 +75,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_RandomChallenge0 = 1;
+          int _len_RandomChallenge0 = 65025;
           int * RandomChallenge = (int *) malloc(_len_RandomChallenge0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_RandomChallenge0; _i0++) {
             RandomChallenge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_HashWorking0 = 1;
+        
+          int _len_HashWorking0 = 65025;
           int * HashWorking = (int *) malloc(_len_HashWorking0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_HashWorking0; _i0++) {
             HashWorking[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           lpfc_challenge_key(RandomChallenge,HashWorking);
           free(RandomChallenge);
           free(HashWorking);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_RandomChallenge0 = 100;
+          int * RandomChallenge = (int *) malloc(_len_RandomChallenge0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_RandomChallenge0; _i0++) {
+            RandomChallenge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_HashWorking0 = 100;
+          int * HashWorking = (int *) malloc(_len_HashWorking0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_HashWorking0; _i0++) {
+            HashWorking[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lpfc_challenge_key(RandomChallenge,HashWorking);
+          free(RandomChallenge);
+          free(HashWorking);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_RandomChallenge0 = 1;
+          int * RandomChallenge = (int *) malloc(_len_RandomChallenge0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_RandomChallenge0; _i0++) {
+            RandomChallenge[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_HashWorking0 = 1;
+          int * HashWorking = (int *) malloc(_len_HashWorking0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_HashWorking0; _i0++) {
+            HashWorking[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lpfc_challenge_key(RandomChallenge,HashWorking);
+          free(RandomChallenge);
+          free(HashWorking);
+        
+        break;
+    }
     default:
         usage();
         break;

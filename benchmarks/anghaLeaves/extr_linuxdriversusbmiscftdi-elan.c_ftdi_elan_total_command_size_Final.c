@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int ftdi_elan_total_command_size(struct usb_ftdi *f
 	} return total_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int command_size = 100;
+        
           int _len_ftdi0 = 1;
           struct usb_ftdi * ftdi = (struct usb_ftdi *) malloc(_len_ftdi0*sizeof(struct usb_ftdi));
           for(int _i0 = 0; _i0 < _len_ftdi0; _i0++) {
-            ftdi[_i0].command_head = ((-2 * (next_i()%2)) + 1) * next_i();
+              ftdi[_i0].command_head = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ftdi__i0__command0 = 1;
           ftdi[_i0].command = (struct u132_command *) malloc(_len_ftdi__i0__command0*sizeof(struct u132_command));
           for(int _j0 = 0; _j0 < _len_ftdi__i0__command0; _j0++) {
-            ftdi[_i0].command->follows = ((-2 * (next_i()%2)) + 1) * next_i();
+              ftdi[_i0].command->follows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ftdi_elan_total_command_size(ftdi,command_size);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ftdi0; _aux++) {
@@ -110,7 +111,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int command_size = 255;
+        
+          int _len_ftdi0 = 65025;
+          struct usb_ftdi * ftdi = (struct usb_ftdi *) malloc(_len_ftdi0*sizeof(struct usb_ftdi));
+          for(int _i0 = 0; _i0 < _len_ftdi0; _i0++) {
+              ftdi[_i0].command_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ftdi__i0__command0 = 1;
+          ftdi[_i0].command = (struct u132_command *) malloc(_len_ftdi__i0__command0*sizeof(struct u132_command));
+          for(int _j0 = 0; _j0 < _len_ftdi__i0__command0; _j0++) {
+              ftdi[_i0].command->follows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ftdi_elan_total_command_size(ftdi,command_size);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ftdi0; _aux++) {
+          free(ftdi[_aux].command);
+          }
+          free(ftdi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int command_size = 10;
+        
+          int _len_ftdi0 = 100;
+          struct usb_ftdi * ftdi = (struct usb_ftdi *) malloc(_len_ftdi0*sizeof(struct usb_ftdi));
+          for(int _i0 = 0; _i0 < _len_ftdi0; _i0++) {
+              ftdi[_i0].command_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ftdi__i0__command0 = 1;
+          ftdi[_i0].command = (struct u132_command *) malloc(_len_ftdi__i0__command0*sizeof(struct u132_command));
+          for(int _j0 = 0; _j0 < _len_ftdi__i0__command0; _j0++) {
+              ftdi[_i0].command->follows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ftdi_elan_total_command_size(ftdi,command_size);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ftdi0; _aux++) {
+          free(ftdi[_aux].command);
+          }
+          free(ftdi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int command_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ftdi0 = 1;
+          struct usb_ftdi * ftdi = (struct usb_ftdi *) malloc(_len_ftdi0*sizeof(struct usb_ftdi));
+          for(int _i0 = 0; _i0 < _len_ftdi0; _i0++) {
+              ftdi[_i0].command_head = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ftdi__i0__command0 = 1;
+          ftdi[_i0].command = (struct u132_command *) malloc(_len_ftdi__i0__command0*sizeof(struct u132_command));
+          for(int _j0 = 0; _j0 < _len_ftdi__i0__command0; _j0++) {
+              ftdi[_i0].command->follows = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ftdi_elan_total_command_size(ftdi,command_size);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ftdi0; _aux++) {
+          free(ftdi[_aux].command);
+          }
+          free(ftdi);
+        
+        break;
+    }
     default:
         usage();
         break;

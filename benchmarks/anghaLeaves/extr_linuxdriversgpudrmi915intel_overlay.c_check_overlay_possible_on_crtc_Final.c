@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int check_overlay_possible_on_crtc(struct intel_ove
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,24 +86,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_overlay0 = 65025;
+          struct intel_overlay * overlay = (struct intel_overlay *) malloc(_len_overlay0*sizeof(struct intel_overlay));
+          for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
+              overlay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_crtc0 = 65025;
+          struct intel_crtc * crtc = (struct intel_crtc *) malloc(_len_crtc0*sizeof(struct intel_crtc));
+          for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
+              int _len_crtc__i0__config0 = 1;
+          crtc[_i0].config = (struct TYPE_2__ *) malloc(_len_crtc__i0__config0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_crtc__i0__config0; _j0++) {
+              crtc[_i0].config->double_wide = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          crtc[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_overlay_possible_on_crtc(overlay,crtc);
+          printf("%d\n", benchRet); 
+          free(overlay);
+          for(int _aux = 0; _aux < _len_crtc0; _aux++) {
+          free(crtc[_aux].config);
+          }
+          free(crtc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_overlay0 = 100;
+          struct intel_overlay * overlay = (struct intel_overlay *) malloc(_len_overlay0*sizeof(struct intel_overlay));
+          for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
+              overlay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_crtc0 = 100;
+          struct intel_crtc * crtc = (struct intel_crtc *) malloc(_len_crtc0*sizeof(struct intel_crtc));
+          for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
+              int _len_crtc__i0__config0 = 1;
+          crtc[_i0].config = (struct TYPE_2__ *) malloc(_len_crtc__i0__config0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_crtc__i0__config0; _j0++) {
+              crtc[_i0].config->double_wide = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          crtc[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_overlay_possible_on_crtc(overlay,crtc);
+          printf("%d\n", benchRet); 
+          free(overlay);
+          for(int _aux = 0; _aux < _len_crtc0; _aux++) {
+          free(crtc[_aux].config);
+          }
+          free(crtc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_overlay0 = 1;
           struct intel_overlay * overlay = (struct intel_overlay *) malloc(_len_overlay0*sizeof(struct intel_overlay));
           for(int _i0 = 0; _i0 < _len_overlay0; _i0++) {
-            overlay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              overlay[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_crtc0 = 1;
           struct intel_crtc * crtc = (struct intel_crtc *) malloc(_len_crtc0*sizeof(struct intel_crtc));
           for(int _i0 = 0; _i0 < _len_crtc0; _i0++) {
               int _len_crtc__i0__config0 = 1;
           crtc[_i0].config = (struct TYPE_2__ *) malloc(_len_crtc__i0__config0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_crtc__i0__config0; _j0++) {
-            crtc[_i0].config->double_wide = ((-2 * (next_i()%2)) + 1) * next_i();
+              crtc[_i0].config->double_wide = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        crtc[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc[_i0].active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_overlay_possible_on_crtc(overlay,crtc);
           printf("%d\n", benchRet); 
           free(overlay);

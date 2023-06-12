@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int merge_detect_rename(struct merge_options
 		o->diff_detect_rename >= 0 ? o->diff_detect_rename : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_o0 = 1;
+          int _len_o0 = 65025;
           struct merge_options * o = (struct merge_options *) malloc(_len_o0*sizeof(struct merge_options));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].merge_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
-        o[_i0].diff_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].merge_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].diff_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = merge_detect_rename(o);
           printf("%d\n", benchRet); 
           free(o);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_o0 = 100;
+          struct merge_options * o = (struct merge_options *) malloc(_len_o0*sizeof(struct merge_options));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].merge_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].diff_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = merge_detect_rename(o);
+          printf("%d\n", benchRet); 
+          free(o);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_o0 = 1;
+          struct merge_options * o = (struct merge_options *) malloc(_len_o0*sizeof(struct merge_options));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].merge_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+          o[_i0].diff_detect_rename = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = merge_detect_rename(o);
+          printf("%d\n", benchRet); 
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

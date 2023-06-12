@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void cxgbi_ppm_ppod_clear(struct cxgbi_pagep
 	ppod->hdr.vld_tid = 0U;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ppod0 = 1;
+          int _len_ppod0 = 65025;
           struct cxgbi_pagepod * ppod = (struct cxgbi_pagepod *) malloc(_len_ppod0*sizeof(struct cxgbi_pagepod));
           for(int _i0 = 0; _i0 < _len_ppod0; _i0++) {
-            ppod[_i0].hdr.vld_tid = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppod[_i0].hdr.vld_tid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cxgbi_ppm_ppod_clear(ppod);
           free(ppod);
         
@@ -100,14 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_ppod0 = 100;
           struct cxgbi_pagepod * ppod = (struct cxgbi_pagepod *) malloc(_len_ppod0*sizeof(struct cxgbi_pagepod));
           for(int _i0 = 0; _i0 < _len_ppod0; _i0++) {
-            ppod[_i0].hdr.vld_tid = ((-2 * (next_i()%2)) + 1) * next_i();
+              ppod[_i0].hdr.vld_tid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cxgbi_ppm_ppod_clear(ppod);
           free(ppod);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ppod0 = 1;
+          struct cxgbi_pagepod * ppod = (struct cxgbi_pagepod *) malloc(_len_ppod0*sizeof(struct cxgbi_pagepod));
+          for(int _i0 = 0; _i0 < _len_ppod0; _i0++) {
+              ppod[_i0].hdr.vld_tid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cxgbi_ppm_ppod_clear(ppod);
+          free(ppod);
+        
+        break;
+    }
     default:
         usage();
         break;

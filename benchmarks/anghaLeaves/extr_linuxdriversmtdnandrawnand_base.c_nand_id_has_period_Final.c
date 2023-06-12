@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int nand_id_has_period(u8 *id_data, int arrlen, int
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,32 +80,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 1413
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 715
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 811
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 811
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 811
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 712
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 816
+          // ------------------------------- 
+
           int arrlen = 100;
+        
           int period = 100;
+        
           int _len_id_data0 = 1;
           long * id_data = (long *) malloc(_len_id_data0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_id_data0; _i0++) {
             id_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nand_id_has_period(id_data,arrlen,period);
           printf("%d\n", benchRet); 
           free(id_data);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 3583
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 1800
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 2051
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 2051
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 2051
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 1797
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 2056
+          // ------------------------------- 
+
+          int arrlen = 255;
+        
+          int period = 255;
+        
+          int _len_id_data0 = 65025;
+          long * id_data = (long *) malloc(_len_id_data0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_id_data0; _i0++) {
+            id_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nand_id_has_period(id_data,arrlen,period);
+          printf("%d\n", benchRet); 
+          free(id_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 153
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 85
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 91
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 91
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 82
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 96
+          // ------------------------------- 
+
           int arrlen = 10;
+        
           int period = 10;
+        
           int _len_id_data0 = 100;
           long * id_data = (long *) malloc(_len_id_data0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_id_data0; _i0++) {
             id_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nand_id_has_period(id_data,arrlen,period);
+          printf("%d\n", benchRet); 
+          free(id_data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int arrlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_id_data0 = 1;
+          long * id_data = (long *) malloc(_len_id_data0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_id_data0; _i0++) {
+            id_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nand_id_has_period(id_data,arrlen,period);
           printf("%d\n", benchRet); 
           free(id_data);

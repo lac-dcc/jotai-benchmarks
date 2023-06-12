@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static RPC_STATUS rpcrt4_ncalrpc_authorize(RpcConnection *
     return RPC_S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,27 +89,33 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int first_time = 100;
+        
           unsigned int in_size = 100;
+        
           int _len_conn0 = 1;
           int * conn = (int *) malloc(_len_conn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
             conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_in_buffer0 = 1;
           unsigned char * in_buffer = (unsigned char *) malloc(_len_in_buffer0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_in_buffer0; _i0++) {
             in_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_out_buffer0 = 1;
           unsigned char * out_buffer = (unsigned char *) malloc(_len_out_buffer0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_out_buffer0; _i0++) {
             out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_out_size0 = 1;
           unsigned int * out_size = (unsigned int *) malloc(_len_out_size0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_out_size0; _i0++) {
             out_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rpcrt4_ncalrpc_authorize(conn,first_time,in_buffer,in_size,out_buffer,out_size);
           printf("%d\n", benchRet); 
           free(conn);
@@ -122,7 +125,126 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int first_time = 255;
+        
+          unsigned int in_size = 255;
+        
+          int _len_conn0 = 65025;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_in_buffer0 = 65025;
+          unsigned char * in_buffer = (unsigned char *) malloc(_len_in_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_in_buffer0; _i0++) {
+            in_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_buffer0 = 65025;
+          unsigned char * out_buffer = (unsigned char *) malloc(_len_out_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_out_buffer0; _i0++) {
+            out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_size0 = 65025;
+          unsigned int * out_size = (unsigned int *) malloc(_len_out_size0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_out_size0; _i0++) {
+            out_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rpcrt4_ncalrpc_authorize(conn,first_time,in_buffer,in_size,out_buffer,out_size);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(in_buffer);
+          free(out_buffer);
+          free(out_size);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int first_time = 10;
+        
+          unsigned int in_size = 10;
+        
+          int _len_conn0 = 100;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_in_buffer0 = 100;
+          unsigned char * in_buffer = (unsigned char *) malloc(_len_in_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_in_buffer0; _i0++) {
+            in_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_buffer0 = 100;
+          unsigned char * out_buffer = (unsigned char *) malloc(_len_out_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_out_buffer0; _i0++) {
+            out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_size0 = 100;
+          unsigned int * out_size = (unsigned int *) malloc(_len_out_size0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_out_size0; _i0++) {
+            out_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rpcrt4_ncalrpc_authorize(conn,first_time,in_buffer,in_size,out_buffer,out_size);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(in_buffer);
+          free(out_buffer);
+          free(out_size);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int first_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int in_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_in_buffer0 = 1;
+          unsigned char * in_buffer = (unsigned char *) malloc(_len_in_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_in_buffer0; _i0++) {
+            in_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_buffer0 = 1;
+          unsigned char * out_buffer = (unsigned char *) malloc(_len_out_buffer0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_out_buffer0; _i0++) {
+            out_buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_size0 = 1;
+          unsigned int * out_size = (unsigned int *) malloc(_len_out_size0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_out_size0; _i0++) {
+            out_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rpcrt4_ncalrpc_authorize(conn,first_time,in_buffer,in_size,out_buffer,out_size);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(in_buffer);
+          free(out_buffer);
+          free(out_size);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static unsigned long *longset(unsigned long *s, unsigned l
 	return s;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +76,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long c = 10;
-          unsigned long n = 10;
-          int _len_s0 = 100;
+          unsigned long c = 255;
+        
+          unsigned long n = 255;
+        
+          int _len_s0 = 65025;
           unsigned long * s = (unsigned long *) malloc(_len_s0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long * benchRet = longset(s,c,n);
           printf("%lu\n", (*benchRet)); 
           free(s);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long c = 10;
+        
+          unsigned long n = 10;
+        
+          int _len_s0 = 100;
+          unsigned long * s = (unsigned long *) malloc(_len_s0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long * benchRet = longset(s,c,n);
+          printf("%lu\n", (*benchRet)); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

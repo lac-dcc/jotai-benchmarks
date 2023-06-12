@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ void xgbe_init_function_ptrs_phy(struct xgbe_phy_if *phy_if)
 	phy_if->module_eeprom   = xgbe_phy_module_eeprom;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +100,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_phy_if0 = 65025;
+          struct xgbe_phy_if * phy_if = (struct xgbe_phy_if *) malloc(_len_phy_if0*sizeof(struct xgbe_phy_if));
+          for(int _i0 = 0; _i0 < _len_phy_if0; _i0++) {
+              phy_if[_i0].module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].module_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].an_isr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_valid_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_config_aneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_exit = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xgbe_init_function_ptrs_phy(phy_if);
+          free(phy_if);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_phy_if0 = 100;
+          struct xgbe_phy_if * phy_if = (struct xgbe_phy_if *) malloc(_len_phy_if0*sizeof(struct xgbe_phy_if));
+          for(int _i0 = 0; _i0 < _len_phy_if0; _i0++) {
+              phy_if[_i0].module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].module_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].an_isr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_valid_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_config_aneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_exit = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xgbe_init_function_ptrs_phy(phy_if);
+          free(phy_if);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_phy_if0 = 1;
           struct xgbe_phy_if * phy_if = (struct xgbe_phy_if *) malloc(_len_phy_if0*sizeof(struct xgbe_phy_if));
           for(int _i0 = 0; _i0 < _len_phy_if0; _i0++) {
-            phy_if[_i0].module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].module_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].an_isr = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_valid_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_config_aneg = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_stop = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_exit = ((-2 * (next_i()%2)) + 1) * next_i();
-        phy_if[_i0].phy_init = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_if[_i0].module_eeprom = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].module_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].an_isr = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_valid_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_config_aneg = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_stop = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_exit = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy_if[_i0].phy_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xgbe_init_function_ptrs_phy(phy_if);
           free(phy_if);
         

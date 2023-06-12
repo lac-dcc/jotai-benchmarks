@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static inline u32 malidp_get_block_base(struct malidp_hw_d
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,16 +95,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int block = 100;
+        
           int _len_hwdev0 = 1;
           struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
           for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
               int _len_hwdev__i0__hw0 = 1;
           hwdev[_i0].hw = (struct TYPE_4__ *) malloc(_len_hwdev__i0__hw0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_hwdev__i0__hw0; _j0++) {
-            hwdev[_i0].hw->map.dc_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwdev[_i0].hw->map.se_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdev[_i0].hw->map.dc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwdev[_i0].hw->map.se_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = malidp_get_block_base(hwdev,block);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hwdev0; _aux++) {
@@ -117,7 +119,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int block = 255;
+        
+          int _len_hwdev0 = 65025;
+          struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
+          for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
+              int _len_hwdev__i0__hw0 = 1;
+          hwdev[_i0].hw = (struct TYPE_4__ *) malloc(_len_hwdev__i0__hw0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_hwdev__i0__hw0; _j0++) {
+              hwdev[_i0].hw->map.dc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwdev[_i0].hw->map.se_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = malidp_get_block_base(hwdev,block);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwdev0; _aux++) {
+          free(hwdev[_aux].hw);
+          }
+          free(hwdev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int block = 10;
+        
+          int _len_hwdev0 = 100;
+          struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
+          for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
+              int _len_hwdev__i0__hw0 = 1;
+          hwdev[_i0].hw = (struct TYPE_4__ *) malloc(_len_hwdev__i0__hw0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_hwdev__i0__hw0; _j0++) {
+              hwdev[_i0].hw->map.dc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwdev[_i0].hw->map.se_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = malidp_get_block_base(hwdev,block);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwdev0; _aux++) {
+          free(hwdev[_aux].hw);
+          }
+          free(hwdev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hwdev0 = 1;
+          struct malidp_hw_device * hwdev = (struct malidp_hw_device *) malloc(_len_hwdev0*sizeof(struct malidp_hw_device));
+          for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
+              int _len_hwdev__i0__hw0 = 1;
+          hwdev[_i0].hw = (struct TYPE_4__ *) malloc(_len_hwdev__i0__hw0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_hwdev__i0__hw0; _j0++) {
+              hwdev[_i0].hw->map.dc_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwdev[_i0].hw->map.se_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = malidp_get_block_base(hwdev,block);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwdev0; _aux++) {
+          free(hwdev[_aux].hw);
+          }
+          free(hwdev);
+        
+        break;
+    }
     default:
         usage();
         break;

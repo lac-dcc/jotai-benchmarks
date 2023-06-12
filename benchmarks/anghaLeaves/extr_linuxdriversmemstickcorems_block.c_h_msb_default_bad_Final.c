@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int h_msb_default_bad(struct memstick_dev *card,
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,35 +77,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_card0 = 1;
+          int _len_card0 = 65025;
           struct memstick_dev * card = (struct memstick_dev *) malloc(_len_card0*sizeof(struct memstick_dev));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mrq0 = 1;
+        
+          int _len_mrq0 = 65025;
           struct memstick_request ** mrq = (struct memstick_request **) malloc(_len_mrq0*sizeof(struct memstick_request *));
           for(int _i0 = 0; _i0 < _len_mrq0; _i0++) {
             int _len_mrq1 = 1;
             mrq[_i0] = (struct memstick_request *) malloc(_len_mrq1*sizeof(struct memstick_request));
             for(int _i1 = 0; _i1 < _len_mrq1; _i1++) {
-              mrq[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                mrq[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = h_msb_default_bad(card,mrq);
           printf("%d\n", benchRet); 
           free(card);
           for(int i1 = 0; i1 < _len_mrq0; i1++) {
-            int _len_mrq1 = 1;
               free(mrq[i1]);
           }
           free(mrq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_card0 = 100;
+          struct memstick_dev * card = (struct memstick_dev *) malloc(_len_card0*sizeof(struct memstick_dev));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mrq0 = 100;
+          struct memstick_request ** mrq = (struct memstick_request **) malloc(_len_mrq0*sizeof(struct memstick_request *));
+          for(int _i0 = 0; _i0 < _len_mrq0; _i0++) {
+            int _len_mrq1 = 1;
+            mrq[_i0] = (struct memstick_request *) malloc(_len_mrq1*sizeof(struct memstick_request));
+            for(int _i1 = 0; _i1 < _len_mrq1; _i1++) {
+                mrq[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = h_msb_default_bad(card,mrq);
+          printf("%d\n", benchRet); 
+          free(card);
+          for(int i1 = 0; i1 < _len_mrq0; i1++) {
+              free(mrq[i1]);
+          }
+          free(mrq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_card0 = 1;
+          struct memstick_dev * card = (struct memstick_dev *) malloc(_len_card0*sizeof(struct memstick_dev));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mrq0 = 1;
+          struct memstick_request ** mrq = (struct memstick_request **) malloc(_len_mrq0*sizeof(struct memstick_request *));
+          for(int _i0 = 0; _i0 < _len_mrq0; _i0++) {
+            int _len_mrq1 = 1;
+            mrq[_i0] = (struct memstick_request *) malloc(_len_mrq1*sizeof(struct memstick_request));
+            for(int _i1 = 0; _i1 < _len_mrq1; _i1++) {
+                mrq[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = h_msb_default_bad(card,mrq);
+          printf("%d\n", benchRet); 
+          free(card);
+          for(int i1 = 0; i1 < _len_mrq0; i1++) {
+              free(mrq[i1]);
+          }
+          free(mrq);
+        
+        break;
+    }
     default:
         usage();
         break;

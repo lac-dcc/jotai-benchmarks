@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -62,7 +63,6 @@ struct drm_master *drm_lease_owner(struct drm_master *master)
 	return master;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct drm_master *_allocate_master(int length, struct drm_master *aux_master[]) {
@@ -90,7 +90,6 @@ void _delete_master(struct drm_master *aux_master[], int aux_master_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,11 +102,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 70002
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 40006
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 40006
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 40006
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 40006
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 40004
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 40004
+          // ------------------------------- 
+
+          struct drm_master * aux_master[10000];
+          struct drm_master * master = _allocate_master(10000, aux_master);
+        
+          struct drm_master * benchRet = drm_lease_owner(master);
+          _delete_master(aux_master, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           struct drm_master * aux_master[1];
           struct drm_master * master = _allocate_master(1, aux_master);
+        
           struct drm_master * benchRet = drm_lease_owner(master);
           _delete_master(aux_master, 1);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -104,12 +106,6 @@ __attribute__((used)) static void set_color_bitfields(struct fb_var_screeninfo *
 	var->transp.msb_right = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,26 +118,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_color_bitfields(var);
+          free(var);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_color_bitfields(var);
+          free(var);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].transp.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].green.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          var[_i0].red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].red.msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           set_color_bitfields(var);
           free(var);
         

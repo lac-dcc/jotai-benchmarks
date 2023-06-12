@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ isert_set_conn_info(struct iscsi_np *np, struct iscsi_conn *conn,
 	conn->local_sockaddr = cm_route->addr.src_addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,31 +90,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_np0 = 1;
+          int _len_np0 = 65025;
           struct iscsi_np * np = (struct iscsi_np *) malloc(_len_np0*sizeof(struct iscsi_np));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].np_sockaddr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].np_sockaddr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_conn0 = 1;
+        
+          int _len_conn0 = 65025;
           struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].local_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].login_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].login_family = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].local_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].login_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].login_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_isert_conn0 = 1;
+        
+          int _len_isert_conn0 = 65025;
           struct isert_conn * isert_conn = (struct isert_conn *) malloc(_len_isert_conn0*sizeof(struct isert_conn));
           for(int _i0 = 0; _i0 < _len_isert_conn0; _i0++) {
               int _len_isert_conn__i0__cm_id0 = 1;
           isert_conn[_i0].cm_id = (struct rdma_cm_id *) malloc(_len_isert_conn__i0__cm_id0*sizeof(struct rdma_cm_id));
           for(int _j0 = 0; _j0 < _len_isert_conn__i0__cm_id0; _j0++) {
-            isert_conn[_i0].cm_id->route.addr.src_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        isert_conn[_i0].cm_id->route.addr.dst_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              isert_conn[_i0].cm_id->route.addr.src_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          isert_conn[_i0].cm_id->route.addr.dst_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           isert_set_conn_info(np,conn,isert_conn);
           free(np);
           free(conn);
@@ -129,7 +135,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_np0 = 100;
+          struct iscsi_np * np = (struct iscsi_np *) malloc(_len_np0*sizeof(struct iscsi_np));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].np_sockaddr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_conn0 = 100;
+          struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].local_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].login_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].login_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_isert_conn0 = 100;
+          struct isert_conn * isert_conn = (struct isert_conn *) malloc(_len_isert_conn0*sizeof(struct isert_conn));
+          for(int _i0 = 0; _i0 < _len_isert_conn0; _i0++) {
+              int _len_isert_conn__i0__cm_id0 = 1;
+          isert_conn[_i0].cm_id = (struct rdma_cm_id *) malloc(_len_isert_conn__i0__cm_id0*sizeof(struct rdma_cm_id));
+          for(int _j0 = 0; _j0 < _len_isert_conn__i0__cm_id0; _j0++) {
+              isert_conn[_i0].cm_id->route.addr.src_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          isert_conn[_i0].cm_id->route.addr.dst_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          isert_set_conn_info(np,conn,isert_conn);
+          free(np);
+          free(conn);
+          for(int _aux = 0; _aux < _len_isert_conn0; _aux++) {
+          free(isert_conn[_aux].cm_id);
+          }
+          free(isert_conn);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_np0 = 1;
+          struct iscsi_np * np = (struct iscsi_np *) malloc(_len_np0*sizeof(struct iscsi_np));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].np_sockaddr.ss_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_conn0 = 1;
+          struct iscsi_conn * conn = (struct iscsi_conn *) malloc(_len_conn0*sizeof(struct iscsi_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].local_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].login_sockaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].login_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_isert_conn0 = 1;
+          struct isert_conn * isert_conn = (struct isert_conn *) malloc(_len_isert_conn0*sizeof(struct isert_conn));
+          for(int _i0 = 0; _i0 < _len_isert_conn0; _i0++) {
+              int _len_isert_conn__i0__cm_id0 = 1;
+          isert_conn[_i0].cm_id = (struct rdma_cm_id *) malloc(_len_isert_conn__i0__cm_id0*sizeof(struct rdma_cm_id));
+          for(int _j0 = 0; _j0 < _len_isert_conn__i0__cm_id0; _j0++) {
+              isert_conn[_i0].cm_id->route.addr.src_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          isert_conn[_i0].cm_id->route.addr.dst_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          isert_set_conn_info(np,conn,isert_conn);
+          free(np);
+          free(conn);
+          for(int _aux = 0; _aux < _len_isert_conn0; _aux++) {
+          free(isert_conn[_aux].cm_id);
+          }
+          free(isert_conn);
+        
+        break;
+    }
     default:
         usage();
         break;

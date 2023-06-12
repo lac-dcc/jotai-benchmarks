@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static void ui2a(unsigned int num, unsigned int base, int 
     *bf=0;
     }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +85,46 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int num = 10;
-          unsigned int base = 10;
-          int uc = 10;
-          int _len_bf0 = 100;
+          unsigned int num = 255;
+        
+          unsigned int base = 255;
+        
+          int uc = 255;
+        
+          int _len_bf0 = 65025;
           char * bf = (char *) malloc(_len_bf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_bf0; _i0++) {
             bf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ui2a(num,base,uc,bf);
           free(bf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int num = 10;
+        
+          unsigned int base = 10;
+        
+          int uc = 10;
+        
+          int _len_bf0 = 100;
+          char * bf = (char *) malloc(_len_bf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bf0; _i0++) {
+            bf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ui2a(num,base,uc,bf);
+          free(bf);
+        
+        break;
+    }
     default:
         usage();
         break;

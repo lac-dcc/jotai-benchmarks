@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct ipu_vdi *ipu_vdi_get(struct ipu_soc *ipu)
 	return ipu->vdi_priv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ipu0 = 1;
+          int _len_ipu0 = 65025;
           struct ipu_soc * ipu = (struct ipu_soc *) malloc(_len_ipu0*sizeof(struct ipu_soc));
           for(int _i0 = 0; _i0 < _len_ipu0; _i0++) {
               int _len_ipu__i0__vdi_priv0 = 1;
           ipu[_i0].vdi_priv = (struct ipu_vdi *) malloc(_len_ipu__i0__vdi_priv0*sizeof(struct ipu_vdi));
           for(int _j0 = 0; _j0 < _len_ipu__i0__vdi_priv0; _j0++) {
-            ipu[_i0].vdi_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipu[_i0].vdi_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct ipu_vdi * benchRet = ipu_vdi_get(ipu);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ipu0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ipu0 = 100;
+          struct ipu_soc * ipu = (struct ipu_soc *) malloc(_len_ipu0*sizeof(struct ipu_soc));
+          for(int _i0 = 0; _i0 < _len_ipu0; _i0++) {
+              int _len_ipu__i0__vdi_priv0 = 1;
+          ipu[_i0].vdi_priv = (struct ipu_vdi *) malloc(_len_ipu__i0__vdi_priv0*sizeof(struct ipu_vdi));
+          for(int _j0 = 0; _j0 < _len_ipu__i0__vdi_priv0; _j0++) {
+              ipu[_i0].vdi_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ipu_vdi * benchRet = ipu_vdi_get(ipu);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ipu0; _aux++) {
+          free(ipu[_aux].vdi_priv);
+          }
+          free(ipu);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ipu0 = 1;
+          struct ipu_soc * ipu = (struct ipu_soc *) malloc(_len_ipu0*sizeof(struct ipu_soc));
+          for(int _i0 = 0; _i0 < _len_ipu0; _i0++) {
+              int _len_ipu__i0__vdi_priv0 = 1;
+          ipu[_i0].vdi_priv = (struct ipu_vdi *) malloc(_len_ipu__i0__vdi_priv0*sizeof(struct ipu_vdi));
+          for(int _j0 = 0; _j0 < _len_ipu__i0__vdi_priv0; _j0++) {
+              ipu[_i0].vdi_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ipu_vdi * benchRet = ipu_vdi_get(ipu);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ipu0; _aux++) {
+          free(ipu[_aux].vdi_priv);
+          }
+          free(ipu);
+        
+        break;
+    }
     default:
         usage();
         break;

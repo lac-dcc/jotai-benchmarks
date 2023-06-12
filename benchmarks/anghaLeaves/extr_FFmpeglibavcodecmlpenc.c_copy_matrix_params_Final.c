@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void copy_matrix_params(MatrixParams *dst, MatrixPa
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,10 +94,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dst0 = 1;
+          int _len_dst0 = 65025;
           struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
               int _len_dst__i0__outch0 = 1;
@@ -128,9 +124,11 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dst__i0__fbits0; _j0++) {
             dst[_i0].fbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        dst[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_src0 = 1;
+        
+          int _len_src0 = 65025;
           struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
               int _len_src__i0__outch0 = 1;
@@ -157,8 +155,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_src__i0__fbits0; _j0++) {
             src[_i0].fbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        src[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           copy_matrix_params(dst,src);
           for(int _aux = 0; _aux < _len_dst0; _aux++) {
           free(dst[_aux].outch);
@@ -191,7 +191,200 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dst0 = 100;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              int _len_dst__i0__outch0 = 1;
+          dst[_i0].outch = (int *) malloc(_len_dst__i0__outch0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__outch0; _j0++) {
+            dst[_i0].outch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dst__i0__coeff0 = 1;
+          dst[_i0].coeff = (int **) malloc(_len_dst__i0__coeff0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_dst__i0__coeff0; _j0++) {
+            int _len_dst__i0__coeff1 = 1;
+            dst[_i0].coeff[_j0] = (int *) malloc(_len_dst__i0__coeff1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_dst__i0__coeff1; _j1++) {
+              dst[_i0].coeff[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_dst__i0__shift0 = 1;
+          dst[_i0].shift = (int *) malloc(_len_dst__i0__shift0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__shift0; _j0++) {
+            dst[_i0].shift[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dst__i0__fbits0 = 1;
+          dst[_i0].fbits = (int *) malloc(_len_dst__i0__fbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__fbits0; _j0++) {
+            dst[_i0].fbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dst[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              int _len_src__i0__outch0 = 1;
+          src[_i0].outch = (int *) malloc(_len_src__i0__outch0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__outch0; _j0++) {
+            src[_i0].outch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_src__i0__coeff0 = 1;
+          src[_i0].coeff = (int **) malloc(_len_src__i0__coeff0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_src__i0__coeff0; _j0++) {
+            int _len_src__i0__coeff1 = 1;
+            src[_i0].coeff[_j0] = (int *) malloc(_len_src__i0__coeff1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_src__i0__coeff1; _j1++) {
+              src[_i0].coeff[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_src__i0__shift0 = 1;
+          src[_i0].shift = (int *) malloc(_len_src__i0__shift0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__shift0; _j0++) {
+            src[_i0].shift[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_src__i0__fbits0 = 1;
+          src[_i0].fbits = (int *) malloc(_len_src__i0__fbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__fbits0; _j0++) {
+            src[_i0].fbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          src[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_matrix_params(dst,src);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].outch);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(*(dst[_aux].coeff));
+        free(dst[_aux].coeff);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].shift);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].fbits);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].outch);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(*(src[_aux].coeff));
+        free(src[_aux].coeff);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].shift);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].fbits);
+          }
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dst0 = 1;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              int _len_dst__i0__outch0 = 1;
+          dst[_i0].outch = (int *) malloc(_len_dst__i0__outch0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__outch0; _j0++) {
+            dst[_i0].outch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dst__i0__coeff0 = 1;
+          dst[_i0].coeff = (int **) malloc(_len_dst__i0__coeff0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_dst__i0__coeff0; _j0++) {
+            int _len_dst__i0__coeff1 = 1;
+            dst[_i0].coeff[_j0] = (int *) malloc(_len_dst__i0__coeff1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_dst__i0__coeff1; _j1++) {
+              dst[_i0].coeff[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_dst__i0__shift0 = 1;
+          dst[_i0].shift = (int *) malloc(_len_dst__i0__shift0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__shift0; _j0++) {
+            dst[_i0].shift[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dst__i0__fbits0 = 1;
+          dst[_i0].fbits = (int *) malloc(_len_dst__i0__fbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dst__i0__fbits0; _j0++) {
+            dst[_i0].fbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          dst[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 1;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              int _len_src__i0__outch0 = 1;
+          src[_i0].outch = (int *) malloc(_len_src__i0__outch0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__outch0; _j0++) {
+            src[_i0].outch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_src__i0__coeff0 = 1;
+          src[_i0].coeff = (int **) malloc(_len_src__i0__coeff0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_src__i0__coeff0; _j0++) {
+            int _len_src__i0__coeff1 = 1;
+            src[_i0].coeff[_j0] = (int *) malloc(_len_src__i0__coeff1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_src__i0__coeff1; _j1++) {
+              src[_i0].coeff[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_src__i0__shift0 = 1;
+          src[_i0].shift = (int *) malloc(_len_src__i0__shift0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__shift0; _j0++) {
+            src[_i0].shift[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_src__i0__fbits0 = 1;
+          src[_i0].fbits = (int *) malloc(_len_src__i0__fbits0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_src__i0__fbits0; _j0++) {
+            src[_i0].fbits[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          src[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_matrix_params(dst,src);
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].outch);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(*(dst[_aux].coeff));
+        free(dst[_aux].coeff);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].shift);
+          }
+          for(int _aux = 0; _aux < _len_dst0; _aux++) {
+          free(dst[_aux].fbits);
+          }
+          free(dst);
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].outch);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(*(src[_aux].coeff));
+        free(src[_aux].coeff);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].shift);
+          }
+          for(int _aux = 0; _aux < _len_src0; _aux++) {
+          free(src[_aux].fbits);
+          }
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

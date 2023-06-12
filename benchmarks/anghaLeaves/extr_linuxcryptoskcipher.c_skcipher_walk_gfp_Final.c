@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline gfp_t skcipher_walk_gfp(struct skcipher_walk
 	return walk->flags & SKCIPHER_WALK_SLEEP ? GFP_KERNEL : GFP_ATOMIC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_walk0 = 1;
+          int _len_walk0 = 65025;
           struct skcipher_walk * walk = (struct skcipher_walk *) malloc(_len_walk0*sizeof(struct skcipher_walk));
           for(int _i0 = 0; _i0 < _len_walk0; _i0++) {
-            walk[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              walk[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = skcipher_walk_gfp(walk);
           printf("%d\n", benchRet); 
           free(walk);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_walk0 = 100;
           struct skcipher_walk * walk = (struct skcipher_walk *) malloc(_len_walk0*sizeof(struct skcipher_walk));
           for(int _i0 = 0; _i0 < _len_walk0; _i0++) {
-            walk[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              walk[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = skcipher_walk_gfp(walk);
           printf("%d\n", benchRet); 
           free(walk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_walk0 = 1;
+          struct skcipher_walk * walk = (struct skcipher_walk *) malloc(_len_walk0*sizeof(struct skcipher_walk));
+          for(int _i0 = 0; _i0 < _len_walk0; _i0++) {
+              walk[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = skcipher_walk_gfp(walk);
+          printf("%d\n", benchRet); 
+          free(walk);
+        
+        break;
+    }
     default:
         usage();
         break;

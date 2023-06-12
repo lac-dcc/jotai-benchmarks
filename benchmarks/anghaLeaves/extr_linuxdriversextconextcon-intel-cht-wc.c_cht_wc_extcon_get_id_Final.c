@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int cht_wc_extcon_get_id(struct cht_wc_extcon_data 
 	return USB_ID_FLOAT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,11 +92,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pwrsrc_sts = 100;
+        
           int _len_ext0 = 1;
           struct cht_wc_extcon_data * ext = (struct cht_wc_extcon_data *) malloc(_len_ext0*sizeof(struct cht_wc_extcon_data));
           for(int _i0 = 0; _i0 < _len_ext0; _i0++) {
-            ext[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ext[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cht_wc_extcon_get_id(ext,pwrsrc_sts);
+          printf("%d\n", benchRet); 
+          free(ext);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pwrsrc_sts = 255;
+        
+          int _len_ext0 = 65025;
+          struct cht_wc_extcon_data * ext = (struct cht_wc_extcon_data *) malloc(_len_ext0*sizeof(struct cht_wc_extcon_data));
+          for(int _i0 = 0; _i0 < _len_ext0; _i0++) {
+              ext[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cht_wc_extcon_get_id(ext,pwrsrc_sts);
           printf("%d\n", benchRet); 
           free(ext);
@@ -108,21 +125,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pwrsrc_sts = 10;
+        
           int _len_ext0 = 100;
           struct cht_wc_extcon_data * ext = (struct cht_wc_extcon_data *) malloc(_len_ext0*sizeof(struct cht_wc_extcon_data));
           for(int _i0 = 0; _i0 < _len_ext0; _i0++) {
-            ext[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ext[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cht_wc_extcon_get_id(ext,pwrsrc_sts);
           printf("%d\n", benchRet); 
           free(ext);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pwrsrc_sts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ext0 = 1;
+          struct cht_wc_extcon_data * ext = (struct cht_wc_extcon_data *) malloc(_len_ext0*sizeof(struct cht_wc_extcon_data));
+          for(int _i0 = 0; _i0 < _len_ext0; _i0++) {
+              ext[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cht_wc_extcon_get_id(ext,pwrsrc_sts);
+          printf("%d\n", benchRet); 
+          free(ext);
+        
+        break;
+    }
     default:
         usage();
         break;

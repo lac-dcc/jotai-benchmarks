@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static inline int dlm_lvb_needs_invalidation(struct dlm_lo
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,11 +89,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int local = 100;
+        
           int _len_lock0 = 1;
           struct dlm_lock * lock = (struct dlm_lock *) malloc(_len_lock0*sizeof(struct dlm_lock));
           for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
-            lock[_i0].ml.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              lock[_i0].ml.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = dlm_lvb_needs_invalidation(lock,local);
+          printf("%d\n", benchRet); 
+          free(lock);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int local = 255;
+        
+          int _len_lock0 = 65025;
+          struct dlm_lock * lock = (struct dlm_lock *) malloc(_len_lock0*sizeof(struct dlm_lock));
+          for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
+              lock[_i0].ml.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = dlm_lvb_needs_invalidation(lock,local);
           printf("%d\n", benchRet); 
           free(lock);
@@ -105,21 +124,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int local = 10;
+        
           int _len_lock0 = 100;
           struct dlm_lock * lock = (struct dlm_lock *) malloc(_len_lock0*sizeof(struct dlm_lock));
           for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
-            lock[_i0].ml.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              lock[_i0].ml.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = dlm_lvb_needs_invalidation(lock,local);
           printf("%d\n", benchRet); 
           free(lock);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int local = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lock0 = 1;
+          struct dlm_lock * lock = (struct dlm_lock *) malloc(_len_lock0*sizeof(struct dlm_lock));
+          for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
+              lock[_i0].ml.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = dlm_lvb_needs_invalidation(lock,local);
+          printf("%d\n", benchRet); 
+          free(lock);
+        
+        break;
+    }
     default:
         usage();
         break;

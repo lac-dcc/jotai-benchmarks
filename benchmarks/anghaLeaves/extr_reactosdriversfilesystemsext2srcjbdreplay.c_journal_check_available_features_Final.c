@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ int journal_check_available_features (journal_t *journal, unsigned long compat,
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,22 +101,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long compat = 100;
+        
           unsigned long ro = 100;
+        
           unsigned long incompat = 100;
+        
           int _len_journal0 = 1;
           struct TYPE_3__ * journal = (struct TYPE_3__ *) malloc(_len_journal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_journal0; _i0++) {
-            journal[_i0].j_format_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              journal[_i0].j_format_version = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_journal__i0__j_superblock0 = 1;
           journal[_i0].j_superblock = (int *) malloc(_len_journal__i0__j_superblock0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_journal__i0__j_superblock0; _j0++) {
             journal[_i0].j_superblock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = journal_check_available_features(journal,compat,ro,incompat);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_journal0; _aux++) {
+          free(journal[_aux].j_superblock);
+          }
+          free(journal);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long compat = 255;
+        
+          unsigned long ro = 255;
+        
+          unsigned long incompat = 255;
+        
+          int _len_journal0 = 65025;
+          struct TYPE_3__ * journal = (struct TYPE_3__ *) malloc(_len_journal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_journal0; _i0++) {
+              journal[_i0].j_format_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_journal__i0__j_superblock0 = 1;
+          journal[_i0].j_superblock = (int *) malloc(_len_journal__i0__j_superblock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_journal__i0__j_superblock0; _j0++) {
+            journal[_i0].j_superblock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = journal_check_available_features(journal,compat,ro,incompat);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_journal0; _aux++) {
+          free(journal[_aux].j_superblock);
+          }
+          free(journal);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long compat = 10;
+        
+          unsigned long ro = 10;
+        
+          unsigned long incompat = 10;
+        
+          int _len_journal0 = 100;
+          struct TYPE_3__ * journal = (struct TYPE_3__ *) malloc(_len_journal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_journal0; _i0++) {
+              journal[_i0].j_format_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_journal__i0__j_superblock0 = 1;
+          journal[_i0].j_superblock = (int *) malloc(_len_journal__i0__j_superblock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_journal__i0__j_superblock0; _j0++) {
+            journal[_i0].j_superblock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = journal_check_available_features(journal,compat,ro,incompat);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_journal0; _aux++) {
+          free(journal[_aux].j_superblock);
+          }
+          free(journal);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long compat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long ro = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long incompat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_journal0 = 1;
+          struct TYPE_3__ * journal = (struct TYPE_3__ *) malloc(_len_journal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_journal0; _i0++) {
+              journal[_i0].j_format_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_journal__i0__j_superblock0 = 1;
+          journal[_i0].j_superblock = (int *) malloc(_len_journal__i0__j_superblock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_journal__i0__j_superblock0; _j0++) {
+            journal[_i0].j_superblock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = journal_check_available_features(journal,compat,ro,incompat);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_journal0; _aux++) {

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static bool ath_is_radar_freq(u16 center_freq,
 	return (center_freq >= 5260 && center_freq <= 5700);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int center_freq = 100;
+        
           int _len_reg0 = 1;
           struct ath_regulatory * reg = (struct ath_regulatory *) malloc(_len_reg0*sizeof(struct ath_regulatory));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
-            reg[_i0].country_code = ((-2 * (next_i()%2)) + 1) * next_i();
+              reg[_i0].country_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath_is_radar_freq(center_freq,reg);
           printf("%d\n", benchRet); 
           free(reg);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int center_freq = 255;
+        
+          int _len_reg0 = 65025;
+          struct ath_regulatory * reg = (struct ath_regulatory *) malloc(_len_reg0*sizeof(struct ath_regulatory));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].country_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath_is_radar_freq(center_freq,reg);
+          printf("%d\n", benchRet); 
+          free(reg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int center_freq = 10;
+        
           int _len_reg0 = 100;
           struct ath_regulatory * reg = (struct ath_regulatory *) malloc(_len_reg0*sizeof(struct ath_regulatory));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
-            reg[_i0].country_code = ((-2 * (next_i()%2)) + 1) * next_i();
+              reg[_i0].country_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ath_is_radar_freq(center_freq,reg);
+          printf("%d\n", benchRet); 
+          free(reg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_reg0 = 1;
+          struct ath_regulatory * reg = (struct ath_regulatory *) malloc(_len_reg0*sizeof(struct ath_regulatory));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].country_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ath_is_radar_freq(center_freq,reg);
           printf("%d\n", benchRet); 
           free(reg);

@@ -65,12 +65,6 @@ __attribute__((used)) static inline uint32_t MDP5_PIPE_SW_PIX_EXT_TB_BOTTOM_OVF(
 	return ((val) << MDP5_PIPE_SW_PIX_EXT_TB_BOTTOM_OVF__SHIFT) & MDP5_PIPE_SW_PIX_EXT_TB_BOTTOM_OVF__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = MDP5_PIPE_SW_PIX_EXT_TB_BOTTOM_OVF(val);
           printf("%d\n", benchRet); 
         
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = MDP5_PIPE_SW_PIX_EXT_TB_BOTTOM_OVF(val);
           printf("%d\n", benchRet); 
         
@@ -105,12 +101,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = MDP5_PIPE_SW_PIX_EXT_TB_BOTTOM_OVF(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

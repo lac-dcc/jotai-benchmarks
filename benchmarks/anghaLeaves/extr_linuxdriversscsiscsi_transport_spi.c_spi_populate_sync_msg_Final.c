@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ int spi_populate_sync_msg(unsigned char *msg, int period, int offset)
 	return 5;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +79,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int period = 10;
-          int offset = 10;
-          int _len_msg0 = 100;
+          int period = 255;
+        
+          int offset = 255;
+        
+          int _len_msg0 = 65025;
           unsigned char * msg = (unsigned char *) malloc(_len_msg0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
             msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = spi_populate_sync_msg(msg,period,offset);
           printf("%d\n", benchRet); 
           free(msg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int period = 10;
+        
+          int offset = 10;
+        
+          int _len_msg0 = 100;
+          unsigned char * msg = (unsigned char *) malloc(_len_msg0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+            msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = spi_populate_sync_msg(msg,period,offset);
+          printf("%d\n", benchRet); 
+          free(msg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int irq_data_to_status_reg(struct wm831x_irq
 	return WM831X_INTERRUPT_STATUS_1 - 1 + irq_data->reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_irq_data0 = 1;
+          int _len_irq_data0 = 65025;
           struct wm831x_irq_data * irq_data = (struct wm831x_irq_data *) malloc(_len_irq_data0*sizeof(struct wm831x_irq_data));
           for(int _i0 = 0; _i0 < _len_irq_data0; _i0++) {
-            irq_data[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              irq_data[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = irq_data_to_status_reg(irq_data);
           printf("%d\n", benchRet); 
           free(irq_data);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_irq_data0 = 100;
           struct wm831x_irq_data * irq_data = (struct wm831x_irq_data *) malloc(_len_irq_data0*sizeof(struct wm831x_irq_data));
           for(int _i0 = 0; _i0 < _len_irq_data0; _i0++) {
-            irq_data[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              irq_data[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = irq_data_to_status_reg(irq_data);
           printf("%d\n", benchRet); 
           free(irq_data);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_irq_data0 = 1;
+          struct wm831x_irq_data * irq_data = (struct wm831x_irq_data *) malloc(_len_irq_data0*sizeof(struct wm831x_irq_data));
+          for(int _i0 = 0; _i0 < _len_irq_data0; _i0++) {
+              irq_data[_i0].reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = irq_data_to_status_reg(irq_data);
+          printf("%d\n", benchRet); 
+          free(irq_data);
+        
+        break;
+    }
     default:
         usage();
         break;

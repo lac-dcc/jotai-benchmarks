@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ int append_crc(char *in, int in_len) {
   return in_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +82,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int in_len = 10;
-          int _len_in0 = 100;
+          int in_len = 255;
+        
+          int _len_in0 = 65025;
           char * in = (char *) malloc(_len_in0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
             in[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = append_crc(in,in_len);
           printf("%d\n", benchRet); 
           free(in);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int in_len = 10;
+        
+          int _len_in0 = 100;
+          char * in = (char *) malloc(_len_in0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+            in[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = append_crc(in,in_len);
+          printf("%d\n", benchRet); 
+          free(in);
+        
+        break;
+    }
     default:
         usage();
         break;

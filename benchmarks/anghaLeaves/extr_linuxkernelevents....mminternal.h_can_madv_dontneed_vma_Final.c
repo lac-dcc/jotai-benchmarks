@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline bool can_madv_dontneed_vma(struct vm_area_st
 	return !(vma->vm_flags & (VM_LOCKED|VM_HUGETLB|VM_PFNMAP));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vma0 = 1;
+          int _len_vma0 = 65025;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = can_madv_dontneed_vma(vma);
           printf("%d\n", benchRet); 
           free(vma);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_vma0 = 100;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = can_madv_dontneed_vma(vma);
           printf("%d\n", benchRet); 
           free(vma);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vma0 = 1;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = can_madv_dontneed_vma(vma);
+          printf("%d\n", benchRet); 
+          free(vma);
+        
+        break;
+    }
     default:
         usage();
         break;

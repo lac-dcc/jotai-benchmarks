@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +94,6 @@ __attribute__((used)) static void stm32_qspi_set_framemode(struct spi_nor *nor,
 	cmd->framemode |= cmd->addr_width ? CCR_ADMODE_1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,22 +106,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int read = 100;
+        
           int _len_nor0 = 1;
           struct spi_nor * nor = (struct spi_nor *) malloc(_len_nor0*sizeof(struct spi_nor));
           for(int _i0 = 0; _i0 < _len_nor0; _i0++) {
-            nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cmd0 = 1;
           struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          stm32_qspi_set_framemode(nor,cmd,read);
+          free(nor);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int read = 255;
+        
+          int _len_nor0 = 65025;
+          struct spi_nor * nor = (struct spi_nor *) malloc(_len_nor0*sizeof(struct spi_nor));
+          for(int _i0 = 0; _i0 < _len_nor0; _i0++) {
+              nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 65025;
+          struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stm32_qspi_set_framemode(nor,cmd,read);
+          free(nor);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int read = 10;
+        
+          int _len_nor0 = 100;
+          struct spi_nor * nor = (struct spi_nor *) malloc(_len_nor0*sizeof(struct spi_nor));
+          for(int _i0 = 0; _i0 < _len_nor0; _i0++) {
+              nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stm32_qspi_set_framemode(nor,cmd,read);
+          free(nor);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nor0 = 1;
+          struct spi_nor * nor = (struct spi_nor *) malloc(_len_nor0*sizeof(struct spi_nor));
+          for(int _i0 = 0; _i0 < _len_nor0; _i0++) {
+              nor[_i0].read_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct stm32_qspi_cmd * cmd = (struct stm32_qspi_cmd *) malloc(_len_cmd0*sizeof(struct stm32_qspi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].framemode = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].tx_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           stm32_qspi_set_framemode(nor,cmd,read);
           free(nor);
           free(cmd);

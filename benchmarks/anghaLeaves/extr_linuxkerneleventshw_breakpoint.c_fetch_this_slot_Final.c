@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ fetch_this_slot(struct bp_busy_slots *slots, int weight)
 	slots->pinned += weight;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int weight = 100;
+        
           int _len_slots0 = 1;
           struct bp_busy_slots * slots = (struct bp_busy_slots *) malloc(_len_slots0*sizeof(struct bp_busy_slots));
           for(int _i0 = 0; _i0 < _len_slots0; _i0++) {
-            slots[_i0].pinned = ((-2 * (next_i()%2)) + 1) * next_i();
+              slots[_i0].pinned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          fetch_this_slot(slots,weight);
+          free(slots);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int weight = 255;
+        
+          int _len_slots0 = 65025;
+          struct bp_busy_slots * slots = (struct bp_busy_slots *) malloc(_len_slots0*sizeof(struct bp_busy_slots));
+          for(int _i0 = 0; _i0 < _len_slots0; _i0++) {
+              slots[_i0].pinned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           fetch_this_slot(slots,weight);
           free(slots);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int weight = 10;
+        
           int _len_slots0 = 100;
           struct bp_busy_slots * slots = (struct bp_busy_slots *) malloc(_len_slots0*sizeof(struct bp_busy_slots));
           for(int _i0 = 0; _i0 < _len_slots0; _i0++) {
-            slots[_i0].pinned = ((-2 * (next_i()%2)) + 1) * next_i();
+              slots[_i0].pinned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fetch_this_slot(slots,weight);
           free(slots);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_slots0 = 1;
+          struct bp_busy_slots * slots = (struct bp_busy_slots *) malloc(_len_slots0*sizeof(struct bp_busy_slots));
+          for(int _i0 = 0; _i0 < _len_slots0; _i0++) {
+              slots[_i0].pinned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fetch_this_slot(slots,weight);
+          free(slots);
+        
+        break;
+    }
     default:
         usage();
         break;

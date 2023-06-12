@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static inline void bcm2835_debug_add(struct bcm2835_i2c_de
 	i2c_dev->debug_num++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,27 +87,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int s = 100;
+        
           int _len_i2c_dev0 = 1;
           struct bcm2835_i2c_dev * i2c_dev = (struct bcm2835_i2c_dev *) malloc(_len_i2c_dev0*sizeof(struct bcm2835_i2c_dev));
           for(int _i0 = 0; _i0 < _len_i2c_dev0; _i0++) {
-            i2c_dev[_i0].debug_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_dev[_i0].debug_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_i2c_dev__i0__debug0 = 1;
           i2c_dev[_i0].debug = (struct TYPE_2__ *) malloc(_len_i2c_dev__i0__debug0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_i2c_dev__i0__debug0; _j0++) {
-            i2c_dev[_i0].debug->status = ((-2 * (next_i()%2)) + 1) * next_i();
-        i2c_dev[_i0].debug->remain = ((-2 * (next_i()%2)) + 1) * next_i();
-        i2c_dev[_i0].debug->msg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        i2c_dev[_i0].debug->msg = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2c_dev[_i0].debug->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->remain = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        i2c_dev[_i0].msg_buf_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
-        i2c_dev[_i0].num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
-        i2c_dev[_i0].debug_num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
-        i2c_dev[_i0].curr_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].msg_buf_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug_num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].curr_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bcm2835_debug_add(i2c_dev,s);
+          for(int _aux = 0; _aux < _len_i2c_dev0; _aux++) {
+          free(i2c_dev[_aux].debug);
+          }
+          free(i2c_dev);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int s = 255;
+        
+          int _len_i2c_dev0 = 65025;
+          struct bcm2835_i2c_dev * i2c_dev = (struct bcm2835_i2c_dev *) malloc(_len_i2c_dev0*sizeof(struct bcm2835_i2c_dev));
+          for(int _i0 = 0; _i0 < _len_i2c_dev0; _i0++) {
+              i2c_dev[_i0].debug_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_i2c_dev__i0__debug0 = 1;
+          i2c_dev[_i0].debug = (struct TYPE_2__ *) malloc(_len_i2c_dev__i0__debug0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_i2c_dev__i0__debug0; _j0++) {
+              i2c_dev[_i0].debug->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->remain = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          i2c_dev[_i0].msg_buf_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug_num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].curr_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bcm2835_debug_add(i2c_dev,s);
+          for(int _aux = 0; _aux < _len_i2c_dev0; _aux++) {
+          free(i2c_dev[_aux].debug);
+          }
+          free(i2c_dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int s = 10;
+        
+          int _len_i2c_dev0 = 100;
+          struct bcm2835_i2c_dev * i2c_dev = (struct bcm2835_i2c_dev *) malloc(_len_i2c_dev0*sizeof(struct bcm2835_i2c_dev));
+          for(int _i0 = 0; _i0 < _len_i2c_dev0; _i0++) {
+              i2c_dev[_i0].debug_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_i2c_dev__i0__debug0 = 1;
+          i2c_dev[_i0].debug = (struct TYPE_2__ *) malloc(_len_i2c_dev__i0__debug0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_i2c_dev__i0__debug0; _j0++) {
+              i2c_dev[_i0].debug->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->remain = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          i2c_dev[_i0].msg_buf_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug_num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].curr_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bcm2835_debug_add(i2c_dev,s);
+          for(int _aux = 0; _aux < _len_i2c_dev0; _aux++) {
+          free(i2c_dev[_aux].debug);
+          }
+          free(i2c_dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_i2c_dev0 = 1;
+          struct bcm2835_i2c_dev * i2c_dev = (struct bcm2835_i2c_dev *) malloc(_len_i2c_dev0*sizeof(struct bcm2835_i2c_dev));
+          for(int _i0 = 0; _i0 < _len_i2c_dev0; _i0++) {
+              i2c_dev[_i0].debug_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_i2c_dev__i0__debug0 = 1;
+          i2c_dev[_i0].debug = (struct TYPE_2__ *) malloc(_len_i2c_dev__i0__debug0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_i2c_dev__i0__debug0; _j0++) {
+              i2c_dev[_i0].debug->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->remain = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug->msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          i2c_dev[_i0].msg_buf_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].debug_num_msgs = ((-2 * (next_i()%2)) + 1) * next_i();
+          i2c_dev[_i0].curr_msg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bcm2835_debug_add(i2c_dev,s);
           for(int _aux = 0; _aux < _len_i2c_dev0; _aux++) {
           free(i2c_dev[_aux].debug);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int __qcom_scm_iommu_secure_ptbl_init(struct device *dev, u64 addr, u32 size,
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,13 +83,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int size = 100;
+        
           int spare = 100;
+        
           int _len_dev0 = 1;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __qcom_scm_iommu_secure_ptbl_init(dev,addr,size,spare);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int addr = 255;
+        
+          int size = 255;
+        
+          int spare = 255;
+        
+          int _len_dev0 = 65025;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __qcom_scm_iommu_secure_ptbl_init(dev,addr,size,spare);
           printf("%d\n", benchRet); 
           free(dev);
@@ -101,23 +124,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int addr = 10;
+        
           int size = 10;
+        
           int spare = 10;
+        
           int _len_dev0 = 100;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __qcom_scm_iommu_secure_ptbl_init(dev,addr,size,spare);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int spare = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __qcom_scm_iommu_secure_ptbl_init(dev,addr,size,spare);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static int num_free_tx_dma_buffers(struct mgsl_struct *inf
 	return info->tx_buffer_count - info->tx_dma_buffers_used;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_info0 = 65025;
+          struct mgsl_struct * info = (struct mgsl_struct *) malloc(_len_info0*sizeof(struct mgsl_struct));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].tx_buffer_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tx_dma_buffers_used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = num_free_tx_dma_buffers(info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_info0 = 100;
+          struct mgsl_struct * info = (struct mgsl_struct *) malloc(_len_info0*sizeof(struct mgsl_struct));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].tx_buffer_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tx_dma_buffers_used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = num_free_tx_dma_buffers(info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_info0 = 1;
           struct mgsl_struct * info = (struct mgsl_struct *) malloc(_len_info0*sizeof(struct mgsl_struct));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].tx_buffer_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].tx_dma_buffers_used = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].tx_buffer_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tx_dma_buffers_used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = num_free_tx_dma_buffers(info);
           printf("%d\n", benchRet); 
           free(info);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static void ad5421_get_current_min_max(struct ad5421_state
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,24 +97,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_st0 = 1;
+          int _len_st0 = 65025;
           struct ad5421_state * st = (struct ad5421_state *) malloc(_len_st0*sizeof(struct ad5421_state));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].current_range = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].current_range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_min0 = 1;
+        
+          int _len_min0 = 65025;
           unsigned int * min = (unsigned int *) malloc(_len_min0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_min0; _i0++) {
             min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_max0 = 1;
+        
+          int _len_max0 = 65025;
           unsigned int * max = (unsigned int *) malloc(_len_max0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_max0; _i0++) {
             max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ad5421_get_current_min_max(st,min,max);
           free(st);
           free(min);
@@ -126,7 +126,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_st0 = 100;
+          struct ad5421_state * st = (struct ad5421_state *) malloc(_len_st0*sizeof(struct ad5421_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].current_range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_min0 = 100;
+          unsigned int * min = (unsigned int *) malloc(_len_min0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
+            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max0 = 100;
+          unsigned int * max = (unsigned int *) malloc(_len_max0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ad5421_get_current_min_max(st,min,max);
+          free(st);
+          free(min);
+          free(max);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_st0 = 1;
+          struct ad5421_state * st = (struct ad5421_state *) malloc(_len_st0*sizeof(struct ad5421_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].current_range = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_min0 = 1;
+          unsigned int * min = (unsigned int *) malloc(_len_min0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_min0; _i0++) {
+            min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max0 = 1;
+          unsigned int * max = (unsigned int *) malloc(_len_max0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ad5421_get_current_min_max(st,min,max);
+          free(st);
+          free(min);
+          free(max);
+        
+        break;
+    }
     default:
         usage();
         break;

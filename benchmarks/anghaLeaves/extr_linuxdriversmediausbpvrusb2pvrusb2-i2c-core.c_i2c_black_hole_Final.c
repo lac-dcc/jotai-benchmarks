@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int i2c_black_hole(struct pvr2_hdw *hdw,
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +83,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i2c_addr = 100;
+        
           int wlen = 100;
+        
           int rlen = 100;
+        
           int _len_hdw0 = 1;
           struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
           for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
-            hdw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_wdata0 = 1;
           int * wdata = (int *) malloc(_len_wdata0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
             wdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_rdata0 = 1;
           int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
             rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = i2c_black_hole(hdw,i2c_addr,wdata,wlen,rdata,rlen);
           printf("%d\n", benchRet); 
           free(hdw);
@@ -111,7 +115,114 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int i2c_addr = 255;
+        
+          int wlen = 255;
+        
+          int rlen = 255;
+        
+          int _len_hdw0 = 65025;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wdata0 = 65025;
+          int * wdata = (int *) malloc(_len_wdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+            wdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rdata0 = 65025;
+          int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+            rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = i2c_black_hole(hdw,i2c_addr,wdata,wlen,rdata,rlen);
+          printf("%d\n", benchRet); 
+          free(hdw);
+          free(wdata);
+          free(rdata);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int i2c_addr = 10;
+        
+          int wlen = 10;
+        
+          int rlen = 10;
+        
+          int _len_hdw0 = 100;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wdata0 = 100;
+          int * wdata = (int *) malloc(_len_wdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+            wdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rdata0 = 100;
+          int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+            rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = i2c_black_hole(hdw,i2c_addr,wdata,wlen,rdata,rlen);
+          printf("%d\n", benchRet); 
+          free(hdw);
+          free(wdata);
+          free(rdata);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int i2c_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int wlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdw0 = 1;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wdata0 = 1;
+          int * wdata = (int *) malloc(_len_wdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+            wdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rdata0 = 1;
+          int * rdata = (int *) malloc(_len_rdata0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdata0; _i0++) {
+            rdata[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = i2c_black_hole(hdw,i2c_addr,wdata,wlen,rdata,rlen);
+          printf("%d\n", benchRet); 
+          free(hdw);
+          free(wdata);
+          free(rdata);
+        
+        break;
+    }
     default:
         usage();
         break;

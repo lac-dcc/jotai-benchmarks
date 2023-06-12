@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void Delta_Init(Byte *state)
     state[i] = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state0 = 1;
+          int _len_state0 = 65025;
           long * state = (long *) malloc(_len_state0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Delta_Init(state);
           free(state);
         
@@ -103,12 +99,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Delta_Init(state);
           free(state);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_state0 = 1;
+          long * state = (long *) malloc(_len_state0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          Delta_Init(state);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

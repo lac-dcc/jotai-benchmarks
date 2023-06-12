@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void regmap_format_2_6_write(struct regmap *map,
 	*out = (reg << 6) | val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg = 100;
+        
           unsigned int val = 100;
+        
           int _len_map0 = 1;
           struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
@@ -95,7 +94,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_map__i0__work_buf0; _j0++) {
             map[_i0].work_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           regmap_format_2_6_write(map,reg,val);
           for(int _aux = 0; _aux < _len_map0; _aux++) {
           free(map[_aux].work_buf);
@@ -104,7 +105,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int reg = 255;
+        
+          unsigned int val = 255;
+        
+          int _len_map0 = 65025;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              int _len_map__i0__work_buf0 = 1;
+          map[_i0].work_buf = (unsigned int *) malloc(_len_map__i0__work_buf0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_map__i0__work_buf0; _j0++) {
+            map[_i0].work_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          regmap_format_2_6_write(map,reg,val);
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].work_buf);
+          }
+          free(map);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int reg = 10;
+        
+          unsigned int val = 10;
+        
+          int _len_map0 = 100;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              int _len_map__i0__work_buf0 = 1;
+          map[_i0].work_buf = (unsigned int *) malloc(_len_map__i0__work_buf0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_map__i0__work_buf0; _j0++) {
+            map[_i0].work_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          regmap_format_2_6_write(map,reg,val);
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].work_buf);
+          }
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_map0 = 1;
+          struct regmap * map = (struct regmap *) malloc(_len_map0*sizeof(struct regmap));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              int _len_map__i0__work_buf0 = 1;
+          map[_i0].work_buf = (unsigned int *) malloc(_len_map__i0__work_buf0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_map__i0__work_buf0; _j0++) {
+            map[_i0].work_buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          regmap_format_2_6_write(map,reg,val);
+          for(int _aux = 0; _aux < _len_map0; _aux++) {
+          free(map[_aux].work_buf);
+          }
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

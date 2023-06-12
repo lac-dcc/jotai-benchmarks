@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static PE_DWord bin_pe_rva_to_paddr(RBinPEObj* bin, PE_DWo
 	return rva;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +88,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long rva = 100;
+        
           int _len_bin0 = 1;
           struct TYPE_5__ * bin = (struct TYPE_5__ *) malloc(_len_bin0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
-            bin[_i0].num_sections = ((-2 * (next_i()%2)) + 1) * next_i();
+              bin[_i0].num_sections = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_bin__i0__sections0 = 1;
           bin[_i0].sections = (struct TYPE_4__ *) malloc(_len_bin__i0__sections0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_bin__i0__sections0; _j0++) {
-            bin[_i0].sections->vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        bin[_i0].sections->vsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        bin[_i0].sections->paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              bin[_i0].sections->vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->vsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          long benchRet = bin_pe_rva_to_paddr(bin,rva);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].sections);
+          }
+          free(bin);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long rva = 255;
+        
+          int _len_bin0 = 65025;
+          struct TYPE_5__ * bin = (struct TYPE_5__ *) malloc(_len_bin0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              bin[_i0].num_sections = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bin__i0__sections0 = 1;
+          bin[_i0].sections = (struct TYPE_4__ *) malloc(_len_bin__i0__sections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__sections0; _j0++) {
+              bin[_i0].sections->vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->vsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = bin_pe_rva_to_paddr(bin,rva);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].sections);
+          }
+          free(bin);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long rva = 10;
+        
+          int _len_bin0 = 100;
+          struct TYPE_5__ * bin = (struct TYPE_5__ *) malloc(_len_bin0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              bin[_i0].num_sections = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bin__i0__sections0 = 1;
+          bin[_i0].sections = (struct TYPE_4__ *) malloc(_len_bin__i0__sections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__sections0; _j0++) {
+              bin[_i0].sections->vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->vsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = bin_pe_rva_to_paddr(bin,rva);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].sections);
+          }
+          free(bin);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long rva = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bin0 = 1;
+          struct TYPE_5__ * bin = (struct TYPE_5__ *) malloc(_len_bin0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              bin[_i0].num_sections = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bin__i0__sections0 = 1;
+          bin[_i0].sections = (struct TYPE_4__ *) malloc(_len_bin__i0__sections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__sections0; _j0++) {
+              bin[_i0].sections->vaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->vsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].sections->paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           long benchRet = bin_pe_rva_to_paddr(bin,rva);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_bin0; _aux++) {

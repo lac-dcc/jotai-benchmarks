@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void PpcPrepVideoGetDisplaySize( PULONG Width, PULONG Height, PULONG Depth )
     *Depth = 16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,24 +76,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_Width0 = 1;
+          int _len_Width0 = 65025;
           int * Width = (int *) malloc(_len_Width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Width0; _i0++) {
             Width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_Height0 = 1;
+        
+          int _len_Height0 = 65025;
           int * Height = (int *) malloc(_len_Height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Height0; _i0++) {
             Height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_Depth0 = 1;
+        
+          int _len_Depth0 = 65025;
           int * Depth = (int *) malloc(_len_Depth0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Depth0; _i0++) {
             Depth[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           PpcPrepVideoGetDisplaySize(Width,Height,Depth);
           free(Width);
           free(Height);
@@ -105,7 +104,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_Width0 = 100;
+          int * Width = (int *) malloc(_len_Width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Width0; _i0++) {
+            Width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Height0 = 100;
+          int * Height = (int *) malloc(_len_Height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Height0; _i0++) {
+            Height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Depth0 = 100;
+          int * Depth = (int *) malloc(_len_Depth0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Depth0; _i0++) {
+            Depth[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          PpcPrepVideoGetDisplaySize(Width,Height,Depth);
+          free(Width);
+          free(Height);
+          free(Depth);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_Width0 = 1;
+          int * Width = (int *) malloc(_len_Width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Width0; _i0++) {
+            Width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Height0 = 1;
+          int * Height = (int *) malloc(_len_Height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Height0; _i0++) {
+            Height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Depth0 = 1;
+          int * Depth = (int *) malloc(_len_Depth0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Depth0; _i0++) {
+            Depth[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          PpcPrepVideoGetDisplaySize(Width,Height,Depth);
+          free(Width);
+          free(Height);
+          free(Depth);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ xmlDictSize(xmlDictPtr dict) {
     return(dict->nbElems);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dict0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dict0 = 65025;
           struct TYPE_5__ * dict = (struct TYPE_5__ *) malloc(_len_dict0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_dict0; _i0++) {
-            dict[_i0].nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+              dict[_i0].nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dict__i0__subdict0 = 1;
           dict[_i0].subdict = (struct TYPE_4__ *) malloc(_len_dict__i0__subdict0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_dict__i0__subdict0; _j0++) {
-            dict[_i0].subdict->nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+              dict[_i0].subdict->nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = xmlDictSize(dict);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dict0; _aux++) {
+          free(dict[_aux].subdict);
+          }
+          free(dict);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dict0 = 100;
+          struct TYPE_5__ * dict = (struct TYPE_5__ *) malloc(_len_dict0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_dict0; _i0++) {
+              dict[_i0].nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dict__i0__subdict0 = 1;
+          dict[_i0].subdict = (struct TYPE_4__ *) malloc(_len_dict__i0__subdict0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dict__i0__subdict0; _j0++) {
+              dict[_i0].subdict->nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = xmlDictSize(dict);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dict0; _aux++) {
+          free(dict[_aux].subdict);
+          }
+          free(dict);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dict0 = 1;
+          struct TYPE_5__ * dict = (struct TYPE_5__ *) malloc(_len_dict0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_dict0; _i0++) {
+              dict[_i0].nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dict__i0__subdict0 = 1;
+          dict[_i0].subdict = (struct TYPE_4__ *) malloc(_len_dict__i0__subdict0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dict__i0__subdict0; _j0++) {
+              dict[_i0].subdict->nbElems = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = xmlDictSize(dict);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dict0; _aux++) {

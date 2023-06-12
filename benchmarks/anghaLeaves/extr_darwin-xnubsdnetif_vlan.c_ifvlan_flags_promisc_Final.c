@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ ifvlan_flags_promisc(ifvlan_ref ifv)
     return ((ifv->ifv_flags & IFVF_PROMISC) != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ifv0 = 1;
+          int _len_ifv0 = 65025;
           struct TYPE_3__ * ifv = (struct TYPE_3__ *) malloc(_len_ifv0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ifv0; _i0++) {
-            ifv[_i0].ifv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifv[_i0].ifv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ifvlan_flags_promisc(ifv);
           printf("%d\n", benchRet); 
           free(ifv);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_ifv0 = 100;
           struct TYPE_3__ * ifv = (struct TYPE_3__ *) malloc(_len_ifv0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ifv0; _i0++) {
-            ifv[_i0].ifv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifv[_i0].ifv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ifvlan_flags_promisc(ifv);
           printf("%d\n", benchRet); 
           free(ifv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ifv0 = 1;
+          struct TYPE_3__ * ifv = (struct TYPE_3__ *) malloc(_len_ifv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ifv0; _i0++) {
+              ifv[_i0].ifv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ifvlan_flags_promisc(ifv);
+          printf("%d\n", benchRet); 
+          free(ifv);
+        
+        break;
+    }
     default:
         usage();
         break;

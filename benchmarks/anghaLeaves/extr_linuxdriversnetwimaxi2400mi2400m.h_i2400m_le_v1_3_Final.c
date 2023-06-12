@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ unsigned i2400m_le_v1_3(struct i2400m *i2400m)
 	return i2400m->fw_version <= 0x00090001;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_i2400m0 = 1;
+          int _len_i2400m0 = 65025;
           struct i2400m * i2400m = (struct i2400m *) malloc(_len_i2400m0*sizeof(struct i2400m));
           for(int _i0 = 0; _i0 < _len_i2400m0; _i0++) {
-            i2400m[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2400m[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = i2400m_le_v1_3(i2400m);
           printf("%u\n", benchRet); 
           free(i2400m);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_i2400m0 = 100;
           struct i2400m * i2400m = (struct i2400m *) malloc(_len_i2400m0*sizeof(struct i2400m));
           for(int _i0 = 0; _i0 < _len_i2400m0; _i0++) {
-            i2400m[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              i2400m[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = i2400m_le_v1_3(i2400m);
           printf("%u\n", benchRet); 
           free(i2400m);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_i2400m0 = 1;
+          struct i2400m * i2400m = (struct i2400m *) malloc(_len_i2400m0*sizeof(struct i2400m));
+          for(int _i0 = 0; _i0 < _len_i2400m0; _i0++) {
+              i2400m[_i0].fw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = i2400m_le_v1_3(i2400m);
+          printf("%u\n", benchRet); 
+          free(i2400m);
+        
+        break;
+    }
     default:
         usage();
         break;

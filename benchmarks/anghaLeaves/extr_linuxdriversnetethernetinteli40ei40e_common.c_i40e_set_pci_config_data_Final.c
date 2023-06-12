@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -115,12 +118,6 @@ void i40e_set_pci_config_data(struct i40e_hw *hw, u16 link_status)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -137,19 +134,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int link_status = 100;
+        
           int _len_hw0 = 1;
           struct i40e_hw * hw = (struct i40e_hw *) malloc(_len_hw0*sizeof(struct i40e_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].bus.speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].bus.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].bus.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].bus.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           i40e_set_pci_config_data(hw,link_status);
           free(hw);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int link_status = 255;
+        
+          int _len_hw0 = 65025;
+          struct i40e_hw * hw = (struct i40e_hw *) malloc(_len_hw0*sizeof(struct i40e_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].bus.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          i40e_set_pci_config_data(hw,link_status);
+          free(hw);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int link_status = 10;
+        
+          int _len_hw0 = 100;
+          struct i40e_hw * hw = (struct i40e_hw *) malloc(_len_hw0*sizeof(struct i40e_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].bus.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          i40e_set_pci_config_data(hw,link_status);
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int link_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct i40e_hw * hw = (struct i40e_hw *) malloc(_len_hw0*sizeof(struct i40e_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].bus.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bus.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          i40e_set_pci_config_data(hw,link_status);
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

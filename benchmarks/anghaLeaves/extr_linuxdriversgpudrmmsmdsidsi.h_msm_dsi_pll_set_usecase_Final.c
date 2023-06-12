@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int msm_dsi_pll_set_usecase(struct msm_dsi_p
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum msm_dsi_phy_usecase uc = 0;
-          int _len_pll0 = 1;
+        
+          int _len_pll0 = 65025;
           struct msm_dsi_pll * pll = (struct msm_dsi_pll *) malloc(_len_pll0*sizeof(struct msm_dsi_pll));
           for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
-            pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = msm_dsi_pll_set_usecase(pll,uc);
           printf("%d\n", benchRet); 
           free(pll);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum msm_dsi_phy_usecase uc = 0;
+        
+          int _len_pll0 = 100;
+          struct msm_dsi_pll * pll = (struct msm_dsi_pll *) malloc(_len_pll0*sizeof(struct msm_dsi_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = msm_dsi_pll_set_usecase(pll,uc);
+          printf("%d\n", benchRet); 
+          free(pll);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum msm_dsi_phy_usecase uc = 0;
+        
+          int _len_pll0 = 1;
+          struct msm_dsi_pll * pll = (struct msm_dsi_pll *) malloc(_len_pll0*sizeof(struct msm_dsi_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = msm_dsi_pll_set_usecase(pll,uc);
+          printf("%d\n", benchRet); 
+          free(pll);
+        
+        break;
+    }
     default:
         usage();
         break;

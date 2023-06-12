@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ mlxsw_pci_queue_type_group_get(struct mlxsw_pci *mlxsw_pci,
 	return &mlxsw_pci->queues[q_type];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,46 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum mlxsw_pci_queue_type q_type = 0;
-          int _len_mlxsw_pci0 = 1;
+        
+          int _len_mlxsw_pci0 = 65025;
           struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
           for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
               int _len_mlxsw_pci__i0__queues0 = 1;
           mlxsw_pci[_i0].queues = (struct mlxsw_pci_queue_type_group *) malloc(_len_mlxsw_pci__i0__queues0*sizeof(struct mlxsw_pci_queue_type_group));
           for(int _j0 = 0; _j0 < _len_mlxsw_pci__i0__queues0; _j0++) {
-            mlxsw_pci[_i0].queues->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_pci[_i0].queues->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mlxsw_pci_queue_type_group * benchRet = mlxsw_pci_queue_type_group_get(mlxsw_pci,q_type);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_mlxsw_pci0; _aux++) {
@@ -105,19 +128,147 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum mlxsw_pci_queue_type q_type = 0;
+        
+          int _len_mlxsw_pci0 = 100;
+          struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
+          for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
+              int _len_mlxsw_pci__i0__queues0 = 1;
+          mlxsw_pci[_i0].queues = (struct mlxsw_pci_queue_type_group *) malloc(_len_mlxsw_pci__i0__queues0*sizeof(struct mlxsw_pci_queue_type_group));
+          for(int _j0 = 0; _j0 < _len_mlxsw_pci__i0__queues0; _j0++) {
+              mlxsw_pci[_i0].queues->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlxsw_pci_queue_type_group * benchRet = mlxsw_pci_queue_type_group_get(mlxsw_pci,q_type);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_mlxsw_pci0; _aux++) {
+          free(mlxsw_pci[_aux].queues);
+          }
+          free(mlxsw_pci);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum mlxsw_pci_queue_type q_type = 0;
+        
           int _len_mlxsw_pci0 = 1;
           struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
           for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
               int _len_mlxsw_pci__i0__queues0 = 1;
           mlxsw_pci[_i0].queues = (struct mlxsw_pci_queue_type_group *) malloc(_len_mlxsw_pci__i0__queues0*sizeof(struct mlxsw_pci_queue_type_group));
           for(int _j0 = 0; _j0 < _len_mlxsw_pci__i0__queues0; _j0++) {
-            mlxsw_pci[_i0].queues->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_pci[_i0].queues->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct mlxsw_pci_queue_type_group * benchRet = mlxsw_pci_queue_type_group_get(mlxsw_pci,q_type);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_mlxsw_pci0; _aux++) {
+          free(mlxsw_pci[_aux].queues);
+          }
+          free(mlxsw_pci);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum mlxsw_pci_queue_type q_type = 0;
+        
+          int _len_mlxsw_pci0 = 1;
+          struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
+          for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
+              int _len_mlxsw_pci__i0__queues0 = 1;
+          mlxsw_pci[_i0].queues = (struct mlxsw_pci_queue_type_group *) malloc(_len_mlxsw_pci__i0__queues0*sizeof(struct mlxsw_pci_queue_type_group));
+          for(int _j0 = 0; _j0 < _len_mlxsw_pci__i0__queues0; _j0++) {
+              mlxsw_pci[_i0].queues->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct mlxsw_pci_queue_type_group * benchRet = mlxsw_pci_queue_type_group_get(mlxsw_pci,q_type);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_mlxsw_pci0; _aux++) {

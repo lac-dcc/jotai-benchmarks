@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static u32 icoll_intr_bitshift(struct irq_data *d, u32 bit
 	return bit << ((d->hwirq & 3) << 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,30 +79,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int bit = 100;
+        
           int _len_d0 = 1;
           struct irq_data * d = (struct irq_data *) malloc(_len_d0*sizeof(struct irq_data));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = icoll_intr_bitshift(d,bit);
           printf("%d\n", benchRet); 
           free(d);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int bit = 255;
+        
+          int _len_d0 = 65025;
+          struct irq_data * d = (struct irq_data *) malloc(_len_d0*sizeof(struct irq_data));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = icoll_intr_bitshift(d,bit);
+          printf("%d\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int bit = 10;
+        
           int _len_d0 = 100;
           struct irq_data * d = (struct irq_data *) malloc(_len_d0*sizeof(struct irq_data));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = icoll_intr_bitshift(d,bit);
           printf("%d\n", benchRet); 
           free(d);

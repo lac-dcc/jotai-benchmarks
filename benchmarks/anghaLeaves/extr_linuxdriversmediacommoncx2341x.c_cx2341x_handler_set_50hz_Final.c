@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void cx2341x_handler_set_50hz(struct cx2341x_handler *cxhdl, int is_50hz)
 	cxhdl->video_gop_size->default_value = cxhdl->is_50hz ? 12 : 15;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +78,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int is_50hz = 100;
+        
           int _len_cxhdl0 = 1;
           struct cx2341x_handler * cxhdl = (struct cx2341x_handler *) malloc(_len_cxhdl0*sizeof(struct cx2341x_handler));
           for(int _i0 = 0; _i0 < _len_cxhdl0; _i0++) {
-            cxhdl[_i0].is_50hz = ((-2 * (next_i()%2)) + 1) * next_i();
+              cxhdl[_i0].is_50hz = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cxhdl__i0__video_gop_size0 = 1;
           cxhdl[_i0].video_gop_size = (struct TYPE_2__ *) malloc(_len_cxhdl__i0__video_gop_size0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cxhdl__i0__video_gop_size0; _j0++) {
-            cxhdl[_i0].video_gop_size->default_value = ((-2 * (next_i()%2)) + 1) * next_i();
+              cxhdl[_i0].video_gop_size->default_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          cx2341x_handler_set_50hz(cxhdl,is_50hz);
+          for(int _aux = 0; _aux < _len_cxhdl0; _aux++) {
+          free(cxhdl[_aux].video_gop_size);
+          }
+          free(cxhdl);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int is_50hz = 255;
+        
+          int _len_cxhdl0 = 65025;
+          struct cx2341x_handler * cxhdl = (struct cx2341x_handler *) malloc(_len_cxhdl0*sizeof(struct cx2341x_handler));
+          for(int _i0 = 0; _i0 < _len_cxhdl0; _i0++) {
+              cxhdl[_i0].is_50hz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cxhdl__i0__video_gop_size0 = 1;
+          cxhdl[_i0].video_gop_size = (struct TYPE_2__ *) malloc(_len_cxhdl__i0__video_gop_size0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cxhdl__i0__video_gop_size0; _j0++) {
+              cxhdl[_i0].video_gop_size->default_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cx2341x_handler_set_50hz(cxhdl,is_50hz);
+          for(int _aux = 0; _aux < _len_cxhdl0; _aux++) {
+          free(cxhdl[_aux].video_gop_size);
+          }
+          free(cxhdl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int is_50hz = 10;
+        
+          int _len_cxhdl0 = 100;
+          struct cx2341x_handler * cxhdl = (struct cx2341x_handler *) malloc(_len_cxhdl0*sizeof(struct cx2341x_handler));
+          for(int _i0 = 0; _i0 < _len_cxhdl0; _i0++) {
+              cxhdl[_i0].is_50hz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cxhdl__i0__video_gop_size0 = 1;
+          cxhdl[_i0].video_gop_size = (struct TYPE_2__ *) malloc(_len_cxhdl__i0__video_gop_size0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cxhdl__i0__video_gop_size0; _j0++) {
+              cxhdl[_i0].video_gop_size->default_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          cx2341x_handler_set_50hz(cxhdl,is_50hz);
+          for(int _aux = 0; _aux < _len_cxhdl0; _aux++) {
+          free(cxhdl[_aux].video_gop_size);
+          }
+          free(cxhdl);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int is_50hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cxhdl0 = 1;
+          struct cx2341x_handler * cxhdl = (struct cx2341x_handler *) malloc(_len_cxhdl0*sizeof(struct cx2341x_handler));
+          for(int _i0 = 0; _i0 < _len_cxhdl0; _i0++) {
+              cxhdl[_i0].is_50hz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cxhdl__i0__video_gop_size0 = 1;
+          cxhdl[_i0].video_gop_size = (struct TYPE_2__ *) malloc(_len_cxhdl__i0__video_gop_size0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cxhdl__i0__video_gop_size0; _j0++) {
+              cxhdl[_i0].video_gop_size->default_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           cx2341x_handler_set_50hz(cxhdl,is_50hz);
           for(int _aux = 0; _aux < _len_cxhdl0; _aux++) {
           free(cxhdl[_aux].video_gop_size);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ LibTCPGetSocketStatus(
     *State = pcb->state + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +81,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pcb0 = 1;
+          int _len_pcb0 = 65025;
           struct TYPE_3__ * pcb = (struct TYPE_3__ *) malloc(_len_pcb0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pcb0; _i0++) {
-            pcb[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcb[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_State0 = 1;
+        
+          int _len_State0 = 65025;
           long * State = (long *) malloc(_len_State0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_State0; _i0++) {
             State[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           LibTCPGetSocketStatus(pcb,State);
           free(pcb);
           free(State);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pcb0 = 100;
+          struct TYPE_3__ * pcb = (struct TYPE_3__ *) malloc(_len_pcb0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pcb0; _i0++) {
+              pcb[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_State0 = 100;
+          long * State = (long *) malloc(_len_State0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_State0; _i0++) {
+            State[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          LibTCPGetSocketStatus(pcb,State);
+          free(pcb);
+          free(State);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pcb0 = 1;
+          struct TYPE_3__ * pcb = (struct TYPE_3__ *) malloc(_len_pcb0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pcb0; _i0++) {
+              pcb[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_State0 = 1;
+          long * State = (long *) malloc(_len_State0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_State0; _i0++) {
+            State[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          LibTCPGetSocketStatus(pcb,State);
+          free(pcb);
+          free(State);
+        
+        break;
+    }
     default:
         usage();
         break;

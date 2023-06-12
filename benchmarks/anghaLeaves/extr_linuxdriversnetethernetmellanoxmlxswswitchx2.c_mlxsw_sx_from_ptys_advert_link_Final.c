@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static u32 mlxsw_sx_from_ptys_advert_link(u32 ptys_eth_pro
 	return modes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ptys_eth_proto = 100;
+        
           int benchRet = mlxsw_sx_from_ptys_advert_link(ptys_eth_proto);
           printf("%d\n", benchRet); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ptys_eth_proto = 255;
+        
           int benchRet = mlxsw_sx_from_ptys_advert_link(ptys_eth_proto);
           printf("%d\n", benchRet); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ptys_eth_proto = 10;
+        
           int benchRet = mlxsw_sx_from_ptys_advert_link(ptys_eth_proto);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ptys_eth_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mlxsw_sx_from_ptys_advert_link(ptys_eth_proto);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

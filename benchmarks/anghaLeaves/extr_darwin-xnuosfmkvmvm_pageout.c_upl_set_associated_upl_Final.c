@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -61,7 +62,6 @@ void upl_set_associated_upl(upl_t upl, upl_t associated_upl)
 {
 	upl->associated_upl = associated_upl;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -113,7 +113,6 @@ void _delete_associated_upl(struct TYPE_4__ *aux_associated_upl[], int aux_assoc
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,20 +125,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_upl[10000];
+          struct TYPE_4__ * upl = _allocate_upl(10000, aux_upl);
+        
+          struct TYPE_4__ * aux_associated_upl[10000];
+          struct TYPE_4__ * associated_upl = _allocate_associated_upl(10000, aux_associated_upl);
+        
+          upl_set_associated_upl(upl,associated_upl);
+          _delete_upl(aux_upl, 10000);
+          _delete_associated_upl(aux_associated_upl, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_upl[1];
           struct TYPE_4__ * upl = _allocate_upl(1, aux_upl);
+        
           struct TYPE_4__ * aux_associated_upl[1];
           struct TYPE_4__ * associated_upl = _allocate_associated_upl(1, aux_associated_upl);
+        
           upl_set_associated_upl(upl,associated_upl);
           _delete_upl(aux_upl, 1);
           _delete_associated_upl(aux_associated_upl, 1);
         
         break;
     }
-
     default:
         usage();
         break;

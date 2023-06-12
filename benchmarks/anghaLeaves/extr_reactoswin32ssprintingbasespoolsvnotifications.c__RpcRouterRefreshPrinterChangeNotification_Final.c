@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ _RpcRouterRefreshPrinterChangeNotification(WINSPOOL_PRINTER_HANDLE hPrinter, DWO
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hPrinter = 100;
+        
           int dwColor = 100;
+        
           int _len_pOptions0 = 1;
           int * pOptions = (int *) malloc(_len_pOptions0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pOptions0; _i0++) {
             pOptions[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ppInfo0 = 1;
           int ** ppInfo = (int **) malloc(_len_ppInfo0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_ppInfo0; _i0++) {
@@ -104,11 +127,182 @@ int main(int argc, char *argv[]) {
               ppInfo[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = _RpcRouterRefreshPrinterChangeNotification(hPrinter,dwColor,pOptions,ppInfo);
           printf("%d\n", benchRet); 
           free(pOptions);
           for(int i1 = 0; i1 < _len_ppInfo0; i1++) {
+              free(ppInfo[i1]);
+          }
+          free(ppInfo);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 255;
+        
+          int dwColor = 255;
+        
+          int _len_pOptions0 = 65025;
+          int * pOptions = (int *) malloc(_len_pOptions0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOptions0; _i0++) {
+            pOptions[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ppInfo0 = 65025;
+          int ** ppInfo = (int **) malloc(_len_ppInfo0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_ppInfo0; _i0++) {
             int _len_ppInfo1 = 1;
+            ppInfo[_i0] = (int *) malloc(_len_ppInfo1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_ppInfo1; _i1++) {
+              ppInfo[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = _RpcRouterRefreshPrinterChangeNotification(hPrinter,dwColor,pOptions,ppInfo);
+          printf("%d\n", benchRet); 
+          free(pOptions);
+          for(int i1 = 0; i1 < _len_ppInfo0; i1++) {
+              free(ppInfo[i1]);
+          }
+          free(ppInfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 10;
+        
+          int dwColor = 10;
+        
+          int _len_pOptions0 = 100;
+          int * pOptions = (int *) malloc(_len_pOptions0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOptions0; _i0++) {
+            pOptions[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ppInfo0 = 100;
+          int ** ppInfo = (int **) malloc(_len_ppInfo0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_ppInfo0; _i0++) {
+            int _len_ppInfo1 = 1;
+            ppInfo[_i0] = (int *) malloc(_len_ppInfo1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_ppInfo1; _i1++) {
+              ppInfo[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = _RpcRouterRefreshPrinterChangeNotification(hPrinter,dwColor,pOptions,ppInfo);
+          printf("%d\n", benchRet); 
+          free(pOptions);
+          for(int i1 = 0; i1 < _len_ppInfo0; i1++) {
+              free(ppInfo[i1]);
+          }
+          free(ppInfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pOptions0 = 1;
+          int * pOptions = (int *) malloc(_len_pOptions0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pOptions0; _i0++) {
+            pOptions[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ppInfo0 = 1;
+          int ** ppInfo = (int **) malloc(_len_ppInfo0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_ppInfo0; _i0++) {
+            int _len_ppInfo1 = 1;
+            ppInfo[_i0] = (int *) malloc(_len_ppInfo1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_ppInfo1; _i1++) {
+              ppInfo[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = _RpcRouterRefreshPrinterChangeNotification(hPrinter,dwColor,pOptions,ppInfo);
+          printf("%d\n", benchRet); 
+          free(pOptions);
+          for(int i1 = 0; i1 < _len_ppInfo0; i1++) {
               free(ppInfo[i1]);
           }
           free(ppInfo);

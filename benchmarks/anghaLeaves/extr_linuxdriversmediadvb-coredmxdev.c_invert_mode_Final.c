@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void invert_mode(struct dmx_filter *filter)
 		filter->mode[i] ^= 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,8 +78,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_filter0 = 65025;
+          struct dmx_filter * filter = (struct dmx_filter *) malloc(_len_filter0*sizeof(struct dmx_filter));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              int _len_filter__i0__mode0 = 1;
+          filter[_i0].mode = (int *) malloc(_len_filter__i0__mode0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_filter__i0__mode0; _j0++) {
+            filter[_i0].mode[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          invert_mode(filter);
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].mode);
+          }
+          free(filter);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_filter0 = 100;
+          struct dmx_filter * filter = (struct dmx_filter *) malloc(_len_filter0*sizeof(struct dmx_filter));
+          for(int _i0 = 0; _i0 < _len_filter0; _i0++) {
+              int _len_filter__i0__mode0 = 1;
+          filter[_i0].mode = (int *) malloc(_len_filter__i0__mode0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_filter__i0__mode0; _j0++) {
+            filter[_i0].mode[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          invert_mode(filter);
+          for(int _aux = 0; _aux < _len_filter0; _aux++) {
+          free(filter[_aux].mode);
+          }
+          free(filter);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_filter0 = 1;
           struct dmx_filter * filter = (struct dmx_filter *) malloc(_len_filter0*sizeof(struct dmx_filter));
@@ -93,7 +133,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_filter__i0__mode0; _j0++) {
             filter[_i0].mode[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           invert_mode(filter);
           for(int _aux = 0; _aux < _len_filter0; _aux++) {
           free(filter[_aux].mode);
@@ -102,7 +144,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

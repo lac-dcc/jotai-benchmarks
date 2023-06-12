@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int snd_rme32_getinputtype(struct rme32 * rme32)
 	    (((rme32->wcreg >> RME32_WCR_BITPOS_INP_1) & 1) << 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +77,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rme320 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rme320 = 65025;
           struct rme32 * rme32 = (struct rme32 *) malloc(_len_rme320*sizeof(struct rme32));
           for(int _i0 = 0; _i0 < _len_rme320; _i0++) {
-            rme32[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme32[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_rme32_getinputtype(rme32);
           printf("%d\n", benchRet); 
           free(rme32);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_rme320 = 100;
           struct rme32 * rme32 = (struct rme32 *) malloc(_len_rme320*sizeof(struct rme32));
           for(int _i0 = 0; _i0 < _len_rme320; _i0++) {
-            rme32[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme32[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = snd_rme32_getinputtype(rme32);
+          printf("%d\n", benchRet); 
+          free(rme32);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rme320 = 1;
+          struct rme32 * rme32 = (struct rme32 *) malloc(_len_rme320*sizeof(struct rme32));
+          for(int _i0 = 0; _i0 < _len_rme320; _i0++) {
+              rme32[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = snd_rme32_getinputtype(rme32);
           printf("%d\n", benchRet); 
           free(rme32);

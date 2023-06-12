@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void tipc_link_set_mtu(struct tipc_link *l, int mtu)
 	l->mtu = mtu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mtu = 100;
+        
           int _len_l0 = 1;
           struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          tipc_link_set_mtu(l,mtu);
+          free(l);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mtu = 255;
+        
+          int _len_l0 = 65025;
+          struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           tipc_link_set_mtu(l,mtu);
           free(l);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mtu = 10;
+        
           int _len_l0 = 100;
           struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tipc_link_set_mtu(l,mtu);
           free(l);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_l0 = 1;
+          struct tipc_link * l = (struct tipc_link *) malloc(_len_l0*sizeof(struct tipc_link));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tipc_link_set_mtu(l,mtu);
+          free(l);
+        
+        break;
+    }
     default:
         usage();
         break;

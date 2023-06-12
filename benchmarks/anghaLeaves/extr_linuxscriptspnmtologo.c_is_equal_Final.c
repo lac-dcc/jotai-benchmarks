@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -60,12 +60,6 @@ __attribute__((used)) static inline int is_equal(struct color c1, struct color c
     return c1.red == c2.red && c1.green == c2.green && c1.blue == c2.blue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,23 +72,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct color c1;
-        c1.red = ((-2 * (next_i()%2)) + 1) * next_i();
-        c1.green = ((-2 * (next_i()%2)) + 1) * next_i();
-        c1.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          c1.red = ((-2 * (next_i()%2)) + 1) * next_i();
+          c1.green = ((-2 * (next_i()%2)) + 1) * next_i();
+          c1.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct color c2;
-        c2.red = ((-2 * (next_i()%2)) + 1) * next_i();
-        c2.green = ((-2 * (next_i()%2)) + 1) * next_i();
-        c2.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+          c2.red = ((-2 * (next_i()%2)) + 1) * next_i();
+          c2.green = ((-2 * (next_i()%2)) + 1) * next_i();
+          c2.blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_equal(c1,c2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

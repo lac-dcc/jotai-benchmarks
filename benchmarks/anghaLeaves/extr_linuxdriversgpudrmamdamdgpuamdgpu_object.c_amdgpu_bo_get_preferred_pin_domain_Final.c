@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ uint32_t amdgpu_bo_get_preferred_pin_domain(struct amdgpu_device *adev,
 	return domain;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int domain = 100;
+        
           int _len_adev0 = 1;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].gmc.real_vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].gmc.real_vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = amdgpu_bo_get_preferred_pin_domain(adev,domain);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int domain = 255;
+        
+          int _len_adev0 = 65025;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].gmc.real_vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = amdgpu_bo_get_preferred_pin_domain(adev,domain);
           printf("%d\n", benchRet); 
           free(adev);
@@ -107,21 +126,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int domain = 10;
+        
           int _len_adev0 = 100;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].gmc.real_vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].gmc.real_vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = amdgpu_bo_get_preferred_pin_domain(adev,domain);
           printf("%d\n", benchRet); 
           free(adev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int domain = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].gmc.real_vram_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = amdgpu_bo_get_preferred_pin_domain(adev,domain);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
     default:
         usage();
         break;

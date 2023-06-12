@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ int dsi_dma_base_get_v2(struct msm_dsi_host *msm_host, uint64_t *dma_base)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_msm_host0 = 65025;
+          struct msm_dsi_host * msm_host = (struct msm_dsi_host *) malloc(_len_msm_host0*sizeof(struct msm_dsi_host));
+          for(int _i0 = 0; _i0 < _len_msm_host0; _i0++) {
+              msm_host[_i0].tx_buf_paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_base0 = 65025;
+          int * dma_base = (int *) malloc(_len_dma_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dma_base0; _i0++) {
+            dma_base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dsi_dma_base_get_v2(msm_host,dma_base);
+          printf("%d\n", benchRet); 
+          free(msm_host);
+          free(dma_base);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_msm_host0 = 100;
+          struct msm_dsi_host * msm_host = (struct msm_dsi_host *) malloc(_len_msm_host0*sizeof(struct msm_dsi_host));
+          for(int _i0 = 0; _i0 < _len_msm_host0; _i0++) {
+              msm_host[_i0].tx_buf_paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_base0 = 100;
+          int * dma_base = (int *) malloc(_len_dma_base0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dma_base0; _i0++) {
+            dma_base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dsi_dma_base_get_v2(msm_host,dma_base);
+          printf("%d\n", benchRet); 
+          free(msm_host);
+          free(dma_base);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_msm_host0 = 1;
           struct msm_dsi_host * msm_host = (struct msm_dsi_host *) malloc(_len_msm_host0*sizeof(struct msm_dsi_host));
           for(int _i0 = 0; _i0 < _len_msm_host0; _i0++) {
-            msm_host[_i0].tx_buf_paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              msm_host[_i0].tx_buf_paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dma_base0 = 1;
           int * dma_base = (int *) malloc(_len_dma_base0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dma_base0; _i0++) {
             dma_base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dsi_dma_base_get_v2(msm_host,dma_base);
           printf("%d\n", benchRet); 
           free(msm_host);

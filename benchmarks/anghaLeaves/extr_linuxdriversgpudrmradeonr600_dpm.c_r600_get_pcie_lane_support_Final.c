@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ u16 r600_get_pcie_lane_support(struct radeon_device *rdev,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,12 +98,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int asic_lanes = 100;
+        
           int default_lanes = 100;
+        
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = r600_get_pcie_lane_support(rdev,asic_lanes,default_lanes);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int asic_lanes = 255;
+        
+          int default_lanes = 255;
+        
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = r600_get_pcie_lane_support(rdev,asic_lanes,default_lanes);
           printf("%d\n", benchRet); 
           free(rdev);
@@ -115,22 +135,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int asic_lanes = 10;
+        
           int default_lanes = 10;
+        
           int _len_rdev0 = 100;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = r600_get_pcie_lane_support(rdev,asic_lanes,default_lanes);
           printf("%d\n", benchRet); 
           free(rdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int asic_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int default_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = r600_get_pcie_lane_support(rdev,asic_lanes,default_lanes);
+          printf("%d\n", benchRet); 
+          free(rdev);
+        
+        break;
+    }
     default:
         usage();
         break;

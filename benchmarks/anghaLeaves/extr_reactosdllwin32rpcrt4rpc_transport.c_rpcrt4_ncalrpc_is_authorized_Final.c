@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static BOOL rpcrt4_ncalrpc_is_authorized(RpcConnection *co
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_conn0 = 1;
+          int _len_conn0 = 65025;
           int * conn = (int *) malloc(_len_conn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
             conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rpcrt4_ncalrpc_is_authorized(conn);
           printf("%d\n", benchRet); 
           free(conn);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
             conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rpcrt4_ncalrpc_is_authorized(conn);
           printf("%d\n", benchRet); 
           free(conn);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_conn0 = 1;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rpcrt4_ncalrpc_is_authorized(conn);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
     default:
         usage();
         break;

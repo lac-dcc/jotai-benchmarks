@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ xhci_get_largest_overhead(struct xhci_interval_bw *interval_bw)
 	return HS_OVERHEAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,9 +84,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_interval_bw0 = 65025;
+          struct xhci_interval_bw * interval_bw = (struct xhci_interval_bw *) malloc(_len_interval_bw0*sizeof(struct xhci_interval_bw));
+          for(int _i0 = 0; _i0 < _len_interval_bw0; _i0++) {
+              int _len_interval_bw__i0__overhead0 = 1;
+          interval_bw[_i0].overhead = (long *) malloc(_len_interval_bw__i0__overhead0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_interval_bw__i0__overhead0; _j0++) {
+            interval_bw[_i0].overhead[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = xhci_get_largest_overhead(interval_bw);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interval_bw0; _aux++) {
+          free(interval_bw[_aux].overhead);
+          }
+          free(interval_bw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_interval_bw0 = 100;
+          struct xhci_interval_bw * interval_bw = (struct xhci_interval_bw *) malloc(_len_interval_bw0*sizeof(struct xhci_interval_bw));
+          for(int _i0 = 0; _i0 < _len_interval_bw0; _i0++) {
+              int _len_interval_bw__i0__overhead0 = 1;
+          interval_bw[_i0].overhead = (long *) malloc(_len_interval_bw__i0__overhead0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_interval_bw__i0__overhead0; _j0++) {
+            interval_bw[_i0].overhead[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = xhci_get_largest_overhead(interval_bw);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_interval_bw0; _aux++) {
+          free(interval_bw[_aux].overhead);
+          }
+          free(interval_bw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_interval_bw0 = 1;
           struct xhci_interval_bw * interval_bw = (struct xhci_interval_bw *) malloc(_len_interval_bw0*sizeof(struct xhci_interval_bw));
           for(int _i0 = 0; _i0 < _len_interval_bw0; _i0++) {
@@ -99,7 +212,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_interval_bw__i0__overhead0; _j0++) {
             interval_bw[_i0].overhead[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned int benchRet = xhci_get_largest_overhead(interval_bw);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_interval_bw0; _aux++) {

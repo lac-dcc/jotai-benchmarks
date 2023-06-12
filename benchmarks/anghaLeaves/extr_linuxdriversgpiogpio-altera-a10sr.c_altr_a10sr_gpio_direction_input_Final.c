@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int altr_a10sr_gpio_direction_input(struct gpio_chi
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int nr = 100;
+        
           int _len_gc0 = 1;
           struct gpio_chip * gc = (struct gpio_chip *) malloc(_len_gc0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
-            gc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = altr_a10sr_gpio_direction_input(gc,nr);
+          printf("%d\n", benchRet); 
+          free(gc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int nr = 255;
+        
+          int _len_gc0 = 65025;
+          struct gpio_chip * gc = (struct gpio_chip *) malloc(_len_gc0*sizeof(struct gpio_chip));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              gc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = altr_a10sr_gpio_direction_input(gc,nr);
           printf("%d\n", benchRet); 
           free(gc);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int nr = 10;
+        
           int _len_gc0 = 100;
           struct gpio_chip * gc = (struct gpio_chip *) malloc(_len_gc0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
-            gc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = altr_a10sr_gpio_direction_input(gc,nr);
           printf("%d\n", benchRet); 
           free(gc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gc0 = 1;
+          struct gpio_chip * gc = (struct gpio_chip *) malloc(_len_gc0*sizeof(struct gpio_chip));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              gc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = altr_a10sr_gpio_direction_input(gc,nr);
+          printf("%d\n", benchRet); 
+          free(gc);
+        
+        break;
+    }
     default:
         usage();
         break;

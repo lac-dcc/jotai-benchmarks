@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ __attribute__((used)) static int col_byte_uhc_2 (int col) {
   return (col >= 0x34 ? 0x4d : col >= 0x1a ? 0x47 : 0x41) + col;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int col = 100;
+        
           int benchRet = col_byte_uhc_2(col);
           printf("%d\n", benchRet); 
         
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int col = 255;
+        
           int benchRet = col_byte_uhc_2(col);
           printf("%d\n", benchRet); 
         
@@ -100,12 +97,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int col = 10;
+        
           int benchRet = col_byte_uhc_2(col);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int col = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = col_byte_uhc_2(col);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

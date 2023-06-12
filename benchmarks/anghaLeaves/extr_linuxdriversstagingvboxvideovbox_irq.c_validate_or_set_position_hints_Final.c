@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -97,12 +99,6 @@ __attribute__((used)) static void validate_or_set_position_hints(struct vbox_pri
 		}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,23 +111,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vbox0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_vbox0 = 65025;
           struct vbox_private * vbox = (struct vbox_private *) malloc(_len_vbox0*sizeof(struct vbox_private));
           for(int _i0 = 0; _i0 < _len_vbox0; _i0++) {
-            vbox[_i0].num_crtcs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vbox[_i0].num_crtcs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vbox__i0__last_mode_hints0 = 1;
           vbox[_i0].last_mode_hints = (struct vbva_modehint *) malloc(_len_vbox__i0__last_mode_hints0*sizeof(struct vbva_modehint));
           for(int _j0 = 0; _j0 < _len_vbox__i0__last_mode_hints0; _j0++) {
-            vbox[_i0].last_mode_hints->dx = ((-2 * (next_i()%2)) + 1) * next_i();
-        vbox[_i0].last_mode_hints->dy = ((-2 * (next_i()%2)) + 1) * next_i();
-        vbox[_i0].last_mode_hints->cx = ((-2 * (next_i()%2)) + 1) * next_i();
-        vbox[_i0].last_mode_hints->cy = ((-2 * (next_i()%2)) + 1) * next_i();
-        vbox[_i0].last_mode_hints->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              vbox[_i0].last_mode_hints->dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->cx = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->cy = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          validate_or_set_position_hints(vbox);
+          for(int _aux = 0; _aux < _len_vbox0; _aux++) {
+          free(vbox[_aux].last_mode_hints);
+          }
+          free(vbox);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_vbox0 = 100;
+          struct vbox_private * vbox = (struct vbox_private *) malloc(_len_vbox0*sizeof(struct vbox_private));
+          for(int _i0 = 0; _i0 < _len_vbox0; _i0++) {
+              vbox[_i0].num_crtcs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vbox__i0__last_mode_hints0 = 1;
+          vbox[_i0].last_mode_hints = (struct vbva_modehint *) malloc(_len_vbox__i0__last_mode_hints0*sizeof(struct vbva_modehint));
+          for(int _j0 = 0; _j0 < _len_vbox__i0__last_mode_hints0; _j0++) {
+              vbox[_i0].last_mode_hints->dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->cx = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->cy = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          validate_or_set_position_hints(vbox);
+          for(int _aux = 0; _aux < _len_vbox0; _aux++) {
+          free(vbox[_aux].last_mode_hints);
+          }
+          free(vbox);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_vbox0 = 1;
+          struct vbox_private * vbox = (struct vbox_private *) malloc(_len_vbox0*sizeof(struct vbox_private));
+          for(int _i0 = 0; _i0 < _len_vbox0; _i0++) {
+              vbox[_i0].num_crtcs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vbox__i0__last_mode_hints0 = 1;
+          vbox[_i0].last_mode_hints = (struct vbva_modehint *) malloc(_len_vbox__i0__last_mode_hints0*sizeof(struct vbva_modehint));
+          for(int _j0 = 0; _j0 < _len_vbox__i0__last_mode_hints0; _j0++) {
+              vbox[_i0].last_mode_hints->dx = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->dy = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->cx = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->cy = ((-2 * (next_i()%2)) + 1) * next_i();
+          vbox[_i0].last_mode_hints->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           validate_or_set_position_hints(vbox);
           for(int _aux = 0; _aux < _len_vbox0; _aux++) {
           free(vbox[_aux].last_mode_hints);

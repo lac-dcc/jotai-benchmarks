@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void comedi_8254_update_divisors(struct comedi_8254 *i8254)
 	i8254->divisor2 = i8254->next_div2 & 0xffff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,25 +77,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_i82540 = 1;
+          int _len_i82540 = 65025;
           struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
           for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
-            i8254[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
-        i8254[_i0].next_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        i8254[_i0].divisor1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        i8254[_i0].next_div1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        i8254[_i0].divisor2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        i8254[_i0].next_div2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              i8254[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].divisor1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].divisor2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           comedi_8254_update_divisors(i8254);
           free(i8254);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_i82540 = 100;
+          struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
+          for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
+              i8254[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].divisor1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].divisor2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          comedi_8254_update_divisors(i8254);
+          free(i8254);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_i82540 = 1;
+          struct comedi_8254 * i8254 = (struct comedi_8254 *) malloc(_len_i82540*sizeof(struct comedi_8254));
+          for(int _i0 = 0; _i0 < _len_i82540; _i0++) {
+              i8254[_i0].divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].divisor1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].divisor2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          i8254[_i0].next_div2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          comedi_8254_update_divisors(i8254);
+          free(i8254);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void init_sdma_vm_v9(struct device_queue_manager *d
 	q->properties.sdma_vm_addr = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,24 +80,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dqm0 = 1;
+          int _len_dqm0 = 65025;
           struct device_queue_manager * dqm = (struct device_queue_manager *) malloc(_len_dqm0*sizeof(struct device_queue_manager));
           for(int _i0 = 0; _i0 < _len_dqm0; _i0++) {
-            dqm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dqm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_q0 = 1;
+        
+          int _len_q0 = 65025;
           struct queue * q = (struct queue *) malloc(_len_q0*sizeof(struct queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].properties.sdma_vm_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].properties.sdma_vm_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_qpd0 = 1;
+        
+          int _len_qpd0 = 65025;
           struct qcm_process_device * qpd = (struct qcm_process_device *) malloc(_len_qpd0*sizeof(struct qcm_process_device));
           for(int _i0 = 0; _i0 < _len_qpd0; _i0++) {
-            qpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              qpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_sdma_vm_v9(dqm,q,qpd);
           free(dqm);
           free(q);
@@ -109,7 +112,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dqm0 = 100;
+          struct device_queue_manager * dqm = (struct device_queue_manager *) malloc(_len_dqm0*sizeof(struct device_queue_manager));
+          for(int _i0 = 0; _i0 < _len_dqm0; _i0++) {
+              dqm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_q0 = 100;
+          struct queue * q = (struct queue *) malloc(_len_q0*sizeof(struct queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].properties.sdma_vm_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_qpd0 = 100;
+          struct qcm_process_device * qpd = (struct qcm_process_device *) malloc(_len_qpd0*sizeof(struct qcm_process_device));
+          for(int _i0 = 0; _i0 < _len_qpd0; _i0++) {
+              qpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_sdma_vm_v9(dqm,q,qpd);
+          free(dqm);
+          free(q);
+          free(qpd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dqm0 = 1;
+          struct device_queue_manager * dqm = (struct device_queue_manager *) malloc(_len_dqm0*sizeof(struct device_queue_manager));
+          for(int _i0 = 0; _i0 < _len_dqm0; _i0++) {
+              dqm[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_q0 = 1;
+          struct queue * q = (struct queue *) malloc(_len_q0*sizeof(struct queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].properties.sdma_vm_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_qpd0 = 1;
+          struct qcm_process_device * qpd = (struct qcm_process_device *) malloc(_len_qpd0*sizeof(struct qcm_process_device));
+          for(int _i0 = 0; _i0 < _len_qpd0; _i0++) {
+              qpd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_sdma_vm_v9(dqm,q,qpd);
+          free(dqm);
+          free(q);
+          free(qpd);
+        
+        break;
+    }
     default:
         usage();
         break;

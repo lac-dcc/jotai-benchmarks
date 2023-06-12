@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int search_sortlist(adns_state ads, struct in_addr 
   return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +87,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ads0 = 1;
+          int _len_ads0 = 65025;
           struct TYPE_7__ * ads = (struct TYPE_7__ *) malloc(_len_ads0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
-            ads[_i0].nsortlist = ((-2 * (next_i()%2)) + 1) * next_i();
+              ads[_i0].nsortlist = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ads__i0__sortlist0 = 1;
           ads[_i0].sortlist = (struct sortlist *) malloc(_len_ads__i0__sortlist0*sizeof(struct sortlist));
           for(int _j0 = 0; _j0 < _len_ads__i0__sortlist0; _j0++) {
-            ads[_i0].sortlist->base.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ads[_i0].sortlist->mask.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ads[_i0].sortlist->base.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ads[_i0].sortlist->mask.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct in_addr ad;
-        ad.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ad.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = search_sortlist(ads,ad);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ads0; _aux++) {
@@ -116,7 +118,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ads0 = 100;
+          struct TYPE_7__ * ads = (struct TYPE_7__ *) malloc(_len_ads0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
+              ads[_i0].nsortlist = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ads__i0__sortlist0 = 1;
+          ads[_i0].sortlist = (struct sortlist *) malloc(_len_ads__i0__sortlist0*sizeof(struct sortlist));
+          for(int _j0 = 0; _j0 < _len_ads__i0__sortlist0; _j0++) {
+              ads[_i0].sortlist->base.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ads[_i0].sortlist->mask.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct in_addr ad;
+          ad.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = search_sortlist(ads,ad);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ads0; _aux++) {
+          free(ads[_aux].sortlist);
+          }
+          free(ads);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ads0 = 1;
+          struct TYPE_7__ * ads = (struct TYPE_7__ *) malloc(_len_ads0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_ads0; _i0++) {
+              ads[_i0].nsortlist = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ads__i0__sortlist0 = 1;
+          ads[_i0].sortlist = (struct sortlist *) malloc(_len_ads__i0__sortlist0*sizeof(struct sortlist));
+          for(int _j0 = 0; _j0 < _len_ads__i0__sortlist0; _j0++) {
+              ads[_i0].sortlist->base.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ads[_i0].sortlist->mask.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct in_addr ad;
+          ad.s_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = search_sortlist(ads,ad);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ads0; _aux++) {
+          free(ads[_aux].sortlist);
+          }
+          free(ads);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void img_ir_timing_preprocess(struct img_ir_timing_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +86,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int unit = 100;
+        
           int _len_range0 = 1;
           struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
           for(int _i0 = 0; _i0 < _len_range0; _i0++) {
-            range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
-        range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           img_ir_timing_preprocess(range,unit);
           free(range);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int unit = 255;
+        
+          int _len_range0 = 65025;
+          struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          img_ir_timing_preprocess(range,unit);
+          free(range);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int unit = 10;
+        
+          int _len_range0 = 100;
+          struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          img_ir_timing_preprocess(range,unit);
+          free(range);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_range0 = 1;
+          struct img_ir_timing_range * range = (struct img_ir_timing_range *) malloc(_len_range0*sizeof(struct img_ir_timing_range));
+          for(int _i0 = 0; _i0 < _len_range0; _i0++) {
+              range[_i0].max = ((-2 * (next_i()%2)) + 1) * next_i();
+          range[_i0].min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          img_ir_timing_preprocess(range,unit);
+          free(range);
+        
+        break;
+    }
     default:
         usage();
         break;

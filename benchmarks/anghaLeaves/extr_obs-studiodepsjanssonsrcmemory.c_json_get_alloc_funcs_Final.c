@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void json_get_alloc_funcs(json_malloc_t *malloc_fn, json_free_t *free_fn)
         *free_fn = do_free;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_malloc_fn0 = 65025;
+          int * malloc_fn = (int *) malloc(_len_malloc_fn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_malloc_fn0; _i0++) {
+            malloc_fn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_free_fn0 = 65025;
+          int * free_fn = (int *) malloc(_len_free_fn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_free_fn0; _i0++) {
+            free_fn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          json_get_alloc_funcs(malloc_fn,free_fn);
+          free(malloc_fn);
+          free(free_fn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_malloc_fn0 = 100;
+          int * malloc_fn = (int *) malloc(_len_malloc_fn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_malloc_fn0; _i0++) {
+            malloc_fn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_free_fn0 = 100;
+          int * free_fn = (int *) malloc(_len_free_fn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_free_fn0; _i0++) {
+            free_fn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          json_get_alloc_funcs(malloc_fn,free_fn);
+          free(malloc_fn);
+          free(free_fn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_malloc_fn0 = 1;
           int * malloc_fn = (int *) malloc(_len_malloc_fn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_malloc_fn0; _i0++) {
             malloc_fn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_free_fn0 = 1;
           int * free_fn = (int *) malloc(_len_free_fn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_free_fn0; _i0++) {
             free_fn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           json_get_alloc_funcs(malloc_fn,free_fn);
           free(malloc_fn);
           free(free_fn);

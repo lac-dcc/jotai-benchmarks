@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int set_io_32bit(ide_drive_t *drive, int arg)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +89,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int arg = 100;
+        
           int _len_drive0 = 1;
           struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
-            drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        drive[_i0].io_32bit = ((-2 * (next_i()%2)) + 1) * next_i();
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].io_32bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = set_io_32bit(drive,arg);
+          printf("%d\n", benchRet); 
+          free(drive);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int arg = 255;
+        
+          int _len_drive0 = 65025;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].io_32bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_io_32bit(drive,arg);
+          printf("%d\n", benchRet); 
+          free(drive);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int arg = 10;
+        
+          int _len_drive0 = 100;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].io_32bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_io_32bit(drive,arg);
+          printf("%d\n", benchRet); 
+          free(drive);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_drive0 = 1;
+          struct TYPE_3__ * drive = (struct TYPE_3__ *) malloc(_len_drive0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_drive0; _i0++) {
+              drive[_i0].dev_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          drive[_i0].io_32bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = set_io_32bit(drive,arg);
           printf("%d\n", benchRet); 
           free(drive);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static bool binder_validate_fixup(struct binder_buffer *b,
 	return (fixup_offset >= last_min_offset);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,31 +103,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long fixup_offset = 100;
+        
           long last_min_offset = 100;
+        
           int _len_b0 = 1;
           struct binder_buffer * b = (struct binder_buffer *) malloc(_len_b0*sizeof(struct binder_buffer));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_objects_start0 = 1;
           long * objects_start = (long *) malloc(_len_objects_start0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_objects_start0; _i0++) {
             objects_start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buffer0 = 1;
           struct binder_buffer_object * buffer = (struct binder_buffer_object *) malloc(_len_buffer0*sizeof(struct binder_buffer_object));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
-            buffer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+              buffer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_last_obj0 = 1;
           struct binder_buffer_object * last_obj = (struct binder_buffer_object *) malloc(_len_last_obj0*sizeof(struct binder_buffer_object));
           for(int _i0 = 0; _i0 < _len_last_obj0; _i0++) {
-            last_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        last_obj[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        last_obj[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+              last_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = binder_validate_fixup(b,objects_start,buffer,fixup_offset,last_obj,last_min_offset);
           printf("%d\n", benchRet); 
           free(b);
@@ -140,7 +146,147 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long fixup_offset = 255;
+        
+          long last_min_offset = 255;
+        
+          int _len_b0 = 65025;
+          struct binder_buffer * b = (struct binder_buffer *) malloc(_len_b0*sizeof(struct binder_buffer));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_objects_start0 = 65025;
+          long * objects_start = (long *) malloc(_len_objects_start0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_objects_start0; _i0++) {
+            objects_start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buffer0 = 65025;
+          struct binder_buffer_object * buffer = (struct binder_buffer_object *) malloc(_len_buffer0*sizeof(struct binder_buffer_object));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_last_obj0 = 65025;
+          struct binder_buffer_object * last_obj = (struct binder_buffer_object *) malloc(_len_last_obj0*sizeof(struct binder_buffer_object));
+          for(int _i0 = 0; _i0 < _len_last_obj0; _i0++) {
+              last_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binder_validate_fixup(b,objects_start,buffer,fixup_offset,last_obj,last_min_offset);
+          printf("%d\n", benchRet); 
+          free(b);
+          free(objects_start);
+          free(buffer);
+          free(last_obj);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long fixup_offset = 10;
+        
+          long last_min_offset = 10;
+        
+          int _len_b0 = 100;
+          struct binder_buffer * b = (struct binder_buffer *) malloc(_len_b0*sizeof(struct binder_buffer));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_objects_start0 = 100;
+          long * objects_start = (long *) malloc(_len_objects_start0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_objects_start0; _i0++) {
+            objects_start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buffer0 = 100;
+          struct binder_buffer_object * buffer = (struct binder_buffer_object *) malloc(_len_buffer0*sizeof(struct binder_buffer_object));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_last_obj0 = 100;
+          struct binder_buffer_object * last_obj = (struct binder_buffer_object *) malloc(_len_last_obj0*sizeof(struct binder_buffer_object));
+          for(int _i0 = 0; _i0 < _len_last_obj0; _i0++) {
+              last_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binder_validate_fixup(b,objects_start,buffer,fixup_offset,last_obj,last_min_offset);
+          printf("%d\n", benchRet); 
+          free(b);
+          free(objects_start);
+          free(buffer);
+          free(last_obj);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long fixup_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long last_min_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_b0 = 1;
+          struct binder_buffer * b = (struct binder_buffer *) malloc(_len_b0*sizeof(struct binder_buffer));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_objects_start0 = 1;
+          long * objects_start = (long *) malloc(_len_objects_start0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_objects_start0; _i0++) {
+            objects_start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buffer0 = 1;
+          struct binder_buffer_object * buffer = (struct binder_buffer_object *) malloc(_len_buffer0*sizeof(struct binder_buffer_object));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_last_obj0 = 1;
+          struct binder_buffer_object * last_obj = (struct binder_buffer_object *) malloc(_len_last_obj0*sizeof(struct binder_buffer_object));
+          for(int _i0 = 0; _i0 < _len_last_obj0; _i0++) {
+              last_obj[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          last_obj[_i0].parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = binder_validate_fixup(b,objects_start,buffer,fixup_offset,last_obj,last_min_offset);
+          printf("%d\n", benchRet); 
+          free(b);
+          free(objects_start);
+          free(buffer);
+          free(last_obj);
+        
+        break;
+    }
     default:
         usage();
         break;

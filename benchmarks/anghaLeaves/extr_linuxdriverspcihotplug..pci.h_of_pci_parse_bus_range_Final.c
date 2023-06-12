@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ of_pci_parse_bus_range(struct device_node *node, struct resource *res)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_node0 = 1;
+          int _len_node0 = 65025;
           struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_res0 = 1;
+        
+          int _len_res0 = 65025;
           struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = of_pci_parse_bus_range(node,res);
           printf("%d\n", benchRet); 
           free(node);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_node0 = 100;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_res0 = 100;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = of_pci_parse_bus_range(node,res);
+          printf("%d\n", benchRet); 
+          free(node);
+          free(res);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_node0 = 1;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_res0 = 1;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = of_pci_parse_bus_range(node,res);
+          printf("%d\n", benchRet); 
+          free(node);
+          free(res);
+        
+        break;
+    }
     default:
         usage();
         break;

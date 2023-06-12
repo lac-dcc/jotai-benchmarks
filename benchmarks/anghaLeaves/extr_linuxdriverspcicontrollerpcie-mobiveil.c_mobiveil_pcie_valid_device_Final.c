@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static bool mobiveil_pcie_valid_device(struct pci_bus *bus
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned int devfn = 100;
+        
           int _len_bus0 = 1;
           struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_bus__i0__sysdata0 = 1;
           bus[_i0].sysdata = (struct mobiveil_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct mobiveil_pcie));
           for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
-            bus[_i0].sysdata->root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].sysdata->root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = mobiveil_pcie_valid_device(bus,devfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].sysdata);
+          }
+          free(bus);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int devfn = 255;
+        
+          int _len_bus0 = 65025;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bus__i0__sysdata0 = 1;
+          bus[_i0].sysdata = (struct mobiveil_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct mobiveil_pcie));
+          for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
+              bus[_i0].sysdata->root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mobiveil_pcie_valid_device(bus,devfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].sysdata);
+          }
+          free(bus);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int devfn = 10;
+        
+          int _len_bus0 = 100;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bus__i0__sysdata0 = 1;
+          bus[_i0].sysdata = (struct mobiveil_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct mobiveil_pcie));
+          for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
+              bus[_i0].sysdata->root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mobiveil_pcie_valid_device(bus,devfn);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].sysdata);
+          }
+          free(bus);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned int devfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bus0 = 1;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].number = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].primary = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bus__i0__sysdata0 = 1;
+          bus[_i0].sysdata = (struct mobiveil_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct mobiveil_pcie));
+          for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
+              bus[_i0].sysdata->root_bus_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = mobiveil_pcie_valid_device(bus,devfn);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bus0; _aux++) {

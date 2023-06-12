@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool is_function_field(struct ftrace_event_f
 	return field->filter_type == FILTER_TRACE_FN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_field0 = 1;
+          int _len_field0 = 65025;
           struct ftrace_event_field * field = (struct ftrace_event_field *) malloc(_len_field0*sizeof(struct ftrace_event_field));
           for(int _i0 = 0; _i0 < _len_field0; _i0++) {
-            field[_i0].filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              field[_i0].filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_function_field(field);
           printf("%d\n", benchRet); 
           free(field);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_field0 = 100;
           struct ftrace_event_field * field = (struct ftrace_event_field *) malloc(_len_field0*sizeof(struct ftrace_event_field));
           for(int _i0 = 0; _i0 < _len_field0; _i0++) {
-            field[_i0].filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              field[_i0].filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_function_field(field);
           printf("%d\n", benchRet); 
           free(field);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_field0 = 1;
+          struct ftrace_event_field * field = (struct ftrace_event_field *) malloc(_len_field0*sizeof(struct ftrace_event_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].filter_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_function_field(field);
+          printf("%d\n", benchRet); 
+          free(field);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void reset_vsync_timings(struct vo *vo)
     in->num_successive_vsyncs = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,21 +80,47 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vo0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vo0 = 65025;
           struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
           for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
               int _len_vo__i0__in0 = 1;
           vo[_i0].in = (struct vo_internal *) malloc(_len_vo__i0__in0*sizeof(struct vo_internal));
           for(int _j0 = 0; _j0 < _len_vo__i0__in0; _j0++) {
-            vo[_i0].in->expecting_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].in->num_successive_vsyncs = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].in->base_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].in->drop_point = ((-2 * (next_i()%2)) + 1) * next_i();
+              vo[_i0].in->expecting_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->num_successive_vsyncs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->base_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->drop_point = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           reset_vsync_timings(vo);
           for(int _aux = 0; _aux < _len_vo0; _aux++) {
           free(vo[_aux].in);
@@ -107,21 +129,148 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vo0 = 100;
+          struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
+          for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
+              int _len_vo__i0__in0 = 1;
+          vo[_i0].in = (struct vo_internal *) malloc(_len_vo__i0__in0*sizeof(struct vo_internal));
+          for(int _j0 = 0; _j0 < _len_vo__i0__in0; _j0++) {
+              vo[_i0].in->expecting_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->num_successive_vsyncs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->base_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->drop_point = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_vsync_timings(vo);
+          for(int _aux = 0; _aux < _len_vo0; _aux++) {
+          free(vo[_aux].in);
+          }
+          free(vo);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_vo0 = 1;
           struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
           for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
               int _len_vo__i0__in0 = 1;
           vo[_i0].in = (struct vo_internal *) malloc(_len_vo__i0__in0*sizeof(struct vo_internal));
           for(int _j0 = 0; _j0 < _len_vo__i0__in0; _j0++) {
-            vo[_i0].in->expecting_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].in->num_successive_vsyncs = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].in->base_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
-        vo[_i0].in->drop_point = ((-2 * (next_i()%2)) + 1) * next_i();
+              vo[_i0].in->expecting_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->num_successive_vsyncs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->base_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->drop_point = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          reset_vsync_timings(vo);
+          for(int _aux = 0; _aux < _len_vo0; _aux++) {
+          free(vo[_aux].in);
+          }
+          free(vo);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vo0 = 1;
+          struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
+          for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
+              int _len_vo__i0__in0 = 1;
+          vo[_i0].in = (struct vo_internal *) malloc(_len_vo__i0__in0*sizeof(struct vo_internal));
+          for(int _j0 = 0; _j0 < _len_vo__i0__in0; _j0++) {
+              vo[_i0].in->expecting_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->num_successive_vsyncs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->base_vsync = ((-2 * (next_i()%2)) + 1) * next_i();
+          vo[_i0].in->drop_point = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           reset_vsync_timings(vo);
           for(int _aux = 0; _aux < _len_vo0; _aux++) {
           free(vo[_aux].in);

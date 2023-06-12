@@ -71,12 +71,6 @@ chrtoblk_set(int cdev, int bdev)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cdev = 100;
+        
           int bdev = 100;
+        
           int benchRet = chrtoblk_set(cdev,bdev);
           printf("%d\n", benchRet); 
         
@@ -103,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cdev = 255;
+        
           int bdev = 255;
+        
           int benchRet = chrtoblk_set(cdev,bdev);
           printf("%d\n", benchRet); 
         
@@ -113,13 +111,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cdev = 10;
+        
           int bdev = 10;
+        
           int benchRet = chrtoblk_set(cdev,bdev);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

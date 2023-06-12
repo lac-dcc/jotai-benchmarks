@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int elm327_tx_lin_hook(int lin_num, uint8_t *data, 
   return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lin_num = 100;
+        
           int len = 100;
+        
           int _len_data0 = 1;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = elm327_tx_lin_hook(lin_num,data,len);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int lin_num = 255;
+        
+          int len = 255;
+        
+          int _len_data0 = 65025;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = elm327_tx_lin_hook(lin_num,data,len);
           printf("%d\n", benchRet); 
           free(data);
@@ -99,22 +117,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int lin_num = 10;
+        
           int len = 10;
+        
           int _len_data0 = 100;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = elm327_tx_lin_hook(lin_num,data,len);
           printf("%d\n", benchRet); 
           free(data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int lin_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = elm327_tx_lin_hook(lin_num,data,len);
+          printf("%d\n", benchRet); 
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ qboolean ChopBounds( vec3_t mins, vec3_t maxs, vec3_t origin, vec3_t normal ){
 	return qtrue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,9 +81,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mins = 100;
+        
           int maxs = 100;
+        
           int origin = 100;
+        
           int normal = 100;
+        
           int benchRet = ChopBounds(mins,maxs,origin,normal);
           printf("%d\n", benchRet); 
         
@@ -98,9 +97,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mins = 255;
+        
           int maxs = 255;
+        
           int origin = 255;
+        
           int normal = 255;
+        
           int benchRet = ChopBounds(mins,maxs,origin,normal);
           printf("%d\n", benchRet); 
         
@@ -110,15 +113,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mins = 10;
+        
           int maxs = 10;
+        
           int origin = 10;
+        
           int normal = 10;
+        
           int benchRet = ChopBounds(mins,maxs,origin,normal);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mins = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int maxs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int normal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ChopBounds(mins,maxs,origin,normal);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

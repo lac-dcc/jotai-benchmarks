@@ -71,12 +71,6 @@ const char *zlog_get_level_name(int log_level) /* {{{ */
 	return level_names[log_level];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int log_level = 100;
+        
           const char * benchRet = zlog_get_level_name(log_level);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -102,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int log_level = 255;
+        
           const char * benchRet = zlog_get_level_name(log_level);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -111,12 +107,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int log_level = 10;
+        
           const char * benchRet = zlog_get_level_name(log_level);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

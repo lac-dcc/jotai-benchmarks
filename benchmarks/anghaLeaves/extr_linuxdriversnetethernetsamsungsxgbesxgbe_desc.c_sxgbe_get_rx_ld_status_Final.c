@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static int sxgbe_get_rx_ld_status(struct sxgbe_rx_norm_des
 	return p->rdes23.rx_wb_des23.last_desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].rdes23.rx_wb_des23.last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].rdes23.rx_wb_des23.last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = sxgbe_get_rx_ld_status(p);
           printf("%d\n", benchRet); 
           free(p);
@@ -103,15 +102,36 @@ int main(int argc, char *argv[]) {
           int _len_p0 = 100;
           struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].rdes23.rx_wb_des23.last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].rdes23.rx_wb_des23.last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = sxgbe_get_rx_ld_status(p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].rdes23.rx_wb_des23.last_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sxgbe_get_rx_ld_status(p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

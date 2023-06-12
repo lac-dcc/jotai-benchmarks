@@ -60,12 +60,6 @@ __attribute__((used)) static inline bool vhost_backend_has_feature(struct vhost_
 	return vq->acked_backend_features & (1ULL << bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +72,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int bit = 10;
+        
           int _len_vq0 = 100;
           struct vhost_virtqueue * vq = (struct vhost_virtqueue *) malloc(_len_vq0*sizeof(struct vhost_virtqueue));
           for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
-            vq[_i0].acked_backend_features = ((-2 * (next_i()%2)) + 1) * next_i();
+              vq[_i0].acked_backend_features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vhost_backend_has_feature(vq,bit);
           printf("%d\n", benchRet); 
           free(vq);

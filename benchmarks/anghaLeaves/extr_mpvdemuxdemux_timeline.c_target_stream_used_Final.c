@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static bool target_stream_used(struct segment *seg, int ta
     return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +79,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int target_index = 100;
+        
           int _len_seg0 = 1;
           struct segment * seg = (struct segment *) malloc(_len_seg0*sizeof(struct segment));
           for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
-            seg[_i0].num_stream_map = ((-2 * (next_i()%2)) + 1) * next_i();
+              seg[_i0].num_stream_map = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_seg__i0__stream_map0 = 1;
           seg[_i0].stream_map = (int *) malloc(_len_seg__i0__stream_map0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_seg__i0__stream_map0; _j0++) {
             seg[_i0].stream_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = target_stream_used(seg,target_index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_seg0; _aux++) {
+          free(seg[_aux].stream_map);
+          }
+          free(seg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int target_index = 255;
+        
+          int _len_seg0 = 65025;
+          struct segment * seg = (struct segment *) malloc(_len_seg0*sizeof(struct segment));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].num_stream_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_seg__i0__stream_map0 = 1;
+          seg[_i0].stream_map = (int *) malloc(_len_seg__i0__stream_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_seg__i0__stream_map0; _j0++) {
+            seg[_i0].stream_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = target_stream_used(seg,target_index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_seg0; _aux++) {
+          free(seg[_aux].stream_map);
+          }
+          free(seg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int target_index = 10;
+        
+          int _len_seg0 = 100;
+          struct segment * seg = (struct segment *) malloc(_len_seg0*sizeof(struct segment));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].num_stream_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_seg__i0__stream_map0 = 1;
+          seg[_i0].stream_map = (int *) malloc(_len_seg__i0__stream_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_seg__i0__stream_map0; _j0++) {
+            seg[_i0].stream_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = target_stream_used(seg,target_index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_seg0; _aux++) {
+          free(seg[_aux].stream_map);
+          }
+          free(seg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int target_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_seg0 = 1;
+          struct segment * seg = (struct segment *) malloc(_len_seg0*sizeof(struct segment));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].num_stream_map = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_seg__i0__stream_map0 = 1;
+          seg[_i0].stream_map = (int *) malloc(_len_seg__i0__stream_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_seg__i0__stream_map0; _j0++) {
+            seg[_i0].stream_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = target_stream_used(seg,target_index);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_seg0; _aux++) {

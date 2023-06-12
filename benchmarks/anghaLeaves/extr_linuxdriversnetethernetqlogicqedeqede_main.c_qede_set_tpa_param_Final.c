@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void qede_set_tpa_param(struct qede_rx_queue *rxq)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,18 +83,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_rxq0 = 65025;
+          struct qede_rx_queue * rxq = (struct qede_rx_queue *) malloc(_len_rxq0*sizeof(struct qede_rx_queue));
+          for(int _i0 = 0; _i0 < _len_rxq0; _i0++) {
+              int _len_rxq__i0__tpa_info0 = 1;
+          rxq[_i0].tpa_info = (struct qede_agg_info *) malloc(_len_rxq__i0__tpa_info0*sizeof(struct qede_agg_info));
+          for(int _j0 = 0; _j0 < _len_rxq__i0__tpa_info0; _j0++) {
+              rxq[_i0].tpa_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qede_set_tpa_param(rxq);
+          for(int _aux = 0; _aux < _len_rxq0; _aux++) {
+          free(rxq[_aux].tpa_info);
+          }
+          free(rxq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_rxq0 = 100;
+          struct qede_rx_queue * rxq = (struct qede_rx_queue *) malloc(_len_rxq0*sizeof(struct qede_rx_queue));
+          for(int _i0 = 0; _i0 < _len_rxq0; _i0++) {
+              int _len_rxq__i0__tpa_info0 = 1;
+          rxq[_i0].tpa_info = (struct qede_agg_info *) malloc(_len_rxq__i0__tpa_info0*sizeof(struct qede_agg_info));
+          for(int _j0 = 0; _j0 < _len_rxq__i0__tpa_info0; _j0++) {
+              rxq[_i0].tpa_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qede_set_tpa_param(rxq);
+          for(int _aux = 0; _aux < _len_rxq0; _aux++) {
+          free(rxq[_aux].tpa_info);
+          }
+          free(rxq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_rxq0 = 1;
           struct qede_rx_queue * rxq = (struct qede_rx_queue *) malloc(_len_rxq0*sizeof(struct qede_rx_queue));
           for(int _i0 = 0; _i0 < _len_rxq0; _i0++) {
               int _len_rxq__i0__tpa_info0 = 1;
           rxq[_i0].tpa_info = (struct qede_agg_info *) malloc(_len_rxq__i0__tpa_info0*sizeof(struct qede_agg_info));
           for(int _j0 = 0; _j0 < _len_rxq__i0__tpa_info0; _j0++) {
-            rxq[_i0].tpa_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rxq[_i0].tpa_info->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           qede_set_tpa_param(rxq);
           for(int _aux = 0; _aux < _len_rxq0; _aux++) {
           free(rxq[_aux].tpa_info);

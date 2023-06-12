@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void __vhost_vq_meta_reset(struct vhost_virtqueue *
 		vq->meta_iotlb[j] = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,9 +78,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_vq0 = 65025;
+          struct vhost_virtqueue * vq = (struct vhost_virtqueue *) malloc(_len_vq0*sizeof(struct vhost_virtqueue));
+          for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
+              int _len_vq__i0__meta_iotlb0 = 1;
+          vq[_i0].meta_iotlb = (int **) malloc(_len_vq__i0__meta_iotlb0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_vq__i0__meta_iotlb0; _j0++) {
+            int _len_vq__i0__meta_iotlb1 = 1;
+            vq[_i0].meta_iotlb[_j0] = (int *) malloc(_len_vq__i0__meta_iotlb1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_vq__i0__meta_iotlb1; _j1++) {
+              vq[_i0].meta_iotlb[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          __vhost_vq_meta_reset(vq);
+          for(int _aux = 0; _aux < _len_vq0; _aux++) {
+          free(*(vq[_aux].meta_iotlb));
+        free(vq[_aux].meta_iotlb);
+          }
+          free(vq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_vq0 = 100;
+          struct vhost_virtqueue * vq = (struct vhost_virtqueue *) malloc(_len_vq0*sizeof(struct vhost_virtqueue));
+          for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
+              int _len_vq__i0__meta_iotlb0 = 1;
+          vq[_i0].meta_iotlb = (int **) malloc(_len_vq__i0__meta_iotlb0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_vq__i0__meta_iotlb0; _j0++) {
+            int _len_vq__i0__meta_iotlb1 = 1;
+            vq[_i0].meta_iotlb[_j0] = (int *) malloc(_len_vq__i0__meta_iotlb1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_vq__i0__meta_iotlb1; _j1++) {
+              vq[_i0].meta_iotlb[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          __vhost_vq_meta_reset(vq);
+          for(int _aux = 0; _aux < _len_vq0; _aux++) {
+          free(*(vq[_aux].meta_iotlb));
+        free(vq[_aux].meta_iotlb);
+          }
+          free(vq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_vq0 = 1;
           struct vhost_virtqueue * vq = (struct vhost_virtqueue *) malloc(_len_vq0*sizeof(struct vhost_virtqueue));
           for(int _i0 = 0; _i0 < _len_vq0; _i0++) {
@@ -97,7 +218,9 @@ int main(int argc, char *argv[]) {
               vq[_i0].meta_iotlb[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
           __vhost_vq_meta_reset(vq);
           for(int _aux = 0; _aux < _len_vq0; _aux++) {
           free(*(vq[_aux].meta_iotlb));

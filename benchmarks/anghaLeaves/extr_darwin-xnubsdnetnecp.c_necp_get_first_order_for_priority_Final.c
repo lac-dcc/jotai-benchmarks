@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ necp_get_first_order_for_priority(u_int32_t priority)
 	return (((priority - 1) * 1000) + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int priority = 100;
+        
           int benchRet = necp_get_first_order_for_priority(priority);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int priority = 255;
+        
           int benchRet = necp_get_first_order_for_priority(priority);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int priority = 10;
+        
           int benchRet = necp_get_first_order_for_priority(priority);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = necp_get_first_order_for_priority(priority);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

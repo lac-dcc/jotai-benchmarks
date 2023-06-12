@@ -65,12 +65,6 @@ __attribute__((used)) static U32 FUZ_highbit32(U32 v32)
     return nbBits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int v32 = 100;
+        
           int benchRet = FUZ_highbit32(v32);
           printf("%d\n", benchRet); 
         
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int v32 = 255;
+        
           int benchRet = FUZ_highbit32(v32);
           printf("%d\n", benchRet); 
         
@@ -105,12 +101,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int v32 = 10;
+        
           int benchRet = FUZ_highbit32(v32);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

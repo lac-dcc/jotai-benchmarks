@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static bool bq2415x_update_reported_mode(struct bq2415x_de
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,30 +95,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int mA = 100;
+        
           int _len_bq0 = 1;
           struct bq2415x_device * bq = (struct bq2415x_device *) malloc(_len_bq0*sizeof(struct bq2415x_device));
           for(int _i0 = 0; _i0 < _len_bq0; _i0++) {
-            bq[_i0].reported_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              bq[_i0].reported_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bq2415x_update_reported_mode(bq,mA);
           printf("%d\n", benchRet); 
           free(bq);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int mA = 255;
+        
+          int _len_bq0 = 65025;
+          struct bq2415x_device * bq = (struct bq2415x_device *) malloc(_len_bq0*sizeof(struct bq2415x_device));
+          for(int _i0 = 0; _i0 < _len_bq0; _i0++) {
+              bq[_i0].reported_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bq2415x_update_reported_mode(bq,mA);
+          printf("%d\n", benchRet); 
+          free(bq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int mA = 10;
+        
           int _len_bq0 = 100;
           struct bq2415x_device * bq = (struct bq2415x_device *) malloc(_len_bq0*sizeof(struct bq2415x_device));
           for(int _i0 = 0; _i0 < _len_bq0; _i0++) {
-            bq[_i0].reported_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              bq[_i0].reported_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bq2415x_update_reported_mode(bq,mA);
+          printf("%d\n", benchRet); 
+          free(bq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int mA = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bq0 = 1;
+          struct bq2415x_device * bq = (struct bq2415x_device *) malloc(_len_bq0*sizeof(struct bq2415x_device));
+          for(int _i0 = 0; _i0 < _len_bq0; _i0++) {
+              bq[_i0].reported_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bq2415x_update_reported_mode(bq,mA);
           printf("%d\n", benchRet); 
           free(bq);

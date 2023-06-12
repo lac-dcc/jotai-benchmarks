@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ uint rtw_remainder_len(struct pkt_file *pfile)
 	return (pfile->buf_len - ((SIZE_PTR)(pfile->cur_addr) - (SIZE_PTR)(pfile->buf_start)));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pfile0 = 1;
+          int _len_pfile0 = 65025;
           struct pkt_file * pfile = (struct pkt_file *) malloc(_len_pfile0*sizeof(struct pkt_file));
           for(int _i0 = 0; _i0 < _len_pfile0; _i0++) {
-            pfile[_i0].buf_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        pfile[_i0].cur_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        pfile[_i0].buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              pfile[_i0].buf_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfile[_i0].cur_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfile[_i0].buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = rtw_remainder_len(pfile);
           printf("%ld\n", benchRet); 
           free(pfile);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pfile0 = 100;
+          struct pkt_file * pfile = (struct pkt_file *) malloc(_len_pfile0*sizeof(struct pkt_file));
+          for(int _i0 = 0; _i0 < _len_pfile0; _i0++) {
+              pfile[_i0].buf_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfile[_i0].cur_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfile[_i0].buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = rtw_remainder_len(pfile);
+          printf("%ld\n", benchRet); 
+          free(pfile);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pfile0 = 1;
+          struct pkt_file * pfile = (struct pkt_file *) malloc(_len_pfile0*sizeof(struct pkt_file));
+          for(int _i0 = 0; _i0 < _len_pfile0; _i0++) {
+              pfile[_i0].buf_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfile[_i0].cur_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pfile[_i0].buf_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = rtw_remainder_len(pfile);
+          printf("%ld\n", benchRet); 
+          free(pfile);
+        
+        break;
+    }
     default:
         usage();
         break;

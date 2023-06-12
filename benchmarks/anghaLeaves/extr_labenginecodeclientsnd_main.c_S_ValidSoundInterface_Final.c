@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -94,12 +96,6 @@ __attribute__((used)) static qboolean S_ValidSoundInterface( soundInterface_t *s
 	return qtrue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,40 +108,111 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_si0 = 1;
+          int _len_si0 = 65025;
           struct TYPE_3__ * si = (struct TYPE_3__ *) malloc(_len_si0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_si0; _i0++) {
-            si[_i0].SoundList = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].SoundInfo = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].ClearSoundBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].RegisterSound = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].BeginRegistration = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].DisableSounds = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].Update = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].UpdateEntityPosition = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].Respatialize = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].StopLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].AddRealLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].AddLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].ClearLoopingSounds = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].StopAllSounds = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].RawSamples = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].StopBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].StartBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].StartLocalSound = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].StartSound = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].Shutdown = ((-2 * (next_i()%2)) + 1) * next_i();
+              si[_i0].SoundList = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].SoundInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].ClearSoundBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].RegisterSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].BeginRegistration = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].DisableSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Update = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].UpdateEntityPosition = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Respatialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].AddRealLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].AddLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].ClearLoopingSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopAllSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].RawSamples = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartLocalSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Shutdown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = S_ValidSoundInterface(si);
           printf("%d\n", benchRet); 
           free(si);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_si0 = 100;
+          struct TYPE_3__ * si = (struct TYPE_3__ *) malloc(_len_si0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_si0; _i0++) {
+              si[_i0].SoundList = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].SoundInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].ClearSoundBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].RegisterSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].BeginRegistration = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].DisableSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Update = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].UpdateEntityPosition = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Respatialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].AddRealLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].AddLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].ClearLoopingSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopAllSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].RawSamples = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartLocalSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Shutdown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = S_ValidSoundInterface(si);
+          printf("%d\n", benchRet); 
+          free(si);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_si0 = 1;
+          struct TYPE_3__ * si = (struct TYPE_3__ *) malloc(_len_si0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_si0; _i0++) {
+              si[_i0].SoundList = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].SoundInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].ClearSoundBuffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].RegisterSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].BeginRegistration = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].DisableSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Update = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].UpdateEntityPosition = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Respatialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].AddRealLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].AddLoopingSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].ClearLoopingSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopAllSounds = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].RawSamples = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StopBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartBackgroundTrack = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartLocalSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].StartSound = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].Shutdown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = S_ValidSoundInterface(si);
+          printf("%d\n", benchRet); 
+          free(si);
+        
+        break;
+    }
     default:
         usage();
         break;

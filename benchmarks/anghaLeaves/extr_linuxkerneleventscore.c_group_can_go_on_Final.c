@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static int group_can_go_on(struct perf_event *event,
 	return can_add_hw;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,22 +102,210 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int can_add_hw = 100;
+        
           int _len_event0 = 1;
           struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].group_caps = ((-2 * (next_i()%2)) + 1) * next_i();
-        event[_i0].attr.exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].group_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_cpuctx0 = 1;
           struct perf_cpu_context * cpuctx = (struct perf_cpu_context *) malloc(_len_cpuctx0*sizeof(struct perf_cpu_context));
           for(int _i0 = 0; _i0 < _len_cpuctx0; _i0++) {
-            cpuctx[_i0].active_oncpu = ((-2 * (next_i()%2)) + 1) * next_i();
-        cpuctx[_i0].exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpuctx[_i0].active_oncpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpuctx[_i0].exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = group_can_go_on(event,cpuctx,can_add_hw);
+          printf("%d\n", benchRet); 
+          free(event);
+          free(cpuctx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int can_add_hw = 255;
+        
+          int _len_event0 = 65025;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].group_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cpuctx0 = 65025;
+          struct perf_cpu_context * cpuctx = (struct perf_cpu_context *) malloc(_len_cpuctx0*sizeof(struct perf_cpu_context));
+          for(int _i0 = 0; _i0 < _len_cpuctx0; _i0++) {
+              cpuctx[_i0].active_oncpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpuctx[_i0].exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = group_can_go_on(event,cpuctx,can_add_hw);
+          printf("%d\n", benchRet); 
+          free(event);
+          free(cpuctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int can_add_hw = 10;
+        
+          int _len_event0 = 100;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].group_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cpuctx0 = 100;
+          struct perf_cpu_context * cpuctx = (struct perf_cpu_context *) malloc(_len_cpuctx0*sizeof(struct perf_cpu_context));
+          for(int _i0 = 0; _i0 < _len_cpuctx0; _i0++) {
+              cpuctx[_i0].active_oncpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpuctx[_i0].exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = group_can_go_on(event,cpuctx,can_add_hw);
+          printf("%d\n", benchRet); 
+          free(event);
+          free(cpuctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int can_add_hw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_event0 = 1;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].group_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          event[_i0].attr.exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_cpuctx0 = 1;
+          struct perf_cpu_context * cpuctx = (struct perf_cpu_context *) malloc(_len_cpuctx0*sizeof(struct perf_cpu_context));
+          for(int _i0 = 0; _i0 < _len_cpuctx0; _i0++) {
+              cpuctx[_i0].active_oncpu = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpuctx[_i0].exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = group_can_go_on(event,cpuctx,can_add_hw);
           printf("%d\n", benchRet); 
           free(event);

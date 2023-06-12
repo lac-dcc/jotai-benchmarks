@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int atmel_ssc_cbs(struct atmel_ssc_info *ssc_p)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ssc_p0 = 1;
+          int _len_ssc_p0 = 65025;
           struct atmel_ssc_info * ssc_p = (struct atmel_ssc_info *) malloc(_len_ssc_p0*sizeof(struct atmel_ssc_info));
           for(int _i0 = 0; _i0 < _len_ssc_p0; _i0++) {
-            ssc_p[_i0].daifmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssc_p[_i0].daifmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = atmel_ssc_cbs(ssc_p);
           printf("%d\n", benchRet); 
           free(ssc_p);
@@ -107,15 +104,32 @@ int main(int argc, char *argv[]) {
           int _len_ssc_p0 = 100;
           struct atmel_ssc_info * ssc_p = (struct atmel_ssc_info *) malloc(_len_ssc_p0*sizeof(struct atmel_ssc_info));
           for(int _i0 = 0; _i0 < _len_ssc_p0; _i0++) {
-            ssc_p[_i0].daifmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssc_p[_i0].daifmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = atmel_ssc_cbs(ssc_p);
           printf("%d\n", benchRet); 
           free(ssc_p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ssc_p0 = 1;
+          struct atmel_ssc_info * ssc_p = (struct atmel_ssc_info *) malloc(_len_ssc_p0*sizeof(struct atmel_ssc_info));
+          for(int _i0 = 0; _i0 < _len_ssc_p0; _i0++) {
+              ssc_p[_i0].daifmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = atmel_ssc_cbs(ssc_p);
+          printf("%d\n", benchRet); 
+          free(ssc_p);
+        
+        break;
+    }
     default:
         usage();
         break;

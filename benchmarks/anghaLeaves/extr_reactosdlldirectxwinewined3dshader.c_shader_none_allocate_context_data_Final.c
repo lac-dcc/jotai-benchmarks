@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static BOOL shader_none_allocate_context_data(struct wined
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_context0 = 1;
+          int _len_context0 = 65025;
           struct wined3d_context * context = (struct wined3d_context *) malloc(_len_context0*sizeof(struct wined3d_context));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
-            context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = shader_none_allocate_context_data(context);
           printf("%d\n", benchRet); 
           free(context);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_context0 = 100;
           struct wined3d_context * context = (struct wined3d_context *) malloc(_len_context0*sizeof(struct wined3d_context));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
-            context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = shader_none_allocate_context_data(context);
           printf("%d\n", benchRet); 
           free(context);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_context0 = 1;
+          struct wined3d_context * context = (struct wined3d_context *) malloc(_len_context0*sizeof(struct wined3d_context));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = shader_none_allocate_context_data(context);
+          printf("%d\n", benchRet); 
+          free(context);
+        
+        break;
+    }
     default:
         usage();
         break;

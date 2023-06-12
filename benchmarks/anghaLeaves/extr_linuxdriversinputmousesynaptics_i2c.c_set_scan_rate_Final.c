@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline void set_scan_rate(struct synaptics_i2c *tou
 	touch->scan_rate_param = scan_rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +77,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int scan_rate = 100;
+        
           int _len_touch0 = 1;
           struct synaptics_i2c * touch = (struct synaptics_i2c *) malloc(_len_touch0*sizeof(struct synaptics_i2c));
           for(int _i0 = 0; _i0 < _len_touch0; _i0++) {
-            touch[_i0].scan_ms = ((-2 * (next_i()%2)) + 1) * next_i();
-        touch[_i0].scan_rate_param = ((-2 * (next_i()%2)) + 1) * next_i();
+              touch[_i0].scan_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          touch[_i0].scan_rate_param = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_scan_rate(touch,scan_rate);
+          free(touch);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int scan_rate = 255;
+        
+          int _len_touch0 = 65025;
+          struct synaptics_i2c * touch = (struct synaptics_i2c *) malloc(_len_touch0*sizeof(struct synaptics_i2c));
+          for(int _i0 = 0; _i0 < _len_touch0; _i0++) {
+              touch[_i0].scan_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          touch[_i0].scan_rate_param = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_scan_rate(touch,scan_rate);
+          free(touch);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int scan_rate = 10;
+        
+          int _len_touch0 = 100;
+          struct synaptics_i2c * touch = (struct synaptics_i2c *) malloc(_len_touch0*sizeof(struct synaptics_i2c));
+          for(int _i0 = 0; _i0 < _len_touch0; _i0++) {
+              touch[_i0].scan_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          touch[_i0].scan_rate_param = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_scan_rate(touch,scan_rate);
+          free(touch);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int scan_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_touch0 = 1;
+          struct synaptics_i2c * touch = (struct synaptics_i2c *) malloc(_len_touch0*sizeof(struct synaptics_i2c));
+          for(int _i0 = 0; _i0 < _len_touch0; _i0++) {
+              touch[_i0].scan_ms = ((-2 * (next_i()%2)) + 1) * next_i();
+          touch[_i0].scan_rate_param = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_scan_rate(touch,scan_rate);
           free(touch);
         

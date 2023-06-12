@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -71,12 +71,6 @@ __attribute__((used)) static bool tegra_xusb_mbox_cmd_requires_ack(enum tegra_xu
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum tegra_xusb_mbox_cmd cmd = 0;
+        
           int benchRet = tegra_xusb_mbox_cmd_requires_ack(cmd);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

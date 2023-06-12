@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void close_all_output_streams(OutputStream *ost, OS
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,31 +84,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int this_stream = 100;
+        
           int others = 100;
+        
           int _len_ost0 = 1;
           struct TYPE_4__ * ost = (struct TYPE_4__ *) malloc(_len_ost0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_ost0; _i0++) {
-            ost[_i0].finished = ((-2 * (next_i()%2)) + 1) * next_i();
+              ost[_i0].finished = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           close_all_output_streams(ost,this_stream,others);
           free(ost);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int this_stream = 255;
+        
+          int others = 255;
+        
+          int _len_ost0 = 65025;
+          struct TYPE_4__ * ost = (struct TYPE_4__ *) malloc(_len_ost0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_ost0; _i0++) {
+              ost[_i0].finished = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          close_all_output_streams(ost,this_stream,others);
+          free(ost);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int this_stream = 10;
+        
           int others = 10;
+        
           int _len_ost0 = 100;
           struct TYPE_4__ * ost = (struct TYPE_4__ *) malloc(_len_ost0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_ost0; _i0++) {
-            ost[_i0].finished = ((-2 * (next_i()%2)) + 1) * next_i();
+              ost[_i0].finished = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          close_all_output_streams(ost,this_stream,others);
+          free(ost);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int this_stream = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int others = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ost0 = 1;
+          struct TYPE_4__ * ost = (struct TYPE_4__ *) malloc(_len_ost0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_ost0; _i0++) {
+              ost[_i0].finished = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           close_all_output_streams(ost,this_stream,others);
           free(ost);
         

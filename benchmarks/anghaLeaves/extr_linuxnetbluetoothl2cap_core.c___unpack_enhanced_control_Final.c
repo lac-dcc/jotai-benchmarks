@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static void __unpack_enhanced_control(u16 enh, struct l2ca
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,23 +112,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enh = 100;
+        
           int _len_control0 = 1;
           struct l2cap_ctrl * control = (struct l2cap_ctrl *) malloc(_len_control0*sizeof(struct l2cap_ctrl));
           for(int _i0 = 0; _i0 < _len_control0; _i0++) {
-            control[_i0].reqseq = ((-2 * (next_i()%2)) + 1) * next_i();
-        control[_i0].final = ((-2 * (next_i()%2)) + 1) * next_i();
-        control[_i0].sframe = ((-2 * (next_i()%2)) + 1) * next_i();
-        control[_i0].poll = ((-2 * (next_i()%2)) + 1) * next_i();
-        control[_i0].super = ((-2 * (next_i()%2)) + 1) * next_i();
-        control[_i0].sar = ((-2 * (next_i()%2)) + 1) * next_i();
-        control[_i0].txseq = ((-2 * (next_i()%2)) + 1) * next_i();
+              control[_i0].reqseq = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].final = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sframe = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].super = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sar = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].txseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __unpack_enhanced_control(enh,control);
           free(control);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int enh = 255;
+        
+          int _len_control0 = 65025;
+          struct l2cap_ctrl * control = (struct l2cap_ctrl *) malloc(_len_control0*sizeof(struct l2cap_ctrl));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].reqseq = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].final = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sframe = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].super = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sar = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].txseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __unpack_enhanced_control(enh,control);
+          free(control);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int enh = 10;
+        
+          int _len_control0 = 100;
+          struct l2cap_ctrl * control = (struct l2cap_ctrl *) malloc(_len_control0*sizeof(struct l2cap_ctrl));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].reqseq = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].final = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sframe = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].super = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sar = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].txseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __unpack_enhanced_control(enh,control);
+          free(control);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int enh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_control0 = 1;
+          struct l2cap_ctrl * control = (struct l2cap_ctrl *) malloc(_len_control0*sizeof(struct l2cap_ctrl));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].reqseq = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].final = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sframe = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].super = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].sar = ((-2 * (next_i()%2)) + 1) * next_i();
+          control[_i0].txseq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __unpack_enhanced_control(enh,control);
+          free(control);
+        
+        break;
+    }
     default:
         usage();
         break;

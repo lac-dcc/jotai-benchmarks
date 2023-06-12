@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int ocfs2_alloc_context_bits_left(struct ocf
 	return ac->ac_bits_wanted - ac->ac_bits_given;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ac0 = 1;
+          int _len_ac0 = 65025;
           struct ocfs2_alloc_context * ac = (struct ocfs2_alloc_context *) malloc(_len_ac0*sizeof(struct ocfs2_alloc_context));
           for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
-            ac[_i0].ac_bits_wanted = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].ac_bits_given = ((-2 * (next_i()%2)) + 1) * next_i();
+              ac[_i0].ac_bits_wanted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].ac_bits_given = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocfs2_alloc_context_bits_left(ac);
           printf("%d\n", benchRet); 
           free(ac);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ac0 = 100;
+          struct ocfs2_alloc_context * ac = (struct ocfs2_alloc_context *) malloc(_len_ac0*sizeof(struct ocfs2_alloc_context));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].ac_bits_wanted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].ac_bits_given = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocfs2_alloc_context_bits_left(ac);
+          printf("%d\n", benchRet); 
+          free(ac);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ac0 = 1;
+          struct ocfs2_alloc_context * ac = (struct ocfs2_alloc_context *) malloc(_len_ac0*sizeof(struct ocfs2_alloc_context));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].ac_bits_wanted = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].ac_bits_given = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocfs2_alloc_context_bits_left(ac);
+          printf("%d\n", benchRet); 
+          free(ac);
+        
+        break;
+    }
     default:
         usage();
         break;

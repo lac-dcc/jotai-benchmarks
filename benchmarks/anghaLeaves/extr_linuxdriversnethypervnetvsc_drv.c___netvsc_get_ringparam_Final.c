@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static void __netvsc_get_ringparam(struct netvsc_device *n
 		/ nvdev->send_section_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,26 +93,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_nvdev0 = 65025;
+          struct netvsc_device * nvdev = (struct netvsc_device *) malloc(_len_nvdev0*sizeof(struct netvsc_device));
+          for(int _i0 = 0; _i0 < _len_nvdev0; _i0++) {
+              nvdev[_i0].nvsp_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].recv_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].send_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].send_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].recv_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ring0 = 65025;
+          struct ethtool_ringparam * ring = (struct ethtool_ringparam *) malloc(_len_ring0*sizeof(struct ethtool_ringparam));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].rx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].tx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].tx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].rx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __netvsc_get_ringparam(nvdev,ring);
+          free(nvdev);
+          free(ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_nvdev0 = 100;
+          struct netvsc_device * nvdev = (struct netvsc_device *) malloc(_len_nvdev0*sizeof(struct netvsc_device));
+          for(int _i0 = 0; _i0 < _len_nvdev0; _i0++) {
+              nvdev[_i0].nvsp_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].recv_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].send_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].send_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].recv_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ring0 = 100;
+          struct ethtool_ringparam * ring = (struct ethtool_ringparam *) malloc(_len_ring0*sizeof(struct ethtool_ringparam));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].rx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].tx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].tx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].rx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __netvsc_get_ringparam(nvdev,ring);
+          free(nvdev);
+          free(ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int _len_nvdev0 = 1;
           struct netvsc_device * nvdev = (struct netvsc_device *) malloc(_len_nvdev0*sizeof(struct netvsc_device));
           for(int _i0 = 0; _i0 < _len_nvdev0; _i0++) {
-            nvdev[_i0].nvsp_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvdev[_i0].recv_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvdev[_i0].send_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvdev[_i0].send_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        nvdev[_i0].recv_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              nvdev[_i0].nvsp_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].recv_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].send_section_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].send_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          nvdev[_i0].recv_section_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ring0 = 1;
           struct ethtool_ringparam * ring = (struct ethtool_ringparam *) malloc(_len_ring0*sizeof(struct ethtool_ringparam));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].rx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].tx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].tx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].rx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].rx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].tx_max_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].tx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].rx_pending = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __netvsc_get_ringparam(nvdev,ring);
           free(nvdev);
           free(ring);

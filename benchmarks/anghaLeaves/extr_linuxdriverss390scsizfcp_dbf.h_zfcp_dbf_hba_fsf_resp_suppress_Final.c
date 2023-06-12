@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ bool zfcp_dbf_hba_fsf_resp_suppress(struct zfcp_fsf_req *req)
 		(fr_status == SAM_STAT_GOOD);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,21 +107,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
+          struct zfcp_fsf_req * req = (struct zfcp_fsf_req *) malloc(_len_req0*sizeof(struct zfcp_fsf_req));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              int _len_req__i0__qtcb0 = 1;
+          req[_i0].qtcb = (struct fsf_qtcb *) malloc(_len_req__i0__qtcb0*sizeof(struct fsf_qtcb));
+          for(int _j0 = 0; _j0 < _len_req__i0__qtcb0; _j0++) {
+              req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+        
+          req[_i0].qtcb->prefix.qtcb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          req[_i0].qtcb->header.fsf_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = zfcp_dbf_hba_fsf_resp_suppress(req);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_req0; _aux++) {
+          free(req[_aux].qtcb);
+          }
+          free(req);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_req0 = 100;
+          struct zfcp_fsf_req * req = (struct zfcp_fsf_req *) malloc(_len_req0*sizeof(struct zfcp_fsf_req));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              int _len_req__i0__qtcb0 = 1;
+          req[_i0].qtcb = (struct fsf_qtcb *) malloc(_len_req__i0__qtcb0*sizeof(struct fsf_qtcb));
+          for(int _j0 = 0; _j0 < _len_req__i0__qtcb0; _j0++) {
+              req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+        
+          req[_i0].qtcb->prefix.qtcb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          req[_i0].qtcb->header.fsf_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = zfcp_dbf_hba_fsf_resp_suppress(req);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_req0; _aux++) {
+          free(req[_aux].qtcb);
+          }
+          free(req);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_req0 = 1;
           struct zfcp_fsf_req * req = (struct zfcp_fsf_req *) malloc(_len_req0*sizeof(struct zfcp_fsf_req));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
               int _len_req__i0__qtcb0 = 1;
           req[_i0].qtcb = (struct fsf_qtcb *) malloc(_len_req__i0__qtcb0*sizeof(struct fsf_qtcb));
           for(int _j0 = 0; _j0 < _len_req__i0__qtcb0; _j0++) {
-            req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].qtcb->prefix.qtcb_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        req[_i0].qtcb->header.fsf_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          req[_i0].qtcb->bottom.io.fcp_rsp.iu.resp.fr_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+        
+          req[_i0].qtcb->prefix.qtcb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          req[_i0].qtcb->header.fsf_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = zfcp_dbf_hba_fsf_resp_suppress(req);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_req0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void reset_state(struct osst_tape *STp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +90,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_STp0 = 65025;
+          struct osst_tape * STp = (struct osst_tape *) malloc(_len_STp0*sizeof(struct osst_tape));
+          for(int _i0 = 0; _i0 < _len_STp0; _i0++) {
+              int _len_STp__i0__ps0 = 1;
+          STp[_i0].ps = (struct st_partstat *) malloc(_len_STp__i0__ps0*sizeof(struct st_partstat));
+          for(int _j0 = 0; _j0 < _len_STp__i0__ps0; _j0++) {
+              STp[_i0].ps->drv_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->drv_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->last_block_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->at_sm = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->eof = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          STp[_i0].pos_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_state(STp);
+          for(int _aux = 0; _aux < _len_STp0; _aux++) {
+          free(STp[_aux].ps);
+          }
+          free(STp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_STp0 = 100;
+          struct osst_tape * STp = (struct osst_tape *) malloc(_len_STp0*sizeof(struct osst_tape));
+          for(int _i0 = 0; _i0 < _len_STp0; _i0++) {
+              int _len_STp__i0__ps0 = 1;
+          STp[_i0].ps = (struct st_partstat *) malloc(_len_STp__i0__ps0*sizeof(struct st_partstat));
+          for(int _j0 = 0; _j0 < _len_STp__i0__ps0; _j0++) {
+              STp[_i0].ps->drv_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->drv_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->last_block_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->at_sm = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->eof = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          STp[_i0].pos_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_state(STp);
+          for(int _aux = 0; _aux < _len_STp0; _aux++) {
+          free(STp[_aux].ps);
+          }
+          free(STp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_STp0 = 1;
           struct osst_tape * STp = (struct osst_tape *) malloc(_len_STp0*sizeof(struct osst_tape));
           for(int _i0 = 0; _i0 < _len_STp0; _i0++) {
               int _len_STp__i0__ps0 = 1;
           STp[_i0].ps = (struct st_partstat *) malloc(_len_STp__i0__ps0*sizeof(struct st_partstat));
           for(int _j0 = 0; _j0 < _len_STp__i0__ps0; _j0++) {
-            STp[_i0].ps->drv_block = ((-2 * (next_i()%2)) + 1) * next_i();
-        STp[_i0].ps->drv_file = ((-2 * (next_i()%2)) + 1) * next_i();
-        STp[_i0].ps->last_block_valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        STp[_i0].ps->at_sm = ((-2 * (next_i()%2)) + 1) * next_i();
-        STp[_i0].ps->eof = ((-2 * (next_i()%2)) + 1) * next_i();
-        STp[_i0].ps->rw = ((-2 * (next_i()%2)) + 1) * next_i();
+              STp[_i0].ps->drv_block = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->drv_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->last_block_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->at_sm = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->eof = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].ps->rw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        STp[_i0].pos_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          STp[_i0].pos_unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           reset_state(STp);
           for(int _aux = 0; _aux < _len_STp0; _aux++) {
           free(STp[_aux].ps);

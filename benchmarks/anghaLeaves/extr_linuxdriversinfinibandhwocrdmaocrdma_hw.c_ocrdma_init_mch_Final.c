@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void ocrdma_init_mch(struct ocrdma_mbx_hdr *cmd_hdr
 	cmd_hdr->cmd_len = cmd_len - sizeof(struct ocrdma_mbx_hdr);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int opcode = 100;
+        
           int subsys = 100;
+        
           long cmd_len = 100;
+        
           int _len_cmd_hdr0 = 1;
           struct ocrdma_mbx_hdr * cmd_hdr = (struct ocrdma_mbx_hdr *) malloc(_len_cmd_hdr0*sizeof(struct ocrdma_mbx_hdr));
           for(int _i0 = 0; _i0 < _len_cmd_hdr0; _i0++) {
-            cmd_hdr[_i0].subsys_op = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_hdr[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd_hdr[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd_hdr[_i0].subsys_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_hdr[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_hdr[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ocrdma_init_mch(cmd_hdr,opcode,subsys,cmd_len);
+          free(cmd_hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int opcode = 255;
+        
+          int subsys = 255;
+        
+          long cmd_len = 255;
+        
+          int _len_cmd_hdr0 = 65025;
+          struct ocrdma_mbx_hdr * cmd_hdr = (struct ocrdma_mbx_hdr *) malloc(_len_cmd_hdr0*sizeof(struct ocrdma_mbx_hdr));
+          for(int _i0 = 0; _i0 < _len_cmd_hdr0; _i0++) {
+              cmd_hdr[_i0].subsys_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_hdr[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_hdr[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ocrdma_init_mch(cmd_hdr,opcode,subsys,cmd_len);
+          free(cmd_hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int opcode = 10;
+        
+          int subsys = 10;
+        
+          long cmd_len = 10;
+        
+          int _len_cmd_hdr0 = 100;
+          struct ocrdma_mbx_hdr * cmd_hdr = (struct ocrdma_mbx_hdr *) malloc(_len_cmd_hdr0*sizeof(struct ocrdma_mbx_hdr));
+          for(int _i0 = 0; _i0 < _len_cmd_hdr0; _i0++) {
+              cmd_hdr[_i0].subsys_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_hdr[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd_hdr[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ocrdma_init_mch(cmd_hdr,opcode,subsys,cmd_len);
           free(cmd_hdr);
         

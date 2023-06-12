@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static inline int get_burst_size(struct tegra_dma_channel 
 		return TEGRA_APBDMA_AHBSEQ_BURST_8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,34 +105,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int burst_size = 100;
+        
           enum dma_slave_buswidth slave_bw = 0;
+        
           int len = 100;
+        
           int _len_tdc0 = 1;
           struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
           for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
-            tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_burst_size(tdc,burst_size,slave_bw,len);
           printf("%d\n", benchRet); 
           free(tdc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
-          int burst_size = 10;
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int burst_size = 255;
+        
           enum dma_slave_buswidth slave_bw = 0;
+        
+          int len = 255;
+        
+          int _len_tdc0 = 65025;
+          struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
+          for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_burst_size(tdc,burst_size,slave_bw,len);
+          printf("%d\n", benchRet); 
+          free(tdc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int burst_size = 10;
+        
+          enum dma_slave_buswidth slave_bw = 0;
+        
           int len = 10;
+        
           int _len_tdc0 = 100;
           struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
           for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
-            tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = get_burst_size(tdc,burst_size,slave_bw,len);
+          printf("%d\n", benchRet); 
+          free(tdc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int burst_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum dma_slave_buswidth slave_bw = 0;
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tdc0 = 1;
+          struct tegra_dma_channel * tdc = (struct tegra_dma_channel *) malloc(_len_tdc0*sizeof(struct tegra_dma_channel));
+          for(int _i0 = 0; _i0 < _len_tdc0; _i0++) {
+              tdc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = get_burst_size(tdc,burst_size,slave_bw,len);
           printf("%d\n", benchRet); 
           free(tdc);

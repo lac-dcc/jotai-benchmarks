@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ typedef  TYPE_1__ RNumCalcValue ;
 
 __attribute__((used)) static inline RNumCalcValue Nset(ut64 v) { RNumCalcValue n; n.d = (double)v; n.n = v; return n; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long v = 100;
+        
           struct TYPE_3__ benchRet = Nset(v);
           printf("%lf\n", benchRet.d);
           printf("%ld\n", benchRet.n);
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long v = 255;
+        
           struct TYPE_3__ benchRet = Nset(v);
           printf("%lf\n", benchRet.d);
           printf("%ld\n", benchRet.n);
@@ -104,13 +101,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long v = 10;
+        
           struct TYPE_3__ benchRet = Nset(v);
           printf("%lf\n", benchRet.d);
           printf("%ld\n", benchRet.n);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ benchRet = Nset(v);
+          printf("%lf\n", benchRet.d);
+          printf("%ld\n", benchRet.n);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ int ccv_cli_output_level_and_above(int level)
 	return (int)levels;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,28 +83,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 588
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 268
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 81
+          // dynamic_instructions_O3 : 81
+          // ------------------------------- 
+          // static_instructions_Ofast : 81
+          // dynamic_instructions_Ofast : 81
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 182
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 302
+          // ------------------------------- 
+
           int level = 100;
+        
           int benchRet = ccv_cli_output_level_and_above(level);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 583
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 268
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 81
+          // dynamic_instructions_O3 : 81
+          // ------------------------------- 
+          // static_instructions_Ofast : 81
+          // dynamic_instructions_Ofast : 81
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 182
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 302
+          // ------------------------------- 
+
           int level = 255;
+        
           int benchRet = ccv_cli_output_level_and_above(level);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 603
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 268
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 81
+          // dynamic_instructions_O3 : 81
+          // ------------------------------- 
+          // static_instructions_Ofast : 81
+          // dynamic_instructions_Ofast : 81
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 182
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 302
+          // ------------------------------- 
+
           int level = 10;
+        
+          int benchRet = ccv_cli_output_level_and_above(level);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 463
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 268
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 81
+          // dynamic_instructions_O3 : 81
+          // ------------------------------- 
+          // static_instructions_Ofast : 81
+          // dynamic_instructions_Ofast : 81
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 182
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 302
+          // ------------------------------- 
+
+          int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ccv_cli_output_level_and_above(level);
           printf("%d\n", benchRet); 
         

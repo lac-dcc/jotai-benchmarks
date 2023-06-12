@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static void cw_update_attr(u8 *dst, u8 *src, int attribute
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,22 +102,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int attribute = 100;
+        
           int _len_dst0 = 1;
           int * dst = (int *) malloc(_len_dst0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_src0 = 1;
           int * src = (int *) malloc(_len_src0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_vc0 = 1;
           struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
-            vc[_i0].vc_font.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_font.width = ((-2 * (next_i()%2)) + 1) * next_i();
+              vc[_i0].vc_font.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_font.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cw_update_attr(dst,src,attribute,vc);
           free(dst);
           free(src);
@@ -128,7 +131,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int attribute = 255;
+        
+          int _len_dst0 = 65025;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 65025;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_vc0 = 65025;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_font.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_font.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cw_update_attr(dst,src,attribute,vc);
+          free(dst);
+          free(src);
+          free(vc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int attribute = 10;
+        
+          int _len_dst0 = 100;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 100;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_vc0 = 100;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_font.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_font.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cw_update_attr(dst,src,attribute,vc);
+          free(dst);
+          free(src);
+          free(vc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int attribute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          int * dst = (int *) malloc(_len_dst0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 1;
+          int * src = (int *) malloc(_len_src0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_vc0 = 1;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_font.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_font.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cw_update_attr(dst,src,attribute,vc);
+          free(dst);
+          free(src);
+          free(vc);
+        
+        break;
+    }
     default:
         usage();
         break;

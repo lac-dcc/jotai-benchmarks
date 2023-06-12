@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static u8 ath9k_wow_map_triggers(struct ath_softc *sc,
 	return wow_triggers;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,21 +92,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_sc0 = 65025;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wowlan0 = 65025;
+          struct cfg80211_wowlan * wowlan = (struct cfg80211_wowlan *) malloc(_len_wowlan0*sizeof(struct cfg80211_wowlan));
+          for(int _i0 = 0; _i0 < _len_wowlan0; _i0++) {
+              wowlan[_i0].n_patterns = ((-2 * (next_i()%2)) + 1) * next_i();
+          wowlan[_i0].magic_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          wowlan[_i0].disconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath9k_wow_map_triggers(sc,wowlan);
+          printf("%d\n", benchRet); 
+          free(sc);
+          free(wowlan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_sc0 = 100;
+          struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wowlan0 = 100;
+          struct cfg80211_wowlan * wowlan = (struct cfg80211_wowlan *) malloc(_len_wowlan0*sizeof(struct cfg80211_wowlan));
+          for(int _i0 = 0; _i0 < _len_wowlan0; _i0++) {
+              wowlan[_i0].n_patterns = ((-2 * (next_i()%2)) + 1) * next_i();
+          wowlan[_i0].magic_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          wowlan[_i0].disconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath9k_wow_map_triggers(sc,wowlan);
+          printf("%d\n", benchRet); 
+          free(sc);
+          free(wowlan);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_sc0 = 1;
           struct ath_softc * sc = (struct ath_softc *) malloc(_len_sc0*sizeof(struct ath_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_wowlan0 = 1;
           struct cfg80211_wowlan * wowlan = (struct cfg80211_wowlan *) malloc(_len_wowlan0*sizeof(struct cfg80211_wowlan));
           for(int _i0 = 0; _i0 < _len_wowlan0; _i0++) {
-            wowlan[_i0].n_patterns = ((-2 * (next_i()%2)) + 1) * next_i();
-        wowlan[_i0].magic_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
-        wowlan[_i0].disconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+              wowlan[_i0].n_patterns = ((-2 * (next_i()%2)) + 1) * next_i();
+          wowlan[_i0].magic_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          wowlan[_i0].disconnect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath9k_wow_map_triggers(sc,wowlan);
           printf("%d\n", benchRet); 
           free(sc);

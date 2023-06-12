@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool may_start_working(struct worker_pool *pool)
 	return pool->nr_idle;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pool0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_pool0 = 65025;
           struct worker_pool * pool = (struct worker_pool *) malloc(_len_pool0*sizeof(struct worker_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].nr_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].nr_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = may_start_working(pool);
           printf("%d\n", benchRet); 
           free(pool);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_pool0 = 100;
           struct worker_pool * pool = (struct worker_pool *) malloc(_len_pool0*sizeof(struct worker_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].nr_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].nr_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = may_start_working(pool);
+          printf("%d\n", benchRet); 
+          free(pool);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_pool0 = 1;
+          struct worker_pool * pool = (struct worker_pool *) malloc(_len_pool0*sizeof(struct worker_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].nr_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = may_start_working(pool);
           printf("%d\n", benchRet); 
           free(pool);

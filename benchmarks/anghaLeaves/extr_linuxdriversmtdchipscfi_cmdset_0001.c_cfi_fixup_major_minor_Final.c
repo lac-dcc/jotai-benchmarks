@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void cfi_fixup_major_minor(struct cfi_private *cfi,
 		extp->MinorVersion = '1';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,27 +80,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfi0 = 1;
+          int _len_cfi0 = 65025;
           struct cfi_private * cfi = (struct cfi_private *) malloc(_len_cfi0*sizeof(struct cfi_private));
           for(int _i0 = 0; _i0 < _len_cfi0; _i0++) {
-            cfi[_i0].mfr = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfi[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfi[_i0].mfr = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfi[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_extp0 = 1;
+        
+          int _len_extp0 = 65025;
           struct cfi_pri_intelext * extp = (struct cfi_pri_intelext *) malloc(_len_extp0*sizeof(struct cfi_pri_intelext));
           for(int _i0 = 0; _i0 < _len_extp0; _i0++) {
-            extp[_i0].MinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+              extp[_i0].MinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cfi_fixup_major_minor(cfi,extp);
           free(cfi);
           free(extp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cfi0 = 100;
+          struct cfi_private * cfi = (struct cfi_private *) malloc(_len_cfi0*sizeof(struct cfi_private));
+          for(int _i0 = 0; _i0 < _len_cfi0; _i0++) {
+              cfi[_i0].mfr = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfi[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extp0 = 100;
+          struct cfi_pri_intelext * extp = (struct cfi_pri_intelext *) malloc(_len_extp0*sizeof(struct cfi_pri_intelext));
+          for(int _i0 = 0; _i0 < _len_extp0; _i0++) {
+              extp[_i0].MinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cfi_fixup_major_minor(cfi,extp);
+          free(cfi);
+          free(extp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cfi0 = 1;
+          struct cfi_private * cfi = (struct cfi_private *) malloc(_len_cfi0*sizeof(struct cfi_private));
+          for(int _i0 = 0; _i0 < _len_cfi0; _i0++) {
+              cfi[_i0].mfr = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfi[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extp0 = 1;
+          struct cfi_pri_intelext * extp = (struct cfi_pri_intelext *) malloc(_len_extp0*sizeof(struct cfi_pri_intelext));
+          for(int _i0 = 0; _i0 < _len_extp0; _i0++) {
+              extp[_i0].MinorVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cfi_fixup_major_minor(cfi,extp);
+          free(cfi);
+          free(extp);
+        
+        break;
+    }
     default:
         usage();
         break;

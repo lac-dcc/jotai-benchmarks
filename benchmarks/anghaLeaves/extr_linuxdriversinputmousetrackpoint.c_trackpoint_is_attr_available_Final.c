@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static bool trackpoint_is_attr_available(struct psmouse *p
 		attr == &psmouse_attr_press_to_select.dattr.attr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,23 +92,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_psmouse0 = 1;
+          int _len_psmouse0 = 65025;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
               int _len_psmouse__i0__private0 = 1;
           psmouse[_i0].private = (struct trackpoint_data *) malloc(_len_psmouse__i0__private0*sizeof(struct trackpoint_data));
           for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
-            psmouse[_i0].private->variant_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].private->variant_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_attr0 = 1;
+        
+          int _len_attr0 = 65025;
           struct attribute * attr = (struct attribute *) malloc(_len_attr0*sizeof(struct attribute));
           for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
-            attr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              attr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trackpoint_is_attr_available(psmouse,attr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
@@ -123,7 +124,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_psmouse0 = 100;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              int _len_psmouse__i0__private0 = 1;
+          psmouse[_i0].private = (struct trackpoint_data *) malloc(_len_psmouse__i0__private0*sizeof(struct trackpoint_data));
+          for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
+              psmouse[_i0].private->variant_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_attr0 = 100;
+          struct attribute * attr = (struct attribute *) malloc(_len_attr0*sizeof(struct attribute));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trackpoint_is_attr_available(psmouse,attr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
+          free(psmouse[_aux].private);
+          }
+          free(psmouse);
+          free(attr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_psmouse0 = 1;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              int _len_psmouse__i0__private0 = 1;
+          psmouse[_i0].private = (struct trackpoint_data *) malloc(_len_psmouse__i0__private0*sizeof(struct trackpoint_data));
+          for(int _j0 = 0; _j0 < _len_psmouse__i0__private0; _j0++) {
+              psmouse[_i0].private->variant_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_attr0 = 1;
+          struct attribute * attr = (struct attribute *) malloc(_len_attr0*sizeof(struct attribute));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trackpoint_is_attr_available(psmouse,attr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_psmouse0; _aux++) {
+          free(psmouse[_aux].private);
+          }
+          free(psmouse);
+          free(attr);
+        
+        break;
+    }
     default:
         usage();
         break;

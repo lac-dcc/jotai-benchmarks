@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static size_t uvc_video_ctrl_size(struct uvc_streaming *st
 		return 48;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +85,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_stream0 = 1;
+          int _len_stream0 = 65025;
           struct uvc_streaming * stream = (struct uvc_streaming *) malloc(_len_stream0*sizeof(struct uvc_streaming));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
               int _len_stream__i0__dev0 = 1;
           stream[_i0].dev = (struct TYPE_2__ *) malloc(_len_stream__i0__dev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_stream__i0__dev0; _j0++) {
-            stream[_i0].dev->uvc_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].dev->uvc_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned long benchRet = uvc_video_ctrl_size(stream);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_stream0; _aux++) {
@@ -110,7 +109,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_stream0 = 100;
+          struct uvc_streaming * stream = (struct uvc_streaming *) malloc(_len_stream0*sizeof(struct uvc_streaming));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              int _len_stream__i0__dev0 = 1;
+          stream[_i0].dev = (struct TYPE_2__ *) malloc(_len_stream__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_stream__i0__dev0; _j0++) {
+              stream[_i0].dev->uvc_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = uvc_video_ctrl_size(stream);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].dev);
+          }
+          free(stream);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_stream0 = 1;
+          struct uvc_streaming * stream = (struct uvc_streaming *) malloc(_len_stream0*sizeof(struct uvc_streaming));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              int _len_stream__i0__dev0 = 1;
+          stream[_i0].dev = (struct TYPE_2__ *) malloc(_len_stream__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_stream__i0__dev0; _j0++) {
+              stream[_i0].dev->uvc_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = uvc_video_ctrl_size(stream);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].dev);
+          }
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

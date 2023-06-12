@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int rate_match(unsigned int src_rate, unsigned int 
 	return dst_rate >= low && dst_rate <= high;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int src_rate = 100;
+        
           unsigned int dst_rate = 100;
+        
           int benchRet = rate_match(src_rate,dst_rate);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int src_rate = 255;
+        
           unsigned int dst_rate = 255;
+        
           int benchRet = rate_match(src_rate,dst_rate);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int src_rate = 10;
+        
           unsigned int dst_rate = 10;
+        
           int benchRet = rate_match(src_rate,dst_rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int src_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int dst_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rate_match(src_rate,dst_rate);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

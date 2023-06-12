@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static inline int mlx4_check_fmr(struct mlx4_fmr *fmr, u64
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,20 +102,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int npages = 100;
+        
           int iova = 100;
+        
           int _len_fmr0 = 1;
           struct mlx4_fmr * fmr = (struct mlx4_fmr *) malloc(_len_fmr0*sizeof(struct mlx4_fmr));
           for(int _i0 = 0; _i0 < _len_fmr0; _i0++) {
-            fmr[_i0].max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmr[_i0].page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmr[_i0].max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmr[_i0].max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_page_list0 = 1;
           int * page_list = (int *) malloc(_len_page_list0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_page_list0; _i0++) {
             page_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mlx4_check_fmr(fmr,page_list,npages,iova);
           printf("%d\n", benchRet); 
           free(fmr);
@@ -127,7 +128,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int npages = 255;
+        
+          int iova = 255;
+        
+          int _len_fmr0 = 65025;
+          struct mlx4_fmr * fmr = (struct mlx4_fmr *) malloc(_len_fmr0*sizeof(struct mlx4_fmr));
+          for(int _i0 = 0; _i0 < _len_fmr0; _i0++) {
+              fmr[_i0].max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_page_list0 = 65025;
+          int * page_list = (int *) malloc(_len_page_list0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_page_list0; _i0++) {
+            page_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mlx4_check_fmr(fmr,page_list,npages,iova);
+          printf("%d\n", benchRet); 
+          free(fmr);
+          free(page_list);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int npages = 10;
+        
+          int iova = 10;
+        
+          int _len_fmr0 = 100;
+          struct mlx4_fmr * fmr = (struct mlx4_fmr *) malloc(_len_fmr0*sizeof(struct mlx4_fmr));
+          for(int _i0 = 0; _i0 < _len_fmr0; _i0++) {
+              fmr[_i0].max_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].maps = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmr[_i0].max_maps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_page_list0 = 100;
+          int * page_list = (int *) malloc(_len_page_list0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_page_list0; _i0++) {
+            page_list[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mlx4_check_fmr(fmr,page_list,npages,iova);
+          printf("%d\n", benchRet); 
+          free(fmr);
+          free(page_list);
+        
+        break;
+    }
     default:
         usage();
         break;

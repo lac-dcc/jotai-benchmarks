@@ -70,12 +70,6 @@ NextLFSR(USHORT Lfsr, USHORT InputBit)
   return NextLfsr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +86,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Lfsr = 100;
+        
           int InputBit = 100;
+        
           int benchRet = NextLFSR(Lfsr,InputBit);
           printf("%d\n", benchRet); 
         
@@ -102,7 +98,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int Lfsr = 255;
+        
           int InputBit = 255;
+        
           int benchRet = NextLFSR(Lfsr,InputBit);
           printf("%d\n", benchRet); 
         
@@ -112,13 +110,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int Lfsr = 10;
+        
           int InputBit = 10;
+        
           int benchRet = NextLFSR(Lfsr,InputBit);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

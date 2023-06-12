@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static unsigned int tegra_dsi_get_lanes(struct tegra_dsi *
 	return dsi->lanes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,24 +84,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dsi0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dsi0 = 65025;
           struct tegra_dsi * dsi = (struct tegra_dsi *) malloc(_len_dsi0*sizeof(struct tegra_dsi));
           for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
-            dsi[_i0].lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].lanes = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dsi__i0__slave0 = 1;
           dsi[_i0].slave = (struct TYPE_4__ *) malloc(_len_dsi__i0__slave0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_dsi__i0__slave0; _j0++) {
-            dsi[_i0].slave->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].slave->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_dsi__i0__master0 = 1;
           dsi[_i0].master = (struct TYPE_3__ *) malloc(_len_dsi__i0__master0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_dsi__i0__master0; _j0++) {
-            dsi[_i0].master->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+              dsi[_i0].master->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = tegra_dsi_get_lanes(dsi);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dsi0; _aux++) {
+          free(dsi[_aux].slave);
+          }
+          for(int _aux = 0; _aux < _len_dsi0; _aux++) {
+          free(dsi[_aux].master);
+          }
+          free(dsi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dsi0 = 100;
+          struct tegra_dsi * dsi = (struct tegra_dsi *) malloc(_len_dsi0*sizeof(struct tegra_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dsi__i0__slave0 = 1;
+          dsi[_i0].slave = (struct TYPE_4__ *) malloc(_len_dsi__i0__slave0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dsi__i0__slave0; _j0++) {
+              dsi[_i0].slave->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_dsi__i0__master0 = 1;
+          dsi[_i0].master = (struct TYPE_3__ *) malloc(_len_dsi__i0__master0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_dsi__i0__master0; _j0++) {
+              dsi[_i0].master->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = tegra_dsi_get_lanes(dsi);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dsi0; _aux++) {
+          free(dsi[_aux].slave);
+          }
+          for(int _aux = 0; _aux < _len_dsi0; _aux++) {
+          free(dsi[_aux].master);
+          }
+          free(dsi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dsi0 = 1;
+          struct tegra_dsi * dsi = (struct tegra_dsi *) malloc(_len_dsi0*sizeof(struct tegra_dsi));
+          for(int _i0 = 0; _i0 < _len_dsi0; _i0++) {
+              dsi[_i0].lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dsi__i0__slave0 = 1;
+          dsi[_i0].slave = (struct TYPE_4__ *) malloc(_len_dsi__i0__slave0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_dsi__i0__slave0; _j0++) {
+              dsi[_i0].slave->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_dsi__i0__master0 = 1;
+          dsi[_i0].master = (struct TYPE_3__ *) malloc(_len_dsi__i0__master0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_dsi__i0__master0; _j0++) {
+              dsi[_i0].master->lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = tegra_dsi_get_lanes(dsi);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_dsi0; _aux++) {

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ AcpiUtValidNameChar (
     return (TRUE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char Character = 100;
+        
           int Position = 100;
+        
           int benchRet = AcpiUtValidNameChar(Character,Position);
           printf("%d\n", benchRet); 
         
@@ -115,7 +112,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char Character = 255;
+        
           int Position = 255;
+        
           int benchRet = AcpiUtValidNameChar(Character,Position);
           printf("%d\n", benchRet); 
         
@@ -125,13 +124,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char Character = 10;
+        
           int Position = 10;
+        
           int benchRet = AcpiUtValidNameChar(Character,Position);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char Character = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Position = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = AcpiUtValidNameChar(Character,Position);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

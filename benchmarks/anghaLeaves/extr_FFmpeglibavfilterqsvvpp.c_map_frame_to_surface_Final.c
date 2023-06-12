@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -98,12 +100,6 @@ __attribute__((used)) static int map_frame_to_surface(AVFrame *frame, mfxFrameSu
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,13 +112,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_frame0 = 1;
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_frame0 = 65025;
           struct TYPE_8__ * frame = (struct TYPE_8__ *) malloc(_len_frame0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
-            frame[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+              frame[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_frame__i0__linesize0 = 1;
           frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
@@ -133,20 +152,171 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
             frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_surface0 = 65025;
+          struct TYPE_7__ * surface = (struct TYPE_7__ *) malloc(_len_surface0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
+              surface[_i0].Data.Pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.A = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.R = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.G = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.B = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.V = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.U = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.Y = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.UV = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = map_frame_to_surface(frame,surface);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+          free(surface);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_frame0 = 100;
+          struct TYPE_8__ * frame = (struct TYPE_8__ *) malloc(_len_frame0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_surface0 = 100;
+          struct TYPE_7__ * surface = (struct TYPE_7__ *) malloc(_len_surface0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
+              surface[_i0].Data.Pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.A = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.R = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.G = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.B = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.V = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.U = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.Y = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.UV = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = map_frame_to_surface(frame,surface);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+          free(surface);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_frame0 = 1;
+          struct TYPE_8__ * frame = (struct TYPE_8__ *) malloc(_len_frame0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              frame[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (int *) malloc(_len_frame__i0__data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_surface0 = 1;
           struct TYPE_7__ * surface = (struct TYPE_7__ *) malloc(_len_surface0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_surface0; _i0++) {
-            surface[_i0].Data.Pitch = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.A = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.R = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.G = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.B = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.V = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.U = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.Y = ((-2 * (next_i()%2)) + 1) * next_i();
-        surface[_i0].Data.UV = ((-2 * (next_i()%2)) + 1) * next_i();
+              surface[_i0].Data.Pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.A = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.R = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.G = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.B = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.V = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.U = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.Y = ((-2 * (next_i()%2)) + 1) * next_i();
+          surface[_i0].Data.UV = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = map_frame_to_surface(frame,surface);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_frame0; _aux++) {

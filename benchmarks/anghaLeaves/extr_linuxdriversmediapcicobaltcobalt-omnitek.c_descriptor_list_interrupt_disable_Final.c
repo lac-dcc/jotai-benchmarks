@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void descriptor_list_interrupt_disable(struct sg_dma_desc_info *desc)
 	d->next_l &= ~INTERRUPT_ENABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_desc0 = 1;
+          int _len_desc0 = 65025;
           struct sg_dma_desc_info * desc = (struct sg_dma_desc_info *) malloc(_len_desc0*sizeof(struct sg_dma_desc_info));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
               int _len_desc__i0__last_desc_virt0 = 1;
           desc[_i0].last_desc_virt = (struct sg_dma_descriptor *) malloc(_len_desc__i0__last_desc_virt0*sizeof(struct sg_dma_descriptor));
           for(int _j0 = 0; _j0 < _len_desc__i0__last_desc_virt0; _j0++) {
-            desc[_i0].last_desc_virt->next_l = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].last_desc_virt->next_l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           descriptor_list_interrupt_disable(desc);
           for(int _aux = 0; _aux < _len_desc0; _aux++) {
           free(desc[_aux].last_desc_virt);
@@ -102,7 +101,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_desc0 = 100;
+          struct sg_dma_desc_info * desc = (struct sg_dma_desc_info *) malloc(_len_desc0*sizeof(struct sg_dma_desc_info));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__last_desc_virt0 = 1;
+          desc[_i0].last_desc_virt = (struct sg_dma_descriptor *) malloc(_len_desc__i0__last_desc_virt0*sizeof(struct sg_dma_descriptor));
+          for(int _j0 = 0; _j0 < _len_desc__i0__last_desc_virt0; _j0++) {
+              desc[_i0].last_desc_virt->next_l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          descriptor_list_interrupt_disable(desc);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].last_desc_virt);
+          }
+          free(desc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_desc0 = 1;
+          struct sg_dma_desc_info * desc = (struct sg_dma_desc_info *) malloc(_len_desc0*sizeof(struct sg_dma_desc_info));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              int _len_desc__i0__last_desc_virt0 = 1;
+          desc[_i0].last_desc_virt = (struct sg_dma_descriptor *) malloc(_len_desc__i0__last_desc_virt0*sizeof(struct sg_dma_descriptor));
+          for(int _j0 = 0; _j0 < _len_desc__i0__last_desc_virt0; _j0++) {
+              desc[_i0].last_desc_virt->next_l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          descriptor_list_interrupt_disable(desc);
+          for(int _aux = 0; _aux < _len_desc0; _aux++) {
+          free(desc[_aux].last_desc_virt);
+          }
+          free(desc);
+        
+        break;
+    }
     default:
         usage();
         break;

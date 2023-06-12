@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ u32 mtk_jpeg_dec_enum_result(u32 irq_result)
 	return MTK_JPEG_DEC_RESULT_ERROR_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int irq_result = 100;
+        
           int benchRet = mtk_jpeg_dec_enum_result(irq_result);
           printf("%d\n", benchRet); 
         
@@ -115,6 +111,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int irq_result = 255;
+        
           int benchRet = mtk_jpeg_dec_enum_result(irq_result);
           printf("%d\n", benchRet); 
         
@@ -124,12 +121,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int irq_result = 10;
+        
           int benchRet = mtk_jpeg_dec_enum_result(irq_result);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int irq_result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mtk_jpeg_dec_enum_result(irq_result);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

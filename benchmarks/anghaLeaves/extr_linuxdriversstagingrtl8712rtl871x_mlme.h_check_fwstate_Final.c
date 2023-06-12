@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline u8 check_fwstate(struct mlme_priv *pmlmepriv
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,30 +79,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int state = 100;
+        
           int _len_pmlmepriv0 = 1;
           struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
           for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
-            pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = check_fwstate(pmlmepriv,state);
           printf("%d\n", benchRet); 
           free(pmlmepriv);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int state = 255;
+        
+          int _len_pmlmepriv0 = 65025;
+          struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
+          for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = check_fwstate(pmlmepriv,state);
+          printf("%d\n", benchRet); 
+          free(pmlmepriv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int state = 10;
+        
           int _len_pmlmepriv0 = 100;
           struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
           for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
-            pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = check_fwstate(pmlmepriv,state);
+          printf("%d\n", benchRet); 
+          free(pmlmepriv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pmlmepriv0 = 1;
+          struct mlme_priv * pmlmepriv = (struct mlme_priv *) malloc(_len_pmlmepriv0*sizeof(struct mlme_priv));
+          for(int _i0 = 0; _i0 < _len_pmlmepriv0; _i0++) {
+              pmlmepriv[_i0].fw_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = check_fwstate(pmlmepriv,state);
           printf("%d\n", benchRet); 
           free(pmlmepriv);

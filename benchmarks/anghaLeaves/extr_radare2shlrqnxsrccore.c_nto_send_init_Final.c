@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ void nto_send_init (libqnxr_t *g, ut32 cmd, ut32 subcmd, ut32 chan) {
 	g->tran.pkt.hdr.channel = chan;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,23 +91,114 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cmd = 100;
+        
           long subcmd = 100;
+        
           long chan = 100;
+        
           int _len_g0 = 1;
           struct TYPE_9__ * g = (struct TYPE_9__ *) malloc(_len_g0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_g0; _i0++) {
-            g[_i0].tran.pkt.hdr.channel = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].tran.pkt.hdr.mid = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].tran.pkt.hdr.subcmd = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].tran.pkt.hdr.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].mid = ((-2 * (next_i()%2)) + 1) * next_i();
+              g[_i0].tran.pkt.hdr.channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.mid = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.subcmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          g[_i0].mid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nto_send_init(g,cmd,subcmd,chan);
           free(g);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long cmd = 255;
+        
+          long subcmd = 255;
+        
+          long chan = 255;
+        
+          int _len_g0 = 65025;
+          struct TYPE_9__ * g = (struct TYPE_9__ *) malloc(_len_g0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].tran.pkt.hdr.channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.mid = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.subcmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          g[_i0].mid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nto_send_init(g,cmd,subcmd,chan);
+          free(g);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long cmd = 10;
+        
+          long subcmd = 10;
+        
+          long chan = 10;
+        
+          int _len_g0 = 100;
+          struct TYPE_9__ * g = (struct TYPE_9__ *) malloc(_len_g0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].tran.pkt.hdr.channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.mid = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.subcmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          g[_i0].mid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nto_send_init(g,cmd,subcmd,chan);
+          free(g);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long subcmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_g0 = 1;
+          struct TYPE_9__ * g = (struct TYPE_9__ *) malloc(_len_g0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].tran.pkt.hdr.channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.mid = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.subcmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].tran.pkt.hdr.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          g[_i0].mid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nto_send_init(g,cmd,subcmd,chan);
+          free(g);
+        
+        break;
+    }
     default:
         usage();
         break;

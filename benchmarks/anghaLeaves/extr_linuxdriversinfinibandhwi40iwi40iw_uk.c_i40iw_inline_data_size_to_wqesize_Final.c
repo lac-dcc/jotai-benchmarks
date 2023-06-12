@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ enum i40iw_status_code i40iw_inline_data_size_to_wqesize(u32 data_size,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,31 +93,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int data_size = 100;
+        
           int _len_wqe_size0 = 1;
           int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
             wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          enum i40iw_status_code benchRet = i40iw_inline_data_size_to_wqesize(data_size,wqe_size);
+          free(wqe_size);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int data_size = 255;
+        
+          int _len_wqe_size0 = 65025;
+          int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
+            wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           enum i40iw_status_code benchRet = i40iw_inline_data_size_to_wqesize(data_size,wqe_size);
           free(wqe_size);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int data_size = 10;
+        
           int _len_wqe_size0 = 100;
           int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
             wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           enum i40iw_status_code benchRet = i40iw_inline_data_size_to_wqesize(data_size,wqe_size);
           free(wqe_size);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wqe_size0 = 1;
+          int * wqe_size = (int *) malloc(_len_wqe_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_wqe_size0; _i0++) {
+            wqe_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          enum i40iw_status_code benchRet = i40iw_inline_data_size_to_wqesize(data_size,wqe_size);
+          free(wqe_size);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ tcp_reset_stretch_ack(struct tcpcb *tp)
 	tp->rcv_waitforss = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,18 +91,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_tp0 = 65025;
+          struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_waitforss = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_by_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcp_reset_stretch_ack(tp);
+          free(tp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_tp0 = 100;
+          struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_waitforss = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_by_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tcp_reset_stretch_ack(tp);
+          free(tp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_tp0 = 1;
           struct tcpcb * tp = (struct tcpcb *) malloc(_len_tp0*sizeof(struct tcpcb));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].rcv_waitforss = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].rcv_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
-        tp[_i0].rcv_by_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].t_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_waitforss = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].t_flagsext = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].rcv_by_unackwin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tcp_reset_stretch_ack(tp);
           free(tp);
         

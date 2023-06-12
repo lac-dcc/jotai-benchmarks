@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool dma_mapping_used(struct dma_mapping *m)
 	return m->size != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct dma_mapping * m = (struct dma_mapping *) malloc(_len_m0*sizeof(struct dma_mapping));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dma_mapping_used(m);
           printf("%d\n", benchRet); 
           free(m);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_m0 = 100;
           struct dma_mapping * m = (struct dma_mapping *) malloc(_len_m0*sizeof(struct dma_mapping));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dma_mapping_used(m);
           printf("%d\n", benchRet); 
           free(m);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct dma_mapping * m = (struct dma_mapping *) malloc(_len_m0*sizeof(struct dma_mapping));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dma_mapping_used(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

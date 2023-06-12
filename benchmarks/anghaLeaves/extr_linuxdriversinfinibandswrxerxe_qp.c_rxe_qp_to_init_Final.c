@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ int rxe_qp_to_init(struct rxe_qp *qp, struct ib_qp_init_attr *init)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,43 +103,51 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qp0 = 1;
+          int _len_qp0 = 65025;
           struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].ibqp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].ibqp.srq = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].ibqp.recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].ibqp.send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].ibqp.qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].ibqp.event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].rq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].rq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sq.max_inline = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
-        qp[_i0].sq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].ibqp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_inline = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_init0 = 1;
+        
+          int _len_init0 = 65025;
           struct ib_qp_init_attr * init = (struct ib_qp_init_attr *) malloc(_len_init0*sizeof(struct ib_qp_init_attr));
           for(int _i0 = 0; _i0 < _len_init0; _i0++) {
-            init[_i0].port_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].cap.max_recv_sge = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].cap.max_recv_wr = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].cap.max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].cap.max_send_sge = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].cap.max_send_wr = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
-        init[_i0].event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+              init[_i0].port_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_recv_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_recv_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_send_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_send_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          init[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rxe_qp_to_init(qp,init);
           printf("%d\n", benchRet); 
           free(qp);
@@ -151,7 +155,110 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_qp0 = 100;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].ibqp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_inline = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_init0 = 100;
+          struct ib_qp_init_attr * init = (struct ib_qp_init_attr *) malloc(_len_init0*sizeof(struct ib_qp_init_attr));
+          for(int _i0 = 0; _i0 < _len_init0; _i0++) {
+              init[_i0].port_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_recv_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_recv_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_send_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_send_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          init[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rxe_qp_to_init(qp,init);
+          printf("%d\n", benchRet); 
+          free(qp);
+          free(init);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_qp0 = 1;
+          struct rxe_qp * qp = (struct rxe_qp *) malloc(_len_qp0*sizeof(struct rxe_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].ibqp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].ibqp.event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].rq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          qp[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_inline = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          qp[_i0].sq.max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_init0 = 1;
+          struct ib_qp_init_attr * init = (struct ib_qp_init_attr *) malloc(_len_init0*sizeof(struct ib_qp_init_attr));
+          for(int _i0 = 0; _i0 < _len_init0; _i0++) {
+              init[_i0].port_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].sq_sig_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_recv_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_recv_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_inline_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_send_sge = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].cap.max_send_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          init[_i0].srq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].recv_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].send_cq = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].qp_context = ((-2 * (next_i()%2)) + 1) * next_i();
+          init[_i0].event_handler = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rxe_qp_to_init(qp,init);
+          printf("%d\n", benchRet); 
+          free(qp);
+          free(init);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static bool is_charset2uni_large (Encoding* enc)
   return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +82,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_enc0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_enc0 = 65025;
           struct TYPE_3__ * enc = (struct TYPE_3__ *) malloc(_len_enc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_enc0; _i0++) {
-            enc[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
-        enc[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
+              enc[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          enc[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_enc__i0__charset2uni0 = 1;
           enc[_i0].charset2uni = (int **) malloc(_len_enc__i0__charset2uni0*sizeof(int *));
           for(int _j0 = 0; _j0 < _len_enc__i0__charset2uni0; _j0++) {
@@ -103,7 +122,117 @@ int main(int argc, char *argv[]) {
               enc[_i0].charset2uni[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           }
+        
+          int benchRet = is_charset2uni_large(enc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_enc0; _aux++) {
+          free(*(enc[_aux].charset2uni));
+        free(enc[_aux].charset2uni);
+          }
+          free(enc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_enc0 = 100;
+          struct TYPE_3__ * enc = (struct TYPE_3__ *) malloc(_len_enc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_enc0; _i0++) {
+              enc[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          enc[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_enc__i0__charset2uni0 = 1;
+          enc[_i0].charset2uni = (int **) malloc(_len_enc__i0__charset2uni0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_enc__i0__charset2uni0; _j0++) {
+            int _len_enc__i0__charset2uni1 = 1;
+            enc[_i0].charset2uni[_j0] = (int *) malloc(_len_enc__i0__charset2uni1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_enc__i0__charset2uni1; _j1++) {
+              enc[_i0].charset2uni[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
+          int benchRet = is_charset2uni_large(enc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_enc0; _aux++) {
+          free(*(enc[_aux].charset2uni));
+        free(enc[_aux].charset2uni);
+          }
+          free(enc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_enc0 = 1;
+          struct TYPE_3__ * enc = (struct TYPE_3__ *) malloc(_len_enc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_enc0; _i0++) {
+              enc[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          enc[_i0].cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_enc__i0__charset2uni0 = 1;
+          enc[_i0].charset2uni = (int **) malloc(_len_enc__i0__charset2uni0*sizeof(int *));
+          for(int _j0 = 0; _j0 < _len_enc__i0__charset2uni0; _j0++) {
+            int _len_enc__i0__charset2uni1 = 1;
+            enc[_i0].charset2uni[_j0] = (int *) malloc(_len_enc__i0__charset2uni1*sizeof(int));
+            for(int _j1 = 0; _j1 < _len_enc__i0__charset2uni1; _j1++) {
+              enc[_i0].charset2uni[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          }
+        
           int benchRet = is_charset2uni_large(enc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_enc0; _aux++) {

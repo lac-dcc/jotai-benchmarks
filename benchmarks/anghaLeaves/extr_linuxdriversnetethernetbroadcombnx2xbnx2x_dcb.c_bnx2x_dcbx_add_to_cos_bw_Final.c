@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline void bnx2x_dcbx_add_to_cos_bw(struct bnx2x *
 		data->cos_bw += pg_bw;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long pg_bw = 100;
+        
           int _len_bp0 = 1;
           struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_data0 = 1;
           struct cos_entry_help_data * data = (struct cos_entry_help_data *) malloc(_len_data0*sizeof(struct cos_entry_help_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].cos_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].cos_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bnx2x_dcbx_add_to_cos_bw(bp,data,pg_bw);
+          free(bp);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long pg_bw = 255;
+        
+          int _len_bp0 = 65025;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 65025;
+          struct cos_entry_help_data * data = (struct cos_entry_help_data *) malloc(_len_data0*sizeof(struct cos_entry_help_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].cos_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnx2x_dcbx_add_to_cos_bw(bp,data,pg_bw);
+          free(bp);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long pg_bw = 10;
+        
+          int _len_bp0 = 100;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 100;
+          struct cos_entry_help_data * data = (struct cos_entry_help_data *) malloc(_len_data0*sizeof(struct cos_entry_help_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].cos_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnx2x_dcbx_add_to_cos_bw(bp,data,pg_bw);
+          free(bp);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long pg_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_data0 = 1;
+          struct cos_entry_help_data * data = (struct cos_entry_help_data *) malloc(_len_data0*sizeof(struct cos_entry_help_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].cos_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bnx2x_dcbx_add_to_cos_bw(bp,data,pg_bw);
           free(bp);
           free(data);

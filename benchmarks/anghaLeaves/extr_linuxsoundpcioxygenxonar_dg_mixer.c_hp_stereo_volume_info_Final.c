@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int hp_stereo_volume_info(struct snd_kcontrol *ctl,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +85,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctl0 = 1;
+          int _len_ctl0 = 65025;
           struct snd_kcontrol * ctl = (struct snd_kcontrol *) malloc(_len_ctl0*sizeof(struct snd_kcontrol));
           for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
-            ctl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_info0 = 1;
+        
+          int _len_info0 = 65025;
           struct snd_ctl_elem_info * info = (struct snd_ctl_elem_info *) malloc(_len_info0*sizeof(struct snd_ctl_elem_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].value.integer.max = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].value.integer.min = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].value.integer.max = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].value.integer.min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hp_stereo_volume_info(ctl,info);
           printf("%d\n", benchRet); 
           free(ctl);
@@ -112,7 +114,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctl0 = 100;
+          struct snd_kcontrol * ctl = (struct snd_kcontrol *) malloc(_len_ctl0*sizeof(struct snd_kcontrol));
+          for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
+              ctl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct snd_ctl_elem_info * info = (struct snd_ctl_elem_info *) malloc(_len_info0*sizeof(struct snd_ctl_elem_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].value.integer.max = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].value.integer.min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hp_stereo_volume_info(ctl,info);
+          printf("%d\n", benchRet); 
+          free(ctl);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctl0 = 1;
+          struct snd_kcontrol * ctl = (struct snd_kcontrol *) malloc(_len_ctl0*sizeof(struct snd_kcontrol));
+          for(int _i0 = 0; _i0 < _len_ctl0; _i0++) {
+              ctl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 1;
+          struct snd_ctl_elem_info * info = (struct snd_ctl_elem_info *) malloc(_len_info0*sizeof(struct snd_ctl_elem_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].value.integer.max = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].value.integer.min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hp_stereo_volume_info(ctl,info);
+          printf("%d\n", benchRet); 
+          free(ctl);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

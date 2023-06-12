@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ calc_rttavg(struct aoedev *d, struct aoetgt *t, int rtt)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,25 +98,215 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int rtt = 100;
+        
           int _len_d0 = 1;
           struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_t0 = 1;
           struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].nout = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          calc_rttavg(d,t,rtt);
+          free(d);
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int rtt = 255;
+        
+          int _len_d0 = 65025;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 65025;
+          struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          calc_rttavg(d,t,rtt);
+          free(d);
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int rtt = 10;
+        
+          int _len_d0 = 100;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 100;
+          struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          calc_rttavg(d,t,rtt);
+          free(d);
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int rtt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_d0 = 1;
+          struct aoedev * d = (struct aoedev *) malloc(_len_d0*sizeof(struct aoedev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].rttavg = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].rttdev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_t0 = 1;
+          struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           calc_rttavg(d,t,rtt);
           free(d);
           free(t);

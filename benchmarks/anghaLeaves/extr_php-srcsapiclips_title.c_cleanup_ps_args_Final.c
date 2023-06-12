@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ void cleanup_ps_args(char **argv)
     return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,9 +105,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_argv0 = 65025;
+          char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            int _len_argv1 = 1;
+            argv[_i0] = (char *) malloc(_len_argv1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_argv1; _i1++) {
+              argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          cleanup_ps_args(argv);
+          for(int i1 = 0; i1 < _len_argv0; i1++) {
+              free(argv[i1]);
+          }
+          free(argv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_argv0 = 100;
+          char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            int _len_argv1 = 1;
+            argv[_i0] = (char *) malloc(_len_argv1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_argv1; _i1++) {
+              argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          cleanup_ps_args(argv);
+          for(int i1 = 0; i1 < _len_argv0; i1++) {
+              free(argv[i1]);
+          }
+          free(argv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_argv0 = 1;
           char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
@@ -121,9 +230,9 @@ int main(int argc, char *argv[]) {
               argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           cleanup_ps_args(argv);
           for(int i1 = 0; i1 < _len_argv0; i1++) {
-            int _len_argv1 = 1;
               free(argv[i1]);
           }
           free(argv);

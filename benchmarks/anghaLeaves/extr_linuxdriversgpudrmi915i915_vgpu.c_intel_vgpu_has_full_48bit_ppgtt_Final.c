@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ bool intel_vgpu_has_full_48bit_ppgtt(struct drm_i915_private *dev_priv)
 	return dev_priv->vgpu.caps & VGT_CAPS_FULL_48BIT_PPGTT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev_priv0 = 1;
+          int _len_dev_priv0 = 65025;
           struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
-            dev_priv[_i0].vgpu.caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_priv[_i0].vgpu.caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = intel_vgpu_has_full_48bit_ppgtt(dev_priv);
           printf("%d\n", benchRet); 
           free(dev_priv);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_dev_priv0 = 100;
           struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
-            dev_priv[_i0].vgpu.caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_priv[_i0].vgpu.caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = intel_vgpu_has_full_48bit_ppgtt(dev_priv);
           printf("%d\n", benchRet); 
           free(dev_priv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dev_priv0 = 1;
+          struct drm_i915_private * dev_priv = (struct drm_i915_private *) malloc(_len_dev_priv0*sizeof(struct drm_i915_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].vgpu.caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = intel_vgpu_has_full_48bit_ppgtt(dev_priv);
+          printf("%d\n", benchRet); 
+          free(dev_priv);
+        
+        break;
+    }
     default:
         usage();
         break;

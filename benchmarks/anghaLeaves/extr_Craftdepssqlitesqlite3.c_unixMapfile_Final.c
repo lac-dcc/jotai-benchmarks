@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static int unixMapfile(unixFile *pFd, i64 nByte){
   return SQLITE_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,11 +108,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nByte = 100;
+        
           int _len_pFd0 = 1;
           int * pFd = (int *) malloc(_len_pFd0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFd0; _i0++) {
             pFd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = unixMapfile(pFd,nByte);
+          printf("%d\n", benchRet); 
+          free(pFd);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int nByte = 255;
+        
+          int _len_pFd0 = 65025;
+          int * pFd = (int *) malloc(_len_pFd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFd0; _i0++) {
+            pFd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = unixMapfile(pFd,nByte);
           printf("%d\n", benchRet); 
           free(pFd);
@@ -124,21 +139,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int nByte = 10;
+        
           int _len_pFd0 = 100;
           int * pFd = (int *) malloc(_len_pFd0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFd0; _i0++) {
             pFd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = unixMapfile(pFd,nByte);
           printf("%d\n", benchRet); 
           free(pFd);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nByte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pFd0 = 1;
+          int * pFd = (int *) malloc(_len_pFd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFd0; _i0++) {
+            pFd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = unixMapfile(pFd,nByte);
+          printf("%d\n", benchRet); 
+          free(pFd);
+        
+        break;
+    }
     default:
         usage();
         break;

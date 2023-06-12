@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int sfi_cpufreq_cpu_init(struct cpufreq_policy *pol
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_policy0 = 65025;
+          struct cpufreq_policy * policy = (struct cpufreq_policy *) malloc(_len_policy0*sizeof(struct cpufreq_policy));
+          for(int _i0 = 0; _i0 < _len_policy0; _i0++) {
+              policy[_i0].freq_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].cpuinfo.transition_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          policy[_i0].shared_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfi_cpufreq_cpu_init(policy);
+          printf("%d\n", benchRet); 
+          free(policy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_policy0 = 100;
+          struct cpufreq_policy * policy = (struct cpufreq_policy *) malloc(_len_policy0*sizeof(struct cpufreq_policy));
+          for(int _i0 = 0; _i0 < _len_policy0; _i0++) {
+              policy[_i0].freq_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].cpuinfo.transition_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          policy[_i0].shared_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfi_cpufreq_cpu_init(policy);
+          printf("%d\n", benchRet); 
+          free(policy);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_policy0 = 1;
           struct cpufreq_policy * policy = (struct cpufreq_policy *) malloc(_len_policy0*sizeof(struct cpufreq_policy));
           for(int _i0 = 0; _i0 < _len_policy0; _i0++) {
-            policy[_i0].freq_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        policy[_i0].cpuinfo.transition_latency = ((-2 * (next_i()%2)) + 1) * next_i();
-        policy[_i0].shared_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              policy[_i0].freq_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          policy[_i0].cpuinfo.transition_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          policy[_i0].shared_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sfi_cpufreq_cpu_init(policy);
           printf("%d\n", benchRet); 
           free(policy);

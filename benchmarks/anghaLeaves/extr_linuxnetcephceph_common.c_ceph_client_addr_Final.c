@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ struct ceph_entity_addr *ceph_client_addr(struct ceph_client *client)
 	return &client->msgr.inst.addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_client0 = 1;
+          int _len_client0 = 65025;
           struct ceph_client * client = (struct ceph_client *) malloc(_len_client0*sizeof(struct ceph_client));
           for(int _i0 = 0; _i0 < _len_client0; _i0++) {
-            client[_i0].msgr.inst.addr.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              client[_i0].msgr.inst.addr.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           struct ceph_entity_addr * benchRet = ceph_client_addr(client);
           printf("%d\n", (*benchRet).dummy);
           free(client);
@@ -104,15 +104,38 @@ int main(int argc, char *argv[]) {
           int _len_client0 = 100;
           struct ceph_client * client = (struct ceph_client *) malloc(_len_client0*sizeof(struct ceph_client));
           for(int _i0 = 0; _i0 < _len_client0; _i0++) {
-            client[_i0].msgr.inst.addr.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              client[_i0].msgr.inst.addr.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           struct ceph_entity_addr * benchRet = ceph_client_addr(client);
           printf("%d\n", (*benchRet).dummy);
           free(client);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_client0 = 1;
+          struct ceph_client * client = (struct ceph_client *) malloc(_len_client0*sizeof(struct ceph_client));
+          for(int _i0 = 0; _i0 < _len_client0; _i0++) {
+              client[_i0].msgr.inst.addr.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          struct ceph_entity_addr * benchRet = ceph_client_addr(client);
+          printf("%d\n", (*benchRet).dummy);
+          free(client);
+        
+        break;
+    }
     default:
         usage();
         break;

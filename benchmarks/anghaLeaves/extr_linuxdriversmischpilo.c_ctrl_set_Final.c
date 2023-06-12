@@ -71,12 +71,6 @@ __attribute__((used)) static inline int ctrl_set(int l2sz, int idxmask, int desc
 	       go << CTRL_BITPOS_G;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,8 +87,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int l2sz = 100;
+        
           int idxmask = 100;
+        
           int desclim = 100;
+        
           int benchRet = ctrl_set(l2sz,idxmask,desclim);
           printf("%d\n", benchRet); 
         
@@ -104,8 +101,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int l2sz = 255;
+        
           int idxmask = 255;
+        
           int desclim = 255;
+        
           int benchRet = ctrl_set(l2sz,idxmask,desclim);
           printf("%d\n", benchRet); 
         
@@ -115,14 +115,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int l2sz = 10;
+        
           int idxmask = 10;
+        
           int desclim = 10;
+        
           int benchRet = ctrl_set(l2sz,idxmask,desclim);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

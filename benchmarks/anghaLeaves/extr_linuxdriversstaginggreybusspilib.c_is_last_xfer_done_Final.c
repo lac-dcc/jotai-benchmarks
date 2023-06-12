@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static bool is_last_xfer_done(struct gb_spilib *spi)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +81,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_spi0 = 1;
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_spi0 = 65025;
           struct gb_spilib * spi = (struct gb_spilib *) malloc(_len_spi0*sizeof(struct gb_spilib));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].tx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        spi[_i0].last_xfer_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        spi[_i0].rx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].tx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].last_xfer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].rx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_spi__i0__last_xfer0 = 1;
           spi[_i0].last_xfer = (struct spi_transfer *) malloc(_len_spi__i0__last_xfer0*sizeof(struct spi_transfer));
           for(int _j0 = 0; _j0 < _len_spi__i0__last_xfer0; _j0++) {
-            spi[_i0].last_xfer->len = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].last_xfer->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = is_last_xfer_done(spi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spi0; _aux++) {
+          free(spi[_aux].last_xfer);
+          }
+          free(spi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_spi0 = 100;
+          struct gb_spilib * spi = (struct gb_spilib *) malloc(_len_spi0*sizeof(struct gb_spilib));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].tx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].last_xfer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].rx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spi__i0__last_xfer0 = 1;
+          spi[_i0].last_xfer = (struct spi_transfer *) malloc(_len_spi__i0__last_xfer0*sizeof(struct spi_transfer));
+          for(int _j0 = 0; _j0 < _len_spi__i0__last_xfer0; _j0++) {
+              spi[_i0].last_xfer->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_last_xfer_done(spi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spi0; _aux++) {
+          free(spi[_aux].last_xfer);
+          }
+          free(spi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_spi0 = 1;
+          struct gb_spilib * spi = (struct gb_spilib *) malloc(_len_spi0*sizeof(struct gb_spilib));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].tx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].last_xfer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].rx_xfer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spi__i0__last_xfer0 = 1;
+          spi[_i0].last_xfer = (struct spi_transfer *) malloc(_len_spi__i0__last_xfer0*sizeof(struct spi_transfer));
+          for(int _j0 = 0; _j0 < _len_spi__i0__last_xfer0; _j0++) {
+              spi[_i0].last_xfer->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = is_last_xfer_done(spi);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_spi0; _aux++) {

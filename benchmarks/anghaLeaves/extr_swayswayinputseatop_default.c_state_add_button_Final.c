@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void state_add_button(struct seatop_default_event *
 	e->pressed_button_count++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,16 +93,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long button = 100;
+        
           int _len_e0 = 1;
           struct seatop_default_event * e = (struct seatop_default_event *) malloc(_len_e0*sizeof(struct seatop_default_event));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].pressed_button_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].pressed_button_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_e__i0__pressed_buttons0 = 1;
           e[_i0].pressed_buttons = (long *) malloc(_len_e__i0__pressed_buttons0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_e__i0__pressed_buttons0; _j0++) {
             e[_i0].pressed_buttons[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           state_add_button(e,button);
           for(int _aux = 0; _aux < _len_e0; _aux++) {
           free(e[_aux].pressed_buttons);
@@ -114,7 +114,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long button = 255;
+        
+          int _len_e0 = 65025;
+          struct seatop_default_event * e = (struct seatop_default_event *) malloc(_len_e0*sizeof(struct seatop_default_event));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].pressed_button_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__pressed_buttons0 = 1;
+          e[_i0].pressed_buttons = (long *) malloc(_len_e__i0__pressed_buttons0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_e__i0__pressed_buttons0; _j0++) {
+            e[_i0].pressed_buttons[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          state_add_button(e,button);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].pressed_buttons);
+          }
+          free(e);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long button = 10;
+        
+          int _len_e0 = 100;
+          struct seatop_default_event * e = (struct seatop_default_event *) malloc(_len_e0*sizeof(struct seatop_default_event));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].pressed_button_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__pressed_buttons0 = 1;
+          e[_i0].pressed_buttons = (long *) malloc(_len_e__i0__pressed_buttons0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_e__i0__pressed_buttons0; _j0++) {
+            e[_i0].pressed_buttons[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          state_add_button(e,button);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].pressed_buttons);
+          }
+          free(e);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long button = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_e0 = 1;
+          struct seatop_default_event * e = (struct seatop_default_event *) malloc(_len_e0*sizeof(struct seatop_default_event));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].pressed_button_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_e__i0__pressed_buttons0 = 1;
+          e[_i0].pressed_buttons = (long *) malloc(_len_e__i0__pressed_buttons0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_e__i0__pressed_buttons0; _j0++) {
+            e[_i0].pressed_buttons[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          state_add_button(e,button);
+          for(int _aux = 0; _aux < _len_e0; _aux++) {
+          free(e[_aux].pressed_buttons);
+          }
+          free(e);
+        
+        break;
+    }
     default:
         usage();
         break;

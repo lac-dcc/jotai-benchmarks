@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void i40iw_record_ird_ord(struct i40iw_cm_node *cm_
 	cm_node->ord_size = conn_ord;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,18 +89,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long conn_ird = 100;
+        
           long conn_ord = 100;
+        
           int _len_cm_node0 = 1;
           struct i40iw_cm_node * cm_node = (struct i40iw_cm_node *) malloc(_len_cm_node0*sizeof(struct i40iw_cm_node));
           for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
-            cm_node[_i0].send_rdma0_op = ((-2 * (next_i()%2)) + 1) * next_i();
-        cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              cm_node[_i0].send_rdma0_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          i40iw_record_ird_ord(cm_node,conn_ird,conn_ord);
+          free(cm_node);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long conn_ird = 255;
+        
+          long conn_ord = 255;
+        
+          int _len_cm_node0 = 65025;
+          struct i40iw_cm_node * cm_node = (struct i40iw_cm_node *) malloc(_len_cm_node0*sizeof(struct i40iw_cm_node));
+          for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
+              cm_node[_i0].send_rdma0_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_record_ird_ord(cm_node,conn_ird,conn_ord);
+          free(cm_node);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long conn_ird = 10;
+        
+          long conn_ord = 10;
+        
+          int _len_cm_node0 = 100;
+          struct i40iw_cm_node * cm_node = (struct i40iw_cm_node *) malloc(_len_cm_node0*sizeof(struct i40iw_cm_node));
+          for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
+              cm_node[_i0].send_rdma0_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i40iw_record_ird_ord(cm_node,conn_ird,conn_ord);
+          free(cm_node);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long conn_ird = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long conn_ord = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cm_node0 = 1;
+          struct i40iw_cm_node * cm_node = (struct i40iw_cm_node *) malloc(_len_cm_node0*sizeof(struct i40iw_cm_node));
+          for(int _i0 = 0; _i0 < _len_cm_node0; _i0++) {
+              cm_node[_i0].send_rdma0_op = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ord_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cm_node[_i0].ird_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           i40iw_record_ird_ord(cm_node,conn_ird,conn_ord);
           free(cm_node);
         

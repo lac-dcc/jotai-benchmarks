@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -70,7 +71,6 @@ bspbrush_t *AddBrushListToTail (bspbrush_t *list, bspbrush_t *tail)
 	} //end for
 	return tail;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -122,7 +122,6 @@ void _delete_tail(struct TYPE_5__ *aux_tail[], int aux_tail_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,13 +134,77 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 150011
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 70007
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 70007
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 70007
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 70007
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 70007
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 80007
+          // ------------------------------- 
+
+          struct TYPE_5__ * aux_list[10000];
+          struct TYPE_5__ * list = _allocate_list(10000, aux_list);
+        
+          struct TYPE_5__ * aux_tail[10000];
+          struct TYPE_5__ * tail = _allocate_tail(10000, aux_tail);
+        
+          struct TYPE_5__ * benchRet = AddBrushListToTail(list,tail);
+          _delete_list(aux_list, 10000);
+          _delete_tail(aux_tail, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           struct TYPE_5__ * aux_list[1];
           struct TYPE_5__ * list = _allocate_list(1, aux_list);
+        
           struct TYPE_5__ * aux_tail[1];
           struct TYPE_5__ * tail = _allocate_tail(1, aux_tail);
+        
           struct TYPE_5__ * benchRet = AddBrushListToTail(list,tail);
           _delete_list(aux_list, 1);
           _delete_tail(aux_tail, 1);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ printk("dmasound_core: tried to set_queue_frags on a locked queue\n") ;
 	return 0 ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,24 +109,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bufs = 100;
+        
           int size = 100;
+        
           int _len_sq0 = 1;
           struct sound_queue * sq = (struct sound_queue *) malloc(_len_sq0*sizeof(struct sound_queue));
           for(int _i0 = 0; _i0 < _len_sq0; _i0++) {
-            sq[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        sq[_i0].numBufs = ((-2 * (next_i()%2)) + 1) * next_i();
-        sq[_i0].user_frags = ((-2 * (next_i()%2)) + 1) * next_i();
-        sq[_i0].max_active = ((-2 * (next_i()%2)) + 1) * next_i();
-        sq[_i0].user_frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        sq[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+              sq[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].numBufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].max_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = set_queue_frags(sq,bufs,size);
           printf("%d\n", benchRet); 
           free(sq);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bufs = 255;
+        
+          int size = 255;
+        
+          int _len_sq0 = 65025;
+          struct sound_queue * sq = (struct sound_queue *) malloc(_len_sq0*sizeof(struct sound_queue));
+          for(int _i0 = 0; _i0 < _len_sq0; _i0++) {
+              sq[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].numBufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].max_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_queue_frags(sq,bufs,size);
+          printf("%d\n", benchRet); 
+          free(sq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bufs = 10;
+        
+          int size = 10;
+        
+          int _len_sq0 = 100;
+          struct sound_queue * sq = (struct sound_queue *) malloc(_len_sq0*sizeof(struct sound_queue));
+          for(int _i0 = 0; _i0 < _len_sq0; _i0++) {
+              sq[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].numBufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].max_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_queue_frags(sq,bufs,size);
+          printf("%d\n", benchRet); 
+          free(sq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bufs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sq0 = 1;
+          struct sound_queue * sq = (struct sound_queue *) malloc(_len_sq0*sizeof(struct sound_queue));
+          for(int _i0 = 0; _i0 < _len_sq0; _i0++) {
+              sq[_i0].bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].numBufs = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frags = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].max_active = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].user_frag_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          sq[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = set_queue_frags(sq,bufs,size);
+          printf("%d\n", benchRet); 
+          free(sq);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static inline int at76_calc_padding(int wlen)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int wlen = 100;
+        
           int benchRet = at76_calc_padding(wlen);
           printf("%d\n", benchRet); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int wlen = 255;
+        
           int benchRet = at76_calc_padding(wlen);
           printf("%d\n", benchRet); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int wlen = 10;
+        
           int benchRet = at76_calc_padding(wlen);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int wlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = at76_calc_padding(wlen);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

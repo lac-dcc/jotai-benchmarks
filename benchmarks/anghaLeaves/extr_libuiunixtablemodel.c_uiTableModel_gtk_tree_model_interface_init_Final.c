@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static void uiTableModel_gtk_tree_model_interface_init(Gtk
 	// don't specify ref_node() or unref_node()
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,26 +102,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_iface0 = 65025;
+          struct TYPE_3__ * iface = (struct TYPE_3__ *) malloc(_len_iface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_iface0; _i0++) {
+              iface[_i0].iter_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_nth_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_n_children = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_has_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_children = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_previous = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_next = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_path = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_column_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_n_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          uiTableModel_gtk_tree_model_interface_init(iface);
+          free(iface);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_iface0 = 100;
+          struct TYPE_3__ * iface = (struct TYPE_3__ *) malloc(_len_iface0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_iface0; _i0++) {
+              iface[_i0].iter_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_nth_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_n_children = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_has_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_children = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_previous = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_next = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_path = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_column_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_n_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          uiTableModel_gtk_tree_model_interface_init(iface);
+          free(iface);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           int _len_iface0 = 1;
           struct TYPE_3__ * iface = (struct TYPE_3__ *) malloc(_len_iface0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_iface0; _i0++) {
-            iface[_i0].iter_parent = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].iter_nth_child = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].iter_n_children = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].iter_has_child = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].iter_children = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].iter_previous = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].iter_next = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].get_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].get_path = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].get_iter = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].get_column_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].get_n_columns = ((-2 * (next_i()%2)) + 1) * next_i();
-        iface[_i0].get_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              iface[_i0].iter_parent = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_nth_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_n_children = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_has_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_children = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_previous = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].iter_next = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_path = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_iter = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_column_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_n_columns = ((-2 * (next_i()%2)) + 1) * next_i();
+          iface[_i0].get_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           uiTableModel_gtk_tree_model_interface_init(iface);
           free(iface);
         

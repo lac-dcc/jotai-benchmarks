@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline u32 intel_hws_preempt_done_address(struct in
 	return engine->status_page.ggtt_offset + I915_GEM_HWS_PREEMPT_ADDR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_engine0 = 1;
+          int _len_engine0 = 65025;
           struct intel_engine_cs * engine = (struct intel_engine_cs *) malloc(_len_engine0*sizeof(struct intel_engine_cs));
           for(int _i0 = 0; _i0 < _len_engine0; _i0++) {
-            engine[_i0].status_page.ggtt_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              engine[_i0].status_page.ggtt_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = intel_hws_preempt_done_address(engine);
           printf("%ld\n", benchRet); 
           free(engine);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_engine0 = 100;
           struct intel_engine_cs * engine = (struct intel_engine_cs *) malloc(_len_engine0*sizeof(struct intel_engine_cs));
           for(int _i0 = 0; _i0 < _len_engine0; _i0++) {
-            engine[_i0].status_page.ggtt_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              engine[_i0].status_page.ggtt_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = intel_hws_preempt_done_address(engine);
           printf("%ld\n", benchRet); 
           free(engine);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_engine0 = 1;
+          struct intel_engine_cs * engine = (struct intel_engine_cs *) malloc(_len_engine0*sizeof(struct intel_engine_cs));
+          for(int _i0 = 0; _i0 < _len_engine0; _i0++) {
+              engine[_i0].status_page.ggtt_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = intel_hws_preempt_done_address(engine);
+          printf("%ld\n", benchRet); 
+          free(engine);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static void UInt64ToStr(UInt64 value, char *s, int numDigi
   *s = '\0';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +88,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 57
+          // dynamic_instructions_O0 : 2882
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 96
+          // ------------------------------- 
+          // static_instructions_O2 : 66
+          // dynamic_instructions_O2 : 112
+          // ------------------------------- 
+          // static_instructions_O3 : 66
+          // dynamic_instructions_O3 : 112
+          // ------------------------------- 
+          // static_instructions_Ofast : 66
+          // dynamic_instructions_Ofast : 112
+          // ------------------------------- 
+          // static_instructions_Os : 50
+          // dynamic_instructions_Os : 94
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 1574
+          // ------------------------------- 
+
+          int value = 255;
+        
+          int numDigits = 255;
+        
+          int _len_s0 = 65025;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          UInt64ToStr(value,s,numDigits);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 57
+          // dynamic_instructions_O0 : 167
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 66
+          // dynamic_instructions_O2 : 89
+          // ------------------------------- 
+          // static_instructions_O3 : 66
+          // dynamic_instructions_O3 : 89
+          // ------------------------------- 
+          // static_instructions_Ofast : 66
+          // dynamic_instructions_Ofast : 89
+          // ------------------------------- 
+          // static_instructions_Os : 50
+          // dynamic_instructions_Os : 72
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 94
+          // ------------------------------- 
+
           int value = 10;
+        
           int numDigits = 10;
+        
           int _len_s0 = 100;
           char * s = (char *) malloc(_len_s0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           UInt64ToStr(value,s,numDigits);
           free(s);
         

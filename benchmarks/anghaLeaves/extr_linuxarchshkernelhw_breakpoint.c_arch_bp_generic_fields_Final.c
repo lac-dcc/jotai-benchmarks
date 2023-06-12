@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +109,6 @@ int arch_bp_generic_fields(int sh_len, int sh_type,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,21 +121,198 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int sh_len = 100;
+        
           int sh_type = 100;
+        
           int _len_gen_len0 = 1;
           int * gen_len = (int *) malloc(_len_gen_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_gen_len0; _i0++) {
             gen_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_gen_type0 = 1;
           int * gen_type = (int *) malloc(_len_gen_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_gen_type0; _i0++) {
             gen_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = arch_bp_generic_fields(sh_len,sh_type,gen_len,gen_type);
+          printf("%d\n", benchRet); 
+          free(gen_len);
+          free(gen_type);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int sh_len = 255;
+        
+          int sh_type = 255;
+        
+          int _len_gen_len0 = 65025;
+          int * gen_len = (int *) malloc(_len_gen_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gen_len0; _i0++) {
+            gen_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_gen_type0 = 65025;
+          int * gen_type = (int *) malloc(_len_gen_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gen_type0; _i0++) {
+            gen_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = arch_bp_generic_fields(sh_len,sh_type,gen_len,gen_type);
+          printf("%d\n", benchRet); 
+          free(gen_len);
+          free(gen_type);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int sh_len = 10;
+        
+          int sh_type = 10;
+        
+          int _len_gen_len0 = 100;
+          int * gen_len = (int *) malloc(_len_gen_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gen_len0; _i0++) {
+            gen_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_gen_type0 = 100;
+          int * gen_type = (int *) malloc(_len_gen_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gen_type0; _i0++) {
+            gen_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = arch_bp_generic_fields(sh_len,sh_type,gen_len,gen_type);
+          printf("%d\n", benchRet); 
+          free(gen_len);
+          free(gen_type);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int sh_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sh_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gen_len0 = 1;
+          int * gen_len = (int *) malloc(_len_gen_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gen_len0; _i0++) {
+            gen_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_gen_type0 = 1;
+          int * gen_type = (int *) malloc(_len_gen_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_gen_type0; _i0++) {
+            gen_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = arch_bp_generic_fields(sh_len,sh_type,gen_len,gen_type);
           printf("%d\n", benchRet); 
           free(gen_len);

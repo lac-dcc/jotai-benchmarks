@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void scale_touch_coordinates(struct w8001 *w8001,
 		*y = *y * w8001->max_pen_y / w8001->max_touch_y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,27 +79,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_w80010 = 65025;
+          struct w8001 * w8001 = (struct w8001 *) malloc(_len_w80010*sizeof(struct w8001));
+          for(int _i0 = 0; _i0 < _len_w80010; _i0++) {
+              w8001[_i0].max_pen_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_touch_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_pen_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_touch_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_x0 = 65025;
+          unsigned int * x = (unsigned int *) malloc(_len_x0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y0 = 65025;
+          unsigned int * y = (unsigned int *) malloc(_len_y0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scale_touch_coordinates(w8001,x,y);
+          free(w8001);
+          free(x);
+          free(y);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_w80010 = 100;
+          struct w8001 * w8001 = (struct w8001 *) malloc(_len_w80010*sizeof(struct w8001));
+          for(int _i0 = 0; _i0 < _len_w80010; _i0++) {
+              w8001[_i0].max_pen_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_touch_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_pen_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_touch_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_x0 = 100;
+          unsigned int * x = (unsigned int *) malloc(_len_x0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_y0 = 100;
+          unsigned int * y = (unsigned int *) malloc(_len_y0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scale_touch_coordinates(w8001,x,y);
+          free(w8001);
+          free(x);
+          free(y);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_w80010 = 1;
           struct w8001 * w8001 = (struct w8001 *) malloc(_len_w80010*sizeof(struct w8001));
           for(int _i0 = 0; _i0 < _len_w80010; _i0++) {
-            w8001[_i0].max_pen_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        w8001[_i0].max_touch_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        w8001[_i0].max_pen_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        w8001[_i0].max_touch_y = ((-2 * (next_i()%2)) + 1) * next_i();
+              w8001[_i0].max_pen_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_touch_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_pen_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          w8001[_i0].max_touch_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_x0 = 1;
           unsigned int * x = (unsigned int *) malloc(_len_x0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_y0 = 1;
           unsigned int * y = (unsigned int *) malloc(_len_y0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
             y[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           scale_touch_coordinates(w8001,x,y);
           free(w8001);
           free(x);

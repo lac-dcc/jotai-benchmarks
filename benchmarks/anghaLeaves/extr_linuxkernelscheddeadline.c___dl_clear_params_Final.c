@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void __dl_clear_params(struct task_struct *p)
 	dl_se->dl_overrun		= 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,29 +87,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p0 = 1;
+          int _len_p0 = 65025;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].dl.dl_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_non_contending = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_yielded = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_throttled = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_density = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].dl.dl_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_non_contending = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_yielded = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_throttled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_density = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           __dl_clear_params(p);
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p0 = 100;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dl.dl_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_non_contending = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_yielded = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_throttled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_density = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          __dl_clear_params(p);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p0 = 1;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].dl.dl_overrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_non_contending = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_yielded = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_throttled = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_density = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_deadline = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].dl.dl_runtime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          __dl_clear_params(p);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

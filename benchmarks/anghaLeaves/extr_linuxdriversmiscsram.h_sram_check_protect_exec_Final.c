@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int sram_check_protect_exec(struct sram_dev 
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,165 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_sram0 = 65025;
+          struct sram_dev * sram = (struct sram_dev *) malloc(_len_sram0*sizeof(struct sram_dev));
+          for(int _i0 = 0; _i0 < _len_sram0; _i0++) {
+              sram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_block0 = 65025;
+          struct sram_reserve * block = (struct sram_reserve *) malloc(_len_block0*sizeof(struct sram_reserve));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_part0 = 65025;
+          struct sram_partition * part = (struct sram_partition *) malloc(_len_part0*sizeof(struct sram_partition));
+          for(int _i0 = 0; _i0 < _len_part0; _i0++) {
+              part[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sram_check_protect_exec(sram,block,part);
+          printf("%d\n", benchRet); 
+          free(sram);
+          free(block);
+          free(part);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_sram0 = 100;
+          struct sram_dev * sram = (struct sram_dev *) malloc(_len_sram0*sizeof(struct sram_dev));
+          for(int _i0 = 0; _i0 < _len_sram0; _i0++) {
+              sram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_block0 = 100;
+          struct sram_reserve * block = (struct sram_reserve *) malloc(_len_block0*sizeof(struct sram_reserve));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_part0 = 100;
+          struct sram_partition * part = (struct sram_partition *) malloc(_len_part0*sizeof(struct sram_partition));
+          for(int _i0 = 0; _i0 < _len_part0; _i0++) {
+              part[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sram_check_protect_exec(sram,block,part);
+          printf("%d\n", benchRet); 
+          free(sram);
+          free(block);
+          free(part);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_sram0 = 1;
           struct sram_dev * sram = (struct sram_dev *) malloc(_len_sram0*sizeof(struct sram_dev));
           for(int _i0 = 0; _i0 < _len_sram0; _i0++) {
-            sram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_block0 = 1;
           struct sram_reserve * block = (struct sram_reserve *) malloc(_len_block0*sizeof(struct sram_reserve));
           for(int _i0 = 0; _i0 < _len_block0; _i0++) {
-            block[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              block[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_part0 = 1;
           struct sram_partition * part = (struct sram_partition *) malloc(_len_part0*sizeof(struct sram_partition));
           for(int _i0 = 0; _i0 < _len_part0; _i0++) {
-            part[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              part[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sram_check_protect_exec(sram,block,part);
           printf("%d\n", benchRet); 
           free(sram);

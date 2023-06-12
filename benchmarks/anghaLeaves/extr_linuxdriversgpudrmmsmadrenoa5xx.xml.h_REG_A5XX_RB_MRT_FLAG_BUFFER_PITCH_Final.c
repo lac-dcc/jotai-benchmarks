@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ typedef  int uint32_t ;
 
 __attribute__((used)) static inline uint32_t REG_A5XX_RB_MRT_FLAG_BUFFER_PITCH(uint32_t i0) { return 0x0000e245 + 0x4*i0; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,6 +76,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i0 = 100;
+        
           int benchRet = REG_A5XX_RB_MRT_FLAG_BUFFER_PITCH(i0);
           printf("%d\n", benchRet); 
         
@@ -90,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i0 = 255;
+        
           int benchRet = REG_A5XX_RB_MRT_FLAG_BUFFER_PITCH(i0);
           printf("%d\n", benchRet); 
         
@@ -99,12 +96,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i0 = 10;
+        
           int benchRet = REG_A5XX_RB_MRT_FLAG_BUFFER_PITCH(i0);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = REG_A5XX_RB_MRT_FLAG_BUFFER_PITCH(i0);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

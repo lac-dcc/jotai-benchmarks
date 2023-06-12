@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static inline void sms_gpio_assign_11xx_default_led_config
 	p_gpio_config->pullupdown = SMS_GPIO_PULLUPDOWN_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,24 +84,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p_gpio_config0 = 1;
+          int _len_p_gpio_config0 = 65025;
           struct smscore_config_gpio * p_gpio_config = (struct smscore_config_gpio *) malloc(_len_p_gpio_config0*sizeof(struct smscore_config_gpio));
           for(int _i0 = 0; _i0 < _len_p_gpio_config0; _i0++) {
-            p_gpio_config[_i0].pullupdown = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_gpio_config[_i0].outputslewrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_gpio_config[_i0].outputdriving = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_gpio_config[_i0].inputcharacteristics = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_gpio_config[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_gpio_config[_i0].pullupdown = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].outputslewrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].outputdriving = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].inputcharacteristics = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sms_gpio_assign_11xx_default_led_config(p_gpio_config);
           free(p_gpio_config);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_p_gpio_config0 = 100;
+          struct smscore_config_gpio * p_gpio_config = (struct smscore_config_gpio *) malloc(_len_p_gpio_config0*sizeof(struct smscore_config_gpio));
+          for(int _i0 = 0; _i0 < _len_p_gpio_config0; _i0++) {
+              p_gpio_config[_i0].pullupdown = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].outputslewrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].outputdriving = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].inputcharacteristics = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sms_gpio_assign_11xx_default_led_config(p_gpio_config);
+          free(p_gpio_config);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_p_gpio_config0 = 1;
+          struct smscore_config_gpio * p_gpio_config = (struct smscore_config_gpio *) malloc(_len_p_gpio_config0*sizeof(struct smscore_config_gpio));
+          for(int _i0 = 0; _i0 < _len_p_gpio_config0; _i0++) {
+              p_gpio_config[_i0].pullupdown = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].outputslewrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].outputdriving = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].inputcharacteristics = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_gpio_config[_i0].direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sms_gpio_assign_11xx_default_led_config(p_gpio_config);
+          free(p_gpio_config);
+        
+        break;
+    }
     default:
         usage();
         break;

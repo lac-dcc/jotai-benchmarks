@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned int avc_get_cache_threshold(struct selinux_avc *avc)
 	return avc->avc_cache_threshold;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_avc0 = 1;
+          int _len_avc0 = 65025;
           struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
           for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
-            avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = avc_get_cache_threshold(avc);
           printf("%u\n", benchRet); 
           free(avc);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_avc0 = 100;
           struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
           for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
-            avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = avc_get_cache_threshold(avc);
           printf("%u\n", benchRet); 
           free(avc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_avc0 = 1;
+          struct selinux_avc * avc = (struct selinux_avc *) malloc(_len_avc0*sizeof(struct selinux_avc));
+          for(int _i0 = 0; _i0 < _len_avc0; _i0++) {
+              avc[_i0].avc_cache_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = avc_get_cache_threshold(avc);
+          printf("%u\n", benchRet); 
+          free(avc);
+        
+        break;
+    }
     default:
         usage();
         break;

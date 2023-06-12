@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void tl_var_check_used (struct tl_var *v) {
   __ok = __ok && (v->flags & 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_v0 = 1;
+          int _len_v0 = 65025;
           struct tl_var * v = (struct tl_var *) malloc(_len_v0*sizeof(struct tl_var));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tl_var_check_used(v);
           free(v);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_v0 = 100;
           struct tl_var * v = (struct tl_var *) malloc(_len_v0*sizeof(struct tl_var));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tl_var_check_used(v);
           free(v);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_v0 = 1;
+          struct tl_var * v = (struct tl_var *) malloc(_len_v0*sizeof(struct tl_var));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tl_var_check_used(v);
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

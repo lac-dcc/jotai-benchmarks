@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool is_pseudo_instr_not(RAsmLm32Instruction *instr
 	return (instr->op == lm32_op_xnor) && !instr->src1_reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_instr0 = 1;
+          int _len_instr0 = 65025;
           struct TYPE_3__ * instr = (struct TYPE_3__ *) malloc(_len_instr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_instr0; _i0++) {
-            instr[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
-        instr[_i0].src1_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              instr[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+          instr[_i0].src1_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_pseudo_instr_not(instr);
           printf("%d\n", benchRet); 
           free(instr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_instr0 = 100;
+          struct TYPE_3__ * instr = (struct TYPE_3__ *) malloc(_len_instr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_instr0; _i0++) {
+              instr[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+          instr[_i0].src1_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_pseudo_instr_not(instr);
+          printf("%d\n", benchRet); 
+          free(instr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_instr0 = 1;
+          struct TYPE_3__ * instr = (struct TYPE_3__ *) malloc(_len_instr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_instr0; _i0++) {
+              instr[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+          instr[_i0].src1_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_pseudo_instr_not(instr);
+          printf("%d\n", benchRet); 
+          free(instr);
+        
+        break;
+    }
     default:
         usage();
         break;

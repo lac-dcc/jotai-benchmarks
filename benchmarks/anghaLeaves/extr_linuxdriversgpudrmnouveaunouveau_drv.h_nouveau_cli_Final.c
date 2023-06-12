@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ nouveau_cli(struct drm_file *fpriv)
 	return fpriv ? fpriv->driver_priv : NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fpriv0 = 1;
+          int _len_fpriv0 = 65025;
           struct drm_file * fpriv = (struct drm_file *) malloc(_len_fpriv0*sizeof(struct drm_file));
           for(int _i0 = 0; _i0 < _len_fpriv0; _i0++) {
               int _len_fpriv__i0__driver_priv0 = 1;
           fpriv[_i0].driver_priv = (struct nouveau_cli *) malloc(_len_fpriv__i0__driver_priv0*sizeof(struct nouveau_cli));
           for(int _j0 = 0; _j0 < _len_fpriv__i0__driver_priv0; _j0++) {
-            fpriv[_i0].driver_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fpriv[_i0].driver_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct nouveau_cli * benchRet = nouveau_cli(fpriv);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_fpriv0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fpriv0 = 100;
+          struct drm_file * fpriv = (struct drm_file *) malloc(_len_fpriv0*sizeof(struct drm_file));
+          for(int _i0 = 0; _i0 < _len_fpriv0; _i0++) {
+              int _len_fpriv__i0__driver_priv0 = 1;
+          fpriv[_i0].driver_priv = (struct nouveau_cli *) malloc(_len_fpriv__i0__driver_priv0*sizeof(struct nouveau_cli));
+          for(int _j0 = 0; _j0 < _len_fpriv__i0__driver_priv0; _j0++) {
+              fpriv[_i0].driver_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct nouveau_cli * benchRet = nouveau_cli(fpriv);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_fpriv0; _aux++) {
+          free(fpriv[_aux].driver_priv);
+          }
+          free(fpriv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fpriv0 = 1;
+          struct drm_file * fpriv = (struct drm_file *) malloc(_len_fpriv0*sizeof(struct drm_file));
+          for(int _i0 = 0; _i0 < _len_fpriv0; _i0++) {
+              int _len_fpriv__i0__driver_priv0 = 1;
+          fpriv[_i0].driver_priv = (struct nouveau_cli *) malloc(_len_fpriv__i0__driver_priv0*sizeof(struct nouveau_cli));
+          for(int _j0 = 0; _j0 < _len_fpriv__i0__driver_priv0; _j0++) {
+              fpriv[_i0].driver_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct nouveau_cli * benchRet = nouveau_cli(fpriv);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_fpriv0; _aux++) {
+          free(fpriv[_aux].driver_priv);
+          }
+          free(fpriv);
+        
+        break;
+    }
     default:
         usage();
         break;

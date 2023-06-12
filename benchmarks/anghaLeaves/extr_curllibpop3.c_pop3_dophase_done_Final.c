@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static CURLcode pop3_dophase_done(struct connectdata *conn
   return CURLE_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int connected = 100;
+        
           int _len_conn0 = 1;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pop3_dophase_done(conn,connected);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int connected = 255;
+        
+          int _len_conn0 = 65025;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pop3_dophase_done(conn,connected);
           printf("%d\n", benchRet); 
           free(conn);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int connected = 10;
+        
           int _len_conn0 = 100;
           struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pop3_dophase_done(conn,connected);
           printf("%d\n", benchRet); 
           free(conn);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int connected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          struct connectdata * conn = (struct connectdata *) malloc(_len_conn0*sizeof(struct connectdata));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pop3_dophase_done(conn,connected);
+          printf("%d\n", benchRet); 
+          free(conn);
+        
+        break;
+    }
     default:
         usage();
         break;

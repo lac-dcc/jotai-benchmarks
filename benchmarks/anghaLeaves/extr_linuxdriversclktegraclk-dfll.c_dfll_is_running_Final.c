@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool dfll_is_running(struct tegra_dfll *td)
 	return td->mode >= DFLL_OPEN_LOOP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_td0 = 1;
+          int _len_td0 = 65025;
           struct tegra_dfll * td = (struct tegra_dfll *) malloc(_len_td0*sizeof(struct tegra_dfll));
           for(int _i0 = 0; _i0 < _len_td0; _i0++) {
-            td[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              td[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dfll_is_running(td);
           printf("%d\n", benchRet); 
           free(td);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_td0 = 100;
           struct tegra_dfll * td = (struct tegra_dfll *) malloc(_len_td0*sizeof(struct tegra_dfll));
           for(int _i0 = 0; _i0 < _len_td0; _i0++) {
-            td[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              td[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dfll_is_running(td);
           printf("%d\n", benchRet); 
           free(td);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_td0 = 1;
+          struct tegra_dfll * td = (struct tegra_dfll *) malloc(_len_td0*sizeof(struct tegra_dfll));
+          for(int _i0 = 0; _i0 < _len_td0; _i0++) {
+              td[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dfll_is_running(td);
+          printf("%d\n", benchRet); 
+          free(td);
+        
+        break;
+    }
     default:
         usage();
         break;

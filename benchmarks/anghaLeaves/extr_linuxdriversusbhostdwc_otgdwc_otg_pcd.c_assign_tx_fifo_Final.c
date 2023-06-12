@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static uint32_t assign_tx_fifo(dwc_otg_core_if_t * core_if
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,22 +91,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_core_if0 = 1;
+          int _len_core_if0 = 65025;
           struct TYPE_7__ * core_if = (struct TYPE_7__ *) malloc(_len_core_if0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
-            core_if[_i0].tx_msk = ((-2 * (next_i()%2)) + 1) * next_i();
-        core_if[_i0].hwcfg4.b.num_in_eps = ((-2 * (next_i()%2)) + 1) * next_i();
+              core_if[_i0].tx_msk = ((-2 * (next_i()%2)) + 1) * next_i();
+          core_if[_i0].hwcfg4.b.num_in_eps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = assign_tx_fifo(core_if);
           printf("%d\n", benchRet); 
           free(core_if);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_core_if0 = 100;
+          struct TYPE_7__ * core_if = (struct TYPE_7__ *) malloc(_len_core_if0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
+              core_if[_i0].tx_msk = ((-2 * (next_i()%2)) + 1) * next_i();
+          core_if[_i0].hwcfg4.b.num_in_eps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = assign_tx_fifo(core_if);
+          printf("%d\n", benchRet); 
+          free(core_if);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_core_if0 = 1;
+          struct TYPE_7__ * core_if = (struct TYPE_7__ *) malloc(_len_core_if0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
+              core_if[_i0].tx_msk = ((-2 * (next_i()%2)) + 1) * next_i();
+          core_if[_i0].hwcfg4.b.num_in_eps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = assign_tx_fifo(core_if);
+          printf("%d\n", benchRet); 
+          free(core_if);
+        
+        break;
+    }
     default:
         usage();
         break;

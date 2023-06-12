@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static int setup_dma_config(struct pcmcia_device *link, in
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,20 +95,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int start_pg = 100;
+        
           int stop_pg = 100;
+        
           int _len_link0 = 1;
           struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
           for(int _i0 = 0; _i0 < _len_link0; _i0++) {
               int _len_link__i0__priv0 = 1;
           link[_i0].priv = (struct net_device *) malloc(_len_link__i0__priv0*sizeof(struct net_device));
           for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
-            link[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = setup_dma_config(link,start_pg,stop_pg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].priv);
+          }
+          free(link);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int start_pg = 255;
+        
+          int stop_pg = 255;
+        
+          int _len_link0 = 65025;
+          struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              int _len_link__i0__priv0 = 1;
+          link[_i0].priv = (struct net_device *) malloc(_len_link__i0__priv0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
+              link[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = setup_dma_config(link,start_pg,stop_pg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].priv);
+          }
+          free(link);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int start_pg = 10;
+        
+          int stop_pg = 10;
+        
+          int _len_link0 = 100;
+          struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              int _len_link__i0__priv0 = 1;
+          link[_i0].priv = (struct net_device *) malloc(_len_link__i0__priv0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
+              link[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = setup_dma_config(link,start_pg,stop_pg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].priv);
+          }
+          free(link);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int start_pg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int stop_pg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_link0 = 1;
+          struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              int _len_link__i0__priv0 = 1;
+          link[_i0].priv = (struct net_device *) malloc(_len_link__i0__priv0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
+              link[_i0].priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = setup_dma_config(link,start_pg,stop_pg);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_link0; _aux++) {

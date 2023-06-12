@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int sd_zbc_setup_report_cmnd(struct scsi_cmn
 	return BLKPREP_INVALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sd_zbc_setup_report_cmnd(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_cmd0 = 100;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sd_zbc_setup_report_cmnd(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sd_zbc_setup_report_cmnd(cmd);
+          printf("%d\n", benchRet); 
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

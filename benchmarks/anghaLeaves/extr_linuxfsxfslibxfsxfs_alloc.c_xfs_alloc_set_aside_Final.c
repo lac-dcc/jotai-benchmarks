@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ xfs_alloc_set_aside(
 	return mp->m_sb.sb_agcount * (XFS_ALLOC_AGFL_RESERVE + 4);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,28 +79,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mp0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mp0 = 65025;
           struct xfs_mount * mp = (struct xfs_mount *) malloc(_len_mp0*sizeof(struct xfs_mount));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
-            mp[_i0].m_sb.sb_agcount = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp[_i0].m_sb.sb_agcount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = xfs_alloc_set_aside(mp);
           printf("%u\n", benchRet); 
           free(mp);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_mp0 = 100;
           struct xfs_mount * mp = (struct xfs_mount *) malloc(_len_mp0*sizeof(struct xfs_mount));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
-            mp[_i0].m_sb.sb_agcount = ((-2 * (next_i()%2)) + 1) * next_i();
+              mp[_i0].m_sb.sb_agcount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          unsigned int benchRet = xfs_alloc_set_aside(mp);
+          printf("%u\n", benchRet); 
+          free(mp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mp0 = 1;
+          struct xfs_mount * mp = (struct xfs_mount *) malloc(_len_mp0*sizeof(struct xfs_mount));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              mp[_i0].m_sb.sb_agcount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           unsigned int benchRet = xfs_alloc_set_aside(mp);
           printf("%u\n", benchRet); 
           free(mp);

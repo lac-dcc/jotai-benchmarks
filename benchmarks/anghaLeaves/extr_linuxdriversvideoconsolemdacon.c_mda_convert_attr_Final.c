@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static inline u16 mda_convert_attr(u16 ch)
 		(ch & 0x00ff) | attr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ch = 100;
+        
           int benchRet = mda_convert_attr(ch);
           printf("%d\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ch = 255;
+        
           int benchRet = mda_convert_attr(ch);
           printf("%d\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ch = 10;
+        
           int benchRet = mda_convert_attr(ch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mda_convert_attr(ch);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

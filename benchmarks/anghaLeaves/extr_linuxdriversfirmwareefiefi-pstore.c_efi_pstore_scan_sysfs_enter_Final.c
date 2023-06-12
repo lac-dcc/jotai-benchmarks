@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void efi_pstore_scan_sysfs_enter(struct efivar_entr
 		next->scanning = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,26 +79,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pos0 = 65025;
+          struct efivar_entry * pos = (struct efivar_entry *) malloc(_len_pos0*sizeof(struct efivar_entry));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+              pos[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
+          pos[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_next0 = 65025;
+          struct efivar_entry * next = (struct efivar_entry *) malloc(_len_next0*sizeof(struct efivar_entry));
+          for(int _i0 = 0; _i0 < _len_next0; _i0++) {
+              next[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
+          next[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_head0 = 65025;
+          struct list_head * head = (struct list_head *) malloc(_len_head0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          efi_pstore_scan_sysfs_enter(pos,next,head);
+          free(pos);
+          free(next);
+          free(head);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_pos0 = 100;
+          struct efivar_entry * pos = (struct efivar_entry *) malloc(_len_pos0*sizeof(struct efivar_entry));
+          for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
+              pos[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
+          pos[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_next0 = 100;
+          struct efivar_entry * next = (struct efivar_entry *) malloc(_len_next0*sizeof(struct efivar_entry));
+          for(int _i0 = 0; _i0 < _len_next0; _i0++) {
+              next[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
+          next[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_head0 = 100;
+          struct list_head * head = (struct list_head *) malloc(_len_head0*sizeof(struct list_head));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          efi_pstore_scan_sysfs_enter(pos,next,head);
+          free(pos);
+          free(next);
+          free(head);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_pos0 = 1;
           struct efivar_entry * pos = (struct efivar_entry *) malloc(_len_pos0*sizeof(struct efivar_entry));
           for(int _i0 = 0; _i0 < _len_pos0; _i0++) {
-            pos[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
-        pos[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pos[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
+          pos[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_next0 = 1;
           struct efivar_entry * next = (struct efivar_entry *) malloc(_len_next0*sizeof(struct efivar_entry));
           for(int _i0 = 0; _i0 < _len_next0; _i0++) {
-            next[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
-        next[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              next[_i0].scanning = ((-2 * (next_i()%2)) + 1) * next_i();
+          next[_i0].list.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_head0 = 1;
           struct list_head * head = (struct list_head *) malloc(_len_head0*sizeof(struct list_head));
           for(int _i0 = 0; _i0 < _len_head0; _i0++) {
-            head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              head[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           efi_pstore_scan_sysfs_enter(pos,next,head);
           free(pos);
           free(next);

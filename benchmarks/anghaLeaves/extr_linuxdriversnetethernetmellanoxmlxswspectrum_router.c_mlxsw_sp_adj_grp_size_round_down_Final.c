@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void mlxsw_sp_adj_grp_size_round_down(u16 *p_adj_gr
 		*p_adj_grp_size = 512;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,29 +83,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int alloc_size = 100;
+        
           int _len_p_adj_grp_size0 = 1;
           int * p_adj_grp_size = (int *) malloc(_len_p_adj_grp_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
             p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mlxsw_sp_adj_grp_size_round_down(p_adj_grp_size,alloc_size);
           free(p_adj_grp_size);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int alloc_size = 255;
+        
+          int _len_p_adj_grp_size0 = 65025;
+          int * p_adj_grp_size = (int *) malloc(_len_p_adj_grp_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
+            p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mlxsw_sp_adj_grp_size_round_down(p_adj_grp_size,alloc_size);
+          free(p_adj_grp_size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int alloc_size = 10;
+        
           int _len_p_adj_grp_size0 = 100;
           int * p_adj_grp_size = (int *) malloc(_len_p_adj_grp_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
             p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          mlxsw_sp_adj_grp_size_round_down(p_adj_grp_size,alloc_size);
+          free(p_adj_grp_size);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int alloc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_adj_grp_size0 = 1;
+          int * p_adj_grp_size = (int *) malloc(_len_p_adj_grp_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
+            p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           mlxsw_sp_adj_grp_size_round_down(p_adj_grp_size,alloc_size);
           free(p_adj_grp_size);
         

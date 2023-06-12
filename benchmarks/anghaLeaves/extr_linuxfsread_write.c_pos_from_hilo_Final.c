@@ -64,12 +64,6 @@ __attribute__((used)) static inline loff_t pos_from_hilo(unsigned long high, uns
 	return (((loff_t)high << HALF_LONG_BITS) << HALF_LONG_BITS) | low;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long high = 100;
+        
           unsigned long low = 100;
+        
           int benchRet = pos_from_hilo(high,low);
           printf("%d\n", benchRet); 
         
@@ -96,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long high = 255;
+        
           unsigned long low = 255;
+        
           int benchRet = pos_from_hilo(high,low);
           printf("%d\n", benchRet); 
         
@@ -106,13 +104,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long high = 10;
+        
           unsigned long low = 10;
+        
           int benchRet = pos_from_hilo(high,low);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

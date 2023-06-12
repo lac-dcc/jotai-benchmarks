@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static struct musb_qh *musb_ep_get_qh(struct musb_hw_ep *e
 	return is_in ? ep->in_qh : ep->out_qh;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_in = 100;
+        
           int _len_ep0 = 1;
           struct musb_hw_ep * ep = (struct musb_hw_ep *) malloc(_len_ep0*sizeof(struct musb_hw_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
               int _len_ep__i0__out_qh0 = 1;
           ep[_i0].out_qh = (struct musb_qh *) malloc(_len_ep__i0__out_qh0*sizeof(struct musb_qh));
           for(int _j0 = 0; _j0 < _len_ep__i0__out_qh0; _j0++) {
-            ep[_i0].out_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].out_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_ep__i0__in_qh0 = 1;
           ep[_i0].in_qh = (struct musb_qh *) malloc(_len_ep__i0__in_qh0*sizeof(struct musb_qh));
           for(int _j0 = 0; _j0 < _len_ep__i0__in_qh0; _j0++) {
-            ep[_i0].in_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].in_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct musb_qh * benchRet = musb_ep_get_qh(ep,is_in);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ep0; _aux++) {
@@ -109,7 +111,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_in = 255;
+        
+          int _len_ep0 = 65025;
+          struct musb_hw_ep * ep = (struct musb_hw_ep *) malloc(_len_ep0*sizeof(struct musb_hw_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__out_qh0 = 1;
+          ep[_i0].out_qh = (struct musb_qh *) malloc(_len_ep__i0__out_qh0*sizeof(struct musb_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__out_qh0; _j0++) {
+              ep[_i0].out_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ep__i0__in_qh0 = 1;
+          ep[_i0].in_qh = (struct musb_qh *) malloc(_len_ep__i0__in_qh0*sizeof(struct musb_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__in_qh0; _j0++) {
+              ep[_i0].in_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct musb_qh * benchRet = musb_ep_get_qh(ep,is_in);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].out_qh);
+          }
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].in_qh);
+          }
+          free(ep);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_in = 10;
+        
+          int _len_ep0 = 100;
+          struct musb_hw_ep * ep = (struct musb_hw_ep *) malloc(_len_ep0*sizeof(struct musb_hw_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__out_qh0 = 1;
+          ep[_i0].out_qh = (struct musb_qh *) malloc(_len_ep__i0__out_qh0*sizeof(struct musb_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__out_qh0; _j0++) {
+              ep[_i0].out_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ep__i0__in_qh0 = 1;
+          ep[_i0].in_qh = (struct musb_qh *) malloc(_len_ep__i0__in_qh0*sizeof(struct musb_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__in_qh0; _j0++) {
+              ep[_i0].in_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct musb_qh * benchRet = musb_ep_get_qh(ep,is_in);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].out_qh);
+          }
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].in_qh);
+          }
+          free(ep);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ep0 = 1;
+          struct musb_hw_ep * ep = (struct musb_hw_ep *) malloc(_len_ep0*sizeof(struct musb_hw_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              int _len_ep__i0__out_qh0 = 1;
+          ep[_i0].out_qh = (struct musb_qh *) malloc(_len_ep__i0__out_qh0*sizeof(struct musb_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__out_qh0; _j0++) {
+              ep[_i0].out_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ep__i0__in_qh0 = 1;
+          ep[_i0].in_qh = (struct musb_qh *) malloc(_len_ep__i0__in_qh0*sizeof(struct musb_qh));
+          for(int _j0 = 0; _j0 < _len_ep__i0__in_qh0; _j0++) {
+              ep[_i0].in_qh->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct musb_qh * benchRet = musb_ep_get_qh(ep,is_in);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].out_qh);
+          }
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].in_qh);
+          }
+          free(ep);
+        
+        break;
+    }
     default:
         usage();
         break;

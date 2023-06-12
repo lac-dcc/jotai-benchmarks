@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ dump_flags(uint8_t flags, uint8_t native)
   return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long flags = 100;
+        
           long native = 100;
+        
           long benchRet = dump_flags(flags,native);
           printf("%ld\n", benchRet); 
         
@@ -108,7 +105,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long flags = 255;
+        
           long native = 255;
+        
           long benchRet = dump_flags(flags,native);
           printf("%ld\n", benchRet); 
         
@@ -118,13 +117,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long flags = 10;
+        
           long native = 10;
+        
           long benchRet = dump_flags(flags,native);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long native = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = dump_flags(flags,native);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

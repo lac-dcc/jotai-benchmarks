@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int has_sparse(struct pci_controller *hose,
 	return base != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           enum pci_mmap_state mmap_type = 0;
+        
+          int _len_hose0 = 65025;
+          struct pci_controller * hose = (struct pci_controller *) malloc(_len_hose0*sizeof(struct pci_controller));
+          for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
+              hose[_i0].sparse_mem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hose[_i0].sparse_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_sparse(hose,mmap_type);
+          printf("%d\n", benchRet); 
+          free(hose);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum pci_mmap_state mmap_type = 0;
+        
+          int _len_hose0 = 100;
+          struct pci_controller * hose = (struct pci_controller *) malloc(_len_hose0*sizeof(struct pci_controller));
+          for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
+              hose[_i0].sparse_mem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hose[_i0].sparse_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = has_sparse(hose,mmap_type);
+          printf("%d\n", benchRet); 
+          free(hose);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          enum pci_mmap_state mmap_type = 0;
+        
           int _len_hose0 = 1;
           struct pci_controller * hose = (struct pci_controller *) malloc(_len_hose0*sizeof(struct pci_controller));
           for(int _i0 = 0; _i0 < _len_hose0; _i0++) {
-            hose[_i0].sparse_mem_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        hose[_i0].sparse_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              hose[_i0].sparse_mem_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          hose[_i0].sparse_io_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = has_sparse(hose,mmap_type);
           printf("%d\n", benchRet); 
           free(hose);

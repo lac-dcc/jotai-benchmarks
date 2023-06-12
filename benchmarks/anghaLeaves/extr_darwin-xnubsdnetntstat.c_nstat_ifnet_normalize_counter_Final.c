@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -106,12 +108,6 @@ nstat_ifnet_normalize_counter(struct if_tcp_ecn_stat *if_st)
 	if_st->ecn_total_conn = ecn_off_conn + ecn_on_conn;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,25 +120,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_if_st0 = 65025;
+          struct if_tcp_ecn_stat * if_st = (struct if_tcp_ecn_stat *) malloc(_len_if_st0*sizeof(struct if_tcp_ecn_stat));
+          for(int _i0 = 0; _i0 < _len_if_st0; _i0++) {
+              if_st[_i0].ecn_client_success = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_server_success = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_client_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_server_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_total_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          if_st[_i0].ecn_on.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_on.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_on.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nstat_ifnet_normalize_counter(if_st);
+          free(if_st);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_if_st0 = 100;
+          struct if_tcp_ecn_stat * if_st = (struct if_tcp_ecn_stat *) malloc(_len_if_st0*sizeof(struct if_tcp_ecn_stat));
+          for(int _i0 = 0; _i0 < _len_if_st0; _i0++) {
+              if_st[_i0].ecn_client_success = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_server_success = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_client_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_server_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_total_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          if_st[_i0].ecn_on.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_on.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_on.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nstat_ifnet_normalize_counter(if_st);
+          free(if_st);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_if_st0 = 1;
           struct if_tcp_ecn_stat * if_st = (struct if_tcp_ecn_stat *) malloc(_len_if_st0*sizeof(struct if_tcp_ecn_stat));
           for(int _i0 = 0; _i0 < _len_if_st0; _i0++) {
-            if_st[_i0].ecn_client_success = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_server_success = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_off_conn = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_client_setup = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_server_setup = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_total_conn = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_off.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_off.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_off.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_on.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_on.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        if_st[_i0].ecn_on.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+              if_st[_i0].ecn_client_success = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_server_success = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_client_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_server_setup = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_total_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_off.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          if_st[_i0].ecn_on.sack_episodes = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_on.rst_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          if_st[_i0].ecn_on.rxmit_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nstat_ifnet_normalize_counter(if_st);
           free(if_st);
         

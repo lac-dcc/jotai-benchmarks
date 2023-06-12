@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline void txq_advance(struct sge_txq *tq, unsigne
 		tq->pidx -= tq->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,17 +78,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned int n = 100;
+        
           int _len_tq0 = 1;
           struct sge_txq * tq = (struct sge_txq *) malloc(_len_tq0*sizeof(struct sge_txq));
           for(int _i0 = 0; _i0 < _len_tq0; _i0++) {
-            tq[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
-        tq[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        tq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              tq[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          txq_advance(tq,n);
+          free(tq);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int n = 255;
+        
+          int _len_tq0 = 65025;
+          struct sge_txq * tq = (struct sge_txq *) malloc(_len_tq0*sizeof(struct sge_txq));
+          for(int _i0 = 0; _i0 < _len_tq0; _i0++) {
+              tq[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          txq_advance(tq,n);
+          free(tq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int n = 10;
+        
+          int _len_tq0 = 100;
+          struct sge_txq * tq = (struct sge_txq *) malloc(_len_tq0*sizeof(struct sge_txq));
+          for(int _i0 = 0; _i0 < _len_tq0; _i0++) {
+              tq[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          txq_advance(tq,n);
+          free(tq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tq0 = 1;
+          struct sge_txq * tq = (struct sge_txq *) malloc(_len_tq0*sizeof(struct sge_txq));
+          for(int _i0 = 0; _i0 < _len_tq0; _i0++) {
+              tq[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].pidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          tq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           txq_advance(tq,n);
           free(tq);
         

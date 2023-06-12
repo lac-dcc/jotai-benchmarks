@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int overlap(int min1, int max1, int min2, in
 	return max1 > min2 && min1 < max2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,9 +78,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int min1 = 100;
+        
           int max1 = 100;
+        
           int min2 = 100;
+        
           int max2 = 100;
+        
           int benchRet = overlap(min1,max1,min2,max2);
           printf("%d\n", benchRet); 
         
@@ -95,9 +94,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int min1 = 255;
+        
           int max1 = 255;
+        
           int min2 = 255;
+        
           int max2 = 255;
+        
           int benchRet = overlap(min1,max1,min2,max2);
           printf("%d\n", benchRet); 
         
@@ -107,15 +110,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int min1 = 10;
+        
           int max1 = 10;
+        
           int min2 = 10;
+        
           int max2 = 10;
+        
           int benchRet = overlap(min1,max1,min2,max2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int min1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int min2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = overlap(min1,max1,min2,max2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

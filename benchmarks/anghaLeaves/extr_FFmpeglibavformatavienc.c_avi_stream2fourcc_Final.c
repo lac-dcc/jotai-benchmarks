@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static char *avi_stream2fourcc(char *tag, int index, enum 
     return tag;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +89,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
-          int index = 10;
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int index = 255;
+        
           enum AVMediaType type = 0;
+        
+          int _len_tag0 = 65025;
+          char * tag = (char *) malloc(_len_tag0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = avi_stream2fourcc(tag,index,type);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(tag);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int index = 10;
+        
+          enum AVMediaType type = 0;
+        
           int _len_tag0 = 100;
           char * tag = (char *) malloc(_len_tag0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
             tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = avi_stream2fourcc(tag,index,type);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(tag);

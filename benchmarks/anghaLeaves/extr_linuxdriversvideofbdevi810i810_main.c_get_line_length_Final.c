@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static u32 get_line_length(struct i810fb_par *par, int xre
 	return length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,12 +85,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int xres_virtual = 100;
+        
           int bpp = 100;
+        
           int _len_par0 = 1;
           struct i810fb_par * par = (struct i810fb_par *) malloc(_len_par0*sizeof(struct i810fb_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = get_line_length(par,xres_virtual,bpp);
+          printf("%d\n", benchRet); 
+          free(par);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int xres_virtual = 255;
+        
+          int bpp = 255;
+        
+          int _len_par0 = 65025;
+          struct i810fb_par * par = (struct i810fb_par *) malloc(_len_par0*sizeof(struct i810fb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = get_line_length(par,xres_virtual,bpp);
           printf("%d\n", benchRet); 
           free(par);
@@ -102,22 +122,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int xres_virtual = 10;
+        
           int bpp = 10;
+        
           int _len_par0 = 100;
           struct i810fb_par * par = (struct i810fb_par *) malloc(_len_par0*sizeof(struct i810fb_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_line_length(par,xres_virtual,bpp);
           printf("%d\n", benchRet); 
           free(par);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_par0 = 1;
+          struct i810fb_par * par = (struct i810fb_par *) malloc(_len_par0*sizeof(struct i810fb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_line_length(par,xres_virtual,bpp);
+          printf("%d\n", benchRet); 
+          free(par);
+        
+        break;
+    }
     default:
         usage();
         break;

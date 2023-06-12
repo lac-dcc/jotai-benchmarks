@@ -62,12 +62,6 @@ __attribute__((used)) static inline int desc_mem_sz(int nr_entry)
 	return nr_entry << L2_QENTRY_SZ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nr_entry = 100;
+        
           int benchRet = desc_mem_sz(nr_entry);
           printf("%d\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int nr_entry = 255;
+        
           int benchRet = desc_mem_sz(nr_entry);
           printf("%d\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int nr_entry = 10;
+        
           int benchRet = desc_mem_sz(nr_entry);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

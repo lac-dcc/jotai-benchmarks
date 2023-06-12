@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned int pvr2_channel_get_limited_inputs(struct pvr2_channel *cp)
 	return cp->input_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cp0 = 1;
+          int _len_cp0 = 65025;
           struct pvr2_channel * cp = (struct pvr2_channel *) malloc(_len_cp0*sizeof(struct pvr2_channel));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
-            cp[_i0].input_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              cp[_i0].input_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = pvr2_channel_get_limited_inputs(cp);
           printf("%u\n", benchRet); 
           free(cp);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_cp0 = 100;
           struct pvr2_channel * cp = (struct pvr2_channel *) malloc(_len_cp0*sizeof(struct pvr2_channel));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
-            cp[_i0].input_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              cp[_i0].input_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = pvr2_channel_get_limited_inputs(cp);
           printf("%u\n", benchRet); 
           free(cp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cp0 = 1;
+          struct pvr2_channel * cp = (struct pvr2_channel *) malloc(_len_cp0*sizeof(struct pvr2_channel));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              cp[_i0].input_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = pvr2_channel_get_limited_inputs(cp);
+          printf("%u\n", benchRet); 
+          free(cp);
+        
+        break;
+    }
     default:
         usage();
         break;

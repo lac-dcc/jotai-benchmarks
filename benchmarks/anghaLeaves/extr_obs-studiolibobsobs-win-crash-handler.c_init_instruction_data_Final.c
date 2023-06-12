@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static inline void init_instruction_data(struct stack_trac
 	trace->frame.AddrStack.Mode = AddrModeFlat;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,27 +102,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_trace0 = 1;
+          int _len_trace0 = 65025;
           struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
           for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
-            trace[_i0].frame.AddrStack.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].frame.AddrPC.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].frame.AddrFrame.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].image_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].context.Esp = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].context.Ebp = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].context.Eip = ((-2 * (next_i()%2)) + 1) * next_i();
-        trace[_i0].instruction_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              trace[_i0].frame.AddrStack.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].frame.AddrPC.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].frame.AddrFrame.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          trace[_i0].image_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Ebp = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Eip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].instruction_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_instruction_data(trace);
           free(trace);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_trace0 = 100;
+          struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
+          for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
+              trace[_i0].frame.AddrStack.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].frame.AddrPC.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].frame.AddrFrame.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          trace[_i0].image_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Ebp = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Eip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].instruction_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_instruction_data(trace);
+          free(trace);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_trace0 = 1;
+          struct stack_trace * trace = (struct stack_trace *) malloc(_len_trace0*sizeof(struct stack_trace));
+          for(int _i0 = 0; _i0 < _len_trace0; _i0++) {
+              trace[_i0].frame.AddrStack.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].frame.AddrPC.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].frame.AddrFrame.Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          trace[_i0].image_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Esp = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Ebp = ((-2 * (next_i()%2)) + 1) * next_i();
+          trace[_i0].context.Eip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          trace[_i0].instruction_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_instruction_data(trace);
+          free(trace);
+        
+        break;
+    }
     default:
         usage();
         break;

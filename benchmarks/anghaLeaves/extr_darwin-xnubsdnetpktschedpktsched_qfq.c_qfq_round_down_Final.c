@@ -62,12 +62,6 @@ qfq_round_down(u_int64_t ts, u_int32_t shift)
 	return (ts & ~((1ULL << shift) - 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,13 +78,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long ts = 10;
+        
           unsigned long long shift = 10;
+        
           unsigned long long benchRet = qfq_round_down(ts,shift);
           printf("%llu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

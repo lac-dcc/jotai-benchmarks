@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void BrotliEncoderInitParams(BrotliEncoderParams* p
   params->disable_literal_context_modeling = BROTLI_FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_params0 = 65025;
+          struct TYPE_3__ * params = (struct TYPE_3__ *) malloc(_len_params0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].disable_literal_context_modeling = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].size_hint = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lgblock = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lgwin = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].quality = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BrotliEncoderInitParams(params);
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_params0 = 100;
+          struct TYPE_3__ * params = (struct TYPE_3__ *) malloc(_len_params0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].disable_literal_context_modeling = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].size_hint = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lgblock = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lgwin = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].quality = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          BrotliEncoderInitParams(params);
+          free(params);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_params0 = 1;
           struct TYPE_3__ * params = (struct TYPE_3__ *) malloc(_len_params0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].disable_literal_context_modeling = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].size_hint = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].lgblock = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].lgwin = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].quality = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].disable_literal_context_modeling = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].size_hint = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lgblock = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lgwin = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].quality = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           BrotliEncoderInitParams(params);
           free(params);
         

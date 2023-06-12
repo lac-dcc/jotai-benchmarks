@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -107,12 +110,6 @@ __attribute__((used)) static int perf_event_set_clock(struct perf_event *event, 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -125,24 +122,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int clk_id = 100;
+        
           int _len_event0 = 1;
           struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
               int _len_event__i0__pmu0 = 1;
           event[_i0].pmu = (struct TYPE_2__ *) malloc(_len_event__i0__pmu0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_event__i0__pmu0; _j0++) {
-            event[_i0].pmu->capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].pmu->capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_event__i0__clock0 = 1;
           event[_i0].clock = (int *) malloc(_len_event__i0__clock0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_event__i0__clock0; _j0++) {
             event[_i0].clock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = perf_event_set_clock(event,clk_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].pmu);
+          }
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].clock);
+          }
+          free(event);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int clk_id = 255;
+        
+          int _len_event0 = 65025;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              int _len_event__i0__pmu0 = 1;
+          event[_i0].pmu = (struct TYPE_2__ *) malloc(_len_event__i0__pmu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_event__i0__pmu0; _j0++) {
+              event[_i0].pmu->capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_event__i0__clock0 = 1;
+          event[_i0].clock = (int *) malloc(_len_event__i0__clock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_event__i0__clock0; _j0++) {
+            event[_i0].clock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = perf_event_set_clock(event,clk_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].pmu);
+          }
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].clock);
+          }
+          free(event);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int clk_id = 10;
+        
+          int _len_event0 = 100;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              int _len_event__i0__pmu0 = 1;
+          event[_i0].pmu = (struct TYPE_2__ *) malloc(_len_event__i0__pmu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_event__i0__pmu0; _j0++) {
+              event[_i0].pmu->capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_event__i0__clock0 = 1;
+          event[_i0].clock = (int *) malloc(_len_event__i0__clock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_event__i0__clock0; _j0++) {
+            event[_i0].clock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = perf_event_set_clock(event,clk_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].pmu);
+          }
+          for(int _aux = 0; _aux < _len_event0; _aux++) {
+          free(event[_aux].clock);
+          }
+          free(event);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int clk_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_event0 = 1;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              int _len_event__i0__pmu0 = 1;
+          event[_i0].pmu = (struct TYPE_2__ *) malloc(_len_event__i0__pmu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_event__i0__pmu0; _j0++) {
+              event[_i0].pmu->capabilities = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_event__i0__clock0 = 1;
+          event[_i0].clock = (int *) malloc(_len_event__i0__clock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_event__i0__clock0; _j0++) {
+            event[_i0].clock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = perf_event_set_clock(event,clk_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_event0; _aux++) {

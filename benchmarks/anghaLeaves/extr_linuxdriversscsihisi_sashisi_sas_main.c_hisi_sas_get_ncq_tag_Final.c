@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ int hisi_sas_get_ncq_tag(struct sas_task *task, u32 *tag)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,24 +89,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_task0 = 65025;
+          struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__uldd_task0 = 1;
+          task[_i0].uldd_task = (struct ata_queued_cmd *) malloc(_len_task__i0__uldd_task0*sizeof(struct ata_queued_cmd));
+          for(int _j0 = 0; _j0 < _len_task__i0__uldd_task0; _j0++) {
+              task[_i0].uldd_task->tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].uldd_task->tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_tag0 = 65025;
+          int * tag = (int *) malloc(_len_tag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hisi_sas_get_ncq_tag(task,tag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].uldd_task);
+          }
+          free(task);
+          free(tag);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_task0 = 100;
+          struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__uldd_task0 = 1;
+          task[_i0].uldd_task = (struct ata_queued_cmd *) malloc(_len_task__i0__uldd_task0*sizeof(struct ata_queued_cmd));
+          for(int _j0 = 0; _j0 < _len_task__i0__uldd_task0; _j0++) {
+              task[_i0].uldd_task->tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].uldd_task->tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_tag0 = 100;
+          int * tag = (int *) malloc(_len_tag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hisi_sas_get_ncq_tag(task,tag);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].uldd_task);
+          }
+          free(task);
+          free(tag);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_task0 = 1;
           struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
               int _len_task__i0__uldd_task0 = 1;
           task[_i0].uldd_task = (struct ata_queued_cmd *) malloc(_len_task__i0__uldd_task0*sizeof(struct ata_queued_cmd));
           for(int _j0 = 0; _j0 < _len_task__i0__uldd_task0; _j0++) {
-            task[_i0].uldd_task->tag = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].uldd_task->tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].uldd_task->tag = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].uldd_task->tf.command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_tag0 = 1;
           int * tag = (int *) malloc(_len_tag0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
             tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hisi_sas_get_ncq_tag(task,tag);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_task0; _aux++) {

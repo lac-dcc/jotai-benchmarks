@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int chp_test_bit(u8 *bitmap, int num)
 	return (bitmap[byte] & mask) ? 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +76,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int num = 10;
-          int _len_bitmap0 = 100;
+          int num = 255;
+        
+          int _len_bitmap0 = 65025;
           int * bitmap = (int *) malloc(_len_bitmap0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
             bitmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = chp_test_bit(bitmap,num);
           printf("%d\n", benchRet); 
           free(bitmap);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int num = 10;
+        
+          int _len_bitmap0 = 100;
+          int * bitmap = (int *) malloc(_len_bitmap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+            bitmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = chp_test_bit(bitmap,num);
+          printf("%d\n", benchRet); 
+          free(bitmap);
+        
+        break;
+    }
     default:
         usage();
         break;

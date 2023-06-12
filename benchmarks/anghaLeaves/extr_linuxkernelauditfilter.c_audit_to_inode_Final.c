@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static inline int audit_to_inode(struct audit_krule *krule
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,26 +86,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_krule0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_krule0 = 65025;
           struct audit_krule * krule = (struct audit_krule *) malloc(_len_krule0*sizeof(struct audit_krule));
           for(int _i0 = 0; _i0 < _len_krule0; _i0++) {
-            krule[_i0].listnr = ((-2 * (next_i()%2)) + 1) * next_i();
+              krule[_i0].listnr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_krule__i0__inode_f0 = 1;
           krule[_i0].inode_f = (struct audit_field *) malloc(_len_krule__i0__inode_f0*sizeof(struct audit_field));
           for(int _j0 = 0; _j0 < _len_krule__i0__inode_f0; _j0++) {
-            krule[_i0].inode_f->op = ((-2 * (next_i()%2)) + 1) * next_i();
+              krule[_i0].inode_f->op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        krule[_i0].tree = ((-2 * (next_i()%2)) + 1) * next_i();
-        krule[_i0].watch = ((-2 * (next_i()%2)) + 1) * next_i();
+          krule[_i0].tree = ((-2 * (next_i()%2)) + 1) * next_i();
+          krule[_i0].watch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int _len_f0 = 65025;
+          struct audit_field * f = (struct audit_field *) malloc(_len_f0*sizeof(struct audit_field));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = audit_to_inode(krule,f);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_krule0; _aux++) {
+          free(krule[_aux].inode_f);
+          }
+          free(krule);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_krule0 = 100;
+          struct audit_krule * krule = (struct audit_krule *) malloc(_len_krule0*sizeof(struct audit_krule));
+          for(int _i0 = 0; _i0 < _len_krule0; _i0++) {
+              krule[_i0].listnr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_krule__i0__inode_f0 = 1;
+          krule[_i0].inode_f = (struct audit_field *) malloc(_len_krule__i0__inode_f0*sizeof(struct audit_field));
+          for(int _j0 = 0; _j0 < _len_krule__i0__inode_f0; _j0++) {
+              krule[_i0].inode_f->op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          krule[_i0].tree = ((-2 * (next_i()%2)) + 1) * next_i();
+          krule[_i0].watch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_f0 = 100;
+          struct audit_field * f = (struct audit_field *) malloc(_len_f0*sizeof(struct audit_field));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = audit_to_inode(krule,f);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_krule0; _aux++) {
+          free(krule[_aux].inode_f);
+          }
+          free(krule);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_krule0 = 1;
+          struct audit_krule * krule = (struct audit_krule *) malloc(_len_krule0*sizeof(struct audit_krule));
+          for(int _i0 = 0; _i0 < _len_krule0; _i0++) {
+              krule[_i0].listnr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_krule__i0__inode_f0 = 1;
+          krule[_i0].inode_f = (struct audit_field *) malloc(_len_krule__i0__inode_f0*sizeof(struct audit_field));
+          for(int _j0 = 0; _j0 < _len_krule__i0__inode_f0; _j0++) {
+              krule[_i0].inode_f->op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          krule[_i0].tree = ((-2 * (next_i()%2)) + 1) * next_i();
+          krule[_i0].watch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int _len_f0 = 1;
           struct audit_field * f = (struct audit_field *) malloc(_len_f0*sizeof(struct audit_field));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = audit_to_inode(krule,f);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_krule0; _aux++) {

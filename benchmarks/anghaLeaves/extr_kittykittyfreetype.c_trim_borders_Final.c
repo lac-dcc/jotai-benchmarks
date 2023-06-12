@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ trim_borders(ProcessedBitmap *ans, size_t extra) {
     ans->width -= extra;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +90,205 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned long extra = 100;
+        
           int _len_ans0 = 1;
           struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
-            ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+              ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ans__i0__buf0 = 1;
           ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
             ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
-        ans[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          trim_borders(ans,extra);
+          for(int _aux = 0; _aux < _len_ans0; _aux++) {
+          free(ans[_aux].buf);
+          }
+          free(ans);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long extra = 255;
+        
+          int _len_ans0 = 65025;
+          struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ans__i0__buf0 = 1;
+          ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
+            ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          trim_borders(ans,extra);
+          for(int _aux = 0; _aux < _len_ans0; _aux++) {
+          free(ans[_aux].buf);
+          }
+          free(ans);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long extra = 10;
+        
+          int _len_ans0 = 100;
+          struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ans__i0__buf0 = 1;
+          ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
+            ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          trim_borders(ans,extra);
+          for(int _aux = 0; _aux < _len_ans0; _aux++) {
+          free(ans[_aux].buf);
+          }
+          free(ans);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ans0 = 1;
+          struct TYPE_3__ * ans = (struct TYPE_3__ *) malloc(_len_ans0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ans0; _i0++) {
+              ans[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ans__i0__buf0 = 1;
+          ans[_i0].buf = (int *) malloc(_len_ans__i0__buf0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ans__i0__buf0; _j0++) {
+            ans[_i0].buf[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          ans[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          ans[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           trim_borders(ans,extra);
           for(int _aux = 0; _aux < _len_ans0; _aux++) {
           free(ans[_aux].buf);

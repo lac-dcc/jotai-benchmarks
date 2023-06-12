@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static inline void endpoint_update(int edi,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,41 +84,282 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int edi = 100;
+        
           int _len_in0 = 1;
           struct usb_host_endpoint ** in = (struct usb_host_endpoint **) malloc(_len_in0*sizeof(struct usb_host_endpoint *));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
             int _len_in1 = 1;
             in[_i0] = (struct usb_host_endpoint *) malloc(_len_in1*sizeof(struct usb_host_endpoint));
             for(int _i1 = 0; _i1 < _len_in1; _i1++) {
-              in[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                in[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_out0 = 1;
           struct usb_host_endpoint ** out = (struct usb_host_endpoint **) malloc(_len_out0*sizeof(struct usb_host_endpoint *));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
             int _len_out1 = 1;
             out[_i0] = (struct usb_host_endpoint *) malloc(_len_out1*sizeof(struct usb_host_endpoint));
             for(int _i1 = 0; _i1 < _len_out1; _i1++) {
-              out[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                out[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_e0 = 1;
           struct usb_host_endpoint * e = (struct usb_host_endpoint *) malloc(_len_e0*sizeof(struct usb_host_endpoint));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           endpoint_update(edi,in,out,e);
           for(int i1 = 0; i1 < _len_in0; i1++) {
-            int _len_in1 = 1;
               free(in[i1]);
           }
           free(in);
           for(int i1 = 0; i1 < _len_out0; i1++) {
+              free(out[i1]);
+          }
+          free(out);
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int edi = 255;
+        
+          int _len_in0 = 65025;
+          struct usb_host_endpoint ** in = (struct usb_host_endpoint **) malloc(_len_in0*sizeof(struct usb_host_endpoint *));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+            int _len_in1 = 1;
+            in[_i0] = (struct usb_host_endpoint *) malloc(_len_in1*sizeof(struct usb_host_endpoint));
+            for(int _i1 = 0; _i1 < _len_in1; _i1++) {
+                in[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_out0 = 65025;
+          struct usb_host_endpoint ** out = (struct usb_host_endpoint **) malloc(_len_out0*sizeof(struct usb_host_endpoint *));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
             int _len_out1 = 1;
+            out[_i0] = (struct usb_host_endpoint *) malloc(_len_out1*sizeof(struct usb_host_endpoint));
+            for(int _i1 = 0; _i1 < _len_out1; _i1++) {
+                out[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_e0 = 65025;
+          struct usb_host_endpoint * e = (struct usb_host_endpoint *) malloc(_len_e0*sizeof(struct usb_host_endpoint));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          endpoint_update(edi,in,out,e);
+          for(int i1 = 0; i1 < _len_in0; i1++) {
+              free(in[i1]);
+          }
+          free(in);
+          for(int i1 = 0; i1 < _len_out0; i1++) {
+              free(out[i1]);
+          }
+          free(out);
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int edi = 10;
+        
+          int _len_in0 = 100;
+          struct usb_host_endpoint ** in = (struct usb_host_endpoint **) malloc(_len_in0*sizeof(struct usb_host_endpoint *));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+            int _len_in1 = 1;
+            in[_i0] = (struct usb_host_endpoint *) malloc(_len_in1*sizeof(struct usb_host_endpoint));
+            for(int _i1 = 0; _i1 < _len_in1; _i1++) {
+                in[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_out0 = 100;
+          struct usb_host_endpoint ** out = (struct usb_host_endpoint **) malloc(_len_out0*sizeof(struct usb_host_endpoint *));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+            int _len_out1 = 1;
+            out[_i0] = (struct usb_host_endpoint *) malloc(_len_out1*sizeof(struct usb_host_endpoint));
+            for(int _i1 = 0; _i1 < _len_out1; _i1++) {
+                out[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_e0 = 100;
+          struct usb_host_endpoint * e = (struct usb_host_endpoint *) malloc(_len_e0*sizeof(struct usb_host_endpoint));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          endpoint_update(edi,in,out,e);
+          for(int i1 = 0; i1 < _len_in0; i1++) {
+              free(in[i1]);
+          }
+          free(in);
+          for(int i1 = 0; i1 < _len_out0; i1++) {
+              free(out[i1]);
+          }
+          free(out);
+          free(e);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int edi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_in0 = 1;
+          struct usb_host_endpoint ** in = (struct usb_host_endpoint **) malloc(_len_in0*sizeof(struct usb_host_endpoint *));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+            int _len_in1 = 1;
+            in[_i0] = (struct usb_host_endpoint *) malloc(_len_in1*sizeof(struct usb_host_endpoint));
+            for(int _i1 = 0; _i1 < _len_in1; _i1++) {
+                in[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_out0 = 1;
+          struct usb_host_endpoint ** out = (struct usb_host_endpoint **) malloc(_len_out0*sizeof(struct usb_host_endpoint *));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+            int _len_out1 = 1;
+            out[_i0] = (struct usb_host_endpoint *) malloc(_len_out1*sizeof(struct usb_host_endpoint));
+            for(int _i1 = 0; _i1 < _len_out1; _i1++) {
+                out[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_e0 = 1;
+          struct usb_host_endpoint * e = (struct usb_host_endpoint *) malloc(_len_e0*sizeof(struct usb_host_endpoint));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          endpoint_update(edi,in,out,e);
+          for(int i1 = 0; i1 < _len_in0; i1++) {
+              free(in[i1]);
+          }
+          free(in);
+          for(int i1 = 0; i1 < _len_out0; i1++) {
               free(out[i1]);
           }
           free(out);

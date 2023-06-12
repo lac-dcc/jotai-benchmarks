@@ -60,12 +60,6 @@ __attribute__((used)) static u32 phy_encode(u32 type, int port)
 	return type << (port * 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 10;
+        
           int port = 10;
+        
           int benchRet = phy_encode(type,port);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

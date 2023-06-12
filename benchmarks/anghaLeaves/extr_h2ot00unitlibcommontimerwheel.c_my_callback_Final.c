@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void my_callback(h2o_timerwheel_entry_t *timer)
     invokes++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_timer0 = 1;
+          int _len_timer0 = 65025;
           int * timer = (int *) malloc(_len_timer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
             timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           my_callback(timer);
           free(timer);
         
@@ -101,12 +97,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
             timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           my_callback(timer);
           free(timer);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_timer0 = 1;
+          int * timer = (int *) malloc(_len_timer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
+            timer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          my_callback(timer);
+          free(timer);
+        
+        break;
+    }
     default:
         usage();
         break;

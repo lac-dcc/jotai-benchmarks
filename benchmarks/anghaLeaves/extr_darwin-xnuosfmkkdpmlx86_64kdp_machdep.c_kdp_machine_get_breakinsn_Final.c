@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ kdp_machine_get_breakinsn(
 	*size = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bytes0 = 65025;
+          int * bytes = (int *) malloc(_len_bytes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytes0; _i0++) {
+            bytes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 65025;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          kdp_machine_get_breakinsn(bytes,size);
+          free(bytes);
+          free(size);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_bytes0 = 100;
+          int * bytes = (int *) malloc(_len_bytes0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytes0; _i0++) {
+            bytes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_size0 = 100;
+          int * size = (int *) malloc(_len_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_size0; _i0++) {
+            size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          kdp_machine_get_breakinsn(bytes,size);
+          free(bytes);
+          free(size);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_bytes0 = 1;
           int * bytes = (int *) malloc(_len_bytes0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bytes0; _i0++) {
             bytes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_size0 = 1;
           int * size = (int *) malloc(_len_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_size0; _i0++) {
             size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           kdp_machine_get_breakinsn(bytes,size);
           free(bytes);
           free(size);

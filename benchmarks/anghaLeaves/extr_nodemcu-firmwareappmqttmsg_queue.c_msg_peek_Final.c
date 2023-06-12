@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ msg_queue_t * msg_peek(msg_queue_t **head){
   return *head;  // fetch head.
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,9 +76,124 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_head0 = 65025;
+          int ** head = (int **) malloc(_len_head0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+            int _len_head1 = 1;
+            head[_i0] = (int *) malloc(_len_head1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_head1; _i1++) {
+              head[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int * benchRet = msg_peek(head);
+          printf("%d\n", (*benchRet)); 
+          for(int i1 = 0; i1 < _len_head0; i1++) {
+              free(head[i1]);
+          }
+          free(head);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_head0 = 100;
+          int ** head = (int **) malloc(_len_head0*sizeof(int *));
+          for(int _i0 = 0; _i0 < _len_head0; _i0++) {
+            int _len_head1 = 1;
+            head[_i0] = (int *) malloc(_len_head1*sizeof(int));
+            for(int _i1 = 0; _i1 < _len_head1; _i1++) {
+              head[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int * benchRet = msg_peek(head);
+          printf("%d\n", (*benchRet)); 
+          for(int i1 = 0; i1 < _len_head0; i1++) {
+              free(head[i1]);
+          }
+          free(head);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_head0 = 1;
           int ** head = (int **) malloc(_len_head0*sizeof(int *));
           for(int _i0 = 0; _i0 < _len_head0; _i0++) {
@@ -92,10 +203,10 @@ int main(int argc, char *argv[]) {
               head[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int * benchRet = msg_peek(head);
           printf("%d\n", (*benchRet)); 
           for(int i1 = 0; i1 < _len_head0; i1++) {
-            int _len_head1 = 1;
               free(head[i1]);
           }
           free(head);

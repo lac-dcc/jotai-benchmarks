@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ bool rtl92ee_gpio_radio_on_off_checking(struct ieee80211_hw *hw, u8 *valid)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_valid0 = 1;
+        
+          int _len_valid0 = 65025;
           int * valid = (int *) malloc(_len_valid0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_valid0; _i0++) {
             valid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = rtl92ee_gpio_radio_on_off_checking(hw,valid);
           printf("%d\n", benchRet); 
           free(hw);
@@ -100,7 +99,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_valid0 = 100;
+          int * valid = (int *) malloc(_len_valid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_valid0; _i0++) {
+            valid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtl92ee_gpio_radio_on_off_checking(hw,valid);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(valid);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_valid0 = 1;
+          int * valid = (int *) malloc(_len_valid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_valid0; _i0++) {
+            valid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtl92ee_gpio_radio_on_off_checking(hw,valid);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(valid);
+        
+        break;
+    }
     default:
         usage();
         break;

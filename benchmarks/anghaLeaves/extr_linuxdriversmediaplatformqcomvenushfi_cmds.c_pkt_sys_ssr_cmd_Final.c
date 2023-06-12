@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ int pkt_sys_ssr_cmd(struct hfi_sys_test_ssr_pkt *pkt, u32 trigger_type)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,20 +100,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int trigger_type = 100;
+        
           int _len_pkt0 = 1;
           struct hfi_sys_test_ssr_pkt * pkt = (struct hfi_sys_test_ssr_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_test_ssr_pkt));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0].trigger_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt[_i0].trigger_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = pkt_sys_ssr_cmd(pkt,trigger_type);
           printf("%d\n", benchRet); 
           free(pkt);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int trigger_type = 255;
+        
+          int _len_pkt0 = 65025;
+          struct hfi_sys_test_ssr_pkt * pkt = (struct hfi_sys_test_ssr_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_test_ssr_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].trigger_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pkt_sys_ssr_cmd(pkt,trigger_type);
+          printf("%d\n", benchRet); 
+          free(pkt);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int trigger_type = 10;
+        
+          int _len_pkt0 = 100;
+          struct hfi_sys_test_ssr_pkt * pkt = (struct hfi_sys_test_ssr_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_test_ssr_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].trigger_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pkt_sys_ssr_cmd(pkt,trigger_type);
+          printf("%d\n", benchRet); 
+          free(pkt);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int trigger_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pkt0 = 1;
+          struct hfi_sys_test_ssr_pkt * pkt = (struct hfi_sys_test_ssr_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_test_ssr_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].trigger_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pkt_sys_ssr_cmd(pkt,trigger_type);
+          printf("%d\n", benchRet); 
+          free(pkt);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void req_ctx_init(struct mcryptd_hash_request_ctx *
 	rctx->flag = HASH_UPDATE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_rctx0 = 65025;
+          struct mcryptd_hash_request_ctx * rctx = (struct mcryptd_hash_request_ctx *) malloc(_len_rctx0*sizeof(struct mcryptd_hash_request_ctx));
+          for(int _i0 = 0; _i0 < _len_rctx0; _i0++) {
+              rctx[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_areq0 = 65025;
+          struct ahash_request * areq = (struct ahash_request *) malloc(_len_areq0*sizeof(struct ahash_request));
+          for(int _i0 = 0; _i0 < _len_areq0; _i0++) {
+              areq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          req_ctx_init(rctx,areq);
+          free(rctx);
+          free(areq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_rctx0 = 100;
+          struct mcryptd_hash_request_ctx * rctx = (struct mcryptd_hash_request_ctx *) malloc(_len_rctx0*sizeof(struct mcryptd_hash_request_ctx));
+          for(int _i0 = 0; _i0 < _len_rctx0; _i0++) {
+              rctx[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_areq0 = 100;
+          struct ahash_request * areq = (struct ahash_request *) malloc(_len_areq0*sizeof(struct ahash_request));
+          for(int _i0 = 0; _i0 < _len_areq0; _i0++) {
+              areq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          req_ctx_init(rctx,areq);
+          free(rctx);
+          free(areq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_rctx0 = 1;
           struct mcryptd_hash_request_ctx * rctx = (struct mcryptd_hash_request_ctx *) malloc(_len_rctx0*sizeof(struct mcryptd_hash_request_ctx));
           for(int _i0 = 0; _i0 < _len_rctx0; _i0++) {
-            rctx[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              rctx[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_areq0 = 1;
           struct ahash_request * areq = (struct ahash_request *) malloc(_len_areq0*sizeof(struct ahash_request));
           for(int _i0 = 0; _i0 < _len_areq0; _i0++) {
-            areq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              areq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           req_ctx_init(rctx,areq);
           free(rctx);
           free(areq);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void clp_store_query_pci_fngrp(struct zpci_dev *zde
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,36 +91,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zdev0 = 1;
+          int _len_zdev0 = 65025;
           struct zpci_dev * zdev = (struct zpci_dev *) malloc(_len_zdev0*sizeof(struct zpci_dev));
           for(int _i0 = 0; _i0 < _len_zdev0; _i0++) {
-            zdev[_i0].max_bus_speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].fmb_update = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].max_msi = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].msi_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].dma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+              zdev[_i0].max_bus_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].fmb_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].max_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].msi_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].dma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_response0 = 1;
+        
+          int _len_response0 = 65025;
           struct clp_rsp_query_pci_grp * response = (struct clp_rsp_query_pci_grp *) malloc(_len_response0*sizeof(struct clp_rsp_query_pci_grp));
           for(int _i0 = 0; _i0 < _len_response0; _i0++) {
-            response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].mui = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].noi = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].msia = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].dasm = ((-2 * (next_i()%2)) + 1) * next_i();
-        response[_i0].refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+              response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].mui = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].noi = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].msia = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].dasm = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           clp_store_query_pci_fngrp(zdev,response);
           free(zdev);
           free(response);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_zdev0 = 100;
+          struct zpci_dev * zdev = (struct zpci_dev *) malloc(_len_zdev0*sizeof(struct zpci_dev));
+          for(int _i0 = 0; _i0 < _len_zdev0; _i0++) {
+              zdev[_i0].max_bus_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].fmb_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].max_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].msi_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].dma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_response0 = 100;
+          struct clp_rsp_query_pci_grp * response = (struct clp_rsp_query_pci_grp *) malloc(_len_response0*sizeof(struct clp_rsp_query_pci_grp));
+          for(int _i0 = 0; _i0 < _len_response0; _i0++) {
+              response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].mui = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].noi = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].msia = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].dasm = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clp_store_query_pci_fngrp(zdev,response);
+          free(zdev);
+          free(response);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_zdev0 = 1;
+          struct zpci_dev * zdev = (struct zpci_dev *) malloc(_len_zdev0*sizeof(struct zpci_dev));
+          for(int _i0 = 0; _i0 < _len_zdev0; _i0++) {
+              zdev[_i0].max_bus_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].fmb_update = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].max_msi = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].msi_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].dma_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          zdev[_i0].tlb_refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_response0 = 1;
+          struct clp_rsp_query_pci_grp * response = (struct clp_rsp_query_pci_grp *) malloc(_len_response0*sizeof(struct clp_rsp_query_pci_grp));
+          for(int _i0 = 0; _i0 < _len_response0; _i0++) {
+              response[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].mui = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].noi = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].msia = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].dasm = ((-2 * (next_i()%2)) + 1) * next_i();
+          response[_i0].refresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clp_store_query_pci_fngrp(zdev,response);
+          free(zdev);
+          free(response);
+        
+        break;
+    }
     default:
         usage();
         break;

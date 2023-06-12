@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static bool perf_sched_next_event(struct perf_sched *sched
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,28 +97,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_sched0 = 1;
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_sched0 = 65025;
           struct perf_sched * sched = (struct perf_sched *) malloc(_len_sched0*sizeof(struct perf_sched));
           for(int _i0 = 0; _i0 < _len_sched0; _i0++) {
-            sched[_i0].max_events = ((-2 * (next_i()%2)) + 1) * next_i();
-        sched[_i0].max_weight = ((-2 * (next_i()%2)) + 1) * next_i();
-        sched[_i0].state.weight = ((-2 * (next_i()%2)) + 1) * next_i();
-        sched[_i0].state.event = ((-2 * (next_i()%2)) + 1) * next_i();
-        sched[_i0].state.counter = ((-2 * (next_i()%2)) + 1) * next_i();
-        sched[_i0].state.unassigned = ((-2 * (next_i()%2)) + 1) * next_i();
+              sched[_i0].max_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].max_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.unassigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_sched__i0__constraints0 = 1;
           sched[_i0].constraints = (struct event_constraint **) malloc(_len_sched__i0__constraints0*sizeof(struct event_constraint *));
           for(int _j0 = 0; _j0 < _len_sched__i0__constraints0; _j0++) {
             int _len_sched__i0__constraints1 = 1;
             sched[_i0].constraints[_j0] = (struct event_constraint *) malloc(_len_sched__i0__constraints1*sizeof(struct event_constraint));
             for(int _j1 = 0; _j1 < _len_sched__i0__constraints1; _j1++) {
-              sched[_i0].constraints[_j0]->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+                sched[_i0].constraints[_j0]->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = perf_sched_next_event(sched);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sched0; _aux++) {
+          free(*(sched[_aux].constraints));
+        free(sched[_aux].constraints);
+          }
+          free(sched);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_sched0 = 100;
+          struct perf_sched * sched = (struct perf_sched *) malloc(_len_sched0*sizeof(struct perf_sched));
+          for(int _i0 = 0; _i0 < _len_sched0; _i0++) {
+              sched[_i0].max_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].max_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.unassigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sched__i0__constraints0 = 1;
+          sched[_i0].constraints = (struct event_constraint **) malloc(_len_sched__i0__constraints0*sizeof(struct event_constraint *));
+          for(int _j0 = 0; _j0 < _len_sched__i0__constraints0; _j0++) {
+            int _len_sched__i0__constraints1 = 1;
+            sched[_i0].constraints[_j0] = (struct event_constraint *) malloc(_len_sched__i0__constraints1*sizeof(struct event_constraint));
+            for(int _j1 = 0; _j1 < _len_sched__i0__constraints1; _j1++) {
+                sched[_i0].constraints[_j0]->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = perf_sched_next_event(sched);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sched0; _aux++) {
+          free(*(sched[_aux].constraints));
+        free(sched[_aux].constraints);
+          }
+          free(sched);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_sched0 = 1;
+          struct perf_sched * sched = (struct perf_sched *) malloc(_len_sched0*sizeof(struct perf_sched));
+          for(int _i0 = 0; _i0 < _len_sched0; _i0++) {
+              sched[_i0].max_events = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].max_weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.weight = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.counter = ((-2 * (next_i()%2)) + 1) * next_i();
+          sched[_i0].state.unassigned = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sched__i0__constraints0 = 1;
+          sched[_i0].constraints = (struct event_constraint **) malloc(_len_sched__i0__constraints0*sizeof(struct event_constraint *));
+          for(int _j0 = 0; _j0 < _len_sched__i0__constraints0; _j0++) {
+            int _len_sched__i0__constraints1 = 1;
+            sched[_i0].constraints[_j0] = (struct event_constraint *) malloc(_len_sched__i0__constraints1*sizeof(struct event_constraint));
+            for(int _j1 = 0; _j1 < _len_sched__i0__constraints1; _j1++) {
+                sched[_i0].constraints[_j0]->weight = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = perf_sched_next_event(sched);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sched0; _aux++) {

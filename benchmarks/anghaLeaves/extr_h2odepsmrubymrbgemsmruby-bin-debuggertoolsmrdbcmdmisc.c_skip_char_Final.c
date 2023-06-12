@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ skip_char(char **sp, char c)
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,10 +81,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           char c = 100;
+        
           int _len_sp0 = 1;
           char ** sp = (char **) malloc(_len_sp0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
@@ -98,10 +118,106 @@ int main(int argc, char *argv[]) {
               sp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = skip_char(sp,c);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_sp0; i1++) {
+              free(sp[i1]);
+          }
+          free(sp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          char c = 255;
+        
+          int _len_sp0 = 65025;
+          char ** sp = (char **) malloc(_len_sp0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
             int _len_sp1 = 1;
+            sp[_i0] = (char *) malloc(_len_sp1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_sp1; _i1++) {
+              sp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = skip_char(sp,c);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sp0; i1++) {
+              free(sp[i1]);
+          }
+          free(sp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          char c = 10;
+        
+          int _len_sp0 = 100;
+          char ** sp = (char **) malloc(_len_sp0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+            int _len_sp1 = 1;
+            sp[_i0] = (char *) malloc(_len_sp1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_sp1; _i1++) {
+              sp[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = skip_char(sp,c);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_sp0; i1++) {
               free(sp[i1]);
           }
           free(sp);

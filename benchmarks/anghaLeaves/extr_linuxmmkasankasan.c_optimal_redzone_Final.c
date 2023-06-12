@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static unsigned int optimal_redzone(unsigned int object_si
 		object_size <= (1 << 16) - 1024 ? 1024 : 2048;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int object_size = 100;
+        
           unsigned int benchRet = optimal_redzone(object_size);
           printf("%u\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int object_size = 255;
+        
           unsigned int benchRet = optimal_redzone(object_size);
           printf("%u\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int object_size = 10;
+        
           unsigned int benchRet = optimal_redzone(object_size);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int object_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = optimal_redzone(object_size);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

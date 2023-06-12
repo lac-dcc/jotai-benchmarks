@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ xs_enable_swap(struct rpc_xprt *xprt)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_xprt0 = 1;
+          int _len_xprt0 = 65025;
           struct rpc_xprt * xprt = (struct rpc_xprt *) malloc(_len_xprt0*sizeof(struct rpc_xprt));
           for(int _i0 = 0; _i0 < _len_xprt0; _i0++) {
-            xprt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              xprt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xs_enable_swap(xprt);
           printf("%d\n", benchRet); 
           free(xprt);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_xprt0 = 100;
           struct rpc_xprt * xprt = (struct rpc_xprt *) malloc(_len_xprt0*sizeof(struct rpc_xprt));
           for(int _i0 = 0; _i0 < _len_xprt0; _i0++) {
-            xprt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              xprt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xs_enable_swap(xprt);
           printf("%d\n", benchRet); 
           free(xprt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_xprt0 = 1;
+          struct rpc_xprt * xprt = (struct rpc_xprt *) malloc(_len_xprt0*sizeof(struct rpc_xprt));
+          for(int _i0 = 0; _i0 < _len_xprt0; _i0++) {
+              xprt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xs_enable_swap(xprt);
+          printf("%d\n", benchRet); 
+          free(xprt);
+        
+        break;
+    }
     default:
         usage();
         break;

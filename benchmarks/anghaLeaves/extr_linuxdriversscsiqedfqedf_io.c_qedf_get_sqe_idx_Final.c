@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ u16 qedf_get_sqe_idx(struct qedf_rport *fcport)
 	return rval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,16 +88,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_fcport0 = 65025;
+          struct qedf_rport * fcport = (struct qedf_rport *) malloc(_len_fcport0*sizeof(struct qedf_rport));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+              fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = qedf_get_sqe_idx(fcport);
+          printf("%ld\n", benchRet); 
+          free(fcport);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_fcport0 = 100;
+          struct qedf_rport * fcport = (struct qedf_rport *) malloc(_len_fcport0*sizeof(struct qedf_rport));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+              fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = qedf_get_sqe_idx(fcport);
+          printf("%ld\n", benchRet); 
+          free(fcport);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_fcport0 = 1;
           struct qedf_rport * fcport = (struct qedf_rport *) malloc(_len_fcport0*sizeof(struct qedf_rport));
           for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
-            fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              fcport[_i0].sq_mem_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          fcport[_i0].fw_sq_prod_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = qedf_get_sqe_idx(fcport);
           printf("%ld\n", benchRet); 
           free(fcport);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ calculate_hashidx_for_element(uintptr_t elem, btlog_t *btlog)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long elem = 100;
+        
           int _len_btlog0 = 1;
           struct TYPE_3__ * btlog = (struct TYPE_3__ *) malloc(_len_btlog0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_btlog0; _i0++) {
-            btlog[_i0].caller_will_remove_entries_for_element = ((-2 * (next_i()%2)) + 1) * next_i();
+              btlog[_i0].caller_will_remove_entries_for_element = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = calculate_hashidx_for_element(elem,btlog);
+          printf("%ld\n", benchRet); 
+          free(btlog);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long elem = 255;
+        
+          int _len_btlog0 = 65025;
+          struct TYPE_3__ * btlog = (struct TYPE_3__ *) malloc(_len_btlog0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_btlog0; _i0++) {
+              btlog[_i0].caller_will_remove_entries_for_element = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = calculate_hashidx_for_element(elem,btlog);
           printf("%ld\n", benchRet); 
           free(btlog);
@@ -107,21 +124,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long elem = 10;
+        
           int _len_btlog0 = 100;
           struct TYPE_3__ * btlog = (struct TYPE_3__ *) malloc(_len_btlog0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_btlog0; _i0++) {
-            btlog[_i0].caller_will_remove_entries_for_element = ((-2 * (next_i()%2)) + 1) * next_i();
+              btlog[_i0].caller_will_remove_entries_for_element = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = calculate_hashidx_for_element(elem,btlog);
           printf("%ld\n", benchRet); 
           free(btlog);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long elem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_btlog0 = 1;
+          struct TYPE_3__ * btlog = (struct TYPE_3__ *) malloc(_len_btlog0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_btlog0; _i0++) {
+              btlog[_i0].caller_will_remove_entries_for_element = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = calculate_hashidx_for_element(elem,btlog);
+          printf("%ld\n", benchRet); 
+          free(btlog);
+        
+        break;
+    }
     default:
         usage();
         break;

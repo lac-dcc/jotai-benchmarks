@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ lpfc_is_LC_HBA(unsigned short device)
 		return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short device = 100;
+        
           int benchRet = lpfc_is_LC_HBA(device);
           printf("%d\n", benchRet); 
         
@@ -115,6 +111,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned short device = 255;
+        
           int benchRet = lpfc_is_LC_HBA(device);
           printf("%d\n", benchRet); 
         
@@ -124,12 +121,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned short device = 10;
+        
           int benchRet = lpfc_is_LC_HBA(device);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = lpfc_is_LC_HBA(device);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

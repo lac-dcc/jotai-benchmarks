@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ nfs_proc_pathconf(struct nfs_server *server, struct nfs_fh *fhandle,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_server0 = 65025;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fhandle0 = 65025;
+          struct nfs_fh * fhandle = (struct nfs_fh *) malloc(_len_fhandle0*sizeof(struct nfs_fh));
+          for(int _i0 = 0; _i0 < _len_fhandle0; _i0++) {
+              fhandle[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 65025;
+          struct nfs_pathconf * info = (struct nfs_pathconf *) malloc(_len_info0*sizeof(struct nfs_pathconf));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].max_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].max_link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfs_proc_pathconf(server,fhandle,info);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(fhandle);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_server0 = 100;
+          struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fhandle0 = 100;
+          struct nfs_fh * fhandle = (struct nfs_fh *) malloc(_len_fhandle0*sizeof(struct nfs_fh));
+          for(int _i0 = 0; _i0 < _len_fhandle0; _i0++) {
+              fhandle[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct nfs_pathconf * info = (struct nfs_pathconf *) malloc(_len_info0*sizeof(struct nfs_pathconf));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].max_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].max_link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfs_proc_pathconf(server,fhandle,info);
+          printf("%d\n", benchRet); 
+          free(server);
+          free(fhandle);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_server0 = 1;
           struct nfs_server * server = (struct nfs_server *) malloc(_len_server0*sizeof(struct nfs_server));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
-            server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              server[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fhandle0 = 1;
           struct nfs_fh * fhandle = (struct nfs_fh *) malloc(_len_fhandle0*sizeof(struct nfs_fh));
           for(int _i0 = 0; _i0 < _len_fhandle0; _i0++) {
-            fhandle[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fhandle[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_info0 = 1;
           struct nfs_pathconf * info = (struct nfs_pathconf *) malloc(_len_info0*sizeof(struct nfs_pathconf));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].max_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].max_link = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].max_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].max_link = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfs_proc_pathconf(server,fhandle,info);
           printf("%d\n", benchRet); 
           free(server);

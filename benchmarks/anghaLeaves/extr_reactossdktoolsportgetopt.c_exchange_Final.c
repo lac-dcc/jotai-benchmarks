@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -110,12 +112,6 @@ exchange (char **argv, struct _getopt_data *d)
   d->__last_nonopt = d->optind;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,8 +124,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_argv0 = 65025;
+          char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            int _len_argv1 = 1;
+            argv[_i0] = (char *) malloc(_len_argv1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_argv1; _i1++) {
+              argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_d0 = 65025;
+          struct _getopt_data * d = (struct _getopt_data *) malloc(_len_d0*sizeof(struct _getopt_data));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].__first_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].__last_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].optind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          exchange(argv,d);
+          for(int i1 = 0; i1 < _len_argv0; i1++) {
+              free(argv[i1]);
+          }
+          free(argv);
+          free(d);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_argv0 = 100;
+          char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            int _len_argv1 = 1;
+            argv[_i0] = (char *) malloc(_len_argv1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_argv1; _i1++) {
+              argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_d0 = 100;
+          struct _getopt_data * d = (struct _getopt_data *) malloc(_len_d0*sizeof(struct _getopt_data));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].__first_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].__last_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].optind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          exchange(argv,d);
+          for(int i1 = 0; i1 < _len_argv0; i1++) {
+              free(argv[i1]);
+          }
+          free(argv);
+          free(d);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_argv0 = 1;
           char ** argv = (char **) malloc(_len_argv0*sizeof(char *));
@@ -140,16 +198,18 @@ int main(int argc, char *argv[]) {
               argv[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_d0 = 1;
           struct _getopt_data * d = (struct _getopt_data *) malloc(_len_d0*sizeof(struct _getopt_data));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].__first_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].__last_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
-        d[_i0].optind = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].__first_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].__last_nonopt = ((-2 * (next_i()%2)) + 1) * next_i();
+          d[_i0].optind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           exchange(argv,d);
           for(int i1 = 0; i1 < _len_argv0; i1++) {
-            int _len_argv1 = 1;
               free(argv[i1]);
           }
           free(argv);
@@ -157,7 +217,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

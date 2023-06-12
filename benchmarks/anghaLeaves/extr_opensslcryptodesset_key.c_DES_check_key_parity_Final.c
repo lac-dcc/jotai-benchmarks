@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int DES_check_key_parity(const_DES_cblock *key)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,8 +82,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_key0 = 65025;
+          unsigned long ** key = (unsigned long **) malloc(_len_key0*sizeof(unsigned long *));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+            int _len_key1 = 1;
+            key[_i0] = (unsigned long *) malloc(_len_key1*sizeof(unsigned long));
+            for(int _i1 = 0; _i1 < _len_key1; _i1++) {
+              key[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = DES_check_key_parity(key);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_key0; i1++) {
+              free(key[i1]);
+          }
+          free(key);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_key0 = 100;
+          unsigned long ** key = (unsigned long **) malloc(_len_key0*sizeof(unsigned long *));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+            int _len_key1 = 1;
+            key[_i0] = (unsigned long *) malloc(_len_key1*sizeof(unsigned long));
+            for(int _i1 = 0; _i1 < _len_key1; _i1++) {
+              key[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = DES_check_key_parity(key);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_key0; i1++) {
+              free(key[i1]);
+          }
+          free(key);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_key0 = 1;
           unsigned long ** key = (unsigned long **) malloc(_len_key0*sizeof(unsigned long *));
@@ -98,17 +138,16 @@ int main(int argc, char *argv[]) {
               key[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = DES_check_key_parity(key);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_key0; i1++) {
-            int _len_key1 = 1;
               free(key[i1]);
           }
           free(key);
         
         break;
     }
-
     default:
         usage();
         break;

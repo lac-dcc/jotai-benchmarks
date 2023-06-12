@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ qla2x00_set_retry_delay_timestamp(fc_port_t *fcport, uint16_t retry_delay)
 		    (retry_delay * HZ / 10);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int retry_delay = 100;
+        
           int _len_fcport0 = 1;
           struct TYPE_3__ * fcport = (struct TYPE_3__ *) malloc(_len_fcport0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
-            fcport[_i0].retry_delay_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              fcport[_i0].retry_delay_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          qla2x00_set_retry_delay_timestamp(fcport,retry_delay);
+          free(fcport);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int retry_delay = 255;
+        
+          int _len_fcport0 = 65025;
+          struct TYPE_3__ * fcport = (struct TYPE_3__ *) malloc(_len_fcport0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+              fcport[_i0].retry_delay_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           qla2x00_set_retry_delay_timestamp(fcport,retry_delay);
           free(fcport);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int retry_delay = 10;
+        
           int _len_fcport0 = 100;
           struct TYPE_3__ * fcport = (struct TYPE_3__ *) malloc(_len_fcport0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
-            fcport[_i0].retry_delay_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              fcport[_i0].retry_delay_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qla2x00_set_retry_delay_timestamp(fcport,retry_delay);
           free(fcport);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int retry_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fcport0 = 1;
+          struct TYPE_3__ * fcport = (struct TYPE_3__ *) malloc(_len_fcport0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fcport0; _i0++) {
+              fcport[_i0].retry_delay_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qla2x00_set_retry_delay_timestamp(fcport,retry_delay);
+          free(fcport);
+        
+        break;
+    }
     default:
         usage();
         break;

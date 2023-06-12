@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            linked\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,7 +102,6 @@ void RB_BeginSurface( shader_t *shader, int fogNum, int cubemapIndex ) {
 	}
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_9__ *_allocate_shader(int length, struct TYPE_9__ *aux_shader[]) {
@@ -138,7 +139,6 @@ void _delete_shader(struct TYPE_9__ *aux_shader[], int aux_shader_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -151,13 +151,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
           int fogNum = 100;
+        
           int cubemapIndex = 100;
+        
           struct TYPE_9__ * aux_shader[1];
           struct TYPE_9__ * shader = _allocate_shader(1, aux_shader);
+        
+          RB_BeginSurface(shader,fogNum,cubemapIndex);
+          _delete_shader(aux_shader, 1);
+        
+        break;
+    }
+
+
+    // linked
+    case 1:
+    {
+          // static_instructions_O0 : 58
+          // dynamic_instructions_O0 : 58
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int fogNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cubemapIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_9__ * aux_shader[10000];
+          struct TYPE_9__ * shader = _allocate_shader(10000, aux_shader);
+        
+          RB_BeginSurface(shader,fogNum,cubemapIndex);
+          _delete_shader(aux_shader, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 36
+          // ------------------------------- 
+
+          int fogNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cubemapIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_9__ * aux_shader[1];
+          struct TYPE_9__ * shader = _allocate_shader(1, aux_shader);
+        
           RB_BeginSurface(shader,fogNum,cubemapIndex);
           _delete_shader(aux_shader, 1);
         

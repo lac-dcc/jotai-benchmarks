@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ __attribute__((used)) static int mvs_64xx_spi_buildcmd(struct mvs_info *mvi,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,19 +98,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cmd = 100;
+        
           long read = 100;
+        
           long length = 100;
+        
           int addr = 100;
+        
           int _len_mvi0 = 1;
           struct mvs_info * mvi = (struct mvs_info *) malloc(_len_mvi0*sizeof(struct mvs_info));
           for(int _i0 = 0; _i0 < _len_mvi0; _i0++) {
-            mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dwCmd0 = 1;
           int * dwCmd = (int *) malloc(_len_dwCmd0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dwCmd0; _i0++) {
             dwCmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mvs_64xx_spi_buildcmd(mvi,dwCmd,cmd,read,length,addr);
           printf("%d\n", benchRet); 
           free(mvi);
@@ -123,7 +125,37 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          long cmd = 10;
+        
+          long read = 10;
+        
+          long length = 10;
+        
+          int addr = 10;
+        
+          int _len_mvi0 = 100;
+          struct mvs_info * mvi = (struct mvs_info *) malloc(_len_mvi0*sizeof(struct mvs_info));
+          for(int _i0 = 0; _i0 < _len_mvi0; _i0++) {
+              mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dwCmd0 = 100;
+          int * dwCmd = (int *) malloc(_len_dwCmd0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dwCmd0; _i0++) {
+            dwCmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mvs_64xx_spi_buildcmd(mvi,dwCmd,cmd,read,length,addr);
+          printf("%d\n", benchRet); 
+          free(mvi);
+          free(dwCmd);
+        
+        break;
+    }
     default:
         usage();
         break;

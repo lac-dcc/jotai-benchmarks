@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void bpf_lru_list_count_dec(struct bpf_lru_list *l,
 		l->counts[type]--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,11 +78,12 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum bpf_lru_list_type type = 0;
-          int _len_l0 = 1;
+        
+          int _len_l0 = 65025;
           struct bpf_lru_list * l = (struct bpf_lru_list *) malloc(_len_l0*sizeof(struct bpf_lru_list));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
               int _len_l__i0__counts0 = 1;
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_l__i0__counts0; _j0++) {
             l[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           bpf_lru_list_count_dec(l,type);
           for(int _aux = 0; _aux < _len_l0; _aux++) {
           free(l[_aux].counts);
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum bpf_lru_list_type type = 0;
+        
+          int _len_l0 = 100;
+          struct bpf_lru_list * l = (struct bpf_lru_list *) malloc(_len_l0*sizeof(struct bpf_lru_list));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              int _len_l__i0__counts0 = 1;
+          l[_i0].counts = (int *) malloc(_len_l__i0__counts0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_l__i0__counts0; _j0++) {
+            l[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          bpf_lru_list_count_dec(l,type);
+          for(int _aux = 0; _aux < _len_l0; _aux++) {
+          free(l[_aux].counts);
+          }
+          free(l);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum bpf_lru_list_type type = 0;
+        
+          int _len_l0 = 1;
+          struct bpf_lru_list * l = (struct bpf_lru_list *) malloc(_len_l0*sizeof(struct bpf_lru_list));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              int _len_l__i0__counts0 = 1;
+          l[_i0].counts = (int *) malloc(_len_l__i0__counts0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_l__i0__counts0; _j0++) {
+            l[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          bpf_lru_list_count_dec(l,type);
+          for(int _aux = 0; _aux < _len_l0; _aux++) {
+          free(l[_aux].counts);
+          }
+          free(l);
+        
+        break;
+    }
     default:
         usage();
         break;

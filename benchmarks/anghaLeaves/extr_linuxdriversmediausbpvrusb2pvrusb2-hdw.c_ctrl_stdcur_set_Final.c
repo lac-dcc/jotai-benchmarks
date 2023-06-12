@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int ctrl_stdcur_set(struct pvr2_ctrl *cptr,int m,in
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +84,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int m = 100;
+        
           int v = 100;
+        
           int _len_cptr0 = 1;
           struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
           for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
               int _len_cptr__i0__hdw0 = 1;
           cptr[_i0].hdw = (struct pvr2_hdw *) malloc(_len_cptr__i0__hdw0*sizeof(struct pvr2_hdw));
           for(int _j0 = 0; _j0 < _len_cptr__i0__hdw0; _j0++) {
-            cptr[_i0].hdw->std_mask_cur = ((-2 * (next_i()%2)) + 1) * next_i();
-        cptr[_i0].hdw->std_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+              cptr[_i0].hdw->std_mask_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].hdw->std_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ctrl_stdcur_set(cptr,m,v);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cptr0; _aux++) {
+          free(cptr[_aux].hdw);
+          }
+          free(cptr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int m = 255;
+        
+          int v = 255;
+        
+          int _len_cptr0 = 65025;
+          struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
+          for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
+              int _len_cptr__i0__hdw0 = 1;
+          cptr[_i0].hdw = (struct pvr2_hdw *) malloc(_len_cptr__i0__hdw0*sizeof(struct pvr2_hdw));
+          for(int _j0 = 0; _j0 < _len_cptr__i0__hdw0; _j0++) {
+              cptr[_i0].hdw->std_mask_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].hdw->std_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ctrl_stdcur_set(cptr,m,v);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cptr0; _aux++) {
+          free(cptr[_aux].hdw);
+          }
+          free(cptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int m = 10;
+        
+          int v = 10;
+        
+          int _len_cptr0 = 100;
+          struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
+          for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
+              int _len_cptr__i0__hdw0 = 1;
+          cptr[_i0].hdw = (struct pvr2_hdw *) malloc(_len_cptr__i0__hdw0*sizeof(struct pvr2_hdw));
+          for(int _j0 = 0; _j0 < _len_cptr__i0__hdw0; _j0++) {
+              cptr[_i0].hdw->std_mask_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].hdw->std_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ctrl_stdcur_set(cptr,m,v);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cptr0; _aux++) {
+          free(cptr[_aux].hdw);
+          }
+          free(cptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cptr0 = 1;
+          struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
+          for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
+              int _len_cptr__i0__hdw0 = 1;
+          cptr[_i0].hdw = (struct pvr2_hdw *) malloc(_len_cptr__i0__hdw0*sizeof(struct pvr2_hdw));
+          for(int _j0 = 0; _j0 < _len_cptr__i0__hdw0; _j0++) {
+              cptr[_i0].hdw->std_mask_cur = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].hdw->std_dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ctrl_stdcur_set(cptr,m,v);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cptr0; _aux++) {

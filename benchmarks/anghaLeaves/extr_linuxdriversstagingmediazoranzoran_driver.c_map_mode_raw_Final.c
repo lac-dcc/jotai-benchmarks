@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void map_mode_raw(struct zoran_fh *fh)
 	fh->buffers.num_buffers = v4l_nbufs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +81,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_fh0 = 65025;
+          struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_mode_raw(fh);
+          free(fh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_fh0 = 100;
+          struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          map_mode_raw(fh);
+          free(fh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_fh0 = 1;
           struct zoran_fh * fh = (struct zoran_fh *) malloc(_len_fh0*sizeof(struct zoran_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].buffers.num_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].buffers.buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fh[_i0].map_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           map_mode_raw(fh);
           free(fh);
         

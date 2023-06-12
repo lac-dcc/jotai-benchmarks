@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ uint16_t TEXT_deleteWhiteSpace(uint8_t *buf, uint16_t len) {
 	return whiteSpaceCount;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int len = 10;
-          int _len_buf0 = 100;
+          int len = 255;
+        
+          int _len_buf0 = 65025;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = TEXT_deleteWhiteSpace(buf,len);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int len = 10;
+        
+          int _len_buf0 = 100;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = TEXT_deleteWhiteSpace(buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = TEXT_deleteWhiteSpace(buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

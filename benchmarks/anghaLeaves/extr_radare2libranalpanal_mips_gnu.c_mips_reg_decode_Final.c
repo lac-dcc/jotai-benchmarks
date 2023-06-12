@@ -68,12 +68,6 @@ __attribute__((used)) static const char* mips_reg_decode(unsigned reg_num) {
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,12 +84,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int reg_num = 10;
+        
           const char * benchRet = mips_reg_decode(reg_num);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

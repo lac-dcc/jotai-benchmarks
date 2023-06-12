@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void kr_srand0(krint64_t seed, krand_t *kr)
 		kr->mt[kr->mti] = 6364136223846793005ULL * (kr->mt[kr->mti - 1] ^ (kr->mt[kr->mti - 1] >> 62)) + kr->mti;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long long seed = 100;
+        
           int _len_kr0 = 1;
           struct TYPE_3__ * kr = (struct TYPE_3__ *) malloc(_len_kr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_kr0; _i0++) {
@@ -96,8 +94,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_kr__i0__mt0; _j0++) {
             kr[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        kr[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+          kr[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           kr_srand0(seed,kr);
           for(int _aux = 0; _aux < _len_kr0; _aux++) {
           free(kr[_aux].mt);
@@ -106,7 +106,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long long seed = 255;
+        
+          int _len_kr0 = 65025;
+          struct TYPE_3__ * kr = (struct TYPE_3__ *) malloc(_len_kr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_kr0; _i0++) {
+              int _len_kr__i0__mt0 = 1;
+          kr[_i0].mt = (unsigned long long *) malloc(_len_kr__i0__mt0*sizeof(unsigned long long));
+          for(int _j0 = 0; _j0 < _len_kr__i0__mt0; _j0++) {
+            kr[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          kr[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kr_srand0(seed,kr);
+          for(int _aux = 0; _aux < _len_kr0; _aux++) {
+          free(kr[_aux].mt);
+          }
+          free(kr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long long seed = 10;
+        
+          int _len_kr0 = 100;
+          struct TYPE_3__ * kr = (struct TYPE_3__ *) malloc(_len_kr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_kr0; _i0++) {
+              int _len_kr__i0__mt0 = 1;
+          kr[_i0].mt = (unsigned long long *) malloc(_len_kr__i0__mt0*sizeof(unsigned long long));
+          for(int _j0 = 0; _j0 < _len_kr__i0__mt0; _j0++) {
+            kr[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          kr[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kr_srand0(seed,kr);
+          for(int _aux = 0; _aux < _len_kr0; _aux++) {
+          free(kr[_aux].mt);
+          }
+          free(kr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long long seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_kr0 = 1;
+          struct TYPE_3__ * kr = (struct TYPE_3__ *) malloc(_len_kr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_kr0; _i0++) {
+              int _len_kr__i0__mt0 = 1;
+          kr[_i0].mt = (unsigned long long *) malloc(_len_kr__i0__mt0*sizeof(unsigned long long));
+          for(int _j0 = 0; _j0 < _len_kr__i0__mt0; _j0++) {
+            kr[_i0].mt[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          kr[_i0].mti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kr_srand0(seed,kr);
+          for(int _aux = 0; _aux < _len_kr0; _aux++) {
+          free(kr[_aux].mt);
+          }
+          free(kr);
+        
+        break;
+    }
     default:
         usage();
         break;

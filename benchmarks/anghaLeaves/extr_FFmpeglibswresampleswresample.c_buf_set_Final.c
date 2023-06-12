@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void buf_set(AudioData *out, AudioData *in, int cou
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,30 +87,35 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int count = 100;
+        
           int _len_out0 = 1;
           struct TYPE_4__ * out = (struct TYPE_4__ *) malloc(_len_out0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
-            out[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        out[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+              out[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_out__i0__ch0 = 1;
           out[_i0].ch = (long *) malloc(_len_out__i0__ch0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_out__i0__ch0; _j0++) {
             out[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        out[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_in0 = 1;
           struct TYPE_4__ * in = (struct TYPE_4__ *) malloc(_len_in0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
-            in[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        in[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+              in[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_in__i0__ch0 = 1;
           in[_i0].ch = (long *) malloc(_len_in__i0__ch0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_in__i0__ch0; _j0++) {
             in[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        in[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           buf_set(out,in,count);
           for(int _aux = 0; _aux < _len_out0; _aux++) {
           free(out[_aux].ch);
@@ -126,7 +128,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int count = 255;
+        
+          int _len_out0 = 65025;
+          struct TYPE_4__ * out = (struct TYPE_4__ *) malloc(_len_out0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_out__i0__ch0 = 1;
+          out[_i0].ch = (long *) malloc(_len_out__i0__ch0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_out__i0__ch0; _j0++) {
+            out[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          out[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_in0 = 65025;
+          struct TYPE_4__ * in = (struct TYPE_4__ *) malloc(_len_in0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_in__i0__ch0 = 1;
+          in[_i0].ch = (long *) malloc(_len_in__i0__ch0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_in__i0__ch0; _j0++) {
+            in[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          in[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          buf_set(out,in,count);
+          for(int _aux = 0; _aux < _len_out0; _aux++) {
+          free(out[_aux].ch);
+          }
+          free(out);
+          for(int _aux = 0; _aux < _len_in0; _aux++) {
+          free(in[_aux].ch);
+          }
+          free(in);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int count = 10;
+        
+          int _len_out0 = 100;
+          struct TYPE_4__ * out = (struct TYPE_4__ *) malloc(_len_out0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_out__i0__ch0 = 1;
+          out[_i0].ch = (long *) malloc(_len_out__i0__ch0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_out__i0__ch0; _j0++) {
+            out[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          out[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_in0 = 100;
+          struct TYPE_4__ * in = (struct TYPE_4__ *) malloc(_len_in0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_in__i0__ch0 = 1;
+          in[_i0].ch = (long *) malloc(_len_in__i0__ch0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_in__i0__ch0; _j0++) {
+            in[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          in[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          buf_set(out,in,count);
+          for(int _aux = 0; _aux < _len_out0; _aux++) {
+          free(out[_aux].ch);
+          }
+          free(out);
+          for(int _aux = 0; _aux < _len_in0; _aux++) {
+          free(in[_aux].ch);
+          }
+          free(in);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_out0 = 1;
+          struct TYPE_4__ * out = (struct TYPE_4__ *) malloc(_len_out0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+              out[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          out[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_out__i0__ch0 = 1;
+          out[_i0].ch = (long *) malloc(_len_out__i0__ch0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_out__i0__ch0; _j0++) {
+            out[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          out[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_in0 = 1;
+          struct TYPE_4__ * in = (struct TYPE_4__ *) malloc(_len_in0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+              in[_i0].ch_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          in[_i0].bps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_in__i0__ch0 = 1;
+          in[_i0].ch = (long *) malloc(_len_in__i0__ch0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_in__i0__ch0; _j0++) {
+            in[_i0].ch[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          in[_i0].planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          buf_set(out,in,count);
+          for(int _aux = 0; _aux < _len_out0; _aux++) {
+          free(out[_aux].ch);
+          }
+          free(out);
+          for(int _aux = 0; _aux < _len_in0; _aux++) {
+          free(in[_aux].ch);
+          }
+          free(in);
+        
+        break;
+    }
     default:
         usage();
         break;

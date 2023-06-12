@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int brcmstb_gpio_hwirq_to_offset(irq_hw_number_t hw
 	return hwirq - (bank->gc.base - bank->parent_priv->gpio_base);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int hwirq = 100;
+        
           int _len_bank0 = 1;
           struct brcmstb_gpio_bank * bank = (struct brcmstb_gpio_bank *) malloc(_len_bank0*sizeof(struct brcmstb_gpio_bank));
           for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
               int _len_bank__i0__parent_priv0 = 1;
           bank[_i0].parent_priv = (struct TYPE_4__ *) malloc(_len_bank__i0__parent_priv0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_bank__i0__parent_priv0; _j0++) {
-            bank[_i0].parent_priv->gpio_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              bank[_i0].parent_priv->gpio_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        bank[_i0].gc.base = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank[_i0].gc.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = brcmstb_gpio_hwirq_to_offset(hwirq,bank);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bank0; _aux++) {
+          free(bank[_aux].parent_priv);
+          }
+          free(bank);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int hwirq = 255;
+        
+          int _len_bank0 = 65025;
+          struct brcmstb_gpio_bank * bank = (struct brcmstb_gpio_bank *) malloc(_len_bank0*sizeof(struct brcmstb_gpio_bank));
+          for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
+              int _len_bank__i0__parent_priv0 = 1;
+          bank[_i0].parent_priv = (struct TYPE_4__ *) malloc(_len_bank__i0__parent_priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bank__i0__parent_priv0; _j0++) {
+              bank[_i0].parent_priv->gpio_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          bank[_i0].gc.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = brcmstb_gpio_hwirq_to_offset(hwirq,bank);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bank0; _aux++) {
+          free(bank[_aux].parent_priv);
+          }
+          free(bank);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int hwirq = 10;
+        
+          int _len_bank0 = 100;
+          struct brcmstb_gpio_bank * bank = (struct brcmstb_gpio_bank *) malloc(_len_bank0*sizeof(struct brcmstb_gpio_bank));
+          for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
+              int _len_bank__i0__parent_priv0 = 1;
+          bank[_i0].parent_priv = (struct TYPE_4__ *) malloc(_len_bank__i0__parent_priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bank__i0__parent_priv0; _j0++) {
+              bank[_i0].parent_priv->gpio_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          bank[_i0].gc.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = brcmstb_gpio_hwirq_to_offset(hwirq,bank);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bank0; _aux++) {
+          free(bank[_aux].parent_priv);
+          }
+          free(bank);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int hwirq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bank0 = 1;
+          struct brcmstb_gpio_bank * bank = (struct brcmstb_gpio_bank *) malloc(_len_bank0*sizeof(struct brcmstb_gpio_bank));
+          for(int _i0 = 0; _i0 < _len_bank0; _i0++) {
+              int _len_bank__i0__parent_priv0 = 1;
+          bank[_i0].parent_priv = (struct TYPE_4__ *) malloc(_len_bank__i0__parent_priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_bank__i0__parent_priv0; _j0++) {
+              bank[_i0].parent_priv->gpio_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          bank[_i0].gc.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = brcmstb_gpio_hwirq_to_offset(hwirq,bank);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bank0; _aux++) {

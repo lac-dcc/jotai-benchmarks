@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int32_t hdcd_analyze_gen(int32_t sample, unsigned i
     return (int32_t)(s64 * v / m);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int sample = 100;
+        
           unsigned int v = 100;
+        
           unsigned int maxv = 100;
+        
           unsigned int benchRet = hdcd_analyze_gen(sample,v,maxv);
           printf("%u\n", benchRet); 
         
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int sample = 255;
+        
           unsigned int v = 255;
+        
           unsigned int maxv = 255;
+        
           unsigned int benchRet = hdcd_analyze_gen(sample,v,maxv);
           printf("%u\n", benchRet); 
         
@@ -110,14 +111,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int sample = 10;
+        
           unsigned int v = 10;
+        
           unsigned int maxv = 10;
+        
           unsigned int benchRet = hdcd_analyze_gen(sample,v,maxv);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int sample = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int maxv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = hdcd_analyze_gen(sample,v,maxv);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ il4965_is_single_rx_stream(struct il_priv *il)
 	    il->current_ht_config.single_chain_sufficient;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +79,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_il0 = 65025;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
+          il[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = il4965_is_single_rx_stream(il);
+          printf("%d\n", benchRet); 
+          free(il);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_il0 = 100;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
+          il[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = il4965_is_single_rx_stream(il);
+          printf("%d\n", benchRet); 
+          free(il);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_il0 = 1;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
           for(int _i0 = 0; _i0 < _len_il0; _i0++) {
-            il[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
-        il[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+              il[_i0].current_ht_config.smps = ((-2 * (next_i()%2)) + 1) * next_i();
+          il[_i0].current_ht_config.single_chain_sufficient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = il4965_is_single_rx_stream(il);
           printf("%d\n", benchRet); 
           free(il);

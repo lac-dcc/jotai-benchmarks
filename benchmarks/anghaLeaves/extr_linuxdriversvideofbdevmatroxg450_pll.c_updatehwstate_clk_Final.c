@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void updatehwstate_clk(struct matrox_hw_state* hw, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int mnp = 100;
+        
           unsigned int pll = 100;
+        
           int _len_hw0 = 1;
           struct matrox_hw_state * hw = (struct matrox_hw_state *) malloc(_len_hw0*sizeof(struct matrox_hw_state));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
@@ -97,7 +96,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hw__i0__DACclk0; _j0++) {
             hw[_i0].DACclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           updatehwstate_clk(hw,mnp,pll);
           for(int _aux = 0; _aux < _len_hw0; _aux++) {
           free(hw[_aux].DACclk);
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int mnp = 255;
+        
+          unsigned int pll = 255;
+        
+          int _len_hw0 = 65025;
+          struct matrox_hw_state * hw = (struct matrox_hw_state *) malloc(_len_hw0*sizeof(struct matrox_hw_state));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__DACclk0 = 1;
+          hw[_i0].DACclk = (unsigned int *) malloc(_len_hw__i0__DACclk0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_hw__i0__DACclk0; _j0++) {
+            hw[_i0].DACclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          updatehwstate_clk(hw,mnp,pll);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].DACclk);
+          }
+          free(hw);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int mnp = 10;
+        
+          unsigned int pll = 10;
+        
+          int _len_hw0 = 100;
+          struct matrox_hw_state * hw = (struct matrox_hw_state *) malloc(_len_hw0*sizeof(struct matrox_hw_state));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__DACclk0 = 1;
+          hw[_i0].DACclk = (unsigned int *) malloc(_len_hw__i0__DACclk0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_hw__i0__DACclk0; _j0++) {
+            hw[_i0].DACclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          updatehwstate_clk(hw,mnp,pll);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].DACclk);
+          }
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int mnp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int pll = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct matrox_hw_state * hw = (struct matrox_hw_state *) malloc(_len_hw0*sizeof(struct matrox_hw_state));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__DACclk0 = 1;
+          hw[_i0].DACclk = (unsigned int *) malloc(_len_hw__i0__DACclk0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_hw__i0__DACclk0; _j0++) {
+            hw[_i0].DACclk[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          updatehwstate_clk(hw,mnp,pll);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].DACclk);
+          }
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

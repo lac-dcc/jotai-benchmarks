@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int pn544_hci_target_from_gate(struct nfc_hci_dev *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,21 +100,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int gate = 100;
+        
           int _len_hdev0 = 1;
           struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_target0 = 1;
           struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
           for(int _i0 = 0; _i0 < _len_target0; _i0++) {
-            target[_i0].sens_res = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+              target[_i0].sens_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pn544_hci_target_from_gate(hdev,gate,target);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(target);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int gate = 255;
+        
+          int _len_hdev0 = 65025;
+          struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 65025;
+          struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].sens_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pn544_hci_target_from_gate(hdev,gate,target);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(target);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int gate = 10;
+        
+          int _len_hdev0 = 100;
+          struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 100;
+          struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].sens_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pn544_hci_target_from_gate(hdev,gate,target);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(target);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdev0 = 1;
+          struct nfc_hci_dev * hdev = (struct nfc_hci_dev *) malloc(_len_hdev0*sizeof(struct nfc_hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 1;
+          struct nfc_target * target = (struct nfc_target *) malloc(_len_target0*sizeof(struct nfc_target));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].sens_res = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].supported_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pn544_hci_target_from_gate(hdev,gate,target);
           printf("%d\n", benchRet); 
           free(hdev);

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ __attribute__((used)) static inline size_t pack_list_size(struct pack_list *pl)
 	return ret;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct pack_list *_allocate_pl(int length, struct pack_list *aux_pl[]) {
@@ -93,7 +93,6 @@ void _delete_pl(struct pack_list *aux_pl[], int aux_pl_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,11 +105,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 90009
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 40008
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 40008
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 40008
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 40008
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 50007
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 50007
+          // ------------------------------- 
+
+          struct pack_list * aux_pl[10000];
+          struct pack_list * pl = _allocate_pl(10000, aux_pl);
+        
+          unsigned long benchRet = pack_list_size(pl);
+          printf("%lu\n", benchRet); 
+          _delete_pl(aux_pl, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           struct pack_list * aux_pl[1];
           struct pack_list * pl = _allocate_pl(1, aux_pl);
+        
           unsigned long benchRet = pack_list_size(pl);
           printf("%lu\n", benchRet); 
           _delete_pl(aux_pl, 1);

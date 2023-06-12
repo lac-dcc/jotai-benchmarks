@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ lpfc_bgs_get_bidir_err_cond(uint32_t bgstat)
 				BGS_BIDIR_ERR_COND_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bgstat = 100;
+        
           int benchRet = lpfc_bgs_get_bidir_err_cond(bgstat);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bgstat = 255;
+        
           int benchRet = lpfc_bgs_get_bidir_err_cond(bgstat);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bgstat = 10;
+        
           int benchRet = lpfc_bgs_get_bidir_err_cond(bgstat);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bgstat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = lpfc_bgs_get_bidir_err_cond(bgstat);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline u8 *current_buf(struct caam_hash_state *stat
 	return state->current_buf ? state->buf_1 : state->buf_0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct caam_hash_state * state = (struct caam_hash_state *) malloc(_len_state0*sizeof(struct caam_hash_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__buf_00 = 1;
+          state[_i0].buf_0 = (int *) malloc(_len_state__i0__buf_00*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_state__i0__buf_00; _j0++) {
+            state[_i0].buf_0[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_state__i0__buf_10 = 1;
+          state[_i0].buf_1 = (int *) malloc(_len_state__i0__buf_10*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_state__i0__buf_10; _j0++) {
+            state[_i0].buf_1[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = current_buf(state);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].buf_0);
+          }
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].buf_1);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct caam_hash_state * state = (struct caam_hash_state *) malloc(_len_state0*sizeof(struct caam_hash_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              int _len_state__i0__buf_00 = 1;
+          state[_i0].buf_0 = (int *) malloc(_len_state__i0__buf_00*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_state__i0__buf_00; _j0++) {
+            state[_i0].buf_0[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_state__i0__buf_10 = 1;
+          state[_i0].buf_1 = (int *) malloc(_len_state__i0__buf_10*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_state__i0__buf_10; _j0++) {
+            state[_i0].buf_1[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = current_buf(state);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].buf_0);
+          }
+          for(int _aux = 0; _aux < _len_state0; _aux++) {
+          free(state[_aux].buf_1);
+          }
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct caam_hash_state * state = (struct caam_hash_state *) malloc(_len_state0*sizeof(struct caam_hash_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
@@ -95,8 +226,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_state__i0__buf_10; _j0++) {
             state[_i0].buf_1[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].current_buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = current_buf(state);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_state0; _aux++) {

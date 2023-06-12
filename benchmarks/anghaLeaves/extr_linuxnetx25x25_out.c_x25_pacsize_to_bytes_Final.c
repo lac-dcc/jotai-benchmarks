@@ -67,12 +67,6 @@ __attribute__((used)) static int x25_pacsize_to_bytes(unsigned int pacsize)
 	return bytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,12 +83,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pacsize = 10;
+        
           int benchRet = x25_pacsize_to_bytes(pacsize);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

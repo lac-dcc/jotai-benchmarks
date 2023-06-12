@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static bool pn533_target_felica_is_valid(struct pn533_targ
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,11 +87,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int target_data_len = 100;
+        
           int _len_felica0 = 1;
           struct pn533_target_felica * felica = (struct pn533_target_felica *) malloc(_len_felica0*sizeof(struct pn533_target_felica));
           for(int _i0 = 0; _i0 < _len_felica0; _i0++) {
-            felica[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              felica[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pn533_target_felica_is_valid(felica,target_data_len);
+          printf("%d\n", benchRet); 
+          free(felica);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int target_data_len = 255;
+        
+          int _len_felica0 = 65025;
+          struct pn533_target_felica * felica = (struct pn533_target_felica *) malloc(_len_felica0*sizeof(struct pn533_target_felica));
+          for(int _i0 = 0; _i0 < _len_felica0; _i0++) {
+              felica[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pn533_target_felica_is_valid(felica,target_data_len);
           printf("%d\n", benchRet); 
           free(felica);
@@ -103,21 +120,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int target_data_len = 10;
+        
           int _len_felica0 = 100;
           struct pn533_target_felica * felica = (struct pn533_target_felica *) malloc(_len_felica0*sizeof(struct pn533_target_felica));
           for(int _i0 = 0; _i0 < _len_felica0; _i0++) {
-            felica[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              felica[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pn533_target_felica_is_valid(felica,target_data_len);
           printf("%d\n", benchRet); 
           free(felica);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int target_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_felica0 = 1;
+          struct pn533_target_felica * felica = (struct pn533_target_felica *) malloc(_len_felica0*sizeof(struct pn533_target_felica));
+          for(int _i0 = 0; _i0 < _len_felica0; _i0++) {
+              felica[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pn533_target_felica_is_valid(felica,target_data_len);
+          printf("%d\n", benchRet); 
+          free(felica);
+        
+        break;
+    }
     default:
         usage();
         break;

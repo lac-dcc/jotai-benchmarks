@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static u16 kv_convert_8bit_index_to_voltage(struct amdgpu_
 	return 6200 - (voltage * 25);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int voltage = 100;
+        
           int _len_adev0 = 1;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = kv_convert_8bit_index_to_voltage(adev,voltage);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int voltage = 255;
+        
+          int _len_adev0 = 65025;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = kv_convert_8bit_index_to_voltage(adev,voltage);
           printf("%d\n", benchRet); 
           free(adev);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int voltage = 10;
+        
           int _len_adev0 = 100;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kv_convert_8bit_index_to_voltage(adev,voltage);
           printf("%d\n", benchRet); 
           free(adev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int voltage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kv_convert_8bit_index_to_voltage(adev,voltage);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
     default:
         usage();
         break;

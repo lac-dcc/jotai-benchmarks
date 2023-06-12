@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static char *unmakemask (int mask, char *smask) {
   return smask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 100;
+        
           int _len_smask0 = 1;
           char * smask = (char *) malloc(_len_smask0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_smask0; _i0++) {
             smask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          char * benchRet = unmakemask(mask,smask);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(smask);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mask = 255;
+        
+          int _len_smask0 = 65025;
+          char * smask = (char *) malloc(_len_smask0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_smask0; _i0++) {
+            smask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           char * benchRet = unmakemask(mask,smask);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(smask);
@@ -101,21 +116,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mask = 10;
+        
           int _len_smask0 = 100;
           char * smask = (char *) malloc(_len_smask0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_smask0; _i0++) {
             smask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = unmakemask(mask,smask);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(smask);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_smask0 = 1;
+          char * smask = (char *) malloc(_len_smask0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_smask0; _i0++) {
+            smask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = unmakemask(mask,smask);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(smask);
+        
+        break;
+    }
     default:
         usage();
         break;

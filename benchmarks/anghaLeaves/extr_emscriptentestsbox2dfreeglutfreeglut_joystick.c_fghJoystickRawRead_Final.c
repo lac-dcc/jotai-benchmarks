@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -369,12 +371,6 @@ __attribute__((used)) static void fghJoystickRawRead( SFG_Joystick* joy, int* bu
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -387,25 +383,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_joy0 = 1;
+          int _len_joy0 = 65025;
           struct TYPE_3__ * joy = (struct TYPE_3__ *) malloc(_len_joy0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_joy0; _i0++) {
-            joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
-        joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+              joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_buttons0 = 1;
+        
+          int _len_buttons0 = 65025;
           int * buttons = (int *) malloc(_len_buttons0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buttons0; _i0++) {
             buttons[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_axes0 = 1;
+        
+          int _len_axes0 = 65025;
           float * axes = (float *) malloc(_len_axes0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_axes0; _i0++) {
             axes[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           fghJoystickRawRead(joy,buttons,axes);
           free(joy);
           free(buttons);
@@ -413,7 +413,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_joy0 = 100;
+          struct TYPE_3__ * joy = (struct TYPE_3__ *) malloc(_len_joy0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_joy0; _i0++) {
+              joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buttons0 = 100;
+          int * buttons = (int *) malloc(_len_buttons0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buttons0; _i0++) {
+            buttons[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_axes0 = 100;
+          float * axes = (float *) malloc(_len_axes0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_axes0; _i0++) {
+            axes[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          fghJoystickRawRead(joy,buttons,axes);
+          free(joy);
+          free(buttons);
+          free(axes);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_joy0 = 1;
+          struct TYPE_3__ * joy = (struct TYPE_3__ *) malloc(_len_joy0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_joy0; _i0++) {
+              joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buttons0 = 1;
+          int * buttons = (int *) malloc(_len_buttons0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buttons0; _i0++) {
+            buttons[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_axes0 = 1;
+          float * axes = (float *) malloc(_len_axes0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_axes0; _i0++) {
+            axes[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          fghJoystickRawRead(joy,buttons,axes);
+          free(joy);
+          free(buttons);
+          free(axes);
+        
+        break;
+    }
     default:
         usage();
         break;

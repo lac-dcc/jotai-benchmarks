@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void check_choice(int dir, int val, bool *found, in
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +79,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int dir = 100;
+        
           int val = 100;
+        
           int choice = 100;
+        
           int _len_found0 = 1;
           int * found = (int *) malloc(_len_found0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_found0; _i0++) {
             found[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_best0 = 1;
           int * best = (int *) malloc(_len_best0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_best0; _i0++) {
             best[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          check_choice(dir,val,found,best,choice);
+          free(found);
+          free(best);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int dir = 255;
+        
+          int val = 255;
+        
+          int choice = 255;
+        
+          int _len_found0 = 65025;
+          int * found = (int *) malloc(_len_found0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_found0; _i0++) {
+            found[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_best0 = 65025;
+          int * best = (int *) malloc(_len_best0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_best0; _i0++) {
+            best[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          check_choice(dir,val,found,best,choice);
+          free(found);
+          free(best);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int dir = 10;
+        
+          int val = 10;
+        
+          int choice = 10;
+        
+          int _len_found0 = 100;
+          int * found = (int *) malloc(_len_found0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_found0; _i0++) {
+            found[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_best0 = 100;
+          int * best = (int *) malloc(_len_best0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_best0; _i0++) {
+            best[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          check_choice(dir,val,found,best,choice);
+          free(found);
+          free(best);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int choice = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_found0 = 1;
+          int * found = (int *) malloc(_len_found0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_found0; _i0++) {
+            found[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_best0 = 1;
+          int * best = (int *) malloc(_len_best0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_best0; _i0++) {
+            best[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           check_choice(dir,val,found,best,choice);
           free(found);
           free(best);

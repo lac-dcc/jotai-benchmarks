@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -85,12 +85,6 @@ __attribute__((used)) static bool is_ohci_port(enum usbhs_omap_port_mode pmode)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,16 +97,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum usbhs_omap_port_mode pmode = 0;
+        
           int benchRet = is_ohci_port(pmode);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static u8 HTIOTActIsMgntUseCCK6M(struct ieee80211_network 
 	return retValue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_network0 = 1;
+          int _len_network0 = 65025;
           struct ieee80211_network * network = (struct ieee80211_network *) malloc(_len_network0*sizeof(struct ieee80211_network));
           for(int _i0 = 0; _i0 < _len_network0; _i0++) {
-            network[_i0].broadcom_cap_exist = ((-2 * (next_i()%2)) + 1) * next_i();
+              network[_i0].broadcom_cap_exist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = HTIOTActIsMgntUseCCK6M(network);
           printf("%d\n", benchRet); 
           free(network);
@@ -108,15 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_network0 = 100;
           struct ieee80211_network * network = (struct ieee80211_network *) malloc(_len_network0*sizeof(struct ieee80211_network));
           for(int _i0 = 0; _i0 < _len_network0; _i0++) {
-            network[_i0].broadcom_cap_exist = ((-2 * (next_i()%2)) + 1) * next_i();
+              network[_i0].broadcom_cap_exist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = HTIOTActIsMgntUseCCK6M(network);
           printf("%d\n", benchRet); 
           free(network);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_network0 = 1;
+          struct ieee80211_network * network = (struct ieee80211_network *) malloc(_len_network0*sizeof(struct ieee80211_network));
+          for(int _i0 = 0; _i0 < _len_network0; _i0++) {
+              network[_i0].broadcom_cap_exist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = HTIOTActIsMgntUseCCK6M(network);
+          printf("%d\n", benchRet); 
+          free(network);
+        
+        break;
+    }
     default:
         usage();
         break;

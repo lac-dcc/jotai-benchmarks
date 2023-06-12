@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static inline int dv_write_ssyb_id(uint8_t syb_num, uint8_
     return 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +88,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int syb_num = 10;
-          int fr = 10;
-          int _len_buf0 = 100;
+          int syb_num = 255;
+        
+          int fr = 255;
+        
+          int _len_buf0 = 65025;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dv_write_ssyb_id(syb_num,fr,buf);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int syb_num = 10;
+        
+          int fr = 10;
+        
+          int _len_buf0 = 100;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dv_write_ssyb_id(syb_num,fr,buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

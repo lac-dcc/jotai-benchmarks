@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            empty\n\
 \n\
 ");
 
@@ -94,7 +95,6 @@ skip:
 	return result;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct resource *_allocate_res(int length, struct resource *aux_res[]) {
@@ -136,7 +136,6 @@ void _delete_res(struct resource *aux_res[], int aux_res_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -153,16 +152,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long start = 100;
+        
           long size = 100;
+        
           struct resource * aux_res[1];
           struct resource * res = _allocate_res(1, aux_res);
+        
           int benchRet = __adjust_resource(res,start,size);
           printf("%d\n", benchRet); 
           _delete_res(aux_res, 1);
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct resource * aux_res[1];
+          struct resource * res = _allocate_res(1, aux_res);
+        
+          int benchRet = __adjust_resource(res,start,size);
+          printf("%d\n", benchRet); 
+          _delete_res(aux_res, 1);
+        
+        break;
+    }
     default:
         usage();
         break;

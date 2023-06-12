@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int pcm_accessible_state(struct snd_pcm_runtime *ru
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,18 +95,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_runtime0 = 1;
+          int _len_runtime0 = 65025;
           struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
           for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
               int _len_runtime__i0__status0 = 1;
           runtime[_i0].status = (struct TYPE_2__ *) malloc(_len_runtime__i0__status0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_runtime__i0__status0; _j0++) {
-            runtime[_i0].status->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              runtime[_i0].status->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = pcm_accessible_state(runtime);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_runtime0; _aux++) {
@@ -120,7 +119,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_runtime0 = 100;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              int _len_runtime__i0__status0 = 1;
+          runtime[_i0].status = (struct TYPE_2__ *) malloc(_len_runtime__i0__status0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_runtime__i0__status0; _j0++) {
+              runtime[_i0].status->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pcm_accessible_state(runtime);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_runtime0; _aux++) {
+          free(runtime[_aux].status);
+          }
+          free(runtime);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_runtime0 = 1;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              int _len_runtime__i0__status0 = 1;
+          runtime[_i0].status = (struct TYPE_2__ *) malloc(_len_runtime__i0__status0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_runtime__i0__status0; _j0++) {
+              runtime[_i0].status->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pcm_accessible_state(runtime);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_runtime0; _aux++) {
+          free(runtime[_aux].status);
+          }
+          free(runtime);
+        
+        break;
+    }
     default:
         usage();
         break;

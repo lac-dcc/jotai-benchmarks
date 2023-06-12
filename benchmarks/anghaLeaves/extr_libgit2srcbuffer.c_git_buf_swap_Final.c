@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void git_buf_swap(git_buf *buf_a, git_buf *buf_b)
 	*buf_b = t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_buf_a0 = 65025;
+          int * buf_a = (int *) malloc(_len_buf_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf_a0; _i0++) {
+            buf_a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buf_b0 = 65025;
+          int * buf_b = (int *) malloc(_len_buf_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf_b0; _i0++) {
+            buf_b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          git_buf_swap(buf_a,buf_b);
+          free(buf_a);
+          free(buf_b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_buf_a0 = 100;
+          int * buf_a = (int *) malloc(_len_buf_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf_a0; _i0++) {
+            buf_a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buf_b0 = 100;
+          int * buf_b = (int *) malloc(_len_buf_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf_b0; _i0++) {
+            buf_b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          git_buf_swap(buf_a,buf_b);
+          free(buf_a);
+          free(buf_b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_buf_a0 = 1;
           int * buf_a = (int *) malloc(_len_buf_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf_a0; _i0++) {
             buf_a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buf_b0 = 1;
           int * buf_b = (int *) malloc(_len_buf_b0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf_b0; _i0++) {
             buf_b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           git_buf_swap(buf_a,buf_b);
           free(buf_a);
           free(buf_b);

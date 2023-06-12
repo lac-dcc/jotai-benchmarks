@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ vc_update_color(int color, boolean_t fore)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int color = 100;
+        
           long fore = 100;
+        
           vc_update_color(color,fore);
         
         break;
@@ -107,7 +104,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int color = 255;
+        
           long fore = 255;
+        
           vc_update_color(color,fore);
         
         break;
@@ -116,12 +115,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int color = 10;
+        
           long fore = 10;
+        
           vc_update_color(color,fore);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long fore = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vc_update_color(color,fore);
+        
+        break;
+    }
     default:
         usage();
         break;

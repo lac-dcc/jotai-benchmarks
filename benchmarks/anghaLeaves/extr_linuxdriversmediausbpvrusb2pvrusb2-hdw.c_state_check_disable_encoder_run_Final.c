@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ __attribute__((used)) static int state_check_disable_encoder_run(struct pvr2_hdw
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,25 +114,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hdw0 = 1;
+          int _len_hdw0 = 65025;
           struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
           for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
-            hdw[_i0].pathway_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].state_encoder_runok = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].state_decoder_run = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].state_pathway_ok = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].state_encoder_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdw[_i0].pathway_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_encoder_runok = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_decoder_run = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_pathway_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_encoder_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = state_check_disable_encoder_run(hdw);
           printf("%d\n", benchRet); 
           free(hdw);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hdw0 = 100;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].pathway_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_encoder_runok = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_decoder_run = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_pathway_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_encoder_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = state_check_disable_encoder_run(hdw);
+          printf("%d\n", benchRet); 
+          free(hdw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hdw0 = 1;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].pathway_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_encoder_runok = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_decoder_run = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_pathway_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].state_encoder_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = state_check_disable_encoder_run(hdw);
+          printf("%d\n", benchRet); 
+          free(hdw);
+        
+        break;
+    }
     default:
         usage();
         break;

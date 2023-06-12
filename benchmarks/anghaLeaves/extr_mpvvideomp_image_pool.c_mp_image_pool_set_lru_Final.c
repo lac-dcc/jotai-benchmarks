@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void mp_image_pool_set_lru(struct mp_image_pool *pool)
     pool->use_lru = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pool0 = 1;
+          int _len_pool0 = 65025;
           struct mp_image_pool * pool = (struct mp_image_pool *) malloc(_len_pool0*sizeof(struct mp_image_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].use_lru = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].use_lru = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mp_image_pool_set_lru(pool);
           free(pool);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_pool0 = 100;
           struct mp_image_pool * pool = (struct mp_image_pool *) malloc(_len_pool0*sizeof(struct mp_image_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].use_lru = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].use_lru = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mp_image_pool_set_lru(pool);
           free(pool);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pool0 = 1;
+          struct mp_image_pool * pool = (struct mp_image_pool *) malloc(_len_pool0*sizeof(struct mp_image_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].use_lru = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mp_image_pool_set_lru(pool);
+          free(pool);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int pack_ad8842(int addr, int val, int *bitstring)
 	return 12;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,32 +74,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int addr = 100;
+        
           int val = 100;
+        
           int _len_bitstring0 = 1;
           int * bitstring = (int *) malloc(_len_bitstring0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bitstring0; _i0++) {
             bitstring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = pack_ad8842(addr,val,bitstring);
           printf("%d\n", benchRet); 
           free(bitstring);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int addr = 255;
+        
+          int val = 255;
+        
+          int _len_bitstring0 = 65025;
+          int * bitstring = (int *) malloc(_len_bitstring0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bitstring0; _i0++) {
+            bitstring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = pack_ad8842(addr,val,bitstring);
+          printf("%d\n", benchRet); 
+          free(bitstring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int addr = 10;
+        
           int val = 10;
+        
           int _len_bitstring0 = 100;
           int * bitstring = (int *) malloc(_len_bitstring0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bitstring0; _i0++) {
             bitstring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = pack_ad8842(addr,val,bitstring);
           printf("%d\n", benchRet); 
           free(bitstring);

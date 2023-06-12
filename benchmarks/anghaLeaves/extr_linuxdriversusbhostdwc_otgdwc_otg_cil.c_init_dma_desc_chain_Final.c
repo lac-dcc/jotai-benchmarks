@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -147,12 +149,6 @@ __attribute__((used)) static void init_dma_desc_chain(dwc_otg_core_if_t * core_i
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -165,37 +161,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          int _len_core_if0 = 65025;
+          int * core_if = (int *) malloc(_len_core_if0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
+            core_if[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ep0 = 65025;
+          struct TYPE_9__ * ep = (struct TYPE_9__ *) malloc(_len_ep0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].xfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].maxxfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].total_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].dma_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].sent_zlp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].is_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ep__i0__desc_addr0 = 1;
+          ep[_i0].desc_addr = (struct TYPE_8__ *) malloc(_len_ep__i0__desc_addr0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ep__i0__desc_addr0; _j0++) {
+              ep[_i0].desc_addr->buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.l = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.ioc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.sts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          init_dma_desc_chain(core_if,ep);
+          free(core_if);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].desc_addr);
+          }
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          int _len_core_if0 = 100;
+          int * core_if = (int *) malloc(_len_core_if0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
+            core_if[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ep0 = 100;
+          struct TYPE_9__ * ep = (struct TYPE_9__ *) malloc(_len_ep0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].xfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].maxxfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].total_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].dma_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].sent_zlp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].is_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ep__i0__desc_addr0 = 1;
+          ep[_i0].desc_addr = (struct TYPE_8__ *) malloc(_len_ep__i0__desc_addr0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_ep__i0__desc_addr0; _j0++) {
+              ep[_i0].desc_addr->buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.l = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.ioc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.sts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          init_dma_desc_chain(core_if,ep);
+          free(core_if);
+          for(int _aux = 0; _aux < _len_ep0; _aux++) {
+          free(ep[_aux].desc_addr);
+          }
+          free(ep);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 63
+          // dynamic_instructions_O0 : 63
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 42
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 41
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
           int _len_core_if0 = 1;
           int * core_if = (int *) malloc(_len_core_if0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
             core_if[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ep0 = 1;
           struct TYPE_9__ * ep = (struct TYPE_9__ *) malloc(_len_ep0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].xfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].maxxfer = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].total_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].dma_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].sent_zlp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].is_in = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].xfer_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].maxxfer = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].total_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].dma_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].sent_zlp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].is_in = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ep__i0__desc_addr0 = 1;
           ep[_i0].desc_addr = (struct TYPE_8__ *) malloc(_len_ep__i0__desc_addr0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_ep__i0__desc_addr0; _j0++) {
-            ep[_i0].desc_addr->buf = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].desc_addr->status.b.l = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].desc_addr->status.b.ioc = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].desc_addr->status.b.sp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].desc_addr->status.b.bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].desc_addr->status.b.sts = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].desc_addr->buf = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.l = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.ioc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.sp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].desc_addr->status.b.sts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           init_dma_desc_chain(core_if,ep);
           free(core_if);
           for(int _aux = 0; _aux < _len_ep0; _aux++) {

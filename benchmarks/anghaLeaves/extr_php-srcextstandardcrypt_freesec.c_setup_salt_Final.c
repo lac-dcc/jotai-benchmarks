@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ setup_salt(uint32_t salt, struct php_crypt_extended_data *data)
 	data->saltbits = saltbits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,18 +97,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int salt = 100;
+        
           int _len_data0 = 1;
           struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
-        data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           setup_salt(salt,data);
           free(data);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int salt = 255;
+        
+          int _len_data0 = 65025;
+          struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          setup_salt(salt,data);
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int salt = 10;
+        
+          int _len_data0 = 100;
+          struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          setup_salt(salt,data);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int salt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct php_crypt_extended_data * data = (struct php_crypt_extended_data *) malloc(_len_data0*sizeof(struct php_crypt_extended_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].old_salt = ((-2 * (next_i()%2)) + 1) * next_i();
+          data[_i0].saltbits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          setup_salt(salt,data);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

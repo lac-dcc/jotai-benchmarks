@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline bool dbg_hc(struct dwc2_host_chan *hc)
 	       hc->ep_type == USB_ENDPOINT_XFER_CONTROL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hc0 = 1;
+          int _len_hc0 = 65025;
           struct dwc2_host_chan * hc = (struct dwc2_host_chan *) malloc(_len_hc0*sizeof(struct dwc2_host_chan));
           for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
-            hc[_i0].ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hc[_i0].ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dbg_hc(hc);
           printf("%d\n", benchRet); 
           free(hc);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_hc0 = 100;
           struct dwc2_host_chan * hc = (struct dwc2_host_chan *) malloc(_len_hc0*sizeof(struct dwc2_host_chan));
           for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
-            hc[_i0].ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              hc[_i0].ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dbg_hc(hc);
           printf("%d\n", benchRet); 
           free(hc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hc0 = 1;
+          struct dwc2_host_chan * hc = (struct dwc2_host_chan *) malloc(_len_hc0*sizeof(struct dwc2_host_chan));
+          for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
+              hc[_i0].ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dbg_hc(hc);
+          printf("%d\n", benchRet); 
+          free(hc);
+        
+        break;
+    }
     default:
         usage();
         break;

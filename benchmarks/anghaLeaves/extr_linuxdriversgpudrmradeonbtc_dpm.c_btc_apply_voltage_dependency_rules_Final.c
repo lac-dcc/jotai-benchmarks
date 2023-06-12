@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ void btc_apply_voltage_dependency_rules(struct radeon_clock_voltage_dependency_t
 	*voltage = (*voltage > max_voltage) ? *voltage : max_voltage;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,27 +94,236 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           unsigned long clock = 100;
+        
           long max_voltage = 100;
+        
           int _len_table0 = 1;
           struct radeon_clock_voltage_dependency_table * table = (struct radeon_clock_voltage_dependency_table *) malloc(_len_table0*sizeof(struct radeon_clock_voltage_dependency_table));
           for(int _i0 = 0; _i0 < _len_table0; _i0++) {
-            table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_table__i0__entries0 = 1;
           table[_i0].entries = (struct TYPE_2__ *) malloc(_len_table__i0__entries0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_table__i0__entries0; _j0++) {
-            table[_i0].entries->clk = ((-2 * (next_i()%2)) + 1) * next_i();
-        table[_i0].entries->v = ((-2 * (next_i()%2)) + 1) * next_i();
+              table[_i0].entries->clk = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].entries->v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_voltage0 = 1;
           long * voltage = (long *) malloc(_len_voltage0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_voltage0; _i0++) {
             voltage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          btc_apply_voltage_dependency_rules(table,clock,max_voltage,voltage);
+          for(int _aux = 0; _aux < _len_table0; _aux++) {
+          free(table[_aux].entries);
+          }
+          free(table);
+          free(voltage);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long clock = 255;
+        
+          long max_voltage = 255;
+        
+          int _len_table0 = 65025;
+          struct radeon_clock_voltage_dependency_table * table = (struct radeon_clock_voltage_dependency_table *) malloc(_len_table0*sizeof(struct radeon_clock_voltage_dependency_table));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_table__i0__entries0 = 1;
+          table[_i0].entries = (struct TYPE_2__ *) malloc(_len_table__i0__entries0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_table__i0__entries0; _j0++) {
+              table[_i0].entries->clk = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].entries->v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_voltage0 = 65025;
+          long * voltage = (long *) malloc(_len_voltage0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_voltage0; _i0++) {
+            voltage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          btc_apply_voltage_dependency_rules(table,clock,max_voltage,voltage);
+          for(int _aux = 0; _aux < _len_table0; _aux++) {
+          free(table[_aux].entries);
+          }
+          free(table);
+          free(voltage);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long clock = 10;
+        
+          long max_voltage = 10;
+        
+          int _len_table0 = 100;
+          struct radeon_clock_voltage_dependency_table * table = (struct radeon_clock_voltage_dependency_table *) malloc(_len_table0*sizeof(struct radeon_clock_voltage_dependency_table));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_table__i0__entries0 = 1;
+          table[_i0].entries = (struct TYPE_2__ *) malloc(_len_table__i0__entries0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_table__i0__entries0; _j0++) {
+              table[_i0].entries->clk = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].entries->v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_voltage0 = 100;
+          long * voltage = (long *) malloc(_len_voltage0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_voltage0; _i0++) {
+            voltage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          btc_apply_voltage_dependency_rules(table,clock,max_voltage,voltage);
+          for(int _aux = 0; _aux < _len_table0; _aux++) {
+          free(table[_aux].entries);
+          }
+          free(table);
+          free(voltage);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long max_voltage = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_table0 = 1;
+          struct radeon_clock_voltage_dependency_table * table = (struct radeon_clock_voltage_dependency_table *) malloc(_len_table0*sizeof(struct radeon_clock_voltage_dependency_table));
+          for(int _i0 = 0; _i0 < _len_table0; _i0++) {
+              table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_table__i0__entries0 = 1;
+          table[_i0].entries = (struct TYPE_2__ *) malloc(_len_table__i0__entries0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_table__i0__entries0; _j0++) {
+              table[_i0].entries->clk = ((-2 * (next_i()%2)) + 1) * next_i();
+          table[_i0].entries->v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_voltage0 = 1;
+          long * voltage = (long *) malloc(_len_voltage0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_voltage0; _i0++) {
+            voltage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           btc_apply_voltage_dependency_rules(table,clock,max_voltage,voltage);
           for(int _aux = 0; _aux < _len_table0; _aux++) {
           free(table[_aux].entries);

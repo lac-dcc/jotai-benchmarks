@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static int ab8500_voltage_to_temp(struct ab8500_gpadc_cfg 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,28 +96,239 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int v_ntc = 100;
+        
           int _len_cfg0 = 1;
           struct ab8500_gpadc_cfg * cfg = (struct ab8500_gpadc_cfg *) malloc(_len_cfg0*sizeof(struct ab8500_gpadc_cfg));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].tbl_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].vcc = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].r_up = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].tbl_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].vcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].r_up = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cfg__i0__temp_tbl0 = 1;
           cfg[_i0].temp_tbl = (struct abx500_res_to_temp *) malloc(_len_cfg__i0__temp_tbl0*sizeof(struct abx500_res_to_temp));
           for(int _j0 = 0; _j0 < _len_cfg__i0__temp_tbl0; _j0++) {
-            cfg[_i0].temp_tbl->resist = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].temp_tbl->temp = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].temp_tbl->resist = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].temp_tbl->temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_temp0 = 1;
           int * temp = (int *) malloc(_len_temp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
             temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ab8500_voltage_to_temp(cfg,v_ntc,temp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfg0; _aux++) {
+          free(cfg[_aux].temp_tbl);
+          }
+          free(cfg);
+          free(temp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int v_ntc = 255;
+        
+          int _len_cfg0 = 65025;
+          struct ab8500_gpadc_cfg * cfg = (struct ab8500_gpadc_cfg *) malloc(_len_cfg0*sizeof(struct ab8500_gpadc_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].tbl_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].vcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].r_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cfg__i0__temp_tbl0 = 1;
+          cfg[_i0].temp_tbl = (struct abx500_res_to_temp *) malloc(_len_cfg__i0__temp_tbl0*sizeof(struct abx500_res_to_temp));
+          for(int _j0 = 0; _j0 < _len_cfg__i0__temp_tbl0; _j0++) {
+              cfg[_i0].temp_tbl->resist = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].temp_tbl->temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_temp0 = 65025;
+          int * temp = (int *) malloc(_len_temp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
+            temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ab8500_voltage_to_temp(cfg,v_ntc,temp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfg0; _aux++) {
+          free(cfg[_aux].temp_tbl);
+          }
+          free(cfg);
+          free(temp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int v_ntc = 10;
+        
+          int _len_cfg0 = 100;
+          struct ab8500_gpadc_cfg * cfg = (struct ab8500_gpadc_cfg *) malloc(_len_cfg0*sizeof(struct ab8500_gpadc_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].tbl_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].vcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].r_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cfg__i0__temp_tbl0 = 1;
+          cfg[_i0].temp_tbl = (struct abx500_res_to_temp *) malloc(_len_cfg__i0__temp_tbl0*sizeof(struct abx500_res_to_temp));
+          for(int _j0 = 0; _j0 < _len_cfg__i0__temp_tbl0; _j0++) {
+              cfg[_i0].temp_tbl->resist = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].temp_tbl->temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_temp0 = 100;
+          int * temp = (int *) malloc(_len_temp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
+            temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ab8500_voltage_to_temp(cfg,v_ntc,temp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfg0; _aux++) {
+          free(cfg[_aux].temp_tbl);
+          }
+          free(cfg);
+          free(temp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int v_ntc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cfg0 = 1;
+          struct ab8500_gpadc_cfg * cfg = (struct ab8500_gpadc_cfg *) malloc(_len_cfg0*sizeof(struct ab8500_gpadc_cfg));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].tbl_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].vcc = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].r_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cfg__i0__temp_tbl0 = 1;
+          cfg[_i0].temp_tbl = (struct abx500_res_to_temp *) malloc(_len_cfg__i0__temp_tbl0*sizeof(struct abx500_res_to_temp));
+          for(int _j0 = 0; _j0 < _len_cfg__i0__temp_tbl0; _j0++) {
+              cfg[_i0].temp_tbl->resist = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].temp_tbl->temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_temp0 = 1;
+          int * temp = (int *) malloc(_len_temp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_temp0; _i0++) {
+            temp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ab8500_voltage_to_temp(cfg,v_ntc,temp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cfg0; _aux++) {

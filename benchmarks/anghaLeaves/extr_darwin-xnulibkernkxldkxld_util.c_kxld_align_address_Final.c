@@ -73,12 +73,6 @@ kxld_align_address(kxld_addr_t address, u_int align)
     return address;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,13 +89,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int address = 10;
+        
           int align = 10;
+        
           int benchRet = kxld_align_address(address,align);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

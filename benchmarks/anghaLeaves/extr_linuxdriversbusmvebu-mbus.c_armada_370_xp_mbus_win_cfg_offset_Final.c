@@ -76,12 +76,6 @@ __attribute__((used)) static unsigned int armada_370_xp_mbus_win_cfg_offset(int 
 		return 0x90 + ((win - 8) << 3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int win = 100;
+        
           unsigned int benchRet = armada_370_xp_mbus_win_cfg_offset(win);
           printf("%u\n", benchRet); 
         
@@ -107,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int win = 255;
+        
           unsigned int benchRet = armada_370_xp_mbus_win_cfg_offset(win);
           printf("%u\n", benchRet); 
         
@@ -116,12 +112,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int win = 10;
+        
           unsigned int benchRet = armada_370_xp_mbus_win_cfg_offset(win);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

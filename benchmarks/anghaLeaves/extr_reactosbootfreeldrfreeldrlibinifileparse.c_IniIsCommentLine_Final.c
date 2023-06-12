@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ BOOLEAN IniIsCommentLine(PCHAR LineOfText, ULONG TextLength)
     return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,11 +105,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long TextLength = 100;
+        
           int _len_LineOfText0 = 1;
           char * LineOfText = (char *) malloc(_len_LineOfText0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_LineOfText0; _i0++) {
             LineOfText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = IniIsCommentLine(LineOfText,TextLength);
+          printf("%d\n", benchRet); 
+          free(LineOfText);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long TextLength = 255;
+        
+          int _len_LineOfText0 = 65025;
+          char * LineOfText = (char *) malloc(_len_LineOfText0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_LineOfText0; _i0++) {
+            LineOfText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = IniIsCommentLine(LineOfText,TextLength);
           printf("%d\n", benchRet); 
           free(LineOfText);
@@ -121,21 +136,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long TextLength = 10;
+        
           int _len_LineOfText0 = 100;
           char * LineOfText = (char *) malloc(_len_LineOfText0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_LineOfText0; _i0++) {
             LineOfText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = IniIsCommentLine(LineOfText,TextLength);
           printf("%d\n", benchRet); 
           free(LineOfText);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long TextLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_LineOfText0 = 1;
+          char * LineOfText = (char *) malloc(_len_LineOfText0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_LineOfText0; _i0++) {
+            LineOfText[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = IniIsCommentLine(LineOfText,TextLength);
+          printf("%d\n", benchRet); 
+          free(LineOfText);
+        
+        break;
+    }
     default:
         usage();
         break;

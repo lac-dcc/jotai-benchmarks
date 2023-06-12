@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int pipe_required_fdi_lanes(struct intel_crtc_state
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_crtc_state0 = 1;
+          int _len_crtc_state0 = 65025;
           struct intel_crtc_state * crtc_state = (struct intel_crtc_state *) malloc(_len_crtc_state0*sizeof(struct intel_crtc_state));
           for(int _i0 = 0; _i0 < _len_crtc_state0; _i0++) {
-            crtc_state[_i0].fdi_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
-        crtc_state[_i0].has_pch_encoder = ((-2 * (next_i()%2)) + 1) * next_i();
-        crtc_state[_i0].base.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              crtc_state[_i0].fdi_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc_state[_i0].has_pch_encoder = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc_state[_i0].base.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = pipe_required_fdi_lanes(crtc_state);
           printf("%d\n", benchRet); 
           free(crtc_state);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_crtc_state0 = 100;
+          struct intel_crtc_state * crtc_state = (struct intel_crtc_state *) malloc(_len_crtc_state0*sizeof(struct intel_crtc_state));
+          for(int _i0 = 0; _i0 < _len_crtc_state0; _i0++) {
+              crtc_state[_i0].fdi_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc_state[_i0].has_pch_encoder = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc_state[_i0].base.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pipe_required_fdi_lanes(crtc_state);
+          printf("%d\n", benchRet); 
+          free(crtc_state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_crtc_state0 = 1;
+          struct intel_crtc_state * crtc_state = (struct intel_crtc_state *) malloc(_len_crtc_state0*sizeof(struct intel_crtc_state));
+          for(int _i0 = 0; _i0 < _len_crtc_state0; _i0++) {
+              crtc_state[_i0].fdi_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc_state[_i0].has_pch_encoder = ((-2 * (next_i()%2)) + 1) * next_i();
+          crtc_state[_i0].base.enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pipe_required_fdi_lanes(crtc_state);
+          printf("%d\n", benchRet); 
+          free(crtc_state);
+        
+        break;
+    }
     default:
         usage();
         break;

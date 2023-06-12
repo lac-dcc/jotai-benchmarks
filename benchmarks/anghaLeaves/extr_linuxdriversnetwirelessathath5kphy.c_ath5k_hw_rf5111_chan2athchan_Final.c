@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ ath5k_hw_rf5111_chan2athchan(unsigned int ieee,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,19 +102,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int ieee = 100;
+        
           int _len_athchan0 = 1;
           struct ath5k_athchan_2ghz * athchan = (struct ath5k_athchan_2ghz *) malloc(_len_athchan0*sizeof(struct ath5k_athchan_2ghz));
           for(int _i0 = 0; _i0 < _len_athchan0; _i0++) {
-            athchan[_i0].a2_athchan = ((-2 * (next_i()%2)) + 1) * next_i();
-        athchan[_i0].a2_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              athchan[_i0].a2_athchan = ((-2 * (next_i()%2)) + 1) * next_i();
+          athchan[_i0].a2_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath5k_hw_rf5111_chan2athchan(ieee,athchan);
           printf("%d\n", benchRet); 
           free(athchan);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int ieee = 255;
+        
+          int _len_athchan0 = 65025;
+          struct ath5k_athchan_2ghz * athchan = (struct ath5k_athchan_2ghz *) malloc(_len_athchan0*sizeof(struct ath5k_athchan_2ghz));
+          for(int _i0 = 0; _i0 < _len_athchan0; _i0++) {
+              athchan[_i0].a2_athchan = ((-2 * (next_i()%2)) + 1) * next_i();
+          athchan[_i0].a2_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath5k_hw_rf5111_chan2athchan(ieee,athchan);
+          printf("%d\n", benchRet); 
+          free(athchan);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int ieee = 10;
+        
+          int _len_athchan0 = 100;
+          struct ath5k_athchan_2ghz * athchan = (struct ath5k_athchan_2ghz *) malloc(_len_athchan0*sizeof(struct ath5k_athchan_2ghz));
+          for(int _i0 = 0; _i0 < _len_athchan0; _i0++) {
+              athchan[_i0].a2_athchan = ((-2 * (next_i()%2)) + 1) * next_i();
+          athchan[_i0].a2_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath5k_hw_rf5111_chan2athchan(ieee,athchan);
+          printf("%d\n", benchRet); 
+          free(athchan);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int ieee = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_athchan0 = 1;
+          struct ath5k_athchan_2ghz * athchan = (struct ath5k_athchan_2ghz *) malloc(_len_athchan0*sizeof(struct ath5k_athchan_2ghz));
+          for(int _i0 = 0; _i0 < _len_athchan0; _i0++) {
+              athchan[_i0].a2_athchan = ((-2 * (next_i()%2)) + 1) * next_i();
+          athchan[_i0].a2_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath5k_hw_rf5111_chan2athchan(ieee,athchan);
+          printf("%d\n", benchRet); 
+          free(athchan);
+        
+        break;
+    }
     default:
         usage();
         break;

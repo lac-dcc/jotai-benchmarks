@@ -63,12 +63,6 @@ __attribute__((used)) static inline s32 comp2(s32 __x, s32 __width)
 		return (__x >= (1 << (__width - 1))) ? (__x - (1 << __width)) : __x;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,13 +79,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int __x = 10;
+        
           int __width = 10;
+        
           int benchRet = comp2(__x,__width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

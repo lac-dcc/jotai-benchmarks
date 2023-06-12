@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ _RpcFlushPrinter(WINSPOOL_PRINTER_HANDLE hPrinter, BYTE* pBuf, DWORD cbBuf, DWOR
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +81,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hPrinter = 100;
+        
           int cbBuf = 100;
+        
           int cSleep = 100;
+        
           int _len_pBuf0 = 1;
           int * pBuf = (int *) malloc(_len_pBuf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pBuf0; _i0++) {
             pBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pcWritten0 = 1;
           int * pcWritten = (int *) malloc(_len_pcWritten0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pcWritten0; _i0++) {
             pcWritten[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcFlushPrinter(hPrinter,pBuf,cbBuf,pcWritten,cSleep);
+          printf("%d\n", benchRet); 
+          free(pBuf);
+          free(pcWritten);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 255;
+        
+          int cbBuf = 255;
+        
+          int cSleep = 255;
+        
+          int _len_pBuf0 = 65025;
+          int * pBuf = (int *) malloc(_len_pBuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pBuf0; _i0++) {
+            pBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcWritten0 = 65025;
+          int * pcWritten = (int *) malloc(_len_pcWritten0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcWritten0; _i0++) {
+            pcWritten[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcFlushPrinter(hPrinter,pBuf,cbBuf,pcWritten,cSleep);
+          printf("%d\n", benchRet); 
+          free(pBuf);
+          free(pcWritten);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = 10;
+        
+          int cbBuf = 10;
+        
+          int cSleep = 10;
+        
+          int _len_pBuf0 = 100;
+          int * pBuf = (int *) malloc(_len_pBuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pBuf0; _i0++) {
+            pBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcWritten0 = 100;
+          int * pcWritten = (int *) malloc(_len_pcWritten0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcWritten0; _i0++) {
+            pcWritten[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcFlushPrinter(hPrinter,pBuf,cbBuf,pcWritten,cSleep);
+          printf("%d\n", benchRet); 
+          free(pBuf);
+          free(pcWritten);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cbBuf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cSleep = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pBuf0 = 1;
+          int * pBuf = (int *) malloc(_len_pBuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pBuf0; _i0++) {
+            pBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcWritten0 = 1;
+          int * pcWritten = (int *) malloc(_len_pcWritten0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcWritten0; _i0++) {
+            pcWritten[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcFlushPrinter(hPrinter,pBuf,cbBuf,pcWritten,cSleep);
           printf("%d\n", benchRet); 
           free(pBuf);

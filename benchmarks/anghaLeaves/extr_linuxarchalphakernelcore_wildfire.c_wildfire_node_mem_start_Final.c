@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ unsigned long wildfire_node_mem_start(int nid)
 	return (unsigned long)nid * (64UL * 1024 * 1024 * 1024);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nid = 100;
+        
           unsigned long benchRet = wildfire_node_mem_start(nid);
           printf("%lu\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int nid = 255;
+        
           unsigned long benchRet = wildfire_node_mem_start(nid);
           printf("%lu\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int nid = 10;
+        
           unsigned long benchRet = wildfire_node_mem_start(nid);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = wildfire_node_mem_start(nid);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

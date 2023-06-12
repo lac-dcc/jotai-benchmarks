@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ int trace_keep_overwrite(struct tracer *tracer, u32 mask, int set)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,32 +80,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int mask = 100;
+        
           int set = 100;
+        
           int _len_tracer0 = 1;
           struct tracer * tracer = (struct tracer *) malloc(_len_tracer0*sizeof(struct tracer));
           for(int _i0 = 0; _i0 < _len_tracer0; _i0++) {
-            tracer[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              tracer[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trace_keep_overwrite(tracer,mask,set);
           printf("%d\n", benchRet); 
           free(tracer);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int mask = 255;
+        
+          int set = 255;
+        
+          int _len_tracer0 = 65025;
+          struct tracer * tracer = (struct tracer *) malloc(_len_tracer0*sizeof(struct tracer));
+          for(int _i0 = 0; _i0 < _len_tracer0; _i0++) {
+              tracer[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trace_keep_overwrite(tracer,mask,set);
+          printf("%d\n", benchRet); 
+          free(tracer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int mask = 10;
+        
           int set = 10;
+        
           int _len_tracer0 = 100;
           struct tracer * tracer = (struct tracer *) malloc(_len_tracer0*sizeof(struct tracer));
           for(int _i0 = 0; _i0 < _len_tracer0; _i0++) {
-            tracer[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              tracer[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = trace_keep_overwrite(tracer,mask,set);
+          printf("%d\n", benchRet); 
+          free(tracer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tracer0 = 1;
+          struct tracer * tracer = (struct tracer *) malloc(_len_tracer0*sizeof(struct tracer));
+          for(int _i0 = 0; _i0 < _len_tracer0; _i0++) {
+              tracer[_i0].enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = trace_keep_overwrite(tracer,mask,set);
           printf("%d\n", benchRet); 
           free(tracer);

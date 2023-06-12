@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ RosSymGetMemUM(PVOID FileContext, ULONG_PTR *Target, PVOID SourceMem, ULONG Size
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,34 +80,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int FileContext = 100;
+        
           int SourceMem = 100;
+        
           int Size = 100;
+        
           int _len_Target0 = 1;
           int * Target = (int *) malloc(_len_Target0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Target0; _i0++) {
             Target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = RosSymGetMemUM(FileContext,Target,SourceMem,Size);
           printf("%d\n", benchRet); 
           free(Target);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int FileContext = 255;
+        
+          int SourceMem = 255;
+        
+          int Size = 255;
+        
+          int _len_Target0 = 65025;
+          int * Target = (int *) malloc(_len_Target0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Target0; _i0++) {
+            Target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = RosSymGetMemUM(FileContext,Target,SourceMem,Size);
+          printf("%d\n", benchRet); 
+          free(Target);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int FileContext = 10;
+        
           int SourceMem = 10;
+        
           int Size = 10;
+        
           int _len_Target0 = 100;
           int * Target = (int *) malloc(_len_Target0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Target0; _i0++) {
             Target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = RosSymGetMemUM(FileContext,Target,SourceMem,Size);
+          printf("%d\n", benchRet); 
+          free(Target);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int FileContext = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int SourceMem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Target0 = 1;
+          int * Target = (int *) malloc(_len_Target0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Target0; _i0++) {
+            Target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = RosSymGetMemUM(FileContext,Target,SourceMem,Size);
           printf("%d\n", benchRet); 
           free(Target);

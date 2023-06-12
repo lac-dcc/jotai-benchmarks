@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int multiply(unsigned long *amount, long with)
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long with = 100;
+        
           int _len_amount0 = 1;
           unsigned long * amount = (unsigned long *) malloc(_len_amount0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_amount0; _i0++) {
             amount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = multiply(amount,with);
+          printf("%d\n", benchRet); 
+          free(amount);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long with = 255;
+        
+          int _len_amount0 = 65025;
+          unsigned long * amount = (unsigned long *) malloc(_len_amount0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_amount0; _i0++) {
+            amount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = multiply(amount,with);
           printf("%d\n", benchRet); 
           free(amount);
@@ -102,21 +117,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long with = 10;
+        
           int _len_amount0 = 100;
           unsigned long * amount = (unsigned long *) malloc(_len_amount0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_amount0; _i0++) {
             amount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = multiply(amount,with);
           printf("%d\n", benchRet); 
           free(amount);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long with = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_amount0 = 1;
+          unsigned long * amount = (unsigned long *) malloc(_len_amount0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_amount0; _i0++) {
+            amount[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = multiply(amount,with);
+          printf("%d\n", benchRet); 
+          free(amount);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void line6_midibuf_reset(struct midi_buffer *this)
 	this->command_prev = -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,17 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_this0 = 65025;
+          struct midi_buffer * this = (struct midi_buffer *) malloc(_len_this0*sizeof(struct midi_buffer));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].command_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          line6_midibuf_reset(this);
+          free(this);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_this0 = 100;
+          struct midi_buffer * this = (struct midi_buffer *) malloc(_len_this0*sizeof(struct midi_buffer));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].command_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          line6_midibuf_reset(this);
+          free(this);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_this0 = 1;
           struct midi_buffer * this = (struct midi_buffer *) malloc(_len_this0*sizeof(struct midi_buffer));
           for(int _i0 = 0; _i0 < _len_this0; _i0++) {
-            this[_i0].command_prev = ((-2 * (next_i()%2)) + 1) * next_i();
-        this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
-        this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
-        this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+              this[_i0].command_prev = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].full = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_write = ((-2 * (next_i()%2)) + 1) * next_i();
+          this[_i0].pos_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           line6_midibuf_reset(this);
           free(this);
         

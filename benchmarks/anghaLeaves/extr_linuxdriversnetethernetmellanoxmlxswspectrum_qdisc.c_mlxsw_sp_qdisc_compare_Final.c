@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ mlxsw_sp_qdisc_compare(struct mlxsw_sp_qdisc *mlxsw_sp_qdisc, u32 handle,
 	       mlxsw_sp_qdisc->handle == handle;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long handle = 100;
+        
           enum mlxsw_sp_qdisc_type type = 0;
+        
           int _len_mlxsw_sp_qdisc0 = 1;
           struct mlxsw_sp_qdisc * mlxsw_sp_qdisc = (struct mlxsw_sp_qdisc *) malloc(_len_mlxsw_sp_qdisc0*sizeof(struct mlxsw_sp_qdisc));
           for(int _i0 = 0; _i0 < _len_mlxsw_sp_qdisc0; _i0++) {
-            mlxsw_sp_qdisc[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_sp_qdisc[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mlxsw_sp_qdisc__i0__ops0 = 1;
           mlxsw_sp_qdisc[_i0].ops = (struct TYPE_2__ *) malloc(_len_mlxsw_sp_qdisc__i0__ops0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mlxsw_sp_qdisc__i0__ops0; _j0++) {
-            mlxsw_sp_qdisc[_i0].ops->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_sp_qdisc[_i0].ops->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = mlxsw_sp_qdisc_compare(mlxsw_sp_qdisc,handle,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlxsw_sp_qdisc0; _aux++) {
+          free(mlxsw_sp_qdisc[_aux].ops);
+          }
+          free(mlxsw_sp_qdisc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long handle = 255;
+        
+          enum mlxsw_sp_qdisc_type type = 0;
+        
+          int _len_mlxsw_sp_qdisc0 = 65025;
+          struct mlxsw_sp_qdisc * mlxsw_sp_qdisc = (struct mlxsw_sp_qdisc *) malloc(_len_mlxsw_sp_qdisc0*sizeof(struct mlxsw_sp_qdisc));
+          for(int _i0 = 0; _i0 < _len_mlxsw_sp_qdisc0; _i0++) {
+              mlxsw_sp_qdisc[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mlxsw_sp_qdisc__i0__ops0 = 1;
+          mlxsw_sp_qdisc[_i0].ops = (struct TYPE_2__ *) malloc(_len_mlxsw_sp_qdisc__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mlxsw_sp_qdisc__i0__ops0; _j0++) {
+              mlxsw_sp_qdisc[_i0].ops->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mlxsw_sp_qdisc_compare(mlxsw_sp_qdisc,handle,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlxsw_sp_qdisc0; _aux++) {
+          free(mlxsw_sp_qdisc[_aux].ops);
+          }
+          free(mlxsw_sp_qdisc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long handle = 10;
+        
+          enum mlxsw_sp_qdisc_type type = 0;
+        
+          int _len_mlxsw_sp_qdisc0 = 100;
+          struct mlxsw_sp_qdisc * mlxsw_sp_qdisc = (struct mlxsw_sp_qdisc *) malloc(_len_mlxsw_sp_qdisc0*sizeof(struct mlxsw_sp_qdisc));
+          for(int _i0 = 0; _i0 < _len_mlxsw_sp_qdisc0; _i0++) {
+              mlxsw_sp_qdisc[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mlxsw_sp_qdisc__i0__ops0 = 1;
+          mlxsw_sp_qdisc[_i0].ops = (struct TYPE_2__ *) malloc(_len_mlxsw_sp_qdisc__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mlxsw_sp_qdisc__i0__ops0; _j0++) {
+              mlxsw_sp_qdisc[_i0].ops->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mlxsw_sp_qdisc_compare(mlxsw_sp_qdisc,handle,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlxsw_sp_qdisc0; _aux++) {
+          free(mlxsw_sp_qdisc[_aux].ops);
+          }
+          free(mlxsw_sp_qdisc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long handle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum mlxsw_sp_qdisc_type type = 0;
+        
+          int _len_mlxsw_sp_qdisc0 = 1;
+          struct mlxsw_sp_qdisc * mlxsw_sp_qdisc = (struct mlxsw_sp_qdisc *) malloc(_len_mlxsw_sp_qdisc0*sizeof(struct mlxsw_sp_qdisc));
+          for(int _i0 = 0; _i0 < _len_mlxsw_sp_qdisc0; _i0++) {
+              mlxsw_sp_qdisc[_i0].handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mlxsw_sp_qdisc__i0__ops0 = 1;
+          mlxsw_sp_qdisc[_i0].ops = (struct TYPE_2__ *) malloc(_len_mlxsw_sp_qdisc__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mlxsw_sp_qdisc__i0__ops0; _j0++) {
+              mlxsw_sp_qdisc[_i0].ops->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = mlxsw_sp_qdisc_compare(mlxsw_sp_qdisc,handle,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mlxsw_sp_qdisc0; _aux++) {

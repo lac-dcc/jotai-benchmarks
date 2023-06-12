@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void blogic_inc_count(unsigned short *count)
 		(*count)++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_count0 = 1;
+          int _len_count0 = 65025;
           unsigned short * count = (unsigned short *) malloc(_len_count0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           blogic_inc_count(count);
           free(count);
         
@@ -100,12 +96,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_count0; _i0++) {
             count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           blogic_inc_count(count);
           free(count);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_count0 = 1;
+          unsigned short * count = (unsigned short *) malloc(_len_count0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_count0; _i0++) {
+            count[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          blogic_inc_count(count);
+          free(count);
+        
+        break;
+    }
     default:
         usage();
         break;

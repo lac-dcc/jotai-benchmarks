@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool is_session_dead(struct nfsd4_session *ses)
 	return ses->se_flags & NFS4_SESSION_DEAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ses0 = 1;
+          int _len_ses0 = 65025;
           struct nfsd4_session * ses = (struct nfsd4_session *) malloc(_len_ses0*sizeof(struct nfsd4_session));
           for(int _i0 = 0; _i0 < _len_ses0; _i0++) {
-            ses[_i0].se_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ses[_i0].se_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_session_dead(ses);
           printf("%d\n", benchRet); 
           free(ses);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_ses0 = 100;
           struct nfsd4_session * ses = (struct nfsd4_session *) malloc(_len_ses0*sizeof(struct nfsd4_session));
           for(int _i0 = 0; _i0 < _len_ses0; _i0++) {
-            ses[_i0].se_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ses[_i0].se_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_session_dead(ses);
           printf("%d\n", benchRet); 
           free(ses);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ses0 = 1;
+          struct nfsd4_session * ses = (struct nfsd4_session *) malloc(_len_ses0*sizeof(struct nfsd4_session));
+          for(int _i0 = 0; _i0 < _len_ses0; _i0++) {
+              ses[_i0].se_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_session_dead(ses);
+          printf("%d\n", benchRet); 
+          free(ses);
+        
+        break;
+    }
     default:
         usage();
         break;

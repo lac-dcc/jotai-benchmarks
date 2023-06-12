@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static bool stm32f7_i2c_is_addr_match(struct i2c_client *s
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,19 +102,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addcode = 100;
+        
           int _len_slave0 = 1;
           struct i2c_client * slave = (struct i2c_client *) malloc(_len_slave0*sizeof(struct i2c_client));
           for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
-            slave[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        slave[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              slave[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stm32f7_i2c_is_addr_match(slave,addcode);
           printf("%d\n", benchRet); 
           free(slave);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int addcode = 255;
+        
+          int _len_slave0 = 65025;
+          struct i2c_client * slave = (struct i2c_client *) malloc(_len_slave0*sizeof(struct i2c_client));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stm32f7_i2c_is_addr_match(slave,addcode);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int addcode = 10;
+        
+          int _len_slave0 = 100;
+          struct i2c_client * slave = (struct i2c_client *) malloc(_len_slave0*sizeof(struct i2c_client));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stm32f7_i2c_is_addr_match(slave,addcode);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int addcode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_slave0 = 1;
+          struct i2c_client * slave = (struct i2c_client *) malloc(_len_slave0*sizeof(struct i2c_client));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stm32f7_i2c_is_addr_match(slave,addcode);
+          printf("%d\n", benchRet); 
+          free(slave);
+        
+        break;
+    }
     default:
         usage();
         break;

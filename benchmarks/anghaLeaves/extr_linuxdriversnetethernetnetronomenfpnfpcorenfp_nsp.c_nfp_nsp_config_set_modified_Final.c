@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void nfp_nsp_config_set_modified(struct nfp_nsp *state, bool modified)
 	state->modified = modified;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,29 +75,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int modified = 100;
+        
           int _len_state0 = 1;
           struct nfp_nsp * state = (struct nfp_nsp *) malloc(_len_state0*sizeof(struct nfp_nsp));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].modified = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].modified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfp_nsp_config_set_modified(state,modified);
           free(state);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int modified = 255;
+        
+          int _len_state0 = 65025;
+          struct nfp_nsp * state = (struct nfp_nsp *) malloc(_len_state0*sizeof(struct nfp_nsp));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].modified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfp_nsp_config_set_modified(state,modified);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int modified = 10;
+        
           int _len_state0 = 100;
           struct nfp_nsp * state = (struct nfp_nsp *) malloc(_len_state0*sizeof(struct nfp_nsp));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].modified = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].modified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nfp_nsp_config_set_modified(state,modified);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int modified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_state0 = 1;
+          struct nfp_nsp * state = (struct nfp_nsp *) malloc(_len_state0*sizeof(struct nfp_nsp));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].modified = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nfp_nsp_config_set_modified(state,modified);
           free(state);
         

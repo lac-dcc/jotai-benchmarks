@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ USBH_StatusTypeDef USBH_FreePipe  (USBH_HandleTypeDef *phost, uint8_t idx)
    return USBH_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int _len_phost0 = 1;
           struct TYPE_3__ * phost = (struct TYPE_3__ *) malloc(_len_phost0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
@@ -99,7 +95,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_phost__i0__Pipes0; _j0++) {
             phost[_i0].Pipes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = USBH_FreePipe(phost,idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_phost0; _aux++) {
@@ -109,7 +107,31 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          int _len_phost0 = 65025;
+          struct TYPE_3__ * phost = (struct TYPE_3__ *) malloc(_len_phost0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+              int _len_phost__i0__Pipes0 = 1;
+          phost[_i0].Pipes = (int *) malloc(_len_phost__i0__Pipes0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_phost__i0__Pipes0; _j0++) {
+            phost[_i0].Pipes[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = USBH_FreePipe(phost,idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_phost0; _aux++) {
+          free(phost[_aux].Pipes);
+          }
+          free(phost);
+        
+        break;
+    }
     default:
         usage();
         break;

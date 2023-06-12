@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline int aac_supports_2T(struct aac_dev *dev)
 	return (dev->adapter_info.options & AAC_OPT_NEW_COMM_64);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct aac_dev * dev = (struct aac_dev *) malloc(_len_dev0*sizeof(struct aac_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].adapter_info.options = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].adapter_info.options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = aac_supports_2T(dev);
           printf("%d\n", benchRet); 
           free(dev);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_dev0 = 100;
           struct aac_dev * dev = (struct aac_dev *) malloc(_len_dev0*sizeof(struct aac_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].adapter_info.options = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].adapter_info.options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = aac_supports_2T(dev);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct aac_dev * dev = (struct aac_dev *) malloc(_len_dev0*sizeof(struct aac_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].adapter_info.options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = aac_supports_2T(dev);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

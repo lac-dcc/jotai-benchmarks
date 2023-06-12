@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static PullupBuffer *pullup_lock_buffer(PullupBuffer *b, i
     return b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,10 +83,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int parity = 100;
+        
           int _len_b0 = 1;
           struct TYPE_4__ * b = (struct TYPE_4__ *) malloc(_len_b0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
@@ -100,7 +119,57 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_b__i0__lock0; _j0++) {
             b[_i0].lock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          struct TYPE_4__ * benchRet = pullup_lock_buffer(b,parity);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].lock);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int parity = 255;
+        
+          int _len_b0 = 65025;
+          struct TYPE_4__ * b = (struct TYPE_4__ *) malloc(_len_b0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              int _len_b__i0__lock0 = 1;
+          b[_i0].lock = (int *) malloc(_len_b__i0__lock0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_b__i0__lock0; _j0++) {
+            b[_i0].lock[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           struct TYPE_4__ * benchRet = pullup_lock_buffer(b,parity);
           for(int _aux = 0; _aux < _len_b0; _aux++) {
           free(b[_aux].lock);

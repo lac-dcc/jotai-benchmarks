@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ options_array_item_index(struct options_array_item *a)
 	return (a->index);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_a0 = 1;
+          int _len_a0 = 65025;
           struct options_array_item * a = (struct options_array_item *) malloc(_len_a0*sizeof(struct options_array_item));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = options_array_item_index(a);
           printf("%d\n", benchRet); 
           free(a);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_a0 = 100;
           struct options_array_item * a = (struct options_array_item *) malloc(_len_a0*sizeof(struct options_array_item));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = options_array_item_index(a);
           printf("%d\n", benchRet); 
           free(a);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_a0 = 1;
+          struct options_array_item * a = (struct options_array_item *) malloc(_len_a0*sizeof(struct options_array_item));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = options_array_item_index(a);
+          printf("%d\n", benchRet); 
+          free(a);
+        
+        break;
+    }
     default:
         usage();
         break;

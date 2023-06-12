@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +96,6 @@ out:
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,6 +112,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fs = 100;
+        
           int benchRet = ext2fs_mmp_init(fs);
           printf("%d\n", benchRet); 
         
@@ -126,6 +122,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fs = 255;
+        
           int benchRet = ext2fs_mmp_init(fs);
           printf("%d\n", benchRet); 
         
@@ -135,12 +132,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fs = 10;
+        
           int benchRet = ext2fs_mmp_init(fs);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ext2fs_mmp_init(fs);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int intel_cvt_id_to_mux_idx(struct hdmi_spec *spec,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long cvt_nid = 100;
+        
           int _len_spec0 = 1;
           struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
           for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
-            spec[_i0].num_cvts = ((-2 * (next_i()%2)) + 1) * next_i();
+              spec[_i0].num_cvts = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_spec__i0__cvt_nids0 = 1;
           spec[_i0].cvt_nids = (long *) malloc(_len_spec__i0__cvt_nids0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_spec__i0__cvt_nids0; _j0++) {
             spec[_i0].cvt_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = intel_cvt_id_to_mux_idx(spec,cvt_nid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spec0; _aux++) {
+          free(spec[_aux].cvt_nids);
+          }
+          free(spec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long cvt_nid = 255;
+        
+          int _len_spec0 = 65025;
+          struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].num_cvts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spec__i0__cvt_nids0 = 1;
+          spec[_i0].cvt_nids = (long *) malloc(_len_spec__i0__cvt_nids0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_spec__i0__cvt_nids0; _j0++) {
+            spec[_i0].cvt_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = intel_cvt_id_to_mux_idx(spec,cvt_nid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spec0; _aux++) {
+          free(spec[_aux].cvt_nids);
+          }
+          free(spec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long cvt_nid = 10;
+        
+          int _len_spec0 = 100;
+          struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].num_cvts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spec__i0__cvt_nids0 = 1;
+          spec[_i0].cvt_nids = (long *) malloc(_len_spec__i0__cvt_nids0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_spec__i0__cvt_nids0; _j0++) {
+            spec[_i0].cvt_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = intel_cvt_id_to_mux_idx(spec,cvt_nid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spec0; _aux++) {
+          free(spec[_aux].cvt_nids);
+          }
+          free(spec);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long cvt_nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_spec0 = 1;
+          struct hdmi_spec * spec = (struct hdmi_spec *) malloc(_len_spec0*sizeof(struct hdmi_spec));
+          for(int _i0 = 0; _i0 < _len_spec0; _i0++) {
+              spec[_i0].num_cvts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spec__i0__cvt_nids0 = 1;
+          spec[_i0].cvt_nids = (long *) malloc(_len_spec__i0__cvt_nids0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_spec__i0__cvt_nids0; _j0++) {
+            spec[_i0].cvt_nids[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = intel_cvt_id_to_mux_idx(spec,cvt_nid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_spec0; _aux++) {

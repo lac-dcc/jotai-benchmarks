@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ void ConfigureTxpowerTrack_8723B(PTXPWRTRACK_CFG pConfig)
 	pConfig->GetDeltaSwingTable = GetDeltaSwingTable_8723B;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,23 +96,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_pConfig0 = 65025;
+          struct TYPE_3__ * pConfig = (struct TYPE_3__ *) malloc(_len_pConfig0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pConfig0; _i0++) {
+              pConfig[_i0].GetDeltaSwingTable = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].PHY_LCCalibrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].DoIQK = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].ODM_TxPwrTrackSetPwr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].ThermalRegAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].RfPathCount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].AverageThermalNum = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].Threshold_IQK = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].SwingTableSize_OFDM = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].SwingTableSize_CCK = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ConfigureTxpowerTrack_8723B(pConfig);
+          free(pConfig);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_pConfig0 = 100;
+          struct TYPE_3__ * pConfig = (struct TYPE_3__ *) malloc(_len_pConfig0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pConfig0; _i0++) {
+              pConfig[_i0].GetDeltaSwingTable = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].PHY_LCCalibrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].DoIQK = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].ODM_TxPwrTrackSetPwr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].ThermalRegAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].RfPathCount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].AverageThermalNum = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].Threshold_IQK = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].SwingTableSize_OFDM = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].SwingTableSize_CCK = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ConfigureTxpowerTrack_8723B(pConfig);
+          free(pConfig);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_pConfig0 = 1;
           struct TYPE_3__ * pConfig = (struct TYPE_3__ *) malloc(_len_pConfig0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pConfig0; _i0++) {
-            pConfig[_i0].GetDeltaSwingTable = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].PHY_LCCalibrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].DoIQK = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].ODM_TxPwrTrackSetPwr = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].ThermalRegAddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].RfPathCount = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].AverageThermalNum = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].Threshold_IQK = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].SwingTableSize_OFDM = ((-2 * (next_i()%2)) + 1) * next_i();
-        pConfig[_i0].SwingTableSize_CCK = ((-2 * (next_i()%2)) + 1) * next_i();
+              pConfig[_i0].GetDeltaSwingTable = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].PHY_LCCalibrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].DoIQK = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].ODM_TxPwrTrackSetPwr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].ThermalRegAddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].RfPathCount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].AverageThermalNum = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].Threshold_IQK = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].SwingTableSize_OFDM = ((-2 * (next_i()%2)) + 1) * next_i();
+          pConfig[_i0].SwingTableSize_CCK = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ConfigureTxpowerTrack_8723B(pConfig);
           free(pConfig);
         

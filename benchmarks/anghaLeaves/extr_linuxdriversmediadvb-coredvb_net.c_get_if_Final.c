@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static int get_if(struct dvb_net *dvbnet)
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,10 +85,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dvbnet0 = 1;
+          int _len_dvbnet0 = 65025;
           struct dvb_net * dvbnet = (struct dvb_net *) malloc(_len_dvbnet0*sizeof(struct dvb_net));
           for(int _i0 = 0; _i0 < _len_dvbnet0; _i0++) {
               int _len_dvbnet__i0__state0 = 1;
@@ -100,7 +96,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dvbnet__i0__state0; _j0++) {
             dvbnet[_i0].state[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = get_if(dvbnet);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dvbnet0; _aux++) {
@@ -110,7 +108,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dvbnet0 = 100;
+          struct dvb_net * dvbnet = (struct dvb_net *) malloc(_len_dvbnet0*sizeof(struct dvb_net));
+          for(int _i0 = 0; _i0 < _len_dvbnet0; _i0++) {
+              int _len_dvbnet__i0__state0 = 1;
+          dvbnet[_i0].state = (int *) malloc(_len_dvbnet__i0__state0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dvbnet__i0__state0; _j0++) {
+            dvbnet[_i0].state[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_if(dvbnet);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dvbnet0; _aux++) {
+          free(dvbnet[_aux].state);
+          }
+          free(dvbnet);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dvbnet0 = 1;
+          struct dvb_net * dvbnet = (struct dvb_net *) malloc(_len_dvbnet0*sizeof(struct dvb_net));
+          for(int _i0 = 0; _i0 < _len_dvbnet0; _i0++) {
+              int _len_dvbnet__i0__state0 = 1;
+          dvbnet[_i0].state = (int *) malloc(_len_dvbnet__i0__state0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_dvbnet__i0__state0; _j0++) {
+            dvbnet[_i0].state[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_if(dvbnet);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dvbnet0; _aux++) {
+          free(dvbnet[_aux].state);
+          }
+          free(dvbnet);
+        
+        break;
+    }
     default:
         usage();
         break;

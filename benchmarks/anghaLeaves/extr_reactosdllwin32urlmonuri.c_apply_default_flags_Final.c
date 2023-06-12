@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static void apply_default_flags(DWORD *flags) {
         *flags |= Uri_CREATE_NO_IE_SETTINGS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,14 +92,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_flags0 = 1;
+          int _len_flags0 = 65025;
           int * flags = (int *) malloc(_len_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           apply_default_flags(flags);
           free(flags);
         
@@ -118,12 +114,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           apply_default_flags(flags);
           free(flags);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_flags0 = 1;
+          int * flags = (int *) malloc(_len_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
+            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          apply_default_flags(flags);
+          free(flags);
+        
+        break;
+    }
     default:
         usage();
         break;

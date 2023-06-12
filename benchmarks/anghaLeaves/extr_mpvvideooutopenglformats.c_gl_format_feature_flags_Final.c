@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ int gl_format_feature_flags(GL *gl)
          | (gl->mpgl_caps & MPGL_CAP_APPLE_RGB_422 ? F_APPL : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,16 +103,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 96
+          // dynamic_instructions_O0 : 96
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 49
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 49
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 49
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
+          int _len_gl0 = 65025;
+          struct TYPE_3__ * gl = (struct TYPE_3__ *) malloc(_len_gl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_gl0; _i0++) {
+              gl[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          gl[_i0].es = ((-2 * (next_i()%2)) + 1) * next_i();
+          gl[_i0].mpgl_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gl_format_feature_flags(gl);
+          printf("%d\n", benchRet); 
+          free(gl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 96
+          // dynamic_instructions_O0 : 96
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 49
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 49
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 49
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
+          int _len_gl0 = 100;
+          struct TYPE_3__ * gl = (struct TYPE_3__ *) malloc(_len_gl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_gl0; _i0++) {
+              gl[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          gl[_i0].es = ((-2 * (next_i()%2)) + 1) * next_i();
+          gl[_i0].mpgl_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gl_format_feature_flags(gl);
+          printf("%d\n", benchRet); 
+          free(gl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 96
+          // dynamic_instructions_O0 : 96
+          // ------------------------------- 
+          // static_instructions_O1 : 49
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 49
+          // dynamic_instructions_O2 : 49
+          // ------------------------------- 
+          // static_instructions_O3 : 49
+          // dynamic_instructions_O3 : 49
+          // ------------------------------- 
+          // static_instructions_Ofast : 49
+          // dynamic_instructions_Ofast : 49
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
           int _len_gl0 = 1;
           struct TYPE_3__ * gl = (struct TYPE_3__ *) malloc(_len_gl0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_gl0; _i0++) {
-            gl[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        gl[_i0].es = ((-2 * (next_i()%2)) + 1) * next_i();
-        gl[_i0].mpgl_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              gl[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          gl[_i0].es = ((-2 * (next_i()%2)) + 1) * next_i();
+          gl[_i0].mpgl_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gl_format_feature_flags(gl);
           printf("%d\n", benchRet); 
           free(gl);

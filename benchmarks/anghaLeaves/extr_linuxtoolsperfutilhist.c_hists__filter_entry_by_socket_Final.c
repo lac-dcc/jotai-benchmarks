@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static bool hists__filter_entry_by_socket(struct hists *hi
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_hists0 = 65025;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].socket_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_he0 = 65025;
+          struct hist_entry * he = (struct hist_entry *) malloc(_len_he0*sizeof(struct hist_entry));
+          for(int _i0 = 0; _i0 < _len_he0; _i0++) {
+              he[_i0].socket = ((-2 * (next_i()%2)) + 1) * next_i();
+          he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hists__filter_entry_by_socket(hists,he);
+          printf("%d\n", benchRet); 
+          free(hists);
+          free(he);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_hists0 = 100;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].socket_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_he0 = 100;
+          struct hist_entry * he = (struct hist_entry *) malloc(_len_he0*sizeof(struct hist_entry));
+          for(int _i0 = 0; _i0 < _len_he0; _i0++) {
+              he[_i0].socket = ((-2 * (next_i()%2)) + 1) * next_i();
+          he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hists__filter_entry_by_socket(hists,he);
+          printf("%d\n", benchRet); 
+          free(hists);
+          free(he);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_hists0 = 1;
           struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
           for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
-            hists[_i0].socket_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+              hists[_i0].socket_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_he0 = 1;
           struct hist_entry * he = (struct hist_entry *) malloc(_len_he0*sizeof(struct hist_entry));
           for(int _i0 = 0; _i0 < _len_he0; _i0++) {
-            he[_i0].socket = ((-2 * (next_i()%2)) + 1) * next_i();
-        he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+              he[_i0].socket = ((-2 * (next_i()%2)) + 1) * next_i();
+          he[_i0].filtered = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hists__filter_entry_by_socket(hists,he);
           printf("%d\n", benchRet); 
           free(hists);

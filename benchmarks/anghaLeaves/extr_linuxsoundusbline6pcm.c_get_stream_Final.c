@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ get_stream(struct snd_line6_pcm *line6pcm, int direction)
 		&line6pcm->out : &line6pcm->in;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +79,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int direction = 100;
+        
           int _len_line6pcm0 = 1;
           struct snd_line6_pcm * line6pcm = (struct snd_line6_pcm *) malloc(_len_line6pcm0*sizeof(struct snd_line6_pcm));
           for(int _i0 = 0; _i0 < _len_line6pcm0; _i0++) {
-            line6pcm[_i0].in.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
-        line6pcm[_i0].out.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              line6pcm[_i0].in.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          line6pcm[_i0].out.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct line6_pcm_stream * benchRet = get_stream(line6pcm,direction);
+          printf("%d\n", (*benchRet).dummy);
+          free(line6pcm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int direction = 255;
+        
+          int _len_line6pcm0 = 65025;
+          struct snd_line6_pcm * line6pcm = (struct snd_line6_pcm *) malloc(_len_line6pcm0*sizeof(struct snd_line6_pcm));
+          for(int _i0 = 0; _i0 < _len_line6pcm0; _i0++) {
+              line6pcm[_i0].in.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          line6pcm[_i0].out.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct line6_pcm_stream * benchRet = get_stream(line6pcm,direction);
+          printf("%d\n", (*benchRet).dummy);
+          free(line6pcm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int direction = 10;
+        
+          int _len_line6pcm0 = 100;
+          struct snd_line6_pcm * line6pcm = (struct snd_line6_pcm *) malloc(_len_line6pcm0*sizeof(struct snd_line6_pcm));
+          for(int _i0 = 0; _i0 < _len_line6pcm0; _i0++) {
+              line6pcm[_i0].in.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          line6pcm[_i0].out.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct line6_pcm_stream * benchRet = get_stream(line6pcm,direction);
+          printf("%d\n", (*benchRet).dummy);
+          free(line6pcm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_line6pcm0 = 1;
+          struct snd_line6_pcm * line6pcm = (struct snd_line6_pcm *) malloc(_len_line6pcm0*sizeof(struct snd_line6_pcm));
+          for(int _i0 = 0; _i0 < _len_line6pcm0; _i0++) {
+              line6pcm[_i0].in.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          line6pcm[_i0].out.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct line6_pcm_stream * benchRet = get_stream(line6pcm,direction);
           printf("%d\n", (*benchRet).dummy);
           free(line6pcm);

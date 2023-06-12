@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static bool mlxsw_sp_ets_has_pg(u8 *prio_tc, u8 pg)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pg = 100;
+        
           int _len_prio_tc0 = 1;
           long * prio_tc = (long *) malloc(_len_prio_tc0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_prio_tc0; _i0++) {
             prio_tc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = mlxsw_sp_ets_has_pg(prio_tc,pg);
+          printf("%d\n", benchRet); 
+          free(prio_tc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long pg = 255;
+        
+          int _len_prio_tc0 = 65025;
+          long * prio_tc = (long *) malloc(_len_prio_tc0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prio_tc0; _i0++) {
+            prio_tc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = mlxsw_sp_ets_has_pg(prio_tc,pg);
           printf("%d\n", benchRet); 
           free(prio_tc);
@@ -101,21 +116,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long pg = 10;
+        
           int _len_prio_tc0 = 100;
           long * prio_tc = (long *) malloc(_len_prio_tc0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_prio_tc0; _i0++) {
             prio_tc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mlxsw_sp_ets_has_pg(prio_tc,pg);
           printf("%d\n", benchRet); 
           free(prio_tc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long pg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_prio_tc0 = 1;
+          long * prio_tc = (long *) malloc(_len_prio_tc0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_prio_tc0; _i0++) {
+            prio_tc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mlxsw_sp_ets_has_pg(prio_tc,pg);
+          printf("%d\n", benchRet); 
+          free(prio_tc);
+        
+        break;
+    }
     default:
         usage();
         break;

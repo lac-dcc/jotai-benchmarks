@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ int tls_parse_ctos_etm(SSL *s, PACKET *pkt, unsigned int context, X509 *x,
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +90,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int context = 100;
+        
           unsigned long chainidx = 100;
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].ext.use_etm = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ext.use_etm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_pkt0 = 1;
           int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
             pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_x0 = 1;
           int * x = (int *) malloc(_len_x0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tls_parse_ctos_etm(s,pkt,context,x,chainidx);
           printf("%d\n", benchRet); 
           free(s);
@@ -118,7 +122,114 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int context = 255;
+        
+          unsigned long chainidx = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ext.use_etm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pkt0 = 65025;
+          int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+            pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_x0 = 65025;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tls_parse_ctos_etm(s,pkt,context,x,chainidx);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(pkt);
+          free(x);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int context = 10;
+        
+          unsigned long chainidx = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ext.use_etm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pkt0 = 100;
+          int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+            pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_x0 = 100;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tls_parse_ctos_etm(s,pkt,context,x,chainidx);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(pkt);
+          free(x);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int context = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long chainidx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].ext.use_etm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pkt0 = 1;
+          int * pkt = (int *) malloc(_len_pkt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+            pkt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_x0 = 1;
+          int * x = (int *) malloc(_len_x0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tls_parse_ctos_etm(s,pkt,context,x,chainidx);
+          printf("%d\n", benchRet); 
+          free(s);
+          free(pkt);
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

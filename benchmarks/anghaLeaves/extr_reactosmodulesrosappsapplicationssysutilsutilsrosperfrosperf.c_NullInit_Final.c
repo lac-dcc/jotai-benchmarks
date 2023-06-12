@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ NullInit(void **Context, PPERF_INFO PerfInfo, unsigned Reps)
   return Reps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,39 +82,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int PerfInfo = 100;
+        
           unsigned int Reps = 100;
+        
           int _len_Context0 = 1;
           void ** Context = (void **) malloc(_len_Context0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
           }
+        
           unsigned int benchRet = NullInit(Context,PerfInfo,Reps);
           printf("%u\n", benchRet); 
           for(int i1 = 0; i1 < _len_Context0; i1++) {
-            int _len_Context1 = 1;
+              }
+          free(Context);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int PerfInfo = 255;
+        
+          unsigned int Reps = 255;
+        
+          int _len_Context0 = 65025;
+          void ** Context = (void **) malloc(_len_Context0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
+          }
+        
+          unsigned int benchRet = NullInit(Context,PerfInfo,Reps);
+          printf("%u\n", benchRet); 
+          for(int i1 = 0; i1 < _len_Context0; i1++) {
               }
           free(Context);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int PerfInfo = 10;
+        
           unsigned int Reps = 10;
+        
           int _len_Context0 = 100;
           void ** Context = (void **) malloc(_len_Context0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
           }
+        
           unsigned int benchRet = NullInit(Context,PerfInfo,Reps);
           printf("%u\n", benchRet); 
           for(int i1 = 0; i1 < _len_Context0; i1++) {
-            int _len_Context1 = 1;
               }
           free(Context);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int PerfInfo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int Reps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_Context0 = 1;
+          void ** Context = (void **) malloc(_len_Context0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_Context0; _i0++) {
+          }
+        
+          unsigned int benchRet = NullInit(Context,PerfInfo,Reps);
+          printf("%u\n", benchRet); 
+          for(int i1 = 0; i1 < _len_Context0; i1++) {
+              }
+          free(Context);
+        
+        break;
+    }
     default:
         usage();
         break;

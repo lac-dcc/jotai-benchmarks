@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static struct device *ov2680_to_dev(struct ov2680_dev *sen
 	return &sensor->i2c_client->dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_sensor0 = 65025;
+          struct ov2680_dev * sensor = (struct ov2680_dev *) malloc(_len_sensor0*sizeof(struct ov2680_dev));
+          for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
+              int _len_sensor__i0__i2c_client0 = 1;
+          sensor[_i0].i2c_client = (struct TYPE_2__ *) malloc(_len_sensor__i0__i2c_client0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sensor__i0__i2c_client0; _j0++) {
+              sensor[_i0].i2c_client->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct device * benchRet = ov2680_to_dev(sensor);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_sensor0; _aux++) {
+          free(sensor[_aux].i2c_client);
+          }
+          free(sensor);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_sensor0 = 100;
+          struct ov2680_dev * sensor = (struct ov2680_dev *) malloc(_len_sensor0*sizeof(struct ov2680_dev));
+          for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
+              int _len_sensor__i0__i2c_client0 = 1;
+          sensor[_i0].i2c_client = (struct TYPE_2__ *) malloc(_len_sensor__i0__i2c_client0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sensor__i0__i2c_client0; _j0++) {
+              sensor[_i0].i2c_client->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct device * benchRet = ov2680_to_dev(sensor);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_sensor0; _aux++) {
+          free(sensor[_aux].i2c_client);
+          }
+          free(sensor);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_sensor0 = 1;
           struct ov2680_dev * sensor = (struct ov2680_dev *) malloc(_len_sensor0*sizeof(struct ov2680_dev));
           for(int _i0 = 0; _i0 < _len_sensor0; _i0++) {
               int _len_sensor__i0__i2c_client0 = 1;
           sensor[_i0].i2c_client = (struct TYPE_2__ *) malloc(_len_sensor__i0__i2c_client0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_sensor__i0__i2c_client0; _j0++) {
-            sensor[_i0].i2c_client->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sensor[_i0].i2c_client->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct device * benchRet = ov2680_to_dev(sensor);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_sensor0; _aux++) {

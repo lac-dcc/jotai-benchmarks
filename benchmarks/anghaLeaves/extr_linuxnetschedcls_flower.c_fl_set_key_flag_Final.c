@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static void fl_set_key_flag(u32 flower_key, u32 flower_mas
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +81,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int flower_key = 100;
+        
           int flower_mask = 100;
+        
           int flower_flag_bit = 100;
+        
           int dissector_flag_bit = 100;
+        
           int _len_dissector_key0 = 1;
           int * dissector_key = (int *) malloc(_len_dissector_key0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dissector_key0; _i0++) {
             dissector_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_dissector_mask0 = 1;
           int * dissector_mask = (int *) malloc(_len_dissector_mask0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dissector_mask0; _i0++) {
             dissector_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          fl_set_key_flag(flower_key,flower_mask,dissector_key,dissector_mask,flower_flag_bit,dissector_flag_bit);
+          free(dissector_key);
+          free(dissector_mask);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int flower_key = 255;
+        
+          int flower_mask = 255;
+        
+          int flower_flag_bit = 255;
+        
+          int dissector_flag_bit = 255;
+        
+          int _len_dissector_key0 = 65025;
+          int * dissector_key = (int *) malloc(_len_dissector_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dissector_key0; _i0++) {
+            dissector_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dissector_mask0 = 65025;
+          int * dissector_mask = (int *) malloc(_len_dissector_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dissector_mask0; _i0++) {
+            dissector_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fl_set_key_flag(flower_key,flower_mask,dissector_key,dissector_mask,flower_flag_bit,dissector_flag_bit);
+          free(dissector_key);
+          free(dissector_mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int flower_key = 10;
+        
+          int flower_mask = 10;
+        
+          int flower_flag_bit = 10;
+        
+          int dissector_flag_bit = 10;
+        
+          int _len_dissector_key0 = 100;
+          int * dissector_key = (int *) malloc(_len_dissector_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dissector_key0; _i0++) {
+            dissector_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dissector_mask0 = 100;
+          int * dissector_mask = (int *) malloc(_len_dissector_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dissector_mask0; _i0++) {
+            dissector_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fl_set_key_flag(flower_key,flower_mask,dissector_key,dissector_mask,flower_flag_bit,dissector_flag_bit);
+          free(dissector_key);
+          free(dissector_mask);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int flower_key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flower_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flower_flag_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dissector_flag_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dissector_key0 = 1;
+          int * dissector_key = (int *) malloc(_len_dissector_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dissector_key0; _i0++) {
+            dissector_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dissector_mask0 = 1;
+          int * dissector_mask = (int *) malloc(_len_dissector_mask0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dissector_mask0; _i0++) {
+            dissector_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           fl_set_key_flag(flower_key,flower_mask,dissector_key,dissector_mask,flower_flag_bit,dissector_flag_bit);
           free(dissector_key);
           free(dissector_mask);

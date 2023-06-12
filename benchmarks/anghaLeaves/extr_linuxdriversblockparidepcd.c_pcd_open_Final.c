@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static int pcd_open(struct cdrom_device_info *cdi, int pur
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int purpose = 100;
+        
           int _len_cdi0 = 1;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
               int _len_cdi__i0__handle0 = 1;
           cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
           for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
-            cdi[_i0].handle->present = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].handle->present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = pcd_open(cdi,purpose);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int purpose = 255;
+        
+          int _len_cdi0 = 65025;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pcd_open(cdi,purpose);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int purpose = 10;
+        
+          int _len_cdi0 = 100;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pcd_open(cdi,purpose);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int purpose = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cdi0 = 1;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->present = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = pcd_open(cdi,purpose);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cdi0; _aux++) {

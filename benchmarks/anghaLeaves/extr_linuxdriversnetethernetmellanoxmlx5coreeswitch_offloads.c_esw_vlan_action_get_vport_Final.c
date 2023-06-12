@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ esw_vlan_action_get_vport(struct mlx5_esw_flow_attr *attr, bool push, bool pop)
 	return vport;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int push = 100;
+        
           int pop = 100;
+        
           int _len_attr0 = 1;
           struct mlx5_esw_flow_attr * attr = (struct mlx5_esw_flow_attr *) malloc(_len_attr0*sizeof(struct mlx5_esw_flow_attr));
           for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
@@ -106,15 +105,19 @@ int main(int argc, char *argv[]) {
             int _len_attr__i0__out_rep1 = 1;
             attr[_i0].out_rep[_j0] = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__out_rep1*sizeof(struct mlx5_eswitch_rep));
             for(int _j1 = 0; _j1 < _len_attr__i0__out_rep1; _j1++) {
-              attr[_i0].out_rep[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                attr[_i0].out_rep[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_attr__i0__in_rep0 = 1;
           attr[_i0].in_rep = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__in_rep0*sizeof(struct mlx5_eswitch_rep));
           for(int _j0 = 0; _j0 < _len_attr__i0__in_rep0; _j0++) {
-            attr[_i0].in_rep->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              attr[_i0].in_rep->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mlx5_eswitch_rep * benchRet = esw_vlan_action_get_vport(attr,push,pop);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_attr0; _aux++) {
@@ -128,7 +131,132 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int push = 255;
+        
+          int pop = 255;
+        
+          int _len_attr0 = 65025;
+          struct mlx5_esw_flow_attr * attr = (struct mlx5_esw_flow_attr *) malloc(_len_attr0*sizeof(struct mlx5_esw_flow_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              int _len_attr__i0__out_rep0 = 1;
+          attr[_i0].out_rep = (struct mlx5_eswitch_rep **) malloc(_len_attr__i0__out_rep0*sizeof(struct mlx5_eswitch_rep *));
+          for(int _j0 = 0; _j0 < _len_attr__i0__out_rep0; _j0++) {
+            int _len_attr__i0__out_rep1 = 1;
+            attr[_i0].out_rep[_j0] = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__out_rep1*sizeof(struct mlx5_eswitch_rep));
+            for(int _j1 = 0; _j1 < _len_attr__i0__out_rep1; _j1++) {
+                attr[_i0].out_rep[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_attr__i0__in_rep0 = 1;
+          attr[_i0].in_rep = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__in_rep0*sizeof(struct mlx5_eswitch_rep));
+          for(int _j0 = 0; _j0 < _len_attr__i0__in_rep0; _j0++) {
+              attr[_i0].in_rep->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlx5_eswitch_rep * benchRet = esw_vlan_action_get_vport(attr,push,pop);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_attr0; _aux++) {
+          free(*(attr[_aux].out_rep));
+        free(attr[_aux].out_rep);
+          }
+          for(int _aux = 0; _aux < _len_attr0; _aux++) {
+          free(attr[_aux].in_rep);
+          }
+          free(attr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int push = 10;
+        
+          int pop = 10;
+        
+          int _len_attr0 = 100;
+          struct mlx5_esw_flow_attr * attr = (struct mlx5_esw_flow_attr *) malloc(_len_attr0*sizeof(struct mlx5_esw_flow_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              int _len_attr__i0__out_rep0 = 1;
+          attr[_i0].out_rep = (struct mlx5_eswitch_rep **) malloc(_len_attr__i0__out_rep0*sizeof(struct mlx5_eswitch_rep *));
+          for(int _j0 = 0; _j0 < _len_attr__i0__out_rep0; _j0++) {
+            int _len_attr__i0__out_rep1 = 1;
+            attr[_i0].out_rep[_j0] = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__out_rep1*sizeof(struct mlx5_eswitch_rep));
+            for(int _j1 = 0; _j1 < _len_attr__i0__out_rep1; _j1++) {
+                attr[_i0].out_rep[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_attr__i0__in_rep0 = 1;
+          attr[_i0].in_rep = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__in_rep0*sizeof(struct mlx5_eswitch_rep));
+          for(int _j0 = 0; _j0 < _len_attr__i0__in_rep0; _j0++) {
+              attr[_i0].in_rep->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlx5_eswitch_rep * benchRet = esw_vlan_action_get_vport(attr,push,pop);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_attr0; _aux++) {
+          free(*(attr[_aux].out_rep));
+        free(attr[_aux].out_rep);
+          }
+          for(int _aux = 0; _aux < _len_attr0; _aux++) {
+          free(attr[_aux].in_rep);
+          }
+          free(attr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int push = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_attr0 = 1;
+          struct mlx5_esw_flow_attr * attr = (struct mlx5_esw_flow_attr *) malloc(_len_attr0*sizeof(struct mlx5_esw_flow_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              int _len_attr__i0__out_rep0 = 1;
+          attr[_i0].out_rep = (struct mlx5_eswitch_rep **) malloc(_len_attr__i0__out_rep0*sizeof(struct mlx5_eswitch_rep *));
+          for(int _j0 = 0; _j0 < _len_attr__i0__out_rep0; _j0++) {
+            int _len_attr__i0__out_rep1 = 1;
+            attr[_i0].out_rep[_j0] = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__out_rep1*sizeof(struct mlx5_eswitch_rep));
+            for(int _j1 = 0; _j1 < _len_attr__i0__out_rep1; _j1++) {
+                attr[_i0].out_rep[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_attr__i0__in_rep0 = 1;
+          attr[_i0].in_rep = (struct mlx5_eswitch_rep *) malloc(_len_attr__i0__in_rep0*sizeof(struct mlx5_eswitch_rep));
+          for(int _j0 = 0; _j0 < _len_attr__i0__in_rep0; _j0++) {
+              attr[_i0].in_rep->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlx5_eswitch_rep * benchRet = esw_vlan_action_get_vport(attr,push,pop);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_attr0; _aux++) {
+          free(*(attr[_aux].out_rep));
+        free(attr[_aux].out_rep);
+          }
+          for(int _aux = 0; _aux < _len_attr0; _aux++) {
+          free(attr[_aux].in_rep);
+          }
+          free(attr);
+        
+        break;
+    }
     default:
         usage();
         break;

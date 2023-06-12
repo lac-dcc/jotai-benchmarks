@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void set_tx_qlen(struct r8152 *tp)
 				    sizeof(struct tx_desc));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          int _len_tp0 = 65025;
           struct r8152 * tp = (struct r8152 *) malloc(_len_tp0*sizeof(struct r8152));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].tx_qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].tx_qlen = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_tp__i0__netdev0 = 1;
           tp[_i0].netdev = (struct net_device *) malloc(_len_tp__i0__netdev0*sizeof(struct net_device));
           for(int _j0 = 0; _j0 < _len_tp__i0__netdev0; _j0++) {
-            tp[_i0].netdev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].netdev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           set_tx_qlen(tp);
           for(int _aux = 0; _aux < _len_tp0; _aux++) {
           free(tp[_aux].netdev);
@@ -107,7 +106,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tp0 = 100;
+          struct r8152 * tp = (struct r8152 *) malloc(_len_tp0*sizeof(struct r8152));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].tx_qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tp__i0__netdev0 = 1;
+          tp[_i0].netdev = (struct net_device *) malloc(_len_tp__i0__netdev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_tp__i0__netdev0; _j0++) {
+              tp[_i0].netdev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_tx_qlen(tp);
+          for(int _aux = 0; _aux < _len_tp0; _aux++) {
+          free(tp[_aux].netdev);
+          }
+          free(tp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tp0 = 1;
+          struct r8152 * tp = (struct r8152 *) malloc(_len_tp0*sizeof(struct r8152));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].tx_qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tp__i0__netdev0 = 1;
+          tp[_i0].netdev = (struct net_device *) malloc(_len_tp__i0__netdev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_tp__i0__netdev0; _j0++) {
+              tp[_i0].netdev->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_tx_qlen(tp);
+          for(int _aux = 0; _aux < _len_tp0; _aux++) {
+          free(tp[_aux].netdev);
+          }
+          free(tp);
+        
+        break;
+    }
     default:
         usage();
         break;

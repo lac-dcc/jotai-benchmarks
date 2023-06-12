@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void mchp23k256_addr2cmd(struct mchp23k256_flash *f
 		cmd[i] = addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,24 +87,220 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int addr = 100;
+        
           int _len_flash0 = 1;
           struct mchp23k256_flash * flash = (struct mchp23k256_flash *) malloc(_len_flash0*sizeof(struct mchp23k256_flash));
           for(int _i0 = 0; _i0 < _len_flash0; _i0++) {
               int _len_flash__i0__caps0 = 1;
           flash[_i0].caps = (struct TYPE_2__ *) malloc(_len_flash__i0__caps0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_flash__i0__caps0; _j0++) {
-            flash[_i0].caps->addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+              flash[_i0].caps->addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_cmd0 = 1;
           unsigned int * cmd = (unsigned int *) malloc(_len_cmd0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
             cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          mchp23k256_addr2cmd(flash,addr,cmd);
+          for(int _aux = 0; _aux < _len_flash0; _aux++) {
+          free(flash[_aux].caps);
+          }
+          free(flash);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int addr = 255;
+        
+          int _len_flash0 = 65025;
+          struct mchp23k256_flash * flash = (struct mchp23k256_flash *) malloc(_len_flash0*sizeof(struct mchp23k256_flash));
+          for(int _i0 = 0; _i0 < _len_flash0; _i0++) {
+              int _len_flash__i0__caps0 = 1;
+          flash[_i0].caps = (struct TYPE_2__ *) malloc(_len_flash__i0__caps0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_flash__i0__caps0; _j0++) {
+              flash[_i0].caps->addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cmd0 = 65025;
+          unsigned int * cmd = (unsigned int *) malloc(_len_cmd0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+            cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mchp23k256_addr2cmd(flash,addr,cmd);
+          for(int _aux = 0; _aux < _len_flash0; _aux++) {
+          free(flash[_aux].caps);
+          }
+          free(flash);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int addr = 10;
+        
+          int _len_flash0 = 100;
+          struct mchp23k256_flash * flash = (struct mchp23k256_flash *) malloc(_len_flash0*sizeof(struct mchp23k256_flash));
+          for(int _i0 = 0; _i0 < _len_flash0; _i0++) {
+              int _len_flash__i0__caps0 = 1;
+          flash[_i0].caps = (struct TYPE_2__ *) malloc(_len_flash__i0__caps0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_flash__i0__caps0; _j0++) {
+              flash[_i0].caps->addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cmd0 = 100;
+          unsigned int * cmd = (unsigned int *) malloc(_len_cmd0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+            cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mchp23k256_addr2cmd(flash,addr,cmd);
+          for(int _aux = 0; _aux < _len_flash0; _aux++) {
+          free(flash[_aux].caps);
+          }
+          free(flash);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_flash0 = 1;
+          struct mchp23k256_flash * flash = (struct mchp23k256_flash *) malloc(_len_flash0*sizeof(struct mchp23k256_flash));
+          for(int _i0 = 0; _i0 < _len_flash0; _i0++) {
+              int _len_flash__i0__caps0 = 1;
+          flash[_i0].caps = (struct TYPE_2__ *) malloc(_len_flash__i0__caps0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_flash__i0__caps0; _j0++) {
+              flash[_i0].caps->addr_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cmd0 = 1;
+          unsigned int * cmd = (unsigned int *) malloc(_len_cmd0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+            cmd[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           mchp23k256_addr2cmd(flash,addr,cmd);
           for(int _aux = 0; _aux < _len_flash0; _aux++) {
           free(flash[_aux].caps);

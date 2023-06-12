@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void to_active_sleep(struct clk_smd_rpm *r, unsigne
 		*sleep = *active;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,25 +85,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned long rate = 100;
+        
           int _len_r0 = 1;
           struct clk_smd_rpm * r = (struct clk_smd_rpm *) malloc(_len_r0*sizeof(struct clk_smd_rpm));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_active0 = 1;
           unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_active0; _i0++) {
             active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_sleep0 = 1;
           unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
             sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          to_active_sleep(r,rate,active,sleep);
+          free(r);
+          free(active);
+          free(sleep);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long rate = 255;
+        
+          int _len_r0 = 65025;
+          struct clk_smd_rpm * r = (struct clk_smd_rpm *) malloc(_len_r0*sizeof(struct clk_smd_rpm));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_active0 = 65025;
+          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
+            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sleep0 = 65025;
+          unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
+            sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          to_active_sleep(r,rate,active,sleep);
+          free(r);
+          free(active);
+          free(sleep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long rate = 10;
+        
+          int _len_r0 = 100;
+          struct clk_smd_rpm * r = (struct clk_smd_rpm *) malloc(_len_r0*sizeof(struct clk_smd_rpm));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_active0 = 100;
+          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
+            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sleep0 = 100;
+          unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
+            sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          to_active_sleep(r,rate,active,sleep);
+          free(r);
+          free(active);
+          free(sleep);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct clk_smd_rpm * r = (struct clk_smd_rpm *) malloc(_len_r0*sizeof(struct clk_smd_rpm));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].active_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_active0 = 1;
+          unsigned long * active = (unsigned long *) malloc(_len_active0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_active0; _i0++) {
+            active[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_sleep0 = 1;
+          unsigned long * sleep = (unsigned long *) malloc(_len_sleep0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_sleep0; _i0++) {
+            sleep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           to_active_sleep(r,rate,active,sleep);
           free(r);
           free(active);

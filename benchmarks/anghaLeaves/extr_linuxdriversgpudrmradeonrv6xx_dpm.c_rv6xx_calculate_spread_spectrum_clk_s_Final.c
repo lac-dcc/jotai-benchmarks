@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u32 rv6xx_calculate_spread_spectrum_clk_s(u3
 	return (((ref_freq * 10) / (ss_rate * 2)) - 1) / 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ss_rate = 100;
+        
           int ref_freq = 100;
+        
           int benchRet = rv6xx_calculate_spread_spectrum_clk_s(ss_rate,ref_freq);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ss_rate = 255;
+        
           int ref_freq = 255;
+        
           int benchRet = rv6xx_calculate_spread_spectrum_clk_s(ss_rate,ref_freq);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ss_rate = 10;
+        
           int ref_freq = 10;
+        
           int benchRet = rv6xx_calculate_spread_spectrum_clk_s(ss_rate,ref_freq);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ss_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ref_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rv6xx_calculate_spread_spectrum_clk_s(ss_rate,ref_freq);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

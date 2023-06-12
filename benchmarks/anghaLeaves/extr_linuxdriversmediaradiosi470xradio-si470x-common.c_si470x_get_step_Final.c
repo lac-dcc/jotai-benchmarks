@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static unsigned int si470x_get_step(struct si470x_device *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +87,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_radio0 = 1;
+          int _len_radio0 = 65025;
           struct si470x_device * radio = (struct si470x_device *) malloc(_len_radio0*sizeof(struct si470x_device));
           for(int _i0 = 0; _i0 < _len_radio0; _i0++) {
               int _len_radio__i0__registers0 = 1;
@@ -102,7 +98,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_radio__i0__registers0; _j0++) {
             radio[_i0].registers[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           unsigned int benchRet = si470x_get_step(radio);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_radio0; _aux++) {
@@ -112,7 +110,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_radio0 = 100;
+          struct si470x_device * radio = (struct si470x_device *) malloc(_len_radio0*sizeof(struct si470x_device));
+          for(int _i0 = 0; _i0 < _len_radio0; _i0++) {
+              int _len_radio__i0__registers0 = 1;
+          radio[_i0].registers = (int *) malloc(_len_radio__i0__registers0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_radio__i0__registers0; _j0++) {
+            radio[_i0].registers[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = si470x_get_step(radio);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_radio0; _aux++) {
+          free(radio[_aux].registers);
+          }
+          free(radio);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_radio0 = 1;
+          struct si470x_device * radio = (struct si470x_device *) malloc(_len_radio0*sizeof(struct si470x_device));
+          for(int _i0 = 0; _i0 < _len_radio0; _i0++) {
+              int _len_radio__i0__registers0 = 1;
+          radio[_i0].registers = (int *) malloc(_len_radio__i0__registers0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_radio__i0__registers0; _j0++) {
+            radio[_i0].registers[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned int benchRet = si470x_get_step(radio);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_radio0; _aux++) {
+          free(radio[_aux].registers);
+          }
+          free(radio);
+        
+        break;
+    }
     default:
         usage();
         break;

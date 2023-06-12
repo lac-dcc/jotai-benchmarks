@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int qedr_wq_is_full(struct qedr_qp_hwq_info 
 	return (((wq->prod + 1) % wq->max_wr) == wq->cons);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,23 +74,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wq0 = 1;
+          int _len_wq0 = 65025;
           struct qedr_qp_hwq_info * wq = (struct qedr_qp_hwq_info *) malloc(_len_wq0*sizeof(struct qedr_qp_hwq_info));
           for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
-            wq[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
-        wq[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+              wq[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qedr_wq_is_full(wq);
           printf("%d\n", benchRet); 
           free(wq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wq0 = 100;
+          struct qedr_qp_hwq_info * wq = (struct qedr_qp_hwq_info *) malloc(_len_wq0*sizeof(struct qedr_qp_hwq_info));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qedr_wq_is_full(wq);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wq0 = 1;
+          struct qedr_qp_hwq_info * wq = (struct qedr_qp_hwq_info *) malloc(_len_wq0*sizeof(struct qedr_qp_hwq_info));
+          for(int _i0 = 0; _i0 < _len_wq0; _i0++) {
+              wq[_i0].prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].max_wr = ((-2 * (next_i()%2)) + 1) * next_i();
+          wq[_i0].cons = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qedr_wq_is_full(wq);
+          printf("%d\n", benchRet); 
+          free(wq);
+        
+        break;
+    }
     default:
         usage();
         break;

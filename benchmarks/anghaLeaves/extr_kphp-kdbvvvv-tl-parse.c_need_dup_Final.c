@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ int need_dup (struct tl_act_extra *extra) {
   return !(extra->flags & 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,14 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_extra0 = 1;
+          int _len_extra0 = 65025;
           struct tl_act_extra * extra = (struct tl_act_extra *) malloc(_len_extra0*sizeof(struct tl_act_extra));
           for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
-            extra[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              extra[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = need_dup(extra);
           printf("%d\n", benchRet); 
           free(extra);
@@ -98,15 +95,32 @@ int main(int argc, char *argv[]) {
           int _len_extra0 = 100;
           struct tl_act_extra * extra = (struct tl_act_extra *) malloc(_len_extra0*sizeof(struct tl_act_extra));
           for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
-            extra[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              extra[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = need_dup(extra);
           printf("%d\n", benchRet); 
           free(extra);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_extra0 = 1;
+          struct tl_act_extra * extra = (struct tl_act_extra *) malloc(_len_extra0*sizeof(struct tl_act_extra));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+              extra[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = need_dup(extra);
+          printf("%d\n", benchRet); 
+          free(extra);
+        
+        break;
+    }
     default:
         usage();
         break;

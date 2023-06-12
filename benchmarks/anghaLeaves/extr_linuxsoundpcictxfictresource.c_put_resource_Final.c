@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static int put_resource(u8 *rscs, unsigned int multi, unsi
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +83,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 5879
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 2558
+          // ------------------------------- 
+          // static_instructions_O2 : 38
+          // dynamic_instructions_O2 : 2180
+          // ------------------------------- 
+          // static_instructions_O3 : 38
+          // dynamic_instructions_O3 : 2180
+          // ------------------------------- 
+          // static_instructions_Ofast : 38
+          // dynamic_instructions_Ofast : 2180
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 2557
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 3068
+          // ------------------------------- 
+
+          unsigned int multi = 255;
+        
+          unsigned int idx = 255;
+        
+          int _len_rscs0 = 65025;
+          unsigned int * rscs = (unsigned int *) malloc(_len_rscs0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_rscs0; _i0++) {
+            rscs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = put_resource(rscs,multi,idx);
+          printf("%d\n", benchRet); 
+          free(rscs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 244
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 108
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 97
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 97
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 97
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 107
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 128
+          // ------------------------------- 
+
           unsigned int multi = 10;
+        
           unsigned int idx = 10;
+        
           int _len_rscs0 = 100;
           unsigned int * rscs = (unsigned int *) malloc(_len_rscs0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_rscs0; _i0++) {
             rscs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = put_resource(rscs,multi,idx);
           printf("%d\n", benchRet); 
           free(rscs);

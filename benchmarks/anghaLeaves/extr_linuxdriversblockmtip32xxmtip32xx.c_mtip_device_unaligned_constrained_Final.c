@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int mtip_device_unaligned_constrained(struct driver
 	return (dd->pdev->device == P420M_DEVICE_ID ? 1 : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dd0 = 1;
+          int _len_dd0 = 65025;
           struct driver_data * dd = (struct driver_data *) malloc(_len_dd0*sizeof(struct driver_data));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
               int _len_dd__i0__pdev0 = 1;
           dd[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dd__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dd__i0__pdev0; _j0++) {
-            dd[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = mtip_device_unaligned_constrained(dd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dd0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dd0 = 100;
+          struct driver_data * dd = (struct driver_data *) malloc(_len_dd0*sizeof(struct driver_data));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              int _len_dd__i0__pdev0 = 1;
+          dd[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dd__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dd__i0__pdev0; _j0++) {
+              dd[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mtip_device_unaligned_constrained(dd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dd0; _aux++) {
+          free(dd[_aux].pdev);
+          }
+          free(dd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dd0 = 1;
+          struct driver_data * dd = (struct driver_data *) malloc(_len_dd0*sizeof(struct driver_data));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              int _len_dd__i0__pdev0 = 1;
+          dd[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dd__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dd__i0__pdev0; _j0++) {
+              dd[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = mtip_device_unaligned_constrained(dd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dd0; _aux++) {
+          free(dd[_aux].pdev);
+          }
+          free(dd);
+        
+        break;
+    }
     default:
         usage();
         break;

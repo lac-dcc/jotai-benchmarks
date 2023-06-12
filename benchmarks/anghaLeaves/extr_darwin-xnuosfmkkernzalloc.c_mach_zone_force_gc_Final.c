@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ mach_zone_force_gc(
 	return (KERN_SUCCESS);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long host = 100;
+        
           int benchRet = mach_zone_force_gc(host);
           printf("%d\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long host = 255;
+        
           int benchRet = mach_zone_force_gc(host);
           printf("%d\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long host = 10;
+        
           int benchRet = mach_zone_force_gc(host);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long host = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mach_zone_force_gc(host);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

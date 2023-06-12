@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ dbgcmd_step(mrb_state *mrb, mrdb_state *mrdb)
   return DBGST_CONTINUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,23 +84,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mrb0 = 65025;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mrdb0 = 65025;
+          struct TYPE_5__ * mrdb = (struct TYPE_5__ *) malloc(_len_mrdb0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
+              int _len_mrdb__i0__dbg0 = 1;
+          mrdb[_i0].dbg = (struct TYPE_4__ *) malloc(_len_mrdb__i0__dbg0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mrdb__i0__dbg0; _j0++) {
+              mrdb[_i0].dbg->xm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dbgcmd_step(mrb,mrdb);
+          printf("%d\n", benchRet); 
+          free(mrb);
+          for(int _aux = 0; _aux < _len_mrdb0; _aux++) {
+          free(mrdb[_aux].dbg);
+          }
+          free(mrdb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mrb0 = 100;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_mrdb0 = 100;
+          struct TYPE_5__ * mrdb = (struct TYPE_5__ *) malloc(_len_mrdb0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
+              int _len_mrdb__i0__dbg0 = 1;
+          mrdb[_i0].dbg = (struct TYPE_4__ *) malloc(_len_mrdb__i0__dbg0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mrdb__i0__dbg0; _j0++) {
+              mrdb[_i0].dbg->xm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = dbgcmd_step(mrb,mrdb);
+          printf("%d\n", benchRet); 
+          free(mrb);
+          for(int _aux = 0; _aux < _len_mrdb0; _aux++) {
+          free(mrdb[_aux].dbg);
+          }
+          free(mrdb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_mrb0 = 1;
           int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
             mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_mrdb0 = 1;
           struct TYPE_5__ * mrdb = (struct TYPE_5__ *) malloc(_len_mrdb0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mrdb0; _i0++) {
               int _len_mrdb__i0__dbg0 = 1;
           mrdb[_i0].dbg = (struct TYPE_4__ *) malloc(_len_mrdb__i0__dbg0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mrdb__i0__dbg0; _j0++) {
-            mrdb[_i0].dbg->xm = ((-2 * (next_i()%2)) + 1) * next_i();
+              mrdb[_i0].dbg->xm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = dbgcmd_step(mrb,mrdb);
           printf("%d\n", benchRet); 
           free(mrb);

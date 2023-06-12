@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static enum xz_ret crc32_validate(struct xz_dec *s, struct
 	return XZ_STREAM_END;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,26 +93,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
           struct xz_dec * s = (struct xz_dec *) malloc(_len_s0*sizeof(struct xz_dec));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_b0 = 1;
+        
+          int _len_b0 = 65025;
           struct xz_buf * b = (struct xz_buf *) malloc(_len_b0*sizeof(struct xz_buf));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].in_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].in_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].in_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].in_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_b__i0__in0 = 1;
           b[_i0].in = (int *) malloc(_len_b__i0__in0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_b__i0__in0; _j0++) {
             b[_i0].in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          enum xz_ret benchRet = crc32_validate(s,b);
+          free(s);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].in);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct xz_dec * s = (struct xz_dec *) malloc(_len_s0*sizeof(struct xz_dec));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct xz_buf * b = (struct xz_buf *) malloc(_len_b0*sizeof(struct xz_buf));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].in_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].in_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_b__i0__in0 = 1;
+          b[_i0].in = (int *) malloc(_len_b__i0__in0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_b__i0__in0; _j0++) {
+            b[_i0].in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          enum xz_ret benchRet = crc32_validate(s,b);
+          free(s);
+          for(int _aux = 0; _aux < _len_b0; _aux++) {
+          free(b[_aux].in);
+          }
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_s0 = 1;
+          struct xz_dec * s = (struct xz_dec *) malloc(_len_s0*sizeof(struct xz_dec));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 1;
+          struct xz_buf * b = (struct xz_buf *) malloc(_len_b0*sizeof(struct xz_buf));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].in_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].in_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_b__i0__in0 = 1;
+          b[_i0].in = (int *) malloc(_len_b__i0__in0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_b__i0__in0; _j0++) {
+            b[_i0].in[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           enum xz_ret benchRet = crc32_validate(s,b);
           free(s);
           for(int _aux = 0; _aux < _len_b0; _aux++) {

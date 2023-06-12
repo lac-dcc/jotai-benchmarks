@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ get_tx_compl_callback_index_locked(mbuf_tx_compl_func callback)
 	return (UINT32_MAX);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long callback = 100;
+        
           unsigned long benchRet = get_tx_compl_callback_index_locked(callback);
           printf("%lu\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long callback = 255;
+        
           unsigned long benchRet = get_tx_compl_callback_index_locked(callback);
           printf("%lu\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long callback = 10;
+        
           unsigned long benchRet = get_tx_compl_callback_index_locked(callback);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long callback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = get_tx_compl_callback_index_locked(callback);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

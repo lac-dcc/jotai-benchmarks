@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ qf_ref(struct quotafile *qfp)
 	return (error);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +86,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_qfp0 = 65025;
+          struct quotafile * qfp = (struct quotafile *) malloc(_len_qfp0*sizeof(struct quotafile));
+          for(int _i0 = 0; _i0 < _len_qfp0; _i0++) {
+              qfp[_i0].qf_qflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          qfp[_i0].qf_vp = ((-2 * (next_i()%2)) + 1) * next_i();
+          qfp[_i0].qf_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qf_ref(qfp);
+          printf("%d\n", benchRet); 
+          free(qfp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_qfp0 = 100;
+          struct quotafile * qfp = (struct quotafile *) malloc(_len_qfp0*sizeof(struct quotafile));
+          for(int _i0 = 0; _i0 < _len_qfp0; _i0++) {
+              qfp[_i0].qf_qflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          qfp[_i0].qf_vp = ((-2 * (next_i()%2)) + 1) * next_i();
+          qfp[_i0].qf_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qf_ref(qfp);
+          printf("%d\n", benchRet); 
+          free(qfp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_qfp0 = 1;
           struct quotafile * qfp = (struct quotafile *) malloc(_len_qfp0*sizeof(struct quotafile));
           for(int _i0 = 0; _i0 < _len_qfp0; _i0++) {
-            qfp[_i0].qf_qflags = ((-2 * (next_i()%2)) + 1) * next_i();
-        qfp[_i0].qf_vp = ((-2 * (next_i()%2)) + 1) * next_i();
-        qfp[_i0].qf_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              qfp[_i0].qf_qflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          qfp[_i0].qf_vp = ((-2 * (next_i()%2)) + 1) * next_i();
+          qfp[_i0].qf_refcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qf_ref(qfp);
           printf("%d\n", benchRet); 
           free(qfp);

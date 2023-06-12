@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static bool xgbe_phy_sfp_verify_eeprom(u8 cc_in, u8 *buf, 
 	return (cc == cc_in) ? true : false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +78,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 3331
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 1034
+          // ------------------------------- 
+          // static_instructions_O2 : 78
+          // dynamic_instructions_O2 : 366
+          // ------------------------------- 
+          // static_instructions_O3 : 78
+          // dynamic_instructions_O3 : 366
+          // ------------------------------- 
+          // static_instructions_Ofast : 78
+          // dynamic_instructions_Ofast : 366
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 1033
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 1287
+          // ------------------------------- 
+
+          long cc_in = 255;
+        
+          unsigned int len = 255;
+        
+          int _len_buf0 = 65025;
+          long * buf = (long *) malloc(_len_buf0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xgbe_phy_sfp_verify_eeprom(cc_in,buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 146
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 54
+          // ------------------------------- 
+          // static_instructions_O2 : 56
+          // dynamic_instructions_O2 : 67
+          // ------------------------------- 
+          // static_instructions_O3 : 56
+          // dynamic_instructions_O3 : 67
+          // ------------------------------- 
+          // static_instructions_Ofast : 56
+          // dynamic_instructions_Ofast : 67
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 53
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 62
+          // ------------------------------- 
+
           long cc_in = 10;
+        
           unsigned int len = 10;
+        
           int _len_buf0 = 100;
           long * buf = (long *) malloc(_len_buf0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xgbe_phy_sfp_verify_eeprom(cc_in,buf,len);
           printf("%d\n", benchRet); 
           free(buf);

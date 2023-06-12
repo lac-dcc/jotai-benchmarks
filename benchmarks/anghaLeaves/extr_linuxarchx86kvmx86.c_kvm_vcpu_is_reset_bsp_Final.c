@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ bool kvm_vcpu_is_reset_bsp(struct kvm_vcpu *vcpu)
 	return vcpu->kvm->arch.bsp_vcpu_id == vcpu->vcpu_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_vcpu0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vcpu0 = 65025;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vcpu__i0__kvm0 = 1;
           vcpu[_i0].kvm = (struct TYPE_4__ *) malloc(_len_vcpu__i0__kvm0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_vcpu__i0__kvm0; _j0++) {
-            vcpu[_i0].kvm->arch.bsp_vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].kvm->arch.bsp_vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = kvm_vcpu_is_reset_bsp(vcpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vcpu0; _aux++) {
+          free(vcpu[_aux].kvm);
+          }
+          free(vcpu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vcpu__i0__kvm0 = 1;
+          vcpu[_i0].kvm = (struct TYPE_4__ *) malloc(_len_vcpu__i0__kvm0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vcpu__i0__kvm0; _j0++) {
+              vcpu[_i0].kvm->arch.bsp_vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = kvm_vcpu_is_reset_bsp(vcpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vcpu0; _aux++) {
+          free(vcpu[_aux].kvm);
+          }
+          free(vcpu);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vcpu__i0__kvm0 = 1;
+          vcpu[_i0].kvm = (struct TYPE_4__ *) malloc(_len_vcpu__i0__kvm0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_vcpu__i0__kvm0; _j0++) {
+              vcpu[_i0].kvm->arch.bsp_vcpu_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = kvm_vcpu_is_reset_bsp(vcpu);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vcpu0; _aux++) {

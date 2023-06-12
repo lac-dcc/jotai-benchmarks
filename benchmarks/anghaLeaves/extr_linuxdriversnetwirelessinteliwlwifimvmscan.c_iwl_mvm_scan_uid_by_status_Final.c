@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int iwl_mvm_scan_uid_by_status(struct iwl_mvm *mvm,
 	return -ENOENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int status = 100;
+        
           int _len_mvm0 = 1;
           struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
           for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
-            mvm[_i0].max_scans = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvm[_i0].max_scans = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mvm__i0__scan_uid_status0 = 1;
           mvm[_i0].scan_uid_status = (int *) malloc(_len_mvm__i0__scan_uid_status0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_mvm__i0__scan_uid_status0; _j0++) {
             mvm[_i0].scan_uid_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = iwl_mvm_scan_uid_by_status(mvm,status);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].scan_uid_status);
+          }
+          free(mvm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int status = 255;
+        
+          int _len_mvm0 = 65025;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].max_scans = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mvm__i0__scan_uid_status0 = 1;
+          mvm[_i0].scan_uid_status = (int *) malloc(_len_mvm__i0__scan_uid_status0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__scan_uid_status0; _j0++) {
+            mvm[_i0].scan_uid_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = iwl_mvm_scan_uid_by_status(mvm,status);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].scan_uid_status);
+          }
+          free(mvm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int status = 10;
+        
+          int _len_mvm0 = 100;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].max_scans = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mvm__i0__scan_uid_status0 = 1;
+          mvm[_i0].scan_uid_status = (int *) malloc(_len_mvm__i0__scan_uid_status0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__scan_uid_status0; _j0++) {
+            mvm[_i0].scan_uid_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = iwl_mvm_scan_uid_by_status(mvm,status);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mvm0; _aux++) {
+          free(mvm[_aux].scan_uid_status);
+          }
+          free(mvm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mvm0 = 1;
+          struct iwl_mvm * mvm = (struct iwl_mvm *) malloc(_len_mvm0*sizeof(struct iwl_mvm));
+          for(int _i0 = 0; _i0 < _len_mvm0; _i0++) {
+              mvm[_i0].max_scans = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mvm__i0__scan_uid_status0 = 1;
+          mvm[_i0].scan_uid_status = (int *) malloc(_len_mvm__i0__scan_uid_status0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mvm__i0__scan_uid_status0; _j0++) {
+            mvm[_i0].scan_uid_status[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = iwl_mvm_scan_uid_by_status(mvm,status);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mvm0; _aux++) {

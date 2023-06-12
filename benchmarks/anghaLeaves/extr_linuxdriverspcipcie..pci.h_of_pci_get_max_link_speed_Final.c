@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ of_pci_get_max_link_speed(struct device_node *node)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_node0 = 1;
+          int _len_node0 = 65025;
           struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = of_pci_get_max_link_speed(node);
           printf("%d\n", benchRet); 
           free(node);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_node0 = 100;
           struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = of_pci_get_max_link_speed(node);
           printf("%d\n", benchRet); 
           free(node);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_node0 = 1;
+          struct device_node * node = (struct device_node *) malloc(_len_node0*sizeof(struct device_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = of_pci_get_max_link_speed(node);
+          printf("%d\n", benchRet); 
+          free(node);
+        
+        break;
+    }
     default:
         usage();
         break;

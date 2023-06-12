@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -119,12 +122,6 @@ __attribute__((used)) static void map_access_2_allowdeny(ULONG access_mask, ULON
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -141,25 +138,110 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int access_mask = 100;
+        
           int access_mode = 100;
+        
           int disposition = 100;
+        
           int _len_allow0 = 1;
           int * allow = (int *) malloc(_len_allow0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_allow0; _i0++) {
             allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_deny0 = 1;
           int * deny = (int *) malloc(_len_deny0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
             deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           map_access_2_allowdeny(access_mask,access_mode,disposition,allow,deny);
           free(allow);
           free(deny);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int access_mask = 255;
+        
+          int access_mode = 255;
+        
+          int disposition = 255;
+        
+          int _len_allow0 = 65025;
+          int * allow = (int *) malloc(_len_allow0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_allow0; _i0++) {
+            allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_deny0 = 65025;
+          int * deny = (int *) malloc(_len_deny0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
+            deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          map_access_2_allowdeny(access_mask,access_mode,disposition,allow,deny);
+          free(allow);
+          free(deny);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int access_mask = 10;
+        
+          int access_mode = 10;
+        
+          int disposition = 10;
+        
+          int _len_allow0 = 100;
+          int * allow = (int *) malloc(_len_allow0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_allow0; _i0++) {
+            allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_deny0 = 100;
+          int * deny = (int *) malloc(_len_deny0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
+            deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          map_access_2_allowdeny(access_mask,access_mode,disposition,allow,deny);
+          free(allow);
+          free(deny);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int access_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int access_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int disposition = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_allow0 = 1;
+          int * allow = (int *) malloc(_len_allow0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_allow0; _i0++) {
+            allow[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_deny0 = 1;
+          int * deny = (int *) malloc(_len_deny0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_deny0; _i0++) {
+            deny[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          map_access_2_allowdeny(access_mask,access_mode,disposition,allow,deny);
+          free(allow);
+          free(deny);
+        
+        break;
+    }
     default:
         usage();
         break;

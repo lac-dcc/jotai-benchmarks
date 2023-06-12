@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool reg_request_cell_base(struct regulatory_reques
 	return request->user_reg_hint_type == NL80211_USER_REG_HINT_CELL_BASE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +78,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_request0 = 1;
+          int _len_request0 = 65025;
           struct regulatory_request * request = (struct regulatory_request *) malloc(_len_request0*sizeof(struct regulatory_request));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].initiator = ((-2 * (next_i()%2)) + 1) * next_i();
-        request[_i0].user_reg_hint_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].initiator = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].user_reg_hint_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = reg_request_cell_base(request);
           printf("%d\n", benchRet); 
           free(request);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_request0 = 100;
+          struct regulatory_request * request = (struct regulatory_request *) malloc(_len_request0*sizeof(struct regulatory_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].initiator = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].user_reg_hint_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = reg_request_cell_base(request);
+          printf("%d\n", benchRet); 
+          free(request);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_request0 = 1;
+          struct regulatory_request * request = (struct regulatory_request *) malloc(_len_request0*sizeof(struct regulatory_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].initiator = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].user_reg_hint_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = reg_request_cell_base(request);
+          printf("%d\n", benchRet); 
+          free(request);
+        
+        break;
+    }
     default:
         usage();
         break;

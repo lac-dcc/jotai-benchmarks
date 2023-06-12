@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static size_t stbds_probe_position(size_t hash, size_t slo
   return pos;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long hash = 100;
+        
           unsigned long slot_count = 100;
+        
           unsigned long slot_log2 = 100;
+        
           unsigned long benchRet = stbds_probe_position(hash,slot_count,slot_log2);
           printf("%lu\n", benchRet); 
         
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long hash = 255;
+        
           unsigned long slot_count = 255;
+        
           unsigned long slot_log2 = 255;
+        
           unsigned long benchRet = stbds_probe_position(hash,slot_count,slot_log2);
           printf("%lu\n", benchRet); 
         
@@ -110,14 +111,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long hash = 10;
+        
           unsigned long slot_count = 10;
+        
           unsigned long slot_log2 = 10;
+        
           unsigned long benchRet = stbds_probe_position(hash,slot_count,slot_log2);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long slot_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long slot_log2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = stbds_probe_position(hash,slot_count,slot_log2);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

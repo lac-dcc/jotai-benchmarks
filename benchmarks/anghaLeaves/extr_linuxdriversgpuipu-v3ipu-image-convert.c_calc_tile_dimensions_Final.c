@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static void calc_tile_dimensions(struct ipu_image_convert_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,37 +102,218 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctx0 = 65025;
           struct ipu_image_convert_ctx * ctx = (struct ipu_image_convert_ctx *) malloc(_len_ctx0*sizeof(struct ipu_image_convert_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].num_tiles = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].num_tiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_image0 = 1;
+        
+          int _len_image0 = 65025;
           struct ipu_image_convert_image * image = (struct ipu_image_convert_image *) malloc(_len_image0*sizeof(struct ipu_image_convert_image));
           for(int _i0 = 0; _i0 < _len_image0; _i0++) {
-            image[_i0].num_rows = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].num_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+              image[_i0].num_rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].num_cols = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_image__i0__fmt0 = 1;
           image[_i0].fmt = (struct TYPE_6__ *) malloc(_len_image__i0__fmt0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_image__i0__fmt0; _j0++) {
-            image[_i0].fmt->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].fmt->planar = ((-2 * (next_i()%2)) + 1) * next_i();
+              image[_i0].fmt->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].fmt->planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        image[_i0].base.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].base.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].base.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].base.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int _len_image__i0__tile0 = 1;
           image[_i0].tile = (struct ipu_image_tile *) malloc(_len_image__i0__tile0*sizeof(struct ipu_image_tile));
           for(int _j0 = 0; _j0 < _len_image__i0__tile0; _j0++) {
-            image[_i0].tile->height = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].tile->width = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].tile->size = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].tile->stride = ((-2 * (next_i()%2)) + 1) * next_i();
-        image[_i0].tile->rot_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+              image[_i0].tile->height = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->width = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->rot_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          calc_tile_dimensions(ctx,image);
+          free(ctx);
+          for(int _aux = 0; _aux < _len_image0; _aux++) {
+          free(image[_aux].fmt);
+          }
+          for(int _aux = 0; _aux < _len_image0; _aux++) {
+          free(image[_aux].tile);
+          }
+          free(image);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctx0 = 100;
+          struct ipu_image_convert_ctx * ctx = (struct ipu_image_convert_ctx *) malloc(_len_ctx0*sizeof(struct ipu_image_convert_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].num_tiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_image0 = 100;
+          struct ipu_image_convert_image * image = (struct ipu_image_convert_image *) malloc(_len_image0*sizeof(struct ipu_image_convert_image));
+          for(int _i0 = 0; _i0 < _len_image0; _i0++) {
+              image[_i0].num_rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].num_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_image__i0__fmt0 = 1;
+          image[_i0].fmt = (struct TYPE_6__ *) malloc(_len_image__i0__fmt0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_image__i0__fmt0; _j0++) {
+              image[_i0].fmt->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].fmt->planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          image[_i0].base.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].base.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_image__i0__tile0 = 1;
+          image[_i0].tile = (struct ipu_image_tile *) malloc(_len_image__i0__tile0*sizeof(struct ipu_image_tile));
+          for(int _j0 = 0; _j0 < _len_image__i0__tile0; _j0++) {
+              image[_i0].tile->height = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->width = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->rot_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          calc_tile_dimensions(ctx,image);
+          free(ctx);
+          for(int _aux = 0; _aux < _len_image0; _aux++) {
+          free(image[_aux].fmt);
+          }
+          for(int _aux = 0; _aux < _len_image0; _aux++) {
+          free(image[_aux].tile);
+          }
+          free(image);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_ctx0 = 1;
+          struct ipu_image_convert_ctx * ctx = (struct ipu_image_convert_ctx *) malloc(_len_ctx0*sizeof(struct ipu_image_convert_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].num_tiles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_image0 = 1;
+          struct ipu_image_convert_image * image = (struct ipu_image_convert_image *) malloc(_len_image0*sizeof(struct ipu_image_convert_image));
+          for(int _i0 = 0; _i0 < _len_image0; _i0++) {
+              image[_i0].num_rows = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].num_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_image__i0__fmt0 = 1;
+          image[_i0].fmt = (struct TYPE_6__ *) malloc(_len_image__i0__fmt0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_image__i0__fmt0; _j0++) {
+              image[_i0].fmt->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].fmt->planar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          image[_i0].base.pix.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].base.pix.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_image__i0__tile0 = 1;
+          image[_i0].tile = (struct ipu_image_tile *) malloc(_len_image__i0__tile0*sizeof(struct ipu_image_tile));
+          for(int _j0 = 0; _j0 < _len_image__i0__tile0; _j0++) {
+              image[_i0].tile->height = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->width = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->size = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          image[_i0].tile->rot_stride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           calc_tile_dimensions(ctx,image);
           free(ctx);
           for(int _aux = 0; _aux < _len_image0; _aux++) {

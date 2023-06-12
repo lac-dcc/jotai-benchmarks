@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int zend_bitset_empty(zend_bitset set, uint3
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long len = 100;
+        
           int _len_set0 = 1;
           long * set = (long *) malloc(_len_set0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_set0; _i0++) {
             set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = zend_bitset_empty(set,len);
+          printf("%d\n", benchRet); 
+          free(set);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long len = 255;
+        
+          int _len_set0 = 65025;
+          long * set = (long *) malloc(_len_set0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_set0; _i0++) {
+            set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = zend_bitset_empty(set,len);
           printf("%d\n", benchRet); 
           free(set);
@@ -102,21 +117,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long len = 10;
+        
           int _len_set0 = 100;
           long * set = (long *) malloc(_len_set0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_set0; _i0++) {
             set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = zend_bitset_empty(set,len);
           printf("%d\n", benchRet); 
           free(set);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_set0 = 1;
+          long * set = (long *) malloc(_len_set0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_set0; _i0++) {
+            set[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zend_bitset_empty(set,len);
+          printf("%d\n", benchRet); 
+          free(set);
+        
+        break;
+    }
     default:
         usage();
         break;

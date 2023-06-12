@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline int cpu_map__socket(struct cpu_map *sock, in
 	return sock->map[s];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,20 +77,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int s = 100;
+        
           int _len_sock0 = 1;
           struct cpu_map * sock = (struct cpu_map *) malloc(_len_sock0*sizeof(struct cpu_map));
           for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
-            sock[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              sock[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_sock__i0__map0 = 1;
           sock[_i0].map = (int *) malloc(_len_sock__i0__map0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_sock__i0__map0; _j0++) {
             sock[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = cpu_map__socket(sock,s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sock0; _aux++) {
+          free(sock[_aux].map);
+          }
+          free(sock);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int s = 255;
+        
+          int _len_sock0 = 65025;
+          struct cpu_map * sock = (struct cpu_map *) malloc(_len_sock0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sock__i0__map0 = 1;
+          sock[_i0].map = (int *) malloc(_len_sock__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sock__i0__map0; _j0++) {
+            sock[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__socket(sock,s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sock0; _aux++) {
+          free(sock[_aux].map);
+          }
+          free(sock);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int s = 10;
+        
+          int _len_sock0 = 100;
+          struct cpu_map * sock = (struct cpu_map *) malloc(_len_sock0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sock__i0__map0 = 1;
+          sock[_i0].map = (int *) malloc(_len_sock__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sock__i0__map0; _j0++) {
+            sock[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = cpu_map__socket(sock,s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sock0; _aux++) {
+          free(sock[_aux].map);
+          }
+          free(sock);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sock0 = 1;
+          struct cpu_map * sock = (struct cpu_map *) malloc(_len_sock0*sizeof(struct cpu_map));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              sock[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_sock__i0__map0 = 1;
+          sock[_i0].map = (int *) malloc(_len_sock__i0__map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sock__i0__map0; _j0++) {
+            sock[_i0].map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = cpu_map__socket(sock,s);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sock0; _aux++) {

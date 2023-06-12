@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static inline void shift_syllable_glyph_indexs(IndicSyllab
         glyph_index->pref+= shift;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,23 +96,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long index = 100;
+        
           long shift = 100;
+        
           int _len_glyph_index0 = 1;
           struct TYPE_3__ * glyph_index = (struct TYPE_3__ *) malloc(_len_glyph_index0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_glyph_index0; _i0++) {
-            glyph_index[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        glyph_index[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
-        glyph_index[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        glyph_index[_i0].ralf = ((-2 * (next_i()%2)) + 1) * next_i();
-        glyph_index[_i0].blwf = ((-2 * (next_i()%2)) + 1) * next_i();
-        glyph_index[_i0].pref = ((-2 * (next_i()%2)) + 1) * next_i();
+              glyph_index[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].ralf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].blwf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].pref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           shift_syllable_glyph_indexs(glyph_index,index,shift);
           free(glyph_index);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long index = 255;
+        
+          long shift = 255;
+        
+          int _len_glyph_index0 = 65025;
+          struct TYPE_3__ * glyph_index = (struct TYPE_3__ *) malloc(_len_glyph_index0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_glyph_index0; _i0++) {
+              glyph_index[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].ralf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].blwf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].pref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          shift_syllable_glyph_indexs(glyph_index,index,shift);
+          free(glyph_index);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long index = 10;
+        
+          long shift = 10;
+        
+          int _len_glyph_index0 = 100;
+          struct TYPE_3__ * glyph_index = (struct TYPE_3__ *) malloc(_len_glyph_index0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_glyph_index0; _i0++) {
+              glyph_index[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].ralf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].blwf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].pref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          shift_syllable_glyph_indexs(glyph_index,index,shift);
+          free(glyph_index);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long shift = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_glyph_index0 = 1;
+          struct TYPE_3__ * glyph_index = (struct TYPE_3__ *) malloc(_len_glyph_index0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_glyph_index0; _i0++) {
+              glyph_index[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].ralf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].blwf = ((-2 * (next_i()%2)) + 1) * next_i();
+          glyph_index[_i0].pref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          shift_syllable_glyph_indexs(glyph_index,index,shift);
+          free(glyph_index);
+        
+        break;
+    }
     default:
         usage();
         break;

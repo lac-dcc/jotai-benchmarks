@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void git_repository__cvar_cache_clear(git_repository *repo)
 		repo->cvar_cache[i] = GIT_CVAR_NOT_CACHED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +81,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_repo0 = 65025;
+          struct TYPE_3__ * repo = (struct TYPE_3__ *) malloc(_len_repo0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_repo0; _i0++) {
+              int _len_repo__i0__cvar_cache0 = 1;
+          repo[_i0].cvar_cache = (int *) malloc(_len_repo__i0__cvar_cache0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_repo__i0__cvar_cache0; _j0++) {
+            repo[_i0].cvar_cache[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          git_repository__cvar_cache_clear(repo);
+          for(int _aux = 0; _aux < _len_repo0; _aux++) {
+          free(repo[_aux].cvar_cache);
+          }
+          free(repo);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_repo0 = 100;
+          struct TYPE_3__ * repo = (struct TYPE_3__ *) malloc(_len_repo0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_repo0; _i0++) {
+              int _len_repo__i0__cvar_cache0 = 1;
+          repo[_i0].cvar_cache = (int *) malloc(_len_repo__i0__cvar_cache0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_repo__i0__cvar_cache0; _j0++) {
+            repo[_i0].cvar_cache[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          git_repository__cvar_cache_clear(repo);
+          for(int _aux = 0; _aux < _len_repo0; _aux++) {
+          free(repo[_aux].cvar_cache);
+          }
+          free(repo);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_repo0 = 1;
           struct TYPE_3__ * repo = (struct TYPE_3__ *) malloc(_len_repo0*sizeof(struct TYPE_3__));
@@ -96,7 +136,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_repo__i0__cvar_cache0; _j0++) {
             repo[_i0].cvar_cache[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           git_repository__cvar_cache_clear(repo);
           for(int _aux = 0; _aux < _len_repo0; _aux++) {
           free(repo[_aux].cvar_cache);
@@ -105,7 +147,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

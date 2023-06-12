@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ state_filter_match(unsigned long state_filter, struct task_struct *p)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,11 +97,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long state_filter = 100;
+        
           int _len_p0 = 1;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = state_filter_match(state_filter,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long state_filter = 255;
+        
+          int _len_p0 = 65025;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = state_filter_match(state_filter,p);
           printf("%d\n", benchRet); 
           free(p);
@@ -113,21 +130,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long state_filter = 10;
+        
           int _len_p0 = 100;
           struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = state_filter_match(state_filter,p);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long state_filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct task_struct * p = (struct task_struct *) malloc(_len_p0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = state_filter_match(state_filter,p);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

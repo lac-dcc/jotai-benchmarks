@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void marshal_virt_to_resize(struct dk_cxlflash_uvir
 	resize->last_lba = virt->last_lba;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,34 +80,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_virt0 = 1;
+          int _len_virt0 = 65025;
           struct dk_cxlflash_uvirtual * virt = (struct dk_cxlflash_uvirtual *) malloc(_len_virt0*sizeof(struct dk_cxlflash_uvirtual));
           for(int _i0 = 0; _i0 < _len_virt0; _i0++) {
-            virt[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
-        virt[_i0].lun_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        virt[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        virt[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        virt[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              virt[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].lun_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_resize0 = 1;
+        
+          int _len_resize0 = 65025;
           struct dk_cxlflash_resize * resize = (struct dk_cxlflash_resize *) malloc(_len_resize0*sizeof(struct dk_cxlflash_resize));
           for(int _i0 = 0; _i0 < _len_resize0; _i0++) {
-            resize[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
-        resize[_i0].req_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              resize[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].req_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           marshal_virt_to_resize(virt,resize);
           free(virt);
           free(resize);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_virt0 = 100;
+          struct dk_cxlflash_uvirtual * virt = (struct dk_cxlflash_uvirtual *) malloc(_len_virt0*sizeof(struct dk_cxlflash_uvirtual));
+          for(int _i0 = 0; _i0 < _len_virt0; _i0++) {
+              virt[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].lun_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_resize0 = 100;
+          struct dk_cxlflash_resize * resize = (struct dk_cxlflash_resize *) malloc(_len_resize0*sizeof(struct dk_cxlflash_resize));
+          for(int _i0 = 0; _i0 < _len_resize0; _i0++) {
+              resize[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].req_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          marshal_virt_to_resize(virt,resize);
+          free(virt);
+          free(resize);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_virt0 = 1;
+          struct dk_cxlflash_uvirtual * virt = (struct dk_cxlflash_uvirtual *) malloc(_len_virt0*sizeof(struct dk_cxlflash_uvirtual));
+          for(int _i0 = 0; _i0 < _len_virt0; _i0++) {
+              virt[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].lun_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          virt[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_resize0 = 1;
+          struct dk_cxlflash_resize * resize = (struct dk_cxlflash_resize *) malloc(_len_resize0*sizeof(struct dk_cxlflash_resize));
+          for(int _i0 = 0; _i0 < _len_resize0; _i0++) {
+              resize[_i0].last_lba = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].req_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].rsrc_handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].context_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          resize[_i0].hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          marshal_virt_to_resize(virt,resize);
+          free(virt);
+          free(resize);
+        
+        break;
+    }
     default:
         usage();
         break;

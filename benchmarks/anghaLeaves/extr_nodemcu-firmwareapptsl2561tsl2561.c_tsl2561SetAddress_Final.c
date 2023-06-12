@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void tsl2561SetAddress(uint8_t address){
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int address = 100;
+        
           tsl2561SetAddress(address);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int address = 255;
+        
           tsl2561SetAddress(address);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int address = 10;
+        
           tsl2561SetAddress(address);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tsl2561SetAddress(address);
+        
+        break;
+    }
     default:
         usage();
         break;

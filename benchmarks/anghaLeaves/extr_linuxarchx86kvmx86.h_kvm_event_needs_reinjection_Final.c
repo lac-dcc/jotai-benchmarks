@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline bool kvm_event_needs_reinjection(struct kvm_
 		vcpu->arch.nmi_injected;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vcpu0 = 1;
+          int _len_vcpu0 = 65025;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].arch.nmi_injected = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.interrupt.injected = ((-2 * (next_i()%2)) + 1) * next_i();
-        vcpu[_i0].arch.exception.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].arch.nmi_injected = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.interrupt.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vcpu[_i0].arch.exception.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = kvm_event_needs_reinjection(vcpu);
           printf("%d\n", benchRet); 
           free(vcpu);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.nmi_injected = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.interrupt.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vcpu[_i0].arch.exception.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = kvm_event_needs_reinjection(vcpu);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].arch.nmi_injected = ((-2 * (next_i()%2)) + 1) * next_i();
+          vcpu[_i0].arch.interrupt.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          vcpu[_i0].arch.exception.injected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = kvm_event_needs_reinjection(vcpu);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+        
+        break;
+    }
     default:
         usage();
         break;

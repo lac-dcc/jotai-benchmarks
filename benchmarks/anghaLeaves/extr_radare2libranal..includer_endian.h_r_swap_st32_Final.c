@@ -61,12 +61,6 @@ __attribute__((used)) static inline st32 r_swap_st32(st32 val) {
 	return (val << 16) | ((val >> 16) & 0xFFFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = r_swap_st32(val);
           printf("%d\n", benchRet); 
         
@@ -92,12 +87,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 10;
+        
           int benchRet = r_swap_st32(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

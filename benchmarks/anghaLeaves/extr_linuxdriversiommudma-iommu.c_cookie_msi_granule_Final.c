@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline size_t cookie_msi_granule(struct iommu_dma_c
 	return PAGE_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +80,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_cookie0 = 65025;
+          struct iommu_dma_cookie * cookie = (struct iommu_dma_cookie *) malloc(_len_cookie0*sizeof(struct iommu_dma_cookie));
+          for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
+              cookie[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          cookie[_i0].iovad.granule = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = cookie_msi_granule(cookie);
+          printf("%lu\n", benchRet); 
+          free(cookie);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_cookie0 = 100;
+          struct iommu_dma_cookie * cookie = (struct iommu_dma_cookie *) malloc(_len_cookie0*sizeof(struct iommu_dma_cookie));
+          for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
+              cookie[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          cookie[_i0].iovad.granule = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = cookie_msi_granule(cookie);
+          printf("%lu\n", benchRet); 
+          free(cookie);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_cookie0 = 1;
           struct iommu_dma_cookie * cookie = (struct iommu_dma_cookie *) malloc(_len_cookie0*sizeof(struct iommu_dma_cookie));
           for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
-            cookie[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        cookie[_i0].iovad.granule = ((-2 * (next_i()%2)) + 1) * next_i();
+              cookie[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          cookie[_i0].iovad.granule = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = cookie_msi_granule(cookie);
           printf("%lu\n", benchRet); 
           free(cookie);

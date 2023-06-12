@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static unsigned int __ieee80211_get_mesh_hdrlen(u8 flags)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           unsigned int benchRet = __ieee80211_get_mesh_hdrlen(flags);
           printf("%u\n", benchRet); 
         
@@ -106,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int flags = 255;
+        
           unsigned int benchRet = __ieee80211_get_mesh_hdrlen(flags);
           printf("%u\n", benchRet); 
         
@@ -115,12 +112,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int flags = 10;
+        
           unsigned int benchRet = __ieee80211_get_mesh_hdrlen(flags);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = __ieee80211_get_mesh_hdrlen(flags);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

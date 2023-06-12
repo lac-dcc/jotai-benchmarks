@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ void nfs_server_copy_userdata(struct nfs_server *target, struct nfs_server *sour
 	target->port = source->port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,46 +84,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_target0 = 1;
+          int _len_target0 = 65025;
           struct nfs_server * target = (struct nfs_server *) malloc(_len_target0*sizeof(struct nfs_server));
           for(int _i0 = 0; _i0 < _len_target0; _i0++) {
-            target[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        target[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              target[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_source0 = 1;
+        
+          int _len_source0 = 65025;
           struct nfs_server * source = (struct nfs_server *) malloc(_len_source0*sizeof(struct nfs_server));
           for(int _i0 = 0; _i0 < _len_source0; _i0++) {
-            source[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        source[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              source[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nfs_server_copy_userdata(target,source);
           free(target);
           free(source);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_target0 = 100;
+          struct nfs_server * target = (struct nfs_server *) malloc(_len_target0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_source0 = 100;
+          struct nfs_server * source = (struct nfs_server *) malloc(_len_source0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+              source[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_server_copy_userdata(target,source);
+          free(target);
+          free(source);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_target0 = 1;
+          struct nfs_server * target = (struct nfs_server *) malloc(_len_target0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          target[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_source0 = 1;
+          struct nfs_server * source = (struct nfs_server *) malloc(_len_source0*sizeof(struct nfs_server));
+          for(int _i0 = 0; _i0 < _len_source0; _i0++) {
+              source[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].auth_info = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].options = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acdirmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acdirmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acregmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].acregmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].wsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].rsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          source[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nfs_server_copy_userdata(target,source);
+          free(target);
+          free(source);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static bool meson_mmc_timing_is_ddr(struct mmc_ios *ios)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ios0 = 1;
+          int _len_ios0 = 65025;
           struct mmc_ios * ios = (struct mmc_ios *) malloc(_len_ios0*sizeof(struct mmc_ios));
           for(int _i0 = 0; _i0 < _len_ios0; _i0++) {
-            ios[_i0].timing = ((-2 * (next_i()%2)) + 1) * next_i();
+              ios[_i0].timing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = meson_mmc_timing_is_ddr(ios);
           printf("%d\n", benchRet); 
           free(ios);
@@ -107,15 +104,32 @@ int main(int argc, char *argv[]) {
           int _len_ios0 = 100;
           struct mmc_ios * ios = (struct mmc_ios *) malloc(_len_ios0*sizeof(struct mmc_ios));
           for(int _i0 = 0; _i0 < _len_ios0; _i0++) {
-            ios[_i0].timing = ((-2 * (next_i()%2)) + 1) * next_i();
+              ios[_i0].timing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = meson_mmc_timing_is_ddr(ios);
           printf("%d\n", benchRet); 
           free(ios);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ios0 = 1;
+          struct mmc_ios * ios = (struct mmc_ios *) malloc(_len_ios0*sizeof(struct mmc_ios));
+          for(int _i0 = 0; _i0 < _len_ios0; _i0++) {
+              ios[_i0].timing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = meson_mmc_timing_is_ddr(ios);
+          printf("%d\n", benchRet); 
+          free(ios);
+        
+        break;
+    }
     default:
         usage();
         break;

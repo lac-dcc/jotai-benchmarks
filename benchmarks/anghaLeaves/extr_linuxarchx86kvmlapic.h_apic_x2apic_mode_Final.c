@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int apic_x2apic_mode(struct kvm_lapic *apic)
 	return apic->vcpu->arch.apic_base & X2APIC_ENABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,18 +79,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_apic0 = 65025;
+          struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
+          for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
+              int _len_apic__i0__vcpu0 = 1;
+          apic[_i0].vcpu = (struct TYPE_4__ *) malloc(_len_apic__i0__vcpu0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_apic__i0__vcpu0; _j0++) {
+              apic[_i0].vcpu->arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = apic_x2apic_mode(apic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_apic0; _aux++) {
+          free(apic[_aux].vcpu);
+          }
+          free(apic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_apic0 = 100;
+          struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
+          for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
+              int _len_apic__i0__vcpu0 = 1;
+          apic[_i0].vcpu = (struct TYPE_4__ *) malloc(_len_apic__i0__vcpu0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_apic__i0__vcpu0; _j0++) {
+              apic[_i0].vcpu->arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = apic_x2apic_mode(apic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_apic0; _aux++) {
+          free(apic[_aux].vcpu);
+          }
+          free(apic);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_apic0 = 1;
           struct kvm_lapic * apic = (struct kvm_lapic *) malloc(_len_apic0*sizeof(struct kvm_lapic));
           for(int _i0 = 0; _i0 < _len_apic0; _i0++) {
               int _len_apic__i0__vcpu0 = 1;
           apic[_i0].vcpu = (struct TYPE_4__ *) malloc(_len_apic__i0__vcpu0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_apic__i0__vcpu0; _j0++) {
-            apic[_i0].vcpu->arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              apic[_i0].vcpu->arch.apic_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = apic_x2apic_mode(apic);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_apic0; _aux++) {

@@ -67,12 +67,6 @@ factorial(unsigned x)
 	return (ret);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,12 +83,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int x = 10;
+        
           int benchRet = factorial(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static u32 csid_get_lane_assign(struct csiphy_lanes_cfg *l
 	return lane_assign;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_lane_cfg0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_lane_cfg0 = 65025;
           struct csiphy_lanes_cfg * lane_cfg = (struct csiphy_lanes_cfg *) malloc(_len_lane_cfg0*sizeof(struct csiphy_lanes_cfg));
           for(int _i0 = 0; _i0 < _len_lane_cfg0; _i0++) {
-            lane_cfg[_i0].num_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              lane_cfg[_i0].num_data = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_lane_cfg__i0__data0 = 1;
           lane_cfg[_i0].data = (struct TYPE_2__ *) malloc(_len_lane_cfg__i0__data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_lane_cfg__i0__data0; _j0++) {
-            lane_cfg[_i0].data->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              lane_cfg[_i0].data->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = csid_get_lane_assign(lane_cfg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_lane_cfg0; _aux++) {
+          free(lane_cfg[_aux].data);
+          }
+          free(lane_cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_lane_cfg0 = 100;
+          struct csiphy_lanes_cfg * lane_cfg = (struct csiphy_lanes_cfg *) malloc(_len_lane_cfg0*sizeof(struct csiphy_lanes_cfg));
+          for(int _i0 = 0; _i0 < _len_lane_cfg0; _i0++) {
+              lane_cfg[_i0].num_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_lane_cfg__i0__data0 = 1;
+          lane_cfg[_i0].data = (struct TYPE_2__ *) malloc(_len_lane_cfg__i0__data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_lane_cfg__i0__data0; _j0++) {
+              lane_cfg[_i0].data->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = csid_get_lane_assign(lane_cfg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_lane_cfg0; _aux++) {
+          free(lane_cfg[_aux].data);
+          }
+          free(lane_cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_lane_cfg0 = 1;
+          struct csiphy_lanes_cfg * lane_cfg = (struct csiphy_lanes_cfg *) malloc(_len_lane_cfg0*sizeof(struct csiphy_lanes_cfg));
+          for(int _i0 = 0; _i0 < _len_lane_cfg0; _i0++) {
+              lane_cfg[_i0].num_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_lane_cfg__i0__data0 = 1;
+          lane_cfg[_i0].data = (struct TYPE_2__ *) malloc(_len_lane_cfg__i0__data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_lane_cfg__i0__data0; _j0++) {
+              lane_cfg[_i0].data->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = csid_get_lane_assign(lane_cfg);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_lane_cfg0; _aux++) {

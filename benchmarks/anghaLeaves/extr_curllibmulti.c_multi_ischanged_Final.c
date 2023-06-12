@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool multi_ischanged(struct Curl_multi *multi, bool
   return retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,30 +79,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int clear = 100;
+        
           int _len_multi0 = 1;
           struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
           for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
-            multi[_i0].recheckstate = ((-2 * (next_i()%2)) + 1) * next_i();
+              multi[_i0].recheckstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = multi_ischanged(multi,clear);
           printf("%d\n", benchRet); 
           free(multi);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int clear = 255;
+        
+          int _len_multi0 = 65025;
+          struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
+          for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
+              multi[_i0].recheckstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = multi_ischanged(multi,clear);
+          printf("%d\n", benchRet); 
+          free(multi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int clear = 10;
+        
           int _len_multi0 = 100;
           struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
           for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
-            multi[_i0].recheckstate = ((-2 * (next_i()%2)) + 1) * next_i();
+              multi[_i0].recheckstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = multi_ischanged(multi,clear);
+          printf("%d\n", benchRet); 
+          free(multi);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int clear = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_multi0 = 1;
+          struct Curl_multi * multi = (struct Curl_multi *) malloc(_len_multi0*sizeof(struct Curl_multi));
+          for(int _i0 = 0; _i0 < _len_multi0; _i0++) {
+              multi[_i0].recheckstate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = multi_ischanged(multi,clear);
           printf("%d\n", benchRet); 
           free(multi);

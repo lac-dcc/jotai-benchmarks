@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool peers(struct mount *m1, struct mount *m
 	return m1->mnt_group_id == m2->mnt_group_id && m1->mnt_group_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,19 +74,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m10 = 1;
+          int _len_m10 = 65025;
           struct mount * m1 = (struct mount *) malloc(_len_m10*sizeof(struct mount));
           for(int _i0 = 0; _i0 < _len_m10; _i0++) {
-            m1[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              m1[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_m20 = 1;
+        
+          int _len_m20 = 65025;
           struct mount * m2 = (struct mount *) malloc(_len_m20*sizeof(struct mount));
           for(int _i0 = 0; _i0 < _len_m20; _i0++) {
-            m2[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              m2[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = peers(m1,m2);
           printf("%d\n", benchRet); 
           free(m1);
@@ -98,7 +98,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m10 = 100;
+          struct mount * m1 = (struct mount *) malloc(_len_m10*sizeof(struct mount));
+          for(int _i0 = 0; _i0 < _len_m10; _i0++) {
+              m1[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m20 = 100;
+          struct mount * m2 = (struct mount *) malloc(_len_m20*sizeof(struct mount));
+          for(int _i0 = 0; _i0 < _len_m20; _i0++) {
+              m2[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = peers(m1,m2);
+          printf("%d\n", benchRet); 
+          free(m1);
+          free(m2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m10 = 1;
+          struct mount * m1 = (struct mount *) malloc(_len_m10*sizeof(struct mount));
+          for(int _i0 = 0; _i0 < _len_m10; _i0++) {
+              m1[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m20 = 1;
+          struct mount * m2 = (struct mount *) malloc(_len_m20*sizeof(struct mount));
+          for(int _i0 = 0; _i0 < _len_m20; _i0++) {
+              m2[_i0].mnt_group_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = peers(m1,m2);
+          printf("%d\n", benchRet); 
+          free(m1);
+          free(m2);
+        
+        break;
+    }
     default:
         usage();
         break;

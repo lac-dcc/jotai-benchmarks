@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,7 +70,6 @@ __attribute__((used)) static void list(Node p) {
 	}
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_p(int length, struct TYPE_4__ *aux_p[]) {
@@ -97,7 +97,6 @@ void _delete_p(struct TYPE_4__ *aux_p[], int aux_p_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,17 +109,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_p[10000];
+          struct TYPE_4__ * p = _allocate_p(10000, aux_p);
+        
+          list(p);
+          _delete_p(aux_p, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_p[1];
           struct TYPE_4__ * p = _allocate_p(1, aux_p);
+        
           list(p);
           _delete_p(aux_p, 1);
         
         break;
     }
-
     default:
         usage();
         break;

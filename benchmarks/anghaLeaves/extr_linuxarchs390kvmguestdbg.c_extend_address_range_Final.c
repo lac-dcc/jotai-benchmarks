@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static void extend_address_range(u64 *start, u64 *stop, u6
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,24 +112,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long estart = 100;
+        
           int len = 100;
+        
           int _len_start0 = 1;
           long * start = (long *) malloc(_len_start0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_start0; _i0++) {
             start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_stop0 = 1;
           long * stop = (long *) malloc(_len_stop0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_stop0; _i0++) {
             stop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           extend_address_range(start,stop,estart,len);
           free(start);
           free(stop);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long estart = 255;
+        
+          int len = 255;
+        
+          int _len_start0 = 65025;
+          long * start = (long *) malloc(_len_start0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stop0 = 65025;
+          long * stop = (long *) malloc(_len_stop0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_stop0; _i0++) {
+            stop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extend_address_range(start,stop,estart,len);
+          free(start);
+          free(stop);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long estart = 10;
+        
+          int len = 10;
+        
+          int _len_start0 = 100;
+          long * start = (long *) malloc(_len_start0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stop0 = 100;
+          long * stop = (long *) malloc(_len_stop0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_stop0; _i0++) {
+            stop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extend_address_range(start,stop,estart,len);
+          free(start);
+          free(stop);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long estart = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_start0 = 1;
+          long * start = (long *) malloc(_len_start0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stop0 = 1;
+          long * stop = (long *) malloc(_len_stop0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_stop0; _i0++) {
+            stop[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extend_address_range(start,stop,estart,len);
+          free(start);
+          free(stop);
+        
+        break;
+    }
     default:
         usage();
         break;

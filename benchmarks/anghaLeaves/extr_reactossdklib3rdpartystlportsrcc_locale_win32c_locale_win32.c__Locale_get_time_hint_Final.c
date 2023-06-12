@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ typedef  int /*<<< orphan*/  _Locale_lcid_t ;
 _Locale_lcid_t* _Locale_get_time_hint(_Locale_time_t* ltime)
 { return (ltime != 0) ? &ltime->lc : 0; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ltime0 = 1;
+          int _len_ltime0 = 65025;
           struct TYPE_3__ * ltime = (struct TYPE_3__ *) malloc(_len_ltime0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ltime0; _i0++) {
-            ltime[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+              ltime[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = _Locale_get_time_hint(ltime);
           printf("%d\n", (*benchRet)); 
           free(ltime);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_ltime0 = 100;
           struct TYPE_3__ * ltime = (struct TYPE_3__ *) malloc(_len_ltime0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ltime0; _i0++) {
-            ltime[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+              ltime[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int * benchRet = _Locale_get_time_hint(ltime);
           printf("%d\n", (*benchRet)); 
           free(ltime);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ltime0 = 1;
+          struct TYPE_3__ * ltime = (struct TYPE_3__ *) malloc(_len_ltime0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ltime0; _i0++) {
+              ltime[_i0].lc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int * benchRet = _Locale_get_time_hint(ltime);
+          printf("%d\n", (*benchRet)); 
+          free(ltime);
+        
+        break;
+    }
     default:
         usage();
         break;

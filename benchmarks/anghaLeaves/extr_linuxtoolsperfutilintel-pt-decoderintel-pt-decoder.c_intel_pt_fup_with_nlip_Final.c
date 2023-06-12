@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline bool intel_pt_fup_with_nlip(struct intel_pt_
 	       ip == decoder->ip + intel_pt_insn->length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +87,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long ip = 100;
+        
           int err = 100;
+        
           int _len_decoder0 = 1;
           struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
           for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
-            decoder[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              decoder[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_intel_pt_insn0 = 1;
           struct intel_pt_insn * intel_pt_insn = (struct intel_pt_insn *) malloc(_len_intel_pt_insn0*sizeof(struct intel_pt_insn));
           for(int _i0 = 0; _i0 < _len_intel_pt_insn0; _i0++) {
-            intel_pt_insn[_i0].branch = ((-2 * (next_i()%2)) + 1) * next_i();
-        intel_pt_insn[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              intel_pt_insn[_i0].branch = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_pt_insn[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intel_pt_fup_with_nlip(decoder,intel_pt_insn,ip,err);
           printf("%d\n", benchRet); 
           free(decoder);
@@ -110,7 +113,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long ip = 255;
+        
+          int err = 255;
+        
+          int _len_decoder0 = 65025;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_intel_pt_insn0 = 65025;
+          struct intel_pt_insn * intel_pt_insn = (struct intel_pt_insn *) malloc(_len_intel_pt_insn0*sizeof(struct intel_pt_insn));
+          for(int _i0 = 0; _i0 < _len_intel_pt_insn0; _i0++) {
+              intel_pt_insn[_i0].branch = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_pt_insn[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_fup_with_nlip(decoder,intel_pt_insn,ip,err);
+          printf("%d\n", benchRet); 
+          free(decoder);
+          free(intel_pt_insn);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long ip = 10;
+        
+          int err = 10;
+        
+          int _len_decoder0 = 100;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_intel_pt_insn0 = 100;
+          struct intel_pt_insn * intel_pt_insn = (struct intel_pt_insn *) malloc(_len_intel_pt_insn0*sizeof(struct intel_pt_insn));
+          for(int _i0 = 0; _i0 < _len_intel_pt_insn0; _i0++) {
+              intel_pt_insn[_i0].branch = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_pt_insn[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_fup_with_nlip(decoder,intel_pt_insn,ip,err);
+          printf("%d\n", benchRet); 
+          free(decoder);
+          free(intel_pt_insn);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_decoder0 = 1;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_intel_pt_insn0 = 1;
+          struct intel_pt_insn * intel_pt_insn = (struct intel_pt_insn *) malloc(_len_intel_pt_insn0*sizeof(struct intel_pt_insn));
+          for(int _i0 = 0; _i0 < _len_intel_pt_insn0; _i0++) {
+              intel_pt_insn[_i0].branch = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_pt_insn[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_pt_fup_with_nlip(decoder,intel_pt_insn,ip,err);
+          printf("%d\n", benchRet); 
+          free(decoder);
+          free(intel_pt_insn);
+        
+        break;
+    }
     default:
         usage();
         break;

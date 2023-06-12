@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ tcpcon_set_banner_flags(struct TCP_ConnectionTable *tcpcon,
     tcpcon->banner1->is_capture_ticketbleed = is_capture_ticketbleed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int is_capture_cert = 100;
+        
           unsigned int is_capture_html = 100;
+        
           unsigned int is_capture_heartbleed = 100;
+        
           unsigned int is_capture_ticketbleed = 100;
+        
           int _len_tcpcon0 = 1;
           struct TCP_ConnectionTable * tcpcon = (struct TCP_ConnectionTable *) malloc(_len_tcpcon0*sizeof(struct TCP_ConnectionTable));
           for(int _i0 = 0; _i0 < _len_tcpcon0; _i0++) {
               int _len_tcpcon__i0__banner10 = 1;
           tcpcon[_i0].banner1 = (struct TYPE_2__ *) malloc(_len_tcpcon__i0__banner10*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_tcpcon__i0__banner10; _j0++) {
-            tcpcon[_i0].banner1->is_capture_cert = ((-2 * (next_i()%2)) + 1) * next_i();
-        tcpcon[_i0].banner1->is_capture_html = ((-2 * (next_i()%2)) + 1) * next_i();
-        tcpcon[_i0].banner1->is_capture_heartbleed = ((-2 * (next_i()%2)) + 1) * next_i();
-        tcpcon[_i0].banner1->is_capture_ticketbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+              tcpcon[_i0].banner1->is_capture_cert = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_html = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_heartbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_ticketbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           tcpcon_set_banner_flags(tcpcon,is_capture_cert,is_capture_html,is_capture_heartbleed,is_capture_ticketbleed);
           for(int _aux = 0; _aux < _len_tcpcon0; _aux++) {
           free(tcpcon[_aux].banner1);
@@ -115,7 +119,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int is_capture_cert = 255;
+        
+          unsigned int is_capture_html = 255;
+        
+          unsigned int is_capture_heartbleed = 255;
+        
+          unsigned int is_capture_ticketbleed = 255;
+        
+          int _len_tcpcon0 = 65025;
+          struct TCP_ConnectionTable * tcpcon = (struct TCP_ConnectionTable *) malloc(_len_tcpcon0*sizeof(struct TCP_ConnectionTable));
+          for(int _i0 = 0; _i0 < _len_tcpcon0; _i0++) {
+              int _len_tcpcon__i0__banner10 = 1;
+          tcpcon[_i0].banner1 = (struct TYPE_2__ *) malloc(_len_tcpcon__i0__banner10*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tcpcon__i0__banner10; _j0++) {
+              tcpcon[_i0].banner1->is_capture_cert = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_html = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_heartbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_ticketbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          tcpcon_set_banner_flags(tcpcon,is_capture_cert,is_capture_html,is_capture_heartbleed,is_capture_ticketbleed);
+          for(int _aux = 0; _aux < _len_tcpcon0; _aux++) {
+          free(tcpcon[_aux].banner1);
+          }
+          free(tcpcon);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int is_capture_cert = 10;
+        
+          unsigned int is_capture_html = 10;
+        
+          unsigned int is_capture_heartbleed = 10;
+        
+          unsigned int is_capture_ticketbleed = 10;
+        
+          int _len_tcpcon0 = 100;
+          struct TCP_ConnectionTable * tcpcon = (struct TCP_ConnectionTable *) malloc(_len_tcpcon0*sizeof(struct TCP_ConnectionTable));
+          for(int _i0 = 0; _i0 < _len_tcpcon0; _i0++) {
+              int _len_tcpcon__i0__banner10 = 1;
+          tcpcon[_i0].banner1 = (struct TYPE_2__ *) malloc(_len_tcpcon__i0__banner10*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tcpcon__i0__banner10; _j0++) {
+              tcpcon[_i0].banner1->is_capture_cert = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_html = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_heartbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_ticketbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          tcpcon_set_banner_flags(tcpcon,is_capture_cert,is_capture_html,is_capture_heartbleed,is_capture_ticketbleed);
+          for(int _aux = 0; _aux < _len_tcpcon0; _aux++) {
+          free(tcpcon[_aux].banner1);
+          }
+          free(tcpcon);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int is_capture_cert = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int is_capture_html = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int is_capture_heartbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int is_capture_ticketbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tcpcon0 = 1;
+          struct TCP_ConnectionTable * tcpcon = (struct TCP_ConnectionTable *) malloc(_len_tcpcon0*sizeof(struct TCP_ConnectionTable));
+          for(int _i0 = 0; _i0 < _len_tcpcon0; _i0++) {
+              int _len_tcpcon__i0__banner10 = 1;
+          tcpcon[_i0].banner1 = (struct TYPE_2__ *) malloc(_len_tcpcon__i0__banner10*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_tcpcon__i0__banner10; _j0++) {
+              tcpcon[_i0].banner1->is_capture_cert = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_html = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_heartbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcpcon[_i0].banner1->is_capture_ticketbleed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          tcpcon_set_banner_flags(tcpcon,is_capture_cert,is_capture_html,is_capture_heartbleed,is_capture_ticketbleed);
+          for(int _aux = 0; _aux < _len_tcpcon0; _aux++) {
+          free(tcpcon[_aux].banner1);
+          }
+          free(tcpcon);
+        
+        break;
+    }
     default:
         usage();
         break;

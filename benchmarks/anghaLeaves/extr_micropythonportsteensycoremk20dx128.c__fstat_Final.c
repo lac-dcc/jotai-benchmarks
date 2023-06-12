@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int _fstat(int fd, struct stat *st)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fd = 100;
+        
           int _len_st0 = 1;
           struct stat * st = (struct stat *) malloc(_len_st0*sizeof(struct stat));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].st_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].st_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = _fstat(fd,st);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int fd = 255;
+        
+          int _len_st0 = 65025;
+          struct stat * st = (struct stat *) malloc(_len_st0*sizeof(struct stat));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].st_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = _fstat(fd,st);
           printf("%d\n", benchRet); 
           free(st);
@@ -98,21 +115,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int fd = 10;
+        
           int _len_st0 = 100;
           struct stat * st = (struct stat *) malloc(_len_st0*sizeof(struct stat));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].st_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].st_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = _fstat(fd,st);
           printf("%d\n", benchRet); 
           free(st);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct stat * st = (struct stat *) malloc(_len_st0*sizeof(struct stat));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].st_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = _fstat(fd,st);
+          printf("%d\n", benchRet); 
+          free(st);
+        
+        break;
+    }
     default:
         usage();
         break;

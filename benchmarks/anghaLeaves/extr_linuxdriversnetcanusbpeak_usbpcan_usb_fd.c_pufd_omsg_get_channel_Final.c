@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int pufd_omsg_get_channel(struct pcan_ufd_ov
 	return om->channel & 0xf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_om0 = 1;
+          int _len_om0 = 65025;
           struct pcan_ufd_ovr_msg * om = (struct pcan_ufd_ovr_msg *) malloc(_len_om0*sizeof(struct pcan_ufd_ovr_msg));
           for(int _i0 = 0; _i0 < _len_om0; _i0++) {
-            om[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              om[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pufd_omsg_get_channel(om);
           printf("%d\n", benchRet); 
           free(om);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_om0 = 100;
           struct pcan_ufd_ovr_msg * om = (struct pcan_ufd_ovr_msg *) malloc(_len_om0*sizeof(struct pcan_ufd_ovr_msg));
           for(int _i0 = 0; _i0 < _len_om0; _i0++) {
-            om[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              om[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pufd_omsg_get_channel(om);
           printf("%d\n", benchRet); 
           free(om);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_om0 = 1;
+          struct pcan_ufd_ovr_msg * om = (struct pcan_ufd_ovr_msg *) malloc(_len_om0*sizeof(struct pcan_ufd_ovr_msg));
+          for(int _i0 = 0; _i0 < _len_om0; _i0++) {
+              om[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pufd_omsg_get_channel(om);
+          printf("%d\n", benchRet); 
+          free(om);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ int choose_cluster_f (long long local_id) {
   return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long long local_id = 100;
+        
           int benchRet = choose_cluster_f(local_id);
           printf("%d\n", benchRet); 
         
@@ -102,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long long local_id = 255;
+        
           int benchRet = choose_cluster_f(local_id);
           printf("%d\n", benchRet); 
         
@@ -111,12 +108,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long long local_id = 10;
+        
           int benchRet = choose_cluster_f(local_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long long local_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = choose_cluster_f(local_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

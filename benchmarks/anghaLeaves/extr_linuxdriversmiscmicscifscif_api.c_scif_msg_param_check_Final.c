@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ err_ret:
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,8 +89,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int epd = 100;
+        
           int len = 100;
+        
           int flags = 100;
+        
           int benchRet = scif_msg_param_check(epd,len,flags);
           printf("%d\n", benchRet); 
         
@@ -105,8 +103,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int epd = 255;
+        
           int len = 255;
+        
           int flags = 255;
+        
           int benchRet = scif_msg_param_check(epd,len,flags);
           printf("%d\n", benchRet); 
         
@@ -116,14 +117,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int epd = 10;
+        
           int len = 10;
+        
           int flags = 10;
+        
           int benchRet = scif_msg_param_check(epd,len,flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int epd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = scif_msg_param_check(epd,len,flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

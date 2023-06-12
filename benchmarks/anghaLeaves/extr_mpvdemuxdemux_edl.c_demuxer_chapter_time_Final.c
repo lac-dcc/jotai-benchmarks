@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static double demuxer_chapter_time(struct demuxer *demuxer
     return demuxer->chapters[n].pts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +79,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int n = 100;
+        
           int _len_demuxer0 = 1;
           struct demuxer * demuxer = (struct demuxer *) malloc(_len_demuxer0*sizeof(struct demuxer));
           for(int _i0 = 0; _i0 < _len_demuxer0; _i0++) {
-            demuxer[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+              demuxer[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_demuxer__i0__chapters0 = 1;
           demuxer[_i0].chapters = (struct TYPE_2__ *) malloc(_len_demuxer__i0__chapters0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_demuxer__i0__chapters0; _j0++) {
-            demuxer[_i0].chapters->pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              demuxer[_i0].chapters->pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           }
+        
+          double benchRet = demuxer_chapter_time(demuxer,n);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_demuxer0; _aux++) {
+          free(demuxer[_aux].chapters);
+          }
+          free(demuxer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int _len_demuxer0 = 65025;
+          struct demuxer * demuxer = (struct demuxer *) malloc(_len_demuxer0*sizeof(struct demuxer));
+          for(int _i0 = 0; _i0 < _len_demuxer0; _i0++) {
+              demuxer[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_demuxer__i0__chapters0 = 1;
+          demuxer[_i0].chapters = (struct TYPE_2__ *) malloc(_len_demuxer__i0__chapters0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_demuxer__i0__chapters0; _j0++) {
+              demuxer[_i0].chapters->pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          double benchRet = demuxer_chapter_time(demuxer,n);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_demuxer0; _aux++) {
+          free(demuxer[_aux].chapters);
+          }
+          free(demuxer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int n = 10;
+        
+          int _len_demuxer0 = 100;
+          struct demuxer * demuxer = (struct demuxer *) malloc(_len_demuxer0*sizeof(struct demuxer));
+          for(int _i0 = 0; _i0 < _len_demuxer0; _i0++) {
+              demuxer[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_demuxer__i0__chapters0 = 1;
+          demuxer[_i0].chapters = (struct TYPE_2__ *) malloc(_len_demuxer__i0__chapters0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_demuxer__i0__chapters0; _j0++) {
+              demuxer[_i0].chapters->pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          double benchRet = demuxer_chapter_time(demuxer,n);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_demuxer0; _aux++) {
+          free(demuxer[_aux].chapters);
+          }
+          free(demuxer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_demuxer0 = 1;
+          struct demuxer * demuxer = (struct demuxer *) malloc(_len_demuxer0*sizeof(struct demuxer));
+          for(int _i0 = 0; _i0 < _len_demuxer0; _i0++) {
+              demuxer[_i0].num_chapters = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_demuxer__i0__chapters0 = 1;
+          demuxer[_i0].chapters = (struct TYPE_2__ *) malloc(_len_demuxer__i0__chapters0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_demuxer__i0__chapters0; _j0++) {
+              demuxer[_i0].chapters->pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
           double benchRet = demuxer_chapter_time(demuxer,n);
           printf("%lf\n", benchRet); 
           for(int _aux = 0; _aux < _len_demuxer0; _aux++) {

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ ip_vs_ftp_init_conn(struct ip_vs_app *app, struct ip_vs_conn *cp)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_app0 = 65025;
+          struct ip_vs_app * app = (struct ip_vs_app *) malloc(_len_app0*sizeof(struct ip_vs_app));
+          for(int _i0 = 0; _i0 < _len_app0; _i0++) {
+              app[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cp0 = 65025;
+          struct ip_vs_conn * cp = (struct ip_vs_conn *) malloc(_len_cp0*sizeof(struct ip_vs_conn));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              cp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ip_vs_ftp_init_conn(app,cp);
+          printf("%d\n", benchRet); 
+          free(app);
+          free(cp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_app0 = 100;
+          struct ip_vs_app * app = (struct ip_vs_app *) malloc(_len_app0*sizeof(struct ip_vs_app));
+          for(int _i0 = 0; _i0 < _len_app0; _i0++) {
+              app[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cp0 = 100;
+          struct ip_vs_conn * cp = (struct ip_vs_conn *) malloc(_len_cp0*sizeof(struct ip_vs_conn));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              cp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ip_vs_ftp_init_conn(app,cp);
+          printf("%d\n", benchRet); 
+          free(app);
+          free(cp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_app0 = 1;
           struct ip_vs_app * app = (struct ip_vs_app *) malloc(_len_app0*sizeof(struct ip_vs_app));
           for(int _i0 = 0; _i0 < _len_app0; _i0++) {
-            app[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              app[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cp0 = 1;
           struct ip_vs_conn * cp = (struct ip_vs_conn *) malloc(_len_cp0*sizeof(struct ip_vs_conn));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
-            cp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ip_vs_ftp_init_conn(app,cp);
           printf("%d\n", benchRet); 
           free(app);

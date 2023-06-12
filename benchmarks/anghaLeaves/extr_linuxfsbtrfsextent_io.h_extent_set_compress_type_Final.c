@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void extent_set_compress_type(unsigned long 
 	*bio_flags |= compress_type << EXTENT_BIO_FLAG_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +75,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int compress_type = 100;
+        
           int _len_bio_flags0 = 1;
           unsigned long * bio_flags = (unsigned long *) malloc(_len_bio_flags0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_bio_flags0; _i0++) {
             bio_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           extent_set_compress_type(bio_flags,compress_type);
           free(bio_flags);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int compress_type = 255;
+        
+          int _len_bio_flags0 = 65025;
+          unsigned long * bio_flags = (unsigned long *) malloc(_len_bio_flags0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_bio_flags0; _i0++) {
+            bio_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extent_set_compress_type(bio_flags,compress_type);
+          free(bio_flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int compress_type = 10;
+        
           int _len_bio_flags0 = 100;
           unsigned long * bio_flags = (unsigned long *) malloc(_len_bio_flags0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_bio_flags0; _i0++) {
             bio_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           extent_set_compress_type(bio_flags,compress_type);
           free(bio_flags);
         

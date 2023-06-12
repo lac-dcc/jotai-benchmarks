@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ unsigned long sizeof_delta_index(struct delta_index *index)
 		return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_index0 = 1;
+          int _len_index0 = 65025;
           struct delta_index * index = (struct delta_index *) malloc(_len_index0*sizeof(struct delta_index));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
-            index[_i0].memsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              index[_i0].memsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = sizeof_delta_index(index);
           printf("%lu\n", benchRet); 
           free(index);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_index0 = 100;
           struct delta_index * index = (struct delta_index *) malloc(_len_index0*sizeof(struct delta_index));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
-            index[_i0].memsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              index[_i0].memsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = sizeof_delta_index(index);
           printf("%lu\n", benchRet); 
           free(index);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_index0 = 1;
+          struct delta_index * index = (struct delta_index *) malloc(_len_index0*sizeof(struct delta_index));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+              index[_i0].memsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = sizeof_delta_index(index);
+          printf("%lu\n", benchRet); 
+          free(index);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ hextoint(char c) {
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char c = 100;
+        
           int benchRet = hextoint(c);
           printf("%d\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char c = 255;
+        
           int benchRet = hextoint(c);
           printf("%d\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char c = 10;
+        
           int benchRet = hextoint(c);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = hextoint(c);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

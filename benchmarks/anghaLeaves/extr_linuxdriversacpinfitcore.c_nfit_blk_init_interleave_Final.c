@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static int nfit_blk_init_interleave(struct nfit_blk_mmio *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int interleave_ways = 100;
+        
           int _len_mmio0 = 1;
           struct nfit_blk_mmio * mmio = (struct nfit_blk_mmio *) malloc(_len_mmio0*sizeof(struct nfit_blk_mmio));
           for(int _i0 = 0; _i0 < _len_mmio0; _i0++) {
-            mmio[_i0].num_lines = ((-2 * (next_i()%2)) + 1) * next_i();
-        mmio[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        mmio[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              mmio[_i0].num_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_idt0 = 1;
           struct acpi_nfit_interleave * idt = (struct acpi_nfit_interleave *) malloc(_len_idt0*sizeof(struct acpi_nfit_interleave));
           for(int _i0 = 0; _i0 < _len_idt0; _i0++) {
-            idt[_i0].line_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        idt[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              idt[_i0].line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          idt[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfit_blk_init_interleave(mmio,idt,interleave_ways);
           printf("%d\n", benchRet); 
           free(mmio);
@@ -115,7 +117,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int interleave_ways = 255;
+        
+          int _len_mmio0 = 65025;
+          struct nfit_blk_mmio * mmio = (struct nfit_blk_mmio *) malloc(_len_mmio0*sizeof(struct nfit_blk_mmio));
+          for(int _i0 = 0; _i0 < _len_mmio0; _i0++) {
+              mmio[_i0].num_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_idt0 = 65025;
+          struct acpi_nfit_interleave * idt = (struct acpi_nfit_interleave *) malloc(_len_idt0*sizeof(struct acpi_nfit_interleave));
+          for(int _i0 = 0; _i0 < _len_idt0; _i0++) {
+              idt[_i0].line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          idt[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfit_blk_init_interleave(mmio,idt,interleave_ways);
+          printf("%d\n", benchRet); 
+          free(mmio);
+          free(idt);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int interleave_ways = 10;
+        
+          int _len_mmio0 = 100;
+          struct nfit_blk_mmio * mmio = (struct nfit_blk_mmio *) malloc(_len_mmio0*sizeof(struct nfit_blk_mmio));
+          for(int _i0 = 0; _i0 < _len_mmio0; _i0++) {
+              mmio[_i0].num_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_idt0 = 100;
+          struct acpi_nfit_interleave * idt = (struct acpi_nfit_interleave *) malloc(_len_idt0*sizeof(struct acpi_nfit_interleave));
+          for(int _i0 = 0; _i0 < _len_idt0; _i0++) {
+              idt[_i0].line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          idt[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfit_blk_init_interleave(mmio,idt,interleave_ways);
+          printf("%d\n", benchRet); 
+          free(mmio);
+          free(idt);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int interleave_ways = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mmio0 = 1;
+          struct nfit_blk_mmio * mmio = (struct nfit_blk_mmio *) malloc(_len_mmio0*sizeof(struct nfit_blk_mmio));
+          for(int _i0 = 0; _i0 < _len_mmio0; _i0++) {
+              mmio[_i0].num_lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          mmio[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_idt0 = 1;
+          struct acpi_nfit_interleave * idt = (struct acpi_nfit_interleave *) malloc(_len_idt0*sizeof(struct acpi_nfit_interleave));
+          for(int _i0 = 0; _i0 < _len_idt0; _i0++) {
+              idt[_i0].line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          idt[_i0].line_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfit_blk_init_interleave(mmio,idt,interleave_ways);
+          printf("%d\n", benchRet); 
+          free(mmio);
+          free(idt);
+        
+        break;
+    }
     default:
         usage();
         break;

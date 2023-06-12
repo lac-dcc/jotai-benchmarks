@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ bool mlx5_rl_are_equal(struct mlx5_rate_limit *rl_0,
 		(rl_0->typical_pkt_sz == rl_1->typical_pkt_sz));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_rl_00 = 65025;
+          struct mlx5_rate_limit * rl_0 = (struct mlx5_rate_limit *) malloc(_len_rl_00*sizeof(struct mlx5_rate_limit));
+          for(int _i0 = 0; _i0 < _len_rl_00; _i0++) {
+              rl_0[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_0[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rl_10 = 65025;
+          struct mlx5_rate_limit * rl_1 = (struct mlx5_rate_limit *) malloc(_len_rl_10*sizeof(struct mlx5_rate_limit));
+          for(int _i0 = 0; _i0 < _len_rl_10; _i0++) {
+              rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_1[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_1[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx5_rl_are_equal(rl_0,rl_1);
+          printf("%d\n", benchRet); 
+          free(rl_0);
+          free(rl_1);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_rl_00 = 100;
+          struct mlx5_rate_limit * rl_0 = (struct mlx5_rate_limit *) malloc(_len_rl_00*sizeof(struct mlx5_rate_limit));
+          for(int _i0 = 0; _i0 < _len_rl_00; _i0++) {
+              rl_0[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_0[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rl_10 = 100;
+          struct mlx5_rate_limit * rl_1 = (struct mlx5_rate_limit *) malloc(_len_rl_10*sizeof(struct mlx5_rate_limit));
+          for(int _i0 = 0; _i0 < _len_rl_10; _i0++) {
+              rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_1[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_1[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mlx5_rl_are_equal(rl_0,rl_1);
+          printf("%d\n", benchRet); 
+          free(rl_0);
+          free(rl_1);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_rl_00 = 1;
           struct mlx5_rate_limit * rl_0 = (struct mlx5_rate_limit *) malloc(_len_rl_00*sizeof(struct mlx5_rate_limit));
           for(int _i0 = 0; _i0 < _len_rl_00; _i0++) {
-            rl_0[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_0[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              rl_0[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_0[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_0[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rl_10 = 1;
           struct mlx5_rate_limit * rl_1 = (struct mlx5_rate_limit *) malloc(_len_rl_10*sizeof(struct mlx5_rate_limit));
           for(int _i0 = 0; _i0 < _len_rl_10; _i0++) {
-            rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_1[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
-        rl_1[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+              rl_1[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_1[_i0].max_burst_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+          rl_1[_i0].typical_pkt_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx5_rl_are_equal(rl_0,rl_1);
           printf("%d\n", benchRet); 
           free(rl_0);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ ip_input_cpin_args(struct ip_fw_args *args1, struct ip_fw_in_args *args)
 	args->fwai_divert_rule = args1->fwa_divert_rule;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,25 +79,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_args10 = 65025;
+          struct ip_fw_args * args1 = (struct ip_fw_args *) malloc(_len_args10*sizeof(struct ip_fw_args));
+          for(int _i0 = 0; _i0 < _len_args10; _i0++) {
+              args1[_i0].fwa_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 65025;
+          struct ip_fw_in_args * args = (struct ip_fw_in_args *) malloc(_len_args0*sizeof(struct ip_fw_in_args));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+              args[_i0].fwai_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ip_input_cpin_args(args1,args);
+          free(args1);
+          free(args);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_args10 = 100;
+          struct ip_fw_args * args1 = (struct ip_fw_args *) malloc(_len_args10*sizeof(struct ip_fw_args));
+          for(int _i0 = 0; _i0 < _len_args10; _i0++) {
+              args1[_i0].fwa_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 100;
+          struct ip_fw_in_args * args = (struct ip_fw_in_args *) malloc(_len_args0*sizeof(struct ip_fw_in_args));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+              args[_i0].fwai_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ip_input_cpin_args(args1,args);
+          free(args1);
+          free(args);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_args10 = 1;
           struct ip_fw_args * args1 = (struct ip_fw_args *) malloc(_len_args10*sizeof(struct ip_fw_args));
           for(int _i0 = 0; _i0 < _len_args10; _i0++) {
-            args1[_i0].fwa_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
-        args1[_i0].fwa_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
-        args1[_i0].fwa_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
-        args1[_i0].fwa_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+              args1[_i0].fwa_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args1[_i0].fwa_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_args0 = 1;
           struct ip_fw_in_args * args = (struct ip_fw_in_args *) malloc(_len_args0*sizeof(struct ip_fw_in_args));
           for(int _i0 = 0; _i0 < _len_args0; _i0++) {
-            args[_i0].fwai_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].fwai_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].fwai_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
-        args[_i0].fwai_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+              args[_i0].fwai_divert_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_pf_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_ipfw_rule = ((-2 * (next_i()%2)) + 1) * next_i();
+          args[_i0].fwai_next_hop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ip_input_cpin_args(args1,args);
           free(args1);
           free(args);

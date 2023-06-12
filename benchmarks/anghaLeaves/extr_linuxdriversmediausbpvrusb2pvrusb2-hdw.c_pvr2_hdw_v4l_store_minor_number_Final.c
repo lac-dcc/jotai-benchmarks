@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ void pvr2_hdw_v4l_store_minor_number(struct pvr2_hdw *hdw,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +85,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum pvr2_v4l_type index = 0;
+        
           int v = 100;
+        
           int _len_hdw0 = 1;
           struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
           for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
-            hdw[_i0].v4l_minor_number_video = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].v4l_minor_number_vbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdw[_i0].v4l_minor_number_radio = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdw[_i0].v4l_minor_number_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_vbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_radio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pvr2_hdw_v4l_store_minor_number(hdw,index,v);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum pvr2_v4l_type index = 0;
+        
+          int v = 255;
+        
+          int _len_hdw0 = 65025;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].v4l_minor_number_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_vbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_radio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pvr2_hdw_v4l_store_minor_number(hdw,index,v);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum pvr2_v4l_type index = 0;
+        
+          int v = 10;
+        
+          int _len_hdw0 = 100;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].v4l_minor_number_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_vbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_radio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pvr2_hdw_v4l_store_minor_number(hdw,index,v);
+          free(hdw);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum pvr2_v4l_type index = 0;
+        
+          int v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdw0 = 1;
+          struct pvr2_hdw * hdw = (struct pvr2_hdw *) malloc(_len_hdw0*sizeof(struct pvr2_hdw));
+          for(int _i0 = 0; _i0 < _len_hdw0; _i0++) {
+              hdw[_i0].v4l_minor_number_video = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_vbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdw[_i0].v4l_minor_number_radio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pvr2_hdw_v4l_store_minor_number(hdw,index,v);
           free(hdw);
         

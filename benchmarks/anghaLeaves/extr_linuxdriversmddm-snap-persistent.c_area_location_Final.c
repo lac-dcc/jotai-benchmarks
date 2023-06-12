@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static chunk_t area_location(struct pstore *ps, chunk_t ar
 	return NUM_SNAPSHOT_HDR_CHUNKS + ((ps->exceptions_per_area + 1) * area);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,30 +77,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int area = 100;
+        
           int _len_ps0 = 1;
           struct pstore * ps = (struct pstore *) malloc(_len_ps0*sizeof(struct pstore));
           for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
-            ps[_i0].exceptions_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+              ps[_i0].exceptions_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = area_location(ps,area);
           printf("%d\n", benchRet); 
           free(ps);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int area = 255;
+        
+          int _len_ps0 = 65025;
+          struct pstore * ps = (struct pstore *) malloc(_len_ps0*sizeof(struct pstore));
+          for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
+              ps[_i0].exceptions_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = area_location(ps,area);
+          printf("%d\n", benchRet); 
+          free(ps);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int area = 10;
+        
           int _len_ps0 = 100;
           struct pstore * ps = (struct pstore *) malloc(_len_ps0*sizeof(struct pstore));
           for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
-            ps[_i0].exceptions_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+              ps[_i0].exceptions_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = area_location(ps,area);
+          printf("%d\n", benchRet); 
+          free(ps);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int area = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ps0 = 1;
+          struct pstore * ps = (struct pstore *) malloc(_len_ps0*sizeof(struct pstore));
+          for(int _i0 = 0; _i0 < _len_ps0; _i0++) {
+              ps[_i0].exceptions_per_area = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = area_location(ps,area);
           printf("%d\n", benchRet); 
           free(ps);

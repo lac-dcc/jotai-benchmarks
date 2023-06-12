@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ __attribute__((used)) static int R_DlightGrid( srfGridMesh_t *grid, int dlightBi
 	return dlightBits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,10 +110,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int dlightBits = 100;
+        
           int _len_grid0 = 1;
           struct TYPE_9__ * grid = (struct TYPE_9__ *) malloc(_len_grid0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_grid0; _i0++) {
@@ -129,8 +150,175 @@ int main(int argc, char *argv[]) {
               grid[_i0].meshBounds[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
-        grid[_i0].dlightBits = ((-2 * (next_i()%2)) + 1) * next_i();
+          grid[_i0].dlightBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = R_DlightGrid(grid,dlightBits);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_grid0; _aux++) {
+          free(*(grid[_aux].meshBounds));
+        free(grid[_aux].meshBounds);
+          }
+          free(grid);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int dlightBits = 255;
+        
+          int _len_grid0 = 65025;
+          struct TYPE_9__ * grid = (struct TYPE_9__ *) malloc(_len_grid0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_grid0; _i0++) {
+              int _len_grid__i0__meshBounds0 = 1;
+          grid[_i0].meshBounds = (long **) malloc(_len_grid__i0__meshBounds0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_grid__i0__meshBounds0; _j0++) {
+            int _len_grid__i0__meshBounds1 = 1;
+            grid[_i0].meshBounds[_j0] = (long *) malloc(_len_grid__i0__meshBounds1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_grid__i0__meshBounds1; _j1++) {
+              grid[_i0].meshBounds[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          grid[_i0].dlightBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = R_DlightGrid(grid,dlightBits);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_grid0; _aux++) {
+          free(*(grid[_aux].meshBounds));
+        free(grid[_aux].meshBounds);
+          }
+          free(grid);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int dlightBits = 10;
+        
+          int _len_grid0 = 100;
+          struct TYPE_9__ * grid = (struct TYPE_9__ *) malloc(_len_grid0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_grid0; _i0++) {
+              int _len_grid__i0__meshBounds0 = 1;
+          grid[_i0].meshBounds = (long **) malloc(_len_grid__i0__meshBounds0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_grid__i0__meshBounds0; _j0++) {
+            int _len_grid__i0__meshBounds1 = 1;
+            grid[_i0].meshBounds[_j0] = (long *) malloc(_len_grid__i0__meshBounds1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_grid__i0__meshBounds1; _j1++) {
+              grid[_i0].meshBounds[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          grid[_i0].dlightBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = R_DlightGrid(grid,dlightBits);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_grid0; _aux++) {
+          free(*(grid[_aux].meshBounds));
+        free(grid[_aux].meshBounds);
+          }
+          free(grid);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int dlightBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_grid0 = 1;
+          struct TYPE_9__ * grid = (struct TYPE_9__ *) malloc(_len_grid0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_grid0; _i0++) {
+              int _len_grid__i0__meshBounds0 = 1;
+          grid[_i0].meshBounds = (long **) malloc(_len_grid__i0__meshBounds0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_grid__i0__meshBounds0; _j0++) {
+            int _len_grid__i0__meshBounds1 = 1;
+            grid[_i0].meshBounds[_j0] = (long *) malloc(_len_grid__i0__meshBounds1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_grid__i0__meshBounds1; _j1++) {
+              grid[_i0].meshBounds[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          grid[_i0].dlightBits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = R_DlightGrid(grid,dlightBits);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_grid0; _aux++) {

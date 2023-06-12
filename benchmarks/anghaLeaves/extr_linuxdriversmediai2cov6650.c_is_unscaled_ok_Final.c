@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +63,6 @@ __attribute__((used)) static bool is_unscaled_ok(int width, int height, struct v
 	return width > rect->width >> 1 || height > rect->height >> 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,17 +75,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int width = 100;
+        
           int height = 100;
+        
           int _len_rect0 = 1;
           struct v4l2_rect * rect = (struct v4l2_rect *) malloc(_len_rect0*sizeof(struct v4l2_rect));
           for(int _i0 = 0; _i0 < _len_rect0; _i0++) {
-            rect[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        rect[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              rect[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = is_unscaled_ok(width,height,rect);
+          printf("%d\n", benchRet); 
+          free(rect);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_rect0 = 65025;
+          struct v4l2_rect * rect = (struct v4l2_rect *) malloc(_len_rect0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_rect0; _i0++) {
+              rect[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_unscaled_ok(width,height,rect);
+          printf("%d\n", benchRet); 
+          free(rect);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_rect0 = 100;
+          struct v4l2_rect * rect = (struct v4l2_rect *) malloc(_len_rect0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_rect0; _i0++) {
+              rect[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_unscaled_ok(width,height,rect);
+          printf("%d\n", benchRet); 
+          free(rect);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rect0 = 1;
+          struct v4l2_rect * rect = (struct v4l2_rect *) malloc(_len_rect0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_rect0; _i0++) {
+              rect[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = is_unscaled_ok(width,height,rect);
           printf("%d\n", benchRet); 
           free(rect);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline void cluster_set_next_flag(struct swap_clust
 	info->data = n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +77,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int n = 100;
+        
           unsigned int f = 100;
+        
           int _len_info0 = 1;
           struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cluster_set_next_flag(info,n,f);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int n = 255;
+        
+          unsigned int f = 255;
+        
+          int _len_info0 = 65025;
+          struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cluster_set_next_flag(info,n,f);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int n = 10;
+        
+          unsigned int f = 10;
+        
+          int _len_info0 = 100;
+          struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cluster_set_next_flag(info,n,f);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cluster_set_next_flag(info,n,f);
           free(info);
         

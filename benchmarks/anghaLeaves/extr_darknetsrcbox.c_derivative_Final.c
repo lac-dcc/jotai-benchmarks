@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -111,12 +111,6 @@ dbox derivative(box a, box b)
     return d;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,19 +123,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 145
+          // dynamic_instructions_O0 : 145
+          // ------------------------------- 
+          // static_instructions_O1 : 81
+          // dynamic_instructions_O1 : 81
+          // ------------------------------- 
+          // static_instructions_O2 : 83
+          // dynamic_instructions_O2 : 83
+          // ------------------------------- 
+          // static_instructions_O3 : 83
+          // dynamic_instructions_O3 : 83
+          // ------------------------------- 
+          // static_instructions_Ofast : 83
+          // dynamic_instructions_Ofast : 83
+          // ------------------------------- 
+          // static_instructions_Os : 83
+          // dynamic_instructions_Os : 83
+          // ------------------------------- 
+          // static_instructions_Oz : 77
+          // dynamic_instructions_Oz : 77
+          // ------------------------------- 
+
           struct TYPE_7__ a;
-        a.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_7__ b;
-        b.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_6__ benchRet = derivative(a,b);
           printf("%d\n", benchRet.dx);
           printf("%d\n", benchRet.dy);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ void qed_vf_get_fw_version(struct qed_hwfn *p_hwfn,
 	*fw_eng = info->fw_eng;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,41 +89,233 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct TYPE_4__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_eng = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int _len_fw_major0 = 65025;
+          int * fw_major = (int *) malloc(_len_fw_major0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_major0; _i0++) {
+            fw_major[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fw_minor0 = 65025;
+          int * fw_minor = (int *) malloc(_len_fw_minor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_minor0; _i0++) {
+            fw_minor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fw_rev0 = 65025;
+          int * fw_rev = (int *) malloc(_len_fw_rev0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_rev0; _i0++) {
+            fw_rev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fw_eng0 = 65025;
+          int * fw_eng = (int *) malloc(_len_fw_eng0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_eng0; _i0++) {
+            fw_eng[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_vf_get_fw_version(p_hwfn,fw_major,fw_minor,fw_rev,fw_eng);
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+          free(fw_major);
+          free(fw_minor);
+          free(fw_rev);
+          free(fw_eng);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct TYPE_4__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_eng = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int _len_fw_major0 = 100;
+          int * fw_major = (int *) malloc(_len_fw_major0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_major0; _i0++) {
+            fw_major[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fw_minor0 = 100;
+          int * fw_minor = (int *) malloc(_len_fw_minor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_minor0; _i0++) {
+            fw_minor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fw_rev0 = 100;
+          int * fw_rev = (int *) malloc(_len_fw_rev0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_rev0; _i0++) {
+            fw_rev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_fw_eng0 = 100;
+          int * fw_eng = (int *) malloc(_len_fw_eng0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_fw_eng0; _i0++) {
+            fw_eng[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_vf_get_fw_version(p_hwfn,fw_major,fw_minor,fw_rev,fw_eng);
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+          free(fw_major);
+          free(fw_minor);
+          free(fw_rev);
+          free(fw_eng);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
               int _len_p_hwfn__i0__vf_iov_info0 = 1;
           p_hwfn[_i0].vf_iov_info = (struct TYPE_4__ *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
-            p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_eng = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_eng = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_minor = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_hwfn[_i0].vf_iov_info->acquire_resp.pfdev_info.fw_major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           int _len_fw_major0 = 1;
           int * fw_major = (int *) malloc(_len_fw_major0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fw_major0; _i0++) {
             fw_major[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_fw_minor0 = 1;
           int * fw_minor = (int *) malloc(_len_fw_minor0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fw_minor0; _i0++) {
             fw_minor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_fw_rev0 = 1;
           int * fw_rev = (int *) malloc(_len_fw_rev0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fw_rev0; _i0++) {
             fw_rev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_fw_eng0 = 1;
           int * fw_eng = (int *) malloc(_len_fw_eng0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_fw_eng0; _i0++) {
             fw_eng[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qed_vf_get_fw_version(p_hwfn,fw_major,fw_minor,fw_rev,fw_eng);
           for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
           free(p_hwfn[_aux].vf_iov_info);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ void rational_best_approximation(
 	*best_denominator = d1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,23 +103,211 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
           unsigned long given_numerator = 100;
+        
           unsigned long given_denominator = 100;
+        
           unsigned long max_numerator = 100;
+        
           unsigned long max_denominator = 100;
+        
           int _len_best_numerator0 = 1;
           unsigned long * best_numerator = (unsigned long *) malloc(_len_best_numerator0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_best_numerator0; _i0++) {
             best_numerator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_best_denominator0 = 1;
           unsigned long * best_denominator = (unsigned long *) malloc(_len_best_denominator0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_best_denominator0; _i0++) {
             best_denominator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          rational_best_approximation(given_numerator,given_denominator,max_numerator,max_denominator,best_numerator,best_denominator);
+          free(best_numerator);
+          free(best_denominator);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          unsigned long given_numerator = 255;
+        
+          unsigned long given_denominator = 255;
+        
+          unsigned long max_numerator = 255;
+        
+          unsigned long max_denominator = 255;
+        
+          int _len_best_numerator0 = 65025;
+          unsigned long * best_numerator = (unsigned long *) malloc(_len_best_numerator0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_best_numerator0; _i0++) {
+            best_numerator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_best_denominator0 = 65025;
+          unsigned long * best_denominator = (unsigned long *) malloc(_len_best_denominator0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_best_denominator0; _i0++) {
+            best_denominator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rational_best_approximation(given_numerator,given_denominator,max_numerator,max_denominator,best_numerator,best_denominator);
+          free(best_numerator);
+          free(best_denominator);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 47
+          // dynamic_instructions_O2 : 51
+          // ------------------------------- 
+          // static_instructions_O3 : 47
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 47
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          unsigned long given_numerator = 10;
+        
+          unsigned long given_denominator = 10;
+        
+          unsigned long max_numerator = 10;
+        
+          unsigned long max_denominator = 10;
+        
+          int _len_best_numerator0 = 100;
+          unsigned long * best_numerator = (unsigned long *) malloc(_len_best_numerator0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_best_numerator0; _i0++) {
+            best_numerator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_best_denominator0 = 100;
+          unsigned long * best_denominator = (unsigned long *) malloc(_len_best_denominator0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_best_denominator0; _i0++) {
+            best_denominator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rational_best_approximation(given_numerator,given_denominator,max_numerator,max_denominator,best_numerator,best_denominator);
+          free(best_numerator);
+          free(best_denominator);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 66
+          // dynamic_instructions_O0 : 74
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 58
+          // ------------------------------- 
+          // static_instructions_O2 : 48
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 48
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 48
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 42
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          unsigned long given_numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long given_denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long max_numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long max_denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_best_numerator0 = 1;
+          unsigned long * best_numerator = (unsigned long *) malloc(_len_best_numerator0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_best_numerator0; _i0++) {
+            best_numerator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_best_denominator0 = 1;
+          unsigned long * best_denominator = (unsigned long *) malloc(_len_best_denominator0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_best_denominator0; _i0++) {
+            best_denominator[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           rational_best_approximation(given_numerator,given_denominator,max_numerator,max_denominator,best_numerator,best_denominator);
           free(best_numerator);
           free(best_denominator);

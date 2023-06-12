@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ bank_get_bank_account_ledger(bank_account_t bank_account)
 	return (bankledger);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +86,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_bank_account0 = 65025;
+          struct TYPE_4__ * bank_account = (struct TYPE_4__ *) malloc(_len_bank_account0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_bank_account0; _i0++) {
+              bank_account[_i0].ba_holder = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank_account[_i0].ba_merchant = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank_account[_i0].ba_bill = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bank_get_bank_account_ledger(bank_account);
+          printf("%d\n", benchRet); 
+          free(bank_account);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_bank_account0 = 100;
+          struct TYPE_4__ * bank_account = (struct TYPE_4__ *) malloc(_len_bank_account0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_bank_account0; _i0++) {
+              bank_account[_i0].ba_holder = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank_account[_i0].ba_merchant = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank_account[_i0].ba_bill = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bank_get_bank_account_ledger(bank_account);
+          printf("%d\n", benchRet); 
+          free(bank_account);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_bank_account0 = 1;
           struct TYPE_4__ * bank_account = (struct TYPE_4__ *) malloc(_len_bank_account0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_bank_account0; _i0++) {
-            bank_account[_i0].ba_holder = ((-2 * (next_i()%2)) + 1) * next_i();
-        bank_account[_i0].ba_merchant = ((-2 * (next_i()%2)) + 1) * next_i();
-        bank_account[_i0].ba_bill = ((-2 * (next_i()%2)) + 1) * next_i();
+              bank_account[_i0].ba_holder = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank_account[_i0].ba_merchant = ((-2 * (next_i()%2)) + 1) * next_i();
+          bank_account[_i0].ba_bill = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bank_get_bank_account_ledger(bank_account);
           printf("%d\n", benchRet); 
           free(bank_account);

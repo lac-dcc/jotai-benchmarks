@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ nvbios_rammapSe(struct nvkm_bios *bios, u32 data,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,30 +85,261 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int data = 100;
+        
           int ever = 100;
+        
           int ehdr = 100;
+        
           int ecnt = 100;
+        
           int elen = 100;
+        
           int idx = 100;
+        
           int _len_bios0 = 1;
           struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
           for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
-            bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ver0 = 1;
           int * ver = (int *) malloc(_len_ver0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
             ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_hdr0 = 1;
           int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
             hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nvbios_rammapSe(bios,data,ever,ehdr,ecnt,elen,idx,ver,hdr);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int data = 255;
+        
+          int ever = 255;
+        
+          int ehdr = 255;
+        
+          int ecnt = 255;
+        
+          int elen = 255;
+        
+          int idx = 255;
+        
+          int _len_bios0 = 65025;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 65025;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 65025;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvbios_rammapSe(bios,data,ever,ehdr,ecnt,elen,idx,ver,hdr);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int data = 10;
+        
+          int ever = 10;
+        
+          int ehdr = 10;
+        
+          int ecnt = 10;
+        
+          int elen = 10;
+        
+          int idx = 10;
+        
+          int _len_bios0 = 100;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 100;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 100;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvbios_rammapSe(bios,data,ever,ehdr,ecnt,elen,idx,ver,hdr);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ever = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ehdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ecnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int elen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bios0 = 1;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 1;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 1;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nvbios_rammapSe(bios,data,ever,ehdr,ecnt,elen,idx,ver,hdr);
           printf("%d\n", benchRet); 
           free(bios);

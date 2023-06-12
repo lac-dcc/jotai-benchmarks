@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ __attribute__((used)) static u32 mcdi_fec_caps_to_ethtool(u32 caps, bool is_25g)
 	       (baser == baser_req && rs == rs_req ? 0 : ETHTOOL_FEC_AUTO);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,31 +96,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int caps = 100;
+        
           int is_25g = 100;
+        
           int benchRet = mcdi_fec_caps_to_ethtool(caps,is_25g);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 76
+          // dynamic_instructions_O0 : 76
+          // ------------------------------- 
+          // static_instructions_O1 : 45
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 45
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 45
+          // ------------------------------- 
+          // static_instructions_Os : 46
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 46
+          // dynamic_instructions_Oz : 46
+          // ------------------------------- 
+
           int caps = 255;
+        
           int is_25g = 255;
+        
           int benchRet = mcdi_fec_caps_to_ethtool(caps,is_25g);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int caps = 10;
+        
           int is_25g = 10;
+        
+          int benchRet = mcdi_fec_caps_to_ethtool(caps,is_25g);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 76
+          // dynamic_instructions_O0 : 76
+          // ------------------------------- 
+          // static_instructions_O1 : 45
+          // dynamic_instructions_O1 : 45
+          // ------------------------------- 
+          // static_instructions_O2 : 45
+          // dynamic_instructions_O2 : 45
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 45
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 45
+          // ------------------------------- 
+          // static_instructions_Os : 46
+          // dynamic_instructions_Os : 46
+          // ------------------------------- 
+          // static_instructions_Oz : 46
+          // dynamic_instructions_Oz : 46
+          // ------------------------------- 
+
+          int caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_25g = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = mcdi_fec_caps_to_ethtool(caps,is_25g);
           printf("%d\n", benchRet); 
         

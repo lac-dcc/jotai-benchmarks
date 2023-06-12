@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static unsigned int pcd_check_events(struct cdrom_device_i
 	return res ? DISK_EVENT_MEDIA_CHANGE : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int clearing = 100;
+        
           int slot_nr = 100;
+        
           int _len_cdi0 = 1;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
               int _len_cdi__i0__handle0 = 1;
           cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
           for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
-            cdi[_i0].handle->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].handle->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = pcd_check_events(cdi,clearing,slot_nr);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_cdi0; _aux++) {
@@ -108,7 +110,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int clearing = 255;
+        
+          int slot_nr = 255;
+        
+          int _len_cdi0 = 65025;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = pcd_check_events(cdi,clearing,slot_nr);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int clearing = 10;
+        
+          int slot_nr = 10;
+        
+          int _len_cdi0 = 100;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = pcd_check_events(cdi,clearing,slot_nr);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int clearing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int slot_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cdi0 = 1;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              int _len_cdi__i0__handle0 = 1;
+          cdi[_i0].handle = (struct pcd_unit *) malloc(_len_cdi__i0__handle0*sizeof(struct pcd_unit));
+          for(int _j0 = 0; _j0 < _len_cdi__i0__handle0; _j0++) {
+              cdi[_i0].handle->changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = pcd_check_events(cdi,clearing,slot_nr);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cdi0; _aux++) {
+          free(cdi[_aux].handle);
+          }
+          free(cdi);
+        
+        break;
+    }
     default:
         usage();
         break;

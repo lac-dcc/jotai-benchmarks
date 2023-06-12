@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int k8_early_channel_count(struct amd64_pvt *pvt)
 	return (flag) ? 2 : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,23 +89,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pvt0 = 1;
+          int _len_pvt0 = 65025;
           struct amd64_pvt * pvt = (struct amd64_pvt *) malloc(_len_pvt0*sizeof(struct amd64_pvt));
           for(int _i0 = 0; _i0 < _len_pvt0; _i0++) {
-            pvt[_i0].ext_model = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvt[_i0].dclr0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvt[_i0].dclr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              pvt[_i0].ext_model = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].dclr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].dclr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = k8_early_channel_count(pvt);
           printf("%d\n", benchRet); 
           free(pvt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pvt0 = 100;
+          struct amd64_pvt * pvt = (struct amd64_pvt *) malloc(_len_pvt0*sizeof(struct amd64_pvt));
+          for(int _i0 = 0; _i0 < _len_pvt0; _i0++) {
+              pvt[_i0].ext_model = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].dclr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].dclr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = k8_early_channel_count(pvt);
+          printf("%d\n", benchRet); 
+          free(pvt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pvt0 = 1;
+          struct amd64_pvt * pvt = (struct amd64_pvt *) malloc(_len_pvt0*sizeof(struct amd64_pvt));
+          for(int _i0 = 0; _i0 < _len_pvt0; _i0++) {
+              pvt[_i0].ext_model = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].dclr0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvt[_i0].dclr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = k8_early_channel_count(pvt);
+          printf("%d\n", benchRet); 
+          free(pvt);
+        
+        break;
+    }
     default:
         usage();
         break;

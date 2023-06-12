@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ fbsd_init(char *userboot_path, char *bootvolume_path, char *kernelenv,
 	config.cons = cons;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,29 +81,174 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_userboot_path0 = 65025;
+          char * userboot_path = (char *) malloc(_len_userboot_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_userboot_path0; _i0++) {
+            userboot_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bootvolume_path0 = 65025;
+          char * bootvolume_path = (char *) malloc(_len_bootvolume_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bootvolume_path0; _i0++) {
+            bootvolume_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_kernelenv0 = 65025;
+          char * kernelenv = (char *) malloc(_len_kernelenv0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_kernelenv0; _i0++) {
+            kernelenv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cons0 = 65025;
+          char * cons = (char *) malloc(_len_cons0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_cons0; _i0++) {
+            cons[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fbsd_init(userboot_path,bootvolume_path,kernelenv,cons);
+          free(userboot_path);
+          free(bootvolume_path);
+          free(kernelenv);
+          free(cons);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_userboot_path0 = 100;
+          char * userboot_path = (char *) malloc(_len_userboot_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_userboot_path0; _i0++) {
+            userboot_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bootvolume_path0 = 100;
+          char * bootvolume_path = (char *) malloc(_len_bootvolume_path0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_bootvolume_path0; _i0++) {
+            bootvolume_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_kernelenv0 = 100;
+          char * kernelenv = (char *) malloc(_len_kernelenv0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_kernelenv0; _i0++) {
+            kernelenv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cons0 = 100;
+          char * cons = (char *) malloc(_len_cons0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_cons0; _i0++) {
+            cons[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fbsd_init(userboot_path,bootvolume_path,kernelenv,cons);
+          free(userboot_path);
+          free(bootvolume_path);
+          free(kernelenv);
+          free(cons);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_userboot_path0 = 1;
           char * userboot_path = (char *) malloc(_len_userboot_path0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_userboot_path0; _i0++) {
             userboot_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bootvolume_path0 = 1;
           char * bootvolume_path = (char *) malloc(_len_bootvolume_path0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_bootvolume_path0; _i0++) {
             bootvolume_path[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_kernelenv0 = 1;
           char * kernelenv = (char *) malloc(_len_kernelenv0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_kernelenv0; _i0++) {
             kernelenv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cons0 = 1;
           char * cons = (char *) malloc(_len_cons0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_cons0; _i0++) {
             cons[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fbsd_init(userboot_path,bootvolume_path,kernelenv,cons);
           free(userboot_path);
           free(bootvolume_path);

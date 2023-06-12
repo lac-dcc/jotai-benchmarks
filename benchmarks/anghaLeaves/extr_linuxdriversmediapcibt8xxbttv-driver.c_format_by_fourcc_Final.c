@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ format_by_fourcc(int fourcc)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fourcc = 100;
+        
           const struct bttv_format * benchRet = format_by_fourcc(fourcc);
         
         break;
@@ -103,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fourcc = 255;
+        
           const struct bttv_format * benchRet = format_by_fourcc(fourcc);
         
         break;
@@ -111,11 +108,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fourcc = 10;
+        
           const struct bttv_format * benchRet = format_by_fourcc(fourcc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fourcc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const struct bttv_format * benchRet = format_by_fourcc(fourcc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool fm10k_fifo_empty(struct fm10k_mbx_fifo *fifo)
 	return fifo->head == fifo->tail;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fifo0 = 1;
+          int _len_fifo0 = 65025;
           struct fm10k_mbx_fifo * fifo = (struct fm10k_mbx_fifo *) malloc(_len_fifo0*sizeof(struct fm10k_mbx_fifo));
           for(int _i0 = 0; _i0 < _len_fifo0; _i0++) {
-            fifo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
-        fifo[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+              fifo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          fifo[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fm10k_fifo_empty(fifo);
           printf("%d\n", benchRet); 
           free(fifo);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fifo0 = 100;
+          struct fm10k_mbx_fifo * fifo = (struct fm10k_mbx_fifo *) malloc(_len_fifo0*sizeof(struct fm10k_mbx_fifo));
+          for(int _i0 = 0; _i0 < _len_fifo0; _i0++) {
+              fifo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          fifo[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_fifo_empty(fifo);
+          printf("%d\n", benchRet); 
+          free(fifo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fifo0 = 1;
+          struct fm10k_mbx_fifo * fifo = (struct fm10k_mbx_fifo *) malloc(_len_fifo0*sizeof(struct fm10k_mbx_fifo));
+          for(int _i0 = 0; _i0 < _len_fifo0; _i0++) {
+              fifo[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          fifo[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fm10k_fifo_empty(fifo);
+          printf("%d\n", benchRet); 
+          free(fifo);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ int sst_byt_stream_type(struct sst_byt *byt, struct sst_byt_stream *stream,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +90,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int codec_type = 100;
+        
           int stream_type = 100;
+        
           int operation = 100;
+        
           int _len_byt0 = 1;
           struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
           for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
-            byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_stream0 = 1;
           struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].request.str_type.codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].request.str_type.str_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].request.str_type.operation = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].request.str_type.time_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].request.str_type.codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.str_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.time_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = sst_byt_stream_type(byt,stream,codec_type,stream_type,operation);
           printf("%d\n", benchRet); 
           free(byt);
@@ -115,7 +121,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int codec_type = 255;
+        
+          int stream_type = 255;
+        
+          int operation = 255;
+        
+          int _len_byt0 = 65025;
+          struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
+          for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stream0 = 65025;
+          struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].request.str_type.codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.str_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.time_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sst_byt_stream_type(byt,stream,codec_type,stream_type,operation);
+          printf("%d\n", benchRet); 
+          free(byt);
+          free(stream);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int codec_type = 10;
+        
+          int stream_type = 10;
+        
+          int operation = 10;
+        
+          int _len_byt0 = 100;
+          struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
+          for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stream0 = 100;
+          struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].request.str_type.codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.str_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.time_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sst_byt_stream_type(byt,stream,codec_type,stream_type,operation);
+          printf("%d\n", benchRet); 
+          free(byt);
+          free(stream);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int stream_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int operation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_byt0 = 1;
+          struct sst_byt * byt = (struct sst_byt *) malloc(_len_byt0*sizeof(struct sst_byt));
+          for(int _i0 = 0; _i0 < _len_byt0; _i0++) {
+              byt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_stream0 = 1;
+          struct sst_byt_stream * stream = (struct sst_byt_stream *) malloc(_len_stream0*sizeof(struct sst_byt_stream));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].request.str_type.codec_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.str_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].request.str_type.time_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = sst_byt_stream_type(byt,stream,codec_type,stream_type,operation);
+          printf("%d\n", benchRet); 
+          free(byt);
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

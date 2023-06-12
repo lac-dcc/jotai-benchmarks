@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void EXTI_StructInit(EXTI_InitTypeDef* EXTI_InitStruct)
   EXTI_InitStruct->EXTI_LineCmd = DISABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,23 +83,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_EXTI_InitStruct0 = 1;
+          int _len_EXTI_InitStruct0 = 65025;
           struct TYPE_3__ * EXTI_InitStruct = (struct TYPE_3__ *) malloc(_len_EXTI_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_EXTI_InitStruct0; _i0++) {
-            EXTI_InitStruct[_i0].EXTI_LineCmd = ((-2 * (next_i()%2)) + 1) * next_i();
-        EXTI_InitStruct[_i0].EXTI_Trigger = ((-2 * (next_i()%2)) + 1) * next_i();
-        EXTI_InitStruct[_i0].EXTI_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        EXTI_InitStruct[_i0].EXTI_Line = ((-2 * (next_i()%2)) + 1) * next_i();
+              EXTI_InitStruct[_i0].EXTI_LineCmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Trigger = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           EXTI_StructInit(EXTI_InitStruct);
           free(EXTI_InitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_EXTI_InitStruct0 = 100;
+          struct TYPE_3__ * EXTI_InitStruct = (struct TYPE_3__ *) malloc(_len_EXTI_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_EXTI_InitStruct0; _i0++) {
+              EXTI_InitStruct[_i0].EXTI_LineCmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Trigger = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EXTI_StructInit(EXTI_InitStruct);
+          free(EXTI_InitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_EXTI_InitStruct0 = 1;
+          struct TYPE_3__ * EXTI_InitStruct = (struct TYPE_3__ *) malloc(_len_EXTI_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_EXTI_InitStruct0; _i0++) {
+              EXTI_InitStruct[_i0].EXTI_LineCmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Trigger = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          EXTI_InitStruct[_i0].EXTI_Line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          EXTI_StructInit(EXTI_InitStruct);
+          free(EXTI_InitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

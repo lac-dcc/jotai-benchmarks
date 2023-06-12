@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ __attribute__((used)) static int smu8_store_cc6_data(struct pp_hwmgr *hwmgr, uin
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,22 +105,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long separation_time = 100;
+        
           int cc6_disable = 100;
+        
           int pstate_disable = 100;
+        
           int pstate_switch_disable = 100;
+        
           int _len_hwmgr0 = 1;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
               int _len_hwmgr__i0__backend0 = 1;
           hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
           for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
-            hwmgr[_i0].backend->cc6_settings.cpu_pstate_separation_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->cc6_settings.cpu_cc6_disable = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->cc6_settings.cpu_pstate_disable = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->cc6_settings.nb_pstate_switch_disable = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->cc6_settings.cc6_setting_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].backend->cc6_settings.cpu_pstate_separation_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_cc6_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_pstate_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.nb_pstate_switch_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cc6_setting_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = smu8_store_cc6_data(hwmgr,separation_time,cc6_disable,pstate_disable,pstate_switch_disable);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
@@ -133,7 +138,117 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long separation_time = 255;
+        
+          int cc6_disable = 255;
+        
+          int pstate_disable = 255;
+        
+          int pstate_switch_disable = 255;
+        
+          int _len_hwmgr0 = 65025;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->cc6_settings.cpu_pstate_separation_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_cc6_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_pstate_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.nb_pstate_switch_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cc6_setting_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_store_cc6_data(hwmgr,separation_time,cc6_disable,pstate_disable,pstate_switch_disable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long separation_time = 10;
+        
+          int cc6_disable = 10;
+        
+          int pstate_disable = 10;
+        
+          int pstate_switch_disable = 10;
+        
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->cc6_settings.cpu_pstate_separation_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_cc6_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_pstate_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.nb_pstate_switch_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cc6_setting_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_store_cc6_data(hwmgr,separation_time,cc6_disable,pstate_disable,pstate_switch_disable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long separation_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cc6_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pstate_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pstate_switch_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->cc6_settings.cpu_pstate_separation_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_cc6_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cpu_pstate_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.nb_pstate_switch_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->cc6_settings.cc6_setting_changed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_store_cc6_data(hwmgr,separation_time,cc6_disable,pstate_disable,pstate_switch_disable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
     default:
         usage();
         break;

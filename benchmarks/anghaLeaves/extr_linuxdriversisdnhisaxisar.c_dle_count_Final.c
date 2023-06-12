@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ dle_count(unsigned char *buf, int len)
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +79,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 3584
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 2051
+          // ------------------------------- 
+          // static_instructions_O2 : 86
+          // dynamic_instructions_O2 : 456
+          // ------------------------------- 
+          // static_instructions_O3 : 86
+          // dynamic_instructions_O3 : 456
+          // ------------------------------- 
+          // static_instructions_Ofast : 86
+          // dynamic_instructions_Ofast : 456
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 2051
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 2305
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dle_count(buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 154
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 91
+          // ------------------------------- 
+          // static_instructions_O2 : 58
+          // dynamic_instructions_O2 : 66
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 66
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 66
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 91
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 100
+          // ------------------------------- 
+
           int len = 10;
+        
           int _len_buf0 = 100;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dle_count(buf,len);
           printf("%d\n", benchRet); 
           free(buf);

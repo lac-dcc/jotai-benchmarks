@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void esp_check_command_len(struct esp *esp, struct 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,26 +82,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_esp0 = 1;
+          int _len_esp0 = 65025;
           struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
           for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
-            esp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              esp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cmd0 = 1;
+        
+          int _len_cmd0 = 65025;
           struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           esp_check_command_len(esp,cmd);
           free(esp);
           free(cmd);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_esp0 = 100;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              esp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          esp_check_command_len(esp,cmd);
+          free(esp);
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_esp0 = 1;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              esp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct scsi_cmnd * cmd = (struct scsi_cmnd *) malloc(_len_cmd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].cmd_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          esp_check_command_len(esp,cmd);
+          free(esp);
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int msm_dsi_pll_get_clk_provider(struct msm_
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,42 +77,209 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pll0 = 65025;
+          struct msm_dsi_pll * pll = (struct msm_dsi_pll *) malloc(_len_pll0*sizeof(struct msm_dsi_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_byte_clk_provider0 = 65025;
+          struct clk ** byte_clk_provider = (struct clk **) malloc(_len_byte_clk_provider0*sizeof(struct clk *));
+          for(int _i0 = 0; _i0 < _len_byte_clk_provider0; _i0++) {
+            int _len_byte_clk_provider1 = 1;
+            byte_clk_provider[_i0] = (struct clk *) malloc(_len_byte_clk_provider1*sizeof(struct clk));
+            for(int _i1 = 0; _i1 < _len_byte_clk_provider1; _i1++) {
+                byte_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_pixel_clk_provider0 = 65025;
+          struct clk ** pixel_clk_provider = (struct clk **) malloc(_len_pixel_clk_provider0*sizeof(struct clk *));
+          for(int _i0 = 0; _i0 < _len_pixel_clk_provider0; _i0++) {
+            int _len_pixel_clk_provider1 = 1;
+            pixel_clk_provider[_i0] = (struct clk *) malloc(_len_pixel_clk_provider1*sizeof(struct clk));
+            for(int _i1 = 0; _i1 < _len_pixel_clk_provider1; _i1++) {
+                pixel_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = msm_dsi_pll_get_clk_provider(pll,byte_clk_provider,pixel_clk_provider);
+          printf("%d\n", benchRet); 
+          free(pll);
+          for(int i1 = 0; i1 < _len_byte_clk_provider0; i1++) {
+              free(byte_clk_provider[i1]);
+          }
+          free(byte_clk_provider);
+          for(int i1 = 0; i1 < _len_pixel_clk_provider0; i1++) {
+              free(pixel_clk_provider[i1]);
+          }
+          free(pixel_clk_provider);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_pll0 = 100;
+          struct msm_dsi_pll * pll = (struct msm_dsi_pll *) malloc(_len_pll0*sizeof(struct msm_dsi_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_byte_clk_provider0 = 100;
+          struct clk ** byte_clk_provider = (struct clk **) malloc(_len_byte_clk_provider0*sizeof(struct clk *));
+          for(int _i0 = 0; _i0 < _len_byte_clk_provider0; _i0++) {
+            int _len_byte_clk_provider1 = 1;
+            byte_clk_provider[_i0] = (struct clk *) malloc(_len_byte_clk_provider1*sizeof(struct clk));
+            for(int _i1 = 0; _i1 < _len_byte_clk_provider1; _i1++) {
+                byte_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int _len_pixel_clk_provider0 = 100;
+          struct clk ** pixel_clk_provider = (struct clk **) malloc(_len_pixel_clk_provider0*sizeof(struct clk *));
+          for(int _i0 = 0; _i0 < _len_pixel_clk_provider0; _i0++) {
+            int _len_pixel_clk_provider1 = 1;
+            pixel_clk_provider[_i0] = (struct clk *) malloc(_len_pixel_clk_provider1*sizeof(struct clk));
+            for(int _i1 = 0; _i1 < _len_pixel_clk_provider1; _i1++) {
+                pixel_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          int benchRet = msm_dsi_pll_get_clk_provider(pll,byte_clk_provider,pixel_clk_provider);
+          printf("%d\n", benchRet); 
+          free(pll);
+          for(int i1 = 0; i1 < _len_byte_clk_provider0; i1++) {
+              free(byte_clk_provider[i1]);
+          }
+          free(byte_clk_provider);
+          for(int i1 = 0; i1 < _len_pixel_clk_provider0; i1++) {
+              free(pixel_clk_provider[i1]);
+          }
+          free(pixel_clk_provider);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_pll0 = 1;
           struct msm_dsi_pll * pll = (struct msm_dsi_pll *) malloc(_len_pll0*sizeof(struct msm_dsi_pll));
           for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
-            pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_byte_clk_provider0 = 1;
           struct clk ** byte_clk_provider = (struct clk **) malloc(_len_byte_clk_provider0*sizeof(struct clk *));
           for(int _i0 = 0; _i0 < _len_byte_clk_provider0; _i0++) {
             int _len_byte_clk_provider1 = 1;
             byte_clk_provider[_i0] = (struct clk *) malloc(_len_byte_clk_provider1*sizeof(struct clk));
             for(int _i1 = 0; _i1 < _len_byte_clk_provider1; _i1++) {
-              byte_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                byte_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int _len_pixel_clk_provider0 = 1;
           struct clk ** pixel_clk_provider = (struct clk **) malloc(_len_pixel_clk_provider0*sizeof(struct clk *));
           for(int _i0 = 0; _i0 < _len_pixel_clk_provider0; _i0++) {
             int _len_pixel_clk_provider1 = 1;
             pixel_clk_provider[_i0] = (struct clk *) malloc(_len_pixel_clk_provider1*sizeof(struct clk));
             for(int _i1 = 0; _i1 < _len_pixel_clk_provider1; _i1++) {
-              pixel_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                pixel_clk_provider[_i0][_i1].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           int benchRet = msm_dsi_pll_get_clk_provider(pll,byte_clk_provider,pixel_clk_provider);
           printf("%d\n", benchRet); 
           free(pll);
           for(int i1 = 0; i1 < _len_byte_clk_provider0; i1++) {
-            int _len_byte_clk_provider1 = 1;
               free(byte_clk_provider[i1]);
           }
           free(byte_clk_provider);
           for(int i1 = 0; i1 < _len_pixel_clk_provider0; i1++) {
-            int _len_pixel_clk_provider1 = 1;
               free(pixel_clk_provider[i1]);
           }
           free(pixel_clk_provider);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static void dwmac4_release_tx_desc(struct dma_desc *p, int
 	p->des3 = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int _len_p0 = 1;
           struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].des3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].des1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].des0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].des3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dwmac4_release_tx_desc(p,mode);
           free(p);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          int _len_p0 = 65025;
+          struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].des3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dwmac4_release_tx_desc(p,mode);
+          free(p);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mode = 10;
+        
+          int _len_p0 = 100;
+          struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].des3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dwmac4_release_tx_desc(p,mode);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct dma_desc * p = (struct dma_desc *) malloc(_len_p0*sizeof(struct dma_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].des3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].des0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dwmac4_release_tx_desc(p,mode);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

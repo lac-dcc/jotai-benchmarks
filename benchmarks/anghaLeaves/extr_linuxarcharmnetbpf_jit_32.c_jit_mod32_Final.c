@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static u32 jit_mod32(u32 dividend, u32 divisor)
 	return dividend % divisor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dividend = 100;
+        
           int divisor = 100;
+        
           int benchRet = jit_mod32(dividend,divisor);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int dividend = 255;
+        
           int divisor = 255;
+        
           int benchRet = jit_mod32(dividend,divisor);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int dividend = 10;
+        
           int divisor = 10;
+        
           int benchRet = jit_mod32(dividend,divisor);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dividend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = jit_mod32(dividend,divisor);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

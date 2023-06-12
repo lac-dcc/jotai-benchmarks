@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void viafb_get_gamma_support_state(int bpp, unsigned int *support_state)
 		*support_state = CRT_Device | DVI_Device | LCD_Device;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,31 +85,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bpp = 100;
+        
           int _len_support_state0 = 1;
           unsigned int * support_state = (unsigned int *) malloc(_len_support_state0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_support_state0; _i0++) {
             support_state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          viafb_get_gamma_support_state(bpp,support_state);
+          free(support_state);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bpp = 255;
+        
+          int _len_support_state0 = 65025;
+          unsigned int * support_state = (unsigned int *) malloc(_len_support_state0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_support_state0; _i0++) {
+            support_state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           viafb_get_gamma_support_state(bpp,support_state);
           free(support_state);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bpp = 10;
+        
           int _len_support_state0 = 100;
           unsigned int * support_state = (unsigned int *) malloc(_len_support_state0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_support_state0; _i0++) {
             support_state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           viafb_get_gamma_support_state(bpp,support_state);
           free(support_state);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_support_state0 = 1;
+          unsigned int * support_state = (unsigned int *) malloc(_len_support_state0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_support_state0; _i0++) {
+            support_state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          viafb_get_gamma_support_state(bpp,support_state);
+          free(support_state);
+        
+        break;
+    }
     default:
         usage();
         break;

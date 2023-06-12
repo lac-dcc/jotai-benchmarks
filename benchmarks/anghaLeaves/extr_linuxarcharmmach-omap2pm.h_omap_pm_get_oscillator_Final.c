@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -57,12 +59,6 @@ typedef  scalar_t__ u32 ;
 
 __attribute__((used)) static inline void omap_pm_get_oscillator(u32 *tstart, u32 *tshut) { *tstart = *tshut = 0; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -75,19 +71,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_tstart0 = 65025;
+          long * tstart = (long *) malloc(_len_tstart0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_tstart0; _i0++) {
+            tstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tshut0 = 65025;
+          long * tshut = (long *) malloc(_len_tshut0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_tshut0; _i0++) {
+            tshut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          omap_pm_get_oscillator(tstart,tshut);
+          free(tstart);
+          free(tshut);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_tstart0 = 100;
+          long * tstart = (long *) malloc(_len_tstart0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_tstart0; _i0++) {
+            tstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_tshut0 = 100;
+          long * tshut = (long *) malloc(_len_tshut0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_tshut0; _i0++) {
+            tshut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          omap_pm_get_oscillator(tstart,tshut);
+          free(tstart);
+          free(tshut);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_tstart0 = 1;
           long * tstart = (long *) malloc(_len_tstart0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_tstart0; _i0++) {
             tstart[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_tshut0 = 1;
           long * tshut = (long *) malloc(_len_tshut0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_tshut0; _i0++) {
             tshut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           omap_pm_get_oscillator(tstart,tshut);
           free(tstart);
           free(tshut);

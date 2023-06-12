@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ want_ag_read_header_failure(
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,15 +99,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int type = 100;
+        
           int _len_sc0 = 1;
           struct xfs_scrub * sc = (struct xfs_scrub *) malloc(_len_sc0*sizeof(struct xfs_scrub));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
               int _len_sc__i0__sm0 = 1;
           sc[_i0].sm = (struct TYPE_2__ *) malloc(_len_sc__i0__sm0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_sc__i0__sm0; _j0++) {
-            sc[_i0].sm->sm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].sm->sm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = want_ag_read_header_failure(sc,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_sc0; _aux++) {
@@ -120,7 +121,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int type = 255;
+        
+          int _len_sc0 = 65025;
+          struct xfs_scrub * sc = (struct xfs_scrub *) malloc(_len_sc0*sizeof(struct xfs_scrub));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              int _len_sc__i0__sm0 = 1;
+          sc[_i0].sm = (struct TYPE_2__ *) malloc(_len_sc__i0__sm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sc__i0__sm0; _j0++) {
+              sc[_i0].sm->sm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = want_ag_read_header_failure(sc,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sc0; _aux++) {
+          free(sc[_aux].sm);
+          }
+          free(sc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int type = 10;
+        
+          int _len_sc0 = 100;
+          struct xfs_scrub * sc = (struct xfs_scrub *) malloc(_len_sc0*sizeof(struct xfs_scrub));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              int _len_sc__i0__sm0 = 1;
+          sc[_i0].sm = (struct TYPE_2__ *) malloc(_len_sc__i0__sm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sc__i0__sm0; _j0++) {
+              sc[_i0].sm->sm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = want_ag_read_header_failure(sc,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sc0; _aux++) {
+          free(sc[_aux].sm);
+          }
+          free(sc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sc0 = 1;
+          struct xfs_scrub * sc = (struct xfs_scrub *) malloc(_len_sc0*sizeof(struct xfs_scrub));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              int _len_sc__i0__sm0 = 1;
+          sc[_i0].sm = (struct TYPE_2__ *) malloc(_len_sc__i0__sm0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_sc__i0__sm0; _j0++) {
+              sc[_i0].sm->sm_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = want_ag_read_header_failure(sc,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sc0; _aux++) {
+          free(sc[_aux].sm);
+          }
+          free(sc);
+        
+        break;
+    }
     default:
         usage();
         break;

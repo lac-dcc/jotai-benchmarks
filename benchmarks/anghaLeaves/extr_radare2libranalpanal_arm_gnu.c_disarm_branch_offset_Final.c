@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static unsigned int disarm_branch_offset(unsigned int pc, 
 	return add + pc + 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pc = 100;
+        
           unsigned int insoff = 100;
+        
           unsigned int benchRet = disarm_branch_offset(pc,insoff);
           printf("%u\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int pc = 255;
+        
           unsigned int insoff = 255;
+        
           unsigned int benchRet = disarm_branch_offset(pc,insoff);
           printf("%u\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int pc = 10;
+        
           unsigned int insoff = 10;
+        
           unsigned int benchRet = disarm_branch_offset(pc,insoff);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int insoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = disarm_branch_offset(pc,insoff);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

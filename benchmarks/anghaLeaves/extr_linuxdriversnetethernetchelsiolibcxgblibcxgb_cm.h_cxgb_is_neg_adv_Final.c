@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline bool cxgb_is_neg_adv(unsigned int status)
 	       status == CPL_ERR_KEEPALV_NEG_ADVICE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int status = 100;
+        
           int benchRet = cxgb_is_neg_adv(status);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int status = 255;
+        
           int benchRet = cxgb_is_neg_adv(status);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int status = 10;
+        
           int benchRet = cxgb_is_neg_adv(status);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cxgb_is_neg_adv(status);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

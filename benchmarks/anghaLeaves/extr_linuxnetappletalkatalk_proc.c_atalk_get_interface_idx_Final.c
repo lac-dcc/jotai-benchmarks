@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static __inline__ struct atalk_iface *atalk_get_interface_
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pos = 100;
+        
           struct atalk_iface * benchRet = atalk_get_interface_idx(pos);
         
         break;
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long pos = 255;
+        
           struct atalk_iface * benchRet = atalk_get_interface_idx(pos);
         
         break;
@@ -107,11 +104,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long pos = 10;
+        
           struct atalk_iface * benchRet = atalk_get_interface_idx(pos);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct atalk_iface * benchRet = atalk_get_interface_idx(pos);
+        
+        break;
+    }
     default:
         usage();
         break;

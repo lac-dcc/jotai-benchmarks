@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ get_gss_krb5_enctype(int etype)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int etype = 100;
+        
           const struct gss_krb5_enctype * benchRet = get_gss_krb5_enctype(etype);
         
         break;
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int etype = 255;
+        
           const struct gss_krb5_enctype * benchRet = get_gss_krb5_enctype(etype);
         
         break;
@@ -107,11 +104,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int etype = 10;
+        
           const struct gss_krb5_enctype * benchRet = get_gss_krb5_enctype(etype);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int etype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const struct gss_krb5_enctype * benchRet = get_gss_krb5_enctype(etype);
+        
+        break;
+    }
     default:
         usage();
         break;

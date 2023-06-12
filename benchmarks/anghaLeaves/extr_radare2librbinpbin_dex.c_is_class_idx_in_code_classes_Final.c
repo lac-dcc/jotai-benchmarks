@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static bool is_class_idx_in_code_classes(RBinDexObj *bin, 
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +90,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int class_idx = 100;
+        
           int _len_bin0 = 1;
           struct TYPE_7__ * bin = (struct TYPE_7__ *) malloc(_len_bin0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
               int _len_bin__i0__classes0 = 1;
           bin[_i0].classes = (struct TYPE_6__ *) malloc(_len_bin__i0__classes0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_bin__i0__classes0; _j0++) {
-            bin[_i0].classes->class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              bin[_i0].classes->class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        bin[_i0].header.class_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          bin[_i0].header.class_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = is_class_idx_in_code_classes(bin,class_idx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bin0; _aux++) {
@@ -112,7 +114,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int class_idx = 255;
+        
+          int _len_bin0 = 65025;
+          struct TYPE_7__ * bin = (struct TYPE_7__ *) malloc(_len_bin0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              int _len_bin__i0__classes0 = 1;
+          bin[_i0].classes = (struct TYPE_6__ *) malloc(_len_bin__i0__classes0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__classes0; _j0++) {
+              bin[_i0].classes->class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          bin[_i0].header.class_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_class_idx_in_code_classes(bin,class_idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].classes);
+          }
+          free(bin);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int class_idx = 10;
+        
+          int _len_bin0 = 100;
+          struct TYPE_7__ * bin = (struct TYPE_7__ *) malloc(_len_bin0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              int _len_bin__i0__classes0 = 1;
+          bin[_i0].classes = (struct TYPE_6__ *) malloc(_len_bin__i0__classes0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__classes0; _j0++) {
+              bin[_i0].classes->class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          bin[_i0].header.class_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_class_idx_in_code_classes(bin,class_idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].classes);
+          }
+          free(bin);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int class_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bin0 = 1;
+          struct TYPE_7__ * bin = (struct TYPE_7__ *) malloc(_len_bin0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_bin0; _i0++) {
+              int _len_bin__i0__classes0 = 1;
+          bin[_i0].classes = (struct TYPE_6__ *) malloc(_len_bin__i0__classes0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_bin__i0__classes0; _j0++) {
+              bin[_i0].classes->class_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          bin[_i0].header.class_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = is_class_idx_in_code_classes(bin,class_idx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bin0; _aux++) {
+          free(bin[_aux].classes);
+          }
+          free(bin);
+        
+        break;
+    }
     default:
         usage();
         break;

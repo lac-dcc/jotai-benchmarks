@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ int check_album_id (int album_id) {
   return album_id >= -256 && album_id != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int album_id = 100;
+        
           int benchRet = check_album_id(album_id);
           printf("%d\n", benchRet); 
         
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int album_id = 255;
+        
           int benchRet = check_album_id(album_id);
           printf("%d\n", benchRet); 
         
@@ -100,12 +97,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int album_id = 10;
+        
           int benchRet = check_album_id(album_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int album_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = check_album_id(album_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

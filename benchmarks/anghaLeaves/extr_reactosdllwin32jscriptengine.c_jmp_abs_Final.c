@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline void jmp_abs(script_ctx_t *ctx, unsigned dst
     ctx->call_ctx->ip = dst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +83,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int dst = 100;
+        
           int _len_ctx0 = 1;
           struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
               int _len_ctx__i0__call_ctx0 = 1;
           ctx[_i0].call_ctx = (struct TYPE_4__ *) malloc(_len_ctx__i0__call_ctx0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ctx__i0__call_ctx0; _j0++) {
-            ctx[_i0].call_ctx->ip = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].call_ctx->ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           jmp_abs(ctx,dst);
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
           free(ctx[_aux].call_ctx);
@@ -103,7 +104,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int dst = 255;
+        
+          int _len_ctx0 = 65025;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__call_ctx0 = 1;
+          ctx[_i0].call_ctx = (struct TYPE_4__ *) malloc(_len_ctx__i0__call_ctx0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__call_ctx0; _j0++) {
+              ctx[_i0].call_ctx->ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          jmp_abs(ctx,dst);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].call_ctx);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int dst = 10;
+        
+          int _len_ctx0 = 100;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__call_ctx0 = 1;
+          ctx[_i0].call_ctx = (struct TYPE_4__ *) malloc(_len_ctx__i0__call_ctx0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__call_ctx0; _j0++) {
+              ctx[_i0].call_ctx->ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          jmp_abs(ctx,dst);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].call_ctx);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int dst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__call_ctx0 = 1;
+          ctx[_i0].call_ctx = (struct TYPE_4__ *) malloc(_len_ctx__i0__call_ctx0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__call_ctx0; _j0++) {
+              ctx[_i0].call_ctx->ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          jmp_abs(ctx,dst);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].call_ctx);
+          }
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

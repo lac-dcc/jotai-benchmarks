@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static int wl1271_op_get_survey(struct ieee80211_hw *hw, i
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,17 +92,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int _len_hw0 = 1;
           struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_survey0 = 1;
           struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
           for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
-            survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
-        survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wl1271_op_get_survey(hw,idx,survey);
           printf("%d\n", benchRet); 
           free(hw);
@@ -113,7 +117,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          int _len_hw0 = 65025;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_survey0 = 65025;
+          struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
+          for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
+              survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl1271_op_get_survey(hw,idx,survey);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(survey);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int idx = 10;
+        
+          int _len_hw0 = 100;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_survey0 = 100;
+          struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
+          for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
+              survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl1271_op_get_survey(hw,idx,survey);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(survey);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ieee80211_hw * hw = (struct ieee80211_hw *) malloc(_len_hw0*sizeof(struct ieee80211_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].conf.chandef.chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_survey0 = 1;
+          struct survey_info * survey = (struct survey_info *) malloc(_len_survey0*sizeof(struct survey_info));
+          for(int _i0 = 0; _i0 < _len_survey0; _i0++) {
+              survey[_i0].filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          survey[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wl1271_op_get_survey(hw,idx,survey);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(survey);
+        
+        break;
+    }
     default:
         usage();
         break;

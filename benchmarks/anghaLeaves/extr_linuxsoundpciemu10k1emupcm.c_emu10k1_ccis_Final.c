@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int emu10k1_ccis(int stereo, int w_16)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stereo = 100;
+        
           int w_16 = 100;
+        
           int benchRet = emu10k1_ccis(stereo,w_16);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int stereo = 255;
+        
           int w_16 = 255;
+        
           int benchRet = emu10k1_ccis(stereo,w_16);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int stereo = 10;
+        
           int w_16 = 10;
+        
           int benchRet = emu10k1_ccis(stereo,w_16);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int stereo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int w_16 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = emu10k1_ccis(stereo,w_16);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

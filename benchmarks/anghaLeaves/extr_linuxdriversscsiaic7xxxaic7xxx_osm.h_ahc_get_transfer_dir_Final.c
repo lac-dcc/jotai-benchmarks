@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int ahc_get_transfer_dir(struct scb *scb)
 	return (scb->io_ctx->sc_data_direction);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_scb0 = 1;
+          int _len_scb0 = 65025;
           struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
               int _len_scb__i0__io_ctx0 = 1;
           scb[_i0].io_ctx = (struct TYPE_2__ *) malloc(_len_scb__i0__io_ctx0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_scb__i0__io_ctx0; _j0++) {
-            scb[_i0].io_ctx->sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].io_ctx->sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ahc_get_transfer_dir(scb);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_scb0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_scb0 = 100;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__io_ctx0 = 1;
+          scb[_i0].io_ctx = (struct TYPE_2__ *) malloc(_len_scb__i0__io_ctx0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__io_ctx0; _j0++) {
+              scb[_i0].io_ctx->sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ahc_get_transfer_dir(scb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].io_ctx);
+          }
+          free(scb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_scb0 = 1;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__io_ctx0 = 1;
+          scb[_i0].io_ctx = (struct TYPE_2__ *) malloc(_len_scb__i0__io_ctx0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__io_ctx0; _j0++) {
+              scb[_i0].io_ctx->sc_data_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ahc_get_transfer_dir(scb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].io_ctx);
+          }
+          free(scb);
+        
+        break;
+    }
     default:
         usage();
         break;

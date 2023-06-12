@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -205,12 +207,6 @@ integer ieeeck_(integer *ispec, real *zero, real *one)
     return ret_val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -223,24 +219,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ispec0 = 65025;
+          long * ispec = (long *) malloc(_len_ispec0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_ispec0; _i0++) {
+            ispec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_zero0 = 65025;
+          int * zero = (int *) malloc(_len_zero0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_zero0; _i0++) {
+            zero[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_one0 = 65025;
+          int * one = (int *) malloc(_len_one0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_one0; _i0++) {
+            one[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = ieeeck_(ispec,zero,one);
+          printf("%ld\n", benchRet); 
+          free(ispec);
+          free(zero);
+          free(one);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ispec0 = 100;
+          long * ispec = (long *) malloc(_len_ispec0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_ispec0; _i0++) {
+            ispec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_zero0 = 100;
+          int * zero = (int *) malloc(_len_zero0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_zero0; _i0++) {
+            zero[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_one0 = 100;
+          int * one = (int *) malloc(_len_one0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_one0; _i0++) {
+            one[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = ieeeck_(ispec,zero,one);
+          printf("%ld\n", benchRet); 
+          free(ispec);
+          free(zero);
+          free(one);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_ispec0 = 1;
           long * ispec = (long *) malloc(_len_ispec0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_ispec0; _i0++) {
             ispec[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_zero0 = 1;
           int * zero = (int *) malloc(_len_zero0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_zero0; _i0++) {
             zero[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_one0 = 1;
           int * one = (int *) malloc(_len_one0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_one0; _i0++) {
             one[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = ieeeck_(ispec,zero,one);
           printf("%ld\n", benchRet); 
           free(ispec);

@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 omap_dm_timer_reserved_systimer(int id)
 	return (omap_reserved_systimers & (1 << (id - 1))) ? 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 10;
+        
           int benchRet = omap_dm_timer_reserved_systimer(id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

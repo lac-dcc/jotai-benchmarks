@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static int igb_save_cbs_params(struct igb_adapter *adapter
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,29 +96,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int queue = 100;
+        
           int enable = 100;
+        
           int idleslope = 100;
+        
           int sendslope = 100;
+        
           int hicredit = 100;
+        
           int locredit = 100;
+        
           int _len_adapter0 = 1;
           struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adapter__i0__tx_ring0 = 1;
           adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
           for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
             int _len_adapter__i0__tx_ring1 = 1;
             adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
             for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
-              adapter[_i0].tx_ring[_j0]->cbs_enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].tx_ring[_j0]->idleslope = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].tx_ring[_j0]->sendslope = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].tx_ring[_j0]->hicredit = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].tx_ring[_j0]->locredit = ((-2 * (next_i()%2)) + 1) * next_i();
+                adapter[_i0].tx_ring[_j0]->cbs_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->idleslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->sendslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->hicredit = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->locredit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = igb_save_cbs_params(adapter,queue,enable,idleslope,sendslope,hicredit,locredit);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {
@@ -132,7 +138,144 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int queue = 255;
+        
+          int enable = 255;
+        
+          int idleslope = 255;
+        
+          int sendslope = 255;
+        
+          int hicredit = 255;
+        
+          int locredit = 255;
+        
+          int _len_adapter0 = 65025;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->cbs_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->idleslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->sendslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->hicredit = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->locredit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = igb_save_cbs_params(adapter,queue,enable,idleslope,sendslope,hicredit,locredit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int queue = 10;
+        
+          int enable = 10;
+        
+          int idleslope = 10;
+        
+          int sendslope = 10;
+        
+          int hicredit = 10;
+        
+          int locredit = 10;
+        
+          int _len_adapter0 = 100;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->cbs_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->idleslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->sendslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->hicredit = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->locredit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = igb_save_cbs_params(adapter,queue,enable,idleslope,sendslope,hicredit,locredit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int idleslope = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sendslope = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hicredit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int locredit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->cbs_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->idleslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->sendslope = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->hicredit = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].tx_ring[_j0]->locredit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = igb_save_cbs_params(adapter,queue,enable,idleslope,sendslope,hicredit,locredit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void envctrl_init_voltage_status(struct i2c_child_t
 	pchild->mon_type[0] = ENVCTRL_VOLTAGESTAT_MON;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,13 +87,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pchild0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pchild0 = 65025;
           struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
           for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
-            pchild[_i0].total_chnls = ((-2 * (next_i()%2)) + 1) * next_i();
+              pchild[_i0].total_chnls = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pchild__i0__mon_type0 = 1;
           pchild[_i0].mon_type = (int *) malloc(_len_pchild__i0__mon_type0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_pchild__i0__mon_type0; _j0++) {
@@ -106,10 +125,127 @@ int main(int argc, char *argv[]) {
           int _len_pchild__i0__chnl_array0 = 1;
           pchild[_i0].chnl_array = (struct TYPE_2__ *) malloc(_len_pchild__i0__chnl_array0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pchild__i0__chnl_array0; _j0++) {
-            pchild[_i0].chnl_array->chnl_no = ((-2 * (next_i()%2)) + 1) * next_i();
+              pchild[_i0].chnl_array->chnl_no = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        pchild[_i0].voltage_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          pchild[_i0].voltage_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          envctrl_init_voltage_status(pchild);
+          for(int _aux = 0; _aux < _len_pchild0; _aux++) {
+          free(pchild[_aux].mon_type);
+          }
+          for(int _aux = 0; _aux < _len_pchild0; _aux++) {
+          free(pchild[_aux].chnl_array);
+          }
+          free(pchild);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pchild0 = 100;
+          struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
+          for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
+              pchild[_i0].total_chnls = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pchild__i0__mon_type0 = 1;
+          pchild[_i0].mon_type = (int *) malloc(_len_pchild__i0__mon_type0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pchild__i0__mon_type0; _j0++) {
+            pchild[_i0].mon_type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pchild__i0__chnl_array0 = 1;
+          pchild[_i0].chnl_array = (struct TYPE_2__ *) malloc(_len_pchild__i0__chnl_array0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pchild__i0__chnl_array0; _j0++) {
+              pchild[_i0].chnl_array->chnl_no = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          pchild[_i0].voltage_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          envctrl_init_voltage_status(pchild);
+          for(int _aux = 0; _aux < _len_pchild0; _aux++) {
+          free(pchild[_aux].mon_type);
+          }
+          for(int _aux = 0; _aux < _len_pchild0; _aux++) {
+          free(pchild[_aux].chnl_array);
+          }
+          free(pchild);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_pchild0 = 1;
+          struct i2c_child_t * pchild = (struct i2c_child_t *) malloc(_len_pchild0*sizeof(struct i2c_child_t));
+          for(int _i0 = 0; _i0 < _len_pchild0; _i0++) {
+              pchild[_i0].total_chnls = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pchild__i0__mon_type0 = 1;
+          pchild[_i0].mon_type = (int *) malloc(_len_pchild__i0__mon_type0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_pchild__i0__mon_type0; _j0++) {
+            pchild[_i0].mon_type[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pchild__i0__chnl_array0 = 1;
+          pchild[_i0].chnl_array = (struct TYPE_2__ *) malloc(_len_pchild__i0__chnl_array0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pchild__i0__chnl_array0; _j0++) {
+              pchild[_i0].chnl_array->chnl_no = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          pchild[_i0].voltage_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           envctrl_init_voltage_status(pchild);
           for(int _aux = 0; _aux < _len_pchild0; _aux++) {
           free(pchild[_aux].mon_type);

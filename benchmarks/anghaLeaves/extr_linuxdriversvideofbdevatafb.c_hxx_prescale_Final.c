@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int hxx_prescale(struct falcon_hw *hw)
 			    : vdl_prescale[mon_type][hw->vid_mode >> 2 & 0x3];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct falcon_hw * hw = (struct falcon_hw *) malloc(_len_hw0*sizeof(struct falcon_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].vid_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].ste_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].vid_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ste_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hxx_prescale(hw);
           printf("%d\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct falcon_hw * hw = (struct falcon_hw *) malloc(_len_hw0*sizeof(struct falcon_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].vid_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ste_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hxx_prescale(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct falcon_hw * hw = (struct falcon_hw *) malloc(_len_hw0*sizeof(struct falcon_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].vid_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].ste_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hxx_prescale(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

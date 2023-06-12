@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ BOOLEAN Ext2IsDotDot(PUNICODE_STRING name)
             name->Buffer[1] == L'.');
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_name0 = 1;
+          int _len_name0 = 65025;
           struct TYPE_3__ * name = (struct TYPE_3__ *) malloc(_len_name0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_name0; _i0++) {
-            name[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+              name[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_name__i0__Buffer0 = 1;
           name[_i0].Buffer = (int *) malloc(_len_name__i0__Buffer0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_name__i0__Buffer0; _j0++) {
             name[_i0].Buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = Ext2IsDotDot(name);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_name0; _aux++) {
@@ -104,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_name0 = 100;
+          struct TYPE_3__ * name = (struct TYPE_3__ *) malloc(_len_name0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_name0; _i0++) {
+              name[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_name__i0__Buffer0 = 1;
+          name[_i0].Buffer = (int *) malloc(_len_name__i0__Buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_name__i0__Buffer0; _j0++) {
+            name[_i0].Buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = Ext2IsDotDot(name);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_name0; _aux++) {
+          free(name[_aux].Buffer);
+          }
+          free(name);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_name0 = 1;
+          struct TYPE_3__ * name = (struct TYPE_3__ *) malloc(_len_name0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_name0; _i0++) {
+              name[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_name__i0__Buffer0 = 1;
+          name[_i0].Buffer = (int *) malloc(_len_name__i0__Buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_name__i0__Buffer0; _j0++) {
+            name[_i0].Buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = Ext2IsDotDot(name);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_name0; _aux++) {
+          free(name[_aux].Buffer);
+          }
+          free(name);
+        
+        break;
+    }
     default:
         usage();
         break;

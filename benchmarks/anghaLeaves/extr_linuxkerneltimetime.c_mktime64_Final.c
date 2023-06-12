@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ time64_t mktime64(const unsigned int year0, const unsigned int mon0,
 	)*60 + sec; /* finally seconds */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,43 +90,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
           const unsigned int year0 = 100;
+        
           const unsigned int mon0 = 100;
+        
           const unsigned int day = 100;
+        
           const unsigned int hour = 100;
+        
           const unsigned int min = 100;
+        
           const unsigned int sec = 100;
+        
           int benchRet = mktime64(year0,mon0,day,hour,min,sec);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
           const unsigned int year0 = 255;
+        
           const unsigned int mon0 = 255;
+        
           const unsigned int day = 255;
+        
           const unsigned int hour = 255;
+        
           const unsigned int min = 255;
+        
           const unsigned int sec = 255;
+        
           int benchRet = mktime64(year0,mon0,day,hour,min,sec);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
           const unsigned int year0 = 10;
+        
           const unsigned int mon0 = 10;
+        
           const unsigned int day = 10;
+        
           const unsigned int hour = 10;
+        
           const unsigned int min = 10;
+        
           const unsigned int sec = 10;
+        
+          int benchRet = mktime64(year0,mon0,day,hour,min,sec);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 47
+          // dynamic_instructions_Oz : 47
+          // ------------------------------- 
+
+          const unsigned int year0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned int mon0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned int day = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned int hour = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned int min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned int sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = mktime64(year0,mon0,day,hour,min,sec);
           printf("%d\n", benchRet); 
         

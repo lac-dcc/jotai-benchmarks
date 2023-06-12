@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int k8x800_init(struct snd_ice1712 *ice)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +83,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ice0 = 65025;
+          struct snd_ice1712 * ice = (struct snd_ice1712 *) malloc(_len_ice0*sizeof(struct snd_ice1712));
+          for(int _i0 = 0; _i0 < _len_ice0; _i0++) {
+              ice[_i0].vt1720 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ice[_i0].num_total_dacs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ice[_i0].num_total_adcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = k8x800_init(ice);
+          printf("%d\n", benchRet); 
+          free(ice);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ice0 = 100;
+          struct snd_ice1712 * ice = (struct snd_ice1712 *) malloc(_len_ice0*sizeof(struct snd_ice1712));
+          for(int _i0 = 0; _i0 < _len_ice0; _i0++) {
+              ice[_i0].vt1720 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ice[_i0].num_total_dacs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ice[_i0].num_total_adcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = k8x800_init(ice);
+          printf("%d\n", benchRet); 
+          free(ice);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_ice0 = 1;
           struct snd_ice1712 * ice = (struct snd_ice1712 *) malloc(_len_ice0*sizeof(struct snd_ice1712));
           for(int _i0 = 0; _i0 < _len_ice0; _i0++) {
-            ice[_i0].vt1720 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ice[_i0].num_total_dacs = ((-2 * (next_i()%2)) + 1) * next_i();
-        ice[_i0].num_total_adcs = ((-2 * (next_i()%2)) + 1) * next_i();
+              ice[_i0].vt1720 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ice[_i0].num_total_dacs = ((-2 * (next_i()%2)) + 1) * next_i();
+          ice[_i0].num_total_adcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = k8x800_init(ice);
           printf("%d\n", benchRet); 
           free(ice);

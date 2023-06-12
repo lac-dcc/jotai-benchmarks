@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void scroll_callback(GLFWwindow* window, double x, double y)
         zoom = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,16 +77,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_window0 = 1;
+        
+          int _len_window0 = 65025;
           int * window = (int *) malloc(_len_window0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
             window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           scroll_callback(window,x,y);
           free(window);
         
@@ -101,18 +99,38 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int _len_window0 = 100;
           int * window = (int *) malloc(_len_window0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
             window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           scroll_callback(window,x,y);
           free(window);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          double x = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          double y = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_window0 = 1;
+          int * window = (int *) malloc(_len_window0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+            window[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          scroll_callback(window,x,y);
+          free(window);
+        
+        break;
+    }
     default:
         usage();
         break;

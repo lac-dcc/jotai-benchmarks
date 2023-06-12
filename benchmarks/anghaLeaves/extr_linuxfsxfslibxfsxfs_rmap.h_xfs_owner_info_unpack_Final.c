@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ xfs_owner_info_unpack(
 	*flags = r;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,31 +92,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_oinfo0 = 65025;
+          struct xfs_owner_info * oinfo = (struct xfs_owner_info *) malloc(_len_oinfo0*sizeof(struct xfs_owner_info));
+          for(int _i0 = 0; _i0 < _len_oinfo0; _i0++) {
+              oinfo[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oinfo[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oinfo[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_owner0 = 65025;
+          int * owner = (int *) malloc(_len_owner0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_owner0; _i0++) {
+            owner[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 65025;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_flags0 = 65025;
+          unsigned int * flags = (unsigned int *) malloc(_len_flags0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
+            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          xfs_owner_info_unpack(oinfo,owner,offset,flags);
+          free(oinfo);
+          free(owner);
+          free(offset);
+          free(flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_oinfo0 = 100;
+          struct xfs_owner_info * oinfo = (struct xfs_owner_info *) malloc(_len_oinfo0*sizeof(struct xfs_owner_info));
+          for(int _i0 = 0; _i0 < _len_oinfo0; _i0++) {
+              oinfo[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oinfo[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oinfo[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_owner0 = 100;
+          int * owner = (int *) malloc(_len_owner0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_owner0; _i0++) {
+            owner[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_offset0 = 100;
+          int * offset = (int *) malloc(_len_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
+            offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_flags0 = 100;
+          unsigned int * flags = (unsigned int *) malloc(_len_flags0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
+            flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          xfs_owner_info_unpack(oinfo,owner,offset,flags);
+          free(oinfo);
+          free(owner);
+          free(offset);
+          free(flags);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_oinfo0 = 1;
           struct xfs_owner_info * oinfo = (struct xfs_owner_info *) malloc(_len_oinfo0*sizeof(struct xfs_owner_info));
           for(int _i0 = 0; _i0 < _len_oinfo0; _i0++) {
-            oinfo[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        oinfo[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        oinfo[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              oinfo[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oinfo[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oinfo[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_owner0 = 1;
           int * owner = (int *) malloc(_len_owner0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_owner0; _i0++) {
             owner[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_offset0 = 1;
           int * offset = (int *) malloc(_len_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_offset0; _i0++) {
             offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_flags0 = 1;
           unsigned int * flags = (unsigned int *) malloc(_len_flags0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           xfs_owner_info_unpack(oinfo,owner,offset,flags);
           free(oinfo);
           free(owner);

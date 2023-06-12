@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void rtw_hal_sreset_init(struct adapter *padapter)
 	psrtpriv->Wifi_Error_Status = WIFI_STATUS_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
               int _len_padapter__i0__HalData0 = 1;
           padapter[_i0].HalData = (struct TYPE_2__ *) malloc(_len_padapter__i0__HalData0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_padapter__i0__HalData0; _j0++) {
-            padapter[_i0].HalData->srestpriv.Wifi_Error_Status = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].HalData->srestpriv.Wifi_Error_Status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           rtw_hal_sreset_init(padapter);
           for(int _aux = 0; _aux < _len_padapter0; _aux++) {
           free(padapter[_aux].HalData);
@@ -104,7 +104,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              int _len_padapter__i0__HalData0 = 1;
+          padapter[_i0].HalData = (struct TYPE_2__ *) malloc(_len_padapter__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_padapter__i0__HalData0; _j0++) {
+              padapter[_i0].HalData->srestpriv.Wifi_Error_Status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          rtw_hal_sreset_init(padapter);
+          for(int _aux = 0; _aux < _len_padapter0; _aux++) {
+          free(padapter[_aux].HalData);
+          }
+          free(padapter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              int _len_padapter__i0__HalData0 = 1;
+          padapter[_i0].HalData = (struct TYPE_2__ *) malloc(_len_padapter__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_padapter__i0__HalData0; _j0++) {
+              padapter[_i0].HalData->srestpriv.Wifi_Error_Status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          rtw_hal_sreset_init(padapter);
+          for(int _aux = 0; _aux < _len_padapter0; _aux++) {
+          free(padapter[_aux].HalData);
+          }
+          free(padapter);
+        
+        break;
+    }
     default:
         usage();
         break;

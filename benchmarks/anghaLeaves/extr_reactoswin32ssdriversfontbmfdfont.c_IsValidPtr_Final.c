@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ IsValidPtr(
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,10 +97,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long p = 100;
+        
           long cjSize = 100;
+        
           long pStart = 100;
+        
           long pEnd = 100;
+        
           long cjAlign = 100;
+        
           int benchRet = IsValidPtr(p,cjSize,pStart,pEnd,cjAlign);
           printf("%d\n", benchRet); 
         
@@ -115,10 +115,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long p = 255;
+        
           long cjSize = 255;
+        
           long pStart = 255;
+        
           long pEnd = 255;
+        
           long cjAlign = 255;
+        
           int benchRet = IsValidPtr(p,cjSize,pStart,pEnd,cjAlign);
           printf("%d\n", benchRet); 
         
@@ -128,16 +133,38 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long p = 10;
+        
           long cjSize = 10;
+        
           long pStart = 10;
+        
           long pEnd = 10;
+        
           long cjAlign = 10;
+        
           int benchRet = IsValidPtr(p,cjSize,pStart,pEnd,cjAlign);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cjSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long pStart = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long pEnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cjAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = IsValidPtr(p,cjSize,pStart,pEnd,cjAlign);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

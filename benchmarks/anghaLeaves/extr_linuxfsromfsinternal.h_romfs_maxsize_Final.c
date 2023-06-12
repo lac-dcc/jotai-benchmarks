@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline size_t romfs_maxsize(struct super_block *sb)
 	return (size_t) (unsigned long) sb->s_fs_info;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sb0 = 1;
+          int _len_sb0 = 65025;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].s_fs_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_fs_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = romfs_maxsize(sb);
           printf("%lu\n", benchRet); 
           free(sb);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_sb0 = 100;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].s_fs_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_fs_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = romfs_maxsize(sb);
           printf("%lu\n", benchRet); 
           free(sb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sb0 = 1;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_fs_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = romfs_maxsize(sb);
+          printf("%lu\n", benchRet); 
+          free(sb);
+        
+        break;
+    }
     default:
         usage();
         break;

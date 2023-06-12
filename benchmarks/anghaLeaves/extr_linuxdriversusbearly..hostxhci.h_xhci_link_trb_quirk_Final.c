@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int xhci_link_trb_quirk(struct xhci_hcd *xhc
 	return xhci->quirks & XHCI_LINK_TRB_QUIRK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_xhci0 = 1;
+          int _len_xhci0 = 65025;
           struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
           for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
-            xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xhci_link_trb_quirk(xhci);
           printf("%d\n", benchRet); 
           free(xhci);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_xhci0 = 100;
           struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
           for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
-            xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xhci_link_trb_quirk(xhci);
           printf("%d\n", benchRet); 
           free(xhci);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_xhci0 = 1;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xhci_link_trb_quirk(xhci);
+          printf("%d\n", benchRet); 
+          free(xhci);
+        
+        break;
+    }
     default:
         usage();
         break;

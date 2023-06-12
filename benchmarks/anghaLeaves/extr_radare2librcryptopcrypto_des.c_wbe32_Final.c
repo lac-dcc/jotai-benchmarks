@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void wbe32(ut8 *buf4, ut32 val) {
 	buf4[3] = val & 0xFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +76,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int val = 10;
-          int _len_buf40 = 100;
+          int val = 255;
+        
+          int _len_buf40 = 65025;
           int * buf4 = (int *) malloc(_len_buf40*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf40; _i0++) {
             buf4[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wbe32(buf4,val);
           free(buf4);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int val = 10;
+        
+          int _len_buf40 = 100;
+          int * buf4 = (int *) malloc(_len_buf40*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf40; _i0++) {
+            buf4[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wbe32(buf4,val);
+          free(buf4);
+        
+        break;
+    }
     default:
         usage();
         break;

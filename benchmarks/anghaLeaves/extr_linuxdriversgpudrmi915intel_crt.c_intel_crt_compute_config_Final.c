@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static bool intel_crt_compute_config(struct intel_encoder 
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,24 +88,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_encoder0 = 65025;
+          struct intel_encoder * encoder = (struct intel_encoder *) malloc(_len_encoder0*sizeof(struct intel_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pipe_config0 = 65025;
+          struct intel_crtc_state * pipe_config = (struct intel_crtc_state *) malloc(_len_pipe_config0*sizeof(struct intel_crtc_state));
+          for(int _i0 = 0; _i0 < _len_pipe_config0; _i0++) {
+              pipe_config[_i0].base.adjusted_mode.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_conn_state0 = 65025;
+          struct drm_connector_state * conn_state = (struct drm_connector_state *) malloc(_len_conn_state0*sizeof(struct drm_connector_state));
+          for(int _i0 = 0; _i0 < _len_conn_state0; _i0++) {
+              conn_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_crt_compute_config(encoder,pipe_config,conn_state);
+          printf("%d\n", benchRet); 
+          free(encoder);
+          free(pipe_config);
+          free(conn_state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_encoder0 = 100;
+          struct intel_encoder * encoder = (struct intel_encoder *) malloc(_len_encoder0*sizeof(struct intel_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pipe_config0 = 100;
+          struct intel_crtc_state * pipe_config = (struct intel_crtc_state *) malloc(_len_pipe_config0*sizeof(struct intel_crtc_state));
+          for(int _i0 = 0; _i0 < _len_pipe_config0; _i0++) {
+              pipe_config[_i0].base.adjusted_mode.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_conn_state0 = 100;
+          struct drm_connector_state * conn_state = (struct drm_connector_state *) malloc(_len_conn_state0*sizeof(struct drm_connector_state));
+          for(int _i0 = 0; _i0 < _len_conn_state0; _i0++) {
+              conn_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = intel_crt_compute_config(encoder,pipe_config,conn_state);
+          printf("%d\n", benchRet); 
+          free(encoder);
+          free(pipe_config);
+          free(conn_state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_encoder0 = 1;
           struct intel_encoder * encoder = (struct intel_encoder *) malloc(_len_encoder0*sizeof(struct intel_encoder));
           for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
-            encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pipe_config0 = 1;
           struct intel_crtc_state * pipe_config = (struct intel_crtc_state *) malloc(_len_pipe_config0*sizeof(struct intel_crtc_state));
           for(int _i0 = 0; _i0 < _len_pipe_config0; _i0++) {
-            pipe_config[_i0].base.adjusted_mode.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe_config[_i0].base.adjusted_mode.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_conn_state0 = 1;
           struct drm_connector_state * conn_state = (struct drm_connector_state *) malloc(_len_conn_state0*sizeof(struct drm_connector_state));
           for(int _i0 = 0; _i0 < _len_conn_state0; _i0++) {
-            conn_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn_state[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = intel_crt_compute_config(encoder,pipe_config,conn_state);
           printf("%d\n", benchRet); 
           free(encoder);

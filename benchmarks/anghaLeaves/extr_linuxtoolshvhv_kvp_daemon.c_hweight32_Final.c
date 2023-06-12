@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static unsigned int hweight32(unsigned int *w)
 	return (res + (res >> 16)) & 0x000000FF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_w0 = 1;
+          int _len_w0 = 65025;
           unsigned int * w = (unsigned int *) malloc(_len_w0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
             w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = hweight32(w);
           printf("%u\n", benchRet); 
           free(w);
@@ -104,13 +100,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
             w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = hweight32(w);
           printf("%u\n", benchRet); 
           free(w);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_w0 = 1;
+          unsigned int * w = (unsigned int *) malloc(_len_w0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = hweight32(w);
+          printf("%u\n", benchRet); 
+          free(w);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +102,6 @@ __attribute__((used)) static void dpu_encoder_phys_cmd_init_ops(
 	ops->get_line_count = dpu_encoder_phys_cmd_get_line_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,39 +114,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ops0 = 1;
+          int _len_ops0 = 65025;
           struct dpu_encoder_phys_ops * ops = (struct dpu_encoder_phys_ops *) malloc(_len_ops0*sizeof(struct dpu_encoder_phys_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].handle_post_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].prepare_idle_pc = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].restore = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].irq_control = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].hw_reset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].needs_single_flush = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].wait_for_vblank = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].wait_for_tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].prepare_for_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].wait_for_commit_done = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].control_vblank_irq = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].get_hw_resources = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].destroy = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].disable = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].enable = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].mode_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].mode_set = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].is_master = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].handle_post_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].prepare_idle_pc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].restore = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].irq_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].hw_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].needs_single_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_vblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].prepare_for_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_commit_done = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].control_vblank_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_hw_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].destroy = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].mode_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].mode_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].is_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           dpu_encoder_phys_cmd_init_ops(ops);
           free(ops);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ops0 = 100;
+          struct dpu_encoder_phys_ops * ops = (struct dpu_encoder_phys_ops *) malloc(_len_ops0*sizeof(struct dpu_encoder_phys_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].handle_post_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].prepare_idle_pc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].restore = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].irq_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].hw_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].needs_single_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_vblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].prepare_for_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_commit_done = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].control_vblank_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_hw_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].destroy = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].mode_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].mode_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].is_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dpu_encoder_phys_cmd_init_ops(ops);
+          free(ops);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ops0 = 1;
+          struct dpu_encoder_phys_ops * ops = (struct dpu_encoder_phys_ops *) malloc(_len_ops0*sizeof(struct dpu_encoder_phys_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].get_line_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].handle_post_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].prepare_idle_pc = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].restore = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].irq_control = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].hw_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].needs_single_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].trigger_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_vblank = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].prepare_for_kickoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].wait_for_commit_done = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].control_vblank_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].get_hw_resources = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].destroy = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].enable = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].mode_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].mode_set = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].is_master = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dpu_encoder_phys_cmd_init_ops(ops);
+          free(ops);
+        
+        break;
+    }
     default:
         usage();
         break;

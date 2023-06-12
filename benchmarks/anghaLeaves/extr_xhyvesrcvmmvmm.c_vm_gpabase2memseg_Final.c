@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ vm_gpabase2memseg(struct vm *vm, uint64_t gpabase,
 	return (-1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,23 +94,29 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long gpabase = 100;
+        
           int _len_vm0 = 1;
           struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
           for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
-            vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vm__i0__mem_segs0 = 1;
           vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
-            vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
-        vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_seg0 = 1;
           struct vm_memory_segment * seg = (struct vm_memory_segment *) malloc(_len_seg0*sizeof(struct vm_memory_segment));
           for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
-            seg[_i0].gpa = ((-2 * (next_i()%2)) + 1) * next_i();
-        seg[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              seg[_i0].gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vm_gpabase2memseg(vm,gpabase,seg);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vm0; _aux++) {
@@ -124,7 +127,117 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long gpabase = 255;
+        
+          int _len_vm0 = 65025;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vm__i0__mem_segs0 = 1;
+          vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_seg0 = 65025;
+          struct vm_memory_segment * seg = (struct vm_memory_segment *) malloc(_len_seg0*sizeof(struct vm_memory_segment));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vm_gpabase2memseg(vm,gpabase,seg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].mem_segs);
+          }
+          free(vm);
+          free(seg);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long gpabase = 10;
+        
+          int _len_vm0 = 100;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vm__i0__mem_segs0 = 1;
+          vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_seg0 = 100;
+          struct vm_memory_segment * seg = (struct vm_memory_segment *) malloc(_len_seg0*sizeof(struct vm_memory_segment));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vm_gpabase2memseg(vm,gpabase,seg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].mem_segs);
+          }
+          free(vm);
+          free(seg);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long gpabase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vm0 = 1;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              vm[_i0].num_mem_segs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vm__i0__mem_segs0 = 1;
+          vm[_i0].mem_segs = (struct TYPE_2__ *) malloc(_len_vm__i0__mem_segs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__mem_segs0; _j0++) {
+              vm[_i0].mem_segs->gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          vm[_i0].mem_segs->len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_seg0 = 1;
+          struct vm_memory_segment * seg = (struct vm_memory_segment *) malloc(_len_seg0*sizeof(struct vm_memory_segment));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].gpa = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vm_gpabase2memseg(vm,gpabase,seg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].mem_segs);
+          }
+          free(vm);
+          free(seg);
+        
+        break;
+    }
     default:
         usage();
         break;

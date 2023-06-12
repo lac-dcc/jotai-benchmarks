@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ __attribute__((used)) static void rmi_f34v7_compare_partition_tables(struct f34_
 	f34->v7.new_partition_table = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,24 +104,159 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_f340 = 65025;
+          struct f34_data * f34 = (struct f34_data *) malloc(_len_f340*sizeof(struct f34_data));
+          for(int _i0 = 0; _i0 < _len_f340; _i0++) {
+              f34[_i0].v7.new_partition_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          f34[_i0].v7.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          f34[_i0].v7.has_guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.has_display_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rmi_f34v7_compare_partition_tables(f34);
+          free(f34);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_f340 = 100;
+          struct f34_data * f34 = (struct f34_data *) malloc(_len_f340*sizeof(struct f34_data));
+          for(int _i0 = 0; _i0 < _len_f340; _i0++) {
+              f34[_i0].v7.new_partition_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          f34[_i0].v7.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          f34[_i0].v7.has_guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.has_display_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          rmi_f34v7_compare_partition_tables(f34);
+          free(f34);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int _len_f340 = 1;
           struct f34_data * f34 = (struct f34_data *) malloc(_len_f340*sizeof(struct f34_data));
           for(int _i0 = 0; _i0 < _len_f340; _i0++) {
-            f34[_i0].v7.new_partition_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.img.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.img.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.img.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.img.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.has_guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        f34[_i0].v7.has_display_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+              f34[_i0].v7.new_partition_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.img.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          f34[_i0].v7.phyaddr.ui_firmware = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.ui_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.dp_config = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.phyaddr.guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          f34[_i0].v7.has_guest_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          f34[_i0].v7.has_display_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           rmi_f34v7_compare_partition_tables(f34);
           free(f34);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void wb_min_max_ratio(struct bdi_writeback *wb,
 	*maxp = wb->bdi->max_ratio;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,29 +78,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wb0 = 1;
+          int _len_wb0 = 65025;
           struct bdi_writeback * wb = (struct bdi_writeback *) malloc(_len_wb0*sizeof(struct bdi_writeback));
           for(int _i0 = 0; _i0 < _len_wb0; _i0++) {
               int _len_wb__i0__bdi0 = 1;
           wb[_i0].bdi = (struct TYPE_2__ *) malloc(_len_wb__i0__bdi0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_wb__i0__bdi0; _j0++) {
-            wb[_i0].bdi->min_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
-        wb[_i0].bdi->max_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+              wb[_i0].bdi->min_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          wb[_i0].bdi->max_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_minp0 = 1;
+        
+          int _len_minp0 = 65025;
           unsigned long * minp = (unsigned long *) malloc(_len_minp0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_minp0; _i0++) {
             minp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_maxp0 = 1;
+        
+          int _len_maxp0 = 65025;
           unsigned long * maxp = (unsigned long *) malloc(_len_maxp0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_maxp0; _i0++) {
             maxp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wb_min_max_ratio(wb,minp,maxp);
           for(int _aux = 0; _aux < _len_wb0; _aux++) {
           free(wb[_aux].bdi);
@@ -115,7 +116,82 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wb0 = 100;
+          struct bdi_writeback * wb = (struct bdi_writeback *) malloc(_len_wb0*sizeof(struct bdi_writeback));
+          for(int _i0 = 0; _i0 < _len_wb0; _i0++) {
+              int _len_wb__i0__bdi0 = 1;
+          wb[_i0].bdi = (struct TYPE_2__ *) malloc(_len_wb__i0__bdi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wb__i0__bdi0; _j0++) {
+              wb[_i0].bdi->min_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          wb[_i0].bdi->max_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_minp0 = 100;
+          unsigned long * minp = (unsigned long *) malloc(_len_minp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_minp0; _i0++) {
+            minp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxp0 = 100;
+          unsigned long * maxp = (unsigned long *) malloc(_len_maxp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_maxp0; _i0++) {
+            maxp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wb_min_max_ratio(wb,minp,maxp);
+          for(int _aux = 0; _aux < _len_wb0; _aux++) {
+          free(wb[_aux].bdi);
+          }
+          free(wb);
+          free(minp);
+          free(maxp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wb0 = 1;
+          struct bdi_writeback * wb = (struct bdi_writeback *) malloc(_len_wb0*sizeof(struct bdi_writeback));
+          for(int _i0 = 0; _i0 < _len_wb0; _i0++) {
+              int _len_wb__i0__bdi0 = 1;
+          wb[_i0].bdi = (struct TYPE_2__ *) malloc(_len_wb__i0__bdi0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_wb__i0__bdi0; _j0++) {
+              wb[_i0].bdi->min_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          wb[_i0].bdi->max_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_minp0 = 1;
+          unsigned long * minp = (unsigned long *) malloc(_len_minp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_minp0; _i0++) {
+            minp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_maxp0 = 1;
+          unsigned long * maxp = (unsigned long *) malloc(_len_maxp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_maxp0; _i0++) {
+            maxp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wb_min_max_ratio(wb,minp,maxp);
+          for(int _aux = 0; _aux < _len_wb0; _aux++) {
+          free(wb[_aux].bdi);
+          }
+          free(wb);
+          free(minp);
+          free(maxp);
+        
+        break;
+    }
     default:
         usage();
         break;

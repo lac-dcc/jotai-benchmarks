@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -78,12 +78,6 @@ __attribute__((used)) static bool is_parallel(enum sway_container_layout layout,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,17 +90,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum sway_container_layout layout = 0;
+        
           enum wlr_direction dir = 0;
+        
           int benchRet = is_parallel(layout,dir);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ ngx_http_variable_sent_content_type(ngx_http_request_t *r,
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,25 +99,226 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned long data = 100;
+        
           int _len_r0 = 1;
           struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].headers_out.content_type.data = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].headers_out.content_type.len = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].headers_out.content_type.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.content_type.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_v0 = 1;
           struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ngx_http_variable_sent_content_type(r,v,data);
+          printf("%d\n", benchRet); 
+          free(r);
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long data = 255;
+        
+          int _len_r0 = 65025;
+          struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].headers_out.content_type.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.content_type.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_v0 = 65025;
+          struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_variable_sent_content_type(r,v,data);
+          printf("%d\n", benchRet); 
+          free(r);
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long data = 10;
+        
+          int _len_r0 = 100;
+          struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].headers_out.content_type.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.content_type.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_v0 = 100;
+          struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_variable_sent_content_type(r,v,data);
+          printf("%d\n", benchRet); 
+          free(r);
+          free(v);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned long data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].headers_out.content_type.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].headers_out.content_type.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_v0 = 1;
+          struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ngx_http_variable_sent_content_type(r,v,data);
           printf("%d\n", benchRet); 
           free(r);

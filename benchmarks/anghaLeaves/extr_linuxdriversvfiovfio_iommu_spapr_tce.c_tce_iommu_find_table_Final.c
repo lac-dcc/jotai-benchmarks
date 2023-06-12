@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static long tce_iommu_find_table(struct tce_container *con
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ioba = 100;
+        
           int _len_container0 = 1;
           struct tce_container * container = (struct tce_container *) malloc(_len_container0*sizeof(struct tce_container));
           for(int _i0 = 0; _i0 < _len_container0; _i0++) {
@@ -112,23 +110,28 @@ int main(int argc, char *argv[]) {
             int _len_container__i0__tables1 = 1;
             container[_i0].tables[_j0] = (struct iommu_table *) malloc(_len_container__i0__tables1*sizeof(struct iommu_table));
             for(int _j1 = 0; _j1 < _len_container__i0__tables1; _j1++) {
-              container[_i0].tables[_j0]->it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        container[_i0].tables[_j0]->it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        container[_i0].tables[_j0]->it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+                container[_i0].tables[_j0]->it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int _len_ptbl0 = 1;
           struct iommu_table ** ptbl = (struct iommu_table **) malloc(_len_ptbl0*sizeof(struct iommu_table *));
           for(int _i0 = 0; _i0 < _len_ptbl0; _i0++) {
             int _len_ptbl1 = 1;
             ptbl[_i0] = (struct iommu_table *) malloc(_len_ptbl1*sizeof(struct iommu_table));
             for(int _i1 = 0; _i1 < _len_ptbl1; _i1++) {
-              ptbl[_i0][_i1].it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptbl[_i0][_i1].it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        ptbl[_i0][_i1].it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+                ptbl[_i0][_i1].it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           long benchRet = tce_iommu_find_table(container,ioba,ptbl);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_container0; _aux++) {
@@ -137,14 +140,162 @@ int main(int argc, char *argv[]) {
           }
           free(container);
           for(int i1 = 0; i1 < _len_ptbl0; i1++) {
-            int _len_ptbl1 = 1;
               free(ptbl[i1]);
           }
           free(ptbl);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long ioba = 255;
+        
+          int _len_container0 = 65025;
+          struct tce_container * container = (struct tce_container *) malloc(_len_container0*sizeof(struct tce_container));
+          for(int _i0 = 0; _i0 < _len_container0; _i0++) {
+              int _len_container__i0__tables0 = 1;
+          container[_i0].tables = (struct iommu_table **) malloc(_len_container__i0__tables0*sizeof(struct iommu_table *));
+          for(int _j0 = 0; _j0 < _len_container__i0__tables0; _j0++) {
+            int _len_container__i0__tables1 = 1;
+            container[_i0].tables[_j0] = (struct iommu_table *) malloc(_len_container__i0__tables1*sizeof(struct iommu_table));
+            for(int _j1 = 0; _j1 < _len_container__i0__tables1; _j1++) {
+                container[_i0].tables[_j0]->it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_ptbl0 = 65025;
+          struct iommu_table ** ptbl = (struct iommu_table **) malloc(_len_ptbl0*sizeof(struct iommu_table *));
+          for(int _i0 = 0; _i0 < _len_ptbl0; _i0++) {
+            int _len_ptbl1 = 1;
+            ptbl[_i0] = (struct iommu_table *) malloc(_len_ptbl1*sizeof(struct iommu_table));
+            for(int _i1 = 0; _i1 < _len_ptbl1; _i1++) {
+                ptbl[_i0][_i1].it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          long benchRet = tce_iommu_find_table(container,ioba,ptbl);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_container0; _aux++) {
+          free(*(container[_aux].tables));
+        free(container[_aux].tables);
+          }
+          free(container);
+          for(int i1 = 0; i1 < _len_ptbl0; i1++) {
+              free(ptbl[i1]);
+          }
+          free(ptbl);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long ioba = 10;
+        
+          int _len_container0 = 100;
+          struct tce_container * container = (struct tce_container *) malloc(_len_container0*sizeof(struct tce_container));
+          for(int _i0 = 0; _i0 < _len_container0; _i0++) {
+              int _len_container__i0__tables0 = 1;
+          container[_i0].tables = (struct iommu_table **) malloc(_len_container__i0__tables0*sizeof(struct iommu_table *));
+          for(int _j0 = 0; _j0 < _len_container__i0__tables0; _j0++) {
+            int _len_container__i0__tables1 = 1;
+            container[_i0].tables[_j0] = (struct iommu_table *) malloc(_len_container__i0__tables1*sizeof(struct iommu_table));
+            for(int _j1 = 0; _j1 < _len_container__i0__tables1; _j1++) {
+                container[_i0].tables[_j0]->it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_ptbl0 = 100;
+          struct iommu_table ** ptbl = (struct iommu_table **) malloc(_len_ptbl0*sizeof(struct iommu_table *));
+          for(int _i0 = 0; _i0 < _len_ptbl0; _i0++) {
+            int _len_ptbl1 = 1;
+            ptbl[_i0] = (struct iommu_table *) malloc(_len_ptbl1*sizeof(struct iommu_table));
+            for(int _i1 = 0; _i1 < _len_ptbl1; _i1++) {
+                ptbl[_i0][_i1].it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          long benchRet = tce_iommu_find_table(container,ioba,ptbl);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_container0; _aux++) {
+          free(*(container[_aux].tables));
+        free(container[_aux].tables);
+          }
+          free(container);
+          for(int i1 = 0; i1 < _len_ptbl0; i1++) {
+              free(ptbl[i1]);
+          }
+          free(ptbl);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long ioba = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_container0 = 1;
+          struct tce_container * container = (struct tce_container *) malloc(_len_container0*sizeof(struct tce_container));
+          for(int _i0 = 0; _i0 < _len_container0; _i0++) {
+              int _len_container__i0__tables0 = 1;
+          container[_i0].tables = (struct iommu_table **) malloc(_len_container__i0__tables0*sizeof(struct iommu_table *));
+          for(int _j0 = 0; _j0 < _len_container__i0__tables0; _j0++) {
+            int _len_container__i0__tables1 = 1;
+            container[_i0].tables[_j0] = (struct iommu_table *) malloc(_len_container__i0__tables1*sizeof(struct iommu_table));
+            for(int _j1 = 0; _j1 < _len_container__i0__tables1; _j1++) {
+                container[_i0].tables[_j0]->it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          container[_i0].tables[_j0]->it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_ptbl0 = 1;
+          struct iommu_table ** ptbl = (struct iommu_table **) malloc(_len_ptbl0*sizeof(struct iommu_table *));
+          for(int _i0 = 0; _i0 < _len_ptbl0; _i0++) {
+            int _len_ptbl1 = 1;
+            ptbl[_i0] = (struct iommu_table *) malloc(_len_ptbl1*sizeof(struct iommu_table));
+            for(int _i1 = 0; _i1 < _len_ptbl1; _i1++) {
+                ptbl[_i0][_i1].it_page_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          ptbl[_i0][_i1].it_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          long benchRet = tce_iommu_find_table(container,ioba,ptbl);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_container0; _aux++) {
+          free(*(container[_aux].tables));
+        free(container[_aux].tables);
+          }
+          free(container);
+          for(int i1 = 0; i1 < _len_ptbl0; i1++) {
+              free(ptbl[i1]);
+          }
+          free(ptbl);
+        
+        break;
+    }
     default:
         usage();
         break;

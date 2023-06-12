@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static u32 ai_scan_counter_6xxx(struct comedi_device *dev,
 	return count - 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,22 +95,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 65025;
+          struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].chanlist_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ai_scan_counter_6xxx(dev,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].chanlist_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ai_scan_counter_6xxx(dev,cmd);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct comedi_device * dev = (struct comedi_device *) malloc(_len_dev0*sizeof(struct comedi_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cmd0 = 1;
           struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].chanlist_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].chanlist_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ai_scan_counter_6xxx(dev,cmd);
           printf("%d\n", benchRet); 
           free(dev);

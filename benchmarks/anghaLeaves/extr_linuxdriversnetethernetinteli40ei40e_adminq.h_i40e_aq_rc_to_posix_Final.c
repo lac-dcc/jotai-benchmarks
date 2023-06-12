@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -119,12 +120,6 @@ __attribute__((used)) static inline int i40e_aq_rc_to_posix(int aq_ret, int aq_r
 	return aq_to_posix[aq_rc];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -137,31 +132,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 84
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 76
+          // dynamic_instructions_O3 : 76
+          // ------------------------------- 
+          // static_instructions_Ofast : 76
+          // dynamic_instructions_Ofast : 76
+          // ------------------------------- 
+          // static_instructions_Os : 76
+          // dynamic_instructions_Os : 76
+          // ------------------------------- 
+          // static_instructions_Oz : 76
+          // dynamic_instructions_Oz : 76
+          // ------------------------------- 
+
           int aq_ret = 100;
+        
           int aq_rc = 100;
+        
           int benchRet = i40e_aq_rc_to_posix(aq_ret,aq_rc);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 84
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 76
+          // dynamic_instructions_O3 : 76
+          // ------------------------------- 
+          // static_instructions_Ofast : 76
+          // dynamic_instructions_Ofast : 76
+          // ------------------------------- 
+          // static_instructions_Os : 76
+          // dynamic_instructions_Os : 76
+          // ------------------------------- 
+          // static_instructions_Oz : 76
+          // dynamic_instructions_Oz : 76
+          // ------------------------------- 
+
           int aq_ret = 255;
+        
           int aq_rc = 255;
+        
           int benchRet = i40e_aq_rc_to_posix(aq_ret,aq_rc);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 83
+          // dynamic_instructions_O0 : 83
+          // ------------------------------- 
+          // static_instructions_O1 : 78
+          // dynamic_instructions_O1 : 78
+          // ------------------------------- 
+          // static_instructions_O2 : 78
+          // dynamic_instructions_O2 : 78
+          // ------------------------------- 
+          // static_instructions_O3 : 78
+          // dynamic_instructions_O3 : 78
+          // ------------------------------- 
+          // static_instructions_Ofast : 78
+          // dynamic_instructions_Ofast : 78
+          // ------------------------------- 
+          // static_instructions_Os : 78
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 78
+          // dynamic_instructions_Oz : 78
+          // ------------------------------- 
+
           int aq_ret = 10;
+        
           int aq_rc = 10;
+        
+          int benchRet = i40e_aq_rc_to_posix(aq_ret,aq_rc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 84
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 76
+          // dynamic_instructions_O3 : 76
+          // ------------------------------- 
+          // static_instructions_Ofast : 76
+          // dynamic_instructions_Ofast : 76
+          // ------------------------------- 
+          // static_instructions_Os : 76
+          // dynamic_instructions_Os : 76
+          // ------------------------------- 
+          // static_instructions_Oz : 76
+          // dynamic_instructions_Oz : 76
+          // ------------------------------- 
+
+          int aq_ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int aq_rc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = i40e_aq_rc_to_posix(aq_ret,aq_rc);
           printf("%d\n", benchRet); 
         

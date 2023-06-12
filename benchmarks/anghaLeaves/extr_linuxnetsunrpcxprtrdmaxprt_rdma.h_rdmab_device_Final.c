@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ rdmab_device(struct rpcrdma_regbuf *rb)
 	return rb->rg_device;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rb0 = 1;
+          int _len_rb0 = 65025;
           struct rpcrdma_regbuf * rb = (struct rpcrdma_regbuf *) malloc(_len_rb0*sizeof(struct rpcrdma_regbuf));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
               int _len_rb__i0__rg_device0 = 1;
           rb[_i0].rg_device = (struct ib_device *) malloc(_len_rb__i0__rg_device0*sizeof(struct ib_device));
           for(int _j0 = 0; _j0 < _len_rb__i0__rg_device0; _j0++) {
-            rb[_i0].rg_device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].rg_device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct ib_device * benchRet = rdmab_device(rb);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rb0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rb0 = 100;
+          struct rpcrdma_regbuf * rb = (struct rpcrdma_regbuf *) malloc(_len_rb0*sizeof(struct rpcrdma_regbuf));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              int _len_rb__i0__rg_device0 = 1;
+          rb[_i0].rg_device = (struct ib_device *) malloc(_len_rb__i0__rg_device0*sizeof(struct ib_device));
+          for(int _j0 = 0; _j0 < _len_rb__i0__rg_device0; _j0++) {
+              rb[_i0].rg_device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ib_device * benchRet = rdmab_device(rb);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rb0; _aux++) {
+          free(rb[_aux].rg_device);
+          }
+          free(rb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rb0 = 1;
+          struct rpcrdma_regbuf * rb = (struct rpcrdma_regbuf *) malloc(_len_rb0*sizeof(struct rpcrdma_regbuf));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              int _len_rb__i0__rg_device0 = 1;
+          rb[_i0].rg_device = (struct ib_device *) malloc(_len_rb__i0__rg_device0*sizeof(struct ib_device));
+          for(int _j0 = 0; _j0 < _len_rb__i0__rg_device0; _j0++) {
+              rb[_i0].rg_device->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ib_device * benchRet = rdmab_device(rb);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_rb0; _aux++) {
+          free(rb[_aux].rg_device);
+          }
+          free(rb);
+        
+        break;
+    }
     default:
         usage();
         break;

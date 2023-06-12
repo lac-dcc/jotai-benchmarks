@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static int spear310_p2o(int pin)
 	return offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pin = 100;
+        
           int benchRet = spear310_p2o(pin);
           printf("%d\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pin = 255;
+        
           int benchRet = spear310_p2o(pin);
           printf("%d\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pin = 10;
+        
           int benchRet = spear310_p2o(pin);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = spear310_p2o(pin);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

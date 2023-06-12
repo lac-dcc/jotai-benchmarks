@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ bool __dl_overflow(struct dl_bw *dl_b, int cpus, u64 old_bw, u64 new_bw)
 	       dl_b->bw * cpus < dl_b->total_bw - old_bw + new_bw;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpus = 100;
+        
           int old_bw = 100;
+        
           int new_bw = 100;
+        
           int _len_dl_b0 = 1;
           struct dl_bw * dl_b = (struct dl_bw *) malloc(_len_dl_b0*sizeof(struct dl_bw));
           for(int _i0 = 0; _i0 < _len_dl_b0; _i0++) {
-            dl_b[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
-        dl_b[_i0].total_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+              dl_b[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_b[_i0].total_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __dl_overflow(dl_b,cpus,old_bw,new_bw);
           printf("%d\n", benchRet); 
           free(dl_b);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cpus = 255;
+        
+          int old_bw = 255;
+        
+          int new_bw = 255;
+        
+          int _len_dl_b0 = 65025;
+          struct dl_bw * dl_b = (struct dl_bw *) malloc(_len_dl_b0*sizeof(struct dl_bw));
+          for(int _i0 = 0; _i0 < _len_dl_b0; _i0++) {
+              dl_b[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_b[_i0].total_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __dl_overflow(dl_b,cpus,old_bw,new_bw);
+          printf("%d\n", benchRet); 
+          free(dl_b);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cpus = 10;
+        
+          int old_bw = 10;
+        
+          int new_bw = 10;
+        
+          int _len_dl_b0 = 100;
+          struct dl_bw * dl_b = (struct dl_bw *) malloc(_len_dl_b0*sizeof(struct dl_bw));
+          for(int _i0 = 0; _i0 < _len_dl_b0; _i0++) {
+              dl_b[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_b[_i0].total_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __dl_overflow(dl_b,cpus,old_bw,new_bw);
+          printf("%d\n", benchRet); 
+          free(dl_b);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cpus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int old_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int new_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dl_b0 = 1;
+          struct dl_bw * dl_b = (struct dl_bw *) malloc(_len_dl_b0*sizeof(struct dl_bw));
+          for(int _i0 = 0; _i0 < _len_dl_b0; _i0++) {
+              dl_b[_i0].bw = ((-2 * (next_i()%2)) + 1) * next_i();
+          dl_b[_i0].total_bw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __dl_overflow(dl_b,cpus,old_bw,new_bw);
+          printf("%d\n", benchRet); 
+          free(dl_b);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ void Delay(uint32_t nCount)
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nCount = 100;
+        
           Delay(nCount);
         
         break;
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int nCount = 255;
+        
           Delay(nCount);
         
         break;
@@ -108,11 +105,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int nCount = 10;
+        
           Delay(nCount);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          Delay(nCount);
+        
+        break;
+    }
     default:
         usage();
         break;

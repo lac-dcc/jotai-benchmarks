@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static unsigned long amx3_efuse_xlate(struct ti_cpufreq_da
 	return ~efuse;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +81,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned long efuse = 100;
+        
           int _len_opp_data0 = 1;
           struct ti_cpufreq_data * opp_data = (struct ti_cpufreq_data *) malloc(_len_opp_data0*sizeof(struct ti_cpufreq_data));
           for(int _i0 = 0; _i0 < _len_opp_data0; _i0++) {
               int _len_opp_data__i0__soc_data0 = 1;
           opp_data[_i0].soc_data = (struct TYPE_2__ *) malloc(_len_opp_data__i0__soc_data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_opp_data__i0__soc_data0; _j0++) {
-            opp_data[_i0].soc_data->efuse_fallback = ((-2 * (next_i()%2)) + 1) * next_i();
+              opp_data[_i0].soc_data->efuse_fallback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned long benchRet = amx3_efuse_xlate(opp_data,efuse);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_opp_data0; _aux++) {
+          free(opp_data[_aux].soc_data);
+          }
+          free(opp_data);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long efuse = 255;
+        
+          int _len_opp_data0 = 65025;
+          struct ti_cpufreq_data * opp_data = (struct ti_cpufreq_data *) malloc(_len_opp_data0*sizeof(struct ti_cpufreq_data));
+          for(int _i0 = 0; _i0 < _len_opp_data0; _i0++) {
+              int _len_opp_data__i0__soc_data0 = 1;
+          opp_data[_i0].soc_data = (struct TYPE_2__ *) malloc(_len_opp_data__i0__soc_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_opp_data__i0__soc_data0; _j0++) {
+              opp_data[_i0].soc_data->efuse_fallback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = amx3_efuse_xlate(opp_data,efuse);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_opp_data0; _aux++) {
+          free(opp_data[_aux].soc_data);
+          }
+          free(opp_data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long efuse = 10;
+        
+          int _len_opp_data0 = 100;
+          struct ti_cpufreq_data * opp_data = (struct ti_cpufreq_data *) malloc(_len_opp_data0*sizeof(struct ti_cpufreq_data));
+          for(int _i0 = 0; _i0 < _len_opp_data0; _i0++) {
+              int _len_opp_data__i0__soc_data0 = 1;
+          opp_data[_i0].soc_data = (struct TYPE_2__ *) malloc(_len_opp_data__i0__soc_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_opp_data__i0__soc_data0; _j0++) {
+              opp_data[_i0].soc_data->efuse_fallback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = amx3_efuse_xlate(opp_data,efuse);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_opp_data0; _aux++) {
+          free(opp_data[_aux].soc_data);
+          }
+          free(opp_data);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned long efuse = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_opp_data0 = 1;
+          struct ti_cpufreq_data * opp_data = (struct ti_cpufreq_data *) malloc(_len_opp_data0*sizeof(struct ti_cpufreq_data));
+          for(int _i0 = 0; _i0 < _len_opp_data0; _i0++) {
+              int _len_opp_data__i0__soc_data0 = 1;
+          opp_data[_i0].soc_data = (struct TYPE_2__ *) malloc(_len_opp_data__i0__soc_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_opp_data__i0__soc_data0; _j0++) {
+              opp_data[_i0].soc_data->efuse_fallback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned long benchRet = amx3_efuse_xlate(opp_data,efuse);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_opp_data0; _aux++) {

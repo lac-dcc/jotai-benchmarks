@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ int sdsll2str(char *s, long long value) {
     return l;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,15 +98,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 103
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 68
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 68
+          // ------------------------------- 
+          // static_instructions_O3 : 43
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 43
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 66
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 54
+          // ------------------------------- 
+
+          long long value = 255;
+        
+          int _len_s0 = 65025;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sdsll2str(s,value);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 55
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 43
+          // dynamic_instructions_O3 : 56
+          // ------------------------------- 
+          // static_instructions_Ofast : 43
+          // dynamic_instructions_Ofast : 56
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 53
+          // ------------------------------- 
+          // static_instructions_Oz : 34
+          // dynamic_instructions_Oz : 45
+          // ------------------------------- 
+
           long long value = 10;
+        
           int _len_s0 = 100;
           char * s = (char *) malloc(_len_s0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sdsll2str(s,value);
           printf("%d\n", benchRet); 
           free(s);

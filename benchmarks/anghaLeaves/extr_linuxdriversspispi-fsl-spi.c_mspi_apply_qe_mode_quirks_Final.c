@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ __attribute__((used)) static int mspi_apply_qe_mode_quirks(struct spi_mpc8xxx_cs
 	return bits_per_word;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,16 +95,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bits_per_word = 100;
+        
           int _len_cs0 = 1;
           struct spi_mpc8xxx_cs * cs = (struct spi_mpc8xxx_cs *) malloc(_len_cs0*sizeof(struct spi_mpc8xxx_cs));
           for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
-            cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_spi0 = 1;
           struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mspi_apply_qe_mode_quirks(cs,spi,bits_per_word);
           printf("%d\n", benchRet); 
           free(cs);
@@ -115,7 +117,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bits_per_word = 255;
+        
+          int _len_cs0 = 65025;
+          struct spi_mpc8xxx_cs * cs = (struct spi_mpc8xxx_cs *) malloc(_len_cs0*sizeof(struct spi_mpc8xxx_cs));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spi0 = 65025;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mspi_apply_qe_mode_quirks(cs,spi,bits_per_word);
+          printf("%d\n", benchRet); 
+          free(cs);
+          free(spi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bits_per_word = 10;
+        
+          int _len_cs0 = 100;
+          struct spi_mpc8xxx_cs * cs = (struct spi_mpc8xxx_cs *) malloc(_len_cs0*sizeof(struct spi_mpc8xxx_cs));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spi0 = 100;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mspi_apply_qe_mode_quirks(cs,spi,bits_per_word);
+          printf("%d\n", benchRet); 
+          free(cs);
+          free(spi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cs0 = 1;
+          struct spi_mpc8xxx_cs * cs = (struct spi_mpc8xxx_cs *) malloc(_len_cs0*sizeof(struct spi_mpc8xxx_cs));
+          for(int _i0 = 0; _i0 < _len_cs0; _i0++) {
+              cs[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_spi0 = 1;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mspi_apply_qe_mode_quirks(cs,spi,bits_per_word);
+          printf("%d\n", benchRet); 
+          free(cs);
+          free(spi);
+        
+        break;
+    }
     default:
         usage();
         break;

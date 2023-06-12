@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline struct drm_encoder *to_drm_encoder(struct no
 	return &enc->base.base;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_enc0 = 1;
+          int _len_enc0 = 65025;
           struct nouveau_encoder * enc = (struct nouveau_encoder *) malloc(_len_enc0*sizeof(struct nouveau_encoder));
           for(int _i0 = 0; _i0 < _len_enc0; _i0++) {
-            enc[_i0].base.base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              enc[_i0].base.base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           struct drm_encoder * benchRet = to_drm_encoder(enc);
           printf("%d\n", (*benchRet).dummy);
           free(enc);
@@ -102,15 +101,36 @@ int main(int argc, char *argv[]) {
           int _len_enc0 = 100;
           struct nouveau_encoder * enc = (struct nouveau_encoder *) malloc(_len_enc0*sizeof(struct nouveau_encoder));
           for(int _i0 = 0; _i0 < _len_enc0; _i0++) {
-            enc[_i0].base.base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              enc[_i0].base.base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           struct drm_encoder * benchRet = to_drm_encoder(enc);
           printf("%d\n", (*benchRet).dummy);
           free(enc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_enc0 = 1;
+          struct nouveau_encoder * enc = (struct nouveau_encoder *) malloc(_len_enc0*sizeof(struct nouveau_encoder));
+          for(int _i0 = 0; _i0 < _len_enc0; _i0++) {
+              enc[_i0].base.base.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          struct drm_encoder * benchRet = to_drm_encoder(enc);
+          printf("%d\n", (*benchRet).dummy);
+          free(enc);
+        
+        break;
+    }
     default:
         usage();
         break;

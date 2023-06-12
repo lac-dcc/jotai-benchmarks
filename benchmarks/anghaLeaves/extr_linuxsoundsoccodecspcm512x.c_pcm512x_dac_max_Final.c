@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static unsigned long pcm512x_dac_max(struct pcm512x_priv *
 	return rate + rate * pcm512x->overclock_dac / 100;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,30 +76,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long rate = 100;
+        
           int _len_pcm512x0 = 1;
           struct pcm512x_priv * pcm512x = (struct pcm512x_priv *) malloc(_len_pcm512x0*sizeof(struct pcm512x_priv));
           for(int _i0 = 0; _i0 < _len_pcm512x0; _i0++) {
-            pcm512x[_i0].overclock_dac = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcm512x[_i0].overclock_dac = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = pcm512x_dac_max(pcm512x,rate);
           printf("%lu\n", benchRet); 
           free(pcm512x);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long rate = 255;
+        
+          int _len_pcm512x0 = 65025;
+          struct pcm512x_priv * pcm512x = (struct pcm512x_priv *) malloc(_len_pcm512x0*sizeof(struct pcm512x_priv));
+          for(int _i0 = 0; _i0 < _len_pcm512x0; _i0++) {
+              pcm512x[_i0].overclock_dac = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = pcm512x_dac_max(pcm512x,rate);
+          printf("%lu\n", benchRet); 
+          free(pcm512x);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long rate = 10;
+        
           int _len_pcm512x0 = 100;
           struct pcm512x_priv * pcm512x = (struct pcm512x_priv *) malloc(_len_pcm512x0*sizeof(struct pcm512x_priv));
           for(int _i0 = 0; _i0 < _len_pcm512x0; _i0++) {
-            pcm512x[_i0].overclock_dac = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcm512x[_i0].overclock_dac = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = pcm512x_dac_max(pcm512x,rate);
+          printf("%lu\n", benchRet); 
+          free(pcm512x);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pcm512x0 = 1;
+          struct pcm512x_priv * pcm512x = (struct pcm512x_priv *) malloc(_len_pcm512x0*sizeof(struct pcm512x_priv));
+          for(int _i0 = 0; _i0 < _len_pcm512x0; _i0++) {
+              pcm512x[_i0].overclock_dac = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = pcm512x_dac_max(pcm512x,rate);
           printf("%lu\n", benchRet); 
           free(pcm512x);

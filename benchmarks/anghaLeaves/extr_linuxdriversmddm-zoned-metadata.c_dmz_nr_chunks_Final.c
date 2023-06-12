@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned int dmz_nr_chunks(struct dmz_metadata *zmd)
 	return zmd->nr_chunks;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_zmd0 = 1;
+          int _len_zmd0 = 65025;
           struct dmz_metadata * zmd = (struct dmz_metadata *) malloc(_len_zmd0*sizeof(struct dmz_metadata));
           for(int _i0 = 0; _i0 < _len_zmd0; _i0++) {
-            zmd[_i0].nr_chunks = ((-2 * (next_i()%2)) + 1) * next_i();
+              zmd[_i0].nr_chunks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = dmz_nr_chunks(zmd);
           printf("%u\n", benchRet); 
           free(zmd);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_zmd0 = 100;
           struct dmz_metadata * zmd = (struct dmz_metadata *) malloc(_len_zmd0*sizeof(struct dmz_metadata));
           for(int _i0 = 0; _i0 < _len_zmd0; _i0++) {
-            zmd[_i0].nr_chunks = ((-2 * (next_i()%2)) + 1) * next_i();
+              zmd[_i0].nr_chunks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = dmz_nr_chunks(zmd);
           printf("%u\n", benchRet); 
           free(zmd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_zmd0 = 1;
+          struct dmz_metadata * zmd = (struct dmz_metadata *) malloc(_len_zmd0*sizeof(struct dmz_metadata));
+          for(int _i0 = 0; _i0 < _len_zmd0; _i0++) {
+              zmd[_i0].nr_chunks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = dmz_nr_chunks(zmd);
+          printf("%u\n", benchRet); 
+          free(zmd);
+        
+        break;
+    }
     default:
         usage();
         break;

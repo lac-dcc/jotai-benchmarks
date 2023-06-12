@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void ext3_inc_count(struct inode *inode)
     inode->i_nlink++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_inode0 = 1;
+          int _len_inode0 = 65025;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ext3_inc_count(inode);
           free(inode);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_inode0 = 100;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ext3_inc_count(inode);
           free(inode);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_nlink = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ext3_inc_count(inode);
+          free(inode);
+        
+        break;
+    }
     default:
         usage();
         break;

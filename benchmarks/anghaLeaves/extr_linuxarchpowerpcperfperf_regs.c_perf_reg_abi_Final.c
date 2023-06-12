@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ u64 perf_reg_abi(struct task_struct *task)
 	return PERF_SAMPLE_REGS_ABI_32;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_task0 = 1;
+          int _len_task0 = 65025;
           struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = perf_reg_abi(task);
           printf("%d\n", benchRet); 
           free(task);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_task0 = 100;
           struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = perf_reg_abi(task);
           printf("%d\n", benchRet); 
           free(task);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_task0 = 1;
+          struct task_struct * task = (struct task_struct *) malloc(_len_task0*sizeof(struct task_struct));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = perf_reg_abi(task);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

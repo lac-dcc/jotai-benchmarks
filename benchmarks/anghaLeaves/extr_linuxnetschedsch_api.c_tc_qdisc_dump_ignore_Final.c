@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static bool tc_qdisc_dump_ignore(struct Qdisc *q, bool dum
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dump_invisible = 100;
+        
           int _len_q0 = 1;
           struct Qdisc * q = (struct Qdisc *) malloc(_len_q0*sizeof(struct Qdisc));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = tc_qdisc_dump_ignore(q,dump_invisible);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int dump_invisible = 255;
+        
+          int _len_q0 = 65025;
+          struct Qdisc * q = (struct Qdisc *) malloc(_len_q0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = tc_qdisc_dump_ignore(q,dump_invisible);
           printf("%d\n", benchRet); 
           free(q);
@@ -102,21 +119,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int dump_invisible = 10;
+        
           int _len_q0 = 100;
           struct Qdisc * q = (struct Qdisc *) malloc(_len_q0*sizeof(struct Qdisc));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tc_qdisc_dump_ignore(q,dump_invisible);
           printf("%d\n", benchRet); 
           free(q);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dump_invisible = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct Qdisc * q = (struct Qdisc *) malloc(_len_q0*sizeof(struct Qdisc));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tc_qdisc_dump_ignore(q,dump_invisible);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

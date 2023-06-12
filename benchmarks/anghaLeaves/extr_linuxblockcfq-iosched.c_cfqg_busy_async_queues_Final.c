@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int cfqg_busy_async_queues(struct cfq_data *
 		cfqg->service_trees[BE_WORKLOAD][ASYNC_WORKLOAD].count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +82,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_cfqd0 = 65025;
+          struct cfq_data * cfqd = (struct cfq_data *) malloc(_len_cfqd0*sizeof(struct cfq_data));
+          for(int _i0 = 0; _i0 < _len_cfqd0; _i0++) {
+              cfqd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfqg0 = 65025;
+          struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
+          for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
+              int _len_cfqg__i0__service_trees0 = 1;
+          cfqg[_i0].service_trees = (struct TYPE_2__ **) malloc(_len_cfqg__i0__service_trees0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_cfqg__i0__service_trees0; _j0++) {
+            int _len_cfqg__i0__service_trees1 = 1;
+            cfqg[_i0].service_trees[_j0] = (struct TYPE_2__ *) malloc(_len_cfqg__i0__service_trees1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_cfqg__i0__service_trees1; _j1++) {
+                cfqg[_i0].service_trees[_j0]->count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = cfqg_busy_async_queues(cfqd,cfqg);
+          printf("%d\n", benchRet); 
+          free(cfqd);
+          for(int _aux = 0; _aux < _len_cfqg0; _aux++) {
+          free(*(cfqg[_aux].service_trees));
+        free(cfqg[_aux].service_trees);
+          }
+          free(cfqg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_cfqd0 = 100;
+          struct cfq_data * cfqd = (struct cfq_data *) malloc(_len_cfqd0*sizeof(struct cfq_data));
+          for(int _i0 = 0; _i0 < _len_cfqd0; _i0++) {
+              cfqd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfqg0 = 100;
+          struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
+          for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
+              int _len_cfqg__i0__service_trees0 = 1;
+          cfqg[_i0].service_trees = (struct TYPE_2__ **) malloc(_len_cfqg__i0__service_trees0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_cfqg__i0__service_trees0; _j0++) {
+            int _len_cfqg__i0__service_trees1 = 1;
+            cfqg[_i0].service_trees[_j0] = (struct TYPE_2__ *) malloc(_len_cfqg__i0__service_trees1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_cfqg__i0__service_trees1; _j1++) {
+                cfqg[_i0].service_trees[_j0]->count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = cfqg_busy_async_queues(cfqd,cfqg);
+          printf("%d\n", benchRet); 
+          free(cfqd);
+          for(int _aux = 0; _aux < _len_cfqg0; _aux++) {
+          free(*(cfqg[_aux].service_trees));
+        free(cfqg[_aux].service_trees);
+          }
+          free(cfqg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_cfqd0 = 1;
           struct cfq_data * cfqd = (struct cfq_data *) malloc(_len_cfqd0*sizeof(struct cfq_data));
           for(int _i0 = 0; _i0 < _len_cfqd0; _i0++) {
-            cfqd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfqd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cfqg0 = 1;
           struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
           for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
@@ -103,10 +246,13 @@ int main(int argc, char *argv[]) {
             int _len_cfqg__i0__service_trees1 = 1;
             cfqg[_i0].service_trees[_j0] = (struct TYPE_2__ *) malloc(_len_cfqg__i0__service_trees1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_cfqg__i0__service_trees1; _j1++) {
-              cfqg[_i0].service_trees[_j0]->count = ((-2 * (next_i()%2)) + 1) * next_i();
+                cfqg[_i0].service_trees[_j0]->count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = cfqg_busy_async_queues(cfqd,cfqg);
           printf("%d\n", benchRet); 
           free(cfqd);

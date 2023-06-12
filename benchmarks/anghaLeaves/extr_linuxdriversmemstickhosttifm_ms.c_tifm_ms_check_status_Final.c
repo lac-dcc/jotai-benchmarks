@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int tifm_ms_check_status(struct tifm_ms *host)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +88,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_host0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_host0 = 65025;
           struct tifm_ms * host = (struct tifm_ms *) malloc(_len_host0*sizeof(struct tifm_ms));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_host__i0__req0 = 1;
           host[_i0].req = (struct TYPE_2__ *) malloc(_len_host__i0__req0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_host__i0__req0; _j0++) {
-            host[_i0].req->need_card_int = ((-2 * (next_i()%2)) + 1) * next_i();
-        host[_i0].req->error = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].req->need_card_int = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].req->error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = tifm_ms_check_status(host);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].req);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_host0 = 100;
+          struct tifm_ms * host = (struct tifm_ms *) malloc(_len_host0*sizeof(struct tifm_ms));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_host__i0__req0 = 1;
+          host[_i0].req = (struct TYPE_2__ *) malloc(_len_host__i0__req0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__req0; _j0++) {
+              host[_i0].req->need_card_int = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].req->error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = tifm_ms_check_status(host);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].req);
+          }
+          free(host);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_host0 = 1;
+          struct tifm_ms * host = (struct tifm_ms *) malloc(_len_host0*sizeof(struct tifm_ms));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_host__i0__req0 = 1;
+          host[_i0].req = (struct TYPE_2__ *) malloc(_len_host__i0__req0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__req0; _j0++) {
+              host[_i0].req->need_card_int = ((-2 * (next_i()%2)) + 1) * next_i();
+          host[_i0].req->error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = tifm_ms_check_status(host);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_host0; _aux++) {

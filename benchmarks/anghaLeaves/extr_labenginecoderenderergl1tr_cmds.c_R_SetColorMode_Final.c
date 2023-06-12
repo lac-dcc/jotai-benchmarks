@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -101,12 +102,6 @@ void R_SetColorMode(GLboolean *rgba, stereoFrame_t stereoFrame, int colormode)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,22 +114,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          long stereoFrame = 10;
-          int colormode = 10;
-          int _len_rgba0 = 100;
+          long stereoFrame = 255;
+        
+          int colormode = 255;
+        
+          int _len_rgba0 = 65025;
           int * rgba = (int *) malloc(_len_rgba0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rgba0; _i0++) {
             rgba[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           R_SetColorMode(rgba,stereoFrame,colormode);
           free(rgba);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          long stereoFrame = 10;
+        
+          int colormode = 10;
+        
+          int _len_rgba0 = 100;
+          int * rgba = (int *) malloc(_len_rgba0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rgba0; _i0++) {
+            rgba[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          R_SetColorMode(rgba,stereoFrame,colormode);
+          free(rgba);
+        
+        break;
+    }
     default:
         usage();
         break;

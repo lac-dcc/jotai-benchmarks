@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void set_thumb_flag(arm_saved_state_t *regs, user_a
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pc = 100;
+        
           int _len_regs0 = 1;
           struct TYPE_3__ * regs = (struct TYPE_3__ *) malloc(_len_regs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-            regs[_i0].cpsr = ((-2 * (next_i()%2)) + 1) * next_i();
+              regs[_i0].cpsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_thumb_flag(regs,pc);
+          free(regs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pc = 255;
+        
+          int _len_regs0 = 65025;
+          struct TYPE_3__ * regs = (struct TYPE_3__ *) malloc(_len_regs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].cpsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_thumb_flag(regs,pc);
           free(regs);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pc = 10;
+        
           int _len_regs0 = 100;
           struct TYPE_3__ * regs = (struct TYPE_3__ *) malloc(_len_regs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-            regs[_i0].cpsr = ((-2 * (next_i()%2)) + 1) * next_i();
+              regs[_i0].cpsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_thumb_flag(regs,pc);
           free(regs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_regs0 = 1;
+          struct TYPE_3__ * regs = (struct TYPE_3__ *) malloc(_len_regs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].cpsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_thumb_flag(regs,pc);
+          free(regs);
+        
+        break;
+    }
     default:
         usage();
         break;

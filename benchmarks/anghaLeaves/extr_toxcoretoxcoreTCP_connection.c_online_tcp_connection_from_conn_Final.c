@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static unsigned int online_tcp_connection_from_conn(TCP_Co
     return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +90,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_con_to0 = 1;
+          int _len_con_to0 = 65025;
           struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
               int _len_con_to__i0__connections0 = 1;
           con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
-            con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
-        con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+              con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = online_tcp_connection_from_conn(con_to);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_con_to0; _aux++) {
@@ -116,7 +115,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_con_to0 = 100;
+          struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
+              int _len_con_to__i0__connections0 = 1;
+          con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
+              con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = online_tcp_connection_from_conn(con_to);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_con_to0; _aux++) {
+          free(con_to[_aux].connections);
+          }
+          free(con_to);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_con_to0 = 1;
+          struct TYPE_5__ * con_to = (struct TYPE_5__ *) malloc(_len_con_to0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_con_to0; _i0++) {
+              int _len_con_to__i0__connections0 = 1;
+          con_to[_i0].connections = (struct TYPE_4__ *) malloc(_len_con_to__i0__connections0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_con_to__i0__connections0; _j0++) {
+              con_to[_i0].connections->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          con_to[_i0].connections->tcp_connection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = online_tcp_connection_from_conn(con_to);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_con_to0; _aux++) {
+          free(con_to[_aux].connections);
+          }
+          free(con_to);
+        
+        break;
+    }
     default:
         usage();
         break;

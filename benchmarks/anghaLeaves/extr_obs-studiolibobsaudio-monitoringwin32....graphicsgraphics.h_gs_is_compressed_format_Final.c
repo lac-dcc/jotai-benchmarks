@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static inline bool gs_is_compressed_format(enum gs_color_f
 	return (format == GS_DXT1 || format == GS_DXT3 || format == GS_DXT5);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum gs_color_format format = 0;
+        
           int benchRet = gs_is_compressed_format(format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

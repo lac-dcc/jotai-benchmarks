@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int mc13xxx_probe_flags_dt(struct mc13xxx *m
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mc13xxx0 = 1;
+          int _len_mc13xxx0 = 65025;
           struct mc13xxx * mc13xxx = (struct mc13xxx *) malloc(_len_mc13xxx0*sizeof(struct mc13xxx));
           for(int _i0 = 0; _i0 < _len_mc13xxx0; _i0++) {
-            mc13xxx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mc13xxx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mc13xxx_probe_flags_dt(mc13xxx);
           printf("%d\n", benchRet); 
           free(mc13xxx);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_mc13xxx0 = 100;
           struct mc13xxx * mc13xxx = (struct mc13xxx *) malloc(_len_mc13xxx0*sizeof(struct mc13xxx));
           for(int _i0 = 0; _i0 < _len_mc13xxx0; _i0++) {
-            mc13xxx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mc13xxx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mc13xxx_probe_flags_dt(mc13xxx);
           printf("%d\n", benchRet); 
           free(mc13xxx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mc13xxx0 = 1;
+          struct mc13xxx * mc13xxx = (struct mc13xxx *) malloc(_len_mc13xxx0*sizeof(struct mc13xxx));
+          for(int _i0 = 0; _i0 < _len_mc13xxx0; _i0++) {
+              mc13xxx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mc13xxx_probe_flags_dt(mc13xxx);
+          printf("%d\n", benchRet); 
+          free(mc13xxx);
+        
+        break;
+    }
     default:
         usage();
         break;

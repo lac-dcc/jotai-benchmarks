@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ void hal_btcoex_SetDBG(struct adapter *padapter, u32 *pDbgModule)
 		GLBtcDbgType[i] = pDbgModule[i];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,26 +84,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pDbgModule0 = 1;
+        
+          int _len_pDbgModule0 = 65025;
           unsigned long * pDbgModule = (unsigned long *) malloc(_len_pDbgModule0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pDbgModule0; _i0++) {
             pDbgModule[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           hal_btcoex_SetDBG(padapter,pDbgModule);
           free(padapter);
           free(pDbgModule);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pDbgModule0 = 100;
+          unsigned long * pDbgModule = (unsigned long *) malloc(_len_pDbgModule0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pDbgModule0; _i0++) {
+            pDbgModule[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hal_btcoex_SetDBG(padapter,pDbgModule);
+          free(padapter);
+          free(pDbgModule);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          struct adapter * padapter = (struct adapter *) malloc(_len_padapter0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pDbgModule0 = 1;
+          unsigned long * pDbgModule = (unsigned long *) malloc(_len_pDbgModule0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pDbgModule0; _i0++) {
+            pDbgModule[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hal_btcoex_SetDBG(padapter,pDbgModule);
+          free(padapter);
+          free(pDbgModule);
+        
+        break;
+    }
     default:
         usage();
         break;

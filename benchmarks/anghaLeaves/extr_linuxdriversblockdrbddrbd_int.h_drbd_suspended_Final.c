@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int drbd_suspended(struct drbd_device *devic
 	return resource->susp || resource->susp_fen || resource->susp_nod;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_device0 = 1;
+          int _len_device0 = 65025;
           struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
               int _len_device__i0__resource0 = 1;
           device[_i0].resource = (struct drbd_resource *) malloc(_len_device__i0__resource0*sizeof(struct drbd_resource));
           for(int _j0 = 0; _j0 < _len_device__i0__resource0; _j0++) {
-            device[_i0].resource->susp_nod = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].resource->susp_fen = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].resource->susp = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].resource->susp_nod = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].resource->susp_fen = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].resource->susp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = drbd_suspended(device);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_device0; _aux++) {
@@ -104,7 +103,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_device0 = 100;
+          struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              int _len_device__i0__resource0 = 1;
+          device[_i0].resource = (struct drbd_resource *) malloc(_len_device__i0__resource0*sizeof(struct drbd_resource));
+          for(int _j0 = 0; _j0 < _len_device__i0__resource0; _j0++) {
+              device[_i0].resource->susp_nod = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].resource->susp_fen = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].resource->susp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = drbd_suspended(device);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_device0; _aux++) {
+          free(device[_aux].resource);
+          }
+          free(device);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_device0 = 1;
+          struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              int _len_device__i0__resource0 = 1;
+          device[_i0].resource = (struct drbd_resource *) malloc(_len_device__i0__resource0*sizeof(struct drbd_resource));
+          for(int _j0 = 0; _j0 < _len_device__i0__resource0; _j0++) {
+              device[_i0].resource->susp_nod = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].resource->susp_fen = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].resource->susp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = drbd_suspended(device);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_device0; _aux++) {
+          free(device[_aux].resource);
+          }
+          free(device);
+        
+        break;
+    }
     default:
         usage();
         break;

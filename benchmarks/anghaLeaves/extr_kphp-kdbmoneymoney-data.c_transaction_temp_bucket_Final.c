@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int transaction_temp_bucket (int temp_id) {
   return temp_id & (TRANS_TEMP_HASH_SIZE - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int temp_id = 100;
+        
           int benchRet = transaction_temp_bucket(temp_id);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int temp_id = 255;
+        
           int benchRet = transaction_temp_bucket(temp_id);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int temp_id = 10;
+        
           int benchRet = transaction_temp_bucket(temp_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int temp_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = transaction_temp_bucket(temp_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

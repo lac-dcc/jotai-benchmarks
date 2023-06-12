@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -91,12 +92,6 @@ __attribute__((used)) static void wmv2_idct_row_mmi(short * b)
     b[7] = (a0 + a2 - a1 - a5 + 128) >> 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,20 +104,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
+    {
+          int _len_b0 = 65025;
+          short * b = (short *) malloc(_len_b0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wmv2_idct_row_mmi(b);
+          free(b);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
     {
           int _len_b0 = 100;
           short * b = (short *) malloc(_len_b0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wmv2_idct_row_mmi(b);
           free(b);
         
         break;
     }
-
     default:
         usage();
         break;

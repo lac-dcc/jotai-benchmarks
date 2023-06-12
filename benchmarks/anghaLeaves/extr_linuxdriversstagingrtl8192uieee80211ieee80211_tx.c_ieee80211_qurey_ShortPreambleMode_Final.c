@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void ieee80211_qurey_ShortPreambleMode(struct ieee8
 	return;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,27 +88,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].current_network.capability = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].current_network.capability = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_tcb_desc0 = 1;
+        
+          int _len_tcb_desc0 = 65025;
           struct cb_desc * tcb_desc = (struct cb_desc *) malloc(_len_tcb_desc0*sizeof(struct cb_desc));
           for(int _i0 = 0; _i0 < _len_tcb_desc0; _i0++) {
-            tcb_desc[_i0].bUseShortPreamble = ((-2 * (next_i()%2)) + 1) * next_i();
-        tcb_desc[_i0].data_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              tcb_desc[_i0].bUseShortPreamble = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcb_desc[_i0].data_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ieee80211_qurey_ShortPreambleMode(ieee,tcb_desc);
           free(ieee);
           free(tcb_desc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ieee0 = 100;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].current_network.capability = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_tcb_desc0 = 100;
+          struct cb_desc * tcb_desc = (struct cb_desc *) malloc(_len_tcb_desc0*sizeof(struct cb_desc));
+          for(int _i0 = 0; _i0 < _len_tcb_desc0; _i0++) {
+              tcb_desc[_i0].bUseShortPreamble = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcb_desc[_i0].data_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ieee80211_qurey_ShortPreambleMode(ieee,tcb_desc);
+          free(ieee);
+          free(tcb_desc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].current_network.capability = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_tcb_desc0 = 1;
+          struct cb_desc * tcb_desc = (struct cb_desc *) malloc(_len_tcb_desc0*sizeof(struct cb_desc));
+          for(int _i0 = 0; _i0 < _len_tcb_desc0; _i0++) {
+              tcb_desc[_i0].bUseShortPreamble = ((-2 * (next_i()%2)) + 1) * next_i();
+          tcb_desc[_i0].data_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ieee80211_qurey_ShortPreambleMode(ieee,tcb_desc);
+          free(ieee);
+          free(tcb_desc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ nfs4_ace_nfstype_to_vfstype(uint32_t nfsacetype, int *errorp)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,11 +100,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nfsacetype = 100;
+        
           int _len_errorp0 = 1;
           int * errorp = (int *) malloc(_len_errorp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_errorp0; _i0++) {
             errorp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nfs4_ace_nfstype_to_vfstype(nfsacetype,errorp);
+          printf("%d\n", benchRet); 
+          free(errorp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int nfsacetype = 255;
+        
+          int _len_errorp0 = 65025;
+          int * errorp = (int *) malloc(_len_errorp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_errorp0; _i0++) {
+            errorp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nfs4_ace_nfstype_to_vfstype(nfsacetype,errorp);
           printf("%d\n", benchRet); 
           free(errorp);
@@ -116,21 +131,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int nfsacetype = 10;
+        
           int _len_errorp0 = 100;
           int * errorp = (int *) malloc(_len_errorp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_errorp0; _i0++) {
             errorp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nfs4_ace_nfstype_to_vfstype(nfsacetype,errorp);
           printf("%d\n", benchRet); 
           free(errorp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nfsacetype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_errorp0 = 1;
+          int * errorp = (int *) malloc(_len_errorp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_errorp0; _i0++) {
+            errorp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nfs4_ace_nfstype_to_vfstype(nfsacetype,errorp);
+          printf("%d\n", benchRet); 
+          free(errorp);
+        
+        break;
+    }
     default:
         usage();
         break;

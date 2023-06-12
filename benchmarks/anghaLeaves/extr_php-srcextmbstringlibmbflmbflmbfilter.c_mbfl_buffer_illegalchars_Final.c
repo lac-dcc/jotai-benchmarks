@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ size_t mbfl_buffer_illegalchars(mbfl_buffer_converter *convd)
 	return num_illegalchars;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,23 +94,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_convd0 = 1;
+          int _len_convd0 = 65025;
           struct TYPE_7__ * convd = (struct TYPE_7__ *) malloc(_len_convd0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_convd0; _i0++) {
               int _len_convd__i0__filter20 = 1;
           convd[_i0].filter2 = (struct TYPE_6__ *) malloc(_len_convd__i0__filter20*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_convd__i0__filter20; _j0++) {
-            convd[_i0].filter2->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+              convd[_i0].filter2->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_convd__i0__filter10 = 1;
           convd[_i0].filter1 = (struct TYPE_5__ *) malloc(_len_convd__i0__filter10*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_convd__i0__filter10; _j0++) {
-            convd[_i0].filter1->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+              convd[_i0].filter1->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned long benchRet = mbfl_buffer_illegalchars(convd);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_convd0; _aux++) {
@@ -127,7 +127,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_convd0 = 100;
+          struct TYPE_7__ * convd = (struct TYPE_7__ *) malloc(_len_convd0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_convd0; _i0++) {
+              int _len_convd__i0__filter20 = 1;
+          convd[_i0].filter2 = (struct TYPE_6__ *) malloc(_len_convd__i0__filter20*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_convd__i0__filter20; _j0++) {
+              convd[_i0].filter2->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_convd__i0__filter10 = 1;
+          convd[_i0].filter1 = (struct TYPE_5__ *) malloc(_len_convd__i0__filter10*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_convd__i0__filter10; _j0++) {
+              convd[_i0].filter1->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = mbfl_buffer_illegalchars(convd);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_convd0; _aux++) {
+          free(convd[_aux].filter2);
+          }
+          for(int _aux = 0; _aux < _len_convd0; _aux++) {
+          free(convd[_aux].filter1);
+          }
+          free(convd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_convd0 = 1;
+          struct TYPE_7__ * convd = (struct TYPE_7__ *) malloc(_len_convd0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_convd0; _i0++) {
+              int _len_convd__i0__filter20 = 1;
+          convd[_i0].filter2 = (struct TYPE_6__ *) malloc(_len_convd__i0__filter20*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_convd__i0__filter20; _j0++) {
+              convd[_i0].filter2->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_convd__i0__filter10 = 1;
+          convd[_i0].filter1 = (struct TYPE_5__ *) malloc(_len_convd__i0__filter10*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_convd__i0__filter10; _j0++) {
+              convd[_i0].filter1->num_illegalchar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = mbfl_buffer_illegalchars(convd);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_convd0; _aux++) {
+          free(convd[_aux].filter2);
+          }
+          for(int _aux = 0; _aux < _len_convd0; _aux++) {
+          free(convd[_aux].filter1);
+          }
+          free(convd);
+        
+        break;
+    }
     default:
         usage();
         break;

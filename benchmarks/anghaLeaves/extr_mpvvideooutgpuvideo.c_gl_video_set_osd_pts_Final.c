@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void gl_video_set_osd_pts(struct gl_video *p, double pts)
     p->osd_pts = pts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +74,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_p0 = 1;
+        
+          int _len_p0 = 65025;
           struct gl_video * p = (struct gl_video *) malloc(_len_p0*sizeof(struct gl_video));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].osd_pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              p[_i0].osd_pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           gl_video_set_osd_pts(p,pts);
           free(p);
         
@@ -97,17 +95,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int _len_p0 = 100;
           struct gl_video * p = (struct gl_video *) malloc(_len_p0*sizeof(struct gl_video));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].osd_pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              p[_i0].osd_pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           gl_video_set_osd_pts(p,pts);
           free(p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_p0 = 1;
+          struct gl_video * p = (struct gl_video *) malloc(_len_p0*sizeof(struct gl_video));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].osd_pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          gl_video_set_osd_pts(p,pts);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

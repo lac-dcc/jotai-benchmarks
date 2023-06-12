@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t MDP5_WB_DST_OP_MODE_CSC_DST_DATA_FO
 	return ((val) << MDP5_WB_DST_OP_MODE_CSC_DST_DATA_FORMAT__SHIFT) & MDP5_WB_DST_OP_MODE_CSC_DST_DATA_FORMAT__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = MDP5_WB_DST_OP_MODE_CSC_DST_DATA_FORMAT(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = MDP5_WB_DST_OP_MODE_CSC_DST_DATA_FORMAT(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = MDP5_WB_DST_OP_MODE_CSC_DST_DATA_FORMAT(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

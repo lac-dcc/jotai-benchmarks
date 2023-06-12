@@ -59,12 +59,6 @@ __attribute__((used)) static int get_num(int num, int shift) {
 	return (int)(x<<shift);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,13 +75,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num = 10;
+        
           int shift = 10;
+        
           int benchRet = get_num(num,shift);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

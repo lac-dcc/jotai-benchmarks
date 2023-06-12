@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ short   __BigShort (short l)
 	return (b1<<8) + b2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           short l = 100;
+        
           short benchRet = __BigShort(l);
           printf("%hi\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           short l = 255;
+        
           short benchRet = __BigShort(l);
           printf("%hi\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           short l = 10;
+        
           short benchRet = __BigShort(l);
           printf("%hi\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          short l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          short benchRet = __BigShort(l);
+          printf("%hi\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -111,12 +112,6 @@ __attribute__((used)) static inline u8 calc_crc8(u32 data, u8 crc)
 	return crc_res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,31 +124,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 207
+          // dynamic_instructions_O0 : 791
+          // ------------------------------- 
+          // static_instructions_O1 : 256
+          // dynamic_instructions_O1 : 564
+          // ------------------------------- 
+          // static_instructions_O2 : 289
+          // dynamic_instructions_O2 : 422
+          // ------------------------------- 
+          // static_instructions_O3 : 362
+          // dynamic_instructions_O3 : 362
+          // ------------------------------- 
+          // static_instructions_Ofast : 362
+          // dynamic_instructions_Ofast : 362
+          // ------------------------------- 
+          // static_instructions_Os : 269
+          // dynamic_instructions_Os : 535
+          // ------------------------------- 
+          // static_instructions_Oz : 256
+          // dynamic_instructions_Oz : 615
+          // ------------------------------- 
+
           int data = 100;
+        
           int crc = 100;
+        
           int benchRet = calc_crc8(data,crc);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 207
+          // dynamic_instructions_O0 : 791
+          // ------------------------------- 
+          // static_instructions_O1 : 256
+          // dynamic_instructions_O1 : 564
+          // ------------------------------- 
+          // static_instructions_O2 : 289
+          // dynamic_instructions_O2 : 422
+          // ------------------------------- 
+          // static_instructions_O3 : 362
+          // dynamic_instructions_O3 : 362
+          // ------------------------------- 
+          // static_instructions_Ofast : 362
+          // dynamic_instructions_Ofast : 362
+          // ------------------------------- 
+          // static_instructions_Os : 269
+          // dynamic_instructions_Os : 535
+          // ------------------------------- 
+          // static_instructions_Oz : 256
+          // dynamic_instructions_Oz : 615
+          // ------------------------------- 
+
           int data = 255;
+        
           int crc = 255;
+        
           int benchRet = calc_crc8(data,crc);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 207
+          // dynamic_instructions_O0 : 791
+          // ------------------------------- 
+          // static_instructions_O1 : 256
+          // dynamic_instructions_O1 : 564
+          // ------------------------------- 
+          // static_instructions_O2 : 289
+          // dynamic_instructions_O2 : 422
+          // ------------------------------- 
+          // static_instructions_O3 : 362
+          // dynamic_instructions_O3 : 362
+          // ------------------------------- 
+          // static_instructions_Ofast : 362
+          // dynamic_instructions_Ofast : 362
+          // ------------------------------- 
+          // static_instructions_Os : 269
+          // dynamic_instructions_Os : 535
+          // ------------------------------- 
+          // static_instructions_Oz : 256
+          // dynamic_instructions_Oz : 615
+          // ------------------------------- 
+
           int data = 10;
+        
           int crc = 10;
+        
+          int benchRet = calc_crc8(data,crc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 207
+          // dynamic_instructions_O0 : 791
+          // ------------------------------- 
+          // static_instructions_O1 : 256
+          // dynamic_instructions_O1 : 564
+          // ------------------------------- 
+          // static_instructions_O2 : 289
+          // dynamic_instructions_O2 : 422
+          // ------------------------------- 
+          // static_instructions_O3 : 362
+          // dynamic_instructions_O3 : 362
+          // ------------------------------- 
+          // static_instructions_Ofast : 362
+          // dynamic_instructions_Ofast : 362
+          // ------------------------------- 
+          // static_instructions_Os : 269
+          // dynamic_instructions_Os : 535
+          // ------------------------------- 
+          // static_instructions_Oz : 256
+          // dynamic_instructions_Oz : 615
+          // ------------------------------- 
+
+          int data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int crc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = calc_crc8(data,crc);
           printf("%d\n", benchRet); 
         

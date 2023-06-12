@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ octeon_droq_get_bufcount(u32 buf_size, u32 total_len)
 	return ((total_len + buf_size - 1) / buf_size);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int buf_size = 100;
+        
           int total_len = 100;
+        
           int benchRet = octeon_droq_get_bufcount(buf_size,total_len);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int buf_size = 255;
+        
           int total_len = 255;
+        
           int benchRet = octeon_droq_get_bufcount(buf_size,total_len);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int buf_size = 10;
+        
           int total_len = 10;
+        
           int benchRet = octeon_droq_get_bufcount(buf_size,total_len);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int total_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = octeon_droq_get_bufcount(buf_size,total_len);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static u64 entry_end(struct btrfs_ordered_extent *entry)
 	return entry->file_offset + entry->len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +77,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_entry0 = 65025;
+          struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = entry_end(entry);
+          printf("%ld\n", benchRet); 
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_entry0 = 100;
+          struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = entry_end(entry);
+          printf("%ld\n", benchRet); 
+          free(entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_entry0 = 1;
           struct btrfs_ordered_extent * entry = (struct btrfs_ordered_extent *) malloc(_len_entry0*sizeof(struct btrfs_ordered_extent));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          entry[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = entry_end(entry);
           printf("%ld\n", benchRet); 
           free(entry);

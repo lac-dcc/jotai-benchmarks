@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +97,6 @@ __attribute__((used)) static int translate_max_vl_num(struct ib_device *ibdev, u
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,16 +113,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vl_hw_cap = 100;
+        
           int _len_ibdev0 = 1;
           struct ib_device * ibdev = (struct ib_device *) malloc(_len_ibdev0*sizeof(struct ib_device));
           for(int _i0 = 0; _i0 < _len_ibdev0; _i0++) {
-            ibdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ibdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_max_vl_num0 = 1;
           int * max_vl_num = (int *) malloc(_len_max_vl_num0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_max_vl_num0; _i0++) {
             max_vl_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = translate_max_vl_num(ibdev,vl_hw_cap,max_vl_num);
           printf("%d\n", benchRet); 
           free(ibdev);
@@ -133,7 +134,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int vl_hw_cap = 255;
+        
+          int _len_ibdev0 = 65025;
+          struct ib_device * ibdev = (struct ib_device *) malloc(_len_ibdev0*sizeof(struct ib_device));
+          for(int _i0 = 0; _i0 < _len_ibdev0; _i0++) {
+              ibdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_max_vl_num0 = 65025;
+          int * max_vl_num = (int *) malloc(_len_max_vl_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_vl_num0; _i0++) {
+            max_vl_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = translate_max_vl_num(ibdev,vl_hw_cap,max_vl_num);
+          printf("%d\n", benchRet); 
+          free(ibdev);
+          free(max_vl_num);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int vl_hw_cap = 10;
+        
+          int _len_ibdev0 = 100;
+          struct ib_device * ibdev = (struct ib_device *) malloc(_len_ibdev0*sizeof(struct ib_device));
+          for(int _i0 = 0; _i0 < _len_ibdev0; _i0++) {
+              ibdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_max_vl_num0 = 100;
+          int * max_vl_num = (int *) malloc(_len_max_vl_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_vl_num0; _i0++) {
+            max_vl_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = translate_max_vl_num(ibdev,vl_hw_cap,max_vl_num);
+          printf("%d\n", benchRet); 
+          free(ibdev);
+          free(max_vl_num);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int vl_hw_cap = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ibdev0 = 1;
+          struct ib_device * ibdev = (struct ib_device *) malloc(_len_ibdev0*sizeof(struct ib_device));
+          for(int _i0 = 0; _i0 < _len_ibdev0; _i0++) {
+              ibdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_max_vl_num0 = 1;
+          int * max_vl_num = (int *) malloc(_len_max_vl_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_vl_num0; _i0++) {
+            max_vl_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = translate_max_vl_num(ibdev,vl_hw_cap,max_vl_num);
+          printf("%d\n", benchRet); 
+          free(ibdev);
+          free(max_vl_num);
+        
+        break;
+    }
     default:
         usage();
         break;

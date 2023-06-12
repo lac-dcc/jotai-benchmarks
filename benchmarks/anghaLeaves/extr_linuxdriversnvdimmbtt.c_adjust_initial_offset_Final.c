@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static u64 adjust_initial_offset(struct nd_btt *nd_btt, u6
 	return offset + nd_btt->initial_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           int _len_nd_btt0 = 1;
           struct nd_btt * nd_btt = (struct nd_btt *) malloc(_len_nd_btt0*sizeof(struct nd_btt));
           for(int _i0 = 0; _i0 < _len_nd_btt0; _i0++) {
-            nd_btt[_i0].initial_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              nd_btt[_i0].initial_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = adjust_initial_offset(nd_btt,offset);
+          printf("%ld\n", benchRet); 
+          free(nd_btt);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          int _len_nd_btt0 = 65025;
+          struct nd_btt * nd_btt = (struct nd_btt *) malloc(_len_nd_btt0*sizeof(struct nd_btt));
+          for(int _i0 = 0; _i0 < _len_nd_btt0; _i0++) {
+              nd_btt[_i0].initial_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = adjust_initial_offset(nd_btt,offset);
           printf("%ld\n", benchRet); 
           free(nd_btt);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long offset = 10;
+        
           int _len_nd_btt0 = 100;
           struct nd_btt * nd_btt = (struct nd_btt *) malloc(_len_nd_btt0*sizeof(struct nd_btt));
           for(int _i0 = 0; _i0 < _len_nd_btt0; _i0++) {
-            nd_btt[_i0].initial_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              nd_btt[_i0].initial_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = adjust_initial_offset(nd_btt,offset);
           printf("%ld\n", benchRet); 
           free(nd_btt);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nd_btt0 = 1;
+          struct nd_btt * nd_btt = (struct nd_btt *) malloc(_len_nd_btt0*sizeof(struct nd_btt));
+          for(int _i0 = 0; _i0 < _len_nd_btt0; _i0++) {
+              nd_btt[_i0].initial_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = adjust_initial_offset(nd_btt,offset);
+          printf("%ld\n", benchRet); 
+          free(nd_btt);
+        
+        break;
+    }
     default:
         usage();
         break;

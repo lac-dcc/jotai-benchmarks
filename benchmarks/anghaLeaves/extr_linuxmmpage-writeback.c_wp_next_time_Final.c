@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static unsigned long wp_next_time(unsigned long cur_time)
 	return cur_time;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long cur_time = 100;
+        
           unsigned long benchRet = wp_next_time(cur_time);
           printf("%lu\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long cur_time = 255;
+        
           unsigned long benchRet = wp_next_time(cur_time);
           printf("%lu\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long cur_time = 10;
+        
           unsigned long benchRet = wp_next_time(cur_time);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long cur_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = wp_next_time(cur_time);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

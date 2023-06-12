@@ -62,12 +62,6 @@ __attribute__((used)) static u32 calc_l0s_latency(u32 encoding)
 	return (64 << encoding);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +78,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int encoding = 10;
+        
           int benchRet = calc_l0s_latency(encoding);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

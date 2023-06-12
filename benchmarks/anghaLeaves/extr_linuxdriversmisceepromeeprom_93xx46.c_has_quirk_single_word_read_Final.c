@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline bool has_quirk_single_word_read(struct eepro
 	return edev->pdata->quirks & EEPROM_93XX46_QUIRK_SINGLE_WORD_READ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_edev0 = 65025;
+          struct eeprom_93xx46_dev * edev = (struct eeprom_93xx46_dev *) malloc(_len_edev0*sizeof(struct eeprom_93xx46_dev));
+          for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
+              int _len_edev__i0__pdata0 = 1;
+          edev[_i0].pdata = (struct TYPE_2__ *) malloc(_len_edev__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_edev__i0__pdata0; _j0++) {
+              edev[_i0].pdata->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = has_quirk_single_word_read(edev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_edev0; _aux++) {
+          free(edev[_aux].pdata);
+          }
+          free(edev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_edev0 = 100;
+          struct eeprom_93xx46_dev * edev = (struct eeprom_93xx46_dev *) malloc(_len_edev0*sizeof(struct eeprom_93xx46_dev));
+          for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
+              int _len_edev__i0__pdata0 = 1;
+          edev[_i0].pdata = (struct TYPE_2__ *) malloc(_len_edev__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_edev__i0__pdata0; _j0++) {
+              edev[_i0].pdata->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = has_quirk_single_word_read(edev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_edev0; _aux++) {
+          free(edev[_aux].pdata);
+          }
+          free(edev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_edev0 = 1;
           struct eeprom_93xx46_dev * edev = (struct eeprom_93xx46_dev *) malloc(_len_edev0*sizeof(struct eeprom_93xx46_dev));
           for(int _i0 = 0; _i0 < _len_edev0; _i0++) {
               int _len_edev__i0__pdata0 = 1;
           edev[_i0].pdata = (struct TYPE_2__ *) malloc(_len_edev__i0__pdata0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_edev__i0__pdata0; _j0++) {
-            edev[_i0].pdata->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              edev[_i0].pdata->quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = has_quirk_single_word_read(edev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_edev0; _aux++) {

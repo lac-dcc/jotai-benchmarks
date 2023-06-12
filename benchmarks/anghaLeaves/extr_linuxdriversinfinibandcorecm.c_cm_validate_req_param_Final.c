@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static int cm_validate_req_param(struct ib_cm_req_param *p
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,29 +103,182 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_param0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_param0 = 65025;
           struct ib_cm_req_param * param = (struct ib_cm_req_param *) malloc(_len_param0*sizeof(struct ib_cm_req_param));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_param__i0__primary_path0 = 1;
           param[_i0].primary_path = (struct TYPE_4__ *) malloc(_len_param__i0__primary_path0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_param__i0__primary_path0; _j0++) {
-            param[_i0].primary_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].primary_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].primary_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].primary_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_param__i0__alternate_path0 = 1;
           param[_i0].alternate_path = (struct TYPE_3__ *) malloc(_len_param__i0__alternate_path0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_param__i0__alternate_path0; _j0++) {
-            param[_i0].alternate_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].alternate_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].alternate_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].alternate_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        param[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        param[_i0].peer_to_peer = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].peer_to_peer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cm_validate_req_param(param);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_param0; _aux++) {
+          free(param[_aux].primary_path);
+          }
+          for(int _aux = 0; _aux < _len_param0; _aux++) {
+          free(param[_aux].alternate_path);
+          }
+          free(param);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_param0 = 100;
+          struct ib_cm_req_param * param = (struct ib_cm_req_param *) malloc(_len_param0*sizeof(struct ib_cm_req_param));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_param__i0__primary_path0 = 1;
+          param[_i0].primary_path = (struct TYPE_4__ *) malloc(_len_param__i0__primary_path0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_param__i0__primary_path0; _j0++) {
+              param[_i0].primary_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].primary_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_param__i0__alternate_path0 = 1;
+          param[_i0].alternate_path = (struct TYPE_3__ *) malloc(_len_param__i0__alternate_path0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_param__i0__alternate_path0; _j0++) {
+              param[_i0].alternate_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].alternate_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          param[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].peer_to_peer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cm_validate_req_param(param);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_param0; _aux++) {
+          free(param[_aux].primary_path);
+          }
+          for(int _aux = 0; _aux < _len_param0; _aux++) {
+          free(param[_aux].alternate_path);
+          }
+          free(param);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_param0 = 1;
+          struct ib_cm_req_param * param = (struct ib_cm_req_param *) malloc(_len_param0*sizeof(struct ib_cm_req_param));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].private_data_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_param__i0__primary_path0 = 1;
+          param[_i0].primary_path = (struct TYPE_4__ *) malloc(_len_param__i0__primary_path0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_param__i0__primary_path0; _j0++) {
+              param[_i0].primary_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].primary_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_param__i0__alternate_path0 = 1;
+          param[_i0].alternate_path = (struct TYPE_3__ *) malloc(_len_param__i0__alternate_path0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_param__i0__alternate_path0; _j0++) {
+              param[_i0].alternate_path->pkey = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].alternate_path->mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          param[_i0].private_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          param[_i0].peer_to_peer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cm_validate_req_param(param);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_param0; _aux++) {

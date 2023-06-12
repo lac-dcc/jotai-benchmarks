@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ prepare_incremental_sweep(mrb_state *mrb, mrb_gc *gc)
   gc->live_after_mark = gc->live;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mrb0 = 1;
+          int _len_mrb0 = 65025;
           int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
             mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_gc0 = 1;
+        
+          int _len_gc0 = 65025;
           struct TYPE_3__ * gc = (struct TYPE_3__ *) malloc(_len_gc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
-            gc[_i0].live = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc[_i0].live_after_mark = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc[_i0].heaps = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc[_i0].sweeps = ((-2 * (next_i()%2)) + 1) * next_i();
-        gc[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc[_i0].live = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].live_after_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].heaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].sweeps = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           prepare_incremental_sweep(mrb,gc);
           free(mrb);
           free(gc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mrb0 = 100;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_gc0 = 100;
+          struct TYPE_3__ * gc = (struct TYPE_3__ *) malloc(_len_gc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              gc[_i0].live = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].live_after_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].heaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].sweeps = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          prepare_incremental_sweep(mrb,gc);
+          free(mrb);
+          free(gc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mrb0 = 1;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_gc0 = 1;
+          struct TYPE_3__ * gc = (struct TYPE_3__ *) malloc(_len_gc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              gc[_i0].live = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].live_after_mark = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].heaps = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].sweeps = ((-2 * (next_i()%2)) + 1) * next_i();
+          gc[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          prepare_incremental_sweep(mrb,gc);
+          free(mrb);
+          free(gc);
+        
+        break;
+    }
     default:
         usage();
         break;

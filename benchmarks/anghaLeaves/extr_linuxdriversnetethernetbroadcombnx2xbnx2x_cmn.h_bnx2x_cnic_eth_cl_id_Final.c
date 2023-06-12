@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline u8 bnx2x_cnic_eth_cl_id(struct bnx2x *bp, u8
 		(bp->pf_num >> 1) * BNX2X_MAX_CNIC_ETH_CL_ID_IDX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +78,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long cl_idx = 100;
+        
           int _len_bp0 = 1;
           struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].cnic_base_cl_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].cnic_base_cl_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = bnx2x_cnic_eth_cl_id(bp,cl_idx);
+          printf("%ld\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long cl_idx = 255;
+        
+          int _len_bp0 = 65025;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].cnic_base_cl_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = bnx2x_cnic_eth_cl_id(bp,cl_idx);
+          printf("%ld\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long cl_idx = 10;
+        
+          int _len_bp0 = 100;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].cnic_base_cl_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = bnx2x_cnic_eth_cl_id(bp,cl_idx);
+          printf("%ld\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long cl_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].cnic_base_cl_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = bnx2x_cnic_eth_cl_id(bp,cl_idx);
           printf("%ld\n", benchRet); 
           free(bp);

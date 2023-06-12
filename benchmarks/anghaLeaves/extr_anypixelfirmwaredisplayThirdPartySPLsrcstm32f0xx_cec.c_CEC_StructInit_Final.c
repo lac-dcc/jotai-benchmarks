@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ void CEC_StructInit(CEC_InitTypeDef* CEC_InitStruct)
   CEC_InitStruct->CEC_SFTOption = CEC_SFTOption_Off;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,20 +89,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_CEC_InitStruct0 = 65025;
+          struct TYPE_3__ * CEC_InitStruct = (struct TYPE_3__ *) malloc(_len_CEC_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CEC_InitStruct0; _i0++) {
+              CEC_InitStruct[_i0].CEC_SFTOption = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_BRDNoGen = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_LongBitPeriodError = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_BitRisingError = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_StopReception = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_RxTolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_SignalFreeTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CEC_StructInit(CEC_InitStruct);
+          free(CEC_InitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_CEC_InitStruct0 = 100;
+          struct TYPE_3__ * CEC_InitStruct = (struct TYPE_3__ *) malloc(_len_CEC_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CEC_InitStruct0; _i0++) {
+              CEC_InitStruct[_i0].CEC_SFTOption = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_BRDNoGen = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_LongBitPeriodError = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_BitRisingError = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_StopReception = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_RxTolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_SignalFreeTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CEC_StructInit(CEC_InitStruct);
+          free(CEC_InitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_CEC_InitStruct0 = 1;
           struct TYPE_3__ * CEC_InitStruct = (struct TYPE_3__ *) malloc(_len_CEC_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_CEC_InitStruct0; _i0++) {
-            CEC_InitStruct[_i0].CEC_SFTOption = ((-2 * (next_i()%2)) + 1) * next_i();
-        CEC_InitStruct[_i0].CEC_BRDNoGen = ((-2 * (next_i()%2)) + 1) * next_i();
-        CEC_InitStruct[_i0].CEC_LongBitPeriodError = ((-2 * (next_i()%2)) + 1) * next_i();
-        CEC_InitStruct[_i0].CEC_BitRisingError = ((-2 * (next_i()%2)) + 1) * next_i();
-        CEC_InitStruct[_i0].CEC_StopReception = ((-2 * (next_i()%2)) + 1) * next_i();
-        CEC_InitStruct[_i0].CEC_RxTolerance = ((-2 * (next_i()%2)) + 1) * next_i();
-        CEC_InitStruct[_i0].CEC_SignalFreeTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              CEC_InitStruct[_i0].CEC_SFTOption = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_BRDNoGen = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_LongBitPeriodError = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_BitRisingError = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_StopReception = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_RxTolerance = ((-2 * (next_i()%2)) + 1) * next_i();
+          CEC_InitStruct[_i0].CEC_SignalFreeTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           CEC_StructInit(CEC_InitStruct);
           free(CEC_InitStruct);
         

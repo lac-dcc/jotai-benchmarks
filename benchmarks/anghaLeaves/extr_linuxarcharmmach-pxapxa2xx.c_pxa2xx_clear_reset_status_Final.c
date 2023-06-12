@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void pxa2xx_clear_reset_status(unsigned int mask)
 	RCSR = mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int mask = 100;
+        
           pxa2xx_clear_reset_status(mask);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int mask = 255;
+        
           pxa2xx_clear_reset_status(mask);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int mask = 10;
+        
           pxa2xx_clear_reset_status(mask);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pxa2xx_clear_reset_status(mask);
+        
+        break;
+    }
     default:
         usage();
         break;

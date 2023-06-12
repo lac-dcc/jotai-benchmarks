@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ __acpi_gpio_update_gpiod_flags(enum gpiod_flags *flags, enum gpiod_flags update)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,15 +101,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum gpiod_flags update = 0;
-          int _len_flags0 = 1;
+        
+          int _len_flags0 = 65025;
           enum gpiod_flags * flags = (enum gpiod_flags *) malloc(_len_flags0*sizeof(enum gpiod_flags));
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = 0;
           }
+        
           int benchRet = __acpi_gpio_update_gpiod_flags(flags,update);
           printf("%d\n", benchRet); 
           free(flags);
@@ -125,18 +122,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum gpiod_flags update = 0;
+        
           int _len_flags0 = 100;
           enum gpiod_flags * flags = (enum gpiod_flags *) malloc(_len_flags0*sizeof(enum gpiod_flags));
           for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
             flags[_i0] = 0;
           }
+        
           int benchRet = __acpi_gpio_update_gpiod_flags(flags,update);
           printf("%d\n", benchRet); 
           free(flags);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum gpiod_flags update = 0;
+        
+          int _len_flags0 = 1;
+          enum gpiod_flags * flags = (enum gpiod_flags *) malloc(_len_flags0*sizeof(enum gpiod_flags));
+          for(int _i0 = 0; _i0 < _len_flags0; _i0++) {
+            flags[_i0] = 0;
+          }
+        
+          int benchRet = __acpi_gpio_update_gpiod_flags(flags,update);
+          printf("%d\n", benchRet); 
+          free(flags);
+        
+        break;
+    }
     default:
         usage();
         break;

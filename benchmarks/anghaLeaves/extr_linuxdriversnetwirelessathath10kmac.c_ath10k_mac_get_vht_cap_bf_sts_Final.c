@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static int ath10k_mac_get_vht_cap_bf_sts(struct ath10k *ar
 	return nsts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ar0 = 1;
+          int _len_ar0 = 65025;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].vht_cap_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].vht_cap_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath10k_mac_get_vht_cap_bf_sts(ar);
           printf("%d\n", benchRet); 
           free(ar);
@@ -113,15 +110,32 @@ int main(int argc, char *argv[]) {
           int _len_ar0 = 100;
           struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
-            ar[_i0].vht_cap_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].vht_cap_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ath10k_mac_get_vht_cap_bf_sts(ar);
           printf("%d\n", benchRet); 
           free(ar);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ar0 = 1;
+          struct ath10k * ar = (struct ath10k *) malloc(_len_ar0*sizeof(struct ath10k));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              ar[_i0].vht_cap_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ath10k_mac_get_vht_cap_bf_sts(ar);
+          printf("%d\n", benchRet); 
+          free(ar);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void hw_dis_intr_bit(struct ksz_hw *hw, uint
 	hw->intr_mask &= ~(bit);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bit = 100;
+        
           int _len_hw0 = 1;
           struct ksz_hw * hw = (struct ksz_hw *) malloc(_len_hw0*sizeof(struct ksz_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].intr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].intr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          hw_dis_intr_bit(hw,bit);
+          free(hw);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bit = 255;
+        
+          int _len_hw0 = 65025;
+          struct ksz_hw * hw = (struct ksz_hw *) malloc(_len_hw0*sizeof(struct ksz_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].intr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           hw_dis_intr_bit(hw,bit);
           free(hw);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bit = 10;
+        
           int _len_hw0 = 100;
           struct ksz_hw * hw = (struct ksz_hw *) malloc(_len_hw0*sizeof(struct ksz_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].intr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].intr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hw_dis_intr_bit(hw,bit);
           free(hw);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ksz_hw * hw = (struct ksz_hw *) malloc(_len_hw0*sizeof(struct ksz_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].intr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hw_dis_intr_bit(hw,bit);
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

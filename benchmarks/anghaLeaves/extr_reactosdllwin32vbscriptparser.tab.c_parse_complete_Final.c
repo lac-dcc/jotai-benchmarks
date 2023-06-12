@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void parse_complete(parser_ctx_t *ctx, BOOL option_
     ctx->option_explicit = option_explicit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,18 +84,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int option_explicit = 100;
+        
           int _len_ctx0 = 1;
           struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].option_explicit = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].parse_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].option_explicit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].parse_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           parse_complete(ctx,option_explicit);
           free(ctx);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int option_explicit = 255;
+        
+          int _len_ctx0 = 65025;
+          struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].option_explicit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].parse_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          parse_complete(ctx,option_explicit);
+          free(ctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int option_explicit = 10;
+        
+          int _len_ctx0 = 100;
+          struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].option_explicit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].parse_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          parse_complete(ctx,option_explicit);
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int option_explicit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct TYPE_3__ * ctx = (struct TYPE_3__ *) malloc(_len_ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].option_explicit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].parse_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          parse_complete(ctx,option_explicit);
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

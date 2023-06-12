@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static ubyte get_special_opcode(struct debug_entry *ent,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,20 +112,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int last_line = 100;
+        
           unsigned long last_vma = 100;
+        
           int _len_ent0 = 1;
           struct debug_entry * ent = (struct debug_entry *) malloc(_len_ent0*sizeof(struct debug_entry));
           for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
-            ent[_i0].lineno = ((-2 * (next_i()%2)) + 1) * next_i();
-        ent[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = get_special_opcode(ent,last_line,last_vma);
           printf("%lu\n", benchRet); 
           free(ent);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int last_line = 255;
+        
+          unsigned long last_vma = 255;
+        
+          int _len_ent0 = 65025;
+          struct debug_entry * ent = (struct debug_entry *) malloc(_len_ent0*sizeof(struct debug_entry));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_special_opcode(ent,last_line,last_vma);
+          printf("%lu\n", benchRet); 
+          free(ent);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int last_line = 10;
+        
+          unsigned long last_vma = 10;
+        
+          int _len_ent0 = 100;
+          struct debug_entry * ent = (struct debug_entry *) malloc(_len_ent0*sizeof(struct debug_entry));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_special_opcode(ent,last_line,last_vma);
+          printf("%lu\n", benchRet); 
+          free(ent);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int last_line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long last_vma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ent0 = 1;
+          struct debug_entry * ent = (struct debug_entry *) malloc(_len_ent0*sizeof(struct debug_entry));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_special_opcode(ent,last_line,last_vma);
+          printf("%lu\n", benchRet); 
+          free(ent);
+        
+        break;
+    }
     default:
         usage();
         break;

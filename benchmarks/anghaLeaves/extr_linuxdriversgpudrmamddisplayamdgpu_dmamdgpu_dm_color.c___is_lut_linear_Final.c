@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static bool __is_lut_linear(struct drm_color_lut *lut, uin
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,17 +93,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           int size = 100;
+        
           int _len_lut0 = 1;
           struct drm_color_lut * lut = (struct drm_color_lut *) malloc(_len_lut0*sizeof(struct drm_color_lut));
           for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
-            lut[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
-        lut[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
-        lut[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+              lut[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = __is_lut_linear(lut,size);
+          printf("%d\n", benchRet); 
+          free(lut);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int _len_lut0 = 65025;
+          struct drm_color_lut * lut = (struct drm_color_lut *) malloc(_len_lut0*sizeof(struct drm_color_lut));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+              lut[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_lut_linear(lut,size);
+          printf("%d\n", benchRet); 
+          free(lut);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 52
+          // dynamic_instructions_O0 : 52
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int size = 10;
+        
+          int _len_lut0 = 100;
+          struct drm_color_lut * lut = (struct drm_color_lut *) malloc(_len_lut0*sizeof(struct drm_color_lut));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+              lut[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_lut_linear(lut,size);
+          printf("%d\n", benchRet); 
+          free(lut);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lut0 = 1;
+          struct drm_color_lut * lut = (struct drm_color_lut *) malloc(_len_lut0*sizeof(struct drm_color_lut));
+          for(int _i0 = 0; _i0 < _len_lut0; _i0++) {
+              lut[_i0].red = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].green = ((-2 * (next_i()%2)) + 1) * next_i();
+          lut[_i0].blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = __is_lut_linear(lut,size);
           printf("%d\n", benchRet); 
           free(lut);

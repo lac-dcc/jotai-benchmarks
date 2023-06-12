@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int nvhdmi_chmap_cea_alloc_validate_get_type(struct
 	return SNDRV_CTL_TLVT_CHMAP_VAR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +91,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int channels = 100;
+        
           int _len_chmap0 = 1;
           struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
           for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
-            chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cap0 = 1;
           struct hdac_cea_channel_speaker_allocation * cap = (struct hdac_cea_channel_speaker_allocation *) malloc(_len_cap0*sizeof(struct hdac_cea_channel_speaker_allocation));
           for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
-            cap[_i0].ca_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        cap[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              cap[_i0].ca_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nvhdmi_chmap_cea_alloc_validate_get_type(chmap,cap,channels);
           printf("%d\n", benchRet); 
           free(chmap);
@@ -112,7 +114,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int channels = 255;
+        
+          int _len_chmap0 = 65025;
+          struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
+          for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cap0 = 65025;
+          struct hdac_cea_channel_speaker_allocation * cap = (struct hdac_cea_channel_speaker_allocation *) malloc(_len_cap0*sizeof(struct hdac_cea_channel_speaker_allocation));
+          for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
+              cap[_i0].ca_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvhdmi_chmap_cea_alloc_validate_get_type(chmap,cap,channels);
+          printf("%d\n", benchRet); 
+          free(chmap);
+          free(cap);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int channels = 10;
+        
+          int _len_chmap0 = 100;
+          struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
+          for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cap0 = 100;
+          struct hdac_cea_channel_speaker_allocation * cap = (struct hdac_cea_channel_speaker_allocation *) malloc(_len_cap0*sizeof(struct hdac_cea_channel_speaker_allocation));
+          for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
+              cap[_i0].ca_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvhdmi_chmap_cea_alloc_validate_get_type(chmap,cap,channels);
+          printf("%d\n", benchRet); 
+          free(chmap);
+          free(cap);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chmap0 = 1;
+          struct hdac_chmap * chmap = (struct hdac_chmap *) malloc(_len_chmap0*sizeof(struct hdac_chmap));
+          for(int _i0 = 0; _i0 < _len_chmap0; _i0++) {
+              chmap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cap0 = 1;
+          struct hdac_cea_channel_speaker_allocation * cap = (struct hdac_cea_channel_speaker_allocation *) malloc(_len_cap0*sizeof(struct hdac_cea_channel_speaker_allocation));
+          for(int _i0 = 0; _i0 < _len_cap0; _i0++) {
+              cap[_i0].ca_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          cap[_i0].channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nvhdmi_chmap_cea_alloc_validate_get_type(chmap,cap,channels);
+          printf("%d\n", benchRet); 
+          free(chmap);
+          free(cap);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int fpenable(int trapCode, ppc_trap_frame_t *trap)
         return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int trapCode = 100;
+        
           int _len_trap0 = 1;
           struct TYPE_3__ * trap = (struct TYPE_3__ *) malloc(_len_trap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_trap0; _i0++) {
-            trap[_i0].srr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              trap[_i0].srr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fpenable(trapCode,trap);
+          printf("%d\n", benchRet); 
+          free(trap);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int trapCode = 255;
+        
+          int _len_trap0 = 65025;
+          struct TYPE_3__ * trap = (struct TYPE_3__ *) malloc(_len_trap0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_trap0; _i0++) {
+              trap[_i0].srr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fpenable(trapCode,trap);
           printf("%d\n", benchRet); 
           free(trap);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int trapCode = 10;
+        
           int _len_trap0 = 100;
           struct TYPE_3__ * trap = (struct TYPE_3__ *) malloc(_len_trap0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_trap0; _i0++) {
-            trap[_i0].srr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              trap[_i0].srr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fpenable(trapCode,trap);
           printf("%d\n", benchRet); 
           free(trap);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int trapCode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_trap0 = 1;
+          struct TYPE_3__ * trap = (struct TYPE_3__ *) malloc(_len_trap0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_trap0; _i0++) {
+              trap[_i0].srr1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fpenable(trapCode,trap);
+          printf("%d\n", benchRet); 
+          free(trap);
+        
+        break;
+    }
     default:
         usage();
         break;

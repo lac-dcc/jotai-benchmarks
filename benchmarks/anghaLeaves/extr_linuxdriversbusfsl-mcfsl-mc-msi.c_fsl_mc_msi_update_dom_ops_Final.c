@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void fsl_mc_msi_update_dom_ops(struct msi_domain_in
 		ops->set_desc = fsl_mc_msi_set_desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,18 +85,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          int _len_info0 = 65025;
           struct msi_domain_info * info = (struct msi_domain_info *) malloc(_len_info0*sizeof(struct msi_domain_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
               int _len_info__i0__ops0 = 1;
           info[_i0].ops = (struct msi_domain_ops *) malloc(_len_info__i0__ops0*sizeof(struct msi_domain_ops));
           for(int _j0 = 0; _j0 < _len_info__i0__ops0; _j0++) {
-            info[_i0].ops->set_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].ops->set_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           fsl_mc_msi_update_dom_ops(info);
           for(int _aux = 0; _aux < _len_info0; _aux++) {
           free(info[_aux].ops);
@@ -109,7 +108,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_info0 = 100;
+          struct msi_domain_info * info = (struct msi_domain_info *) malloc(_len_info0*sizeof(struct msi_domain_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__ops0 = 1;
+          info[_i0].ops = (struct msi_domain_ops *) malloc(_len_info__i0__ops0*sizeof(struct msi_domain_ops));
+          for(int _j0 = 0; _j0 < _len_info__i0__ops0; _j0++) {
+              info[_i0].ops->set_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          fsl_mc_msi_update_dom_ops(info);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].ops);
+          }
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_info0 = 1;
+          struct msi_domain_info * info = (struct msi_domain_info *) malloc(_len_info0*sizeof(struct msi_domain_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__ops0 = 1;
+          info[_i0].ops = (struct msi_domain_ops *) malloc(_len_info__i0__ops0*sizeof(struct msi_domain_ops));
+          for(int _j0 = 0; _j0 < _len_info__i0__ops0; _j0++) {
+              info[_i0].ops->set_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          fsl_mc_msi_update_dom_ops(info);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].ops);
+          }
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

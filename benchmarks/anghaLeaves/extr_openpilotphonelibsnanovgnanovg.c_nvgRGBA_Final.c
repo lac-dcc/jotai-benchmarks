@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ NVGcolor nvgRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned cha
 	return color;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,13 +83,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned char r = 100;
+        
           unsigned char g = 100;
+        
           unsigned char b = 100;
+        
           unsigned char a = 100;
+        
           struct TYPE_3__ benchRet = nvgRGBA(r,g,b,a);
           printf("%c\n", benchRet.r %26 + 'a');
           printf("%c\n", benchRet.g %26 + 'a');
@@ -103,13 +125,41 @@ int main(int argc, char *argv[]) {
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned char r = 255;
+        
           unsigned char g = 255;
+        
           unsigned char b = 255;
+        
           unsigned char a = 255;
+        
           struct TYPE_3__ benchRet = nvgRGBA(r,g,b,a);
           printf("%c\n", benchRet.r %26 + 'a');
           printf("%c\n", benchRet.g %26 + 'a');
@@ -118,13 +168,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned char r = 10;
+        
           unsigned char g = 10;
+        
           unsigned char b = 10;
+        
           unsigned char a = 10;
+        
+          struct TYPE_3__ benchRet = nvgRGBA(r,g,b,a);
+          printf("%c\n", benchRet.r %26 + 'a');
+          printf("%c\n", benchRet.g %26 + 'a');
+          printf("%c\n", benchRet.b %26 + 'a');
+          printf("%c\n", benchRet.a %26 + 'a');
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 29
+          // dynamic_instructions_O1 : 29
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned char r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char g = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_3__ benchRet = nvgRGBA(r,g,b,a);
           printf("%c\n", benchRet.r %26 + 'a');
           printf("%c\n", benchRet.g %26 + 'a');

@@ -58,12 +58,6 @@ typedef  int U32 ;
 
 __attribute__((used)) static U32    ZSTD_hash3(U32 u, U32 h) { return ((u << (32-24)) * prime3bytes)  >> (32-h) ; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,13 +74,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int u = 10;
+        
           int h = 10;
+        
           int benchRet = ZSTD_hash3(u,h);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

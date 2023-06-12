@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ char *X509_VERIFY_PARAM_get0_peername(X509_VERIFY_PARAM *param)
     return param->peername;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,10 +76,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_param0 = 1;
+          int _len_param0 = 65025;
           struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
               int _len_param__i0__peername0 = 1;
@@ -91,7 +87,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_param__i0__peername0; _j0++) {
             param[_i0].peername[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           char * benchRet = X509_VERIFY_PARAM_get0_peername(param);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_param0; _aux++) {
@@ -101,7 +99,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_param0 = 100;
+          struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              int _len_param__i0__peername0 = 1;
+          param[_i0].peername = (char *) malloc(_len_param__i0__peername0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_param__i0__peername0; _j0++) {
+            param[_i0].peername[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = X509_VERIFY_PARAM_get0_peername(param);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_param0; _aux++) {
+          free(param[_aux].peername);
+          }
+          free(param);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_param0 = 1;
+          struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              int _len_param__i0__peername0 = 1;
+          param[_i0].peername = (char *) malloc(_len_param__i0__peername0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_param__i0__peername0; _j0++) {
+            param[_i0].peername[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = X509_VERIFY_PARAM_get0_peername(param);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_param0; _aux++) {
+          free(param[_aux].peername);
+          }
+          free(param);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int is_index_unborn(struct index_state *istate)
 	return (!istate->cache_nr && !istate->timestamp.sec);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_istate0 = 1;
+          int _len_istate0 = 65025;
           struct index_state * istate = (struct index_state *) malloc(_len_istate0*sizeof(struct index_state));
           for(int _i0 = 0; _i0 < _len_istate0; _i0++) {
-            istate[_i0].timestamp.sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+              istate[_i0].timestamp.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_index_unborn(istate);
           printf("%d\n", benchRet); 
           free(istate);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_istate0 = 100;
+          struct index_state * istate = (struct index_state *) malloc(_len_istate0*sizeof(struct index_state));
+          for(int _i0 = 0; _i0 < _len_istate0; _i0++) {
+              istate[_i0].timestamp.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_index_unborn(istate);
+          printf("%d\n", benchRet); 
+          free(istate);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_istate0 = 1;
+          struct index_state * istate = (struct index_state *) malloc(_len_istate0*sizeof(struct index_state));
+          for(int _i0 = 0; _i0 < _len_istate0; _i0++) {
+              istate[_i0].timestamp.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          istate[_i0].cache_nr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_index_unborn(istate);
+          printf("%d\n", benchRet); 
+          free(istate);
+        
+        break;
+    }
     default:
         usage();
         break;

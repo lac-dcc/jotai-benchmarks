@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int bcm_kona_wdt_set_timeout(struct watchdog_device
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int t = 100;
+        
           int _len_wdog0 = 1;
           struct watchdog_device * wdog = (struct watchdog_device *) malloc(_len_wdog0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdog0; _i0++) {
-            wdog[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdog[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bcm_kona_wdt_set_timeout(wdog,t);
+          printf("%d\n", benchRet); 
+          free(wdog);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int t = 255;
+        
+          int _len_wdog0 = 65025;
+          struct watchdog_device * wdog = (struct watchdog_device *) malloc(_len_wdog0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdog0; _i0++) {
+              wdog[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bcm_kona_wdt_set_timeout(wdog,t);
           printf("%d\n", benchRet); 
           free(wdog);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int t = 10;
+        
           int _len_wdog0 = 100;
           struct watchdog_device * wdog = (struct watchdog_device *) malloc(_len_wdog0*sizeof(struct watchdog_device));
           for(int _i0 = 0; _i0 < _len_wdog0; _i0++) {
-            wdog[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdog[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bcm_kona_wdt_set_timeout(wdog,t);
           printf("%d\n", benchRet); 
           free(wdog);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wdog0 = 1;
+          struct watchdog_device * wdog = (struct watchdog_device *) malloc(_len_wdog0*sizeof(struct watchdog_device));
+          for(int _i0 = 0; _i0 < _len_wdog0; _i0++) {
+              wdog[_i0].timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bcm_kona_wdt_set_timeout(wdog,t);
+          printf("%d\n", benchRet); 
+          free(wdog);
+        
+        break;
+    }
     default:
         usage();
         break;

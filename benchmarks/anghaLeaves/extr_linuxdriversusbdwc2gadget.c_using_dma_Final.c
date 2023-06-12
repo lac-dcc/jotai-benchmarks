@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool using_dma(struct dwc2_hsotg *hsotg)
 	return hsotg->params.g_dma;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hsotg0 = 1;
+          int _len_hsotg0 = 65025;
           struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
           for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
-            hsotg[_i0].params.g_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              hsotg[_i0].params.g_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = using_dma(hsotg);
           printf("%d\n", benchRet); 
           free(hsotg);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_hsotg0 = 100;
           struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
           for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
-            hsotg[_i0].params.g_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              hsotg[_i0].params.g_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = using_dma(hsotg);
           printf("%d\n", benchRet); 
           free(hsotg);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hsotg0 = 1;
+          struct dwc2_hsotg * hsotg = (struct dwc2_hsotg *) malloc(_len_hsotg0*sizeof(struct dwc2_hsotg));
+          for(int _i0 = 0; _i0 < _len_hsotg0; _i0++) {
+              hsotg[_i0].params.g_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = using_dma(hsotg);
+          printf("%d\n", benchRet); 
+          free(hsotg);
+        
+        break;
+    }
     default:
         usage();
         break;

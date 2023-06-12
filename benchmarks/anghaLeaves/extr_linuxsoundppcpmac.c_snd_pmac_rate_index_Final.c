@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ unsigned int snd_pmac_rate_index(struct snd_pmac *chip, struct pmac_stream *rec,
 	return found;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +88,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned int rate = 100;
+        
           int _len_chip0 = 1;
           struct snd_pmac * chip = (struct snd_pmac *) malloc(_len_chip0*sizeof(struct snd_pmac));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
@@ -103,13 +124,191 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_chip__i0__freq_table0; _j0++) {
             chip[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        chip[_i0].num_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].num_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rec0 = 1;
           struct pmac_stream * rec = (struct pmac_stream *) malloc(_len_rec0*sizeof(struct pmac_stream));
           for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
-            rec[_i0].cur_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              rec[_i0].cur_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = snd_pmac_rate_index(chip,rec,rate);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].freq_table);
+          }
+          free(chip);
+          free(rec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int rate = 255;
+        
+          int _len_chip0 = 65025;
+          struct snd_pmac * chip = (struct snd_pmac *) malloc(_len_chip0*sizeof(struct snd_pmac));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__freq_table0 = 1;
+          chip[_i0].freq_table = (unsigned int *) malloc(_len_chip__i0__freq_table0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__freq_table0; _j0++) {
+            chip[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          chip[_i0].num_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rec0 = 65025;
+          struct pmac_stream * rec = (struct pmac_stream *) malloc(_len_rec0*sizeof(struct pmac_stream));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].cur_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = snd_pmac_rate_index(chip,rec,rate);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].freq_table);
+          }
+          free(chip);
+          free(rec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int rate = 10;
+        
+          int _len_chip0 = 100;
+          struct snd_pmac * chip = (struct snd_pmac *) malloc(_len_chip0*sizeof(struct snd_pmac));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__freq_table0 = 1;
+          chip[_i0].freq_table = (unsigned int *) malloc(_len_chip__i0__freq_table0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__freq_table0; _j0++) {
+            chip[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          chip[_i0].num_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rec0 = 100;
+          struct pmac_stream * rec = (struct pmac_stream *) malloc(_len_rec0*sizeof(struct pmac_stream));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].cur_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = snd_pmac_rate_index(chip,rec,rate);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].freq_table);
+          }
+          free(chip);
+          free(rec);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          unsigned int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct snd_pmac * chip = (struct snd_pmac *) malloc(_len_chip0*sizeof(struct snd_pmac));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__freq_table0 = 1;
+          chip[_i0].freq_table = (unsigned int *) malloc(_len_chip__i0__freq_table0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__freq_table0; _j0++) {
+            chip[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          chip[_i0].num_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rec0 = 1;
+          struct pmac_stream * rec = (struct pmac_stream *) malloc(_len_rec0*sizeof(struct pmac_stream));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].cur_freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = snd_pmac_rate_index(chip,rec,rate);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_chip0; _aux++) {

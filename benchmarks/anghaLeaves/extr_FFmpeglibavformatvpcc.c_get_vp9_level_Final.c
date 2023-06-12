@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -106,12 +108,6 @@ __attribute__((used)) static int get_vp9_level(AVCodecParameters *par, AVRationa
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,21 +120,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_par0 = 65025;
+          struct TYPE_6__ * par = (struct TYPE_6__ *) malloc(_len_par0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frame_rate0 = 65025;
+          struct TYPE_5__ * frame_rate = (struct TYPE_5__ *) malloc(_len_frame_rate0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_frame_rate0; _i0++) {
+              frame_rate[_i0].den = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame_rate[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_vp9_level(par,frame_rate);
+          printf("%d\n", benchRet); 
+          free(par);
+          free(frame_rate);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_par0 = 100;
+          struct TYPE_6__ * par = (struct TYPE_6__ *) malloc(_len_par0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frame_rate0 = 100;
+          struct TYPE_5__ * frame_rate = (struct TYPE_5__ *) malloc(_len_frame_rate0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_frame_rate0; _i0++) {
+              frame_rate[_i0].den = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame_rate[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_vp9_level(par,frame_rate);
+          printf("%d\n", benchRet); 
+          free(par);
+          free(frame_rate);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 26
+          // dynamic_instructions_Os : 26
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           int _len_par0 = 1;
           struct TYPE_6__ * par = (struct TYPE_6__ *) malloc(_len_par0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_frame_rate0 = 1;
           struct TYPE_5__ * frame_rate = (struct TYPE_5__ *) malloc(_len_frame_rate0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_frame_rate0; _i0++) {
-            frame_rate[_i0].den = ((-2 * (next_i()%2)) + 1) * next_i();
-        frame_rate[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+              frame_rate[_i0].den = ((-2 * (next_i()%2)) + 1) * next_i();
+          frame_rate[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_vp9_level(par,frame_rate);
           printf("%d\n", benchRet); 
           free(par);

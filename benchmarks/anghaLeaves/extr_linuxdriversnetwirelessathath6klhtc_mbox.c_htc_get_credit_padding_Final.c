@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static int htc_get_credit_padding(unsigned int cred_sz, in
 	return cred_pad;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,20 +102,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int cred_sz = 100;
+        
           int _len_len0 = 1;
           int * len = (int *) malloc(_len_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_len0; _i0++) {
             len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ep0 = 1;
           struct htc_endpoint * ep = (struct htc_endpoint *) malloc(_len_ep0*sizeof(struct htc_endpoint));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].conn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].conn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = htc_get_credit_padding(cred_sz,len,ep);
+          printf("%d\n", benchRet); 
+          free(len);
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int cred_sz = 255;
+        
+          int _len_len0 = 65025;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ep0 = 65025;
+          struct htc_endpoint * ep = (struct htc_endpoint *) malloc(_len_ep0*sizeof(struct htc_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].conn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = htc_get_credit_padding(cred_sz,len,ep);
+          printf("%d\n", benchRet); 
+          free(len);
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int cred_sz = 10;
+        
+          int _len_len0 = 100;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ep0 = 100;
+          struct htc_endpoint * ep = (struct htc_endpoint *) malloc(_len_ep0*sizeof(struct htc_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].conn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = htc_get_credit_padding(cred_sz,len,ep);
+          printf("%d\n", benchRet); 
+          free(len);
+          free(ep);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int cred_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_len0 = 1;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ep0 = 1;
+          struct htc_endpoint * ep = (struct htc_endpoint *) malloc(_len_ep0*sizeof(struct htc_endpoint));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].conn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = htc_get_credit_padding(cred_sz,len,ep);
           printf("%d\n", benchRet); 
           free(len);

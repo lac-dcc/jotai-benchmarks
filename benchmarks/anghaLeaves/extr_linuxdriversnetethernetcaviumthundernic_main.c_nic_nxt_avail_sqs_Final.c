@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int nic_nxt_avail_sqs(struct nicpf *nic)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +83,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_nic0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_nic0 = 65025;
           struct nicpf * nic = (struct nicpf *) malloc(_len_nic0*sizeof(struct nicpf));
           for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
-            nic[_i0].num_sqs_en = ((-2 * (next_i()%2)) + 1) * next_i();
+              nic[_i0].num_sqs_en = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_nic__i0__sqs_used0 = 1;
           nic[_i0].sqs_used = (int *) malloc(_len_nic__i0__sqs_used0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_nic__i0__sqs_used0; _j0++) {
             nic[_i0].sqs_used[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        nic[_i0].num_vf_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          nic[_i0].num_vf_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nic_nxt_avail_sqs(nic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nic0; _aux++) {
+          free(nic[_aux].sqs_used);
+          }
+          free(nic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_nic0 = 100;
+          struct nicpf * nic = (struct nicpf *) malloc(_len_nic0*sizeof(struct nicpf));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              nic[_i0].num_sqs_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nic__i0__sqs_used0 = 1;
+          nic[_i0].sqs_used = (int *) malloc(_len_nic__i0__sqs_used0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nic__i0__sqs_used0; _j0++) {
+            nic[_i0].sqs_used[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          nic[_i0].num_vf_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nic_nxt_avail_sqs(nic);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_nic0; _aux++) {
+          free(nic[_aux].sqs_used);
+          }
+          free(nic);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_nic0 = 1;
+          struct nicpf * nic = (struct nicpf *) malloc(_len_nic0*sizeof(struct nicpf));
+          for(int _i0 = 0; _i0 < _len_nic0; _i0++) {
+              nic[_i0].num_sqs_en = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_nic__i0__sqs_used0 = 1;
+          nic[_i0].sqs_used = (int *) malloc(_len_nic__i0__sqs_used0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_nic__i0__sqs_used0; _j0++) {
+            nic[_i0].sqs_used[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          nic[_i0].num_vf_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nic_nxt_avail_sqs(nic);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_nic0; _aux++) {

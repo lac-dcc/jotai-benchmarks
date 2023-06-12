@@ -66,12 +66,6 @@ u32 bnx2x_dmae_opcode_add_comp(u32 opcode, u8 comp_type)
 			   DMAE_CMD_C_ENABLE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opcode = 100;
+        
           int comp_type = 100;
+        
           int benchRet = bnx2x_dmae_opcode_add_comp(opcode,comp_type);
           printf("%d\n", benchRet); 
         
@@ -98,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int opcode = 255;
+        
           int comp_type = 255;
+        
           int benchRet = bnx2x_dmae_opcode_add_comp(opcode,comp_type);
           printf("%d\n", benchRet); 
         
@@ -108,13 +106,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int opcode = 10;
+        
           int comp_type = 10;
+        
           int benchRet = bnx2x_dmae_opcode_add_comp(opcode,comp_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

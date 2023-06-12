@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned short limit(const unsigned short v, const 
 	return (v > u) ? u : v;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const unsigned short v = 100;
+        
           const unsigned short u = 100;
+        
           unsigned short benchRet = limit(v,u);
           printf("%hu\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const unsigned short v = 255;
+        
           const unsigned short u = 255;
+        
           unsigned short benchRet = limit(v,u);
           printf("%hu\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const unsigned short v = 10;
+        
           const unsigned short u = 10;
+        
           unsigned short benchRet = limit(v,u);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const unsigned short v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const unsigned short u = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short benchRet = limit(v,u);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

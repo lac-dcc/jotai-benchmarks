@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +109,6 @@ __attribute__((used)) static inline void get_link_speed_and_width(int speed, u8 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,23 +125,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int speed = 100;
+        
           int _len_ib_speed0 = 1;
           int * ib_speed = (int *) malloc(_len_ib_speed0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ib_speed0; _i0++) {
             ib_speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ib_width0 = 1;
           int * ib_width = (int *) malloc(_len_ib_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ib_width0; _i0++) {
             ib_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           get_link_speed_and_width(speed,ib_speed,ib_width);
           free(ib_speed);
           free(ib_width);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int speed = 255;
+        
+          int _len_ib_speed0 = 65025;
+          int * ib_speed = (int *) malloc(_len_ib_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ib_speed0; _i0++) {
+            ib_speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ib_width0 = 65025;
+          int * ib_width = (int *) malloc(_len_ib_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ib_width0; _i0++) {
+            ib_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_link_speed_and_width(speed,ib_speed,ib_width);
+          free(ib_speed);
+          free(ib_width);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int speed = 10;
+        
+          int _len_ib_speed0 = 100;
+          int * ib_speed = (int *) malloc(_len_ib_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ib_speed0; _i0++) {
+            ib_speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ib_width0 = 100;
+          int * ib_width = (int *) malloc(_len_ib_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ib_width0; _i0++) {
+            ib_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_link_speed_and_width(speed,ib_speed,ib_width);
+          free(ib_speed);
+          free(ib_width);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ib_speed0 = 1;
+          int * ib_speed = (int *) malloc(_len_ib_speed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ib_speed0; _i0++) {
+            ib_speed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ib_width0 = 1;
+          int * ib_width = (int *) malloc(_len_ib_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ib_width0; _i0++) {
+            ib_width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_link_speed_and_width(speed,ib_speed,ib_width);
+          free(ib_speed);
+          free(ib_width);
+        
+        break;
+    }
     default:
         usage();
         break;

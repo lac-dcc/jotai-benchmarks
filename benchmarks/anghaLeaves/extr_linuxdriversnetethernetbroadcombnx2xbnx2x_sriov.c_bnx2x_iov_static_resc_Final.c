@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ bnx2x_iov_static_resc(struct bnx2x *bp, struct bnx2x_virtf *vf)
 	resc->num_sbs = vf->sb_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,32 +92,96 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          int _len_bp0 = 65025;
           struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_vf0 = 1;
+        
+          int _len_vf0 = 65025;
           struct bnx2x_virtf * vf = (struct bnx2x_virtf *) malloc(_len_vf0*sizeof(struct bnx2x_virtf));
           for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
-            vf[_i0].sb_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        vf[_i0].alloc_resc.num_sbs = ((-2 * (next_i()%2)) + 1) * next_i();
-        vf[_i0].alloc_resc.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
-        vf[_i0].alloc_resc.num_vlan_filters = ((-2 * (next_i()%2)) + 1) * next_i();
-        vf[_i0].alloc_resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
-        vf[_i0].alloc_resc.num_txqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        vf[_i0].alloc_resc.num_rxqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vf[_i0].sb_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_sbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_vlan_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_txqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_rxqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           bnx2x_iov_static_resc(bp,vf);
           free(bp);
           free(vf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bp0 = 100;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vf0 = 100;
+          struct bnx2x_virtf * vf = (struct bnx2x_virtf *) malloc(_len_vf0*sizeof(struct bnx2x_virtf));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              vf[_i0].sb_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_sbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_vlan_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_txqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_rxqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          bnx2x_iov_static_resc(bp,vf);
+          free(bp);
+          free(vf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bp0 = 1;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vf0 = 1;
+          struct bnx2x_virtf * vf = (struct bnx2x_virtf *) malloc(_len_vf0*sizeof(struct bnx2x_virtf));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              vf[_i0].sb_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_sbs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_vlan_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_txqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].alloc_resc.num_rxqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          bnx2x_iov_static_resc(bp,vf);
+          free(bp);
+          free(vf);
+        
+        break;
+    }
     default:
         usage();
         break;

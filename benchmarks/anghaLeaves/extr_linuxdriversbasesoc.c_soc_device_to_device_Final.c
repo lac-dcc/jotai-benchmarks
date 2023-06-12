@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ struct device *soc_device_to_device(struct soc_device *soc_dev)
 	return &soc_dev->dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_soc_dev0 = 1;
+          int _len_soc_dev0 = 65025;
           struct soc_device * soc_dev = (struct soc_device *) malloc(_len_soc_dev0*sizeof(struct soc_device));
           for(int _i0 = 0; _i0 < _len_soc_dev0; _i0++) {
-            soc_dev[_i0].dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              soc_dev[_i0].dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct device * benchRet = soc_device_to_device(soc_dev);
           printf("%d\n", (*benchRet).dummy);
           free(soc_dev);
@@ -100,15 +98,34 @@ int main(int argc, char *argv[]) {
           int _len_soc_dev0 = 100;
           struct soc_device * soc_dev = (struct soc_device *) malloc(_len_soc_dev0*sizeof(struct soc_device));
           for(int _i0 = 0; _i0 < _len_soc_dev0; _i0++) {
-            soc_dev[_i0].dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              soc_dev[_i0].dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct device * benchRet = soc_device_to_device(soc_dev);
           printf("%d\n", (*benchRet).dummy);
           free(soc_dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_soc_dev0 = 1;
+          struct soc_device * soc_dev = (struct soc_device *) malloc(_len_soc_dev0*sizeof(struct soc_device));
+          for(int _i0 = 0; _i0 < _len_soc_dev0; _i0++) {
+              soc_dev[_i0].dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct device * benchRet = soc_device_to_device(soc_dev);
+          printf("%d\n", (*benchRet).dummy);
+          free(soc_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

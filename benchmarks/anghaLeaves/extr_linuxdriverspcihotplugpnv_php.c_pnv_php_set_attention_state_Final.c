@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int pnv_php_set_attention_state(struct hotplug_slot
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,15 +85,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int state = 100;
+        
           int _len_slot0 = 1;
           struct hotplug_slot * slot = (struct hotplug_slot *) malloc(_len_slot0*sizeof(struct hotplug_slot));
           for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
               int _len_slot__i0__info0 = 1;
           slot[_i0].info = (struct TYPE_2__ *) malloc(_len_slot__i0__info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_slot__i0__info0; _j0++) {
-            slot[_i0].info->attention_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              slot[_i0].info->attention_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = pnv_php_set_attention_state(slot,state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_slot0; _aux++) {
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int state = 255;
+        
+          int _len_slot0 = 65025;
+          struct hotplug_slot * slot = (struct hotplug_slot *) malloc(_len_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__info0 = 1;
+          slot[_i0].info = (struct TYPE_2__ *) malloc(_len_slot__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_slot__i0__info0; _j0++) {
+              slot[_i0].info->attention_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pnv_php_set_attention_state(slot,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].info);
+          }
+          free(slot);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int state = 10;
+        
+          int _len_slot0 = 100;
+          struct hotplug_slot * slot = (struct hotplug_slot *) malloc(_len_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__info0 = 1;
+          slot[_i0].info = (struct TYPE_2__ *) malloc(_len_slot__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_slot__i0__info0; _j0++) {
+              slot[_i0].info->attention_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pnv_php_set_attention_state(slot,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].info);
+          }
+          free(slot);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_slot0 = 1;
+          struct hotplug_slot * slot = (struct hotplug_slot *) malloc(_len_slot0*sizeof(struct hotplug_slot));
+          for(int _i0 = 0; _i0 < _len_slot0; _i0++) {
+              int _len_slot__i0__info0 = 1;
+          slot[_i0].info = (struct TYPE_2__ *) malloc(_len_slot__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_slot__i0__info0; _j0++) {
+              slot[_i0].info->attention_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pnv_php_set_attention_state(slot,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_slot0; _aux++) {
+          free(slot[_aux].info);
+          }
+          free(slot);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ mlxsw_sp1_mr_tcam_protocol_region(struct mlxsw_sp1_mr_tcam *mr_tcam,
 	return &mr_tcam->tcam_regions[proto];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,49 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum mlxsw_sp_l3proto proto = 0;
-          int _len_mr_tcam0 = 1;
+        
+          int _len_mr_tcam0 = 65025;
           struct mlxsw_sp1_mr_tcam * mr_tcam = (struct mlxsw_sp1_mr_tcam *) malloc(_len_mr_tcam0*sizeof(struct mlxsw_sp1_mr_tcam));
           for(int _i0 = 0; _i0 < _len_mr_tcam0; _i0++) {
               int _len_mr_tcam__i0__tcam_regions0 = 1;
           mr_tcam[_i0].tcam_regions = (struct mlxsw_sp1_mr_tcam_region *) malloc(_len_mr_tcam__i0__tcam_regions0*sizeof(struct mlxsw_sp1_mr_tcam_region));
           for(int _j0 = 0; _j0 < _len_mr_tcam__i0__tcam_regions0; _j0++) {
-            mr_tcam[_i0].tcam_regions->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mr_tcam[_i0].tcam_regions->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct mlxsw_sp1_mr_tcam_region * benchRet = mlxsw_sp1_mr_tcam_protocol_region(mr_tcam,proto);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_mr_tcam0; _aux++) {
+          free(mr_tcam[_aux].tcam_regions);
+          }
+          free(mr_tcam);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          enum mlxsw_sp_l3proto proto = 0;
+        
+          int _len_mr_tcam0 = 100;
+          struct mlxsw_sp1_mr_tcam * mr_tcam = (struct mlxsw_sp1_mr_tcam *) malloc(_len_mr_tcam0*sizeof(struct mlxsw_sp1_mr_tcam));
+          for(int _i0 = 0; _i0 < _len_mr_tcam0; _i0++) {
+              int _len_mr_tcam__i0__tcam_regions0 = 1;
+          mr_tcam[_i0].tcam_regions = (struct mlxsw_sp1_mr_tcam_region *) malloc(_len_mr_tcam__i0__tcam_regions0*sizeof(struct mlxsw_sp1_mr_tcam_region));
+          for(int _j0 = 0; _j0 < _len_mr_tcam__i0__tcam_regions0; _j0++) {
+              mr_tcam[_i0].tcam_regions->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct mlxsw_sp1_mr_tcam_region * benchRet = mlxsw_sp1_mr_tcam_protocol_region(mr_tcam,proto);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_mr_tcam0; _aux++) {
@@ -106,18 +132,22 @@ int main(int argc, char *argv[]) {
         break;
     }
     // linked
-    case 1:
+    case 2:
     {
           enum mlxsw_sp_l3proto proto = 0;
+        
           int _len_mr_tcam0 = 1;
           struct mlxsw_sp1_mr_tcam * mr_tcam = (struct mlxsw_sp1_mr_tcam *) malloc(_len_mr_tcam0*sizeof(struct mlxsw_sp1_mr_tcam));
           for(int _i0 = 0; _i0 < _len_mr_tcam0; _i0++) {
               int _len_mr_tcam__i0__tcam_regions0 = 1;
           mr_tcam[_i0].tcam_regions = (struct mlxsw_sp1_mr_tcam_region *) malloc(_len_mr_tcam__i0__tcam_regions0*sizeof(struct mlxsw_sp1_mr_tcam_region));
           for(int _j0 = 0; _j0 < _len_mr_tcam__i0__tcam_regions0; _j0++) {
-            mr_tcam[_i0].tcam_regions->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mr_tcam[_i0].tcam_regions->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mlxsw_sp1_mr_tcam_region * benchRet = mlxsw_sp1_mr_tcam_protocol_region(mr_tcam,proto);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_mr_tcam0; _aux++) {
@@ -127,7 +157,32 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum mlxsw_sp_l3proto proto = 0;
+        
+          int _len_mr_tcam0 = 1;
+          struct mlxsw_sp1_mr_tcam * mr_tcam = (struct mlxsw_sp1_mr_tcam *) malloc(_len_mr_tcam0*sizeof(struct mlxsw_sp1_mr_tcam));
+          for(int _i0 = 0; _i0 < _len_mr_tcam0; _i0++) {
+              int _len_mr_tcam__i0__tcam_regions0 = 1;
+          mr_tcam[_i0].tcam_regions = (struct mlxsw_sp1_mr_tcam_region *) malloc(_len_mr_tcam__i0__tcam_regions0*sizeof(struct mlxsw_sp1_mr_tcam_region));
+          for(int _j0 = 0; _j0 < _len_mr_tcam__i0__tcam_regions0; _j0++) {
+              mr_tcam[_i0].tcam_regions->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlxsw_sp1_mr_tcam_region * benchRet = mlxsw_sp1_mr_tcam_protocol_region(mr_tcam,proto);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_mr_tcam0; _aux++) {
+          free(mr_tcam[_aux].tcam_regions);
+          }
+          free(mr_tcam);
+        
+        break;
+    }
     default:
         usage();
         break;

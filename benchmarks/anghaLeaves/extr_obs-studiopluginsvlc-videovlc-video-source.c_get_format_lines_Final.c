@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ __attribute__((used)) static inline unsigned get_format_lines(enum video_format 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,8 +107,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum video_format format = 0;
+        
           unsigned int height = 100;
+        
           unsigned long plane = 100;
+        
           unsigned int benchRet = get_format_lines(format,height,plane);
           printf("%u\n", benchRet); 
         
@@ -123,8 +121,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum video_format format = 0;
+        
           unsigned int height = 255;
+        
           unsigned long plane = 255;
+        
           unsigned int benchRet = get_format_lines(format,height,plane);
           printf("%u\n", benchRet); 
         
@@ -134,14 +135,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum video_format format = 0;
+        
           unsigned int height = 10;
+        
           unsigned long plane = 10;
+        
           unsigned int benchRet = get_format_lines(format,height,plane);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum video_format format = 0;
+        
+          unsigned int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long plane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_format_lines(format,height,plane);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

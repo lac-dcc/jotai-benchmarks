@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +95,6 @@ int uiprivClickCounterClick(uiprivClickCounter *c, int button, int x, int y, uin
 	return c->count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,27 +107,239 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
           int button = 100;
+        
           int x = 100;
+        
           int y = 100;
+        
           unsigned long time = 100;
+        
           unsigned long maxTime = 100;
+        
           int xdist = 100;
+        
           int ydist = 100;
+        
           int _len_c0 = 1;
           struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].curButton = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].rectX0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].rectY0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].rectX1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].rectY1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].prevTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].curButton = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].prevTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = uiprivClickCounterClick(c,button,x,y,time,maxTime,xdist,ydist);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int button = 255;
+        
+          int x = 255;
+        
+          int y = 255;
+        
+          unsigned long time = 255;
+        
+          unsigned long maxTime = 255;
+        
+          int xdist = 255;
+        
+          int ydist = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].curButton = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].prevTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = uiprivClickCounterClick(c,button,x,y,time,maxTime,xdist,ydist);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 73
+          // dynamic_instructions_O0 : 73
+          // ------------------------------- 
+          // static_instructions_O1 : 39
+          // dynamic_instructions_O1 : 39
+          // ------------------------------- 
+          // static_instructions_O2 : 39
+          // dynamic_instructions_O2 : 39
+          // ------------------------------- 
+          // static_instructions_O3 : 39
+          // dynamic_instructions_O3 : 39
+          // ------------------------------- 
+          // static_instructions_Ofast : 39
+          // dynamic_instructions_Ofast : 39
+          // ------------------------------- 
+          // static_instructions_Os : 39
+          // dynamic_instructions_Os : 39
+          // ------------------------------- 
+          // static_instructions_Oz : 38
+          // dynamic_instructions_Oz : 38
+          // ------------------------------- 
+
+          int button = 10;
+        
+          int x = 10;
+        
+          int y = 10;
+        
+          unsigned long time = 10;
+        
+          unsigned long maxTime = 10;
+        
+          int xdist = 10;
+        
+          int ydist = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].curButton = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].prevTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = uiprivClickCounterClick(c,button,x,y,time,maxTime,xdist,ydist);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 69
+          // dynamic_instructions_O0 : 69
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 40
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 40
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 40
+          // ------------------------------- 
+          // static_instructions_Os : 40
+          // dynamic_instructions_Os : 40
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int button = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long maxTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int xdist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ydist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].curButton = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectX1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].rectY1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].prevTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = uiprivClickCounterClick(c,button,x,y,time,maxTime,xdist,ydist);
           printf("%d\n", benchRet); 
           free(c);

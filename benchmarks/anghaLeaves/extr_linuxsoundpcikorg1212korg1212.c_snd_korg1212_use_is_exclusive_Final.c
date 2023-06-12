@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline int snd_korg1212_use_is_exclusive(struct snd
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_korg12120 = 65025;
+          struct snd_korg1212 * korg1212 = (struct snd_korg1212 *) malloc(_len_korg12120*sizeof(struct snd_korg1212));
+          for(int _i0 = 0; _i0 < _len_korg12120; _i0++) {
+              korg1212[_i0].playback_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          korg1212[_i0].capture_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_korg1212_use_is_exclusive(korg1212);
+          printf("%d\n", benchRet); 
+          free(korg1212);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_korg12120 = 100;
+          struct snd_korg1212 * korg1212 = (struct snd_korg1212 *) malloc(_len_korg12120*sizeof(struct snd_korg1212));
+          for(int _i0 = 0; _i0 < _len_korg12120; _i0++) {
+              korg1212[_i0].playback_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          korg1212[_i0].capture_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_korg1212_use_is_exclusive(korg1212);
+          printf("%d\n", benchRet); 
+          free(korg1212);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_korg12120 = 1;
           struct snd_korg1212 * korg1212 = (struct snd_korg1212 *) malloc(_len_korg12120*sizeof(struct snd_korg1212));
           for(int _i0 = 0; _i0 < _len_korg12120; _i0++) {
-            korg1212[_i0].playback_pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        korg1212[_i0].capture_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+              korg1212[_i0].playback_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          korg1212[_i0].capture_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_korg1212_use_is_exclusive(korg1212);
           printf("%d\n", benchRet); 
           free(korg1212);

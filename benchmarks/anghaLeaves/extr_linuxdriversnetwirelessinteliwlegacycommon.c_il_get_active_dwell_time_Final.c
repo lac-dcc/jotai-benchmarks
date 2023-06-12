@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ il_get_active_dwell_time(struct il_priv *il, enum nl80211_band band,
 		    IL_ACTIVE_DWELL_FACTOR_24GHZ * (n_probes + 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,32 +90,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           enum nl80211_band band = 0;
+        
           int n_probes = 100;
+        
           int _len_il0 = 1;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
           for(int _i0 = 0; _i0 < _len_il0; _i0++) {
-            il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = il_get_active_dwell_time(il,band,n_probes);
           printf("%ld\n", benchRet); 
           free(il);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           enum nl80211_band band = 0;
+        
+          int n_probes = 255;
+        
+          int _len_il0 = 65025;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = il_get_active_dwell_time(il,band,n_probes);
+          printf("%ld\n", benchRet); 
+          free(il);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          enum nl80211_band band = 0;
+        
           int n_probes = 10;
+        
           int _len_il0 = 100;
           struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
           for(int _i0 = 0; _i0 < _len_il0; _i0++) {
-            il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = il_get_active_dwell_time(il,band,n_probes);
+          printf("%ld\n", benchRet); 
+          free(il);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          enum nl80211_band band = 0;
+        
+          int n_probes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_il0 = 1;
+          struct il_priv * il = (struct il_priv *) malloc(_len_il0*sizeof(struct il_priv));
+          for(int _i0 = 0; _i0 < _len_il0; _i0++) {
+              il[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = il_get_active_dwell_time(il,band,n_probes);
           printf("%ld\n", benchRet); 
           free(il);

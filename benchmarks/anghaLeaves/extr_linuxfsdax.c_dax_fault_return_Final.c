@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static vm_fault_t dax_fault_return(int error)
 	return VM_FAULT_SIGBUS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int error = 100;
+        
           int benchRet = dax_fault_return(error);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int error = 255;
+        
           int benchRet = dax_fault_return(error);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int error = 10;
+        
           int benchRet = dax_fault_return(error);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dax_fault_return(error);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

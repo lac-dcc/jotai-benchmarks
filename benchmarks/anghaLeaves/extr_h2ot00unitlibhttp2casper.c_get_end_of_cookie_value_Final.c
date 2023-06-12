@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static size_t get_end_of_cookie_value(char *cookie, size_t
     return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +76,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long cookie_len = 10;
-          int _len_cookie0 = 100;
+          unsigned long cookie_len = 255;
+        
+          int _len_cookie0 = 65025;
           char * cookie = (char *) malloc(_len_cookie0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
             cookie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = get_end_of_cookie_value(cookie,cookie_len);
           printf("%lu\n", benchRet); 
           free(cookie);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long cookie_len = 10;
+        
+          int _len_cookie0 = 100;
+          char * cookie = (char *) malloc(_len_cookie0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_cookie0; _i0++) {
+            cookie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = get_end_of_cookie_value(cookie,cookie_len);
+          printf("%lu\n", benchRet); 
+          free(cookie);
+        
+        break;
+    }
     default:
         usage();
         break;

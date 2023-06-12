@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ nv10_fb_tile_fini(struct nvkm_fb *fb, int i, struct nvkm_fb_tile *tile)
 	tile->zcomp = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,26 +84,114 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           int _len_fb0 = 1;
           struct nvkm_fb * fb = (struct nvkm_fb *) malloc(_len_fb0*sizeof(struct nvkm_fb));
           for(int _i0 = 0; _i0 < _len_fb0; _i0++) {
-            fb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              fb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tile0 = 1;
           struct nvkm_fb_tile * tile = (struct nvkm_fb_tile *) malloc(_len_tile0*sizeof(struct nvkm_fb_tile));
           for(int _i0 = 0; _i0 < _len_tile0; _i0++) {
-            tile[_i0].zcomp = ((-2 * (next_i()%2)) + 1) * next_i();
-        tile[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
-        tile[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        tile[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              tile[_i0].zcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nv10_fb_tile_fini(fb,i,tile);
           free(fb);
           free(tile);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int i = 255;
+        
+          int _len_fb0 = 65025;
+          struct nvkm_fb * fb = (struct nvkm_fb *) malloc(_len_fb0*sizeof(struct nvkm_fb));
+          for(int _i0 = 0; _i0 < _len_fb0; _i0++) {
+              fb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tile0 = 65025;
+          struct nvkm_fb_tile * tile = (struct nvkm_fb_tile *) malloc(_len_tile0*sizeof(struct nvkm_fb_tile));
+          for(int _i0 = 0; _i0 < _len_tile0; _i0++) {
+              tile[_i0].zcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nv10_fb_tile_fini(fb,i,tile);
+          free(fb);
+          free(tile);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int i = 10;
+        
+          int _len_fb0 = 100;
+          struct nvkm_fb * fb = (struct nvkm_fb *) malloc(_len_fb0*sizeof(struct nvkm_fb));
+          for(int _i0 = 0; _i0 < _len_fb0; _i0++) {
+              fb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tile0 = 100;
+          struct nvkm_fb_tile * tile = (struct nvkm_fb_tile *) malloc(_len_tile0*sizeof(struct nvkm_fb_tile));
+          for(int _i0 = 0; _i0 < _len_tile0; _i0++) {
+              tile[_i0].zcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nv10_fb_tile_fini(fb,i,tile);
+          free(fb);
+          free(tile);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fb0 = 1;
+          struct nvkm_fb * fb = (struct nvkm_fb *) malloc(_len_fb0*sizeof(struct nvkm_fb));
+          for(int _i0 = 0; _i0 < _len_fb0; _i0++) {
+              fb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tile0 = 1;
+          struct nvkm_fb_tile * tile = (struct nvkm_fb_tile *) malloc(_len_tile0*sizeof(struct nvkm_fb_tile));
+          for(int _i0 = 0; _i0 < _len_tile0; _i0++) {
+              tile[_i0].zcomp = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          tile[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nv10_fb_tile_fini(fb,i,tile);
+          free(fb);
+          free(tile);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int niu_n2_irq_init(struct niu *np, u8 *ldg_num_map
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +95,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_np0 = 65025;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ldg_num_map0 = 65025;
+          int * ldg_num_map = (int *) malloc(_len_ldg_num_map0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ldg_num_map0; _i0++) {
+            ldg_num_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = niu_n2_irq_init(np,ldg_num_map);
+          printf("%d\n", benchRet); 
+          free(np);
+          free(ldg_num_map);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_np0 = 100;
+          struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
+          for(int _i0 = 0; _i0 < _len_np0; _i0++) {
+              np[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ldg_num_map0 = 100;
+          int * ldg_num_map = (int *) malloc(_len_ldg_num_map0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ldg_num_map0; _i0++) {
+            ldg_num_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = niu_n2_irq_init(np,ldg_num_map);
+          printf("%d\n", benchRet); 
+          free(np);
+          free(ldg_num_map);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_np0 = 1;
           struct niu * np = (struct niu *) malloc(_len_np0*sizeof(struct niu));
           for(int _i0 = 0; _i0 < _len_np0; _i0++) {
-            np[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              np[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ldg_num_map0 = 1;
           int * ldg_num_map = (int *) malloc(_len_ldg_num_map0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ldg_num_map0; _i0++) {
             ldg_num_map[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = niu_n2_irq_init(np,ldg_num_map);
           printf("%d\n", benchRet); 
           free(np);

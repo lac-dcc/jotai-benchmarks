@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static bool handle_dead_notify (RDebug *dbg, exc_msg *msg)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dbg0 = 1;
+          int _len_dbg0 = 65025;
           struct TYPE_8__ * dbg = (struct TYPE_8__ *) malloc(_len_dbg0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
-            dbg[_i0].pid = ((-2 * (next_i()%2)) + 1) * next_i();
+              dbg[_i0].pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_msg0 = 1;
+        
+          int _len_msg0 = 65025;
           struct TYPE_7__ * msg = (struct TYPE_7__ *) malloc(_len_msg0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
-            msg[_i0].hdr.msgh_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              msg[_i0].hdr.msgh_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = handle_dead_notify(dbg,msg);
           printf("%d\n", benchRet); 
           free(dbg);
@@ -108,7 +109,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dbg0 = 100;
+          struct TYPE_8__ * dbg = (struct TYPE_8__ *) malloc(_len_dbg0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 100;
+          struct TYPE_7__ * msg = (struct TYPE_7__ *) malloc(_len_msg0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].hdr.msgh_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = handle_dead_notify(dbg,msg);
+          printf("%d\n", benchRet); 
+          free(dbg);
+          free(msg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dbg0 = 1;
+          struct TYPE_8__ * dbg = (struct TYPE_8__ *) malloc(_len_dbg0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 1;
+          struct TYPE_7__ * msg = (struct TYPE_7__ *) malloc(_len_msg0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].hdr.msgh_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = handle_dead_notify(dbg,msg);
+          printf("%d\n", benchRet); 
+          free(dbg);
+          free(msg);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int cxgbi_sock_is_established(struct cxgbi_s
 	return csk->state == CTP_ESTABLISHED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_csk0 = 1;
+          int _len_csk0 = 65025;
           struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
           for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cxgbi_sock_is_established(csk);
           printf("%d\n", benchRet); 
           free(csk);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_csk0 = 100;
           struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
           for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
-            csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cxgbi_sock_is_established(csk);
           printf("%d\n", benchRet); 
           free(csk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_csk0 = 1;
+          struct cxgbi_sock * csk = (struct cxgbi_sock *) malloc(_len_csk0*sizeof(struct cxgbi_sock));
+          for(int _i0 = 0; _i0 < _len_csk0; _i0++) {
+              csk[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cxgbi_sock_is_established(csk);
+          printf("%d\n", benchRet); 
+          free(csk);
+        
+        break;
+    }
     default:
         usage();
         break;

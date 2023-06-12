@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ u32 etnaviv_cmdbuf_get_va(struct etnaviv_cmdbuf *buf)
 	return buf->suballoc->iova + buf->suballoc_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_buf0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_buf0 = 65025;
           struct etnaviv_cmdbuf * buf = (struct etnaviv_cmdbuf *) malloc(_len_buf0*sizeof(struct etnaviv_cmdbuf));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].suballoc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].suballoc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_buf__i0__suballoc0 = 1;
           buf[_i0].suballoc = (struct TYPE_2__ *) malloc(_len_buf__i0__suballoc0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_buf__i0__suballoc0; _j0++) {
-            buf[_i0].suballoc->iova = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].suballoc->iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          long benchRet = etnaviv_cmdbuf_get_va(buf);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].suballoc);
+          }
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_buf0 = 100;
+          struct etnaviv_cmdbuf * buf = (struct etnaviv_cmdbuf *) malloc(_len_buf0*sizeof(struct etnaviv_cmdbuf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].suballoc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_buf__i0__suballoc0 = 1;
+          buf[_i0].suballoc = (struct TYPE_2__ *) malloc(_len_buf__i0__suballoc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_buf__i0__suballoc0; _j0++) {
+              buf[_i0].suballoc->iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = etnaviv_cmdbuf_get_va(buf);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_buf0; _aux++) {
+          free(buf[_aux].suballoc);
+          }
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_buf0 = 1;
+          struct etnaviv_cmdbuf * buf = (struct etnaviv_cmdbuf *) malloc(_len_buf0*sizeof(struct etnaviv_cmdbuf));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].suballoc_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_buf__i0__suballoc0 = 1;
+          buf[_i0].suballoc = (struct TYPE_2__ *) malloc(_len_buf__i0__suballoc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_buf__i0__suballoc0; _j0++) {
+              buf[_i0].suballoc->iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           long benchRet = etnaviv_cmdbuf_get_va(buf);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_buf0; _aux++) {

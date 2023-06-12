@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void jsmn_fill_token(jsmntok_t *token, jsmntype_t t
 	token->size = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +86,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int start = 100;
+        
           int end = 100;
+        
           int _len_token0 = 1;
           struct TYPE_3__ * token = (struct TYPE_3__ *) malloc(_len_token0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_token0; _i0++) {
-            token[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        token[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        token[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        token[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              token[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           jsmn_fill_token(token,type,start,end);
           free(token);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int start = 255;
+        
+          int end = 255;
+        
+          int _len_token0 = 65025;
+          struct TYPE_3__ * token = (struct TYPE_3__ *) malloc(_len_token0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_token0; _i0++) {
+              token[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jsmn_fill_token(token,type,start,end);
+          free(token);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int start = 10;
+        
+          int end = 10;
+        
+          int _len_token0 = 100;
+          struct TYPE_3__ * token = (struct TYPE_3__ *) malloc(_len_token0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_token0; _i0++) {
+              token[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jsmn_fill_token(token,type,start,end);
+          free(token);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_token0 = 1;
+          struct TYPE_3__ * token = (struct TYPE_3__ *) malloc(_len_token0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_token0; _i0++) {
+              token[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          token[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jsmn_fill_token(token,type,start,end);
+          free(token);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void set_toyota_desired_torque_last(int t){
   toyota_desired_torque_last = t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int t = 100;
+        
           set_toyota_desired_torque_last(t);
         
         break;
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int t = 255;
+        
           set_toyota_desired_torque_last(t);
         
         break;
@@ -99,11 +96,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int t = 10;
+        
           set_toyota_desired_torque_last(t);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          set_toyota_desired_torque_last(t);
+        
+        break;
+    }
     default:
         usage();
         break;

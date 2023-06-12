@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ unsigned bch15_5_encode(unsigned _x){
    (-(_x>>3&1)&0x23D6)^(-(_x>>4&1)&0x429B);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int _x = 100;
+        
           unsigned int benchRet = bch15_5_encode(_x);
           printf("%u\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int _x = 255;
+        
           unsigned int benchRet = bch15_5_encode(_x);
           printf("%u\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int _x = 10;
+        
           unsigned int benchRet = bch15_5_encode(_x);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int _x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = bch15_5_encode(_x);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

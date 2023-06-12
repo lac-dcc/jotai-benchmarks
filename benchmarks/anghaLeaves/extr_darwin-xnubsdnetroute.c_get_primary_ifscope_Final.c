@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ get_primary_ifscope(int af)
 	return (af == AF_INET ? primary_ifscope : primary6_ifscope);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int af = 100;
+        
           unsigned int benchRet = get_primary_ifscope(af);
           printf("%u\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int af = 255;
+        
           unsigned int benchRet = get_primary_ifscope(af);
           printf("%u\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int af = 10;
+        
           unsigned int benchRet = get_primary_ifscope(af);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int af = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_primary_ifscope(af);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

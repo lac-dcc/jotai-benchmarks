@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ mptcp_reset_itfinfo(struct mpt_itf_info *info)
 	info->has_nat64_conn = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +78,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          int _len_info0 = 65025;
           struct mpt_itf_info * info = (struct mpt_itf_info *) malloc(_len_info0*sizeof(struct mpt_itf_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].has_nat64_conn = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].has_v6_conn = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].has_v4_conn = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].has_nat64_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].has_v6_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].has_v4_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mptcp_reset_itfinfo(info);
           free(info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_info0 = 100;
+          struct mpt_itf_info * info = (struct mpt_itf_info *) malloc(_len_info0*sizeof(struct mpt_itf_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].has_nat64_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].has_v6_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].has_v4_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mptcp_reset_itfinfo(info);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_info0 = 1;
+          struct mpt_itf_info * info = (struct mpt_itf_info *) malloc(_len_info0*sizeof(struct mpt_itf_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].has_nat64_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].has_v6_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].has_v4_conn = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mptcp_reset_itfinfo(info);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

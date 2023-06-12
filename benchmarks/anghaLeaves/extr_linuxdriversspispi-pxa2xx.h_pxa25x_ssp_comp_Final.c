@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static inline int pxa25x_ssp_comp(struct driver_data *drv_
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,14 +84,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_drv_data0 = 1;
+          int _len_drv_data0 = 65025;
           struct driver_data * drv_data = (struct driver_data *) malloc(_len_drv_data0*sizeof(struct driver_data));
           for(int _i0 = 0; _i0 < _len_drv_data0; _i0++) {
-            drv_data[_i0].ssp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv_data[_i0].ssp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pxa25x_ssp_comp(drv_data);
           printf("%d\n", benchRet); 
           free(drv_data);
@@ -109,15 +106,32 @@ int main(int argc, char *argv[]) {
           int _len_drv_data0 = 100;
           struct driver_data * drv_data = (struct driver_data *) malloc(_len_drv_data0*sizeof(struct driver_data));
           for(int _i0 = 0; _i0 < _len_drv_data0; _i0++) {
-            drv_data[_i0].ssp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv_data[_i0].ssp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pxa25x_ssp_comp(drv_data);
           printf("%d\n", benchRet); 
           free(drv_data);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_drv_data0 = 1;
+          struct driver_data * drv_data = (struct driver_data *) malloc(_len_drv_data0*sizeof(struct driver_data));
+          for(int _i0 = 0; _i0 < _len_drv_data0; _i0++) {
+              drv_data[_i0].ssp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pxa25x_ssp_comp(drv_data);
+          printf("%d\n", benchRet); 
+          free(drv_data);
+        
+        break;
+    }
     default:
         usage();
         break;

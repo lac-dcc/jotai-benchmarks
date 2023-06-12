@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void mvpp2_rx_csum(struct mvpp2_port *port, u32 sta
 	skb->ip_summed = CHECKSUM_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +101,106 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int status = 100;
+        
           int _len_port0 = 1;
           struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
-        skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mvpp2_rx_csum(port,status,skb);
           free(port);
           free(skb);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int status = 255;
+        
+          int _len_port0 = 65025;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_rx_csum(port,status,skb);
+          free(port);
+          free(skb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int status = 10;
+        
+          int _len_port0 = 100;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_rx_csum(port,status,skb);
+          free(port);
+          free(skb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].ip_summed = ((-2 * (next_i()%2)) + 1) * next_i();
+          skb[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mvpp2_rx_csum(port,status,skb);
+          free(port);
+          free(skb);
+        
+        break;
+    }
     default:
         usage();
         break;

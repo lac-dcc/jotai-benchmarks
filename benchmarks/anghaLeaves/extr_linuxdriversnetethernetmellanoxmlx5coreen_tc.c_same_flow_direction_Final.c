@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static bool same_flow_direction(struct mlx5e_tc_flow *flow
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_flow0 = 1;
           struct mlx5e_tc_flow * flow = (struct mlx5e_tc_flow *) malloc(_len_flow0*sizeof(struct mlx5e_tc_flow));
           for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
-            flow[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              flow[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = same_flow_direction(flow,flags);
+          printf("%d\n", benchRet); 
+          free(flow);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_flow0 = 65025;
+          struct mlx5e_tc_flow * flow = (struct mlx5e_tc_flow *) malloc(_len_flow0*sizeof(struct mlx5e_tc_flow));
+          for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
+              flow[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = same_flow_direction(flow,flags);
           printf("%d\n", benchRet); 
           free(flow);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_flow0 = 100;
           struct mlx5e_tc_flow * flow = (struct mlx5e_tc_flow *) malloc(_len_flow0*sizeof(struct mlx5e_tc_flow));
           for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
-            flow[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              flow[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = same_flow_direction(flow,flags);
           printf("%d\n", benchRet); 
           free(flow);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_flow0 = 1;
+          struct mlx5e_tc_flow * flow = (struct mlx5e_tc_flow *) malloc(_len_flow0*sizeof(struct mlx5e_tc_flow));
+          for(int _i0 = 0; _i0 < _len_flow0; _i0++) {
+              flow[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = same_flow_direction(flow,flags);
+          printf("%d\n", benchRet); 
+          free(flow);
+        
+        break;
+    }
     default:
         usage();
         break;

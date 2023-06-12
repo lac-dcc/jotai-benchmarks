@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static void ipoib_set_dev_features(struct ipoib_dev_priv *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,25 +94,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct ipoib_dev_priv * priv = (struct ipoib_dev_priv *) malloc(_len_priv0*sizeof(struct ipoib_dev_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].hca_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].hca_caps = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_priv__i0__dev0 = 1;
           priv[_i0].dev = (struct TYPE_6__ *) malloc(_len_priv__i0__dev0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_priv__i0__dev0; _j0++) {
-            priv[_i0].dev->hw_features = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].dev->hw_features = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_priv__i0__ca0 = 1;
           priv[_i0].ca = (struct TYPE_5__ *) malloc(_len_priv__i0__ca0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_priv__i0__ca0; _j0++) {
-            priv[_i0].ca->attrs.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].ca->attrs.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           ipoib_set_dev_features(priv);
           for(int _aux = 0; _aux < _len_priv0; _aux++) {
           free(priv[_aux].dev);
@@ -128,7 +129,76 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct ipoib_dev_priv * priv = (struct ipoib_dev_priv *) malloc(_len_priv0*sizeof(struct ipoib_dev_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].hca_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__dev0 = 1;
+          priv[_i0].dev = (struct TYPE_6__ *) malloc(_len_priv__i0__dev0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__dev0; _j0++) {
+              priv[_i0].dev->hw_features = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_priv__i0__ca0 = 1;
+          priv[_i0].ca = (struct TYPE_5__ *) malloc(_len_priv__i0__ca0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ca0; _j0++) {
+              priv[_i0].ca->attrs.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          ipoib_set_dev_features(priv);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].dev);
+          }
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ca);
+          }
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct ipoib_dev_priv * priv = (struct ipoib_dev_priv *) malloc(_len_priv0*sizeof(struct ipoib_dev_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].hca_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__dev0 = 1;
+          priv[_i0].dev = (struct TYPE_6__ *) malloc(_len_priv__i0__dev0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__dev0; _j0++) {
+              priv[_i0].dev->hw_features = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_priv__i0__ca0 = 1;
+          priv[_i0].ca = (struct TYPE_5__ *) malloc(_len_priv__i0__ca0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ca0; _j0++) {
+              priv[_i0].ca->attrs.device_cap_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          ipoib_set_dev_features(priv);
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].dev);
+          }
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ca);
+          }
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

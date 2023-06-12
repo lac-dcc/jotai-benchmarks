@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static size_t calc_rx_xfer_size(u32 rx_size, u32 *tx_xfer_
 	return rx_xfer_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,13 +96,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long rx_size = 100;
+        
           unsigned long len = 100;
+        
           unsigned long data_max = 100;
+        
           int _len_tx_xfer_size0 = 1;
           unsigned long * tx_xfer_size = (unsigned long *) malloc(_len_tx_xfer_size0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_tx_xfer_size0; _i0++) {
             tx_xfer_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned long benchRet = calc_rx_xfer_size(rx_size,tx_xfer_size,len,data_max);
+          printf("%lu\n", benchRet); 
+          free(tx_xfer_size);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long rx_size = 255;
+        
+          unsigned long len = 255;
+        
+          unsigned long data_max = 255;
+        
+          int _len_tx_xfer_size0 = 65025;
+          unsigned long * tx_xfer_size = (unsigned long *) malloc(_len_tx_xfer_size0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tx_xfer_size0; _i0++) {
+            tx_xfer_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned long benchRet = calc_rx_xfer_size(rx_size,tx_xfer_size,len,data_max);
           printf("%lu\n", benchRet); 
           free(tx_xfer_size);
@@ -114,23 +135,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long rx_size = 10;
+        
           unsigned long len = 10;
+        
           unsigned long data_max = 10;
+        
           int _len_tx_xfer_size0 = 100;
           unsigned long * tx_xfer_size = (unsigned long *) malloc(_len_tx_xfer_size0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_tx_xfer_size0; _i0++) {
             tx_xfer_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = calc_rx_xfer_size(rx_size,tx_xfer_size,len,data_max);
           printf("%lu\n", benchRet); 
           free(tx_xfer_size);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long rx_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long data_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx_xfer_size0 = 1;
+          unsigned long * tx_xfer_size = (unsigned long *) malloc(_len_tx_xfer_size0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_tx_xfer_size0; _i0++) {
+            tx_xfer_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = calc_rx_xfer_size(rx_size,tx_xfer_size,len,data_max);
+          printf("%lu\n", benchRet); 
+          free(tx_xfer_size);
+        
+        break;
+    }
     default:
         usage();
         break;

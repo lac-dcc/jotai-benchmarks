@@ -62,12 +62,6 @@ __attribute__((used)) static inline unsigned int div_factor_to_div(unsigned int 
 	return 1 << (div_factor - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,12 +78,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int div_factor = 10;
+        
           unsigned int benchRet = div_factor_to_div(div_factor);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool intel_uc_fw_is_selected(struct intel_uc
 	return uc_fw->path != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_uc_fw0 = 65025;
+          struct intel_uc_fw * uc_fw = (struct intel_uc_fw *) malloc(_len_uc_fw0*sizeof(struct intel_uc_fw));
+          for(int _i0 = 0; _i0 < _len_uc_fw0; _i0++) {
+              int _len_uc_fw__i0__path0 = 1;
+          uc_fw[_i0].path = (int *) malloc(_len_uc_fw__i0__path0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_uc_fw__i0__path0; _j0++) {
+            uc_fw[_i0].path[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = intel_uc_fw_is_selected(uc_fw);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_uc_fw0; _aux++) {
+          free(uc_fw[_aux].path);
+          }
+          free(uc_fw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_uc_fw0 = 100;
+          struct intel_uc_fw * uc_fw = (struct intel_uc_fw *) malloc(_len_uc_fw0*sizeof(struct intel_uc_fw));
+          for(int _i0 = 0; _i0 < _len_uc_fw0; _i0++) {
+              int _len_uc_fw__i0__path0 = 1;
+          uc_fw[_i0].path = (int *) malloc(_len_uc_fw__i0__path0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_uc_fw__i0__path0; _j0++) {
+            uc_fw[_i0].path[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = intel_uc_fw_is_selected(uc_fw);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_uc_fw0; _aux++) {
+          free(uc_fw[_aux].path);
+          }
+          free(uc_fw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_uc_fw0 = 1;
           struct intel_uc_fw * uc_fw = (struct intel_uc_fw *) malloc(_len_uc_fw0*sizeof(struct intel_uc_fw));
           for(int _i0 = 0; _i0 < _len_uc_fw0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_uc_fw__i0__path0; _j0++) {
             uc_fw[_i0].path[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = intel_uc_fw_is_selected(uc_fw);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_uc_fw0; _aux++) {

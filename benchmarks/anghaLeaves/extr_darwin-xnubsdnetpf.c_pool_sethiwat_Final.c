@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ pool_sethiwat(struct pool *pp, int n)
 	pp->pool_hiwat = n;	/* Currently unused */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int _len_pp0 = 1;
           struct pool * pp = (struct pool *) malloc(_len_pp0*sizeof(struct pool));
           for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
-            pp[_i0].pool_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+              pp[_i0].pool_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pool_sethiwat(pp,n);
+          free(pp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int n = 255;
+        
+          int _len_pp0 = 65025;
+          struct pool * pp = (struct pool *) malloc(_len_pp0*sizeof(struct pool));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              pp[_i0].pool_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pool_sethiwat(pp,n);
           free(pp);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int n = 10;
+        
           int _len_pp0 = 100;
           struct pool * pp = (struct pool *) malloc(_len_pp0*sizeof(struct pool));
           for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
-            pp[_i0].pool_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+              pp[_i0].pool_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pool_sethiwat(pp,n);
           free(pp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pp0 = 1;
+          struct pool * pp = (struct pool *) malloc(_len_pp0*sizeof(struct pool));
+          for(int _i0 = 0; _i0 < _len_pp0; _i0++) {
+              pp[_i0].pool_hiwat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pool_sethiwat(pp,n);
+          free(pp);
+        
+        break;
+    }
     default:
         usage();
         break;

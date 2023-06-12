@@ -61,12 +61,6 @@ unsigned long key_to_hw_index(u32 key)
 	return (key << 24) | (key >> 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 100;
+        
           unsigned long benchRet = key_to_hw_index(key);
           printf("%lu\n", benchRet); 
         
@@ -92,12 +87,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int key = 10;
+        
           unsigned long benchRet = key_to_hw_index(key);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static inline int num_contig_ptes(unsigned long size, size
 	return contig_ptes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,11 +105,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long size = 100;
+        
           int _len_pgsize0 = 1;
           unsigned long * pgsize = (unsigned long *) malloc(_len_pgsize0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pgsize0; _i0++) {
             pgsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = num_contig_ptes(size,pgsize);
+          printf("%d\n", benchRet); 
+          free(pgsize);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long size = 255;
+        
+          int _len_pgsize0 = 65025;
+          unsigned long * pgsize = (unsigned long *) malloc(_len_pgsize0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pgsize0; _i0++) {
+            pgsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = num_contig_ptes(size,pgsize);
           printf("%d\n", benchRet); 
           free(pgsize);
@@ -121,21 +136,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long size = 10;
+        
           int _len_pgsize0 = 100;
           unsigned long * pgsize = (unsigned long *) malloc(_len_pgsize0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pgsize0; _i0++) {
             pgsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = num_contig_ptes(size,pgsize);
           printf("%d\n", benchRet); 
           free(pgsize);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pgsize0 = 1;
+          unsigned long * pgsize = (unsigned long *) malloc(_len_pgsize0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pgsize0; _i0++) {
+            pgsize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = num_contig_ptes(size,pgsize);
+          printf("%d\n", benchRet); 
+          free(pgsize);
+        
+        break;
+    }
     default:
         usage();
         break;

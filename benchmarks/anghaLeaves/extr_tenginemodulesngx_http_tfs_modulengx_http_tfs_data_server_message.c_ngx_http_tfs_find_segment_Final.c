@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ ngx_http_tfs_find_segment(uint32_t seg_count,
     return -start;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,23 +98,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int seg_count = 10;
-          long offset = 10;
-          int _len_seg_info0 = 100;
+          int seg_count = 255;
+        
+          long offset = 255;
+        
+          int _len_seg_info0 = 65025;
           struct TYPE_3__ * seg_info = (struct TYPE_3__ *) malloc(_len_seg_info0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_seg_info0; _i0++) {
-            seg_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              seg_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ngx_http_tfs_find_segment(seg_count,seg_info,offset);
           printf("%d\n", benchRet); 
           free(seg_info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int seg_count = 10;
+        
+          long offset = 10;
+        
+          int _len_seg_info0 = 100;
+          struct TYPE_3__ * seg_info = (struct TYPE_3__ *) malloc(_len_seg_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_seg_info0; _i0++) {
+              seg_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_tfs_find_segment(seg_count,seg_info,offset);
+          printf("%d\n", benchRet); 
+          free(seg_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int seg_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_seg_info0 = 1;
+          struct TYPE_3__ * seg_info = (struct TYPE_3__ *) malloc(_len_seg_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_seg_info0; _i0++) {
+              seg_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_tfs_find_segment(seg_count,seg_info,offset);
+          printf("%d\n", benchRet); 
+          free(seg_info);
+        
+        break;
+    }
     default:
         usage();
         break;

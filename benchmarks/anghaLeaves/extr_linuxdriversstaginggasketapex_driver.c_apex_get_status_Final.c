@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int apex_get_status(struct gasket_dev *gasket_dev)
 	return GASKET_STATUS_ALIVE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gasket_dev0 = 1;
+          int _len_gasket_dev0 = 65025;
           struct gasket_dev * gasket_dev = (struct gasket_dev *) malloc(_len_gasket_dev0*sizeof(struct gasket_dev));
           for(int _i0 = 0; _i0 < _len_gasket_dev0; _i0++) {
-            gasket_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gasket_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = apex_get_status(gasket_dev);
           printf("%d\n", benchRet); 
           free(gasket_dev);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_gasket_dev0 = 100;
           struct gasket_dev * gasket_dev = (struct gasket_dev *) malloc(_len_gasket_dev0*sizeof(struct gasket_dev));
           for(int _i0 = 0; _i0 < _len_gasket_dev0; _i0++) {
-            gasket_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gasket_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = apex_get_status(gasket_dev);
           printf("%d\n", benchRet); 
           free(gasket_dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_gasket_dev0 = 1;
+          struct gasket_dev * gasket_dev = (struct gasket_dev *) malloc(_len_gasket_dev0*sizeof(struct gasket_dev));
+          for(int _i0 = 0; _i0 < _len_gasket_dev0; _i0++) {
+              gasket_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = apex_get_status(gasket_dev);
+          printf("%d\n", benchRet); 
+          free(gasket_dev);
+        
+        break;
+    }
     default:
         usage();
         break;

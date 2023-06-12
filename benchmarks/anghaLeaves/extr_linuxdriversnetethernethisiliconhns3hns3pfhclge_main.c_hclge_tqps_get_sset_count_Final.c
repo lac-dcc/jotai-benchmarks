@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int hclge_tqps_get_sset_count(struct hnae3_handle *
 	return kinfo->num_tqps * (2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stringset = 100;
+        
           int _len_handle0 = 1;
           struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = hclge_tqps_get_sset_count(handle,stringset);
+          printf("%d\n", benchRet); 
+          free(handle);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int stringset = 255;
+        
+          int _len_handle0 = 65025;
+          struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = hclge_tqps_get_sset_count(handle,stringset);
           printf("%d\n", benchRet); 
           free(handle);
@@ -98,21 +117,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int stringset = 10;
+        
           int _len_handle0 = 100;
           struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
-            handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hclge_tqps_get_sset_count(handle,stringset);
           printf("%d\n", benchRet); 
           free(handle);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int stringset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_handle0 = 1;
+          struct hnae3_handle * handle = (struct hnae3_handle *) malloc(_len_handle0*sizeof(struct hnae3_handle));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+              handle[_i0].kinfo.num_tqps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hclge_tqps_get_sset_count(handle,stringset);
+          printf("%d\n", benchRet); 
+          free(handle);
+        
+        break;
+    }
     default:
         usage();
         break;

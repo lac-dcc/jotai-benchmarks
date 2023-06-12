@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void output_get_box(struct sway_output *output, struct wlr_box *box) {
 	box->height = output->height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,25 +77,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_output0 = 65025;
+          struct sway_output * output = (struct sway_output *) malloc(_len_output0*sizeof(struct sway_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_box0 = 65025;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          output_get_box(output,box);
+          free(output);
+          free(box);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_output0 = 100;
+          struct sway_output * output = (struct sway_output *) malloc(_len_output0*sizeof(struct sway_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_box0 = 100;
+          struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_box0; _i0++) {
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          output_get_box(output,box);
+          free(output);
+          free(box);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_output0 = 1;
           struct sway_output * output = (struct sway_output *) malloc(_len_output0*sizeof(struct sway_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
-            output[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
-        output[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].ly = ((-2 * (next_i()%2)) + 1) * next_i();
+          output[_i0].lx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_box0 = 1;
           struct wlr_box * box = (struct wlr_box *) malloc(_len_box0*sizeof(struct wlr_box));
           for(int _i0 = 0; _i0 < _len_box0; _i0++) {
-            box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+              box[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          box[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           output_get_box(output,box);
           free(output);
           free(box);

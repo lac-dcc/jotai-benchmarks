@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ __attribute__((used)) static void isif_config_defaults(struct vpfe_isif_device *
 	isif->isif_cfg.data_pack = ISIF_PACK_8BIT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,24 +109,156 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int _len_isif0 = 65025;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.data_pack = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.data_msb = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.cfa_pat = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          isif_config_defaults(isif);
+          free(isif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int _len_isif0 = 100;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.data_pack = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.data_msb = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.cfa_pat = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          isif_config_defaults(isif);
+          free(isif);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 33
+          // dynamic_instructions_O2 : 33
+          // ------------------------------- 
+          // static_instructions_O3 : 33
+          // dynamic_instructions_O3 : 33
+          // ------------------------------- 
+          // static_instructions_Ofast : 33
+          // dynamic_instructions_Ofast : 33
+          // ------------------------------- 
+          // static_instructions_Os : 33
+          // dynamic_instructions_Os : 33
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int _len_isif0 = 1;
           struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
           for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
-            isif[_i0].isif_cfg.data_pack = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.data_msb = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.cfa_pat = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              isif[_i0].isif_cfg.data_pack = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.data_msb = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.cfa_pat = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.ycbcr.buf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.frm_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           isif_config_defaults(isif);
           free(isif);
         

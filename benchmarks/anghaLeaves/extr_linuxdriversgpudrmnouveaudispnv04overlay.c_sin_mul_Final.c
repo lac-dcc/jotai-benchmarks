@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ sin_mul(int degrees, int factor)
 		(40500 - degrees * (180 - degrees));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int degrees = 100;
+        
           int factor = 100;
+        
           int benchRet = sin_mul(degrees,factor);
           printf("%d\n", benchRet); 
         
@@ -99,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int degrees = 255;
+        
           int factor = 255;
+        
           int benchRet = sin_mul(degrees,factor);
           printf("%d\n", benchRet); 
         
@@ -109,13 +108,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int degrees = 10;
+        
           int factor = 10;
+        
           int benchRet = sin_mul(degrees,factor);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int degrees = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int factor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sin_mul(degrees,factor);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

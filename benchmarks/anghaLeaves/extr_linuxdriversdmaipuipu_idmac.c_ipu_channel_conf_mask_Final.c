@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -85,12 +85,6 @@ __attribute__((used)) static uint32_t ipu_channel_conf_mask(enum ipu_channel cha
 	return mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,16 +97,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum ipu_channel channel = 0;
+        
           int benchRet = ipu_channel_conf_mask(channel);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

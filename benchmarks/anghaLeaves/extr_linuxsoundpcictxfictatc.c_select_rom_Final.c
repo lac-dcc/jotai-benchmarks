@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static int select_rom(unsigned int pitch)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pitch = 100;
+        
           int benchRet = select_rom(pitch);
           printf("%d\n", benchRet); 
         
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int pitch = 255;
+        
           int benchRet = select_rom(pitch);
           printf("%d\n", benchRet); 
         
@@ -116,12 +113,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int pitch = 10;
+        
           int benchRet = select_rom(pitch);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = select_rom(pitch);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

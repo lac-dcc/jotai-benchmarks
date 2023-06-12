@@ -68,12 +68,6 @@ __attribute__((used)) static inline zend_bool shift_left_overflows(zend_long n, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +84,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int s = 100;
+        
           int benchRet = shift_left_overflows(n,s);
           printf("%d\n", benchRet); 
         
@@ -100,7 +96,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int n = 255;
+        
           int s = 255;
+        
           int benchRet = shift_left_overflows(n,s);
           printf("%d\n", benchRet); 
         
@@ -110,13 +108,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int n = 10;
+        
           int s = 10;
+        
           int benchRet = shift_left_overflows(n,s);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

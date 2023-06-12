@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void brcmf_sdio_pad(struct brcmf_sdio *bus, u16 *pa
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,26 +84,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_bus0 = 65025;
+          struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].roundup = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].head_align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pad0 = 65025;
+          int * pad = (int *) malloc(_len_pad0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pad0; _i0++) {
+            pad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rdlen0 = 65025;
+          int * rdlen = (int *) malloc(_len_rdlen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdlen0; _i0++) {
+            rdlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          brcmf_sdio_pad(bus,pad,rdlen);
+          free(bus);
+          free(pad);
+          free(rdlen);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_bus0 = 100;
+          struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].roundup = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].head_align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pad0 = 100;
+          int * pad = (int *) malloc(_len_pad0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pad0; _i0++) {
+            pad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rdlen0 = 100;
+          int * rdlen = (int *) malloc(_len_rdlen0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rdlen0; _i0++) {
+            rdlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          brcmf_sdio_pad(bus,pad,rdlen);
+          free(bus);
+          free(pad);
+          free(rdlen);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_bus0 = 1;
           struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].roundup = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].head_align = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].roundup = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].head_align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pad0 = 1;
           int * pad = (int *) malloc(_len_pad0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pad0; _i0++) {
             pad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_rdlen0 = 1;
           int * rdlen = (int *) malloc(_len_rdlen0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rdlen0; _i0++) {
             rdlen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           brcmf_sdio_pad(bus,pad,rdlen);
           free(bus);
           free(pad);

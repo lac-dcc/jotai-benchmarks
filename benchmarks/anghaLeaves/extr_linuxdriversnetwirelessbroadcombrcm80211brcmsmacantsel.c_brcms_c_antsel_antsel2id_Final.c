@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ u8 brcms_c_antsel_antsel2id(struct antsel_info *asi, u16 antsel)
 	return antselid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,11 +98,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int antsel = 100;
+        
           int _len_asi0 = 1;
           struct antsel_info * asi = (struct antsel_info *) malloc(_len_asi0*sizeof(struct antsel_info));
           for(int _i0 = 0; _i0 < _len_asi0; _i0++) {
-            asi[_i0].antsel_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              asi[_i0].antsel_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = brcms_c_antsel_antsel2id(asi,antsel);
+          printf("%d\n", benchRet); 
+          free(asi);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int antsel = 255;
+        
+          int _len_asi0 = 65025;
+          struct antsel_info * asi = (struct antsel_info *) malloc(_len_asi0*sizeof(struct antsel_info));
+          for(int _i0 = 0; _i0 < _len_asi0; _i0++) {
+              asi[_i0].antsel_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = brcms_c_antsel_antsel2id(asi,antsel);
           printf("%d\n", benchRet); 
           free(asi);
@@ -114,21 +131,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int antsel = 10;
+        
           int _len_asi0 = 100;
           struct antsel_info * asi = (struct antsel_info *) malloc(_len_asi0*sizeof(struct antsel_info));
           for(int _i0 = 0; _i0 < _len_asi0; _i0++) {
-            asi[_i0].antsel_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              asi[_i0].antsel_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = brcms_c_antsel_antsel2id(asi,antsel);
           printf("%d\n", benchRet); 
           free(asi);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int antsel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_asi0 = 1;
+          struct antsel_info * asi = (struct antsel_info *) malloc(_len_asi0*sizeof(struct antsel_info));
+          for(int _i0 = 0; _i0 < _len_asi0; _i0++) {
+              asi[_i0].antsel_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = brcms_c_antsel_antsel2id(asi,antsel);
+          printf("%d\n", benchRet); 
+          free(asi);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void __atlx_vlan_mode(netdev_features_t features, u
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,31 +88,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int features = 100;
+        
           int _len_ctrl0 = 1;
           int * ctrl = (int *) malloc(_len_ctrl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
             ctrl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          __atlx_vlan_mode(features,ctrl);
+          free(ctrl);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int features = 255;
+        
+          int _len_ctrl0 = 65025;
+          int * ctrl = (int *) malloc(_len_ctrl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+            ctrl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           __atlx_vlan_mode(features,ctrl);
           free(ctrl);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int features = 10;
+        
           int _len_ctrl0 = 100;
           int * ctrl = (int *) malloc(_len_ctrl0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
             ctrl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           __atlx_vlan_mode(features,ctrl);
           free(ctrl);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctrl0 = 1;
+          int * ctrl = (int *) malloc(_len_ctrl0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+            ctrl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          __atlx_vlan_mode(features,ctrl);
+          free(ctrl);
+        
+        break;
+    }
     default:
         usage();
         break;

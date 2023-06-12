@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static void write_pts(uint8_t *q, int fourbits, int64_t pt
     *q++ = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +84,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int fourbits = 10;
-          int pts = 10;
-          int _len_q0 = 100;
+          int fourbits = 255;
+        
+          int pts = 255;
+        
+          int _len_q0 = 65025;
           int * q = (int *) malloc(_len_q0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
             q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           write_pts(q,fourbits,pts);
           free(q);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int fourbits = 10;
+        
+          int pts = 10;
+        
+          int _len_q0 = 100;
+          int * q = (int *) malloc(_len_q0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+            q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          write_pts(q,fourbits,pts);
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

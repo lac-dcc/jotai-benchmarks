@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ ramfuc_nuke(struct ramfuc *ram, struct ramfuc_reg *reg)
 	reg->force = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,26 +76,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ram0 = 1;
+          int _len_ram0 = 65025;
           struct ramfuc * ram = (struct ramfuc *) malloc(_len_ram0*sizeof(struct ramfuc));
           for(int _i0 = 0; _i0 < _len_ram0; _i0++) {
-            ram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_reg0 = 1;
+        
+          int _len_reg0 = 65025;
           struct ramfuc_reg * reg = (struct ramfuc_reg *) malloc(_len_reg0*sizeof(struct ramfuc_reg));
           for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
-            reg[_i0].force = ((-2 * (next_i()%2)) + 1) * next_i();
+              reg[_i0].force = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ramfuc_nuke(ram,reg);
           free(ram);
           free(reg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ram0 = 100;
+          struct ramfuc * ram = (struct ramfuc *) malloc(_len_ram0*sizeof(struct ramfuc));
+          for(int _i0 = 0; _i0 < _len_ram0; _i0++) {
+              ram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 100;
+          struct ramfuc_reg * reg = (struct ramfuc_reg *) malloc(_len_reg0*sizeof(struct ramfuc_reg));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].force = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ramfuc_nuke(ram,reg);
+          free(ram);
+          free(reg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ram0 = 1;
+          struct ramfuc * ram = (struct ramfuc *) malloc(_len_ram0*sizeof(struct ramfuc));
+          for(int _i0 = 0; _i0 < _len_ram0; _i0++) {
+              ram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_reg0 = 1;
+          struct ramfuc_reg * reg = (struct ramfuc_reg *) malloc(_len_reg0*sizeof(struct ramfuc_reg));
+          for(int _i0 = 0; _i0 < _len_reg0; _i0++) {
+              reg[_i0].force = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ramfuc_nuke(ram,reg);
+          free(ram);
+          free(reg);
+        
+        break;
+    }
     default:
         usage();
         break;

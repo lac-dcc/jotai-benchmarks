@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ int qlcnicvf_config_bridged_mode(struct qlcnic_adapter *adapter, u32 enable)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enable = 100;
+        
           int _len_adapter0 = 1;
           struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = qlcnicvf_config_bridged_mode(adapter,enable);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int enable = 255;
+        
+          int _len_adapter0 = 65025;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = qlcnicvf_config_bridged_mode(adapter,enable);
           printf("%d\n", benchRet); 
           free(adapter);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int enable = 10;
+        
           int _len_adapter0 = 100;
           struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = qlcnicvf_config_bridged_mode(adapter,enable);
           printf("%d\n", benchRet); 
           free(adapter);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = qlcnicvf_config_bridged_mode(adapter,enable);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

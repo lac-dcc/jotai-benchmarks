@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int hinic_hwdev_num_qps(struct hinic_hwdev *hwdev)
 	return nic_cap->num_qps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hwdev0 = 1;
+          int _len_hwdev0 = 65025;
           struct hinic_hwdev * hwdev = (struct hinic_hwdev *) malloc(_len_hwdev0*sizeof(struct hinic_hwdev));
           for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
-            hwdev[_i0].nic_cap.num_qps = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdev[_i0].nic_cap.num_qps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hinic_hwdev_num_qps(hwdev);
           printf("%d\n", benchRet); 
           free(hwdev);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_hwdev0 = 100;
           struct hinic_hwdev * hwdev = (struct hinic_hwdev *) malloc(_len_hwdev0*sizeof(struct hinic_hwdev));
           for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
-            hwdev[_i0].nic_cap.num_qps = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdev[_i0].nic_cap.num_qps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hinic_hwdev_num_qps(hwdev);
           printf("%d\n", benchRet); 
           free(hwdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hwdev0 = 1;
+          struct hinic_hwdev * hwdev = (struct hinic_hwdev *) malloc(_len_hwdev0*sizeof(struct hinic_hwdev));
+          for(int _i0 = 0; _i0 < _len_hwdev0; _i0++) {
+              hwdev[_i0].nic_cap.num_qps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hinic_hwdev_num_qps(hwdev);
+          printf("%d\n", benchRet); 
+          free(hwdev);
+        
+        break;
+    }
     default:
         usage();
         break;

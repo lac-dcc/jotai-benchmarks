@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static void arith2_rescale_interval(ArithCoder *c, int ran
         c->low += low;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +89,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int range = 100;
+        
           int low = 100;
+        
           int high = 100;
+        
           int n = 100;
+        
           int _len_c0 = 1;
           struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          arith2_rescale_interval(c,range,low,high,n);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int range = 255;
+        
+          int low = 255;
+        
+          int high = 255;
+        
+          int n = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          arith2_rescale_interval(c,range,low,high,n);
+          free(c);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int range = 10;
+        
+          int low = 10;
+        
+          int high = 10;
+        
+          int n = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_3__ * c = (struct TYPE_3__ *) malloc(_len_c0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           arith2_rescale_interval(c,range,low,high,n);
           free(c);
         

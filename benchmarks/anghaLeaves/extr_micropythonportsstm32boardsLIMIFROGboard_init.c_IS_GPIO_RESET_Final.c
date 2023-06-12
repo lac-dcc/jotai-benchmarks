@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static inline int  IS_GPIO_RESET(GPIO_TypeDef* GPIOx, uint
           return (bitstatus==GPIO_PIN_RESET);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,30 +91,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int GPIO_Pin = 100;
+        
           int _len_GPIOx0 = 1;
           struct TYPE_3__ * GPIOx = (struct TYPE_3__ *) malloc(_len_GPIOx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_GPIOx0; _i0++) {
-            GPIOx[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+              GPIOx[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = IS_GPIO_RESET(GPIOx,GPIO_Pin);
           printf("%d\n", benchRet); 
           free(GPIOx);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int GPIO_Pin = 255;
+        
+          int _len_GPIOx0 = 65025;
+          struct TYPE_3__ * GPIOx = (struct TYPE_3__ *) malloc(_len_GPIOx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_GPIOx0; _i0++) {
+              GPIOx[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = IS_GPIO_RESET(GPIOx,GPIO_Pin);
+          printf("%d\n", benchRet); 
+          free(GPIOx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int GPIO_Pin = 10;
+        
           int _len_GPIOx0 = 100;
           struct TYPE_3__ * GPIOx = (struct TYPE_3__ *) malloc(_len_GPIOx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_GPIOx0; _i0++) {
-            GPIOx[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+              GPIOx[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = IS_GPIO_RESET(GPIOx,GPIO_Pin);
+          printf("%d\n", benchRet); 
+          free(GPIOx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int GPIO_Pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_GPIOx0 = 1;
+          struct TYPE_3__ * GPIOx = (struct TYPE_3__ *) malloc(_len_GPIOx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_GPIOx0; _i0++) {
+              GPIOx[_i0].IDR = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = IS_GPIO_RESET(GPIOx,GPIO_Pin);
           printf("%d\n", benchRet); 
           free(GPIOx);

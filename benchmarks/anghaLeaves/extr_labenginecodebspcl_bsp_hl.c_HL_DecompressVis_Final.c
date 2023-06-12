@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ void HL_DecompressVis (byte *in, byte *decompressed)
 	} while (out - decompressed < row);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,26 +97,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_in0 = 1;
+          int _len_in0 = 65025;
           int * in = (int *) malloc(_len_in0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_in0; _i0++) {
             in[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_decompressed0 = 1;
+        
+          int _len_decompressed0 = 65025;
           int * decompressed = (int *) malloc(_len_decompressed0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_decompressed0; _i0++) {
             decompressed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           HL_DecompressVis(in,decompressed);
           free(in);
           free(decompressed);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_in0 = 100;
+          int * in = (int *) malloc(_len_in0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+            in[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_decompressed0 = 100;
+          int * decompressed = (int *) malloc(_len_decompressed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_decompressed0; _i0++) {
+            decompressed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          HL_DecompressVis(in,decompressed);
+          free(in);
+          free(decompressed);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_in0 = 1;
+          int * in = (int *) malloc(_len_in0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_in0; _i0++) {
+            in[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_decompressed0 = 1;
+          int * decompressed = (int *) malloc(_len_decompressed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_decompressed0; _i0++) {
+            decompressed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          HL_DecompressVis(in,decompressed);
+          free(in);
+          free(decompressed);
+        
+        break;
+    }
     default:
         usage();
         break;

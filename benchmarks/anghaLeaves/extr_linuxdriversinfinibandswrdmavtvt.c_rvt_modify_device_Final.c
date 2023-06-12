@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int rvt_modify_device(struct ib_device *device,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int device_modify_mask = 100;
+        
           int _len_device0 = 1;
           struct ib_device * device = (struct ib_device *) malloc(_len_device0*sizeof(struct ib_device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_device_modify0 = 1;
           struct ib_device_modify * device_modify = (struct ib_device_modify *) malloc(_len_device_modify0*sizeof(struct ib_device_modify));
           for(int _i0 = 0; _i0 < _len_device_modify0; _i0++) {
-            device_modify[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              device_modify[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rvt_modify_device(device,device_modify_mask,device_modify);
           printf("%d\n", benchRet); 
           free(device);
@@ -108,7 +110,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int device_modify_mask = 255;
+        
+          int _len_device0 = 65025;
+          struct ib_device * device = (struct ib_device *) malloc(_len_device0*sizeof(struct ib_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device_modify0 = 65025;
+          struct ib_device_modify * device_modify = (struct ib_device_modify *) malloc(_len_device_modify0*sizeof(struct ib_device_modify));
+          for(int _i0 = 0; _i0 < _len_device_modify0; _i0++) {
+              device_modify[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rvt_modify_device(device,device_modify_mask,device_modify);
+          printf("%d\n", benchRet); 
+          free(device);
+          free(device_modify);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int device_modify_mask = 10;
+        
+          int _len_device0 = 100;
+          struct ib_device * device = (struct ib_device *) malloc(_len_device0*sizeof(struct ib_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device_modify0 = 100;
+          struct ib_device_modify * device_modify = (struct ib_device_modify *) malloc(_len_device_modify0*sizeof(struct ib_device_modify));
+          for(int _i0 = 0; _i0 < _len_device_modify0; _i0++) {
+              device_modify[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rvt_modify_device(device,device_modify_mask,device_modify);
+          printf("%d\n", benchRet); 
+          free(device);
+          free(device_modify);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int device_modify_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_device0 = 1;
+          struct ib_device * device = (struct ib_device *) malloc(_len_device0*sizeof(struct ib_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_device_modify0 = 1;
+          struct ib_device_modify * device_modify = (struct ib_device_modify *) malloc(_len_device_modify0*sizeof(struct ib_device_modify));
+          for(int _i0 = 0; _i0 < _len_device_modify0; _i0++) {
+              device_modify[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rvt_modify_device(device,device_modify_mask,device_modify);
+          printf("%d\n", benchRet); 
+          free(device);
+          free(device_modify);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void unstripe_io_hints(struct dm_target *ti,
 	limits->chunk_sectors = uc->chunk_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ti0 = 65025;
+          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
+              int _len_ti__i0__private0 = 1;
+          ti[_i0].private = (struct unstripe_c *) malloc(_len_ti__i0__private0*sizeof(struct unstripe_c));
+          for(int _j0 = 0; _j0 < _len_ti__i0__private0; _j0++) {
+              ti[_i0].private->chunk_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_limits0 = 65025;
+          struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
+              limits[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unstripe_io_hints(ti,limits);
+          for(int _aux = 0; _aux < _len_ti0; _aux++) {
+          free(ti[_aux].private);
+          }
+          free(ti);
+          free(limits);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ti0 = 100;
+          struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
+              int _len_ti__i0__private0 = 1;
+          ti[_i0].private = (struct unstripe_c *) malloc(_len_ti__i0__private0*sizeof(struct unstripe_c));
+          for(int _j0 = 0; _j0 < _len_ti__i0__private0; _j0++) {
+              ti[_i0].private->chunk_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_limits0 = 100;
+          struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
+          for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
+              limits[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unstripe_io_hints(ti,limits);
+          for(int _aux = 0; _aux < _len_ti0; _aux++) {
+          free(ti[_aux].private);
+          }
+          free(ti);
+          free(limits);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_ti0 = 1;
           struct dm_target * ti = (struct dm_target *) malloc(_len_ti0*sizeof(struct dm_target));
           for(int _i0 = 0; _i0 < _len_ti0; _i0++) {
               int _len_ti__i0__private0 = 1;
           ti[_i0].private = (struct unstripe_c *) malloc(_len_ti__i0__private0*sizeof(struct unstripe_c));
           for(int _j0 = 0; _j0 < _len_ti__i0__private0; _j0++) {
-            ti[_i0].private->chunk_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              ti[_i0].private->chunk_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_limits0 = 1;
           struct queue_limits * limits = (struct queue_limits *) malloc(_len_limits0*sizeof(struct queue_limits));
           for(int _i0 = 0; _i0 < _len_limits0; _i0++) {
-            limits[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+              limits[_i0].chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unstripe_io_hints(ti,limits);
           for(int _aux = 0; _aux < _len_ti0; _aux++) {
           free(ti[_aux].private);

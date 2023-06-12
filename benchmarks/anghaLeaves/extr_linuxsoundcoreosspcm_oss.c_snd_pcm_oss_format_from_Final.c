@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -115,12 +116,6 @@ __attribute__((used)) static snd_pcm_format_t snd_pcm_oss_format_from(int format
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -137,6 +132,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int format = 100;
+        
           int benchRet = snd_pcm_oss_format_from(format);
           printf("%d\n", benchRet); 
         
@@ -146,6 +142,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int format = 255;
+        
           int benchRet = snd_pcm_oss_format_from(format);
           printf("%d\n", benchRet); 
         
@@ -155,12 +152,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int format = 10;
+        
           int benchRet = snd_pcm_oss_format_from(format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = snd_pcm_oss_format_from(format);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

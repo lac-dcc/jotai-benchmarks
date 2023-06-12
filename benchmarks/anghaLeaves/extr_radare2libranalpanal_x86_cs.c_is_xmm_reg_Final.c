@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -127,12 +127,6 @@ __attribute__((used)) static bool is_xmm_reg(cs_x86_op op) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -145,17 +139,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ op;
-        op.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          op.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_xmm_reg(op);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

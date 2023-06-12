@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ linebuf_reverse_index(LineBuf *self, index_type top, index_type bottom) {
     self->line_attrs[top] = old_attrs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,15 +87,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int top = 100;
+        
           int bottom = 100;
+        
           int _len_self0 = 1;
           struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].ynum = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].ynum = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_self__i0__line_map0 = 1;
           self[_i0].line_map = (int *) malloc(_len_self__i0__line_map0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_self__i0__line_map0; _j0++) {
@@ -109,7 +131,186 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_self__i0__line_attrs0; _j0++) {
             self[_i0].line_attrs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          linebuf_reverse_index(self,top,bottom);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].line_map);
+          }
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].line_attrs);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int top = 255;
+        
+          int bottom = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].ynum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_self__i0__line_map0 = 1;
+          self[_i0].line_map = (int *) malloc(_len_self__i0__line_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__line_map0; _j0++) {
+            self[_i0].line_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_self__i0__line_attrs0 = 1;
+          self[_i0].line_attrs = (int *) malloc(_len_self__i0__line_attrs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__line_attrs0; _j0++) {
+            self[_i0].line_attrs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          linebuf_reverse_index(self,top,bottom);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].line_map);
+          }
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].line_attrs);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int top = 10;
+        
+          int bottom = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].ynum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_self__i0__line_map0 = 1;
+          self[_i0].line_map = (int *) malloc(_len_self__i0__line_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__line_map0; _j0++) {
+            self[_i0].line_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_self__i0__line_attrs0 = 1;
+          self[_i0].line_attrs = (int *) malloc(_len_self__i0__line_attrs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__line_attrs0; _j0++) {
+            self[_i0].line_attrs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          linebuf_reverse_index(self,top,bottom);
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].line_map);
+          }
+          for(int _aux = 0; _aux < _len_self0; _aux++) {
+          free(self[_aux].line_attrs);
+          }
+          free(self);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_3__ * self = (struct TYPE_3__ *) malloc(_len_self0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].ynum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_self__i0__line_map0 = 1;
+          self[_i0].line_map = (int *) malloc(_len_self__i0__line_map0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__line_map0; _j0++) {
+            self[_i0].line_map[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_self__i0__line_attrs0 = 1;
+          self[_i0].line_attrs = (int *) malloc(_len_self__i0__line_attrs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_self__i0__line_attrs0; _j0++) {
+            self[_i0].line_attrs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           linebuf_reverse_index(self,top,bottom);
           for(int _aux = 0; _aux < _len_self0; _aux++) {
           free(self[_aux].line_map);

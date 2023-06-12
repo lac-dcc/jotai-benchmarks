@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ analogix_dp_get_adjust_request_voltage(u8 adjust_request[2], int lane)
 	return (link_value >> shift) & 0x3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,22 +77,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int lane = 10;
-          int _len_adjust_request0 = 100;
+          int lane = 255;
+        
+          int _len_adjust_request0 = 65025;
           int * adjust_request = (int *) malloc(_len_adjust_request0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_adjust_request0; _i0++) {
             adjust_request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char benchRet = analogix_dp_get_adjust_request_voltage(adjust_request,lane);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(adjust_request);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int lane = 10;
+        
+          int _len_adjust_request0 = 100;
+          int * adjust_request = (int *) malloc(_len_adjust_request0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_adjust_request0; _i0++) {
+            adjust_request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char benchRet = analogix_dp_get_adjust_request_voltage(adjust_request,lane);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(adjust_request);
+        
+        break;
+    }
     default:
         usage();
         break;

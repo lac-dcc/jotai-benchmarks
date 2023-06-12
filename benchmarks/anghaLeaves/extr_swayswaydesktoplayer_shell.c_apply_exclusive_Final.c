@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -124,12 +127,6 @@ __attribute__((used)) static void apply_exclusive(struct wlr_box *usable_area,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -142,23 +139,216 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 121
+          // dynamic_instructions_O0 : 279
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 126
+          // ------------------------------- 
+          // static_instructions_O2 : 55
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 55
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 127
+          // ------------------------------- 
+          // static_instructions_Oz : 64
+          // dynamic_instructions_Oz : 123
+          // ------------------------------- 
+
           int anchor = 100;
+        
           long exclusive = 100;
+        
           long margin_top = 100;
+        
           long margin_right = 100;
+        
           long margin_bottom = 100;
+        
           long margin_left = 100;
+        
           int _len_usable_area0 = 1;
           struct wlr_box * usable_area = (struct wlr_box *) malloc(_len_usable_area0*sizeof(struct wlr_box));
           for(int _i0 = 0; _i0 < _len_usable_area0; _i0++) {
-            usable_area[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        usable_area[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        usable_area[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        usable_area[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              usable_area[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          apply_exclusive(usable_area,anchor,exclusive,margin_top,margin_right,margin_bottom,margin_left);
+          free(usable_area);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 121
+          // dynamic_instructions_O0 : 279
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 126
+          // ------------------------------- 
+          // static_instructions_O2 : 55
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 55
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 127
+          // ------------------------------- 
+          // static_instructions_Oz : 64
+          // dynamic_instructions_Oz : 123
+          // ------------------------------- 
+
+          int anchor = 255;
+        
+          long exclusive = 255;
+        
+          long margin_top = 255;
+        
+          long margin_right = 255;
+        
+          long margin_bottom = 255;
+        
+          long margin_left = 255;
+        
+          int _len_usable_area0 = 65025;
+          struct wlr_box * usable_area = (struct wlr_box *) malloc(_len_usable_area0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_usable_area0; _i0++) {
+              usable_area[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          apply_exclusive(usable_area,anchor,exclusive,margin_top,margin_right,margin_bottom,margin_left);
+          free(usable_area);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 121
+          // dynamic_instructions_O0 : 279
+          // ------------------------------- 
+          // static_instructions_O1 : 69
+          // dynamic_instructions_O1 : 126
+          // ------------------------------- 
+          // static_instructions_O2 : 55
+          // dynamic_instructions_O2 : 55
+          // ------------------------------- 
+          // static_instructions_O3 : 55
+          // dynamic_instructions_O3 : 55
+          // ------------------------------- 
+          // static_instructions_Ofast : 55
+          // dynamic_instructions_Ofast : 55
+          // ------------------------------- 
+          // static_instructions_Os : 73
+          // dynamic_instructions_Os : 127
+          // ------------------------------- 
+          // static_instructions_Oz : 64
+          // dynamic_instructions_Oz : 123
+          // ------------------------------- 
+
+          int anchor = 10;
+        
+          long exclusive = 10;
+        
+          long margin_top = 10;
+        
+          long margin_right = 10;
+        
+          long margin_bottom = 10;
+        
+          long margin_left = 10;
+        
+          int _len_usable_area0 = 100;
+          struct wlr_box * usable_area = (struct wlr_box *) malloc(_len_usable_area0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_usable_area0; _i0++) {
+              usable_area[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          apply_exclusive(usable_area,anchor,exclusive,margin_top,margin_right,margin_bottom,margin_left);
+          free(usable_area);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 3
+          // dynamic_instructions_Oz : 3
+          // ------------------------------- 
+
+          int anchor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long exclusive = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long margin_top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long margin_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long margin_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long margin_left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_usable_area0 = 1;
+          struct wlr_box * usable_area = (struct wlr_box *) malloc(_len_usable_area0*sizeof(struct wlr_box));
+          for(int _i0 = 0; _i0 < _len_usable_area0; _i0++) {
+              usable_area[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          usable_area[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           apply_exclusive(usable_area,anchor,exclusive,margin_top,margin_right,margin_bottom,margin_left);
           free(usable_area);
         

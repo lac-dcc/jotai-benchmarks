@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void set_dynamic_sa_command_1(struct dynamic_sa_ctl
 	sa->sa_command_1.bf.copy_hdr = cp_hdr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,34 +94,280 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int cm = 100;
+        
           int hmac_mc = 100;
+        
           int cfb = 100;
+        
           int esn = 100;
+        
           int sn_mask = 100;
+        
           int mute = 100;
+        
           int cp_pad = 100;
+        
           int cp_pay = 100;
+        
           int cp_hdr = 100;
+        
           int _len_sa0 = 1;
           struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
           for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
-            sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
-        sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
+              sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          set_dynamic_sa_command_1(sa,cm,hmac_mc,cfb,esn,sn_mask,mute,cp_pad,cp_pay,cp_hdr);
+          free(sa);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int cm = 255;
+        
+          int hmac_mc = 255;
+        
+          int cfb = 255;
+        
+          int esn = 255;
+        
+          int sn_mask = 255;
+        
+          int mute = 255;
+        
+          int cp_pad = 255;
+        
+          int cp_pay = 255;
+        
+          int cp_hdr = 255;
+        
+          int _len_sa0 = 65025;
+          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
+              sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_dynamic_sa_command_1(sa,cm,hmac_mc,cfb,esn,sn_mask,mute,cp_pad,cp_pay,cp_hdr);
+          free(sa);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int cm = 10;
+        
+          int hmac_mc = 10;
+        
+          int cfb = 10;
+        
+          int esn = 10;
+        
+          int sn_mask = 10;
+        
+          int mute = 10;
+        
+          int cp_pad = 10;
+        
+          int cp_pay = 10;
+        
+          int cp_hdr = 10;
+        
+          int _len_sa0 = 100;
+          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
+              sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          set_dynamic_sa_command_1(sa,cm,hmac_mc,cfb,esn,sn_mask,mute,cp_pad,cp_pay,cp_hdr);
+          free(sa);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int cm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hmac_mc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cfb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int esn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sn_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cp_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cp_pay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cp_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sa0 = 1;
+          struct dynamic_sa_ctl * sa = (struct dynamic_sa_ctl *) malloc(_len_sa0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_sa0; _i0++) {
+              sa[_i0].sa_command_1.bf.crypto_mode31 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.crypto_mode9_8 = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.feedback_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.sa_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.hmac_muting = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.extended_seq_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.seq_num_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.mutable_bit_proc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_pad = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          sa[_i0].sa_command_1.bf.copy_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sa[_i0].sa_command_1.w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           set_dynamic_sa_command_1(sa,cm,hmac_mc,cfb,esn,sn_mask,mute,cp_pad,cp_pay,cp_hdr);
           free(sa);
         

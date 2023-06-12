@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static int ocfs2_is_io_unaligned(struct inode *inode, size
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +87,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long count = 100;
+        
           unsigned long pos = 100;
+        
           int _len_inode0 = 1;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
               int _len_inode__i0__i_sb0 = 1;
           inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
-            inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ocfs2_is_io_unaligned(inode,count,pos);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_inode0; _aux++) {
@@ -109,7 +111,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long count = 255;
+        
+          unsigned long pos = 255;
+        
+          int _len_inode0 = 65025;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_sb0 = 1;
+          inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ocfs2_is_io_unaligned(inode,count,pos);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_sb);
+          }
+          free(inode);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long count = 10;
+        
+          unsigned long pos = 10;
+        
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_sb0 = 1;
+          inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ocfs2_is_io_unaligned(inode,count,pos);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_sb);
+          }
+          free(inode);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_sb0 = 1;
+          inode[_i0].i_sb = (struct TYPE_2__ *) malloc(_len_inode__i0__i_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_sb0; _j0++) {
+              inode[_i0].i_sb->s_blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ocfs2_is_io_unaligned(inode,count,pos);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_sb);
+          }
+          free(inode);
+        
+        break;
+    }
     default:
         usage();
         break;

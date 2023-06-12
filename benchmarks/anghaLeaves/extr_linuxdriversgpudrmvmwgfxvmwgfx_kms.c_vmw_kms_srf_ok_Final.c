@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ vmw_kms_srf_ok(struct vmw_private *dev_priv, uint32_t width, uint32_t height)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long width = 100;
+        
           long height = 100;
+        
           int _len_dev_priv0 = 1;
           struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
-            dev_priv[_i0].texture_max_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev_priv[_i0].texture_max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_priv[_i0].texture_max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].texture_max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vmw_kms_srf_ok(dev_priv,width,height);
           printf("%d\n", benchRet); 
           free(dev_priv);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long width = 255;
+        
+          long height = 255;
+        
+          int _len_dev_priv0 = 65025;
+          struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].texture_max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].texture_max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vmw_kms_srf_ok(dev_priv,width,height);
+          printf("%d\n", benchRet); 
+          free(dev_priv);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long width = 10;
+        
+          long height = 10;
+        
+          int _len_dev_priv0 = 100;
+          struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].texture_max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].texture_max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vmw_kms_srf_ok(dev_priv,width,height);
+          printf("%d\n", benchRet); 
+          free(dev_priv);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev_priv0 = 1;
+          struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].texture_max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev_priv[_i0].texture_max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vmw_kms_srf_ok(dev_priv,width,height);
+          printf("%d\n", benchRet); 
+          free(dev_priv);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -123,12 +125,6 @@ __attribute__((used)) static int ipipe_validate_rgb2yuv_params(struct vpfe_ipipe
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -141,41 +137,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rgb2yuv0 = 1;
+          int _len_rgb2yuv0 = 65025;
           struct vpfe_ipipe_rgb2yuv * rgb2yuv = (struct vpfe_ipipe_rgb2yuv *) malloc(_len_rgb2yuv0*sizeof(struct vpfe_ipipe_rgb2yuv));
           for(int _i0 = 0; _i0 < _len_rgb2yuv0; _i0++) {
-            rgb2yuv[_i0].out_ofst_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].out_ofst_cb = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].out_ofst_cr = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_bcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_bcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_gcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_gcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_rcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_rcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_bcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_bcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_gcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_gcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_rcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_rcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_by.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_by.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_gy.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_gy.integer = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_ry.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
-        rgb2yuv[_i0].coef_ry.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+              rgb2yuv[_i0].out_ofst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].out_ofst_cb = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].out_ofst_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_rcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_rcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_bcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_rcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_rcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_by.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_by.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gy.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gy.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_ry.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_ry.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ipipe_validate_rgb2yuv_params(rgb2yuv);
           printf("%d\n", benchRet); 
           free(rgb2yuv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rgb2yuv0 = 100;
+          struct vpfe_ipipe_rgb2yuv * rgb2yuv = (struct vpfe_ipipe_rgb2yuv *) malloc(_len_rgb2yuv0*sizeof(struct vpfe_ipipe_rgb2yuv));
+          for(int _i0 = 0; _i0 < _len_rgb2yuv0; _i0++) {
+              rgb2yuv[_i0].out_ofst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].out_ofst_cb = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].out_ofst_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_rcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_rcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_bcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_rcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_rcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_by.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_by.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gy.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gy.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_ry.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_ry.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipipe_validate_rgb2yuv_params(rgb2yuv);
+          printf("%d\n", benchRet); 
+          free(rgb2yuv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rgb2yuv0 = 1;
+          struct vpfe_ipipe_rgb2yuv * rgb2yuv = (struct vpfe_ipipe_rgb2yuv *) malloc(_len_rgb2yuv0*sizeof(struct vpfe_ipipe_rgb2yuv));
+          for(int _i0 = 0; _i0 < _len_rgb2yuv0; _i0++) {
+              rgb2yuv[_i0].out_ofst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].out_ofst_cb = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].out_ofst_cr = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_rcr.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_rcr.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_bcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_bcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_rcb.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_rcb.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_by.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_by.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_gy.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_gy.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          rgb2yuv[_i0].coef_ry.decimal = ((-2 * (next_i()%2)) + 1) * next_i();
+          rgb2yuv[_i0].coef_ry.integer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipipe_validate_rgb2yuv_params(rgb2yuv);
+          printf("%d\n", benchRet); 
+          free(rgb2yuv);
+        
+        break;
+    }
     default:
         usage();
         break;

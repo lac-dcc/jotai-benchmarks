@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int fill_input_buffer (j_decompress_ptr cinfo)
     return(1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cinfo0 = 1;
+          int _len_cinfo0 = 65025;
           struct TYPE_5__ * cinfo = (struct TYPE_5__ *) malloc(_len_cinfo0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
               int _len_cinfo__i0__src0 = 1;
           cinfo[_i0].src = (struct TYPE_4__ *) malloc(_len_cinfo__i0__src0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cinfo__i0__src0; _j0++) {
-            cinfo[_i0].src->bytes_in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        cinfo[_i0].src->next_input_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+              cinfo[_i0].src->bytes_in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].src->next_input_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = fill_input_buffer(cinfo);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cinfo0; _aux++) {
@@ -108,7 +107,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cinfo0 = 100;
+          struct TYPE_5__ * cinfo = (struct TYPE_5__ *) malloc(_len_cinfo0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
+              int _len_cinfo__i0__src0 = 1;
+          cinfo[_i0].src = (struct TYPE_4__ *) malloc(_len_cinfo__i0__src0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cinfo__i0__src0; _j0++) {
+              cinfo[_i0].src->bytes_in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].src->next_input_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = fill_input_buffer(cinfo);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cinfo0; _aux++) {
+          free(cinfo[_aux].src);
+          }
+          free(cinfo);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cinfo0 = 1;
+          struct TYPE_5__ * cinfo = (struct TYPE_5__ *) malloc(_len_cinfo0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_cinfo0; _i0++) {
+              int _len_cinfo__i0__src0 = 1;
+          cinfo[_i0].src = (struct TYPE_4__ *) malloc(_len_cinfo__i0__src0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cinfo__i0__src0; _j0++) {
+              cinfo[_i0].src->bytes_in_buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          cinfo[_i0].src->next_input_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = fill_input_buffer(cinfo);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cinfo0; _aux++) {
+          free(cinfo[_aux].src);
+          }
+          free(cinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

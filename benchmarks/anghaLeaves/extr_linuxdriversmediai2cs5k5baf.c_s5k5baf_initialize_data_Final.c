@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void s5k5baf_initialize_data(struct s5k5baf *state)
 	state->valid_auto_alg = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state0 = 1;
+          int _len_state0 = 65025;
           struct s5k5baf * state = (struct s5k5baf *) malloc(_len_state0*sizeof(struct s5k5baf));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].req_fiv = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].fiv = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].valid_auto_alg = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].req_fiv = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].fiv = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].valid_auto_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           s5k5baf_initialize_data(state);
           free(state);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_state0 = 100;
+          struct s5k5baf * state = (struct s5k5baf *) malloc(_len_state0*sizeof(struct s5k5baf));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].req_fiv = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].fiv = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].valid_auto_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          s5k5baf_initialize_data(state);
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_state0 = 1;
+          struct s5k5baf * state = (struct s5k5baf *) malloc(_len_state0*sizeof(struct s5k5baf));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].req_fiv = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].fiv = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].valid_auto_alg = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          s5k5baf_initialize_data(state);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

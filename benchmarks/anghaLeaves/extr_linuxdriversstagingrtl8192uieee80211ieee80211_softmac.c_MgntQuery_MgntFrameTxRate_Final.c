@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ __attribute__((used)) static u8 MgntQuery_MgntFrameTxRate(struct ieee80211_devic
 	return rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,21 +110,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].basic_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].basic_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ieee__i0__pHTInfo0 = 1;
           ieee[_i0].pHTInfo = (struct TYPE_2__ *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
-            ieee[_i0].pHTInfo->IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
-        ieee[_i0].pHTInfo->bCurSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].pHTInfo->IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = MgntQuery_MgntFrameTxRate(ieee);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ieee0; _aux++) {
@@ -138,7 +137,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ieee0 = 100;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].basic_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ieee__i0__pHTInfo0 = 1;
+          ieee[_i0].pHTInfo = (struct TYPE_2__ *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
+              ieee[_i0].pHTInfo->IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = MgntQuery_MgntFrameTxRate(ieee);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ieee0; _aux++) {
+          free(ieee[_aux].pHTInfo);
+          }
+          free(ieee);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct ieee80211_device * ieee = (struct ieee80211_device *) malloc(_len_ieee0*sizeof(struct ieee80211_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].basic_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ieee__i0__pHTInfo0 = 1;
+          ieee[_i0].pHTInfo = (struct TYPE_2__ *) malloc(_len_ieee__i0__pHTInfo0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ieee__i0__pHTInfo0; _j0++) {
+              ieee[_i0].pHTInfo->IOTAction = ((-2 * (next_i()%2)) + 1) * next_i();
+          ieee[_i0].pHTInfo->bCurSuppCCK = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = MgntQuery_MgntFrameTxRate(ieee);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ieee0; _aux++) {
+          free(ieee[_aux].pHTInfo);
+          }
+          free(ieee);
+        
+        break;
+    }
     default:
         usage();
         break;

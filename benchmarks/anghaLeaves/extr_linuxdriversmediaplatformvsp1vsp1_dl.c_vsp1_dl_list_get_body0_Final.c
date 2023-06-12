@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct vsp1_dl_body *vsp1_dl_list_get_body0(struct vsp1_dl_list *dl)
 	return dl->body0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dl0 = 65025;
+          struct vsp1_dl_list * dl = (struct vsp1_dl_list *) malloc(_len_dl0*sizeof(struct vsp1_dl_list));
+          for(int _i0 = 0; _i0 < _len_dl0; _i0++) {
+              int _len_dl__i0__body00 = 1;
+          dl[_i0].body0 = (struct vsp1_dl_body *) malloc(_len_dl__i0__body00*sizeof(struct vsp1_dl_body));
+          for(int _j0 = 0; _j0 < _len_dl__i0__body00; _j0++) {
+              dl[_i0].body0->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct vsp1_dl_body * benchRet = vsp1_dl_list_get_body0(dl);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dl0; _aux++) {
+          free(dl[_aux].body0);
+          }
+          free(dl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_dl0 = 100;
+          struct vsp1_dl_list * dl = (struct vsp1_dl_list *) malloc(_len_dl0*sizeof(struct vsp1_dl_list));
+          for(int _i0 = 0; _i0 < _len_dl0; _i0++) {
+              int _len_dl__i0__body00 = 1;
+          dl[_i0].body0 = (struct vsp1_dl_body *) malloc(_len_dl__i0__body00*sizeof(struct vsp1_dl_body));
+          for(int _j0 = 0; _j0 < _len_dl__i0__body00; _j0++) {
+              dl[_i0].body0->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct vsp1_dl_body * benchRet = vsp1_dl_list_get_body0(dl);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_dl0; _aux++) {
+          free(dl[_aux].body0);
+          }
+          free(dl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_dl0 = 1;
           struct vsp1_dl_list * dl = (struct vsp1_dl_list *) malloc(_len_dl0*sizeof(struct vsp1_dl_list));
           for(int _i0 = 0; _i0 < _len_dl0; _i0++) {
               int _len_dl__i0__body00 = 1;
           dl[_i0].body0 = (struct vsp1_dl_body *) malloc(_len_dl__i0__body00*sizeof(struct vsp1_dl_body));
           for(int _j0 = 0; _j0 < _len_dl__i0__body00; _j0++) {
-            dl[_i0].body0->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dl[_i0].body0->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct vsp1_dl_body * benchRet = vsp1_dl_list_get_body0(dl);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_dl0; _aux++) {

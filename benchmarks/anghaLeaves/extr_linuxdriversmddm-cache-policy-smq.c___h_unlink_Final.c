@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void __h_unlink(struct smq_hash_table *ht, unsigned
 		ht->buckets[h] = e->hash_next;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int h = 100;
+        
           int _len_ht0 = 1;
           struct smq_hash_table * ht = (struct smq_hash_table *) malloc(_len_ht0*sizeof(struct smq_hash_table));
           for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
@@ -95,17 +93,23 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ht__i0__buckets0; _j0++) {
             ht[_i0].buckets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_e0 = 1;
           struct entry * e = (struct entry *) malloc(_len_e0*sizeof(struct entry));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_prev0 = 1;
           struct entry * prev = (struct entry *) malloc(_len_prev0*sizeof(struct entry));
           for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
-            prev[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+              prev[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __h_unlink(ht,h,e,prev);
           for(int _aux = 0; _aux < _len_ht0; _aux++) {
           free(ht[_aux].buckets);
@@ -116,7 +120,126 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int h = 255;
+        
+          int _len_ht0 = 65025;
+          struct smq_hash_table * ht = (struct smq_hash_table *) malloc(_len_ht0*sizeof(struct smq_hash_table));
+          for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
+              int _len_ht__i0__buckets0 = 1;
+          ht[_i0].buckets = (int *) malloc(_len_ht__i0__buckets0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ht__i0__buckets0; _j0++) {
+            ht[_i0].buckets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_e0 = 65025;
+          struct entry * e = (struct entry *) malloc(_len_e0*sizeof(struct entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prev0 = 65025;
+          struct entry * prev = (struct entry *) malloc(_len_prev0*sizeof(struct entry));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+              prev[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __h_unlink(ht,h,e,prev);
+          for(int _aux = 0; _aux < _len_ht0; _aux++) {
+          free(ht[_aux].buckets);
+          }
+          free(ht);
+          free(e);
+          free(prev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int h = 10;
+        
+          int _len_ht0 = 100;
+          struct smq_hash_table * ht = (struct smq_hash_table *) malloc(_len_ht0*sizeof(struct smq_hash_table));
+          for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
+              int _len_ht__i0__buckets0 = 1;
+          ht[_i0].buckets = (int *) malloc(_len_ht__i0__buckets0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ht__i0__buckets0; _j0++) {
+            ht[_i0].buckets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_e0 = 100;
+          struct entry * e = (struct entry *) malloc(_len_e0*sizeof(struct entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prev0 = 100;
+          struct entry * prev = (struct entry *) malloc(_len_prev0*sizeof(struct entry));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+              prev[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __h_unlink(ht,h,e,prev);
+          for(int _aux = 0; _aux < _len_ht0; _aux++) {
+          free(ht[_aux].buckets);
+          }
+          free(ht);
+          free(e);
+          free(prev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ht0 = 1;
+          struct smq_hash_table * ht = (struct smq_hash_table *) malloc(_len_ht0*sizeof(struct smq_hash_table));
+          for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
+              int _len_ht__i0__buckets0 = 1;
+          ht[_i0].buckets = (int *) malloc(_len_ht__i0__buckets0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ht__i0__buckets0; _j0++) {
+            ht[_i0].buckets[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_e0 = 1;
+          struct entry * e = (struct entry *) malloc(_len_e0*sizeof(struct entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_prev0 = 1;
+          struct entry * prev = (struct entry *) malloc(_len_prev0*sizeof(struct entry));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+              prev[_i0].hash_next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __h_unlink(ht,h,e,prev);
+          for(int _aux = 0; _aux < _len_ht0; _aux++) {
+          free(ht[_aux].buckets);
+          }
+          free(ht);
+          free(e);
+          free(prev);
+        
+        break;
+    }
     default:
         usage();
         break;

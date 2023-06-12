@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static u8 skl_tplg_be_dev_type(int dev_type)
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dev_type = 100;
+        
           int benchRet = skl_tplg_be_dev_type(dev_type);
           printf("%d\n", benchRet); 
         
@@ -120,6 +116,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int dev_type = 255;
+        
           int benchRet = skl_tplg_be_dev_type(dev_type);
           printf("%d\n", benchRet); 
         
@@ -129,12 +126,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int dev_type = 10;
+        
           int benchRet = skl_tplg_be_dev_type(dev_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dev_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = skl_tplg_be_dev_type(dev_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

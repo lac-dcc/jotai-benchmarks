@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +109,6 @@ __attribute__((used)) static bool s390_cpumsf_validate(int machine_type,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,26 +121,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int machine_type = 100;
+        
           unsigned long len = 100;
+        
           int _len_buf0 = 1;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bsdes0 = 1;
           unsigned short * bsdes = (unsigned short *) malloc(_len_bsdes0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_bsdes0; _i0++) {
             bsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_dsdes0 = 1;
           unsigned short * dsdes = (unsigned short *) malloc(_len_dsdes0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_dsdes0; _i0++) {
             dsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = s390_cpumsf_validate(machine_type,buf,len,bsdes,dsdes);
+          printf("%d\n", benchRet); 
+          free(buf);
+          free(bsdes);
+          free(dsdes);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int machine_type = 255;
+        
+          unsigned long len = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bsdes0 = 65025;
+          unsigned short * bsdes = (unsigned short *) malloc(_len_bsdes0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_bsdes0; _i0++) {
+            bsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dsdes0 = 65025;
+          unsigned short * dsdes = (unsigned short *) malloc(_len_dsdes0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_dsdes0; _i0++) {
+            dsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = s390_cpumsf_validate(machine_type,buf,len,bsdes,dsdes);
+          printf("%d\n", benchRet); 
+          free(buf);
+          free(bsdes);
+          free(dsdes);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int machine_type = 10;
+        
+          unsigned long len = 10;
+        
+          int _len_buf0 = 100;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bsdes0 = 100;
+          unsigned short * bsdes = (unsigned short *) malloc(_len_bsdes0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_bsdes0; _i0++) {
+            bsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dsdes0 = 100;
+          unsigned short * dsdes = (unsigned short *) malloc(_len_dsdes0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_dsdes0; _i0++) {
+            dsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = s390_cpumsf_validate(machine_type,buf,len,bsdes,dsdes);
+          printf("%d\n", benchRet); 
+          free(buf);
+          free(bsdes);
+          free(dsdes);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int machine_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bsdes0 = 1;
+          unsigned short * bsdes = (unsigned short *) malloc(_len_bsdes0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_bsdes0; _i0++) {
+            bsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dsdes0 = 1;
+          unsigned short * dsdes = (unsigned short *) malloc(_len_dsdes0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_dsdes0; _i0++) {
+            dsdes[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = s390_cpumsf_validate(machine_type,buf,len,bsdes,dsdes);
           printf("%d\n", benchRet); 
           free(buf);

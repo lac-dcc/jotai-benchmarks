@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ void FSMC_NANDStructInit(FSMC_NANDInitTypeDef* FSMC_NANDInitStruct)
   FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = 0xFC;	  
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,36 +100,201 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_FSMC_NANDInitStruct0 = 1;
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_FSMC_NANDInitStruct0 = 65025;
           struct TYPE_7__ * FSMC_NANDInitStruct = (struct TYPE_7__ *) malloc(_len_FSMC_NANDInitStruct0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_FSMC_NANDInitStruct0; _i0++) {
-            FSMC_NANDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_NANDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0 = 1;
           FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0; _j0++) {
-            FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0 = 1;
           FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct = (struct TYPE_5__ *) malloc(_len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0; _j0++) {
-            FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+              FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        FSMC_NANDInitStruct[_i0].FSMC_ECCPageSize = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_ECC = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
-        FSMC_NANDInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_ECCPageSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_ECC = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          FSMC_NANDStructInit(FSMC_NANDInitStruct);
+          for(int _aux = 0; _aux < _len_FSMC_NANDInitStruct0; _aux++) {
+          free(FSMC_NANDInitStruct[_aux].FSMC_AttributeSpaceTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_NANDInitStruct0; _aux++) {
+          free(FSMC_NANDInitStruct[_aux].FSMC_CommonSpaceTimingStruct);
+          }
+          free(FSMC_NANDInitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_FSMC_NANDInitStruct0 = 100;
+          struct TYPE_7__ * FSMC_NANDInitStruct = (struct TYPE_7__ *) malloc(_len_FSMC_NANDInitStruct0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_FSMC_NANDInitStruct0; _i0++) {
+              FSMC_NANDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0 = 1;
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0; _j0++) {
+              FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0 = 1;
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct = (struct TYPE_5__ *) malloc(_len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0; _j0++) {
+              FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          FSMC_NANDInitStruct[_i0].FSMC_ECCPageSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_ECC = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          FSMC_NANDStructInit(FSMC_NANDInitStruct);
+          for(int _aux = 0; _aux < _len_FSMC_NANDInitStruct0; _aux++) {
+          free(FSMC_NANDInitStruct[_aux].FSMC_AttributeSpaceTimingStruct);
+          }
+          for(int _aux = 0; _aux < _len_FSMC_NANDInitStruct0; _aux++) {
+          free(FSMC_NANDInitStruct[_aux].FSMC_CommonSpaceTimingStruct);
+          }
+          free(FSMC_NANDInitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_FSMC_NANDInitStruct0 = 1;
+          struct TYPE_7__ * FSMC_NANDInitStruct = (struct TYPE_7__ *) malloc(_len_FSMC_NANDInitStruct0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_FSMC_NANDInitStruct0; _i0++) {
+              FSMC_NANDInitStruct[_i0].FSMC_TCLRSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_TARSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0 = 1;
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct = (struct TYPE_6__ *) malloc(_len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NANDInitStruct__i0__FSMC_AttributeSpaceTimingStruct0; _j0++) {
+              FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0 = 1;
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct = (struct TYPE_5__ *) malloc(_len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_FSMC_NANDInitStruct__i0__FSMC_CommonSpaceTimingStruct0; _j0++) {
+              FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_SetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          FSMC_NANDInitStruct[_i0].FSMC_ECCPageSize = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_ECC = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_MemoryDataWidth = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_Waitfeature = ((-2 * (next_i()%2)) + 1) * next_i();
+          FSMC_NANDInitStruct[_i0].FSMC_Bank = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           FSMC_NANDStructInit(FSMC_NANDInitStruct);
           for(int _aux = 0; _aux < _len_FSMC_NANDInitStruct0; _aux++) {
           free(FSMC_NANDInitStruct[_aux].FSMC_AttributeSpaceTimingStruct);

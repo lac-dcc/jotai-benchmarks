@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static bool bl_map_simple(struct pnfs_block_dev *dev, u64 
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +86,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int _len_dev0 = 1;
           struct pnfs_block_dev * dev = (struct pnfs_block_dev *) malloc(_len_dev0*sizeof(struct pnfs_block_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_map0 = 1;
           struct pnfs_block_dev_map * map = (struct pnfs_block_dev_map *) malloc(_len_map0*sizeof(struct pnfs_block_dev_map));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
-        map[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        map[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        map[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bl_map_simple(dev,offset,map);
           printf("%d\n", benchRet); 
           free(dev);
@@ -112,7 +114,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int _len_dev0 = 65025;
+          struct pnfs_block_dev * dev = (struct pnfs_block_dev *) malloc(_len_dev0*sizeof(struct pnfs_block_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 65025;
+          struct pnfs_block_dev_map * map = (struct pnfs_block_dev_map *) malloc(_len_map0*sizeof(struct pnfs_block_dev_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bl_map_simple(dev,offset,map);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(map);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int offset = 10;
+        
+          int _len_dev0 = 100;
+          struct pnfs_block_dev * dev = (struct pnfs_block_dev *) malloc(_len_dev0*sizeof(struct pnfs_block_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 100;
+          struct pnfs_block_dev_map * map = (struct pnfs_block_dev_map *) malloc(_len_map0*sizeof(struct pnfs_block_dev_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bl_map_simple(dev,offset,map);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(map);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct pnfs_block_dev * dev = (struct pnfs_block_dev *) malloc(_len_dev0*sizeof(struct pnfs_block_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_map0 = 1;
+          struct pnfs_block_dev_map * map = (struct pnfs_block_dev_map *) malloc(_len_map0*sizeof(struct pnfs_block_dev_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].bdev = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].disk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          map[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bl_map_simple(dev,offset,map);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int getmalfd (RIOMalloc *mal) {
 	return (UT32_MAX >> 1) & (int)(size_t)mal->buf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mal0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mal0 = 65025;
           struct TYPE_3__ * mal = (struct TYPE_3__ *) malloc(_len_mal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mal0; _i0++) {
-            mal[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+              mal[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = getmalfd(mal);
           printf("%d\n", benchRet); 
           free(mal);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_mal0 = 100;
           struct TYPE_3__ * mal = (struct TYPE_3__ *) malloc(_len_mal0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mal0; _i0++) {
-            mal[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+              mal[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = getmalfd(mal);
+          printf("%d\n", benchRet); 
+          free(mal);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mal0 = 1;
+          struct TYPE_3__ * mal = (struct TYPE_3__ *) malloc(_len_mal0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mal0; _i0++) {
+              mal[_i0].buf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = getmalfd(mal);
           printf("%d\n", benchRet); 
           free(mal);

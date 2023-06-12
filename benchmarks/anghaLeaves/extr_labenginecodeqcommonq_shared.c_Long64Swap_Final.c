@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -73,12 +73,6 @@ qint64 Long64Swap (qint64 ll)
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +85,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ ll;
-        ll.b0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b7 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b5 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ll.b4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b7 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ll.b4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ benchRet = Long64Swap(ll);
           printf("%d\n", benchRet.b0);
           printf("%d\n", benchRet.b7);
@@ -115,7 +110,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

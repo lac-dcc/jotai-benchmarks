@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static inline int mwifiex_is_sta_11n_enabled(struct mwifie
 	return node->is_11n_enabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,26 +86,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_priv0 = 65025;
           struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].bss_role = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].bss_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].bss_role = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].bss_mode = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_priv__i0__adapter0 = 1;
           priv[_i0].adapter = (struct TYPE_2__ *) malloc(_len_priv__i0__adapter0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_priv__i0__adapter0; _j0++) {
-            priv[_i0].adapter->adhoc_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].adapter->adhoc_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        priv[_i0].ap_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].ap_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int _len_node0 = 65025;
+          struct mwifiex_sta_node * node = (struct mwifiex_sta_node *) malloc(_len_node0*sizeof(struct mwifiex_sta_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].is_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mwifiex_is_sta_11n_enabled(priv,node);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].adapter);
+          }
+          free(priv);
+          free(node);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_priv0 = 100;
+          struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].bss_role = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].bss_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__adapter0 = 1;
+          priv[_i0].adapter = (struct TYPE_2__ *) malloc(_len_priv__i0__adapter0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__adapter0; _j0++) {
+              priv[_i0].adapter->adhoc_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          priv[_i0].ap_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_node0 = 100;
+          struct mwifiex_sta_node * node = (struct mwifiex_sta_node *) malloc(_len_node0*sizeof(struct mwifiex_sta_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].is_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mwifiex_is_sta_11n_enabled(priv,node);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].adapter);
+          }
+          free(priv);
+          free(node);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_priv0 = 1;
+          struct mwifiex_private * priv = (struct mwifiex_private *) malloc(_len_priv0*sizeof(struct mwifiex_private));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].bss_role = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].bss_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__adapter0 = 1;
+          priv[_i0].adapter = (struct TYPE_2__ *) malloc(_len_priv__i0__adapter0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__adapter0; _j0++) {
+              priv[_i0].adapter->adhoc_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          priv[_i0].ap_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int _len_node0 = 1;
           struct mwifiex_sta_node * node = (struct mwifiex_sta_node *) malloc(_len_node0*sizeof(struct mwifiex_sta_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].is_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].is_11n_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mwifiex_is_sta_11n_enabled(priv,node);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_priv0; _aux++) {

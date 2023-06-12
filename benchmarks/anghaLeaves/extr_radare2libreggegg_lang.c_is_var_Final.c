@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ __attribute__((used)) static inline int is_var(char *x) {
 	return x[0] == '.' || ((x[0] == '*' || x[0] == '&') && x[1] == '.');
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,14 +72,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_x0 = 1;
+          int _len_x0 = 65025;
           char * x = (char *) malloc(_len_x0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_var(x);
           printf("%d\n", benchRet); 
           free(x);
@@ -99,13 +95,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_var(x);
           printf("%d\n", benchRet); 
           free(x);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_x0 = 1;
+          char * x = (char *) malloc(_len_x0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_var(x);
+          printf("%d\n", benchRet); 
+          free(x);
+        
+        break;
+    }
     default:
         usage();
         break;

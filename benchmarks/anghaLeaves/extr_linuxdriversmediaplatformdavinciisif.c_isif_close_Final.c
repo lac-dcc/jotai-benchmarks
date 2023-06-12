@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int isif_close(struct device *device)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_device0 = 1;
+          int _len_device0 = 65025;
           struct device * device = (struct device *) malloc(_len_device0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isif_close(device);
           printf("%d\n", benchRet); 
           free(device);
@@ -107,15 +104,32 @@ int main(int argc, char *argv[]) {
           int _len_device0 = 100;
           struct device * device = (struct device *) malloc(_len_device0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isif_close(device);
           printf("%d\n", benchRet); 
           free(device);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_device0 = 1;
+          struct device * device = (struct device *) malloc(_len_device0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isif_close(device);
+          printf("%d\n", benchRet); 
+          free(device);
+        
+        break;
+    }
     default:
         usage();
         break;

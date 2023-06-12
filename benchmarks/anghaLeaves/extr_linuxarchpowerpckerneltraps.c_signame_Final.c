@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static const char *signame(int signr)
 	return "unknown signal";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signr = 100;
+        
           const char * benchRet = signame(signr);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signr = 255;
+        
           const char * benchRet = signame(signr);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signr = 10;
+        
           const char * benchRet = signame(signr);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = signame(signr);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

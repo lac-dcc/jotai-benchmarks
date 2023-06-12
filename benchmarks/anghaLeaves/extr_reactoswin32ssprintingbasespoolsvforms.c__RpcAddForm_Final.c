@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ _RpcAddForm(WINSPOOL_PRINTER_HANDLE hPrinter, WINSPOOL_FORM_CONTAINER* pFormInfo
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hPrinter = 100;
+        
           int _len_pFormInfoContainer0 = 1;
           int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
             pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcAddForm(hPrinter,pFormInfoContainer);
+          printf("%d\n", benchRet); 
+          free(pFormInfoContainer);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int hPrinter = 255;
+        
+          int _len_pFormInfoContainer0 = 65025;
+          int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
+            pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcAddForm(hPrinter,pFormInfoContainer);
           printf("%d\n", benchRet); 
           free(pFormInfoContainer);
@@ -101,21 +116,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int hPrinter = 10;
+        
           int _len_pFormInfoContainer0 = 100;
           int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
             pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcAddForm(hPrinter,pFormInfoContainer);
           printf("%d\n", benchRet); 
           free(pFormInfoContainer);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pFormInfoContainer0 = 1;
+          int * pFormInfoContainer = (int *) malloc(_len_pFormInfoContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFormInfoContainer0; _i0++) {
+            pFormInfoContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcAddForm(hPrinter,pFormInfoContainer);
+          printf("%d\n", benchRet); 
+          free(pFormInfoContainer);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ int s5_select_auth(s5_ctx *cx, s5_auth_method method) {
   return err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,11 +100,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int method = 100;
+        
           int _len_cx0 = 1;
           struct TYPE_3__ * cx = (struct TYPE_3__ *) malloc(_len_cx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
-            cx[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              cx[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = s5_select_auth(cx,method);
+          printf("%d\n", benchRet); 
+          free(cx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int method = 255;
+        
+          int _len_cx0 = 65025;
+          struct TYPE_3__ * cx = (struct TYPE_3__ *) malloc(_len_cx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
+              cx[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = s5_select_auth(cx,method);
           printf("%d\n", benchRet); 
           free(cx);
@@ -116,21 +133,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int method = 10;
+        
           int _len_cx0 = 100;
           struct TYPE_3__ * cx = (struct TYPE_3__ *) malloc(_len_cx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
-            cx[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              cx[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = s5_select_auth(cx,method);
           printf("%d\n", benchRet); 
           free(cx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int method = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cx0 = 1;
+          struct TYPE_3__ * cx = (struct TYPE_3__ *) malloc(_len_cx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
+              cx[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = s5_select_auth(cx,method);
+          printf("%d\n", benchRet); 
+          free(cx);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -65,12 +65,6 @@ struct pblk_w_ctx *pblk_rb_w_ctx(struct pblk_rb *rb, unsigned int pos)
 	return &rb->entries[entry].w_ctx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +77,48 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int pos = 100;
+        
           int _len_rb0 = 1;
           struct pblk_rb * rb = (struct pblk_rb *) malloc(_len_rb0*sizeof(struct pblk_rb));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].nr_entries = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rb__i0__entries0 = 1;
           rb[_i0].entries = (struct TYPE_2__ *) malloc(_len_rb__i0__entries0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_rb__i0__entries0; _j0++) {
-            rb[_i0].entries->w_ctx.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].entries->w_ctx.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct pblk_w_ctx * benchRet = pblk_rb_w_ctx(rb,pos);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_rb0; _aux++) {

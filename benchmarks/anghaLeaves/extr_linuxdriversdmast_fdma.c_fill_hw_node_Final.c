@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static void fill_hw_node(struct st_fdma_hw_node *hw_node,
 	hw_node->generic.dstride = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,24 +98,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           enum dma_transfer_direction direction = 0;
+        
+          int _len_hw_node0 = 65025;
+          struct st_fdma_hw_node * hw_node = (struct st_fdma_hw_node *) malloc(_len_hw_node0*sizeof(struct st_fdma_hw_node));
+          for(int _i0 = 0; _i0 < _len_hw_node0; _i0++) {
+              hw_node[_i0].generic.dstride = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].generic.sstride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw_node[_i0].saddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].daddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fchan0 = 65025;
+          struct st_fdma_chan * fchan = (struct st_fdma_chan *) malloc(_len_fchan0*sizeof(struct st_fdma_chan));
+          for(int _i0 = 0; _i0 < _len_fchan0; _i0++) {
+              fchan[_i0].cfg.dev_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          fill_hw_node(hw_node,fchan,direction);
+          free(hw_node);
+          free(fchan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          enum dma_transfer_direction direction = 0;
+        
+          int _len_hw_node0 = 100;
+          struct st_fdma_hw_node * hw_node = (struct st_fdma_hw_node *) malloc(_len_hw_node0*sizeof(struct st_fdma_hw_node));
+          for(int _i0 = 0; _i0 < _len_hw_node0; _i0++) {
+              hw_node[_i0].generic.dstride = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].generic.sstride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw_node[_i0].saddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].daddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fchan0 = 100;
+          struct st_fdma_chan * fchan = (struct st_fdma_chan *) malloc(_len_fchan0*sizeof(struct st_fdma_chan));
+          for(int _i0 = 0; _i0 < _len_fchan0; _i0++) {
+              fchan[_i0].cfg.dev_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          fill_hw_node(hw_node,fchan,direction);
+          free(hw_node);
+          free(fchan);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          enum dma_transfer_direction direction = 0;
+        
           int _len_hw_node0 = 1;
           struct st_fdma_hw_node * hw_node = (struct st_fdma_hw_node *) malloc(_len_hw_node0*sizeof(struct st_fdma_hw_node));
           for(int _i0 = 0; _i0 < _len_hw_node0; _i0++) {
-            hw_node[_i0].generic.dstride = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_node[_i0].generic.sstride = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_node[_i0].saddr = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_node[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw_node[_i0].daddr = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw_node[_i0].generic.dstride = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].generic.sstride = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw_node[_i0].saddr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].control = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw_node[_i0].daddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fchan0 = 1;
           struct st_fdma_chan * fchan = (struct st_fdma_chan *) malloc(_len_fchan0*sizeof(struct st_fdma_chan));
           for(int _i0 = 0; _i0 < _len_fchan0; _i0++) {
-            fchan[_i0].cfg.dev_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              fchan[_i0].cfg.dev_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           fill_hw_node(hw_node,fchan,direction);
           free(hw_node);
           free(fchan);

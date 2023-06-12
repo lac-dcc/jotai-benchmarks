@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ bnad_q_num_adjust(struct bnad *bnad, int msix_vectors, int temp)
 		bnad->num_rxp_per_rx = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +87,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int msix_vectors = 100;
+        
           int temp = 100;
+        
           int _len_bnad0 = 1;
           struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
           for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
-            bnad[_i0].num_txq_per_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        bnad[_i0].num_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        bnad[_i0].cfg_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        bnad[_i0].num_rxp_per_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+              bnad[_i0].num_txq_per_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].cfg_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_rxp_per_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bnad_q_num_adjust(bnad,msix_vectors,temp);
+          free(bnad);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int msix_vectors = 255;
+        
+          int temp = 255;
+        
+          int _len_bnad0 = 65025;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].num_txq_per_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].cfg_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_rxp_per_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnad_q_num_adjust(bnad,msix_vectors,temp);
+          free(bnad);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int msix_vectors = 10;
+        
+          int temp = 10;
+        
+          int _len_bnad0 = 100;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].num_txq_per_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].cfg_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_rxp_per_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnad_q_num_adjust(bnad,msix_vectors,temp);
+          free(bnad);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int msix_vectors = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bnad0 = 1;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].num_txq_per_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].cfg_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bnad[_i0].num_rxp_per_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bnad_q_num_adjust(bnad,msix_vectors,temp);
           free(bnad);
         

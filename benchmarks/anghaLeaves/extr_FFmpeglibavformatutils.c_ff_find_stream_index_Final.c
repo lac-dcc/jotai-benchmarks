@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ int ff_find_stream_index(AVFormatContext *s, int id)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +87,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__streams0 = 1;
           s[_i0].streams = (struct TYPE_4__ **) malloc(_len_s__i0__streams0*sizeof(struct TYPE_4__ *));
           for(int _j0 = 0; _j0 < _len_s__i0__streams0; _j0++) {
             int _len_s__i0__streams1 = 1;
             s[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_s__i0__streams1*sizeof(struct TYPE_4__));
             for(int _j1 = 0; _j1 < _len_s__i0__streams1; _j1++) {
-              s[_i0].streams[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+                s[_i0].streams[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = ff_find_stream_index(s,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -114,7 +115,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int id = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__streams0 = 1;
+          s[_i0].streams = (struct TYPE_4__ **) malloc(_len_s__i0__streams0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_s__i0__streams0; _j0++) {
+            int _len_s__i0__streams1 = 1;
+            s[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_s__i0__streams1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_s__i0__streams1; _j1++) {
+                s[_i0].streams[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ff_find_stream_index(s,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].streams));
+        free(s[_aux].streams);
+          }
+          free(s);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int id = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__streams0 = 1;
+          s[_i0].streams = (struct TYPE_4__ **) malloc(_len_s__i0__streams0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_s__i0__streams0; _j0++) {
+            int _len_s__i0__streams1 = 1;
+            s[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_s__i0__streams1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_s__i0__streams1; _j1++) {
+                s[_i0].streams[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ff_find_stream_index(s,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].streams));
+        free(s[_aux].streams);
+          }
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].nb_streams = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__streams0 = 1;
+          s[_i0].streams = (struct TYPE_4__ **) malloc(_len_s__i0__streams0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_s__i0__streams0; _j0++) {
+            int _len_s__i0__streams1 = 1;
+            s[_i0].streams[_j0] = (struct TYPE_4__ *) malloc(_len_s__i0__streams1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_s__i0__streams1; _j1++) {
+                s[_i0].streams[_j0]->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ff_find_stream_index(s,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].streams));
+        free(s[_aux].streams);
+          }
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

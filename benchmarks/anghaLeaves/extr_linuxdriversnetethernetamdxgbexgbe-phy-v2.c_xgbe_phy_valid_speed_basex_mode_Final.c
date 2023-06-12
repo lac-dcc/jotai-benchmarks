@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static bool xgbe_phy_valid_speed_basex_mode(struct xgbe_ph
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int speed = 100;
+        
           int _len_phy_data0 = 1;
           struct xgbe_phy_data * phy_data = (struct xgbe_phy_data *) malloc(_len_phy_data0*sizeof(struct xgbe_phy_data));
           for(int _i0 = 0; _i0 < _len_phy_data0; _i0++) {
-            phy_data[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_data[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = xgbe_phy_valid_speed_basex_mode(phy_data,speed);
+          printf("%d\n", benchRet); 
+          free(phy_data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int speed = 255;
+        
+          int _len_phy_data0 = 65025;
+          struct xgbe_phy_data * phy_data = (struct xgbe_phy_data *) malloc(_len_phy_data0*sizeof(struct xgbe_phy_data));
+          for(int _i0 = 0; _i0 < _len_phy_data0; _i0++) {
+              phy_data[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = xgbe_phy_valid_speed_basex_mode(phy_data,speed);
           printf("%d\n", benchRet); 
           free(phy_data);
@@ -107,21 +124,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int speed = 10;
+        
           int _len_phy_data0 = 100;
           struct xgbe_phy_data * phy_data = (struct xgbe_phy_data *) malloc(_len_phy_data0*sizeof(struct xgbe_phy_data));
           for(int _i0 = 0; _i0 < _len_phy_data0; _i0++) {
-            phy_data[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy_data[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xgbe_phy_valid_speed_basex_mode(phy_data,speed);
           printf("%d\n", benchRet); 
           free(phy_data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phy_data0 = 1;
+          struct xgbe_phy_data * phy_data = (struct xgbe_phy_data *) malloc(_len_phy_data0*sizeof(struct xgbe_phy_data));
+          for(int _i0 = 0; _i0 < _len_phy_data0; _i0++) {
+              phy_data[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xgbe_phy_valid_speed_basex_mode(phy_data,speed);
+          printf("%d\n", benchRet); 
+          free(phy_data);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -62,7 +63,6 @@ vnode_setparent(vnode_t vp, vnode_t dvp)
 {
 	vp->v_parent = dvp;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -114,7 +114,6 @@ void _delete_dvp(struct TYPE_4__ *aux_dvp[], int aux_dvp_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,20 +126,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_vp[10000];
+          struct TYPE_4__ * vp = _allocate_vp(10000, aux_vp);
+        
+          struct TYPE_4__ * aux_dvp[10000];
+          struct TYPE_4__ * dvp = _allocate_dvp(10000, aux_dvp);
+        
+          vnode_setparent(vp,dvp);
+          _delete_vp(aux_vp, 10000);
+          _delete_dvp(aux_dvp, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_vp[1];
           struct TYPE_4__ * vp = _allocate_vp(1, aux_vp);
+        
           struct TYPE_4__ * aux_dvp[1];
           struct TYPE_4__ * dvp = _allocate_dvp(1, aux_dvp);
+        
           vnode_setparent(vp,dvp);
           _delete_vp(aux_vp, 1);
           _delete_dvp(aux_dvp, 1);
         
         break;
     }
-
     default:
         usage();
         break;

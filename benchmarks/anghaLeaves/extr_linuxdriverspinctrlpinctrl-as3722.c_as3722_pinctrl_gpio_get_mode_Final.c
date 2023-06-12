@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +91,6 @@ __attribute__((used)) static int as3722_pinctrl_gpio_get_mode(unsigned gpio_mode
 	return AS3722_GPIO_MODE_OUTPUT_VDDH;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,7 +107,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int gpio_mode_prop = 100;
+        
           int input = 100;
+        
           int benchRet = as3722_pinctrl_gpio_get_mode(gpio_mode_prop,input);
           printf("%d\n", benchRet); 
         
@@ -122,7 +119,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int gpio_mode_prop = 255;
+        
           int input = 255;
+        
           int benchRet = as3722_pinctrl_gpio_get_mode(gpio_mode_prop,input);
           printf("%d\n", benchRet); 
         
@@ -132,13 +131,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int gpio_mode_prop = 10;
+        
           int input = 10;
+        
           int benchRet = as3722_pinctrl_gpio_get_mode(gpio_mode_prop,input);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int gpio_mode_prop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = as3722_pinctrl_gpio_get_mode(gpio_mode_prop,input);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

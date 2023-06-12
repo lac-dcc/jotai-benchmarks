@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static inline bool is_last_gpte(struct kvm_mmu *mmu,
 	return gpte & PT_PAGE_SIZE_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,32 +92,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned int level = 100;
+        
           unsigned int gpte = 100;
+        
           int _len_mmu0 = 1;
           struct kvm_mmu * mmu = (struct kvm_mmu *) malloc(_len_mmu0*sizeof(struct kvm_mmu));
           for(int _i0 = 0; _i0 < _len_mmu0; _i0++) {
-            mmu[_i0].last_nonleaf_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              mmu[_i0].last_nonleaf_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_last_gpte(mmu,level,gpte);
           printf("%d\n", benchRet); 
           free(mmu);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int level = 255;
+        
+          unsigned int gpte = 255;
+        
+          int _len_mmu0 = 65025;
+          struct kvm_mmu * mmu = (struct kvm_mmu *) malloc(_len_mmu0*sizeof(struct kvm_mmu));
+          for(int _i0 = 0; _i0 < _len_mmu0; _i0++) {
+              mmu[_i0].last_nonleaf_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_last_gpte(mmu,level,gpte);
+          printf("%d\n", benchRet); 
+          free(mmu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           unsigned int level = 10;
+        
           unsigned int gpte = 10;
+        
           int _len_mmu0 = 100;
           struct kvm_mmu * mmu = (struct kvm_mmu *) malloc(_len_mmu0*sizeof(struct kvm_mmu));
           for(int _i0 = 0; _i0 < _len_mmu0; _i0++) {
-            mmu[_i0].last_nonleaf_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              mmu[_i0].last_nonleaf_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = is_last_gpte(mmu,level,gpte);
+          printf("%d\n", benchRet); 
+          free(mmu);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          unsigned int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int gpte = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mmu0 = 1;
+          struct kvm_mmu * mmu = (struct kvm_mmu *) malloc(_len_mmu0*sizeof(struct kvm_mmu));
+          for(int _i0 = 0; _i0 < _len_mmu0; _i0++) {
+              mmu[_i0].last_nonleaf_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = is_last_gpte(mmu,level,gpte);
           printf("%d\n", benchRet); 
           free(mmu);

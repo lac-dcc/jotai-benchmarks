@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int ami_set_cursorstate(struct fb_cursorstate *stat
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,22 +87,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct fb_cursorstate * state = (struct fb_cursorstate *) malloc(_len_state0*sizeof(struct fb_cursorstate));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 65025;
+          struct amifb_par * par = (struct amifb_par *) malloc(_len_par0*sizeof(struct amifb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].crsr.crsr_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].crsr.crsr_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ami_set_cursorstate(state,par);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct fb_cursorstate * state = (struct fb_cursorstate *) malloc(_len_state0*sizeof(struct fb_cursorstate));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 100;
+          struct amifb_par * par = (struct amifb_par *) malloc(_len_par0*sizeof(struct amifb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].crsr.crsr_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].crsr.crsr_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ami_set_cursorstate(state,par);
+          printf("%d\n", benchRet); 
+          free(state);
+          free(par);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct fb_cursorstate * state = (struct fb_cursorstate *) malloc(_len_state0*sizeof(struct fb_cursorstate));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_par0 = 1;
           struct amifb_par * par = (struct amifb_par *) malloc(_len_par0*sizeof(struct amifb_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].crsr.crsr_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].crsr.crsr_x = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].crsr.crsr_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].crsr.crsr_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ami_set_cursorstate(state,par);
           printf("%d\n", benchRet); 
           free(state);

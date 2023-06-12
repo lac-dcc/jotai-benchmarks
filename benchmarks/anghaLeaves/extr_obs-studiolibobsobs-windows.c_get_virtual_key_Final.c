@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -408,12 +409,6 @@ __attribute__((used)) static int get_virtual_key(obs_key_t key)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -430,6 +425,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key = 100;
+        
           int benchRet = get_virtual_key(key);
           printf("%d\n", benchRet); 
         
@@ -439,6 +435,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int key = 255;
+        
           int benchRet = get_virtual_key(key);
           printf("%d\n", benchRet); 
         
@@ -448,12 +445,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int key = 10;
+        
           int benchRet = get_virtual_key(key);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_virtual_key(key);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

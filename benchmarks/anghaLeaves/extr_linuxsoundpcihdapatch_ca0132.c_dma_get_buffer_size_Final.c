@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static unsigned int dma_get_buffer_size(struct dma_engine 
 	return dma->dmab->bytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dma0 = 1;
+          int _len_dma0 = 65025;
           struct dma_engine * dma = (struct dma_engine *) malloc(_len_dma0*sizeof(struct dma_engine));
           for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
               int _len_dma__i0__dmab0 = 1;
           dma[_i0].dmab = (struct TYPE_2__ *) malloc(_len_dma__i0__dmab0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dma__i0__dmab0; _j0++) {
-            dma[_i0].dmab->bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              dma[_i0].dmab->bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = dma_get_buffer_size(dma);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_dma0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dma0 = 100;
+          struct dma_engine * dma = (struct dma_engine *) malloc(_len_dma0*sizeof(struct dma_engine));
+          for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
+              int _len_dma__i0__dmab0 = 1;
+          dma[_i0].dmab = (struct TYPE_2__ *) malloc(_len_dma__i0__dmab0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dma__i0__dmab0; _j0++) {
+              dma[_i0].dmab->bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = dma_get_buffer_size(dma);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dma0; _aux++) {
+          free(dma[_aux].dmab);
+          }
+          free(dma);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dma0 = 1;
+          struct dma_engine * dma = (struct dma_engine *) malloc(_len_dma0*sizeof(struct dma_engine));
+          for(int _i0 = 0; _i0 < _len_dma0; _i0++) {
+              int _len_dma__i0__dmab0 = 1;
+          dma[_i0].dmab = (struct TYPE_2__ *) malloc(_len_dma__i0__dmab0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dma__i0__dmab0; _j0++) {
+              dma[_i0].dmab->bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = dma_get_buffer_size(dma);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dma0; _aux++) {
+          free(dma[_aux].dmab);
+          }
+          free(dma);
+        
+        break;
+    }
     default:
         usage();
         break;

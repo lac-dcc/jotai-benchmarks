@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int elsa_resume(struct pcmcia_device *link)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +81,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_link0 = 1;
+          int _len_link0 = 65025;
           struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
           for(int _i0 = 0; _i0 < _len_link0; _i0++) {
               int _len_link__i0__priv0 = 1;
           link[_i0].priv = (struct TYPE_2__ *) malloc(_len_link__i0__priv0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
-            link[_i0].priv->busy = ((-2 * (next_i()%2)) + 1) * next_i();
+              link[_i0].priv->busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = elsa_resume(link);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_link0; _aux++) {
@@ -106,7 +105,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_link0 = 100;
+          struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              int _len_link__i0__priv0 = 1;
+          link[_i0].priv = (struct TYPE_2__ *) malloc(_len_link__i0__priv0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
+              link[_i0].priv->busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = elsa_resume(link);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].priv);
+          }
+          free(link);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_link0 = 1;
+          struct pcmcia_device * link = (struct pcmcia_device *) malloc(_len_link0*sizeof(struct pcmcia_device));
+          for(int _i0 = 0; _i0 < _len_link0; _i0++) {
+              int _len_link__i0__priv0 = 1;
+          link[_i0].priv = (struct TYPE_2__ *) malloc(_len_link__i0__priv0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_link__i0__priv0; _j0++) {
+              link[_i0].priv->busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = elsa_resume(link);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_link0; _aux++) {
+          free(link[_aux].priv);
+          }
+          free(link);
+        
+        break;
+    }
     default:
         usage();
         break;

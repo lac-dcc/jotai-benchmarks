@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void stb_log(int active)
    stb__log_active = active;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int active = 100;
+        
           stb_log(active);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int active = 255;
+        
           stb_log(active);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int active = 10;
+        
           stb_log(active);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          stb_log(active);
+        
+        break;
+    }
     default:
         usage();
         break;

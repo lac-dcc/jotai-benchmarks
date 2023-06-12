@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline struct usb_hcd *xhci_to_hcd(struct xhci_hcd 
 	return xhci->main_hcd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_xhci0 = 65025;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              int _len_xhci__i0__main_hcd0 = 1;
+          xhci[_i0].main_hcd = (struct usb_hcd *) malloc(_len_xhci__i0__main_hcd0*sizeof(struct usb_hcd));
+          for(int _j0 = 0; _j0 < _len_xhci__i0__main_hcd0; _j0++) {
+              xhci[_i0].main_hcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct usb_hcd * benchRet = xhci_to_hcd(xhci);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_xhci0; _aux++) {
+          free(xhci[_aux].main_hcd);
+          }
+          free(xhci);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_xhci0 = 100;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              int _len_xhci__i0__main_hcd0 = 1;
+          xhci[_i0].main_hcd = (struct usb_hcd *) malloc(_len_xhci__i0__main_hcd0*sizeof(struct usb_hcd));
+          for(int _j0 = 0; _j0 < _len_xhci__i0__main_hcd0; _j0++) {
+              xhci[_i0].main_hcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct usb_hcd * benchRet = xhci_to_hcd(xhci);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_xhci0; _aux++) {
+          free(xhci[_aux].main_hcd);
+          }
+          free(xhci);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_xhci0 = 1;
           struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
           for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
               int _len_xhci__i0__main_hcd0 = 1;
           xhci[_i0].main_hcd = (struct usb_hcd *) malloc(_len_xhci__i0__main_hcd0*sizeof(struct usb_hcd));
           for(int _j0 = 0; _j0 < _len_xhci__i0__main_hcd0; _j0++) {
-            xhci[_i0].main_hcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              xhci[_i0].main_hcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct usb_hcd * benchRet = xhci_to_hcd(xhci);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_xhci0; _aux++) {

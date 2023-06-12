@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ screen_set_cursor_style(struct screen *s, u_int style)
 		s->cstyle = style;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int style = 100;
+        
           int _len_s0 = 1;
           struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].cstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].cstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          screen_set_cursor_style(s,style);
+          free(s);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int style = 255;
+        
+          int _len_s0 = 65025;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].cstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           screen_set_cursor_style(s,style);
           free(s);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int style = 10;
+        
           int _len_s0 = 100;
           struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].cstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].cstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           screen_set_cursor_style(s,style);
           free(s);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int style = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct screen * s = (struct screen *) malloc(_len_s0*sizeof(struct screen));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].cstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          screen_set_cursor_style(s,style);
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

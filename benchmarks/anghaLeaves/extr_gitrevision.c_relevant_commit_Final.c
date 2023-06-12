@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int relevant_commit(struct commit *commit)
 	return (commit->object.flags & (UNINTERESTING | BOTTOM)) != UNINTERESTING;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_commit0 = 1;
+          int _len_commit0 = 65025;
           struct commit * commit = (struct commit *) malloc(_len_commit0*sizeof(struct commit));
           for(int _i0 = 0; _i0 < _len_commit0; _i0++) {
-            commit[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              commit[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = relevant_commit(commit);
           printf("%d\n", benchRet); 
           free(commit);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_commit0 = 100;
           struct commit * commit = (struct commit *) malloc(_len_commit0*sizeof(struct commit));
           for(int _i0 = 0; _i0 < _len_commit0; _i0++) {
-            commit[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              commit[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = relevant_commit(commit);
           printf("%d\n", benchRet); 
           free(commit);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_commit0 = 1;
+          struct commit * commit = (struct commit *) malloc(_len_commit0*sizeof(struct commit));
+          for(int _i0 = 0; _i0 < _len_commit0; _i0++) {
+              commit[_i0].object.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = relevant_commit(commit);
+          printf("%d\n", benchRet); 
+          free(commit);
+        
+        break;
+    }
     default:
         usage();
         break;

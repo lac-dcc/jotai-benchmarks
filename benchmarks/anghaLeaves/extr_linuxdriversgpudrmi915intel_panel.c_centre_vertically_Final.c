@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ centre_vertically(struct drm_display_mode *adjusted_mode,
 	adjusted_mode->crtc_vsync_end = adjusted_mode->crtc_vsync_start + sync_width;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           int height = 100;
+        
           int _len_adjusted_mode0 = 1;
           struct drm_display_mode * adjusted_mode = (struct drm_display_mode *) malloc(_len_adjusted_mode0*sizeof(struct drm_display_mode));
           for(int _i0 = 0; _i0 < _len_adjusted_mode0; _i0++) {
-            adjusted_mode[_i0].crtc_vsync_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        adjusted_mode[_i0].crtc_vsync_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        adjusted_mode[_i0].crtc_vblank_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        adjusted_mode[_i0].crtc_vblank_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        adjusted_mode[_i0].crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+              adjusted_mode[_i0].crtc_vsync_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vsync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          centre_vertically(adjusted_mode,height);
+          free(adjusted_mode);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int height = 255;
+        
+          int _len_adjusted_mode0 = 65025;
+          struct drm_display_mode * adjusted_mode = (struct drm_display_mode *) malloc(_len_adjusted_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_adjusted_mode0; _i0++) {
+              adjusted_mode[_i0].crtc_vsync_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vsync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          centre_vertically(adjusted_mode,height);
+          free(adjusted_mode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int height = 10;
+        
+          int _len_adjusted_mode0 = 100;
+          struct drm_display_mode * adjusted_mode = (struct drm_display_mode *) malloc(_len_adjusted_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_adjusted_mode0; _i0++) {
+              adjusted_mode[_i0].crtc_vsync_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vsync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          centre_vertically(adjusted_mode,height);
+          free(adjusted_mode);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 53
+          // ------------------------------- 
+          // static_instructions_O1 : 37
+          // dynamic_instructions_O1 : 37
+          // ------------------------------- 
+          // static_instructions_O2 : 37
+          // dynamic_instructions_O2 : 37
+          // ------------------------------- 
+          // static_instructions_O3 : 37
+          // dynamic_instructions_O3 : 37
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adjusted_mode0 = 1;
+          struct drm_display_mode * adjusted_mode = (struct drm_display_mode *) malloc(_len_adjusted_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_adjusted_mode0; _i0++) {
+              adjusted_mode[_i0].crtc_vsync_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vsync_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vblank_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          adjusted_mode[_i0].crtc_vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           centre_vertically(adjusted_mode,height);
           free(adjusted_mode);
         

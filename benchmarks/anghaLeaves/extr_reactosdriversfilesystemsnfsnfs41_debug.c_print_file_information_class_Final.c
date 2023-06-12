@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -142,12 +143,6 @@ unsigned char * print_file_information_class(int InfoClass)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -164,6 +159,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int InfoClass = 100;
+        
           unsigned char * benchRet = print_file_information_class(InfoClass);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -173,6 +169,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int InfoClass = 255;
+        
           unsigned char * benchRet = print_file_information_class(InfoClass);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -182,12 +179,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int InfoClass = 10;
+        
           unsigned char * benchRet = print_file_information_class(InfoClass);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int InfoClass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char * benchRet = print_file_information_class(InfoClass);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

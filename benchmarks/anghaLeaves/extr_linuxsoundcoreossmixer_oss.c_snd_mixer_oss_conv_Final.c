@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static long snd_mixer_oss_conv(long val, long omin, long o
 	return ((nrange * (val - omin)) + (orange / 2)) / orange + nmin;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,10 +82,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long val = 100;
+        
           long omin = 100;
+        
           long omax = 100;
+        
           long nmin = 100;
+        
           long nmax = 100;
+        
           long benchRet = snd_mixer_oss_conv(val,omin,omax,nmin,nmax);
           printf("%ld\n", benchRet); 
         
@@ -100,10 +100,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long val = 255;
+        
           long omin = 255;
+        
           long omax = 255;
+        
           long nmin = 255;
+        
           long nmax = 255;
+        
           long benchRet = snd_mixer_oss_conv(val,omin,omax,nmin,nmax);
           printf("%ld\n", benchRet); 
         
@@ -113,16 +118,38 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long val = 10;
+        
           long omin = 10;
+        
           long omax = 10;
+        
           long nmin = 10;
+        
           long nmax = 10;
+        
           long benchRet = snd_mixer_oss_conv(val,omin,omax,nmin,nmax);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long omin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long omax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long nmin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long nmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = snd_mixer_oss_conv(val,omin,omax,nmin,nmax);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

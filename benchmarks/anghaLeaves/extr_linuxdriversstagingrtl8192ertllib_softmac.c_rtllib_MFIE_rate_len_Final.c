@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static unsigned int rtllib_MFIE_rate_len(struct rtllib_dev
 	return rate_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,14 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ieee0 = 1;
+          int _len_ieee0 = 65025;
           struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = rtllib_MFIE_rate_len(ieee);
           printf("%u\n", benchRet); 
           free(ieee);
@@ -112,15 +109,32 @@ int main(int argc, char *argv[]) {
           int _len_ieee0 = 100;
           struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
           for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
-            ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+              ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = rtllib_MFIE_rate_len(ieee);
           printf("%u\n", benchRet); 
           free(ieee);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ieee0 = 1;
+          struct rtllib_device * ieee = (struct rtllib_device *) malloc(_len_ieee0*sizeof(struct rtllib_device));
+          for(int _i0 = 0; _i0 < _len_ieee0; _i0++) {
+              ieee[_i0].modulation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = rtllib_MFIE_rate_len(ieee);
+          printf("%u\n", benchRet); 
+          free(ieee);
+        
+        break;
+    }
     default:
         usage();
         break;

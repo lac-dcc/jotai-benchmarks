@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ uint32_t phm_get_lowest_enabled_level(struct pp_hwmgr *hwmgr, uint32_t mask)
 	return level;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,11 +85,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mask = 100;
+        
           int _len_hwmgr0 = 1;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = phm_get_lowest_enabled_level(hwmgr,mask);
+          printf("%d\n", benchRet); 
+          free(hwmgr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mask = 255;
+        
+          int _len_hwmgr0 = 65025;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = phm_get_lowest_enabled_level(hwmgr,mask);
           printf("%d\n", benchRet); 
           free(hwmgr);
@@ -101,21 +118,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mask = 10;
+        
           int _len_hwmgr0 = 100;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
-            hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = phm_get_lowest_enabled_level(hwmgr,mask);
           printf("%d\n", benchRet); 
           free(hwmgr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              hwmgr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phm_get_lowest_enabled_level(hwmgr,mask);
+          printf("%d\n", benchRet); 
+          free(hwmgr);
+        
+        break;
+    }
     default:
         usage();
         break;

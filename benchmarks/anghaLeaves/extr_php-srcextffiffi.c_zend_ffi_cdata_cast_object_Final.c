@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static int zend_ffi_cdata_cast_object(zend_object *readobj
 	return FAILURE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,16 +81,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int type = 100;
+        
           int _len_readobj0 = 1;
           int * readobj = (int *) malloc(_len_readobj0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_readobj0; _i0++) {
             readobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_writeobj0 = 1;
           int * writeobj = (int *) malloc(_len_writeobj0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_writeobj0; _i0++) {
             writeobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = zend_ffi_cdata_cast_object(readobj,writeobj,type);
           printf("%d\n", benchRet); 
           free(readobj);
@@ -101,7 +101,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int type = 255;
+        
+          int _len_readobj0 = 65025;
+          int * readobj = (int *) malloc(_len_readobj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_readobj0; _i0++) {
+            readobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_writeobj0 = 65025;
+          int * writeobj = (int *) malloc(_len_writeobj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_writeobj0; _i0++) {
+            writeobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zend_ffi_cdata_cast_object(readobj,writeobj,type);
+          printf("%d\n", benchRet); 
+          free(readobj);
+          free(writeobj);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int type = 10;
+        
+          int _len_readobj0 = 100;
+          int * readobj = (int *) malloc(_len_readobj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_readobj0; _i0++) {
+            readobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_writeobj0 = 100;
+          int * writeobj = (int *) malloc(_len_writeobj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_writeobj0; _i0++) {
+            writeobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zend_ffi_cdata_cast_object(readobj,writeobj,type);
+          printf("%d\n", benchRet); 
+          free(readobj);
+          free(writeobj);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_readobj0 = 1;
+          int * readobj = (int *) malloc(_len_readobj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_readobj0; _i0++) {
+            readobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_writeobj0 = 1;
+          int * writeobj = (int *) malloc(_len_writeobj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_writeobj0; _i0++) {
+            writeobj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = zend_ffi_cdata_cast_object(readobj,writeobj,type);
+          printf("%d\n", benchRet); 
+          free(readobj);
+          free(writeobj);
+        
+        break;
+    }
     default:
         usage();
         break;

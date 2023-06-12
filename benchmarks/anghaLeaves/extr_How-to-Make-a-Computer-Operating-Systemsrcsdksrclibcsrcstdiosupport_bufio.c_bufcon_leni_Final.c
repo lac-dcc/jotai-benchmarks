@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ int  bufcon_leni(int num)
   return 10;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num = 100;
+        
           int benchRet = bufcon_leni(num);
           printf("%d\n", benchRet); 
         
@@ -116,6 +112,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int num = 255;
+        
           int benchRet = bufcon_leni(num);
           printf("%d\n", benchRet); 
         
@@ -125,12 +122,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int num = 10;
+        
           int benchRet = bufcon_leni(num);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = bufcon_leni(num);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

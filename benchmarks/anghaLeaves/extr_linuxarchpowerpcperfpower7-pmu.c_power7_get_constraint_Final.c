@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +99,6 @@ __attribute__((used)) static int power7_get_constraint(u64 event, unsigned long 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,16 +115,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int event = 100;
+        
           int _len_maskp0 = 1;
           unsigned long * maskp = (unsigned long *) malloc(_len_maskp0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_maskp0; _i0++) {
             maskp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_valp0 = 1;
           unsigned long * valp = (unsigned long *) malloc(_len_valp0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
             valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = power7_get_constraint(event,maskp,valp);
           printf("%d\n", benchRet); 
           free(maskp);
@@ -135,7 +135,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int event = 255;
+        
+          int _len_maskp0 = 65025;
+          unsigned long * maskp = (unsigned long *) malloc(_len_maskp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_maskp0; _i0++) {
+            maskp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_valp0 = 65025;
+          unsigned long * valp = (unsigned long *) malloc(_len_valp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
+            valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = power7_get_constraint(event,maskp,valp);
+          printf("%d\n", benchRet); 
+          free(maskp);
+          free(valp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int event = 10;
+        
+          int _len_maskp0 = 100;
+          unsigned long * maskp = (unsigned long *) malloc(_len_maskp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_maskp0; _i0++) {
+            maskp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_valp0 = 100;
+          unsigned long * valp = (unsigned long *) malloc(_len_valp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
+            valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = power7_get_constraint(event,maskp,valp);
+          printf("%d\n", benchRet); 
+          free(maskp);
+          free(valp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_maskp0 = 1;
+          unsigned long * maskp = (unsigned long *) malloc(_len_maskp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_maskp0; _i0++) {
+            maskp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_valp0 = 1;
+          unsigned long * valp = (unsigned long *) malloc(_len_valp0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
+            valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = power7_get_constraint(event,maskp,valp);
+          printf("%d\n", benchRet); 
+          free(maskp);
+          free(valp);
+        
+        break;
+    }
     default:
         usage();
         break;

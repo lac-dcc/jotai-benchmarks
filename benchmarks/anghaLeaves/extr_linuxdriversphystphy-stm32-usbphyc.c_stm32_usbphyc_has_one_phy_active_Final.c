@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static bool stm32_usbphyc_has_one_phy_active(struct stm32_
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_usbphyc0 = 1;
+          int _len_usbphyc0 = 65025;
           struct stm32_usbphyc * usbphyc = (struct stm32_usbphyc *) malloc(_len_usbphyc0*sizeof(struct stm32_usbphyc));
           for(int _i0 = 0; _i0 < _len_usbphyc0; _i0++) {
-            usbphyc[_i0].nphys = ((-2 * (next_i()%2)) + 1) * next_i();
+              usbphyc[_i0].nphys = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_usbphyc__i0__phys0 = 1;
           usbphyc[_i0].phys = (struct TYPE_2__ **) malloc(_len_usbphyc__i0__phys0*sizeof(struct TYPE_2__ *));
           for(int _j0 = 0; _j0 < _len_usbphyc__i0__phys0; _j0++) {
             int _len_usbphyc__i0__phys1 = 1;
             usbphyc[_i0].phys[_j0] = (struct TYPE_2__ *) malloc(_len_usbphyc__i0__phys1*sizeof(struct TYPE_2__));
             for(int _j1 = 0; _j1 < _len_usbphyc__i0__phys1; _j1++) {
-              usbphyc[_i0].phys[_j0]->active = ((-2 * (next_i()%2)) + 1) * next_i();
+                usbphyc[_i0].phys[_j0]->active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = stm32_usbphyc_has_one_phy_active(usbphyc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_usbphyc0; _aux++) {
@@ -113,7 +112,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_usbphyc0 = 100;
+          struct stm32_usbphyc * usbphyc = (struct stm32_usbphyc *) malloc(_len_usbphyc0*sizeof(struct stm32_usbphyc));
+          for(int _i0 = 0; _i0 < _len_usbphyc0; _i0++) {
+              usbphyc[_i0].nphys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_usbphyc__i0__phys0 = 1;
+          usbphyc[_i0].phys = (struct TYPE_2__ **) malloc(_len_usbphyc__i0__phys0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_usbphyc__i0__phys0; _j0++) {
+            int _len_usbphyc__i0__phys1 = 1;
+            usbphyc[_i0].phys[_j0] = (struct TYPE_2__ *) malloc(_len_usbphyc__i0__phys1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_usbphyc__i0__phys1; _j1++) {
+                usbphyc[_i0].phys[_j0]->active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = stm32_usbphyc_has_one_phy_active(usbphyc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_usbphyc0; _aux++) {
+          free(*(usbphyc[_aux].phys));
+        free(usbphyc[_aux].phys);
+          }
+          free(usbphyc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_usbphyc0 = 1;
+          struct stm32_usbphyc * usbphyc = (struct stm32_usbphyc *) malloc(_len_usbphyc0*sizeof(struct stm32_usbphyc));
+          for(int _i0 = 0; _i0 < _len_usbphyc0; _i0++) {
+              usbphyc[_i0].nphys = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_usbphyc__i0__phys0 = 1;
+          usbphyc[_i0].phys = (struct TYPE_2__ **) malloc(_len_usbphyc__i0__phys0*sizeof(struct TYPE_2__ *));
+          for(int _j0 = 0; _j0 < _len_usbphyc__i0__phys0; _j0++) {
+            int _len_usbphyc__i0__phys1 = 1;
+            usbphyc[_i0].phys[_j0] = (struct TYPE_2__ *) malloc(_len_usbphyc__i0__phys1*sizeof(struct TYPE_2__));
+            for(int _j1 = 0; _j1 < _len_usbphyc__i0__phys1; _j1++) {
+                usbphyc[_i0].phys[_j0]->active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = stm32_usbphyc_has_one_phy_active(usbphyc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_usbphyc0; _aux++) {
+          free(*(usbphyc[_aux].phys));
+        free(usbphyc[_aux].phys);
+          }
+          free(usbphyc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static uint32_t jz4780_nemc_ns_to_cycles(struct jz4780_nem
 	return ((ns * 1000) + nemc->clk_period - 1) / nemc->clk_period;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,30 +76,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int ns = 100;
+        
           int _len_nemc0 = 1;
           struct jz4780_nemc * nemc = (struct jz4780_nemc *) malloc(_len_nemc0*sizeof(struct jz4780_nemc));
           for(int _i0 = 0; _i0 < _len_nemc0; _i0++) {
-            nemc[_i0].clk_period = ((-2 * (next_i()%2)) + 1) * next_i();
+              nemc[_i0].clk_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = jz4780_nemc_ns_to_cycles(nemc,ns);
           printf("%d\n", benchRet); 
           free(nemc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int ns = 255;
+        
+          int _len_nemc0 = 65025;
+          struct jz4780_nemc * nemc = (struct jz4780_nemc *) malloc(_len_nemc0*sizeof(struct jz4780_nemc));
+          for(int _i0 = 0; _i0 < _len_nemc0; _i0++) {
+              nemc[_i0].clk_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jz4780_nemc_ns_to_cycles(nemc,ns);
+          printf("%d\n", benchRet); 
+          free(nemc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int ns = 10;
+        
           int _len_nemc0 = 100;
           struct jz4780_nemc * nemc = (struct jz4780_nemc *) malloc(_len_nemc0*sizeof(struct jz4780_nemc));
           for(int _i0 = 0; _i0 < _len_nemc0; _i0++) {
-            nemc[_i0].clk_period = ((-2 * (next_i()%2)) + 1) * next_i();
+              nemc[_i0].clk_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = jz4780_nemc_ns_to_cycles(nemc,ns);
+          printf("%d\n", benchRet); 
+          free(nemc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nemc0 = 1;
+          struct jz4780_nemc * nemc = (struct jz4780_nemc *) malloc(_len_nemc0*sizeof(struct jz4780_nemc));
+          for(int _i0 = 0; _i0 < _len_nemc0; _i0++) {
+              nemc[_i0].clk_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = jz4780_nemc_ns_to_cycles(nemc,ns);
           printf("%d\n", benchRet); 
           free(nemc);

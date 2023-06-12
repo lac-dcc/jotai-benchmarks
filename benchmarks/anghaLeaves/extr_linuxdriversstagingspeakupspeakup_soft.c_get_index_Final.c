@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static unsigned char get_index(struct spk_synth *synth)
 	return rv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_synth0 = 1;
+          int _len_synth0 = 65025;
           struct spk_synth * synth = (struct spk_synth *) malloc(_len_synth0*sizeof(struct spk_synth));
           for(int _i0 = 0; _i0 < _len_synth0; _i0++) {
-            synth[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              synth[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = get_index(synth);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(synth);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_synth0 = 100;
           struct spk_synth * synth = (struct spk_synth *) malloc(_len_synth0*sizeof(struct spk_synth));
           for(int _i0 = 0; _i0 < _len_synth0; _i0++) {
-            synth[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              synth[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned char benchRet = get_index(synth);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(synth);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_synth0 = 1;
+          struct spk_synth * synth = (struct spk_synth *) malloc(_len_synth0*sizeof(struct spk_synth));
+          for(int _i0 = 0; _i0 < _len_synth0; _i0++) {
+              synth[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned char benchRet = get_index(synth);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(synth);
+        
+        break;
+    }
     default:
         usage();
         break;

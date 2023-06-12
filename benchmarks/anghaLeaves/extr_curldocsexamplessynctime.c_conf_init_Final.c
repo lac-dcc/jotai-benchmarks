@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ int conf_init(conf_t *conf)
   return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,9 +83,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_conf0 = 65025;
+          struct TYPE_3__ * conf = (struct TYPE_3__ *) malloc(_len_conf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              int _len_conf__i0__timeserver0 = 1;
+          conf[_i0].timeserver = (long *) malloc(_len_conf__i0__timeserver0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_conf__i0__timeserver0; _j0++) {
+            conf[_i0].timeserver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_conf__i0__proxy_user0 = 1;
+          conf[_i0].proxy_user = (long *) malloc(_len_conf__i0__proxy_user0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_conf__i0__proxy_user0; _j0++) {
+            conf[_i0].proxy_user[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_conf__i0__http_proxy0 = 1;
+          conf[_i0].http_proxy = (long *) malloc(_len_conf__i0__http_proxy0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_conf__i0__http_proxy0; _j0++) {
+            conf[_i0].http_proxy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = conf_init(conf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].timeserver);
+          }
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].proxy_user);
+          }
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].http_proxy);
+          }
+          free(conf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_conf0 = 100;
+          struct TYPE_3__ * conf = (struct TYPE_3__ *) malloc(_len_conf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              int _len_conf__i0__timeserver0 = 1;
+          conf[_i0].timeserver = (long *) malloc(_len_conf__i0__timeserver0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_conf__i0__timeserver0; _j0++) {
+            conf[_i0].timeserver[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_conf__i0__proxy_user0 = 1;
+          conf[_i0].proxy_user = (long *) malloc(_len_conf__i0__proxy_user0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_conf__i0__proxy_user0; _j0++) {
+            conf[_i0].proxy_user[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_conf__i0__http_proxy0 = 1;
+          conf[_i0].http_proxy = (long *) malloc(_len_conf__i0__http_proxy0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_conf__i0__http_proxy0; _j0++) {
+            conf[_i0].http_proxy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = conf_init(conf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].timeserver);
+          }
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].proxy_user);
+          }
+          for(int _aux = 0; _aux < _len_conf0; _aux++) {
+          free(conf[_aux].http_proxy);
+          }
+          free(conf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_conf0 = 1;
           struct TYPE_3__ * conf = (struct TYPE_3__ *) malloc(_len_conf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
@@ -108,7 +253,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_conf__i0__http_proxy0; _j0++) {
             conf[_i0].http_proxy[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = conf_init(conf);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_conf0; _aux++) {

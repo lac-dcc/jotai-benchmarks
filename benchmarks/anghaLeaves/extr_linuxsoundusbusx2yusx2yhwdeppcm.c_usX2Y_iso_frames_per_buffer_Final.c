@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int usX2Y_iso_frames_per_buffer(struct snd_p
 	return (runtime->buffer_size * 1000) / usX2Y->rate + 1;	//FIXME: so far only correct period_size == 2^x ?
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_runtime0 = 65025;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_usX2Y0 = 65025;
+          struct usX2Ydev * usX2Y = (struct usX2Ydev *) malloc(_len_usX2Y0*sizeof(struct usX2Ydev));
+          for(int _i0 = 0; _i0 < _len_usX2Y0; _i0++) {
+              usX2Y[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usX2Y_iso_frames_per_buffer(runtime,usX2Y);
+          printf("%d\n", benchRet); 
+          free(runtime);
+          free(usX2Y);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_runtime0 = 100;
+          struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
+          for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_usX2Y0 = 100;
+          struct usX2Ydev * usX2Y = (struct usX2Ydev *) malloc(_len_usX2Y0*sizeof(struct usX2Ydev));
+          for(int _i0 = 0; _i0 < _len_usX2Y0; _i0++) {
+              usX2Y[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = usX2Y_iso_frames_per_buffer(runtime,usX2Y);
+          printf("%d\n", benchRet); 
+          free(runtime);
+          free(usX2Y);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_runtime0 = 1;
           struct snd_pcm_runtime * runtime = (struct snd_pcm_runtime *) malloc(_len_runtime0*sizeof(struct snd_pcm_runtime));
           for(int _i0 = 0; _i0 < _len_runtime0; _i0++) {
-            runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              runtime[_i0].buffer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_usX2Y0 = 1;
           struct usX2Ydev * usX2Y = (struct usX2Ydev *) malloc(_len_usX2Y0*sizeof(struct usX2Ydev));
           for(int _i0 = 0; _i0 < _len_usX2Y0; _i0++) {
-            usX2Y[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              usX2Y[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = usX2Y_iso_frames_per_buffer(runtime,usX2Y);
           printf("%d\n", benchRet); 
           free(runtime);

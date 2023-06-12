@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u64 xgene_dma_encode_len(size_t len)
 		XGENE_DMA_16K_BUFFER_LEN_CODE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long len = 100;
+        
           int benchRet = xgene_dma_encode_len(len);
           printf("%d\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long len = 255;
+        
           int benchRet = xgene_dma_encode_len(len);
           printf("%d\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long len = 10;
+        
           int benchRet = xgene_dma_encode_len(len);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xgene_dma_encode_len(len);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

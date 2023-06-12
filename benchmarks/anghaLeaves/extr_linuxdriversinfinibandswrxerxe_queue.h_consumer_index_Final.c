@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline unsigned int consumer_index(struct rxe_queue
 	return q->buf->consumer_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          int _len_q0 = 65025;
           struct rxe_queue * q = (struct rxe_queue *) malloc(_len_q0*sizeof(struct rxe_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
               int _len_q__i0__buf0 = 1;
           q[_i0].buf = (struct TYPE_2__ *) malloc(_len_q__i0__buf0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_q__i0__buf0; _j0++) {
-            q[_i0].buf->consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].buf->consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = consumer_index(q);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_q0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_q0 = 100;
+          struct rxe_queue * q = (struct rxe_queue *) malloc(_len_q0*sizeof(struct rxe_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__buf0 = 1;
+          q[_i0].buf = (struct TYPE_2__ *) malloc(_len_q__i0__buf0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_q__i0__buf0; _j0++) {
+              q[_i0].buf->consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = consumer_index(q);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].buf);
+          }
+          free(q);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_q0 = 1;
+          struct rxe_queue * q = (struct rxe_queue *) malloc(_len_q0*sizeof(struct rxe_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              int _len_q__i0__buf0 = 1;
+          q[_i0].buf = (struct TYPE_2__ *) malloc(_len_q__i0__buf0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_q__i0__buf0; _j0++) {
+              q[_i0].buf->consumer_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = consumer_index(q);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].buf);
+          }
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

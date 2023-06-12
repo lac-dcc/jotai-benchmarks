@@ -105,12 +105,6 @@ __attribute__((used)) static u32 esdhc_writeb_fixup(struct sdhci_host *host,
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,34 +117,91 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int spec_reg = 100;
+        
           int value = 100;
+        
           int old_value = 100;
+        
           int _len_host0 = 1;
           struct sdhci_host * host = (struct sdhci_host *) malloc(_len_host0*sizeof(struct sdhci_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].quirks2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].quirks2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = esdhc_writeb_fixup(host,spec_reg,value,old_value);
           printf("%d\n", benchRet); 
           free(host);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 34
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int spec_reg = 10;
+        
           int value = 10;
+        
           int old_value = 10;
+        
           int _len_host0 = 100;
           struct sdhci_host * host = (struct sdhci_host *) malloc(_len_host0*sizeof(struct sdhci_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].quirks2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].quirks2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = esdhc_writeb_fixup(host,spec_reg,value,old_value);
           printf("%d\n", benchRet); 
           free(host);

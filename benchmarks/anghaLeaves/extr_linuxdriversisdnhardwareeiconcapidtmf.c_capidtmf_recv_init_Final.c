@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void capidtmf_recv_init(t_capidtmf_state *p_state)
 	p_state->recv.state = CAPIDTMF_RECV_STATE_IDLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,24 +92,150 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_p_state0 = 65025;
+          struct TYPE_5__ * p_state = (struct TYPE_5__ *) malloc(_len_p_state0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_p_state0; _i0++) {
+              p_state[_i0].recv.min_gap_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.min_digit_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.indication_state_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.indication_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.digit_read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.digit_write_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_off_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_on_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.cycle_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          capidtmf_recv_init(p_state);
+          free(p_state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_p_state0 = 100;
+          struct TYPE_5__ * p_state = (struct TYPE_5__ *) malloc(_len_p_state0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_p_state0; _i0++) {
+              p_state[_i0].recv.min_gap_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.min_digit_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.indication_state_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.indication_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.digit_read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.digit_write_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_off_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_on_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.cycle_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          capidtmf_recv_init(p_state);
+          free(p_state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_p_state0 = 1;
           struct TYPE_5__ * p_state = (struct TYPE_5__ *) malloc(_len_p_state0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_p_state0; _i0++) {
-            p_state[_i0].recv.min_gap_duration = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.min_digit_duration = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.state = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.indication_state_ack = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.indication_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.digit_read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.digit_write_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.current_digit_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.current_digit_off_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.current_digit_on_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_state[_i0].recv.cycle_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_state[_i0].recv.min_gap_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.min_digit_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.indication_state_ack = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.indication_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.digit_read_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.digit_write_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_off_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.current_digit_on_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_state[_i0].recv.cycle_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           capidtmf_recv_init(p_state);
           free(p_state);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ is_thrashing(uint32_t added, uint32_t found, uint32_t threshold)
 	return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,8 +102,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int added = 100;
+        
           int found = 100;
+        
           int threshold = 100;
+        
           int benchRet = is_thrashing(added,found,threshold);
           printf("%d\n", benchRet); 
         
@@ -118,8 +116,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int added = 255;
+        
           int found = 255;
+        
           int threshold = 255;
+        
           int benchRet = is_thrashing(added,found,threshold);
           printf("%d\n", benchRet); 
         
@@ -129,14 +130,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int added = 10;
+        
           int found = 10;
+        
           int threshold = 10;
+        
           int benchRet = is_thrashing(added,found,threshold);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int added = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int found = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_thrashing(added,found,threshold);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

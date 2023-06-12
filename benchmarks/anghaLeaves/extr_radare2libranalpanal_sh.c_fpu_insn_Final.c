@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int fpu_insn(RAnal* anal, RAnalOp* op, ut16 code) {
 	return op->size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,17 +85,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int code = 100;
+        
           int _len_anal0 = 1;
           int * anal = (int *) malloc(_len_anal0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
             anal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_op0 = 1;
           struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_op0; _i0++) {
-            op[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        op[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+              op[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fpu_insn(anal,op,code);
           printf("%d\n", benchRet); 
           free(anal);
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int code = 255;
+        
+          int _len_anal0 = 65025;
+          int * anal = (int *) malloc(_len_anal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
+            anal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 65025;
+          struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fpu_insn(anal,op,code);
+          printf("%d\n", benchRet); 
+          free(anal);
+          free(op);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int code = 10;
+        
+          int _len_anal0 = 100;
+          int * anal = (int *) malloc(_len_anal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
+            anal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 100;
+          struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fpu_insn(anal,op,code);
+          printf("%d\n", benchRet); 
+          free(anal);
+          free(op);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_anal0 = 1;
+          int * anal = (int *) malloc(_len_anal0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_anal0; _i0++) {
+            anal[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_op0 = 1;
+          struct TYPE_3__ * op = (struct TYPE_3__ *) malloc(_len_op0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_op0; _i0++) {
+              op[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          op[_i0].family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fpu_insn(anal,op,code);
+          printf("%d\n", benchRet); 
+          free(anal);
+          free(op);
+        
+        break;
+    }
     default:
         usage();
         break;

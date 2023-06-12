@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ void ring_buffer_normalize_time_stamp(struct ring_buffer *buffer,
 	*ts >>= DEBUG_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +83,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpu = 100;
+        
           int _len_buffer0 = 1;
           struct ring_buffer * buffer = (struct ring_buffer *) malloc(_len_buffer0*sizeof(struct ring_buffer));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
-            buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ts0 = 1;
           int * ts = (int *) malloc(_len_ts0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
             ts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ring_buffer_normalize_time_stamp(buffer,cpu,ts);
           free(buffer);
           free(ts);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cpu = 255;
+        
+          int _len_buffer0 = 65025;
+          struct ring_buffer * buffer = (struct ring_buffer *) malloc(_len_buffer0*sizeof(struct ring_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ts0 = 65025;
+          int * ts = (int *) malloc(_len_ts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
+            ts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ring_buffer_normalize_time_stamp(buffer,cpu,ts);
+          free(buffer);
+          free(ts);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cpu = 10;
+        
+          int _len_buffer0 = 100;
+          struct ring_buffer * buffer = (struct ring_buffer *) malloc(_len_buffer0*sizeof(struct ring_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ts0 = 100;
+          int * ts = (int *) malloc(_len_ts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
+            ts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ring_buffer_normalize_time_stamp(buffer,cpu,ts);
+          free(buffer);
+          free(ts);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buffer0 = 1;
+          struct ring_buffer * buffer = (struct ring_buffer *) malloc(_len_buffer0*sizeof(struct ring_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ts0 = 1;
+          int * ts = (int *) malloc(_len_ts0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
+            ts[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ring_buffer_normalize_time_stamp(buffer,cpu,ts);
+          free(buffer);
+          free(ts);
+        
+        break;
+    }
     default:
         usage();
         break;

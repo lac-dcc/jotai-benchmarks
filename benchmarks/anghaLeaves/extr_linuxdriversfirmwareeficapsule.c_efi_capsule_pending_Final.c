@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ bool efi_capsule_pending(int *reset_type)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_reset_type0 = 1;
+          int _len_reset_type0 = 65025;
           int * reset_type = (int *) malloc(_len_reset_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reset_type0; _i0++) {
             reset_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = efi_capsule_pending(reset_type);
           printf("%d\n", benchRet); 
           free(reset_type);
@@ -108,13 +104,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_reset_type0; _i0++) {
             reset_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = efi_capsule_pending(reset_type);
           printf("%d\n", benchRet); 
           free(reset_type);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_reset_type0 = 1;
+          int * reset_type = (int *) malloc(_len_reset_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reset_type0; _i0++) {
+            reset_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = efi_capsule_pending(reset_type);
+          printf("%d\n", benchRet); 
+          free(reset_type);
+        
+        break;
+    }
     default:
         usage();
         break;

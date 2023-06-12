@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void fixed_to_double(POINTFX fixed, UINT em_size, G
     vertex[2] = 0.0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,41 +89,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int em_size = 100;
+        
           struct TYPE_7__ fixed;
-        fixed.y.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixed.y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixed.x.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixed.x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fixed.x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int _len_vertex0 = 3;
           int * vertex = (int *) malloc(_len_vertex0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_vertex0; _i0++) {
             vertex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          fixed_to_double(fixed,em_size,vertex);
+          free(vertex);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int em_size = 255;
+        
+          struct TYPE_7__ fixed;
+          fixed.y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fixed.x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_vertex0 = 65025;
+          int * vertex = (int *) malloc(_len_vertex0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_vertex0; _i0++) {
+            vertex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           fixed_to_double(fixed,em_size,vertex);
           free(vertex);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int em_size = 10;
+        
           struct TYPE_7__ fixed;
-        fixed.y.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixed.y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixed.x.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        fixed.x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fixed.x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int _len_vertex0 = 100;
           int * vertex = (int *) malloc(_len_vertex0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_vertex0; _i0++) {
             vertex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fixed_to_double(fixed,em_size,vertex);
           free(vertex);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int em_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_7__ fixed;
+          fixed.y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fixed.x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          fixed.x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_vertex0 = 3;
+          int * vertex = (int *) malloc(_len_vertex0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_vertex0; _i0++) {
+            vertex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fixed_to_double(fixed,em_size,vertex);
+          free(vertex);
+        
+        break;
+    }
     default:
         usage();
         break;

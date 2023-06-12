@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ __attribute__((used)) static u32 lpphy_qdiv_roundup(u32 dividend, u32 divisor, u
 	return quotient;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,12 +94,76 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 156
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 111
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 106
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 106
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 106
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 110
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 128
+          // ------------------------------- 
+
           int dividend = 10;
+        
           int divisor = 10;
+        
           long precision = 10;
+        
+          int benchRet = lpphy_qdiv_roundup(dividend,divisor,precision);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int dividend = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int divisor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long precision = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = lpphy_qdiv_roundup(dividend,divisor,precision);
           printf("%d\n", benchRet); 
         

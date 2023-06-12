@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static bool ath9k_hw_nvram_read_array(u16 *blob, size_t bl
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,17 +85,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long blob_size = 100;
+        
           unsigned long offset = 100;
+        
           int _len_blob0 = 1;
           int * blob = (int *) malloc(_len_blob0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
             blob[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_data0 = 1;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ath9k_hw_nvram_read_array(blob,blob_size,offset,data);
           printf("%d\n", benchRet); 
           free(blob);
@@ -106,7 +107,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long blob_size = 255;
+        
+          unsigned long offset = 255;
+        
+          int _len_blob0 = 65025;
+          int * blob = (int *) malloc(_len_blob0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
+            blob[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data0 = 65025;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath9k_hw_nvram_read_array(blob,blob_size,offset,data);
+          printf("%d\n", benchRet); 
+          free(blob);
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long blob_size = 10;
+        
+          unsigned long offset = 10;
+        
+          int _len_blob0 = 100;
+          int * blob = (int *) malloc(_len_blob0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
+            blob[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data0 = 100;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath9k_hw_nvram_read_array(blob,blob_size,offset,data);
+          printf("%d\n", benchRet); 
+          free(blob);
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long blob_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_blob0 = 1;
+          int * blob = (int *) malloc(_len_blob0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
+            blob[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data0 = 1;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ath9k_hw_nvram_read_array(blob,blob_size,offset,data);
+          printf("%d\n", benchRet); 
+          free(blob);
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

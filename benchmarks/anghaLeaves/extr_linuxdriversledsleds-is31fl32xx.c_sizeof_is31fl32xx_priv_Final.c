@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline size_t sizeof_is31fl32xx_priv(int num_leds)
 		      (sizeof(struct is31fl32xx_led_data) * num_leds);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num_leds = 100;
+        
           unsigned long benchRet = sizeof_is31fl32xx_priv(num_leds);
           printf("%lu\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int num_leds = 255;
+        
           unsigned long benchRet = sizeof_is31fl32xx_priv(num_leds);
           printf("%lu\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int num_leds = 10;
+        
           unsigned long benchRet = sizeof_is31fl32xx_priv(num_leds);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int num_leds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = sizeof_is31fl32xx_priv(num_leds);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ void init_format(WAVEFORMATEX* wfx, int format, int rate, int depth,
     wfx->cbSize=0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,24 +90,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int format = 100;
+        
           int rate = 100;
+        
           int depth = 100;
+        
           int channels = 100;
+        
           int _len_wfx0 = 1;
           struct TYPE_3__ * wfx = (struct TYPE_3__ *) malloc(_len_wfx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_wfx0; _i0++) {
-            wfx[_i0].wFormatTag = ((-2 * (next_i()%2)) + 1) * next_i();
-        wfx[_i0].nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
-        wfx[_i0].wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
-        wfx[_i0].nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
-        wfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
-        wfx[_i0].nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
-        wfx[_i0].cbSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              wfx[_i0].wFormatTag = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].cbSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          init_format(wfx,format,rate,depth,channels);
+          free(wfx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int format = 255;
+        
+          int rate = 255;
+        
+          int depth = 255;
+        
+          int channels = 255;
+        
+          int _len_wfx0 = 65025;
+          struct TYPE_3__ * wfx = (struct TYPE_3__ *) malloc(_len_wfx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_wfx0; _i0++) {
+              wfx[_i0].wFormatTag = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].cbSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_format(wfx,format,rate,depth,channels);
+          free(wfx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int format = 10;
+        
+          int rate = 10;
+        
+          int depth = 10;
+        
+          int channels = 10;
+        
+          int _len_wfx0 = 100;
+          struct TYPE_3__ * wfx = (struct TYPE_3__ *) malloc(_len_wfx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_wfx0; _i0++) {
+              wfx[_i0].wFormatTag = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].cbSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_format(wfx,format,rate,depth,channels);
+          free(wfx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wfx0 = 1;
+          struct TYPE_3__ * wfx = (struct TYPE_3__ *) malloc(_len_wfx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_wfx0; _i0++) {
+              wfx[_i0].wFormatTag = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nChannels = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].wBitsPerSample = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nSamplesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].nAvgBytesPerSec = ((-2 * (next_i()%2)) + 1) * next_i();
+          wfx[_i0].cbSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           init_format(wfx,format,rate,depth,channels);
           free(wfx);
         

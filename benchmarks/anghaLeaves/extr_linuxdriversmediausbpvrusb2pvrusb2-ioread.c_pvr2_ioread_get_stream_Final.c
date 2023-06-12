@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct pvr2_stream *pvr2_ioread_get_stream(struct pvr2_ioread *cp)
 	return cp->stream;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cp0 = 1;
+          int _len_cp0 = 65025;
           struct pvr2_ioread * cp = (struct pvr2_ioread *) malloc(_len_cp0*sizeof(struct pvr2_ioread));
           for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
               int _len_cp__i0__stream0 = 1;
           cp[_i0].stream = (struct pvr2_stream *) malloc(_len_cp__i0__stream0*sizeof(struct pvr2_stream));
           for(int _j0 = 0; _j0 < _len_cp__i0__stream0; _j0++) {
-            cp[_i0].stream->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cp[_i0].stream->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct pvr2_stream * benchRet = pvr2_ioread_get_stream(cp);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_cp0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cp0 = 100;
+          struct pvr2_ioread * cp = (struct pvr2_ioread *) malloc(_len_cp0*sizeof(struct pvr2_ioread));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              int _len_cp__i0__stream0 = 1;
+          cp[_i0].stream = (struct pvr2_stream *) malloc(_len_cp__i0__stream0*sizeof(struct pvr2_stream));
+          for(int _j0 = 0; _j0 < _len_cp__i0__stream0; _j0++) {
+              cp[_i0].stream->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct pvr2_stream * benchRet = pvr2_ioread_get_stream(cp);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_cp0; _aux++) {
+          free(cp[_aux].stream);
+          }
+          free(cp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cp0 = 1;
+          struct pvr2_ioread * cp = (struct pvr2_ioread *) malloc(_len_cp0*sizeof(struct pvr2_ioread));
+          for(int _i0 = 0; _i0 < _len_cp0; _i0++) {
+              int _len_cp__i0__stream0 = 1;
+          cp[_i0].stream = (struct pvr2_stream *) malloc(_len_cp__i0__stream0*sizeof(struct pvr2_stream));
+          for(int _j0 = 0; _j0 < _len_cp__i0__stream0; _j0++) {
+              cp[_i0].stream->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct pvr2_stream * benchRet = pvr2_ioread_get_stream(cp);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_cp0; _aux++) {
+          free(cp[_aux].stream);
+          }
+          free(cp);
+        
+        break;
+    }
     default:
         usage();
         break;

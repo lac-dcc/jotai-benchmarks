@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ mbuf_get_tso_requested(
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,26 +97,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mbuf0 = 1;
+          int _len_mbuf0 = 65025;
           struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
-            mbuf[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        mbuf[_i0].m_pkthdr.tso_segsz = ((-2 * (next_i()%2)) + 1) * next_i();
-        mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              mbuf[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.tso_segsz = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_request0 = 1;
+        
+          int _len_request0 = 65025;
           int * request = (int *) malloc(_len_request0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
             request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_value0 = 1;
+        
+          int _len_value0 = 65025;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mbuf_get_tso_requested(mbuf,request,value);
           printf("%d\n", benchRet); 
           free(mbuf);
@@ -129,7 +130,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mbuf0 = 100;
+          struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.tso_segsz = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_request0 = 100;
+          int * request = (int *) malloc(_len_request0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+            request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mbuf_get_tso_requested(mbuf,request,value);
+          printf("%d\n", benchRet); 
+          free(mbuf);
+          free(request);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mbuf0 = 1;
+          struct TYPE_5__ * mbuf = (struct TYPE_5__ *) malloc(_len_mbuf0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.tso_segsz = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].m_pkthdr.csum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_request0 = 1;
+          int * request = (int *) malloc(_len_request0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+            request[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mbuf_get_tso_requested(mbuf,request,value);
+          printf("%d\n", benchRet); 
+          free(mbuf);
+          free(request);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

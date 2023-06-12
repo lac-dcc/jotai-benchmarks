@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void reset_lem_struct(struct s_phy *phy)
 	lem->lem_float_ber = 15 * 100 ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +80,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phy0 = 1;
+          int _len_phy0 = 65025;
           struct s_phy * phy = (struct s_phy *) malloc(_len_phy0*sizeof(struct s_phy));
           for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
               int _len_phy__i0__mib0 = 1;
           phy[_i0].mib = (struct TYPE_2__ *) malloc(_len_phy__i0__mib0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_phy__i0__mib0; _j0++) {
-            phy[_i0].mib->fddiPORTLer_Estimate = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy[_i0].mib->fddiPORTLer_Estimate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        phy[_i0].lem.lem_float_ber = ((-2 * (next_i()%2)) + 1) * next_i();
+          phy[_i0].lem.lem_float_ber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           reset_lem_struct(phy);
           for(int _aux = 0; _aux < _len_phy0; _aux++) {
           free(phy[_aux].mib);
@@ -105,7 +105,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_phy0 = 100;
+          struct s_phy * phy = (struct s_phy *) malloc(_len_phy0*sizeof(struct s_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              int _len_phy__i0__mib0 = 1;
+          phy[_i0].mib = (struct TYPE_2__ *) malloc(_len_phy__i0__mib0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_phy__i0__mib0; _j0++) {
+              phy[_i0].mib->fddiPORTLer_Estimate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          phy[_i0].lem.lem_float_ber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reset_lem_struct(phy);
+          for(int _aux = 0; _aux < _len_phy0; _aux++) {
+          free(phy[_aux].mib);
+          }
+          free(phy);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_phy0 = 1;
+          struct s_phy * phy = (struct s_phy *) malloc(_len_phy0*sizeof(struct s_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              int _len_phy__i0__mib0 = 1;
+          phy[_i0].mib = (struct TYPE_2__ *) malloc(_len_phy__i0__mib0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_phy__i0__mib0; _j0++) {
+              phy[_i0].mib->fddiPORTLer_Estimate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          phy[_i0].lem.lem_float_ber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reset_lem_struct(phy);
+          for(int _aux = 0; _aux < _len_phy0; _aux++) {
+          free(phy[_aux].mib);
+          }
+          free(phy);
+        
+        break;
+    }
     default:
         usage();
         break;

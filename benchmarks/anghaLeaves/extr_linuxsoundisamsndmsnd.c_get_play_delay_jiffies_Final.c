@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline long get_play_delay_jiffies(struct snd_msnd 
 	return tmp / (chip->play_sample_rate * chip->play_channels);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +77,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long size = 100;
+        
           int _len_chip0 = 1;
           struct snd_msnd * chip = (struct snd_msnd *) malloc(_len_chip0*sizeof(struct snd_msnd));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].play_sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        chip[_i0].play_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        chip[_i0].play_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].play_sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = get_play_delay_jiffies(chip,size);
+          printf("%ld\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long size = 255;
+        
+          int _len_chip0 = 65025;
+          struct snd_msnd * chip = (struct snd_msnd *) malloc(_len_chip0*sizeof(struct snd_msnd));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].play_sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_play_delay_jiffies(chip,size);
+          printf("%ld\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long size = 10;
+        
+          int _len_chip0 = 100;
+          struct snd_msnd * chip = (struct snd_msnd *) malloc(_len_chip0*sizeof(struct snd_msnd));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].play_sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = get_play_delay_jiffies(chip,size);
+          printf("%ld\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct snd_msnd * chip = (struct snd_msnd *) malloc(_len_chip0*sizeof(struct snd_msnd));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].play_sample_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_sample_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          chip[_i0].play_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = get_play_delay_jiffies(chip,size);
           printf("%ld\n", benchRet); 
           free(chip);

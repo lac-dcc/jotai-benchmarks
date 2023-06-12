@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static mp_obj_t servo_obj_detach(mp_obj_t self_in) {
     return mp_const_none;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int self_in = 100;
+        
           int benchRet = servo_obj_detach(self_in);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int self_in = 255;
+        
           int benchRet = servo_obj_detach(self_in);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int self_in = 10;
+        
           int benchRet = servo_obj_detach(self_in);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int self_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = servo_obj_detach(self_in);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

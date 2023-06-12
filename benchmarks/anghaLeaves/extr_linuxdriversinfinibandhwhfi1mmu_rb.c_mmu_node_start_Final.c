@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned long mmu_node_start(struct mmu_rb_node *no
 	return node->addr & PAGE_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_node0 = 1;
+          int _len_node0 = 65025;
           struct mmu_rb_node * node = (struct mmu_rb_node *) malloc(_len_node0*sizeof(struct mmu_rb_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = mmu_node_start(node);
           printf("%lu\n", benchRet); 
           free(node);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_node0 = 100;
           struct mmu_rb_node * node = (struct mmu_rb_node *) malloc(_len_node0*sizeof(struct mmu_rb_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = mmu_node_start(node);
           printf("%lu\n", benchRet); 
           free(node);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_node0 = 1;
+          struct mmu_rb_node * node = (struct mmu_rb_node *) malloc(_len_node0*sizeof(struct mmu_rb_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = mmu_node_start(node);
+          printf("%lu\n", benchRet); 
+          free(node);
+        
+        break;
+    }
     default:
         usage();
         break;

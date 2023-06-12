@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int get_start(struct bpf_jit *jit, int start)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int start = 100;
+        
           int _len_jit0 = 1;
           struct bpf_jit * jit = (struct bpf_jit *) malloc(_len_jit0*sizeof(struct bpf_jit));
           for(int _i0 = 0; _i0 < _len_jit0; _i0++) {
@@ -96,7 +92,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_jit__i0__seen_reg0; _j0++) {
             jit[_i0].seen_reg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = get_start(jit,start);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_jit0; _aux++) {
@@ -106,7 +104,31 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int start = 255;
+        
+          int _len_jit0 = 65025;
+          struct bpf_jit * jit = (struct bpf_jit *) malloc(_len_jit0*sizeof(struct bpf_jit));
+          for(int _i0 = 0; _i0 < _len_jit0; _i0++) {
+              int _len_jit__i0__seen_reg0 = 1;
+          jit[_i0].seen_reg = (long *) malloc(_len_jit__i0__seen_reg0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_jit__i0__seen_reg0; _j0++) {
+            jit[_i0].seen_reg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_start(jit,start);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_jit0; _aux++) {
+          free(jit[_aux].seen_reg);
+          }
+          free(jit);
+        
+        break;
+    }
     default:
         usage();
         break;

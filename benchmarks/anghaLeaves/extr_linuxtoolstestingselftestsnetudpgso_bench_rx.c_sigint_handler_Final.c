@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void sigint_handler(int signum)
 		interrupted = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signum = 100;
+        
           sigint_handler(signum);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signum = 255;
+        
           sigint_handler(signum);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signum = 10;
+        
           sigint_handler(signum);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sigint_handler(signum);
+        
+        break;
+    }
     default:
         usage();
         break;

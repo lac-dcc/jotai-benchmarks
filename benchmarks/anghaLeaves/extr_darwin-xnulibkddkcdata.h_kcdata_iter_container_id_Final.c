@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -65,12 +65,6 @@ uint64_t kcdata_iter_container_id(kcdata_iter_t iter) {
 	return iter.item->flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_5__ iter;
           int _len_iter_item0 = 1;
           iter.item = (struct TYPE_4__ *) malloc(_len_iter_item0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_iter_item0; _j0++) {
-            iter.item->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter.item->flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kcdata_iter_container_id(iter);
           printf("%d\n", benchRet); 
           free(iter.item);
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool trace_parser_loaded(struct trace_parser
 	return (parser->idx != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_parser0 = 1;
+          int _len_parser0 = 65025;
           struct trace_parser * parser = (struct trace_parser *) malloc(_len_parser0*sizeof(struct trace_parser));
           for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
-            parser[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              parser[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trace_parser_loaded(parser);
           printf("%d\n", benchRet); 
           free(parser);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_parser0 = 100;
           struct trace_parser * parser = (struct trace_parser *) malloc(_len_parser0*sizeof(struct trace_parser));
           for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
-            parser[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              parser[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = trace_parser_loaded(parser);
           printf("%d\n", benchRet); 
           free(parser);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_parser0 = 1;
+          struct trace_parser * parser = (struct trace_parser *) malloc(_len_parser0*sizeof(struct trace_parser));
+          for(int _i0 = 0; _i0 < _len_parser0; _i0++) {
+              parser[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = trace_parser_loaded(parser);
+          printf("%d\n", benchRet); 
+          free(parser);
+        
+        break;
+    }
     default:
         usage();
         break;

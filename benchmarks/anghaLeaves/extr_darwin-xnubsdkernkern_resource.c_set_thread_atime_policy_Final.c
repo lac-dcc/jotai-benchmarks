@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ set_thread_atime_policy(struct uthread *ut, int policy)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +86,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int policy = 100;
+        
           int _len_ut0 = 1;
           struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
           for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
-            ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_thread_atime_policy(ut,policy);
+          free(ut);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int policy = 255;
+        
+          int _len_ut0 = 65025;
+          struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
+          for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_thread_atime_policy(ut,policy);
           free(ut);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int policy = 10;
+        
           int _len_ut0 = 100;
           struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
           for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
-            ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_thread_atime_policy(ut,policy);
           free(ut);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int policy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ut0 = 1;
+          struct uthread * ut = (struct uthread *) malloc(_len_ut0*sizeof(struct uthread));
+          for(int _i0 = 0; _i0 < _len_ut0; _i0++) {
+              ut[_i0].uu_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_thread_atime_policy(ut,policy);
+          free(ut);
+        
+        break;
+    }
     default:
         usage();
         break;

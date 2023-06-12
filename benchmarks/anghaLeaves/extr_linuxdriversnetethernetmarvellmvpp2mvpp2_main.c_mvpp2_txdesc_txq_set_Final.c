@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void mvpp2_txdesc_txq_set(struct mvpp2_port *port,
 		tx_desc->pp22.phys_txq = txq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,25 +88,236 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned int txq = 100;
+        
           int _len_port0 = 1;
           struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
               int _len_port__i0__priv0 = 1;
           port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
-            port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_tx_desc0 = 1;
           struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
           for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
-            tx_desc[_i0].pp22.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_desc[_i0].pp21.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_desc[_i0].pp22.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          mvpp2_txdesc_txq_set(port,tx_desc,txq);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].priv);
+          }
+          free(port);
+          free(tx_desc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int txq = 255;
+        
+          int _len_port0 = 65025;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__priv0 = 1;
+          port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tx_desc0 = 65025;
+          struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
+          for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
+              tx_desc[_i0].pp22.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mvpp2_txdesc_txq_set(port,tx_desc,txq);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].priv);
+          }
+          free(port);
+          free(tx_desc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int txq = 10;
+        
+          int _len_port0 = 100;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__priv0 = 1;
+          port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tx_desc0 = 100;
+          struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
+          for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
+              tx_desc[_i0].pp22.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          mvpp2_txdesc_txq_set(port,tx_desc,txq);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].priv);
+          }
+          free(port);
+          free(tx_desc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct mvpp2_port * port = (struct mvpp2_port *) malloc(_len_port0*sizeof(struct mvpp2_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              int _len_port__i0__priv0 = 1;
+          port[_i0].priv = (struct TYPE_4__ *) malloc(_len_port__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__priv0; _j0++) {
+              port[_i0].priv->hw_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tx_desc0 = 1;
+          struct mvpp2_tx_desc * tx_desc = (struct mvpp2_tx_desc *) malloc(_len_tx_desc0*sizeof(struct mvpp2_tx_desc));
+          for(int _i0 = 0; _i0 < _len_tx_desc0; _i0++) {
+              tx_desc[_i0].pp22.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tx_desc[_i0].pp21.phys_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           mvpp2_txdesc_txq_set(port,tx_desc,txq);
           for(int _aux = 0; _aux < _len_port0; _aux++) {
           free(port[_aux].priv);

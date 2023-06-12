@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static sector_t al_tr_number_to_on_disk_sector(struct drbd
 	return device->ldev->md.md_offset + device->ldev->md.al_offset + t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,23 +92,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_device0 = 1;
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_device0 = 65025;
           struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].al_tr_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].al_tr_number = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_device__i0__ldev0 = 1;
           device[_i0].ldev = (struct TYPE_3__ *) malloc(_len_device__i0__ldev0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_device__i0__ldev0; _j0++) {
-            device[_i0].ldev->md.al_stripes = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].ldev->md.al_stripe_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].ldev->md.al_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].ldev->md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        device[_i0].ldev->md.md_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].ldev->md.al_stripes = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_stripe_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.md_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          long benchRet = al_tr_number_to_on_disk_sector(device);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_device0; _aux++) {
+          free(device[_aux].ldev);
+          }
+          free(device);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_device0 = 100;
+          struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].al_tr_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_device__i0__ldev0 = 1;
+          device[_i0].ldev = (struct TYPE_3__ *) malloc(_len_device__i0__ldev0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_device__i0__ldev0; _j0++) {
+              device[_i0].ldev->md.al_stripes = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_stripe_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.md_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          long benchRet = al_tr_number_to_on_disk_sector(device);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_device0; _aux++) {
+          free(device[_aux].ldev);
+          }
+          free(device);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_device0 = 1;
+          struct drbd_device * device = (struct drbd_device *) malloc(_len_device0*sizeof(struct drbd_device));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].al_tr_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_device__i0__ldev0 = 1;
+          device[_i0].ldev = (struct TYPE_3__ *) malloc(_len_device__i0__ldev0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_device__i0__ldev0; _j0++) {
+              device[_i0].ldev->md.al_stripes = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_stripe_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_size_4k = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.al_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          device[_i0].ldev->md.md_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           long benchRet = al_tr_number_to_on_disk_sector(device);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_device0; _aux++) {

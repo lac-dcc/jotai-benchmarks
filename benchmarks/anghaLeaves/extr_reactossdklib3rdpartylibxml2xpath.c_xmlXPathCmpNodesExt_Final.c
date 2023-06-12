@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -344,7 +344,6 @@ turtle_comparison:
     return(-1); /* assume there is no sibling list corruption */
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_node1(int length, struct TYPE_4__ *aux_node1[]) {
@@ -427,7 +426,6 @@ void _delete_node2(struct TYPE_4__ *aux_node2[], int aux_node2_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -440,13 +438,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 68
+          // dynamic_instructions_O0 : 68
+          // ------------------------------- 
+          // static_instructions_O1 : 50
+          // dynamic_instructions_O1 : 50
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 51
+          // dynamic_instructions_O3 : 51
+          // ------------------------------- 
+          // static_instructions_Ofast : 51
+          // dynamic_instructions_Ofast : 51
+          // ------------------------------- 
+          // static_instructions_Os : 50
+          // dynamic_instructions_Os : 50
+          // ------------------------------- 
+          // static_instructions_Oz : 55
+          // dynamic_instructions_Oz : 55
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_node1[1];
           struct TYPE_4__ * node1 = _allocate_node1(1, aux_node1);
+        
           struct TYPE_4__ * aux_node2[1];
           struct TYPE_4__ * node2 = _allocate_node2(1, aux_node2);
+        
           int benchRet = xmlXPathCmpNodesExt(node1,node2);
           printf("%d\n", benchRet); 
           _delete_node1(aux_node1, 1);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int libsrt_get_file_handle(URLContext *h)
     return s->fd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_h0 = 1;
+          int _len_h0 = 65025;
           struct TYPE_4__ * h = (struct TYPE_4__ *) malloc(_len_h0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
               int _len_h__i0__priv_data0 = 1;
           h[_i0].priv_data = (struct TYPE_5__ *) malloc(_len_h__i0__priv_data0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_h__i0__priv_data0; _j0++) {
-            h[_i0].priv_data->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].priv_data->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = libsrt_get_file_handle(h);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_h0; _aux++) {
@@ -105,7 +104,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_h0 = 100;
+          struct TYPE_4__ * h = (struct TYPE_4__ *) malloc(_len_h0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              int _len_h__i0__priv_data0 = 1;
+          h[_i0].priv_data = (struct TYPE_5__ *) malloc(_len_h__i0__priv_data0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_h__i0__priv_data0; _j0++) {
+              h[_i0].priv_data->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = libsrt_get_file_handle(h);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_h0; _aux++) {
+          free(h[_aux].priv_data);
+          }
+          free(h);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_h0 = 1;
+          struct TYPE_4__ * h = (struct TYPE_4__ *) malloc(_len_h0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              int _len_h__i0__priv_data0 = 1;
+          h[_i0].priv_data = (struct TYPE_5__ *) malloc(_len_h__i0__priv_data0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_h__i0__priv_data0; _j0++) {
+              h[_i0].priv_data->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = libsrt_get_file_handle(h);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_h0; _aux++) {
+          free(h[_aux].priv_data);
+          }
+          free(h);
+        
+        break;
+    }
     default:
         usage();
         break;

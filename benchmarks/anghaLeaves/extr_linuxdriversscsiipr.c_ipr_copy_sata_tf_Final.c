@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void ipr_copy_sata_tf(struct ipr_ioarcb_ata_regs *r
 	regs->ctl = tf->ctl;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,50 +88,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_regs0 = 1;
+          int _len_regs0 = 65025;
           struct ipr_ioarcb_ata_regs * regs = (struct ipr_ioarcb_ata_regs *) malloc(_len_regs0*sizeof(struct ipr_ioarcb_ata_regs));
           for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
-            regs[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
-        regs[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+              regs[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_tf0 = 1;
+        
+          int _len_tf0 = 65025;
           struct ata_taskfile * tf = (struct ata_taskfile *) malloc(_len_tf0*sizeof(struct ata_taskfile));
           for(int _i0 = 0; _i0 < _len_tf0; _i0++) {
-            tf[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
-        tf[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+              tf[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipr_copy_sata_tf(regs,tf);
           free(regs);
           free(tf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_regs0 = 100;
+          struct ipr_ioarcb_ata_regs * regs = (struct ipr_ioarcb_ata_regs *) malloc(_len_regs0*sizeof(struct ipr_ioarcb_ata_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tf0 = 100;
+          struct ata_taskfile * tf = (struct ata_taskfile *) malloc(_len_tf0*sizeof(struct ata_taskfile));
+          for(int _i0 = 0; _i0 < _len_tf0; _i0++) {
+              tf[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipr_copy_sata_tf(regs,tf);
+          free(regs);
+          free(tf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_regs0 = 1;
+          struct ipr_ioarcb_ata_regs * regs = (struct ipr_ioarcb_ata_regs *) malloc(_len_regs0*sizeof(struct ipr_ioarcb_ata_regs));
+          for(int _i0 = 0; _i0 < _len_regs0; _i0++) {
+              regs[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          regs[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tf0 = 1;
+          struct ata_taskfile * tf = (struct ata_taskfile *) malloc(_len_tf0*sizeof(struct ata_taskfile));
+          for(int _i0 = 0; _i0 < _len_tf0; _i0++) {
+              tf[_i0].ctl = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].hob_feature = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].command = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbah = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbam = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].lbal = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].nsect = ((-2 * (next_i()%2)) + 1) * next_i();
+          tf[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipr_copy_sata_tf(regs,tf);
+          free(regs);
+          free(tf);
+        
+        break;
+    }
     default:
         usage();
         break;

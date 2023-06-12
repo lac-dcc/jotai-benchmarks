@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int ff_AMediaCodec_getBufferFlagEndOfStream(FFAMediaCodec *codec)
     return codec->BUFFER_FLAG_END_OF_STREAM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_codec0 = 1;
+          int _len_codec0 = 65025;
           struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].BUFFER_FLAG_END_OF_STREAM = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].BUFFER_FLAG_END_OF_STREAM = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ff_AMediaCodec_getBufferFlagEndOfStream(codec);
           printf("%d\n", benchRet); 
           free(codec);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_codec0 = 100;
           struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].BUFFER_FLAG_END_OF_STREAM = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].BUFFER_FLAG_END_OF_STREAM = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ff_AMediaCodec_getBufferFlagEndOfStream(codec);
           printf("%d\n", benchRet); 
           free(codec);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_codec0 = 1;
+          struct TYPE_3__ * codec = (struct TYPE_3__ *) malloc(_len_codec0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].BUFFER_FLAG_END_OF_STREAM = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ff_AMediaCodec_getBufferFlagEndOfStream(codec);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
     default:
         usage();
         break;

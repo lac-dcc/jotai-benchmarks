@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ void CRYP_StructInit(CRYP_InitTypeDef* CRYP_InitStruct)
   CRYP_InitStruct->CRYP_KeySize = CRYP_KeySize_128b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,23 +90,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_CRYP_InitStruct0 = 1;
+          int _len_CRYP_InitStruct0 = 65025;
           struct TYPE_3__ * CRYP_InitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_CRYP_InitStruct0; _i0++) {
-            CRYP_InitStruct[_i0].CRYP_KeySize = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_InitStruct[_i0].CRYP_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_InitStruct[_i0].CRYP_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_InitStruct[_i0].CRYP_AlgoDir = ((-2 * (next_i()%2)) + 1) * next_i();
+              CRYP_InitStruct[_i0].CRYP_KeySize = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_AlgoDir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           CRYP_StructInit(CRYP_InitStruct);
           free(CRYP_InitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_CRYP_InitStruct0 = 100;
+          struct TYPE_3__ * CRYP_InitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CRYP_InitStruct0; _i0++) {
+              CRYP_InitStruct[_i0].CRYP_KeySize = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_AlgoDir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CRYP_StructInit(CRYP_InitStruct);
+          free(CRYP_InitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_CRYP_InitStruct0 = 1;
+          struct TYPE_3__ * CRYP_InitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CRYP_InitStruct0; _i0++) {
+              CRYP_InitStruct[_i0].CRYP_KeySize = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_DataType = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_AlgoMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_InitStruct[_i0].CRYP_AlgoDir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CRYP_StructInit(CRYP_InitStruct);
+          free(CRYP_InitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

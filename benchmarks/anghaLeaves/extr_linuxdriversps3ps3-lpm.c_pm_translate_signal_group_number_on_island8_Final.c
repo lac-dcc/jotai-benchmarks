@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u64 pm_translate_signal_group_number_on_island8(u64
 	return PM_ISLAND8_BASE_SIGNAL_GROUP_NUMBER + subgroup;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long subgroup = 100;
+        
           long benchRet = pm_translate_signal_group_number_on_island8(subgroup);
           printf("%ld\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long subgroup = 255;
+        
           long benchRet = pm_translate_signal_group_number_on_island8(subgroup);
           printf("%ld\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long subgroup = 10;
+        
           long benchRet = pm_translate_signal_group_number_on_island8(subgroup);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long subgroup = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = pm_translate_signal_group_number_on_island8(subgroup);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

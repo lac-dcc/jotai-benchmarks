@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -100,12 +103,6 @@ __attribute__((used)) static bool hci_persistent_key(struct hci_dev *hdev, struc
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,23 +115,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int key_type = 100;
+        
           int old_key_type = 100;
+        
           int _len_hdev0 = 1;
           struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_conn0 = 1;
           struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].auth_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].remote_auth = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].auth_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].remote_auth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hci_persistent_key(hdev,conn,key_type,old_key_type);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(conn);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 26
+          // dynamic_instructions_O2 : 26
+          // ------------------------------- 
+          // static_instructions_O3 : 26
+          // dynamic_instructions_O3 : 26
+          // ------------------------------- 
+          // static_instructions_Ofast : 26
+          // dynamic_instructions_Ofast : 26
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int key_type = 255;
+        
+          int old_key_type = 255;
+        
+          int _len_hdev0 = 65025;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conn0 = 65025;
+          struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].auth_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].remote_auth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hci_persistent_key(hdev,conn,key_type,old_key_type);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(conn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int key_type = 10;
+        
+          int old_key_type = 10;
+        
+          int _len_hdev0 = 100;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conn0 = 100;
+          struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].auth_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].remote_auth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hci_persistent_key(hdev,conn,key_type,old_key_type);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(conn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int old_key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdev0 = 1;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conn0 = 1;
+          struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].auth_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].remote_auth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hci_persistent_key(hdev,conn,key_type,old_key_type);
           printf("%d\n", benchRet); 
           free(hdev);

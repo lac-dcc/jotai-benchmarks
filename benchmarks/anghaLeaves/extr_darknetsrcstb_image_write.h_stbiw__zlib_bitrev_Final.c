@@ -64,12 +64,6 @@ __attribute__((used)) static int stbiw__zlib_bitrev(int code, int codebits)
    return res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,13 +80,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int code = 10;
+        
           int codebits = 10;
+        
           int benchRet = stbiw__zlib_bitrev(code,codebits);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

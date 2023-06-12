@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ task_has_been_notified(task_t task, int pressurelevel)
 		return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +96,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pressurelevel = 100;
+        
           int _len_task0 = 1;
           struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
-            task[_i0].low_mem_notified_critical = ((-2 * (next_i()%2)) + 1) * next_i();
-        task[_i0].low_mem_notified_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].low_mem_notified_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].low_mem_notified_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = task_has_been_notified(task,pressurelevel);
           printf("%d\n", benchRet); 
           free(task);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pressurelevel = 255;
+        
+          int _len_task0 = 65025;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].low_mem_notified_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].low_mem_notified_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = task_has_been_notified(task,pressurelevel);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pressurelevel = 10;
+        
+          int _len_task0 = 100;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].low_mem_notified_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].low_mem_notified_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = task_has_been_notified(task,pressurelevel);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pressurelevel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_task0 = 1;
+          struct TYPE_3__ * task = (struct TYPE_3__ *) malloc(_len_task0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              task[_i0].low_mem_notified_critical = ((-2 * (next_i()%2)) + 1) * next_i();
+          task[_i0].low_mem_notified_warn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = task_has_been_notified(task,pressurelevel);
+          printf("%d\n", benchRet); 
+          free(task);
+        
+        break;
+    }
     default:
         usage();
         break;

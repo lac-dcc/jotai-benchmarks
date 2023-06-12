@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ void set_batch_network(network *net, int b)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,21 +93,201 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int b = 100;
+        
           int _len_net0 = 1;
           struct TYPE_5__ * net = (struct TYPE_5__ *) malloc(_len_net0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_net0; _i0++) {
-            net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
-        net[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+              net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_net__i0__layers0 = 1;
           net[_i0].layers = (struct TYPE_4__ *) malloc(_len_net__i0__layers0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_net__i0__layers0; _j0++) {
-            net[_i0].layers->batch = ((-2 * (next_i()%2)) + 1) * next_i();
+              net[_i0].layers->batch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          set_batch_network(net,b);
+          for(int _aux = 0; _aux < _len_net0; _aux++) {
+          free(net[_aux].layers);
+          }
+          free(net);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int b = 255;
+        
+          int _len_net0 = 65025;
+          struct TYPE_5__ * net = (struct TYPE_5__ *) malloc(_len_net0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_net__i0__layers0 = 1;
+          net[_i0].layers = (struct TYPE_4__ *) malloc(_len_net__i0__layers0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_net__i0__layers0; _j0++) {
+              net[_i0].layers->batch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_batch_network(net,b);
+          for(int _aux = 0; _aux < _len_net0; _aux++) {
+          free(net[_aux].layers);
+          }
+          free(net);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int b = 10;
+        
+          int _len_net0 = 100;
+          struct TYPE_5__ * net = (struct TYPE_5__ *) malloc(_len_net0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_net__i0__layers0 = 1;
+          net[_i0].layers = (struct TYPE_4__ *) malloc(_len_net__i0__layers0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_net__i0__layers0; _j0++) {
+              net[_i0].layers->batch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          set_batch_network(net,b);
+          for(int _aux = 0; _aux < _len_net0; _aux++) {
+          free(net[_aux].layers);
+          }
+          free(net);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_net0 = 1;
+          struct TYPE_5__ * net = (struct TYPE_5__ *) malloc(_len_net0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_net__i0__layers0 = 1;
+          net[_i0].layers = (struct TYPE_4__ *) malloc(_len_net__i0__layers0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_net__i0__layers0; _j0++) {
+              net[_i0].layers->batch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           set_batch_network(net,b);
           for(int _aux = 0; _aux < _len_net0; _aux++) {
           free(net[_aux].layers);

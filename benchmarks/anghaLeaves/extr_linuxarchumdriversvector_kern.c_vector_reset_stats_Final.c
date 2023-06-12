@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void vector_reset_stats(struct vector_private *vp)
 	vp->estats.sg_linearized = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vp0 = 1;
+          int _len_vp0 = 65025;
           struct vector_private * vp = (struct vector_private *) malloc(_len_vp0*sizeof(struct vector_private));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
-            vp[_i0].estats.sg_linearized = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.sg_ok = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_flow_control_xoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_flow_control_xon = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_kicks = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_restart_queue = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_timeout_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.rx_encaps_errors = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.tx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.rx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
-        vp[_i0].estats.rx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].estats.sg_linearized = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.sg_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_flow_control_xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_flow_control_xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_kicks = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_restart_queue = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_timeout_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_encaps_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           vector_reset_stats(vp);
           free(vp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vp0 = 100;
+          struct vector_private * vp = (struct vector_private *) malloc(_len_vp0*sizeof(struct vector_private));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].estats.sg_linearized = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.sg_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_flow_control_xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_flow_control_xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_kicks = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_restart_queue = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_timeout_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_encaps_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vector_reset_stats(vp);
+          free(vp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vp0 = 1;
+          struct vector_private * vp = (struct vector_private *) malloc(_len_vp0*sizeof(struct vector_private));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              vp[_i0].estats.sg_linearized = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.sg_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_flow_control_xoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_flow_control_xon = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_kicks = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_restart_queue = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_timeout_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_encaps_errors = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.tx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_queue_running_average = ((-2 * (next_i()%2)) + 1) * next_i();
+          vp[_i0].estats.rx_queue_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          vector_reset_stats(vp);
+          free(vp);
+        
+        break;
+    }
     default:
         usage();
         break;

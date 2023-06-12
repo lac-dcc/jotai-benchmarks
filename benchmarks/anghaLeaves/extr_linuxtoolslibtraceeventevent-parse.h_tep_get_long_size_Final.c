@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int tep_get_long_size(struct tep_handle *pev
 	return pevent->long_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pevent0 = 1;
+          int _len_pevent0 = 65025;
           struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
           for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
-            pevent[_i0].long_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pevent[_i0].long_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tep_get_long_size(pevent);
           printf("%d\n", benchRet); 
           free(pevent);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_pevent0 = 100;
           struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
           for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
-            pevent[_i0].long_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pevent[_i0].long_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tep_get_long_size(pevent);
           printf("%d\n", benchRet); 
           free(pevent);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pevent0 = 1;
+          struct tep_handle * pevent = (struct tep_handle *) malloc(_len_pevent0*sizeof(struct tep_handle));
+          for(int _i0 = 0; _i0 < _len_pevent0; _i0++) {
+              pevent[_i0].long_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tep_get_long_size(pevent);
+          printf("%d\n", benchRet); 
+          free(pevent);
+        
+        break;
+    }
     default:
         usage();
         break;

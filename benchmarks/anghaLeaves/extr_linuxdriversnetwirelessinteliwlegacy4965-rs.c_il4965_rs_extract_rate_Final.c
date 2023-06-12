@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ il4965_rs_extract_rate(u32 rate_n_flags)
 	return (u8) (rate_n_flags & 0xFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int rate_n_flags = 100;
+        
           int benchRet = il4965_rs_extract_rate(rate_n_flags);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int rate_n_flags = 255;
+        
           int benchRet = il4965_rs_extract_rate(rate_n_flags);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int rate_n_flags = 10;
+        
           int benchRet = il4965_rs_extract_rate(rate_n_flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int rate_n_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = il4965_rs_extract_rate(rate_n_flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

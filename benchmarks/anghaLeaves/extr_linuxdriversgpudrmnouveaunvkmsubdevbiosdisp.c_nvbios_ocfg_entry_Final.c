@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ nvbios_ocfg_entry(struct nvkm_bios *bios, u16 outp, u8 idx,
 	return 0x0000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,36 +81,283 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int outp = 100;
+        
           int idx = 100;
+        
           int _len_bios0 = 1;
           struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
           for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
-            bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ver0 = 1;
           int * ver = (int *) malloc(_len_ver0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
             ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_hdr0 = 1;
           int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
             hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cnt0 = 1;
           int * cnt = (int *) malloc(_len_cnt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cnt0; _i0++) {
             cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_len0 = 1;
           int * len = (int *) malloc(_len_len0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_len0; _i0++) {
             len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nvbios_ocfg_entry(bios,outp,idx,ver,hdr,cnt,len);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+          free(cnt);
+          free(len);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int outp = 255;
+        
+          int idx = 255;
+        
+          int _len_bios0 = 65025;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 65025;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 65025;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cnt0 = 65025;
+          int * cnt = (int *) malloc(_len_cnt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cnt0; _i0++) {
+            cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len0 = 65025;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvbios_ocfg_entry(bios,outp,idx,ver,hdr,cnt,len);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+          free(cnt);
+          free(len);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int outp = 10;
+        
+          int idx = 10;
+        
+          int _len_bios0 = 100;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 100;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 100;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cnt0 = 100;
+          int * cnt = (int *) malloc(_len_cnt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cnt0; _i0++) {
+            cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len0 = 100;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvbios_ocfg_entry(bios,outp,idx,ver,hdr,cnt,len);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+          free(cnt);
+          free(len);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int outp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bios0 = 1;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 1;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 1;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cnt0 = 1;
+          int * cnt = (int *) malloc(_len_cnt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cnt0; _i0++) {
+            cnt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_len0 = 1;
+          int * len = (int *) malloc(_len_len0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_len0; _i0++) {
+            len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nvbios_ocfg_entry(bios,outp,idx,ver,hdr,cnt,len);
           printf("%d\n", benchRet); 
           free(bios);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void _init_mp_priv_(struct mp_priv *pmp_priv)
 	pmp_priv->rx_crcerrpktcount = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,24 +88,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_pmp_priv0 = 65025;
+          struct mp_priv * pmp_priv = (struct mp_priv *) malloc(_len_pmp_priv0*sizeof(struct mp_priv));
+          for(int _i0 = 0; _i0 < _len_pmp_priv0; _i0++) {
+              pmp_priv[_i0].curr_ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_txpoweridx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].rx_crcerrpktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].rx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].tx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].check_mp_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].antenna_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].antenna_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_rateidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_modem = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _init_mp_priv_(pmp_priv);
+          free(pmp_priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_pmp_priv0 = 100;
+          struct mp_priv * pmp_priv = (struct mp_priv *) malloc(_len_pmp_priv0*sizeof(struct mp_priv));
+          for(int _i0 = 0; _i0 < _len_pmp_priv0; _i0++) {
+              pmp_priv[_i0].curr_ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_txpoweridx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].rx_crcerrpktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].rx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].tx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].check_mp_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].antenna_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].antenna_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_rateidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_modem = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _init_mp_priv_(pmp_priv);
+          free(pmp_priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_pmp_priv0 = 1;
           struct mp_priv * pmp_priv = (struct mp_priv *) malloc(_len_pmp_priv0*sizeof(struct mp_priv));
           for(int _i0 = 0; _i0 < _len_pmp_priv0; _i0++) {
-            pmp_priv[_i0].curr_ch = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].curr_txpoweridx = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].rx_crcerrpktcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].rx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].tx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].check_mp_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].antenna_rx = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].antenna_tx = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].curr_rateidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].curr_modem = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmp_priv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmp_priv[_i0].curr_ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_txpoweridx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].rx_crcerrpktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].rx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].tx_pktcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].check_mp_pkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].antenna_rx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].antenna_tx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_rateidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].curr_modem = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmp_priv[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           _init_mp_priv_(pmp_priv);
           free(pmp_priv);
         

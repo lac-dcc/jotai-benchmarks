@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline void cm_req_set_alt_local_ack_timeout(struct
 				       (local_ack_timeout << 3));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +81,53 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int local_ack_timeout = 100;
+        
           int _len_req_msg0 = 1;
           struct cm_req_msg * req_msg = (struct cm_req_msg *) malloc(_len_req_msg0*sizeof(struct cm_req_msg));
           for(int _i0 = 0; _i0 < _len_req_msg0; _i0++) {
-            req_msg[_i0].alt_offset139 = ((-2 * (next_i()%2)) + 1) * next_i();
+              req_msg[_i0].alt_offset139 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cm_req_set_alt_local_ack_timeout(req_msg,local_ack_timeout);
+          free(req_msg);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int local_ack_timeout = 255;
+        
+          int _len_req_msg0 = 65025;
+          struct cm_req_msg * req_msg = (struct cm_req_msg *) malloc(_len_req_msg0*sizeof(struct cm_req_msg));
+          for(int _i0 = 0; _i0 < _len_req_msg0; _i0++) {
+              req_msg[_i0].alt_offset139 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cm_req_set_alt_local_ack_timeout(req_msg,local_ack_timeout);
           free(req_msg);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int local_ack_timeout = 10;
+        
           int _len_req_msg0 = 100;
           struct cm_req_msg * req_msg = (struct cm_req_msg *) malloc(_len_req_msg0*sizeof(struct cm_req_msg));
           for(int _i0 = 0; _i0 < _len_req_msg0; _i0++) {
-            req_msg[_i0].alt_offset139 = ((-2 * (next_i()%2)) + 1) * next_i();
+              req_msg[_i0].alt_offset139 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cm_req_set_alt_local_ack_timeout(req_msg,local_ack_timeout);
           free(req_msg);
         
         break;
     }
-
     default:
         usage();
         break;

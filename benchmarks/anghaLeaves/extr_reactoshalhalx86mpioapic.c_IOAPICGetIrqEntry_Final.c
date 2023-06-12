@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ IOAPICGetIrqEntry(ULONG apic,
    return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,8 +101,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long apic = 100;
+        
           unsigned long pin = 100;
+        
           unsigned long type = 100;
+        
           unsigned long benchRet = IOAPICGetIrqEntry(apic,pin,type);
           printf("%lu\n", benchRet); 
         
@@ -117,8 +115,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long apic = 255;
+        
           unsigned long pin = 255;
+        
           unsigned long type = 255;
+        
           unsigned long benchRet = IOAPICGetIrqEntry(apic,pin,type);
           printf("%lu\n", benchRet); 
         
@@ -128,14 +129,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long apic = 10;
+        
           unsigned long pin = 10;
+        
           unsigned long type = 10;
+        
           unsigned long benchRet = IOAPICGetIrqEntry(apic,pin,type);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long apic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = IOAPICGetIrqEntry(apic,pin,type);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

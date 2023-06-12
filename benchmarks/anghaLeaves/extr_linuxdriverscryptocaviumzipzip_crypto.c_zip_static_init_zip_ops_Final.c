@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void zip_static_init_zip_ops(struct zip_operation *
 	zip_ops->csum	      = 1; /* Adler checksum desired */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,26 +101,106 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lzs_flag = 100;
+        
           int _len_zip_ops0 = 1;
           struct zip_operation * zip_ops = (struct zip_operation *) malloc(_len_zip_ops0*sizeof(struct zip_operation));
           for(int _i0 = 0; _i0 < _len_zip_ops0; _i0++) {
-            zip_ops[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].ccode = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].lzs_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].begin_file = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].end_file = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].compcode = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].history_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
-        zip_ops[_i0].flush = ((-2 * (next_i()%2)) + 1) * next_i();
+              zip_ops[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].ccode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].lzs_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].begin_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].end_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].compcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].history_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zip_static_init_zip_ops(zip_ops,lzs_flag);
           free(zip_ops);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int lzs_flag = 255;
+        
+          int _len_zip_ops0 = 65025;
+          struct zip_operation * zip_ops = (struct zip_operation *) malloc(_len_zip_ops0*sizeof(struct zip_operation));
+          for(int _i0 = 0; _i0 < _len_zip_ops0; _i0++) {
+              zip_ops[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].ccode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].lzs_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].begin_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].end_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].compcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].history_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zip_static_init_zip_ops(zip_ops,lzs_flag);
+          free(zip_ops);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int lzs_flag = 10;
+        
+          int _len_zip_ops0 = 100;
+          struct zip_operation * zip_ops = (struct zip_operation *) malloc(_len_zip_ops0*sizeof(struct zip_operation));
+          for(int _i0 = 0; _i0 < _len_zip_ops0; _i0++) {
+              zip_ops[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].ccode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].lzs_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].begin_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].end_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].compcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].history_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zip_static_init_zip_ops(zip_ops,lzs_flag);
+          free(zip_ops);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int lzs_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_zip_ops0 = 1;
+          struct zip_operation * zip_ops = (struct zip_operation *) malloc(_len_zip_ops0*sizeof(struct zip_operation));
+          for(int _i0 = 0; _i0 < _len_zip_ops0; _i0++) {
+              zip_ops[_i0].speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].ccode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].lzs_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].begin_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].end_file = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].csum = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].compcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].history_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].format = ((-2 * (next_i()%2)) + 1) * next_i();
+          zip_ops[_i0].flush = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zip_static_init_zip_ops(zip_ops,lzs_flag);
+          free(zip_ops);
+        
+        break;
+    }
     default:
         usage();
         break;

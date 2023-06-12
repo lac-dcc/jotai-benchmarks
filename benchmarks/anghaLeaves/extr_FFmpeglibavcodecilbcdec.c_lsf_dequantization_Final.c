@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static void lsf_dequantization(int16_t *lsfdeq, int16_t *i
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,23 +107,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lpc_n = 100;
+        
           int _len_lsfdeq0 = 1;
           int * lsfdeq = (int *) malloc(_len_lsfdeq0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lsfdeq0; _i0++) {
             lsfdeq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_index0 = 1;
           int * index = (int *) malloc(_len_index0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_index0; _i0++) {
             index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           lsf_dequantization(lsfdeq,index,lpc_n);
           free(lsfdeq);
           free(index);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int lpc_n = 255;
+        
+          int _len_lsfdeq0 = 65025;
+          int * lsfdeq = (int *) malloc(_len_lsfdeq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lsfdeq0; _i0++) {
+            lsfdeq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_index0 = 65025;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lsf_dequantization(lsfdeq,index,lpc_n);
+          free(lsfdeq);
+          free(index);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int lpc_n = 10;
+        
+          int _len_lsfdeq0 = 100;
+          int * lsfdeq = (int *) malloc(_len_lsfdeq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lsfdeq0; _i0++) {
+            lsfdeq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_index0 = 100;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lsf_dequantization(lsfdeq,index,lpc_n);
+          free(lsfdeq);
+          free(index);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int lpc_n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lsfdeq0 = 1;
+          int * lsfdeq = (int *) malloc(_len_lsfdeq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lsfdeq0; _i0++) {
+            lsfdeq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_index0 = 1;
+          int * index = (int *) malloc(_len_index0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_index0; _i0++) {
+            index[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          lsf_dequantization(lsfdeq,index,lpc_n);
+          free(lsfdeq);
+          free(index);
+        
+        break;
+    }
     default:
         usage();
         break;

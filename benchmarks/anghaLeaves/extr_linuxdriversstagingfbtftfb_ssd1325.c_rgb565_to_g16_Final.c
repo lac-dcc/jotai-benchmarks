@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static uint8_t rgb565_to_g16(u16 pixel)
 	return (uint8_t)pixel / 16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pixel = 100;
+        
           int benchRet = rgb565_to_g16(pixel);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pixel = 255;
+        
           int benchRet = rgb565_to_g16(pixel);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pixel = 10;
+        
           int benchRet = rgb565_to_g16(pixel);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rgb565_to_g16(pixel);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool cfd_get_direct(struct vpdma_cfd *cfd)
 	return (cfd->ctl_payload_len >> CFD_DIRECT_SHFT) & CFD_DIRECT_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cfd0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_cfd0 = 65025;
           struct vpdma_cfd * cfd = (struct vpdma_cfd *) malloc(_len_cfd0*sizeof(struct vpdma_cfd));
           for(int _i0 = 0; _i0 < _len_cfd0; _i0++) {
-            cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cfd_get_direct(cfd);
           printf("%d\n", benchRet); 
           free(cfd);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_cfd0 = 100;
           struct vpdma_cfd * cfd = (struct vpdma_cfd *) malloc(_len_cfd0*sizeof(struct vpdma_cfd));
           for(int _i0 = 0; _i0 < _len_cfd0; _i0++) {
-            cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cfd_get_direct(cfd);
+          printf("%d\n", benchRet); 
+          free(cfd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_cfd0 = 1;
+          struct vpdma_cfd * cfd = (struct vpdma_cfd *) malloc(_len_cfd0*sizeof(struct vpdma_cfd));
+          for(int _i0 = 0; _i0 < _len_cfd0; _i0++) {
+              cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cfd_get_direct(cfd);
           printf("%d\n", benchRet); 
           free(cfd);

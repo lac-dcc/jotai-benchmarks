@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ _RpcDeleteMonitor(WINSPOOL_HANDLE pName, WCHAR* pEnvironment, WCHAR* pMonitorNam
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,16 +85,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pName = 100;
+        
           int _len_pEnvironment0 = 1;
           int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
             pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pMonitorName0 = 1;
           int * pMonitorName = (int *) malloc(_len_pMonitorName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pMonitorName0; _i0++) {
             pMonitorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcDeleteMonitor(pName,pEnvironment,pMonitorName);
           printf("%d\n", benchRet); 
           free(pEnvironment);
@@ -105,7 +105,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pName = 255;
+        
+          int _len_pEnvironment0 = 65025;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pMonitorName0 = 65025;
+          int * pMonitorName = (int *) malloc(_len_pMonitorName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pMonitorName0; _i0++) {
+            pMonitorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcDeleteMonitor(pName,pEnvironment,pMonitorName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pMonitorName);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pName = 10;
+        
+          int _len_pEnvironment0 = 100;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pMonitorName0 = 100;
+          int * pMonitorName = (int *) malloc(_len_pMonitorName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pMonitorName0; _i0++) {
+            pMonitorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcDeleteMonitor(pName,pEnvironment,pMonitorName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pMonitorName);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pName = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pEnvironment0 = 1;
+          int * pEnvironment = (int *) malloc(_len_pEnvironment0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pEnvironment0; _i0++) {
+            pEnvironment[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pMonitorName0 = 1;
+          int * pMonitorName = (int *) malloc(_len_pMonitorName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pMonitorName0; _i0++) {
+            pMonitorName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcDeleteMonitor(pName,pEnvironment,pMonitorName);
+          printf("%d\n", benchRet); 
+          free(pEnvironment);
+          free(pMonitorName);
+        
+        break;
+    }
     default:
         usage();
         break;

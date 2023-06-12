@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static void ttm_pool_update_free_locked(struct ttm_page_po
 	pool->nfrees += freed_pages;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +77,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int freed_pages = 100;
+        
           int _len_pool0 = 1;
           struct ttm_page_pool * pool = (struct ttm_page_pool *) malloc(_len_pool0*sizeof(struct ttm_page_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].nfrees = ((-2 * (next_i()%2)) + 1) * next_i();
-        pool[_i0].npages = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].nfrees = ((-2 * (next_i()%2)) + 1) * next_i();
+          pool[_i0].npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ttm_pool_update_free_locked(pool,freed_pages);
+          free(pool);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int freed_pages = 255;
+        
+          int _len_pool0 = 65025;
+          struct ttm_page_pool * pool = (struct ttm_page_pool *) malloc(_len_pool0*sizeof(struct ttm_page_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].nfrees = ((-2 * (next_i()%2)) + 1) * next_i();
+          pool[_i0].npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ttm_pool_update_free_locked(pool,freed_pages);
+          free(pool);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int freed_pages = 10;
+        
+          int _len_pool0 = 100;
+          struct ttm_page_pool * pool = (struct ttm_page_pool *) malloc(_len_pool0*sizeof(struct ttm_page_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].nfrees = ((-2 * (next_i()%2)) + 1) * next_i();
+          pool[_i0].npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ttm_pool_update_free_locked(pool,freed_pages);
+          free(pool);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int freed_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pool0 = 1;
+          struct ttm_page_pool * pool = (struct ttm_page_pool *) malloc(_len_pool0*sizeof(struct ttm_page_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].nfrees = ((-2 * (next_i()%2)) + 1) * next_i();
+          pool[_i0].npages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ttm_pool_update_free_locked(pool,freed_pages);
           free(pool);
         

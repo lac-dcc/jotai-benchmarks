@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ size_t thread_stack__depth(struct thread *thread)
 	return thread->ts->cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_thread0 = 1;
+          int _len_thread0 = 65025;
           struct thread * thread = (struct thread *) malloc(_len_thread0*sizeof(struct thread));
           for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
               int _len_thread__i0__ts0 = 1;
           thread[_i0].ts = (struct TYPE_2__ *) malloc(_len_thread__i0__ts0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_thread__i0__ts0; _j0++) {
-            thread[_i0].ts->cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              thread[_i0].ts->cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned long benchRet = thread_stack__depth(thread);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_thread0; _aux++) {
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_thread0 = 100;
+          struct thread * thread = (struct thread *) malloc(_len_thread0*sizeof(struct thread));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              int _len_thread__i0__ts0 = 1;
+          thread[_i0].ts = (struct TYPE_2__ *) malloc(_len_thread__i0__ts0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_thread__i0__ts0; _j0++) {
+              thread[_i0].ts->cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = thread_stack__depth(thread);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thread0; _aux++) {
+          free(thread[_aux].ts);
+          }
+          free(thread);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_thread0 = 1;
+          struct thread * thread = (struct thread *) malloc(_len_thread0*sizeof(struct thread));
+          for(int _i0 = 0; _i0 < _len_thread0; _i0++) {
+              int _len_thread__i0__ts0 = 1;
+          thread[_i0].ts = (struct TYPE_2__ *) malloc(_len_thread__i0__ts0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_thread__i0__ts0; _j0++) {
+              thread[_i0].ts->cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = thread_stack__depth(thread);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_thread0; _aux++) {
+          free(thread[_aux].ts);
+          }
+          free(thread);
+        
+        break;
+    }
     default:
         usage();
         break;

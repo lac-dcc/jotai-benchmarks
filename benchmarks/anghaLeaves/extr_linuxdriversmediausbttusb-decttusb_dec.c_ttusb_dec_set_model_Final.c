@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static void ttusb_dec_set_model(struct ttusb_dec *dec,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,14 +96,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum ttusb_dec_model model = 0;
-          int _len_dec0 = 1;
+        
+          int _len_dec0 = 65025;
           struct ttusb_dec * dec = (struct ttusb_dec *) malloc(_len_dec0*sizeof(struct ttusb_dec));
           for(int _i0 = 0; _i0 < _len_dec0; _i0++) {
-            dec[_i0].model = ((-2 * (next_i()%2)) + 1) * next_i();
+              dec[_i0].model = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dec__i0__model_name0 = 1;
           dec[_i0].model_name = (char *) malloc(_len_dec__i0__model_name0*sizeof(char));
           for(int _j0 = 0; _j0 < _len_dec__i0__model_name0; _j0++) {
@@ -118,7 +138,123 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dec__i0__firmware_name0; _j0++) {
             dec[_i0].firmware_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          ttusb_dec_set_model(dec,model);
+          for(int _aux = 0; _aux < _len_dec0; _aux++) {
+          free(dec[_aux].model_name);
+          }
+          for(int _aux = 0; _aux < _len_dec0; _aux++) {
+          free(dec[_aux].firmware_name);
+          }
+          free(dec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum ttusb_dec_model model = 0;
+        
+          int _len_dec0 = 100;
+          struct ttusb_dec * dec = (struct ttusb_dec *) malloc(_len_dec0*sizeof(struct ttusb_dec));
+          for(int _i0 = 0; _i0 < _len_dec0; _i0++) {
+              dec[_i0].model = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dec__i0__model_name0 = 1;
+          dec[_i0].model_name = (char *) malloc(_len_dec__i0__model_name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_dec__i0__model_name0; _j0++) {
+            dec[_i0].model_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dec__i0__firmware_name0 = 1;
+          dec[_i0].firmware_name = (char *) malloc(_len_dec__i0__firmware_name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_dec__i0__firmware_name0; _j0++) {
+            dec[_i0].firmware_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ttusb_dec_set_model(dec,model);
+          for(int _aux = 0; _aux < _len_dec0; _aux++) {
+          free(dec[_aux].model_name);
+          }
+          for(int _aux = 0; _aux < _len_dec0; _aux++) {
+          free(dec[_aux].firmware_name);
+          }
+          free(dec);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum ttusb_dec_model model = 0;
+        
+          int _len_dec0 = 1;
+          struct ttusb_dec * dec = (struct ttusb_dec *) malloc(_len_dec0*sizeof(struct ttusb_dec));
+          for(int _i0 = 0; _i0 < _len_dec0; _i0++) {
+              dec[_i0].model = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dec__i0__model_name0 = 1;
+          dec[_i0].model_name = (char *) malloc(_len_dec__i0__model_name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_dec__i0__model_name0; _j0++) {
+            dec[_i0].model_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_dec__i0__firmware_name0 = 1;
+          dec[_i0].firmware_name = (char *) malloc(_len_dec__i0__firmware_name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_dec__i0__firmware_name0; _j0++) {
+            dec[_i0].firmware_name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           ttusb_dec_set_model(dec,model);
           for(int _aux = 0; _aux < _len_dec0; _aux++) {
           free(dec[_aux].model_name);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void mqc_bypass_init_enc(opj_mqc_t *mqc) {
      } */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +79,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mqc0 = 1;
+          int _len_mqc0 = 65025;
           struct TYPE_3__ * mqc = (struct TYPE_3__ *) malloc(_len_mqc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mqc0; _i0++) {
-            mqc[_i0].ct = ((-2 * (next_i()%2)) + 1) * next_i();
-        mqc[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+              mqc[_i0].ct = ((-2 * (next_i()%2)) + 1) * next_i();
+          mqc[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mqc_bypass_init_enc(mqc);
           free(mqc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mqc0 = 100;
+          struct TYPE_3__ * mqc = (struct TYPE_3__ *) malloc(_len_mqc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mqc0; _i0++) {
+              mqc[_i0].ct = ((-2 * (next_i()%2)) + 1) * next_i();
+          mqc[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mqc_bypass_init_enc(mqc);
+          free(mqc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mqc0 = 1;
+          struct TYPE_3__ * mqc = (struct TYPE_3__ *) malloc(_len_mqc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mqc0; _i0++) {
+              mqc[_i0].ct = ((-2 * (next_i()%2)) + 1) * next_i();
+          mqc[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mqc_bypass_init_enc(mqc);
+          free(mqc);
+        
+        break;
+    }
     default:
         usage();
         break;

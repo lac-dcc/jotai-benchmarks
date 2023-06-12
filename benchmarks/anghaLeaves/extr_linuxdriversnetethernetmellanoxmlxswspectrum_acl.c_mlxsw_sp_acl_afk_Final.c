@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct mlxsw_afk *mlxsw_sp_acl_afk(struct mlxsw_sp_acl *acl)
 	return acl->afk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_acl0 = 1;
+          int _len_acl0 = 65025;
           struct mlxsw_sp_acl * acl = (struct mlxsw_sp_acl *) malloc(_len_acl0*sizeof(struct mlxsw_sp_acl));
           for(int _i0 = 0; _i0 < _len_acl0; _i0++) {
               int _len_acl__i0__afk0 = 1;
           acl[_i0].afk = (struct mlxsw_afk *) malloc(_len_acl__i0__afk0*sizeof(struct mlxsw_afk));
           for(int _j0 = 0; _j0 < _len_acl__i0__afk0; _j0++) {
-            acl[_i0].afk->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              acl[_i0].afk->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct mlxsw_afk * benchRet = mlxsw_sp_acl_afk(acl);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_acl0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_acl0 = 100;
+          struct mlxsw_sp_acl * acl = (struct mlxsw_sp_acl *) malloc(_len_acl0*sizeof(struct mlxsw_sp_acl));
+          for(int _i0 = 0; _i0 < _len_acl0; _i0++) {
+              int _len_acl__i0__afk0 = 1;
+          acl[_i0].afk = (struct mlxsw_afk *) malloc(_len_acl__i0__afk0*sizeof(struct mlxsw_afk));
+          for(int _j0 = 0; _j0 < _len_acl__i0__afk0; _j0++) {
+              acl[_i0].afk->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlxsw_afk * benchRet = mlxsw_sp_acl_afk(acl);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_acl0; _aux++) {
+          free(acl[_aux].afk);
+          }
+          free(acl);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_acl0 = 1;
+          struct mlxsw_sp_acl * acl = (struct mlxsw_sp_acl *) malloc(_len_acl0*sizeof(struct mlxsw_sp_acl));
+          for(int _i0 = 0; _i0 < _len_acl0; _i0++) {
+              int _len_acl__i0__afk0 = 1;
+          acl[_i0].afk = (struct mlxsw_afk *) malloc(_len_acl__i0__afk0*sizeof(struct mlxsw_afk));
+          for(int _j0 = 0; _j0 < _len_acl__i0__afk0; _j0++) {
+              acl[_i0].afk->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct mlxsw_afk * benchRet = mlxsw_sp_acl_afk(acl);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_acl0; _aux++) {
+          free(acl[_aux].afk);
+          }
+          free(acl);
+        
+        break;
+    }
     default:
         usage();
         break;

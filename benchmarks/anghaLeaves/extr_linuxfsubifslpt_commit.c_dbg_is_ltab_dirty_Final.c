@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int dbg_is_ltab_dirty(struct ubifs_info *c, int lnu
 	return (c->lpt_drty_flgs & LTAB_DIRTY) != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int lnum = 100;
+        
           int offs = 100;
+        
           int _len_c0 = 1;
           struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].ltab_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].ltab_offs = ((-2 * (next_i()%2)) + 1) * next_i();
-        c[_i0].lpt_drty_flgs = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].ltab_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_drty_flgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dbg_is_ltab_dirty(c,lnum,offs);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int lnum = 255;
+        
+          int offs = 255;
+        
+          int _len_c0 = 65025;
+          struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].ltab_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_drty_flgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dbg_is_ltab_dirty(c,lnum,offs);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int lnum = 10;
+        
+          int offs = 10;
+        
+          int _len_c0 = 100;
+          struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].ltab_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_drty_flgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dbg_is_ltab_dirty(c,lnum,offs);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int offs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct ubifs_info * c = (struct ubifs_info *) malloc(_len_c0*sizeof(struct ubifs_info));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].ltab_lnum = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].ltab_offs = ((-2 * (next_i()%2)) + 1) * next_i();
+          c[_i0].lpt_drty_flgs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dbg_is_ltab_dirty(c,lnum,offs);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

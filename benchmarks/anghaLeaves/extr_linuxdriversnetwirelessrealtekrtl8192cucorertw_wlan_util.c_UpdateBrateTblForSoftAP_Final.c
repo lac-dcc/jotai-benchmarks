@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ void UpdateBrateTblForSoftAP(u8 *bssrateset, u32 bssratelen)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,21 +95,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long bssratelen = 10;
-          int _len_bssrateset0 = 100;
+          unsigned long bssratelen = 255;
+        
+          int _len_bssrateset0 = 65025;
           unsigned long * bssrateset = (unsigned long *) malloc(_len_bssrateset0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_bssrateset0; _i0++) {
             bssrateset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           UpdateBrateTblForSoftAP(bssrateset,bssratelen);
           free(bssrateset);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long bssratelen = 10;
+        
+          int _len_bssrateset0 = 100;
+          unsigned long * bssrateset = (unsigned long *) malloc(_len_bssrateset0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_bssrateset0; _i0++) {
+            bssrateset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          UpdateBrateTblForSoftAP(bssrateset,bssratelen);
+          free(bssrateset);
+        
+        break;
+    }
     default:
         usage();
         break;

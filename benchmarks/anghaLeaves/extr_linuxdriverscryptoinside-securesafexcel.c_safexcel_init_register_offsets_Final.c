@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -112,12 +114,6 @@ __attribute__((used)) static void safexcel_init_register_offsets(struct safexcel
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,30 +126,84 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct safexcel_crypto_priv * priv = (struct safexcel_crypto_priv *) malloc(_len_priv0*sizeof(struct safexcel_crypto_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.pe = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_gen_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_dse_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_dse = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_dfe_thr = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_dfe = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_aic_xdr = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_aic_r = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_aic_g = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].offsets.hia_aic = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.pe = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_gen_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dse_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dse = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dfe_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dfe = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_xdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_g = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           safexcel_init_register_offsets(priv);
           free(priv);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_priv0 = 100;
+          struct safexcel_crypto_priv * priv = (struct safexcel_crypto_priv *) malloc(_len_priv0*sizeof(struct safexcel_crypto_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.pe = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_gen_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dse_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dse = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dfe_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dfe = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_xdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_g = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          safexcel_init_register_offsets(priv);
+          free(priv);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct safexcel_crypto_priv * priv = (struct safexcel_crypto_priv *) malloc(_len_priv0*sizeof(struct safexcel_crypto_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.pe = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_gen_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dse_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dse = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dfe_thr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_dfe = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_xdr = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic_g = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].offsets.hia_aic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          safexcel_init_register_offsets(priv);
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

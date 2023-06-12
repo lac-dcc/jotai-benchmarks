@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ DIB_4BPP_TransparentBlt(SURFOBJ *DestSurf, SURFOBJ *SourceSurf,
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +87,37 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int iTransColor = 100;
+        
           int _len_DestSurf0 = 1;
           int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
             DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_SourceSurf0 = 1;
           int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
             SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_DestRect0 = 1;
           int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
             DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_SourceRect0 = 1;
           int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
             SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ColorTranslation0 = 1;
           int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
             ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = DIB_4BPP_TransparentBlt(DestSurf,SourceSurf,DestRect,SourceRect,ColorTranslation,iTransColor);
           printf("%d\n", benchRet); 
           free(DestSurf);
@@ -125,7 +128,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int iTransColor = 255;
+        
+          int _len_DestSurf0 = 65025;
+          int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
+            DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceSurf0 = 65025;
+          int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
+            SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 65025;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 65025;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 65025;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DIB_4BPP_TransparentBlt(DestSurf,SourceSurf,DestRect,SourceRect,ColorTranslation,iTransColor);
+          printf("%d\n", benchRet); 
+          free(DestSurf);
+          free(SourceSurf);
+          free(DestRect);
+          free(SourceRect);
+          free(ColorTranslation);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int iTransColor = 10;
+        
+          int _len_DestSurf0 = 100;
+          int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
+            DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceSurf0 = 100;
+          int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
+            SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 100;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 100;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 100;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DIB_4BPP_TransparentBlt(DestSurf,SourceSurf,DestRect,SourceRect,ColorTranslation,iTransColor);
+          printf("%d\n", benchRet); 
+          free(DestSurf);
+          free(SourceSurf);
+          free(DestRect);
+          free(SourceRect);
+          free(ColorTranslation);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int iTransColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_DestSurf0 = 1;
+          int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
+            DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceSurf0 = 1;
+          int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
+            SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 1;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 1;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 1;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = DIB_4BPP_TransparentBlt(DestSurf,SourceSurf,DestRect,SourceRect,ColorTranslation,iTransColor);
+          printf("%d\n", benchRet); 
+          free(DestSurf);
+          free(SourceSurf);
+          free(DestRect);
+          free(SourceRect);
+          free(ColorTranslation);
+        
+        break;
+    }
     default:
         usage();
         break;

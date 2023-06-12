@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline int qeth_is_diagass_supported(struct qeth_ca
 	return card->info.diagass_support & (__u32)cmd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +79,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum qeth_diags_cmds cmd = 0;
-          int _len_card0 = 1;
+        
+          int _len_card0 = 65025;
           struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].info.diagass_support = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].info.diagass_support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = qeth_is_diagass_supported(card,cmd);
           printf("%d\n", benchRet); 
           free(card);
@@ -103,18 +102,40 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum qeth_diags_cmds cmd = 0;
+        
           int _len_card0 = 100;
           struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].info.diagass_support = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].info.diagass_support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = qeth_is_diagass_supported(card,cmd);
           printf("%d\n", benchRet); 
           free(card);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum qeth_diags_cmds cmd = 0;
+        
+          int _len_card0 = 1;
+          struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].info.diagass_support = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = qeth_is_diagass_supported(card,cmd);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

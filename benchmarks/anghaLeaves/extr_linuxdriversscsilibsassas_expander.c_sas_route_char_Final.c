@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static char sas_route_char(struct domain_device *dev, stru
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,19 +92,145 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct domain_device * dev = (struct domain_device *) malloc(_len_dev0*sizeof(struct domain_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].ex_dev.t2t_supp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_phy0 = 65025;
+          struct ex_phy * phy = (struct ex_phy *) malloc(_len_phy0*sizeof(struct ex_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              phy[_i0].routing_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char benchRet = sas_route_char(dev,phy);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(dev);
+          free(phy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct domain_device * dev = (struct domain_device *) malloc(_len_dev0*sizeof(struct domain_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].ex_dev.t2t_supp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_phy0 = 100;
+          struct ex_phy * phy = (struct ex_phy *) malloc(_len_phy0*sizeof(struct ex_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              phy[_i0].routing_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char benchRet = sas_route_char(dev,phy);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          free(dev);
+          free(phy);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct domain_device * dev = (struct domain_device *) malloc(_len_dev0*sizeof(struct domain_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].ex_dev.t2t_supp = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].ex_dev.t2t_supp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_phy0 = 1;
           struct ex_phy * phy = (struct ex_phy *) malloc(_len_phy0*sizeof(struct ex_phy));
           for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
-            phy[_i0].routing_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy[_i0].routing_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char benchRet = sas_route_char(dev,phy);
           printf("%c\n", (benchRet %26) + 'a'); 
           free(dev);

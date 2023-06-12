@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void rs_config_restore(struct raid_set *rs, struct 
 	mddev->new_chunk_sectors = l->new_chunk_sectors;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +80,155 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_rs0 = 65025;
+          struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_l0 = 65025;
+          struct rs_layout * l = (struct rs_layout *) malloc(_len_l0*sizeof(struct rs_layout));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rs_config_restore(rs,l);
+          free(rs);
+          free(l);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_rs0 = 100;
+          struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_l0 = 100;
+          struct rs_layout * l = (struct rs_layout *) malloc(_len_l0*sizeof(struct rs_layout));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+              l[_i0].new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rs_config_restore(rs,l);
+          free(rs);
+          free(l);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_rs0 = 1;
           struct raid_set * rs = (struct raid_set *) malloc(_len_rs0*sizeof(struct raid_set));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
-            rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
-        rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              rs[_i0].md.new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          rs[_i0].md.new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_l0 = 1;
           struct rs_layout * l = (struct rs_layout *) malloc(_len_l0*sizeof(struct rs_layout));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
-            l[_i0].new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
-        l[_i0].new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              l[_i0].new_chunk_sectors = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].new_layout = ((-2 * (next_i()%2)) + 1) * next_i();
+          l[_i0].new_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rs_config_restore(rs,l);
           free(rs);
           free(l);

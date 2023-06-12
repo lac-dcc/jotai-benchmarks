@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void mlxsw_sp_mr_mfc_offload_set(struct mlxsw_sp_mr
 		mr_route->mfc->mfc_flags &= ~MFC_OFFLOAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +82,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int offload = 100;
+        
           int _len_mr_route0 = 1;
           struct mlxsw_sp_mr_route * mr_route = (struct mlxsw_sp_mr_route *) malloc(_len_mr_route0*sizeof(struct mlxsw_sp_mr_route));
           for(int _i0 = 0; _i0 < _len_mr_route0; _i0++) {
               int _len_mr_route__i0__mfc0 = 1;
           mr_route[_i0].mfc = (struct TYPE_2__ *) malloc(_len_mr_route__i0__mfc0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mr_route__i0__mfc0; _j0++) {
-            mr_route[_i0].mfc->mfc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              mr_route[_i0].mfc->mfc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          mlxsw_sp_mr_mfc_offload_set(mr_route,offload);
+          for(int _aux = 0; _aux < _len_mr_route0; _aux++) {
+          free(mr_route[_aux].mfc);
+          }
+          free(mr_route);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int offload = 255;
+        
+          int _len_mr_route0 = 65025;
+          struct mlxsw_sp_mr_route * mr_route = (struct mlxsw_sp_mr_route *) malloc(_len_mr_route0*sizeof(struct mlxsw_sp_mr_route));
+          for(int _i0 = 0; _i0 < _len_mr_route0; _i0++) {
+              int _len_mr_route__i0__mfc0 = 1;
+          mr_route[_i0].mfc = (struct TYPE_2__ *) malloc(_len_mr_route__i0__mfc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mr_route__i0__mfc0; _j0++) {
+              mr_route[_i0].mfc->mfc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mlxsw_sp_mr_mfc_offload_set(mr_route,offload);
+          for(int _aux = 0; _aux < _len_mr_route0; _aux++) {
+          free(mr_route[_aux].mfc);
+          }
+          free(mr_route);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int offload = 10;
+        
+          int _len_mr_route0 = 100;
+          struct mlxsw_sp_mr_route * mr_route = (struct mlxsw_sp_mr_route *) malloc(_len_mr_route0*sizeof(struct mlxsw_sp_mr_route));
+          for(int _i0 = 0; _i0 < _len_mr_route0; _i0++) {
+              int _len_mr_route__i0__mfc0 = 1;
+          mr_route[_i0].mfc = (struct TYPE_2__ *) malloc(_len_mr_route__i0__mfc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mr_route__i0__mfc0; _j0++) {
+              mr_route[_i0].mfc->mfc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mlxsw_sp_mr_mfc_offload_set(mr_route,offload);
+          for(int _aux = 0; _aux < _len_mr_route0; _aux++) {
+          free(mr_route[_aux].mfc);
+          }
+          free(mr_route);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int offload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mr_route0 = 1;
+          struct mlxsw_sp_mr_route * mr_route = (struct mlxsw_sp_mr_route *) malloc(_len_mr_route0*sizeof(struct mlxsw_sp_mr_route));
+          for(int _i0 = 0; _i0 < _len_mr_route0; _i0++) {
+              int _len_mr_route__i0__mfc0 = 1;
+          mr_route[_i0].mfc = (struct TYPE_2__ *) malloc(_len_mr_route__i0__mfc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mr_route__i0__mfc0; _j0++) {
+              mr_route[_i0].mfc->mfc_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           mlxsw_sp_mr_mfc_offload_set(mr_route,offload);
           for(int _aux = 0; _aux < _len_mr_route0; _aux++) {
           free(mr_route[_aux].mfc);

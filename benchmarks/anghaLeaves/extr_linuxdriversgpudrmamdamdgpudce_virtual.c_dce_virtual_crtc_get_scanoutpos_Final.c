@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int dce_virtual_crtc_get_scanoutpos(struct amdgpu_d
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,26 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int crtc = 100;
+        
           int _len_adev0 = 1;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_vbl0 = 1;
           long * vbl = (long *) malloc(_len_vbl0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_vbl0; _i0++) {
             vbl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_position0 = 1;
           long * position = (long *) malloc(_len_position0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_position0; _i0++) {
             position[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dce_virtual_crtc_get_scanoutpos(adev,crtc,vbl,position);
           printf("%d\n", benchRet); 
           free(adev);
@@ -111,7 +113,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int crtc = 255;
+        
+          int _len_adev0 = 65025;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vbl0 = 65025;
+          long * vbl = (long *) malloc(_len_vbl0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_vbl0; _i0++) {
+            vbl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_position0 = 65025;
+          long * position = (long *) malloc(_len_position0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_position0; _i0++) {
+            position[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dce_virtual_crtc_get_scanoutpos(adev,crtc,vbl,position);
+          printf("%d\n", benchRet); 
+          free(adev);
+          free(vbl);
+          free(position);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int crtc = 10;
+        
+          int _len_adev0 = 100;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vbl0 = 100;
+          long * vbl = (long *) malloc(_len_vbl0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_vbl0; _i0++) {
+            vbl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_position0 = 100;
+          long * position = (long *) malloc(_len_position0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_position0; _i0++) {
+            position[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dce_virtual_crtc_get_scanoutpos(adev,crtc,vbl,position);
+          printf("%d\n", benchRet); 
+          free(adev);
+          free(vbl);
+          free(position);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int crtc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vbl0 = 1;
+          long * vbl = (long *) malloc(_len_vbl0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_vbl0; _i0++) {
+            vbl[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_position0 = 1;
+          long * position = (long *) malloc(_len_position0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_position0; _i0++) {
+            position[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dce_virtual_crtc_get_scanoutpos(adev,crtc,vbl,position);
+          printf("%d\n", benchRet); 
+          free(adev);
+          free(vbl);
+          free(position);
+        
+        break;
+    }
     default:
         usage();
         break;

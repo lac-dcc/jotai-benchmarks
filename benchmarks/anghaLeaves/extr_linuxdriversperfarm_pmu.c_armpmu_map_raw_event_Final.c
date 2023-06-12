@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ armpmu_map_raw_event(u32 raw_event_mask, u64 config)
 	return (int)(config & raw_event_mask);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,7 +81,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int raw_event_mask = 100;
+        
           int config = 100;
+        
           int benchRet = armpmu_map_raw_event(raw_event_mask,config);
           printf("%d\n", benchRet); 
         
@@ -96,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int raw_event_mask = 255;
+        
           int config = 255;
+        
           int benchRet = armpmu_map_raw_event(raw_event_mask,config);
           printf("%d\n", benchRet); 
         
@@ -106,13 +105,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int raw_event_mask = 10;
+        
           int config = 10;
+        
           int benchRet = armpmu_map_raw_event(raw_event_mask,config);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int raw_event_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int config = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = armpmu_map_raw_event(raw_event_mask,config);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static int ieee802154_hdr_addr_len(int mode, bool omit_pan
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int omit_pan = 100;
+        
           int benchRet = ieee802154_hdr_addr_len(mode,omit_pan);
           printf("%d\n", benchRet); 
         
@@ -105,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mode = 255;
+        
           int omit_pan = 255;
+        
           int benchRet = ieee802154_hdr_addr_len(mode,omit_pan);
           printf("%d\n", benchRet); 
         
@@ -115,13 +114,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mode = 10;
+        
           int omit_pan = 10;
+        
           int benchRet = ieee802154_hdr_addr_len(mode,omit_pan);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int omit_pan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ieee802154_hdr_addr_len(mode,omit_pan);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

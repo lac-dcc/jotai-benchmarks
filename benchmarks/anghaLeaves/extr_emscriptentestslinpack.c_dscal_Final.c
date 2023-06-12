@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -111,12 +113,6 @@ void dscal(int n, REAL da, REAL dx[], int incx)
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,17 +125,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 3592
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 1545
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 1545
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 1545
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 1545
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 1544
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 1799
+          // ------------------------------- 
+
+          int n = 255;
+        
+          int da = 255;
+        
+          int incx = 255;
+        
+          int _len_dx0 = 65025;
+          int * dx = (int *) malloc(_len_dx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
+            dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dscal(n,da,dx,incx);
+          free(dx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 162
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 75
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 75
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 74
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 84
+          // ------------------------------- 
+
           int n = 10;
+        
           int da = 10;
+        
           int incx = 10;
+        
           int _len_dx0 = 100;
           int * dx = (int *) malloc(_len_dx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
             dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          dscal(n,da,dx,incx);
+          free(dx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int da = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int incx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dx0 = 1;
+          int * dx = (int *) malloc(_len_dx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dx0; _i0++) {
+            dx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           dscal(n,da,dx,incx);
           free(dx);
         

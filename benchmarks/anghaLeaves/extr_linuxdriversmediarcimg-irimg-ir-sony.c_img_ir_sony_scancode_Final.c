@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -105,12 +108,6 @@ __attribute__((used)) static int img_ir_sony_scancode(int len, u64 raw, u64 enab
 	return IMG_IR_SCANCODE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,18 +120,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int len = 100;
+        
           int raw = 100;
+        
           int enabled_protocols = 100;
+        
           int _len_request0 = 1;
           struct img_ir_scancode_req * request = (struct img_ir_scancode_req *) malloc(_len_request0*sizeof(struct img_ir_scancode_req));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].scancode = ((-2 * (next_i()%2)) + 1) * next_i();
-        request[_i0].protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].scancode = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = img_ir_sony_scancode(len,raw,enabled_protocols,request);
+          printf("%d\n", benchRet); 
+          free(request);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int len = 255;
+        
+          int raw = 255;
+        
+          int enabled_protocols = 255;
+        
+          int _len_request0 = 65025;
+          struct img_ir_scancode_req * request = (struct img_ir_scancode_req *) malloc(_len_request0*sizeof(struct img_ir_scancode_req));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].scancode = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = img_ir_sony_scancode(len,raw,enabled_protocols,request);
+          printf("%d\n", benchRet); 
+          free(request);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int len = 10;
+        
+          int raw = 10;
+        
+          int enabled_protocols = 10;
+        
+          int _len_request0 = 100;
+          struct img_ir_scancode_req * request = (struct img_ir_scancode_req *) malloc(_len_request0*sizeof(struct img_ir_scancode_req));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].scancode = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = img_ir_sony_scancode(len,raw,enabled_protocols,request);
+          printf("%d\n", benchRet); 
+          free(request);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int raw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enabled_protocols = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_request0 = 1;
+          struct img_ir_scancode_req * request = (struct img_ir_scancode_req *) malloc(_len_request0*sizeof(struct img_ir_scancode_req));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].scancode = ((-2 * (next_i()%2)) + 1) * next_i();
+          request[_i0].protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = img_ir_sony_scancode(len,raw,enabled_protocols,request);
           printf("%d\n", benchRet); 
           free(request);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ DRV_SPI_SYS_QUEUE_RESULT DRV_SPI_SYS_QUEUE_Deinitialize(DRV_SPI_SYS_QUEUE_MANAGE
     return DRV_SPI_SYS_QUEUE_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long queueManager = 100;
+        
           int benchRet = DRV_SPI_SYS_QUEUE_Deinitialize(queueManager);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long queueManager = 255;
+        
           int benchRet = DRV_SPI_SYS_QUEUE_Deinitialize(queueManager);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long queueManager = 10;
+        
           int benchRet = DRV_SPI_SYS_QUEUE_Deinitialize(queueManager);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long queueManager = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = DRV_SPI_SYS_QUEUE_Deinitialize(queueManager);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

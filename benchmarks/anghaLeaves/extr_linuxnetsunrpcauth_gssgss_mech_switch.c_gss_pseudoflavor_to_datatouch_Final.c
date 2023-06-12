@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ gss_pseudoflavor_to_datatouch(struct gss_api_mech *gm, u32 pseudoflavor)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +85,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long pseudoflavor = 100;
+        
           int _len_gm0 = 1;
           struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
           for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
-            gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_gm__i0__gm_pfs0 = 1;
           gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
-            gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
-        gm[_i0].gm_pfs->datatouch = ((-2 * (next_i()%2)) + 1) * next_i();
+              gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->datatouch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = gss_pseudoflavor_to_datatouch(gm,pseudoflavor);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gm0; _aux++) {
+          free(gm[_aux].gm_pfs);
+          }
+          free(gm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long pseudoflavor = 255;
+        
+          int _len_gm0 = 65025;
+          struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
+          for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gm__i0__gm_pfs0 = 1;
+          gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
+              gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->datatouch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gss_pseudoflavor_to_datatouch(gm,pseudoflavor);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gm0; _aux++) {
+          free(gm[_aux].gm_pfs);
+          }
+          free(gm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long pseudoflavor = 10;
+        
+          int _len_gm0 = 100;
+          struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
+          for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gm__i0__gm_pfs0 = 1;
+          gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
+              gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->datatouch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = gss_pseudoflavor_to_datatouch(gm,pseudoflavor);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_gm0; _aux++) {
+          free(gm[_aux].gm_pfs);
+          }
+          free(gm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_gm0 = 1;
+          struct gss_api_mech * gm = (struct gss_api_mech *) malloc(_len_gm0*sizeof(struct gss_api_mech));
+          for(int _i0 = 0; _i0 < _len_gm0; _i0++) {
+              gm[_i0].gm_pf_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_gm__i0__gm_pfs0 = 1;
+          gm[_i0].gm_pfs = (struct TYPE_2__ *) malloc(_len_gm__i0__gm_pfs0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_gm__i0__gm_pfs0; _j0++) {
+              gm[_i0].gm_pfs->pseudoflavor = ((-2 * (next_i()%2)) + 1) * next_i();
+          gm[_i0].gm_pfs->datatouch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = gss_pseudoflavor_to_datatouch(gm,pseudoflavor);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_gm0; _aux++) {

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void elevate_update_type(enum surface_update
 		*original = new;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum surface_update_type new = 0;
-          int _len_original0 = 1;
+        
+          int _len_original0 = 65025;
           enum surface_update_type * original = (enum surface_update_type *) malloc(_len_original0*sizeof(enum surface_update_type));
           for(int _i0 = 0; _i0 < _len_original0; _i0++) {
             original[_i0] = 0;
           }
+        
           elevate_update_type(original,new);
           free(original);
         
@@ -98,17 +95,34 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum surface_update_type new = 0;
+        
           int _len_original0 = 100;
           enum surface_update_type * original = (enum surface_update_type *) malloc(_len_original0*sizeof(enum surface_update_type));
           for(int _i0 = 0; _i0 < _len_original0; _i0++) {
             original[_i0] = 0;
           }
+        
           elevate_update_type(original,new);
           free(original);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum surface_update_type new = 0;
+        
+          int _len_original0 = 1;
+          enum surface_update_type * original = (enum surface_update_type *) malloc(_len_original0*sizeof(enum surface_update_type));
+          for(int _i0 = 0; _i0 < _len_original0; _i0++) {
+            original[_i0] = 0;
+          }
+        
+          elevate_update_type(original,new);
+          free(original);
+        
+        break;
+    }
     default:
         usage();
         break;

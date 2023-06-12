@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void mlxsw_sp_acl_block_disable_inc(struct mlxsw_sp_acl_block *block)
 		block->disable_count++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,27 +75,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_block0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_block0 = 65025;
           struct mlxsw_sp_acl_block * block = (struct mlxsw_sp_acl_block *) malloc(_len_block0*sizeof(struct mlxsw_sp_acl_block));
           for(int _i0 = 0; _i0 < _len_block0; _i0++) {
-            block[_i0].disable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              block[_i0].disable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mlxsw_sp_acl_block_disable_inc(block);
           free(block);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_block0 = 100;
           struct mlxsw_sp_acl_block * block = (struct mlxsw_sp_acl_block *) malloc(_len_block0*sizeof(struct mlxsw_sp_acl_block));
           for(int _i0 = 0; _i0 < _len_block0; _i0++) {
-            block[_i0].disable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              block[_i0].disable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mlxsw_sp_acl_block_disable_inc(block);
+          free(block);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_block0 = 1;
+          struct mlxsw_sp_acl_block * block = (struct mlxsw_sp_acl_block *) malloc(_len_block0*sizeof(struct mlxsw_sp_acl_block));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].disable_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mlxsw_sp_acl_block_disable_inc(block);
           free(block);
         

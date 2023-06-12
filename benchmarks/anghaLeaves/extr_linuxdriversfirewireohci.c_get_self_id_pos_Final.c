@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int get_self_id_pos(struct fw_ohci *ohci, u32 self_
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int self_id = 100;
+        
           int self_id_count = 100;
+        
           int _len_ohci0 = 1;
           struct fw_ohci * ohci = (struct fw_ohci *) malloc(_len_ohci0*sizeof(struct fw_ohci));
           for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
@@ -103,7 +102,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ohci__i0__self_id_buffer0; _j0++) {
             ohci[_i0].self_id_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = get_self_id_pos(ohci,self_id,self_id_count);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ohci0; _aux++) {
@@ -113,7 +114,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int self_id = 255;
+        
+          int self_id_count = 255;
+        
+          int _len_ohci0 = 65025;
+          struct fw_ohci * ohci = (struct fw_ohci *) malloc(_len_ohci0*sizeof(struct fw_ohci));
+          for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
+              int _len_ohci__i0__self_id_buffer0 = 1;
+          ohci[_i0].self_id_buffer = (int *) malloc(_len_ohci__i0__self_id_buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ohci__i0__self_id_buffer0; _j0++) {
+            ohci[_i0].self_id_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_self_id_pos(ohci,self_id,self_id_count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ohci0; _aux++) {
+          free(ohci[_aux].self_id_buffer);
+          }
+          free(ohci);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int self_id = 10;
+        
+          int self_id_count = 10;
+        
+          int _len_ohci0 = 100;
+          struct fw_ohci * ohci = (struct fw_ohci *) malloc(_len_ohci0*sizeof(struct fw_ohci));
+          for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
+              int _len_ohci__i0__self_id_buffer0 = 1;
+          ohci[_i0].self_id_buffer = (int *) malloc(_len_ohci__i0__self_id_buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ohci__i0__self_id_buffer0; _j0++) {
+            ohci[_i0].self_id_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_self_id_pos(ohci,self_id,self_id_count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ohci0; _aux++) {
+          free(ohci[_aux].self_id_buffer);
+          }
+          free(ohci);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int self_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int self_id_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ohci0 = 1;
+          struct fw_ohci * ohci = (struct fw_ohci *) malloc(_len_ohci0*sizeof(struct fw_ohci));
+          for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
+              int _len_ohci__i0__self_id_buffer0 = 1;
+          ohci[_i0].self_id_buffer = (int *) malloc(_len_ohci__i0__self_id_buffer0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ohci__i0__self_id_buffer0; _j0++) {
+            ohci[_i0].self_id_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = get_self_id_pos(ohci,self_id,self_id_count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ohci0; _aux++) {
+          free(ohci[_aux].self_id_buffer);
+          }
+          free(ohci);
+        
+        break;
+    }
     default:
         usage();
         break;

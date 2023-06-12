@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ size_t fixup_offset ( size_t ImageBase, size_t offset )
 	return offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ImageBase = 100;
+        
           unsigned long offset = 100;
+        
           unsigned long benchRet = fixup_offset(ImageBase,offset);
           printf("%lu\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long ImageBase = 255;
+        
           unsigned long offset = 255;
+        
           unsigned long benchRet = fixup_offset(ImageBase,offset);
           printf("%lu\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long ImageBase = 10;
+        
           unsigned long offset = 10;
+        
           unsigned long benchRet = fixup_offset(ImageBase,offset);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long ImageBase = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = fixup_offset(ImageBase,offset);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

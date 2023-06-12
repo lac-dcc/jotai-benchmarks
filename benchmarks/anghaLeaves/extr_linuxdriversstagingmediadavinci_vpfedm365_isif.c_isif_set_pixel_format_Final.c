@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -105,12 +108,6 @@ isif_set_pixel_format(struct vpfe_isif_device *isif, unsigned int pixfmt)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,23 +120,224 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           unsigned int pixfmt = 100;
+        
           int _len_isif0 = 1;
           struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
           for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
-            isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
-        isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int _len_isif__i0__formats0 = 1;
           isif[_i0].formats = (struct TYPE_5__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
-            isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = isif_set_pixel_format(isif,pixfmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isif0; _aux++) {
+          free(isif[_aux].formats);
+          }
+          free(isif);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int pixfmt = 255;
+        
+          int _len_isif0 = 65025;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_isif__i0__formats0 = 1;
+          isif[_i0].formats = (struct TYPE_5__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = isif_set_pixel_format(isif,pixfmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isif0; _aux++) {
+          free(isif[_aux].formats);
+          }
+          free(isif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int pixfmt = 10;
+        
+          int _len_isif0 = 100;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_isif__i0__formats0 = 1;
+          isif[_i0].formats = (struct TYPE_5__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = isif_set_pixel_format(isif,pixfmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_isif0; _aux++) {
+          free(isif[_aux].formats);
+          }
+          free(isif);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          unsigned int pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_isif0 = 1;
+          struct vpfe_isif_device * isif = (struct vpfe_isif_device *) malloc(_len_isif0*sizeof(struct vpfe_isif_device));
+          for(int _i0 = 0; _i0 < _len_isif0; _i0++) {
+              isif[_i0].isif_cfg.ycbcr.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.ycbcr.pix_order = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          isif[_i0].isif_cfg.bayer.v4l2_pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          isif[_i0].isif_cfg.bayer.pix_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          int _len_isif__i0__formats0 = 1;
+          isif[_i0].formats = (struct TYPE_5__ *) malloc(_len_isif__i0__formats0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_isif__i0__formats0; _j0++) {
+              isif[_i0].formats->code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = isif_set_pixel_format(isif,pixfmt);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_isif0; _aux++) {

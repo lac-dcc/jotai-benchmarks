@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ int ext2_group_of_ino(PEXT2_FILESYS fs, ULONG ino)
     return (ino - 1) / fs->ext2_sb->s_inodes_per_group;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int ino = 100;
+        
           int _len_fs0 = 1;
           struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
               int _len_fs__i0__ext2_sb0 = 1;
           fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
-            fs[_i0].ext2_sb->s_inodes_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].ext2_sb->s_inodes_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ext2_group_of_ino(fs,ino);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].ext2_sb);
+          }
+          free(fs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int ino = 255;
+        
+          int _len_fs0 = 65025;
+          struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__ext2_sb0 = 1;
+          fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
+              fs[_i0].ext2_sb->s_inodes_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext2_group_of_ino(fs,ino);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].ext2_sb);
+          }
+          free(fs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int ino = 10;
+        
+          int _len_fs0 = 100;
+          struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__ext2_sb0 = 1;
+          fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
+              fs[_i0].ext2_sb->s_inodes_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ext2_group_of_ino(fs,ino);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fs0; _aux++) {
+          free(fs[_aux].ext2_sb);
+          }
+          free(fs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct TYPE_5__ * fs = (struct TYPE_5__ *) malloc(_len_fs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              int _len_fs__i0__ext2_sb0 = 1;
+          fs[_i0].ext2_sb = (struct TYPE_4__ *) malloc(_len_fs__i0__ext2_sb0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_fs__i0__ext2_sb0; _j0++) {
+              fs[_i0].ext2_sb->s_inodes_per_group = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ext2_group_of_ino(fs,ino);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fs0; _aux++) {

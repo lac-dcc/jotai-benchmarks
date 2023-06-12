@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void memory_set(u8 *dest, u8 val, u32 len) {
     for ( ; len != 0; len--) *temp++ = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +74,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int val = 10;
-          long len = 10;
-          int _len_dest0 = 100;
+          int val = 255;
+        
+          long len = 255;
+        
+          int _len_dest0 = 65025;
           int * dest = (int *) malloc(_len_dest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           memory_set(dest,val,len);
           free(dest);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int val = 10;
+        
+          long len = 10;
+        
+          int _len_dest0 = 100;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          memory_set(dest,val,len);
+          free(dest);
+        
+        break;
+    }
     default:
         usage();
         break;

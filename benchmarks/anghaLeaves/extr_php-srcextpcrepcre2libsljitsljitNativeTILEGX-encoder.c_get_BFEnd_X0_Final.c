@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ get_BFEnd_X0(tilegx_bundle_bits num)
   return (((n >> 12)) & 0x3f);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long num = 100;
+        
           unsigned int benchRet = get_BFEnd_X0(num);
           printf("%u\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long num = 255;
+        
           unsigned int benchRet = get_BFEnd_X0(num);
           printf("%u\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long num = 10;
+        
           unsigned int benchRet = get_BFEnd_X0(num);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = get_BFEnd_X0(num);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

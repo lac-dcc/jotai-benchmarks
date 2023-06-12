@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_mem_reg *mem)
 	return (node->node.start != AMDGPU_BO_INVALID_OFFSET);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mem0 = 1;
+          int _len_mem0 = 65025;
           struct ttm_mem_reg * mem = (struct ttm_mem_reg *) malloc(_len_mem0*sizeof(struct ttm_mem_reg));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
               int _len_mem__i0__mm_node0 = 1;
           mem[_i0].mm_node = (struct amdgpu_gtt_node *) malloc(_len_mem__i0__mm_node0*sizeof(struct amdgpu_gtt_node));
           for(int _j0 = 0; _j0 < _len_mem__i0__mm_node0; _j0++) {
-            mem[_i0].mm_node->node.start = ((-2 * (next_i()%2)) + 1) * next_i();
+              mem[_i0].mm_node->node.start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = amdgpu_gtt_mgr_has_gart_addr(mem);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mem0; _aux++) {
@@ -105,7 +105,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mem0 = 100;
+          struct ttm_mem_reg * mem = (struct ttm_mem_reg *) malloc(_len_mem0*sizeof(struct ttm_mem_reg));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              int _len_mem__i0__mm_node0 = 1;
+          mem[_i0].mm_node = (struct amdgpu_gtt_node *) malloc(_len_mem__i0__mm_node0*sizeof(struct amdgpu_gtt_node));
+          for(int _j0 = 0; _j0 < _len_mem__i0__mm_node0; _j0++) {
+              mem[_i0].mm_node->node.start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = amdgpu_gtt_mgr_has_gart_addr(mem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mem0; _aux++) {
+          free(mem[_aux].mm_node);
+          }
+          free(mem);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mem0 = 1;
+          struct ttm_mem_reg * mem = (struct ttm_mem_reg *) malloc(_len_mem0*sizeof(struct ttm_mem_reg));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              int _len_mem__i0__mm_node0 = 1;
+          mem[_i0].mm_node = (struct amdgpu_gtt_node *) malloc(_len_mem__i0__mm_node0*sizeof(struct amdgpu_gtt_node));
+          for(int _j0 = 0; _j0 < _len_mem__i0__mm_node0; _j0++) {
+              mem[_i0].mm_node->node.start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = amdgpu_gtt_mgr_has_gart_addr(mem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mem0; _aux++) {
+          free(mem[_aux].mm_node);
+          }
+          free(mem);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static u32 host1x_pushbuffer_space(struct push_buffer *pb)
 	return ((pb->fence - pb->pos) & (pb->size - 1)) / 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +75,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_pb0 = 65025;
+          struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
+          for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = host1x_pushbuffer_space(pb);
+          printf("%d\n", benchRet); 
+          free(pb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_pb0 = 100;
+          struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
+          for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = host1x_pushbuffer_space(pb);
+          printf("%d\n", benchRet); 
+          free(pb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_pb0 = 1;
           struct push_buffer * pb = (struct push_buffer *) malloc(_len_pb0*sizeof(struct push_buffer));
           for(int _i0 = 0; _i0 < _len_pb0; _i0++) {
-            pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
-        pb[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pb[_i0].fence = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          pb[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = host1x_pushbuffer_space(pb);
           printf("%d\n", benchRet); 
           free(pb);

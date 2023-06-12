@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -133,12 +134,6 @@ double r8_random ( int iseed[4] )
   return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -151,28 +146,116 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_iseed0 = 4;
+          // static_instructions_O0 : 120
+          // dynamic_instructions_O0 : 120
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 78
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 67
+          // dynamic_instructions_Oz : 67
+          // ------------------------------- 
+
+          int _len_iseed0 = 65025;
           int * iseed = (int *) malloc(_len_iseed0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_iseed0; _i0++) {
             iseed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           double benchRet = r8_random(iseed);
           printf("%lf\n", benchRet); 
           free(iseed);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 120
+          // dynamic_instructions_O0 : 120
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 78
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 67
+          // dynamic_instructions_Oz : 67
+          // ------------------------------- 
+
           int _len_iseed0 = 100;
           int * iseed = (int *) malloc(_len_iseed0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_iseed0; _i0++) {
             iseed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          double benchRet = r8_random(iseed);
+          printf("%lf\n", benchRet); 
+          free(iseed);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 120
+          // dynamic_instructions_O0 : 120
+          // ------------------------------- 
+          // static_instructions_O1 : 74
+          // dynamic_instructions_O1 : 74
+          // ------------------------------- 
+          // static_instructions_O2 : 74
+          // dynamic_instructions_O2 : 74
+          // ------------------------------- 
+          // static_instructions_O3 : 74
+          // dynamic_instructions_O3 : 74
+          // ------------------------------- 
+          // static_instructions_Ofast : 74
+          // dynamic_instructions_Ofast : 74
+          // ------------------------------- 
+          // static_instructions_Os : 78
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 67
+          // dynamic_instructions_Oz : 67
+          // ------------------------------- 
+
+          int _len_iseed0 = 4;
+          int * iseed = (int *) malloc(_len_iseed0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_iseed0; _i0++) {
+            iseed[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           double benchRet = r8_random(iseed);
           printf("%lf\n", benchRet); 
           free(iseed);

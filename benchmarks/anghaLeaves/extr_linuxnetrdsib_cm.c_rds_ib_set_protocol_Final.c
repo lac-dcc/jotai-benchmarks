@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void rds_ib_set_protocol(struct rds_connection *con
 	conn->c_version = version;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,29 +75,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int version = 100;
+        
           int _len_conn0 = 1;
           struct rds_connection * conn = (struct rds_connection *) malloc(_len_conn0*sizeof(struct rds_connection));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].c_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].c_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rds_ib_set_protocol(conn,version);
           free(conn);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int version = 255;
+        
+          int _len_conn0 = 65025;
+          struct rds_connection * conn = (struct rds_connection *) malloc(_len_conn0*sizeof(struct rds_connection));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].c_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rds_ib_set_protocol(conn,version);
+          free(conn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int version = 10;
+        
           int _len_conn0 = 100;
           struct rds_connection * conn = (struct rds_connection *) malloc(_len_conn0*sizeof(struct rds_connection));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].c_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].c_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          rds_ib_set_protocol(conn,version);
+          free(conn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          struct rds_connection * conn = (struct rds_connection *) malloc(_len_conn0*sizeof(struct rds_connection));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].c_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           rds_ib_set_protocol(conn,version);
           free(conn);
         

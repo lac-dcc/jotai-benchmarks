@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool sysc_opt_clks_needed(struct sysc *ddata)
 	return !!(ddata->cfg.quirks & SYSC_QUIRK_OPT_CLKS_NEEDED);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ddata0 = 1;
+          int _len_ddata0 = 65025;
           struct sysc * ddata = (struct sysc *) malloc(_len_ddata0*sizeof(struct sysc));
           for(int _i0 = 0; _i0 < _len_ddata0; _i0++) {
-            ddata[_i0].cfg.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              ddata[_i0].cfg.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sysc_opt_clks_needed(ddata);
           printf("%d\n", benchRet); 
           free(ddata);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_ddata0 = 100;
           struct sysc * ddata = (struct sysc *) malloc(_len_ddata0*sizeof(struct sysc));
           for(int _i0 = 0; _i0 < _len_ddata0; _i0++) {
-            ddata[_i0].cfg.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              ddata[_i0].cfg.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sysc_opt_clks_needed(ddata);
           printf("%d\n", benchRet); 
           free(ddata);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ddata0 = 1;
+          struct sysc * ddata = (struct sysc *) malloc(_len_ddata0*sizeof(struct sysc));
+          for(int _i0 = 0; _i0 < _len_ddata0; _i0++) {
+              ddata[_i0].cfg.quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = sysc_opt_clks_needed(ddata);
+          printf("%d\n", benchRet); 
+          free(ddata);
+        
+        break;
+    }
     default:
         usage();
         break;

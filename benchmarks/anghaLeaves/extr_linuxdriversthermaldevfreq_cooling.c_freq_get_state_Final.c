@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ freq_get_state(struct devfreq_cooling_device *dfc, unsigned long freq)
 	return THERMAL_CSTATE_INVALID;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +84,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           unsigned long freq = 100;
+        
           int _len_dfc0 = 1;
           struct devfreq_cooling_device * dfc = (struct devfreq_cooling_device *) malloc(_len_dfc0*sizeof(struct devfreq_cooling_device));
           for(int _i0 = 0; _i0 < _len_dfc0; _i0++) {
-            dfc[_i0].freq_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              dfc[_i0].freq_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dfc__i0__freq_table0 = 1;
           dfc[_i0].freq_table = (unsigned long *) malloc(_len_dfc__i0__freq_table0*sizeof(unsigned long));
           for(int _j0 = 0; _j0 < _len_dfc__i0__freq_table0; _j0++) {
             dfc[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          unsigned long benchRet = freq_get_state(dfc,freq);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dfc0; _aux++) {
+          free(dfc[_aux].freq_table);
+          }
+          free(dfc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long freq = 255;
+        
+          int _len_dfc0 = 65025;
+          struct devfreq_cooling_device * dfc = (struct devfreq_cooling_device *) malloc(_len_dfc0*sizeof(struct devfreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_dfc0; _i0++) {
+              dfc[_i0].freq_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dfc__i0__freq_table0 = 1;
+          dfc[_i0].freq_table = (unsigned long *) malloc(_len_dfc__i0__freq_table0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_dfc__i0__freq_table0; _j0++) {
+            dfc[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = freq_get_state(dfc,freq);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dfc0; _aux++) {
+          free(dfc[_aux].freq_table);
+          }
+          free(dfc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long freq = 10;
+        
+          int _len_dfc0 = 100;
+          struct devfreq_cooling_device * dfc = (struct devfreq_cooling_device *) malloc(_len_dfc0*sizeof(struct devfreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_dfc0; _i0++) {
+              dfc[_i0].freq_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dfc__i0__freq_table0 = 1;
+          dfc[_i0].freq_table = (unsigned long *) malloc(_len_dfc__i0__freq_table0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_dfc__i0__freq_table0; _j0++) {
+            dfc[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          unsigned long benchRet = freq_get_state(dfc,freq);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dfc0; _aux++) {
+          free(dfc[_aux].freq_table);
+          }
+          free(dfc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          unsigned long freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dfc0 = 1;
+          struct devfreq_cooling_device * dfc = (struct devfreq_cooling_device *) malloc(_len_dfc0*sizeof(struct devfreq_cooling_device));
+          for(int _i0 = 0; _i0 < _len_dfc0; _i0++) {
+              dfc[_i0].freq_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dfc__i0__freq_table0 = 1;
+          dfc[_i0].freq_table = (unsigned long *) malloc(_len_dfc__i0__freq_table0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_dfc__i0__freq_table0; _j0++) {
+            dfc[_i0].freq_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           unsigned long benchRet = freq_get_state(dfc,freq);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_dfc0; _aux++) {

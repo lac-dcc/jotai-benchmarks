@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static USBH_StatusTypeDef USBH_MTP_SOFProcess (USBH_Handle
   return status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phost0 = 1;
+          int _len_phost0 = 65025;
           int * phost = (int *) malloc(_len_phost0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
             phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = USBH_MTP_SOFProcess(phost);
           printf("%d\n", benchRet); 
           free(phost);
@@ -105,13 +101,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
             phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = USBH_MTP_SOFProcess(phost);
           printf("%d\n", benchRet); 
           free(phost);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_phost0 = 1;
+          int * phost = (int *) malloc(_len_phost0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_phost0; _i0++) {
+            phost[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = USBH_MTP_SOFProcess(phost);
+          printf("%d\n", benchRet); 
+          free(phost);
+        
+        break;
+    }
     default:
         usage();
         break;

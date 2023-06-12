@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool hunk_starts_at_or_after_line(git_blame_hunk *h
 	return line <= hunk->final_start_line_number;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long line = 100;
+        
           int _len_hunk0 = 1;
           struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
-            hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hunk_starts_at_or_after_line(hunk,line);
+          printf("%d\n", benchRet); 
+          free(hunk);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long line = 255;
+        
+          int _len_hunk0 = 65025;
+          struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hunk_starts_at_or_after_line(hunk,line);
           printf("%d\n", benchRet); 
           free(hunk);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long line = 10;
+        
           int _len_hunk0 = 100;
           struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
-            hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hunk_starts_at_or_after_line(hunk,line);
           printf("%d\n", benchRet); 
           free(hunk);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hunk0 = 1;
+          struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hunk_starts_at_or_after_line(hunk,line);
+          printf("%d\n", benchRet); 
+          free(hunk);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline bool is_memcg_oom(struct oom_control *oc)
 	return oc->memcg != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_oc0 = 1;
+          int _len_oc0 = 65025;
           struct oom_control * oc = (struct oom_control *) malloc(_len_oc0*sizeof(struct oom_control));
           for(int _i0 = 0; _i0 < _len_oc0; _i0++) {
               int _len_oc__i0__memcg0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_oc__i0__memcg0; _j0++) {
             oc[_i0].memcg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_memcg_oom(oc);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_oc0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_oc0 = 100;
+          struct oom_control * oc = (struct oom_control *) malloc(_len_oc0*sizeof(struct oom_control));
+          for(int _i0 = 0; _i0 < _len_oc0; _i0++) {
+              int _len_oc__i0__memcg0 = 1;
+          oc[_i0].memcg = (int *) malloc(_len_oc__i0__memcg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_oc__i0__memcg0; _j0++) {
+            oc[_i0].memcg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_memcg_oom(oc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_oc0; _aux++) {
+          free(oc[_aux].memcg);
+          }
+          free(oc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_oc0 = 1;
+          struct oom_control * oc = (struct oom_control *) malloc(_len_oc0*sizeof(struct oom_control));
+          for(int _i0 = 0; _i0 < _len_oc0; _i0++) {
+              int _len_oc__i0__memcg0 = 1;
+          oc[_i0].memcg = (int *) malloc(_len_oc__i0__memcg0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_oc__i0__memcg0; _j0++) {
+            oc[_i0].memcg[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_memcg_oom(oc);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_oc0; _aux++) {
+          free(oc[_aux].memcg);
+          }
+          free(oc);
+        
+        break;
+    }
     default:
         usage();
         break;

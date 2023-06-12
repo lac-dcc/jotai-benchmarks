@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ void LSAPI_Set_Server_fd( int fd )
         g_prefork_server->m_fd = fd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fd = 100;
+        
           LSAPI_Set_Server_fd(fd);
         
         break;
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fd = 255;
+        
           LSAPI_Set_Server_fd(fd);
         
         break;
@@ -103,11 +100,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fd = 10;
+        
           LSAPI_Set_Server_fd(fd);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          LSAPI_Set_Server_fd(fd);
+        
+        break;
+    }
     default:
         usage();
         break;

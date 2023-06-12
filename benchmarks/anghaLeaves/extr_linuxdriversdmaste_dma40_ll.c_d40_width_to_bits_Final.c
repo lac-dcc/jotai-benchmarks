@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -75,12 +75,6 @@ __attribute__((used)) static u8 d40_width_to_bits(enum dma_slave_buswidth width)
 		return STEDMA40_ESIZE_32_BIT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum dma_slave_buswidth width = 0;
+        
           int benchRet = d40_width_to_bits(width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

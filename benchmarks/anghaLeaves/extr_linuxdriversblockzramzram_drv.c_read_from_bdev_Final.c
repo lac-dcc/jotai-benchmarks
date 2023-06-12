@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int read_from_bdev(struct zram *zram, struct bio_ve
 	return -EIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +83,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long entry = 100;
+        
           int sync = 100;
+        
           int _len_zram0 = 1;
           struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
           for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
-            zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bvec0 = 1;
           struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
           for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
-            bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_parent0 = 1;
           struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
-            parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = read_from_bdev(zram,bvec,entry,parent,sync);
           printf("%d\n", benchRet); 
           free(zram);
@@ -110,7 +115,114 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long entry = 255;
+        
+          int sync = 255;
+        
+          int _len_zram0 = 65025;
+          struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
+          for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bvec0 = 65025;
+          struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
+          for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent0 = 65025;
+          struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = read_from_bdev(zram,bvec,entry,parent,sync);
+          printf("%d\n", benchRet); 
+          free(zram);
+          free(bvec);
+          free(parent);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long entry = 10;
+        
+          int sync = 10;
+        
+          int _len_zram0 = 100;
+          struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
+          for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bvec0 = 100;
+          struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
+          for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent0 = 100;
+          struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = read_from_bdev(zram,bvec,entry,parent,sync);
+          printf("%d\n", benchRet); 
+          free(zram);
+          free(bvec);
+          free(parent);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long entry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_zram0 = 1;
+          struct zram * zram = (struct zram *) malloc(_len_zram0*sizeof(struct zram));
+          for(int _i0 = 0; _i0 < _len_zram0; _i0++) {
+              zram[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bvec0 = 1;
+          struct bio_vec * bvec = (struct bio_vec *) malloc(_len_bvec0*sizeof(struct bio_vec));
+          for(int _i0 = 0; _i0 < _len_bvec0; _i0++) {
+              bvec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_parent0 = 1;
+          struct bio * parent = (struct bio *) malloc(_len_parent0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_parent0; _i0++) {
+              parent[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = read_from_bdev(zram,bvec,entry,parent,sync);
+          printf("%d\n", benchRet); 
+          free(zram);
+          free(bvec);
+          free(parent);
+        
+        break;
+    }
     default:
         usage();
         break;

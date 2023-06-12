@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int free_slots(struct b43legacy_dmaring *rin
 	return (ring->nr_slots - ring->used_slots);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ring0 = 1;
+          int _len_ring0 = 65025;
           struct b43legacy_dmaring * ring = (struct b43legacy_dmaring *) malloc(_len_ring0*sizeof(struct b43legacy_dmaring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].nr_slots = ((-2 * (next_i()%2)) + 1) * next_i();
-        ring[_i0].used_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].nr_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].used_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = free_slots(ring);
           printf("%d\n", benchRet); 
           free(ring);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ring0 = 100;
+          struct b43legacy_dmaring * ring = (struct b43legacy_dmaring *) malloc(_len_ring0*sizeof(struct b43legacy_dmaring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].nr_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].used_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = free_slots(ring);
+          printf("%d\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ring0 = 1;
+          struct b43legacy_dmaring * ring = (struct b43legacy_dmaring *) malloc(_len_ring0*sizeof(struct b43legacy_dmaring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].nr_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          ring[_i0].used_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = free_slots(ring);
+          printf("%d\n", benchRet); 
+          free(ring);
+        
+        break;
+    }
     default:
         usage();
         break;

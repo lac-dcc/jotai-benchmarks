@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void ath5k_ahb_read_cachesize(struct ath_common *co
 	*csz = L1_CACHE_BYTES >> 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_common0 = 65025;
+          struct ath_common * common = (struct ath_common *) malloc(_len_common0*sizeof(struct ath_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_csz0 = 65025;
+          int * csz = (int *) malloc(_len_csz0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_csz0; _i0++) {
+            csz[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ath5k_ahb_read_cachesize(common,csz);
+          free(common);
+          free(csz);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_common0 = 100;
+          struct ath_common * common = (struct ath_common *) malloc(_len_common0*sizeof(struct ath_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_csz0 = 100;
+          int * csz = (int *) malloc(_len_csz0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_csz0; _i0++) {
+            csz[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ath5k_ahb_read_cachesize(common,csz);
+          free(common);
+          free(csz);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_common0 = 1;
           struct ath_common * common = (struct ath_common *) malloc(_len_common0*sizeof(struct ath_common));
           for(int _i0 = 0; _i0 < _len_common0; _i0++) {
-            common[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_csz0 = 1;
           int * csz = (int *) malloc(_len_csz0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_csz0; _i0++) {
             csz[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ath5k_ahb_read_cachesize(common,csz);
           free(common);
           free(csz);

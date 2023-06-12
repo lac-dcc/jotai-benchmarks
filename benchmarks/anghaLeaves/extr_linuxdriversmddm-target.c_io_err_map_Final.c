@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int io_err_map(struct dm_target *tt, struct bio *bi
 	return DM_MAPIO_KILL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_tt0 = 65025;
+          struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
+              tt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 65025;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = io_err_map(tt,bio);
+          printf("%d\n", benchRet); 
+          free(tt);
+          free(bio);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_tt0 = 100;
+          struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
+              tt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bio0 = 100;
+          struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
+          for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
+              bio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = io_err_map(tt,bio);
+          printf("%d\n", benchRet); 
+          free(tt);
+          free(bio);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_tt0 = 1;
           struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
           for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
-            tt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tt[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bio0 = 1;
           struct bio * bio = (struct bio *) malloc(_len_bio0*sizeof(struct bio));
           for(int _i0 = 0; _i0 < _len_bio0; _i0++) {
-            bio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bio[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = io_err_map(tt,bio);
           printf("%d\n", benchRet); 
           free(tt);

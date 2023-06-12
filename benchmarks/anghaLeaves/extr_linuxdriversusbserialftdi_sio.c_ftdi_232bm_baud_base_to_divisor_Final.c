@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static u32 ftdi_232bm_baud_base_to_divisor(int baud, int b
 	return divisor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int baud = 100;
+        
           int base = 100;
+        
           int benchRet = ftdi_232bm_baud_base_to_divisor(baud,base);
           printf("%d\n", benchRet); 
         
@@ -105,7 +102,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int baud = 255;
+        
           int base = 255;
+        
           int benchRet = ftdi_232bm_baud_base_to_divisor(baud,base);
           printf("%d\n", benchRet); 
         
@@ -115,13 +114,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int baud = 10;
+        
           int base = 10;
+        
           int benchRet = ftdi_232bm_baud_base_to_divisor(baud,base);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int baud = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ftdi_232bm_baud_base_to_divisor(baud,base);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

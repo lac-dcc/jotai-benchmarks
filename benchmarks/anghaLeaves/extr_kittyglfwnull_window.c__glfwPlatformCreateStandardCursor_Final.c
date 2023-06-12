@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int _glfwPlatformCreateStandardCursor(_GLFWcursor* cursor, int shape)
     return GLFW_TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int shape = 100;
+        
           int _len_cursor0 = 1;
           int * cursor = (int *) malloc(_len_cursor0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
             cursor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _glfwPlatformCreateStandardCursor(cursor,shape);
+          printf("%d\n", benchRet); 
+          free(cursor);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int shape = 255;
+        
+          int _len_cursor0 = 65025;
+          int * cursor = (int *) malloc(_len_cursor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+            cursor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _glfwPlatformCreateStandardCursor(cursor,shape);
           printf("%d\n", benchRet); 
           free(cursor);
@@ -96,21 +111,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int shape = 10;
+        
           int _len_cursor0 = 100;
           int * cursor = (int *) malloc(_len_cursor0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
             cursor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _glfwPlatformCreateStandardCursor(cursor,shape);
           printf("%d\n", benchRet); 
           free(cursor);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int shape = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cursor0 = 1;
+          int * cursor = (int *) malloc(_len_cursor0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+            cursor[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _glfwPlatformCreateStandardCursor(cursor,shape);
+          printf("%d\n", benchRet); 
+          free(cursor);
+        
+        break;
+    }
     default:
         usage();
         break;

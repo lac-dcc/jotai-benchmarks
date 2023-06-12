@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline uint32_t gs_get_total_levels(uint32_t width,
 	return num_levels;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long width = 100;
+        
           long height = 100;
+        
           long benchRet = gs_get_total_levels(width,height);
           printf("%ld\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long width = 255;
+        
           long height = 255;
+        
           long benchRet = gs_get_total_levels(width,height);
           printf("%ld\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long width = 10;
+        
           long height = 10;
+        
           long benchRet = gs_get_total_levels(width,height);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = gs_get_total_levels(width,height);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

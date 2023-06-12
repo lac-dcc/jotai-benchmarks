@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static int fsi_slave_calc_addr(struct fsi_slave *slave, ui
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,25 +96,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_slave0 = 1;
+          int _len_slave0 = 65025;
           struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
           for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
-            slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        slave[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_addrp0 = 1;
+        
+          int _len_addrp0 = 65025;
           int * addrp = (int *) malloc(_len_addrp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_addrp0; _i0++) {
             addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_idp0 = 1;
+        
+          int _len_idp0 = 65025;
           int * idp = (int *) malloc(_len_idp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_idp0; _i0++) {
             idp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = fsi_slave_calc_addr(slave,addrp,idp);
           printf("%d\n", benchRet); 
           free(slave);
@@ -127,7 +127,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_slave0 = 100;
+          struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addrp0 = 100;
+          int * addrp = (int *) malloc(_len_addrp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_addrp0; _i0++) {
+            addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_idp0 = 100;
+          int * idp = (int *) malloc(_len_idp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idp0; _i0++) {
+            idp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fsi_slave_calc_addr(slave,addrp,idp);
+          printf("%d\n", benchRet); 
+          free(slave);
+          free(addrp);
+          free(idp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_slave0 = 1;
+          struct fsi_slave * slave = (struct fsi_slave *) malloc(_len_slave0*sizeof(struct fsi_slave));
+          for(int _i0 = 0; _i0 < _len_slave0; _i0++) {
+              slave[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          slave[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_addrp0 = 1;
+          int * addrp = (int *) malloc(_len_addrp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_addrp0; _i0++) {
+            addrp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_idp0 = 1;
+          int * idp = (int *) malloc(_len_idp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_idp0; _i0++) {
+            idp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fsi_slave_calc_addr(slave,addrp,idp);
+          printf("%d\n", benchRet); 
+          free(slave);
+          free(addrp);
+          free(idp);
+        
+        break;
+    }
     default:
         usage();
         break;

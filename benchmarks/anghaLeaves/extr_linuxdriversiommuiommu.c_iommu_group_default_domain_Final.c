@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct iommu_domain *iommu_group_default_domain(struct iommu_group *group)
 	return group->default_domain;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_group0 = 1;
+          int _len_group0 = 65025;
           struct iommu_group * group = (struct iommu_group *) malloc(_len_group0*sizeof(struct iommu_group));
           for(int _i0 = 0; _i0 < _len_group0; _i0++) {
               int _len_group__i0__default_domain0 = 1;
           group[_i0].default_domain = (struct iommu_domain *) malloc(_len_group__i0__default_domain0*sizeof(struct iommu_domain));
           for(int _j0 = 0; _j0 < _len_group__i0__default_domain0; _j0++) {
-            group[_i0].default_domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              group[_i0].default_domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct iommu_domain * benchRet = iommu_group_default_domain(group);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_group0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_group0 = 100;
+          struct iommu_group * group = (struct iommu_group *) malloc(_len_group0*sizeof(struct iommu_group));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              int _len_group__i0__default_domain0 = 1;
+          group[_i0].default_domain = (struct iommu_domain *) malloc(_len_group__i0__default_domain0*sizeof(struct iommu_domain));
+          for(int _j0 = 0; _j0 < _len_group__i0__default_domain0; _j0++) {
+              group[_i0].default_domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct iommu_domain * benchRet = iommu_group_default_domain(group);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_group0; _aux++) {
+          free(group[_aux].default_domain);
+          }
+          free(group);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_group0 = 1;
+          struct iommu_group * group = (struct iommu_group *) malloc(_len_group0*sizeof(struct iommu_group));
+          for(int _i0 = 0; _i0 < _len_group0; _i0++) {
+              int _len_group__i0__default_domain0 = 1;
+          group[_i0].default_domain = (struct iommu_domain *) malloc(_len_group__i0__default_domain0*sizeof(struct iommu_domain));
+          for(int _j0 = 0; _j0 < _len_group__i0__default_domain0; _j0++) {
+              group[_i0].default_domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct iommu_domain * benchRet = iommu_group_default_domain(group);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_group0; _aux++) {
+          free(group[_aux].default_domain);
+          }
+          free(group);
+        
+        break;
+    }
     default:
         usage();
         break;

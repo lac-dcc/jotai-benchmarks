@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ x_setpostn(XDR *xdrs, u_int pos)
 	return (FALSE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pos = 100;
+        
           int _len_xdrs0 = 1;
           int * xdrs = (int *) malloc(_len_xdrs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_xdrs0; _i0++) {
             xdrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = x_setpostn(xdrs,pos);
+          printf("%d\n", benchRet); 
+          free(xdrs);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int pos = 255;
+        
+          int _len_xdrs0 = 65025;
+          int * xdrs = (int *) malloc(_len_xdrs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_xdrs0; _i0++) {
+            xdrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = x_setpostn(xdrs,pos);
           printf("%d\n", benchRet); 
           free(xdrs);
@@ -100,21 +115,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int pos = 10;
+        
           int _len_xdrs0 = 100;
           int * xdrs = (int *) malloc(_len_xdrs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_xdrs0; _i0++) {
             xdrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = x_setpostn(xdrs,pos);
           printf("%d\n", benchRet); 
           free(xdrs);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xdrs0 = 1;
+          int * xdrs = (int *) malloc(_len_xdrs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_xdrs0; _i0++) {
+            xdrs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = x_setpostn(xdrs,pos);
+          printf("%d\n", benchRet); 
+          free(xdrs);
+        
+        break;
+    }
     default:
         usage();
         break;

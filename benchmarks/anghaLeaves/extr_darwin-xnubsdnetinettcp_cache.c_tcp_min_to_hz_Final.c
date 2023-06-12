@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static uint32_t tcp_min_to_hz(uint32_t minutes)
 	return (minutes * 60 * TCP_RETRANSHZ);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int minutes = 100;
+        
           int benchRet = tcp_min_to_hz(minutes);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int minutes = 255;
+        
           int benchRet = tcp_min_to_hz(minutes);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int minutes = 10;
+        
           int benchRet = tcp_min_to_hz(minutes);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int minutes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tcp_min_to_hz(minutes);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

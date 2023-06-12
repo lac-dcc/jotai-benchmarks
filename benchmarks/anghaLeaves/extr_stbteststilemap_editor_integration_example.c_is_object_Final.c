@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ __attribute__((used)) static int is_object(short *tiles)
    return (tiles[1] >= 256 || tiles[2] >= 256 || tiles[3] >= 256);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,21 +72,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_tiles0 = 100;
+          int _len_tiles0 = 65025;
           short * tiles = (short *) malloc(_len_tiles0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_tiles0; _i0++) {
             tiles[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_object(tiles);
           printf("%d\n", benchRet); 
           free(tiles);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tiles0 = 100;
+          short * tiles = (short *) malloc(_len_tiles0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_tiles0; _i0++) {
+            tiles[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_object(tiles);
+          printf("%d\n", benchRet); 
+          free(tiles);
+        
+        break;
+    }
     default:
         usage();
         break;

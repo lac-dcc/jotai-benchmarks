@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void i915_vma_unset_ggtt_write(struct i915_v
 	vma->flags &= ~I915_VMA_GGTT_WRITE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vma0 = 1;
+          int _len_vma0 = 65025;
           struct i915_vma * vma = (struct i915_vma *) malloc(_len_vma0*sizeof(struct i915_vma));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           i915_vma_unset_ggtt_write(vma);
           free(vma);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_vma0 = 100;
           struct i915_vma * vma = (struct i915_vma *) malloc(_len_vma0*sizeof(struct i915_vma));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           i915_vma_unset_ggtt_write(vma);
           free(vma);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vma0 = 1;
+          struct i915_vma * vma = (struct i915_vma *) malloc(_len_vma0*sizeof(struct i915_vma));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          i915_vma_unset_ggtt_write(vma);
+          free(vma);
+        
+        break;
+    }
     default:
         usage();
         break;

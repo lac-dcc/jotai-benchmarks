@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static unsigned sch_gpio_bit(struct sch_gpio *sch, unsigne
 	return gpio % 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int gpio = 100;
+        
           int _len_sch0 = 1;
           struct sch_gpio * sch = (struct sch_gpio *) malloc(_len_sch0*sizeof(struct sch_gpio));
           for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].resume_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              sch[_i0].resume_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = sch_gpio_bit(sch,gpio);
+          printf("%u\n", benchRet); 
+          free(sch);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int gpio = 255;
+        
+          int _len_sch0 = 65025;
+          struct sch_gpio * sch = (struct sch_gpio *) malloc(_len_sch0*sizeof(struct sch_gpio));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].resume_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = sch_gpio_bit(sch,gpio);
           printf("%u\n", benchRet); 
           free(sch);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int gpio = 10;
+        
           int _len_sch0 = 100;
           struct sch_gpio * sch = (struct sch_gpio *) malloc(_len_sch0*sizeof(struct sch_gpio));
           for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].resume_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              sch[_i0].resume_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = sch_gpio_bit(sch,gpio);
           printf("%u\n", benchRet); 
           free(sch);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int gpio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sch0 = 1;
+          struct sch_gpio * sch = (struct sch_gpio *) malloc(_len_sch0*sizeof(struct sch_gpio));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].resume_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = sch_gpio_bit(sch,gpio);
+          printf("%u\n", benchRet); 
+          free(sch);
+        
+        break;
+    }
     default:
         usage();
         break;

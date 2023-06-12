@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ xmlSetDocCompressMode (xmlDocPtr doc, int mode) {
     else doc->compression = mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,31 +84,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int _len_doc0 = 1;
           struct TYPE_3__ * doc = (struct TYPE_3__ *) malloc(_len_doc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_doc0; _i0++) {
-            doc[_i0].compression = ((-2 * (next_i()%2)) + 1) * next_i();
+              doc[_i0].compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          xmlSetDocCompressMode(doc,mode);
+          free(doc);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          int _len_doc0 = 65025;
+          struct TYPE_3__ * doc = (struct TYPE_3__ *) malloc(_len_doc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_doc0; _i0++) {
+              doc[_i0].compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           xmlSetDocCompressMode(doc,mode);
           free(doc);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mode = 10;
+        
           int _len_doc0 = 100;
           struct TYPE_3__ * doc = (struct TYPE_3__ *) malloc(_len_doc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_doc0; _i0++) {
-            doc[_i0].compression = ((-2 * (next_i()%2)) + 1) * next_i();
+              doc[_i0].compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xmlSetDocCompressMode(doc,mode);
           free(doc);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_doc0 = 1;
+          struct TYPE_3__ * doc = (struct TYPE_3__ *) malloc(_len_doc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_doc0; _i0++) {
+              doc[_i0].compression = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xmlSetDocCompressMode(doc,mode);
+          free(doc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ void zend_ffi_expr_bw_not(zend_ffi_val *val) /* {{{ */
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +90,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_val0 = 65025;
+          struct TYPE_3__ * val = (struct TYPE_3__ *) malloc(_len_val0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+              val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].i64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].u64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zend_ffi_expr_bw_not(val);
+          free(val);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_val0 = 100;
+          struct TYPE_3__ * val = (struct TYPE_3__ *) malloc(_len_val0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+              val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].i64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].u64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zend_ffi_expr_bw_not(val);
+          free(val);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_val0 = 1;
           struct TYPE_3__ * val = (struct TYPE_3__ *) malloc(_len_val0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
-            val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
-        val[_i0].ch = ((-2 * (next_i()%2)) + 1) * next_i();
-        val[_i0].i64 = ((-2 * (next_i()%2)) + 1) * next_i();
-        val[_i0].u64 = ((-2 * (next_i()%2)) + 1) * next_i();
+              val[_i0].kind = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].i64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          val[_i0].u64 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zend_ffi_expr_bw_not(val);
           free(val);
         

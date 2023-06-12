@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ knote_get_qos_override_index(struct knote *kn)
 	return kn->kn_qos_override;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,28 +76,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_kn0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_kn0 = 65025;
           struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
           for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
-            kn[_i0].kn_qos_override = ((-2 * (next_i()%2)) + 1) * next_i();
+              kn[_i0].kn_qos_override = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = knote_get_qos_override_index(kn);
           printf("%d\n", benchRet); 
           free(kn);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_kn0 = 100;
           struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
           for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
-            kn[_i0].kn_qos_override = ((-2 * (next_i()%2)) + 1) * next_i();
+              kn[_i0].kn_qos_override = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = knote_get_qos_override_index(kn);
+          printf("%d\n", benchRet); 
+          free(kn);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_kn0 = 1;
+          struct knote * kn = (struct knote *) malloc(_len_kn0*sizeof(struct knote));
+          for(int _i0 = 0; _i0 < _len_kn0; _i0++) {
+              kn[_i0].kn_qos_override = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = knote_get_qos_override_index(kn);
           printf("%d\n", benchRet); 
           free(kn);

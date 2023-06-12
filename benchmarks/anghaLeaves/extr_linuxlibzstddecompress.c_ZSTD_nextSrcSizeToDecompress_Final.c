@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ typedef  TYPE_1__ ZSTD_DCtx ;
 
 size_t ZSTD_nextSrcSizeToDecompress(ZSTD_DCtx *dctx) { return dctx->expected; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,14 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dctx0 = 1;
+          int _len_dctx0 = 65025;
           struct TYPE_3__ * dctx = (struct TYPE_3__ *) malloc(_len_dctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dctx0; _i0++) {
-            dctx[_i0].expected = ((-2 * (next_i()%2)) + 1) * next_i();
+              dctx[_i0].expected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ZSTD_nextSrcSizeToDecompress(dctx);
           printf("%lu\n", benchRet); 
           free(dctx);
@@ -98,15 +95,32 @@ int main(int argc, char *argv[]) {
           int _len_dctx0 = 100;
           struct TYPE_3__ * dctx = (struct TYPE_3__ *) malloc(_len_dctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dctx0; _i0++) {
-            dctx[_i0].expected = ((-2 * (next_i()%2)) + 1) * next_i();
+              dctx[_i0].expected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ZSTD_nextSrcSizeToDecompress(dctx);
           printf("%lu\n", benchRet); 
           free(dctx);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dctx0 = 1;
+          struct TYPE_3__ * dctx = (struct TYPE_3__ *) malloc(_len_dctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dctx0; _i0++) {
+              dctx[_i0].expected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ZSTD_nextSrcSizeToDecompress(dctx);
+          printf("%lu\n", benchRet); 
+          free(dctx);
+        
+        break;
+    }
     default:
         usage();
         break;

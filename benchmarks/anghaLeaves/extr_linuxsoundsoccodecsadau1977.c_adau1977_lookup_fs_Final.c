@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static int adau1977_lookup_fs(unsigned int rate)
 		return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rate = 100;
+        
           int benchRet = adau1977_lookup_fs(rate);
           printf("%d\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int rate = 255;
+        
           int benchRet = adau1977_lookup_fs(rate);
           printf("%d\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int rate = 10;
+        
           int benchRet = adau1977_lookup_fs(rate);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = adau1977_lookup_fs(rate);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

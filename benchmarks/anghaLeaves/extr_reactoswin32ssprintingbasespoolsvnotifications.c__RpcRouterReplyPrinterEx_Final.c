@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ _RpcRouterReplyPrinterEx(WINSPOOL_PRINTER_HANDLE hNotify, DWORD dwColor, DWORD f
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,15 +85,46 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hNotify = 100;
+        
           int dwColor = 100;
+        
           int fdwFlags = 100;
+        
           int dwReplyType = 100;
+        
           int Reply = 100;
+        
           int _len_pdwResult0 = 1;
           int * pdwResult = (int *) malloc(_len_pdwResult0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdwResult0; _i0++) {
             pdwResult[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcRouterReplyPrinterEx(hNotify,dwColor,fdwFlags,pdwResult,dwReplyType,Reply);
+          printf("%d\n", benchRet); 
+          free(pdwResult);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int hNotify = 255;
+        
+          int dwColor = 255;
+        
+          int fdwFlags = 255;
+        
+          int dwReplyType = 255;
+        
+          int Reply = 255;
+        
+          int _len_pdwResult0 = 65025;
+          int * pdwResult = (int *) malloc(_len_pdwResult0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdwResult0; _i0++) {
+            pdwResult[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcRouterReplyPrinterEx(hNotify,dwColor,fdwFlags,pdwResult,dwReplyType,Reply);
           printf("%d\n", benchRet); 
           free(pdwResult);
@@ -105,25 +132,55 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int hNotify = 10;
+        
           int dwColor = 10;
+        
           int fdwFlags = 10;
+        
           int dwReplyType = 10;
+        
           int Reply = 10;
+        
           int _len_pdwResult0 = 100;
           int * pdwResult = (int *) malloc(_len_pdwResult0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdwResult0; _i0++) {
             pdwResult[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcRouterReplyPrinterEx(hNotify,dwColor,fdwFlags,pdwResult,dwReplyType,Reply);
           printf("%d\n", benchRet); 
           free(pdwResult);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hNotify = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwColor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fdwFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwReplyType = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Reply = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdwResult0 = 1;
+          int * pdwResult = (int *) malloc(_len_pdwResult0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdwResult0; _i0++) {
+            pdwResult[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcRouterReplyPrinterEx(hNotify,dwColor,fdwFlags,pdwResult,dwReplyType,Reply);
+          printf("%d\n", benchRet); 
+          free(pdwResult);
+        
+        break;
+    }
     default:
         usage();
         break;

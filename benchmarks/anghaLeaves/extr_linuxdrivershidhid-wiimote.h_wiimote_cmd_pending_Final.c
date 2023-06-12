@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline bool wiimote_cmd_pending(struct wiimote_data
 	return wdata->state.cmd == cmd && wdata->state.opt == opt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           long opt = 100;
+        
           int _len_wdata0 = 1;
           struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
           for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
-            wdata[_i0].state.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
-        wdata[_i0].state.opt = ((-2 * (next_i()%2)) + 1) * next_i();
+              wdata[_i0].state.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.opt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = wiimote_cmd_pending(wdata,cmd,opt);
           printf("%d\n", benchRet); 
           free(wdata);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cmd = 255;
+        
+          long opt = 255;
+        
+          int _len_wdata0 = 65025;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.opt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = wiimote_cmd_pending(wdata,cmd,opt);
+          printf("%d\n", benchRet); 
+          free(wdata);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cmd = 10;
+        
+          long opt = 10;
+        
+          int _len_wdata0 = 100;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.opt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = wiimote_cmd_pending(wdata,cmd,opt);
+          printf("%d\n", benchRet); 
+          free(wdata);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long opt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wdata0 = 1;
+          struct wiimote_data * wdata = (struct wiimote_data *) malloc(_len_wdata0*sizeof(struct wiimote_data));
+          for(int _i0 = 0; _i0 < _len_wdata0; _i0++) {
+              wdata[_i0].state.cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+          wdata[_i0].state.opt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = wiimote_cmd_pending(wdata,cmd,opt);
+          printf("%d\n", benchRet); 
+          free(wdata);
+        
+        break;
+    }
     default:
         usage();
         break;

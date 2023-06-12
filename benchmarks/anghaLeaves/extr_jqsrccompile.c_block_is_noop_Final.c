@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ int block_is_noop(block b) {
   return (b.first == 0 && b.last == 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +73,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ b;
-        b.first = ((-2 * (next_i()%2)) + 1) * next_i();
-        b.last = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.first = ((-2 * (next_i()%2)) + 1) * next_i();
+          b.last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = block_is_noop(b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

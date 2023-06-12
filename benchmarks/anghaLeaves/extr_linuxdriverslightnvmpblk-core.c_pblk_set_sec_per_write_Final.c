@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void pblk_set_sec_per_write(struct pblk *pblk, int sec_per_write)
 	pblk->sec_per_write = sec_per_write;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,29 +75,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int sec_per_write = 100;
+        
           int _len_pblk0 = 1;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
-            pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pblk_set_sec_per_write(pblk,sec_per_write);
           free(pblk);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int sec_per_write = 255;
+        
+          int _len_pblk0 = 65025;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pblk_set_sec_per_write(pblk,sec_per_write);
+          free(pblk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int sec_per_write = 10;
+        
           int _len_pblk0 = 100;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
-            pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          pblk_set_sec_per_write(pblk,sec_per_write);
+          free(pblk);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pblk0 = 1;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].sec_per_write = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           pblk_set_sec_per_write(pblk,sec_per_write);
           free(pblk);
         

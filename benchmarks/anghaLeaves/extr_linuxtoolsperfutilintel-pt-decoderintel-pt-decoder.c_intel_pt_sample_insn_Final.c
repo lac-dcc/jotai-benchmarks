@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static void intel_pt_sample_insn(struct intel_pt_decoder *
 	decoder->state.type |= INTEL_PT_INSTRUCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,20 +99,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_decoder0 = 65025;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].period_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].timestamp_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].period_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].last_masked_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          decoder[_i0].period_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_pt_sample_insn(decoder);
+          free(decoder);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_decoder0 = 100;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].period_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].timestamp_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].period_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].last_masked_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          decoder[_i0].period_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_pt_sample_insn(decoder);
+          free(decoder);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_decoder0 = 1;
           struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
           for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
-            decoder[_i0].period_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].timestamp_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].period_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].last_masked_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].period_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              decoder[_i0].period_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].timestamp_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].period_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].last_masked_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].state.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          decoder[_i0].period_insn_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           intel_pt_sample_insn(decoder);
           free(decoder);
         

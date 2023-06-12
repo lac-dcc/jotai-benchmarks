@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ u32 rtw_ch2freq(u32 channel)
 	return freq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long channel = 100;
+        
           long benchRet = rtw_ch2freq(channel);
           printf("%ld\n", benchRet); 
         
@@ -112,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long channel = 255;
+        
           long benchRet = rtw_ch2freq(channel);
           printf("%ld\n", benchRet); 
         
@@ -121,12 +118,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long channel = 10;
+        
           long benchRet = rtw_ch2freq(channel);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = rtw_ch2freq(channel);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

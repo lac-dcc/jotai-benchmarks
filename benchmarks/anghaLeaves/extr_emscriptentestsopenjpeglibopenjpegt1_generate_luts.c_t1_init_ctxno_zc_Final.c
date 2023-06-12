@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -137,12 +138,6 @@ __attribute__((used)) static int t1_init_ctxno_zc(int f, int orient) {
 	return (T1_CTXNO_ZC + n);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -159,7 +154,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int f = 100;
+        
           int orient = 100;
+        
           int benchRet = t1_init_ctxno_zc(f,orient);
           printf("%d\n", benchRet); 
         
@@ -169,7 +166,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int f = 255;
+        
           int orient = 255;
+        
           int benchRet = t1_init_ctxno_zc(f,orient);
           printf("%d\n", benchRet); 
         
@@ -179,13 +178,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int f = 10;
+        
           int orient = 10;
+        
           int benchRet = t1_init_ctxno_zc(f,orient);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int orient = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = t1_init_ctxno_zc(f,orient);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

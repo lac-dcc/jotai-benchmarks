@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ dummy_statfs(struct dummy_statfs_t *buf)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +81,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_buf0 = 65025;
+          struct dummy_statfs_t * buf = (struct dummy_statfs_t *) malloc(_len_buf0*sizeof(struct dummy_statfs_t));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].f_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bfree = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_namemax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_statfs(buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_buf0 = 100;
+          struct dummy_statfs_t * buf = (struct dummy_statfs_t *) malloc(_len_buf0*sizeof(struct dummy_statfs_t));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].f_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bfree = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_namemax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_statfs(buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_buf0 = 1;
           struct dummy_statfs_t * buf = (struct dummy_statfs_t *) malloc(_len_buf0*sizeof(struct dummy_statfs_t));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].f_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].f_bfree = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].f_namemax = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].f_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bfree = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_namemax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dummy_statfs(buf);
           printf("%d\n", benchRet); 
           free(buf);

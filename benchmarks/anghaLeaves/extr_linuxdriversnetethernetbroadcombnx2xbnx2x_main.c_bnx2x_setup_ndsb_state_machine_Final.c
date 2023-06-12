@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void bnx2x_setup_ndsb_state_machine(struct hc_statu
 	hc_sm->time_to_expire = 0xFFFFFFFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int igu_sb_id = 100;
+        
           int igu_seg_id = 100;
+        
           int _len_hc_sm0 = 1;
           struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
           for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
-            hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
-        hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+              hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bnx2x_setup_ndsb_state_machine(hc_sm,igu_sb_id,igu_seg_id);
           free(hc_sm);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int igu_sb_id = 255;
+        
+          int igu_seg_id = 255;
+        
+          int _len_hc_sm0 = 65025;
+          struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
+          for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
+              hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnx2x_setup_ndsb_state_machine(hc_sm,igu_sb_id,igu_seg_id);
+          free(hc_sm);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int igu_sb_id = 10;
+        
+          int igu_seg_id = 10;
+        
+          int _len_hc_sm0 = 100;
+          struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
+          for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
+              hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnx2x_setup_ndsb_state_machine(hc_sm,igu_sb_id,igu_seg_id);
+          free(hc_sm);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hc_sm0 = 1;
+          struct hc_status_block_sm * hc_sm = (struct hc_status_block_sm *) malloc(_len_hc_sm0*sizeof(struct hc_status_block_sm));
+          for(int _i0 = 0; _i0 < _len_hc_sm0; _i0++) {
+              hc_sm[_i0].igu_sb_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].igu_seg_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].timer_value = ((-2 * (next_i()%2)) + 1) * next_i();
+          hc_sm[_i0].time_to_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnx2x_setup_ndsb_state_machine(hc_sm,igu_sb_id,igu_seg_id);
+          free(hc_sm);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -60,12 +60,6 @@ __find_buddy_pfn(unsigned long page_pfn, unsigned int order)
 	return page_pfn ^ (1 << order);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long page_pfn = 10;
+        
           unsigned int order = 10;
+        
           unsigned long benchRet = __find_buddy_pfn(page_pfn,order);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

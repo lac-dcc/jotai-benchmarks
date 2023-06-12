@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ void virtio_transport_set_min_buffer_size(struct vsock_sock *vsk, u64 val)
 	vvs->buf_size_min = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long val = 100;
+        
           int _len_vsk0 = 1;
           struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
           for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
               int _len_vsk__i0__trans0 = 1;
           vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
           for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
-            vsk[_i0].trans->buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        vsk[_i0].trans->buf_size_min = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsk[_i0].trans->buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->buf_size_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           virtio_transport_set_min_buffer_size(vsk,val);
           for(int _aux = 0; _aux < _len_vsk0; _aux++) {
           free(vsk[_aux].trans);
@@ -109,7 +110,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long val = 255;
+        
+          int _len_vsk0 = 65025;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              int _len_vsk__i0__trans0 = 1;
+          vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
+          for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
+              vsk[_i0].trans->buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->buf_size_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          virtio_transport_set_min_buffer_size(vsk,val);
+          for(int _aux = 0; _aux < _len_vsk0; _aux++) {
+          free(vsk[_aux].trans);
+          }
+          free(vsk);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long val = 10;
+        
+          int _len_vsk0 = 100;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              int _len_vsk__i0__trans0 = 1;
+          vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
+          for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
+              vsk[_i0].trans->buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->buf_size_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          virtio_transport_set_min_buffer_size(vsk,val);
+          for(int _aux = 0; _aux < _len_vsk0; _aux++) {
+          free(vsk[_aux].trans);
+          }
+          free(vsk);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vsk0 = 1;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              int _len_vsk__i0__trans0 = 1;
+          vsk[_i0].trans = (struct virtio_vsock_sock *) malloc(_len_vsk__i0__trans0*sizeof(struct virtio_vsock_sock));
+          for(int _j0 = 0; _j0 < _len_vsk__i0__trans0; _j0++) {
+              vsk[_i0].trans->buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          vsk[_i0].trans->buf_size_min = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          virtio_transport_set_min_buffer_size(vsk,val);
+          for(int _aux = 0; _aux < _len_vsk0; _aux++) {
+          free(vsk[_aux].trans);
+          }
+          free(vsk);
+        
+        break;
+    }
     default:
         usage();
         break;

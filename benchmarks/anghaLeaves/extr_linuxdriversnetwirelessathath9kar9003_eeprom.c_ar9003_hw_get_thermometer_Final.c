@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int ar9003_hw_get_thermometer(struct ath_hw *ah)
 	return --thermometer;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ah0 = 1;
+          int _len_ah0 = 65025;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].eeprom.ar9300_eep.baseEepHeader.miscConfiguration = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].eeprom.ar9300_eep.baseEepHeader.miscConfiguration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           int benchRet = ar9003_hw_get_thermometer(ah);
           printf("%d\n", benchRet); 
           free(ah);
@@ -107,15 +107,38 @@ int main(int argc, char *argv[]) {
           int _len_ah0 = 100;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].eeprom.ar9300_eep.baseEepHeader.miscConfiguration = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].eeprom.ar9300_eep.baseEepHeader.miscConfiguration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
           }
+        
           int benchRet = ar9003_hw_get_thermometer(ah);
           printf("%d\n", benchRet); 
           free(ah);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].eeprom.ar9300_eep.baseEepHeader.miscConfiguration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+        
+          }
+        
+          int benchRet = ar9003_hw_get_thermometer(ah);
+          printf("%d\n", benchRet); 
+          free(ah);
+        
+        break;
+    }
     default:
         usage();
         break;

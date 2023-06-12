@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int handle_rx_console(struct uart_port *uport, u32 
 	return -EPERM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bytes = 100;
+        
           int drop = 100;
+        
           int _len_uport0 = 1;
           struct uart_port * uport = (struct uart_port *) malloc(_len_uport0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_uport0; _i0++) {
-            uport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = handle_rx_console(uport,bytes,drop);
+          printf("%d\n", benchRet); 
+          free(uport);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int bytes = 255;
+        
+          int drop = 255;
+        
+          int _len_uport0 = 65025;
+          struct uart_port * uport = (struct uart_port *) malloc(_len_uport0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_uport0; _i0++) {
+              uport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = handle_rx_console(uport,bytes,drop);
           printf("%d\n", benchRet); 
           free(uport);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int bytes = 10;
+        
           int drop = 10;
+        
           int _len_uport0 = 100;
           struct uart_port * uport = (struct uart_port *) malloc(_len_uport0*sizeof(struct uart_port));
           for(int _i0 = 0; _i0 < _len_uport0; _i0++) {
-            uport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = handle_rx_console(uport,bytes,drop);
           printf("%d\n", benchRet); 
           free(uport);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int drop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_uport0 = 1;
+          struct uart_port * uport = (struct uart_port *) malloc(_len_uport0*sizeof(struct uart_port));
+          for(int _i0 = 0; _i0 < _len_uport0; _i0++) {
+              uport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = handle_rx_console(uport,bytes,drop);
+          printf("%d\n", benchRet); 
+          free(uport);
+        
+        break;
+    }
     default:
         usage();
         break;

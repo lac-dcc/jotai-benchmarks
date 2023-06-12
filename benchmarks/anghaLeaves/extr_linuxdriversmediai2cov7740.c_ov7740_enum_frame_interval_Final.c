@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int ov7740_enum_frame_interval(struct v4l2_subdev *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,29 +95,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sd0 = 65025;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 65025;
+          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fie0 = 65025;
+          struct v4l2_subdev_frame_interval_enum * fie = (struct v4l2_subdev_frame_interval_enum *) malloc(_len_fie0*sizeof(struct v4l2_subdev_frame_interval_enum));
+          for(int _i0 = 0; _i0 < _len_fie0; _i0++) {
+              fie[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fie[_i0].pad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ov7740_enum_frame_interval(sd,cfg,fie);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(cfg);
+          free(fie);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_sd0 = 100;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fie0 = 100;
+          struct v4l2_subdev_frame_interval_enum * fie = (struct v4l2_subdev_frame_interval_enum *) malloc(_len_fie0*sizeof(struct v4l2_subdev_frame_interval_enum));
+          for(int _i0 = 0; _i0 < _len_fie0; _i0++) {
+              fie[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fie[_i0].pad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ov7740_enum_frame_interval(sd,cfg,fie);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(cfg);
+          free(fie);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_sd0 = 1;
           struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cfg0 = 1;
           struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fie0 = 1;
           struct v4l2_subdev_frame_interval_enum * fie = (struct v4l2_subdev_frame_interval_enum *) malloc(_len_fie0*sizeof(struct v4l2_subdev_frame_interval_enum));
           for(int _i0 = 0; _i0 < _len_fie0; _i0++) {
-            fie[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        fie[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fie[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fie[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
-        fie[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
-        fie[_i0].pad = ((-2 * (next_i()%2)) + 1) * next_i();
+              fie[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].interval.numerator = ((-2 * (next_i()%2)) + 1) * next_i();
+          fie[_i0].interval.denominator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fie[_i0].pad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ov7740_enum_frame_interval(sd,cfg,fie);
           printf("%d\n", benchRet); 
           free(sd);

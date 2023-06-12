@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +83,6 @@ uint64_t rs600_gart_get_page_entry(uint64_t addr, uint32_t flags)
 	return addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int flags = 100;
+        
           int benchRet = rs600_gart_get_page_entry(addr,flags);
           printf("%d\n", benchRet); 
         
@@ -114,7 +111,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int addr = 255;
+        
           int flags = 255;
+        
           int benchRet = rs600_gart_get_page_entry(addr,flags);
           printf("%d\n", benchRet); 
         
@@ -124,13 +123,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int addr = 10;
+        
           int flags = 10;
+        
           int benchRet = rs600_gart_get_page_entry(addr,flags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rs600_gart_get_page_entry(addr,flags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

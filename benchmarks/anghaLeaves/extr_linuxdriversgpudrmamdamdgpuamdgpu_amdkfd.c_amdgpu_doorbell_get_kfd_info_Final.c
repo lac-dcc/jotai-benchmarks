@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static void amdgpu_doorbell_get_kfd_info(struct amdgpu_dev
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,31 +93,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adev0 = 1;
+          int _len_adev0 = 65025;
           struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].doorbell.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        adev[_i0].doorbell.num_doorbells = ((-2 * (next_i()%2)) + 1) * next_i();
-        adev[_i0].doorbell.base = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].doorbell.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].doorbell.num_doorbells = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].doorbell.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_aperture_base0 = 1;
+        
+          int _len_aperture_base0 = 65025;
           long * aperture_base = (long *) malloc(_len_aperture_base0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_aperture_base0; _i0++) {
             aperture_base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_aperture_size0 = 1;
+        
+          int _len_aperture_size0 = 65025;
           unsigned long * aperture_size = (unsigned long *) malloc(_len_aperture_size0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_aperture_size0; _i0++) {
             aperture_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_start_offset0 = 1;
+        
+          int _len_start_offset0 = 65025;
           unsigned long * start_offset = (unsigned long *) malloc(_len_start_offset0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_start_offset0; _i0++) {
             start_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           amdgpu_doorbell_get_kfd_info(adev,aperture_base,aperture_size,start_offset);
           free(adev);
           free(aperture_base);
@@ -130,7 +132,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_adev0 = 100;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].doorbell.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].doorbell.num_doorbells = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].doorbell.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_aperture_base0 = 100;
+          long * aperture_base = (long *) malloc(_len_aperture_base0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_aperture_base0; _i0++) {
+            aperture_base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_aperture_size0 = 100;
+          unsigned long * aperture_size = (unsigned long *) malloc(_len_aperture_size0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_aperture_size0; _i0++) {
+            aperture_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_start_offset0 = 100;
+          unsigned long * start_offset = (unsigned long *) malloc(_len_start_offset0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_start_offset0; _i0++) {
+            start_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          amdgpu_doorbell_get_kfd_info(adev,aperture_base,aperture_size,start_offset);
+          free(adev);
+          free(aperture_base);
+          free(aperture_size);
+          free(start_offset);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_adev0 = 1;
+          struct amdgpu_device * adev = (struct amdgpu_device *) malloc(_len_adev0*sizeof(struct amdgpu_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].doorbell.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].doorbell.num_doorbells = ((-2 * (next_i()%2)) + 1) * next_i();
+          adev[_i0].doorbell.base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_aperture_base0 = 1;
+          long * aperture_base = (long *) malloc(_len_aperture_base0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_aperture_base0; _i0++) {
+            aperture_base[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_aperture_size0 = 1;
+          unsigned long * aperture_size = (unsigned long *) malloc(_len_aperture_size0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_aperture_size0; _i0++) {
+            aperture_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_start_offset0 = 1;
+          unsigned long * start_offset = (unsigned long *) malloc(_len_start_offset0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_start_offset0; _i0++) {
+            start_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          amdgpu_doorbell_get_kfd_info(adev,aperture_base,aperture_size,start_offset);
+          free(adev);
+          free(aperture_base);
+          free(aperture_size);
+          free(start_offset);
+        
+        break;
+    }
     default:
         usage();
         break;

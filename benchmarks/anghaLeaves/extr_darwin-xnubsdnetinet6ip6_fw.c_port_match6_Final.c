@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ port_match6(u_short *portptr, int nports, u_short port, int range_flag)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,24 +89,48 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int nports = 10;
-          long port = 10;
-          int range_flag = 10;
-          int _len_portptr0 = 100;
+          int nports = 255;
+        
+          long port = 255;
+        
+          int range_flag = 255;
+        
+          int _len_portptr0 = 65025;
           long * portptr = (long *) malloc(_len_portptr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_portptr0; _i0++) {
             portptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = port_match6(portptr,nports,port,range_flag);
           printf("%d\n", benchRet); 
           free(portptr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int nports = 10;
+        
+          long port = 10;
+        
+          int range_flag = 10;
+        
+          int _len_portptr0 = 100;
+          long * portptr = (long *) malloc(_len_portptr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_portptr0; _i0++) {
+            portptr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = port_match6(portptr,nports,port,range_flag);
+          printf("%d\n", benchRet); 
+          free(portptr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ Dummy_AlphaBlend(SURFOBJ* Dest, SURFOBJ* Source, RECTL* DestRect,
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,44 +83,236 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_Dest0 = 65025;
+          int * Dest = (int *) malloc(_len_Dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Dest0; _i0++) {
+            Dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Source0 = 65025;
+          int * Source = (int *) malloc(_len_Source0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Source0; _i0++) {
+            Source[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 65025;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 65025;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ClipRegion0 = 65025;
+          int * ClipRegion = (int *) malloc(_len_ClipRegion0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ClipRegion0; _i0++) {
+            ClipRegion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 65025;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_BlendObj0 = 65025;
+          int * BlendObj = (int *) malloc(_len_BlendObj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BlendObj0; _i0++) {
+            BlendObj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Dummy_AlphaBlend(Dest,Source,DestRect,SourceRect,ClipRegion,ColorTranslation,BlendObj);
+          printf("%d\n", benchRet); 
+          free(Dest);
+          free(Source);
+          free(DestRect);
+          free(SourceRect);
+          free(ClipRegion);
+          free(ColorTranslation);
+          free(BlendObj);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_Dest0 = 100;
+          int * Dest = (int *) malloc(_len_Dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Dest0; _i0++) {
+            Dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Source0 = 100;
+          int * Source = (int *) malloc(_len_Source0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Source0; _i0++) {
+            Source[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 100;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 100;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ClipRegion0 = 100;
+          int * ClipRegion = (int *) malloc(_len_ClipRegion0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ClipRegion0; _i0++) {
+            ClipRegion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 100;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_BlendObj0 = 100;
+          int * BlendObj = (int *) malloc(_len_BlendObj0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BlendObj0; _i0++) {
+            BlendObj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Dummy_AlphaBlend(Dest,Source,DestRect,SourceRect,ClipRegion,ColorTranslation,BlendObj);
+          printf("%d\n", benchRet); 
+          free(Dest);
+          free(Source);
+          free(DestRect);
+          free(SourceRect);
+          free(ClipRegion);
+          free(ColorTranslation);
+          free(BlendObj);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_Dest0 = 1;
           int * Dest = (int *) malloc(_len_Dest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Dest0; _i0++) {
             Dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_Source0 = 1;
           int * Source = (int *) malloc(_len_Source0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Source0; _i0++) {
             Source[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_DestRect0 = 1;
           int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
             DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_SourceRect0 = 1;
           int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
             SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ClipRegion0 = 1;
           int * ClipRegion = (int *) malloc(_len_ClipRegion0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ClipRegion0; _i0++) {
             ClipRegion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ColorTranslation0 = 1;
           int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
             ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_BlendObj0 = 1;
           int * BlendObj = (int *) malloc(_len_BlendObj0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_BlendObj0; _i0++) {
             BlendObj[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = Dummy_AlphaBlend(Dest,Source,DestRect,SourceRect,ClipRegion,ColorTranslation,BlendObj);
           printf("%d\n", benchRet); 
           free(Dest);

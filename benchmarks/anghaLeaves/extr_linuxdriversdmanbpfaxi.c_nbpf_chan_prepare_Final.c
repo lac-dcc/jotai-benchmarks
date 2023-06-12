@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void nbpf_chan_prepare(struct nbpf_channel *chan)
 		chan->terminal;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,22 +85,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chan0 = 1;
+          int _len_chan0 = 65025;
           struct nbpf_channel * chan = (struct nbpf_channel *) malloc(_len_chan0*sizeof(struct nbpf_channel));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].dmarq_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        chan[_i0].terminal = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].dmarq_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].terminal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nbpf_chan_prepare(chan);
           free(chan);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_chan0 = 100;
+          struct nbpf_channel * chan = (struct nbpf_channel *) malloc(_len_chan0*sizeof(struct nbpf_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].dmarq_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].terminal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nbpf_chan_prepare(chan);
+          free(chan);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_chan0 = 1;
+          struct nbpf_channel * chan = (struct nbpf_channel *) malloc(_len_chan0*sizeof(struct nbpf_channel));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].dmarq_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].terminal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nbpf_chan_prepare(chan);
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

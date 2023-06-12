@@ -69,12 +69,6 @@ __attribute__((used)) static inline u32 hwicap_type_1_read(u32 reg)
 		(XHI_OP_READ << XHI_OP_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int reg = 100;
+        
           int benchRet = hwicap_type_1_read(reg);
           printf("%d\n", benchRet); 
         
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int reg = 255;
+        
           int benchRet = hwicap_type_1_read(reg);
           printf("%d\n", benchRet); 
         
@@ -109,12 +105,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int reg = 10;
+        
           int benchRet = hwicap_type_1_read(reg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct pci_dev *vnic_dev_get_pdev(struct vnic_dev *vdev)
 	return vdev->pdev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vdev0 = 1;
+          int _len_vdev0 = 65025;
           struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
               int _len_vdev__i0__pdev0 = 1;
           vdev[_i0].pdev = (struct pci_dev *) malloc(_len_vdev__i0__pdev0*sizeof(struct pci_dev));
           for(int _j0 = 0; _j0 < _len_vdev__i0__pdev0; _j0++) {
-            vdev[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct pci_dev * benchRet = vnic_dev_get_pdev(vdev);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_vdev0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vdev0 = 100;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              int _len_vdev__i0__pdev0 = 1;
+          vdev[_i0].pdev = (struct pci_dev *) malloc(_len_vdev__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__pdev0; _j0++) {
+              vdev[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct pci_dev * benchRet = vnic_dev_get_pdev(vdev);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].pdev);
+          }
+          free(vdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vdev0 = 1;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              int _len_vdev__i0__pdev0 = 1;
+          vdev[_i0].pdev = (struct pci_dev *) malloc(_len_vdev__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_vdev__i0__pdev0; _j0++) {
+              vdev[_i0].pdev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct pci_dev * benchRet = vnic_dev_get_pdev(vdev);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_vdev0; _aux++) {
+          free(vdev[_aux].pdev);
+          }
+          free(vdev);
+        
+        break;
+    }
     default:
         usage();
         break;

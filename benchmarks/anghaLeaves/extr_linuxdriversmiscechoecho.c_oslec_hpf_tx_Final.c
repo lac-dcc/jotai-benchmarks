@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ int16_t oslec_hpf_tx(struct oslec_state *ec, int16_t tx)
 	return tx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,20 +108,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tx = 100;
+        
           int _len_ec0 = 1;
           struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
           for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
-            ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ec[_i0].tx_1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ec[_i0].tx_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = oslec_hpf_tx(ec,tx);
           printf("%d\n", benchRet); 
           free(ec);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int tx = 255;
+        
+          int _len_ec0 = 65025;
+          struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = oslec_hpf_tx(ec,tx);
+          printf("%d\n", benchRet); 
+          free(ec);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int tx = 10;
+        
+          int _len_ec0 = 100;
+          struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = oslec_hpf_tx(ec,tx);
+          printf("%d\n", benchRet); 
+          free(ec);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int tx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ec0 = 1;
+          struct oslec_state * ec = (struct oslec_state *) malloc(_len_ec0*sizeof(struct oslec_state));
+          for(int _i0 = 0; _i0 < _len_ec0; _i0++) {
+              ec[_i0].adaption_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ec[_i0].tx_2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = oslec_hpf_tx(ec,tx);
+          printf("%d\n", benchRet); 
+          free(ec);
+        
+        break;
+    }
     default:
         usage();
         break;

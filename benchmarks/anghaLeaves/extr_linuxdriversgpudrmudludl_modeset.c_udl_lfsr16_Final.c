@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static u16 udl_lfsr16(u16 actual_count)
 	return (u16) lv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +83,102 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 2413
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 1608
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 1265
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 1265
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 1265
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 1607
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 1807
+          // ------------------------------- 
+
           int actual_count = 100;
+        
           int benchRet = udl_lfsr16(actual_count);
           printf("%d\n", benchRet); 
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 6133
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 4088
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 3204
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 3204
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 3204
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 4087
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 4597
+          // ------------------------------- 
+
+          int actual_count = 255;
+        
+          int benchRet = udl_lfsr16(actual_count);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 253
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 168
+          // ------------------------------- 
+          // static_instructions_O2 : 40
+          // dynamic_instructions_O2 : 140
+          // ------------------------------- 
+          // static_instructions_O3 : 40
+          // dynamic_instructions_O3 : 140
+          // ------------------------------- 
+          // static_instructions_Ofast : 40
+          // dynamic_instructions_Ofast : 140
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 167
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 187
+          // ------------------------------- 
+
           int actual_count = 10;
+        
           int benchRet = udl_lfsr16(actual_count);
           printf("%d\n", benchRet); 
         

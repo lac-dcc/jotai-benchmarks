@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void timer_init(TIM_TypeDef *TIM, int psc) {
   TIM->SR = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int psc = 100;
+        
           int _len_TIM0 = 1;
           struct TYPE_3__ * TIM = (struct TYPE_3__ *) malloc(_len_TIM0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_TIM0; _i0++) {
-            TIM[_i0].PSC = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM[_i0].CR1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM[_i0].DIER = ((-2 * (next_i()%2)) + 1) * next_i();
+              TIM[_i0].PSC = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].CR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].DIER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           timer_init(TIM,psc);
           free(TIM);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int psc = 255;
+        
+          int _len_TIM0 = 65025;
+          struct TYPE_3__ * TIM = (struct TYPE_3__ *) malloc(_len_TIM0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM0; _i0++) {
+              TIM[_i0].PSC = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].CR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].DIER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          timer_init(TIM,psc);
+          free(TIM);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int psc = 10;
+        
+          int _len_TIM0 = 100;
+          struct TYPE_3__ * TIM = (struct TYPE_3__ *) malloc(_len_TIM0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM0; _i0++) {
+              TIM[_i0].PSC = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].CR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].DIER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          timer_init(TIM,psc);
+          free(TIM);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int psc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_TIM0 = 1;
+          struct TYPE_3__ * TIM = (struct TYPE_3__ *) malloc(_len_TIM0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM0; _i0++) {
+              TIM[_i0].PSC = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].SR = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].CR1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM[_i0].DIER = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          timer_init(TIM,psc);
+          free(TIM);
+        
+        break;
+    }
     default:
         usage();
         break;

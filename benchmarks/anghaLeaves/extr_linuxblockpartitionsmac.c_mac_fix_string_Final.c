@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void mac_fix_string(char *stg, int len)
 		stg[i] = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int len = 10;
-          int _len_stg0 = 100;
+          int len = 255;
+        
+          int _len_stg0 = 65025;
           char * stg = (char *) malloc(_len_stg0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_stg0; _i0++) {
             stg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mac_fix_string(stg,len);
           free(stg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int len = 10;
+        
+          int _len_stg0 = 100;
+          char * stg = (char *) malloc(_len_stg0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_stg0; _i0++) {
+            stg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mac_fix_string(stg,len);
+          free(stg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stg0 = 1;
+          char * stg = (char *) malloc(_len_stg0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_stg0; _i0++) {
+            stg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mac_fix_string(stg,len);
+          free(stg);
+        
+        break;
+    }
     default:
         usage();
         break;

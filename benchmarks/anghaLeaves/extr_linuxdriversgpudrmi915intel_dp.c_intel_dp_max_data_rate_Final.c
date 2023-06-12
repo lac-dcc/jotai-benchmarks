@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ intel_dp_max_data_rate(int max_link_clock, int max_lanes)
 	return max_link_clock * max_lanes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int max_link_clock = 100;
+        
           int max_lanes = 100;
+        
           int benchRet = intel_dp_max_data_rate(max_link_clock,max_lanes);
           printf("%d\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int max_link_clock = 255;
+        
           int max_lanes = 255;
+        
           int benchRet = intel_dp_max_data_rate(max_link_clock,max_lanes);
           printf("%d\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int max_link_clock = 10;
+        
           int max_lanes = 10;
+        
           int benchRet = intel_dp_max_data_rate(max_link_clock,max_lanes);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int max_link_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = intel_dp_max_data_rate(max_link_clock,max_lanes);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

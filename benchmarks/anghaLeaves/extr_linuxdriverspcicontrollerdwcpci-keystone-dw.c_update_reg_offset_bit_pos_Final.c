@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline void update_reg_offset_bit_pos(u32 offset, u
 	*bit_pos = offset >> 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,20 +77,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int offset = 100;
+        
           int _len_reg_offset0 = 1;
           int * reg_offset = (int *) malloc(_len_reg_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_reg_offset0; _i0++) {
             reg_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bit_pos0 = 1;
           int * bit_pos = (int *) malloc(_len_bit_pos0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bit_pos0; _i0++) {
             bit_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          update_reg_offset_bit_pos(offset,reg_offset,bit_pos);
+          free(reg_offset);
+          free(bit_pos);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int _len_reg_offset0 = 65025;
+          int * reg_offset = (int *) malloc(_len_reg_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg_offset0; _i0++) {
+            reg_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bit_pos0 = 65025;
+          int * bit_pos = (int *) malloc(_len_bit_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bit_pos0; _i0++) {
+            bit_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          update_reg_offset_bit_pos(offset,reg_offset,bit_pos);
+          free(reg_offset);
+          free(bit_pos);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int offset = 10;
+        
+          int _len_reg_offset0 = 100;
+          int * reg_offset = (int *) malloc(_len_reg_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg_offset0; _i0++) {
+            reg_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bit_pos0 = 100;
+          int * bit_pos = (int *) malloc(_len_bit_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bit_pos0; _i0++) {
+            bit_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          update_reg_offset_bit_pos(offset,reg_offset,bit_pos);
+          free(reg_offset);
+          free(bit_pos);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_reg_offset0 = 1;
+          int * reg_offset = (int *) malloc(_len_reg_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_reg_offset0; _i0++) {
+            reg_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bit_pos0 = 1;
+          int * bit_pos = (int *) malloc(_len_bit_pos0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bit_pos0; _i0++) {
+            bit_pos[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           update_reg_offset_bit_pos(offset,reg_offset,bit_pos);
           free(reg_offset);
           free(bit_pos);

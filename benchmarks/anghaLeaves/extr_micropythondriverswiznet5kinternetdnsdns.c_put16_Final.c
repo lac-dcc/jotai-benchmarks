@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ uint8_t * put16(uint8_t * s, uint16_t i)
 	return s;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +76,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int i = 10;
-          int _len_s0 = 100;
+          int i = 255;
+        
+          int _len_s0 = 65025;
           int * s = (int *) malloc(_len_s0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int * benchRet = put16(s,i);
           printf("%d\n", (*benchRet)); 
           free(s);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int i = 10;
+        
+          int _len_s0 = 100;
+          int * s = (int *) malloc(_len_s0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = put16(s,i);
+          printf("%d\n", (*benchRet)); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

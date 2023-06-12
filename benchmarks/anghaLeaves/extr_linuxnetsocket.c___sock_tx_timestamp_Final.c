@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ void __sock_tx_timestamp(__u16 tsflags, __u8 *tx_flags)
 	*tx_flags = flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,29 +94,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int tsflags = 100;
+        
           int _len_tx_flags0 = 1;
           int * tx_flags = (int *) malloc(_len_tx_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tx_flags0; _i0++) {
             tx_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           __sock_tx_timestamp(tsflags,tx_flags);
           free(tx_flags);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int tsflags = 255;
+        
+          int _len_tx_flags0 = 65025;
+          int * tx_flags = (int *) malloc(_len_tx_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_flags0; _i0++) {
+            tx_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          __sock_tx_timestamp(tsflags,tx_flags);
+          free(tx_flags);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int tsflags = 10;
+        
           int _len_tx_flags0 = 100;
           int * tx_flags = (int *) malloc(_len_tx_flags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tx_flags0; _i0++) {
             tx_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          __sock_tx_timestamp(tsflags,tx_flags);
+          free(tx_flags);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int tsflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx_flags0 = 1;
+          int * tx_flags = (int *) malloc(_len_tx_flags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_flags0; _i0++) {
+            tx_flags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           __sock_tx_timestamp(tsflags,tx_flags);
           free(tx_flags);
         

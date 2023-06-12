@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static inline void cslot_copy(c_slot_t cdst, c_slot_t csrc
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,28 +88,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cdst0 = 1;
+          int _len_cdst0 = 65025;
           struct TYPE_4__ * cdst = (struct TYPE_4__ *) malloc(_len_cdst0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_cdst0; _i0++) {
-            cdst[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        cdst[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdst[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdst[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_csrc0 = 1;
+        
+          int _len_csrc0 = 65025;
           struct TYPE_4__ * csrc = (struct TYPE_4__ *) malloc(_len_csrc0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_csrc0; _i0++) {
-            csrc[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        csrc[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              csrc[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          csrc[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cslot_copy(cdst,csrc);
           free(cdst);
           free(csrc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cdst0 = 100;
+          struct TYPE_4__ * cdst = (struct TYPE_4__ *) malloc(_len_cdst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cdst0; _i0++) {
+              cdst[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdst[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_csrc0 = 100;
+          struct TYPE_4__ * csrc = (struct TYPE_4__ *) malloc(_len_csrc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_csrc0; _i0++) {
+              csrc[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          csrc[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cslot_copy(cdst,csrc);
+          free(cdst);
+          free(csrc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cdst0 = 1;
+          struct TYPE_4__ * cdst = (struct TYPE_4__ *) malloc(_len_cdst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cdst0; _i0++) {
+              cdst[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          cdst[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_csrc0 = 1;
+          struct TYPE_4__ * csrc = (struct TYPE_4__ *) malloc(_len_csrc0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_csrc0; _i0++) {
+              csrc[_i0].c_packed_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          csrc[_i0].c_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cslot_copy(cdst,csrc);
+          free(cdst);
+          free(csrc);
+        
+        break;
+    }
     default:
         usage();
         break;

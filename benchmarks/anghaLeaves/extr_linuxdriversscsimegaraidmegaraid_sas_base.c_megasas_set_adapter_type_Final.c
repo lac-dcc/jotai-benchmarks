@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -111,12 +113,6 @@ __attribute__((used)) static inline void megasas_set_adapter_type(struct megasas
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,19 +125,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_instance0 = 1;
+          int _len_instance0 = 65025;
           struct megasas_instance * instance = (struct megasas_instance *) malloc(_len_instance0*sizeof(struct megasas_instance));
           for(int _i0 = 0; _i0 < _len_instance0; _i0++) {
               int _len_instance__i0__pdev0 = 1;
           instance[_i0].pdev = (struct TYPE_2__ *) malloc(_len_instance__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_instance__i0__pdev0; _j0++) {
-            instance[_i0].pdev->vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        instance[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              instance[_i0].pdev->vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          instance[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           megasas_set_adapter_type(instance);
           for(int _aux = 0; _aux < _len_instance0; _aux++) {
           free(instance[_aux].pdev);
@@ -150,7 +149,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_instance0 = 100;
+          struct megasas_instance * instance = (struct megasas_instance *) malloc(_len_instance0*sizeof(struct megasas_instance));
+          for(int _i0 = 0; _i0 < _len_instance0; _i0++) {
+              int _len_instance__i0__pdev0 = 1;
+          instance[_i0].pdev = (struct TYPE_2__ *) malloc(_len_instance__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_instance__i0__pdev0; _j0++) {
+              instance[_i0].pdev->vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          instance[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          megasas_set_adapter_type(instance);
+          for(int _aux = 0; _aux < _len_instance0; _aux++) {
+          free(instance[_aux].pdev);
+          }
+          free(instance);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_instance0 = 1;
+          struct megasas_instance * instance = (struct megasas_instance *) malloc(_len_instance0*sizeof(struct megasas_instance));
+          for(int _i0 = 0; _i0 < _len_instance0; _i0++) {
+              int _len_instance__i0__pdev0 = 1;
+          instance[_i0].pdev = (struct TYPE_2__ *) malloc(_len_instance__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_instance__i0__pdev0; _j0++) {
+              instance[_i0].pdev->vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          instance[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          megasas_set_adapter_type(instance);
+          for(int _aux = 0; _aux < _len_instance0; _aux++) {
+          free(instance[_aux].pdev);
+          }
+          free(instance);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -196,12 +198,6 @@ void ETH_StructInit(ETH_InitTypeDef* ETH_InitStruct)
   ETH_InitStruct->ETH_DMAArbitration = ETH_DMAArbitration_RoundRobin_RxTx_1_1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -214,66 +210,189 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ETH_InitStruct0 = 1;
+          int _len_ETH_InitStruct0 = 65025;
           struct TYPE_3__ * ETH_InitStruct = (struct TYPE_3__ *) malloc(_len_ETH_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ETH_InitStruct0; _i0++) {
-            ETH_InitStruct[_i0].ETH_HashTableHigh = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_HashTableLow = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_PauseTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_VLANTagIdentifier = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_DescriptorSkipLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_DMAArbitration = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_TxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_RxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_FixedBurst = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_AddressAlignedBeats = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_SecondFrameOperate = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ReceiveThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ForwardUndersizedGoodFrames = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ForwardErrorFrames = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_TransmitThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_TransmitStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_FlushReceivedFrame = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ReceiveStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_DropTCPIPChecksumErrorFrame = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_VLANTagComparison = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_TransmitFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ReceiveFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_UnicastPauseFrameDetect = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_PauseLowThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ZeroQuantaPause = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_UnicastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_MulticastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_PromiscuousMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_DestinationAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_BroadcastFramesReception = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_PassControlFrames = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_SourceAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ReceiveAll = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_DeferralCheck = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_BackOffLimit = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_AutomaticPadCRCStrip = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_RetryTransmission = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ChecksumOffload = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_LoopbackMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_ReceiveOwn = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_Speed = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_CarrierSense = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_InterFrameGap = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_Jabber = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_Watchdog = ((-2 * (next_i()%2)) + 1) * next_i();
-        ETH_InitStruct[_i0].ETH_AutoNegotiation = ((-2 * (next_i()%2)) + 1) * next_i();
+              ETH_InitStruct[_i0].ETH_HashTableHigh = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_HashTableLow = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PauseTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_VLANTagIdentifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DescriptorSkipLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DMAArbitration = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_RxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_FixedBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AddressAlignedBeats = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_SecondFrameOperate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ForwardUndersizedGoodFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ForwardErrorFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_FlushReceivedFrame = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DropTCPIPChecksumErrorFrame = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_VLANTagComparison = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_UnicastPauseFrameDetect = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PauseLowThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ZeroQuantaPause = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_UnicastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_MulticastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PromiscuousMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DestinationAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_BroadcastFramesReception = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PassControlFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_SourceAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveAll = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DeferralCheck = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_BackOffLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AutomaticPadCRCStrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_RetryTransmission = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ChecksumOffload = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_LoopbackMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveOwn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_CarrierSense = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_InterFrameGap = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Jabber = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Watchdog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AutoNegotiation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ETH_StructInit(ETH_InitStruct);
           free(ETH_InitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ETH_InitStruct0 = 100;
+          struct TYPE_3__ * ETH_InitStruct = (struct TYPE_3__ *) malloc(_len_ETH_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ETH_InitStruct0; _i0++) {
+              ETH_InitStruct[_i0].ETH_HashTableHigh = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_HashTableLow = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PauseTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_VLANTagIdentifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DescriptorSkipLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DMAArbitration = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_RxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_FixedBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AddressAlignedBeats = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_SecondFrameOperate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ForwardUndersizedGoodFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ForwardErrorFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_FlushReceivedFrame = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DropTCPIPChecksumErrorFrame = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_VLANTagComparison = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_UnicastPauseFrameDetect = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PauseLowThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ZeroQuantaPause = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_UnicastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_MulticastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PromiscuousMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DestinationAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_BroadcastFramesReception = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PassControlFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_SourceAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveAll = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DeferralCheck = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_BackOffLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AutomaticPadCRCStrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_RetryTransmission = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ChecksumOffload = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_LoopbackMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveOwn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_CarrierSense = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_InterFrameGap = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Jabber = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Watchdog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AutoNegotiation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ETH_StructInit(ETH_InitStruct);
+          free(ETH_InitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ETH_InitStruct0 = 1;
+          struct TYPE_3__ * ETH_InitStruct = (struct TYPE_3__ *) malloc(_len_ETH_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ETH_InitStruct0; _i0++) {
+              ETH_InitStruct[_i0].ETH_HashTableHigh = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_HashTableLow = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PauseTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_VLANTagIdentifier = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DescriptorSkipLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DMAArbitration = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_RxDMABurstLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_FixedBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AddressAlignedBeats = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_SecondFrameOperate = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ForwardUndersizedGoodFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ForwardErrorFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitThresholdControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_FlushReceivedFrame = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveStoreForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DropTCPIPChecksumErrorFrame = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_VLANTagComparison = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_TransmitFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveFlowControl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_UnicastPauseFrameDetect = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PauseLowThreshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ZeroQuantaPause = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_UnicastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_MulticastFramesFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PromiscuousMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DestinationAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_BroadcastFramesReception = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_PassControlFrames = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_SourceAddrFilter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveAll = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_DeferralCheck = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_BackOffLimit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AutomaticPadCRCStrip = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_RetryTransmission = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ChecksumOffload = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_LoopbackMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_ReceiveOwn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_CarrierSense = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_InterFrameGap = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Jabber = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_Watchdog = ((-2 * (next_i()%2)) + 1) * next_i();
+          ETH_InitStruct[_i0].ETH_AutoNegotiation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ETH_StructInit(ETH_InitStruct);
+          free(ETH_InitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

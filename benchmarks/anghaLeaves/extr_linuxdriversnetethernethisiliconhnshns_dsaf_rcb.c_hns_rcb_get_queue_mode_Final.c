@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ void hns_rcb_get_queue_mode(enum dsaf_mode dsaf_mode, u16 *max_vfn,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,27 +103,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum dsaf_mode dsaf_mode = 0;
-          int _len_max_vfn0 = 1;
+        
+          int _len_max_vfn0 = 65025;
           int * max_vfn = (int *) malloc(_len_max_vfn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_max_vfn0; _i0++) {
             max_vfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_max_q_per_vf0 = 1;
+        
+          int _len_max_q_per_vf0 = 65025;
           int * max_q_per_vf = (int *) malloc(_len_max_q_per_vf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_max_q_per_vf0; _i0++) {
             max_q_per_vf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           hns_rcb_get_queue_mode(dsaf_mode,max_vfn,max_q_per_vf);
           free(max_vfn);
           free(max_q_per_vf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum dsaf_mode dsaf_mode = 0;
+        
+          int _len_max_vfn0 = 100;
+          int * max_vfn = (int *) malloc(_len_max_vfn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_vfn0; _i0++) {
+            max_vfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max_q_per_vf0 = 100;
+          int * max_q_per_vf = (int *) malloc(_len_max_q_per_vf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_q_per_vf0; _i0++) {
+            max_q_per_vf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hns_rcb_get_queue_mode(dsaf_mode,max_vfn,max_q_per_vf);
+          free(max_vfn);
+          free(max_q_per_vf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum dsaf_mode dsaf_mode = 0;
+        
+          int _len_max_vfn0 = 1;
+          int * max_vfn = (int *) malloc(_len_max_vfn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_vfn0; _i0++) {
+            max_vfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_max_q_per_vf0 = 1;
+          int * max_q_per_vf = (int *) malloc(_len_max_q_per_vf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max_q_per_vf0; _i0++) {
+            max_q_per_vf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hns_rcb_get_queue_mode(dsaf_mode,max_vfn,max_q_per_vf);
+          free(max_vfn);
+          free(max_q_per_vf);
+        
+        break;
+    }
     default:
         usage();
         break;

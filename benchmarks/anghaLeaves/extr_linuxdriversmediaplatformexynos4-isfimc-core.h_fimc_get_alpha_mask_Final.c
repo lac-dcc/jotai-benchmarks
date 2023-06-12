@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline int fimc_get_alpha_mask(struct fimc_fmt *fmt
 	};
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fmt0 = 1;
+          int _len_fmt0 = 65025;
           struct fimc_fmt * fmt = (struct fimc_fmt *) malloc(_len_fmt0*sizeof(struct fimc_fmt));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].color = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmt[_i0].color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fimc_get_alpha_mask(fmt);
           printf("%d\n", benchRet); 
           free(fmt);
@@ -107,15 +104,32 @@ int main(int argc, char *argv[]) {
           int _len_fmt0 = 100;
           struct fimc_fmt * fmt = (struct fimc_fmt *) malloc(_len_fmt0*sizeof(struct fimc_fmt));
           for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
-            fmt[_i0].color = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmt[_i0].color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fimc_get_alpha_mask(fmt);
           printf("%d\n", benchRet); 
           free(fmt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fmt0 = 1;
+          struct fimc_fmt * fmt = (struct fimc_fmt *) malloc(_len_fmt0*sizeof(struct fimc_fmt));
+          for(int _i0 = 0; _i0 < _len_fmt0; _i0++) {
+              fmt[_i0].color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fimc_get_alpha_mask(fmt);
+          printf("%d\n", benchRet); 
+          free(fmt);
+        
+        break;
+    }
     default:
         usage();
         break;

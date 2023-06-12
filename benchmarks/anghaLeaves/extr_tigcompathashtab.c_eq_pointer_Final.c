@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ eq_pointer (const PTR p1, const PTR p2)
   return p1 == p2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const long p1 = 100;
+        
           const long p2 = 100;
+        
           int benchRet = eq_pointer(p1,p2);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const long p1 = 255;
+        
           const long p2 = 255;
+        
           int benchRet = eq_pointer(p1,p2);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const long p1 = 10;
+        
           const long p2 = 10;
+        
           int benchRet = eq_pointer(p1,p2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const long p1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const long p2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = eq_pointer(p1,p2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

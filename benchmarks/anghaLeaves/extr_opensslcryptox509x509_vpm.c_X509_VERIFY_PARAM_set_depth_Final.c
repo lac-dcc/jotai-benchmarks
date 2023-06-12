@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void X509_VERIFY_PARAM_set_depth(X509_VERIFY_PARAM *param, int depth)
     param->depth = depth;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int depth = 100;
+        
           int _len_param0 = 1;
           struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          X509_VERIFY_PARAM_set_depth(param,depth);
+          free(param);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int depth = 255;
+        
+          int _len_param0 = 65025;
+          struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           X509_VERIFY_PARAM_set_depth(param,depth);
           free(param);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int depth = 10;
+        
           int _len_param0 = 100;
           struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           X509_VERIFY_PARAM_set_depth(param,depth);
           free(param);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_param0 = 1;
+          struct TYPE_3__ * param = (struct TYPE_3__ *) malloc(_len_param0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          X509_VERIFY_PARAM_set_depth(param,depth);
+          free(param);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ __attribute__((used)) static void resource_clip(struct resource *res, resource_s
 		res->start = end + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,17 +92,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long start = 100;
+        
           long end = 100;
+        
           int _len_res0 = 1;
           struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
-        res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          resource_clip(res,start,end);
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long start = 255;
+        
+          long end = 255;
+        
+          int _len_res0 = 65025;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          resource_clip(res,start,end);
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long start = 10;
+        
+          long end = 10;
+        
+          int _len_res0 = 100;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          resource_clip(res,start,end);
+          free(res);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          struct resource * res = (struct resource *) malloc(_len_res0*sizeof(struct resource));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+          res[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           resource_clip(res,start,end);
           free(res);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -143,12 +146,6 @@ nfs_open_file_remove_open_find(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -161,50 +158,329 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
           int accessMode = 100;
+        
           int denyMode = 100;
+        
           int _len_nofp0 = 1;
           struct nfs_open_file * nofp = (struct nfs_open_file *) malloc(_len_nofp0*sizeof(struct nfs_open_file));
           for(int _i0 = 0; _i0 < _len_nofp0; _i0++) {
-            nofp[_i0].nof_access = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_deny = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_r = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_r = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_rw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_rw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
-        nofp[_i0].nof_d_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+              nofp[_i0].nof_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_newAccessMode0 = 1;
           int * newAccessMode = (int *) malloc(_len_newAccessMode0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_newAccessMode0; _i0++) {
             newAccessMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_newDenyMode0 = 1;
           int * newDenyMode = (int *) malloc(_len_newDenyMode0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_newDenyMode0; _i0++) {
             newDenyMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_delegated0 = 1;
           int * delegated = (int *) malloc(_len_delegated0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_delegated0; _i0++) {
             delegated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          nfs_open_file_remove_open_find(nofp,accessMode,denyMode,newAccessMode,newDenyMode,delegated);
+          free(nofp);
+          free(newAccessMode);
+          free(newDenyMode);
+          free(delegated);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          int accessMode = 255;
+        
+          int denyMode = 255;
+        
+          int _len_nofp0 = 65025;
+          struct nfs_open_file * nofp = (struct nfs_open_file *) malloc(_len_nofp0*sizeof(struct nfs_open_file));
+          for(int _i0 = 0; _i0 < _len_nofp0; _i0++) {
+              nofp[_i0].nof_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_newAccessMode0 = 65025;
+          int * newAccessMode = (int *) malloc(_len_newAccessMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_newAccessMode0; _i0++) {
+            newAccessMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_newDenyMode0 = 65025;
+          int * newDenyMode = (int *) malloc(_len_newDenyMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_newDenyMode0; _i0++) {
+            newDenyMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_delegated0 = 65025;
+          int * delegated = (int *) malloc(_len_delegated0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_delegated0; _i0++) {
+            delegated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          nfs_open_file_remove_open_find(nofp,accessMode,denyMode,newAccessMode,newDenyMode,delegated);
+          free(nofp);
+          free(newAccessMode);
+          free(newDenyMode);
+          free(delegated);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          int accessMode = 10;
+        
+          int denyMode = 10;
+        
+          int _len_nofp0 = 100;
+          struct nfs_open_file * nofp = (struct nfs_open_file *) malloc(_len_nofp0*sizeof(struct nfs_open_file));
+          for(int _i0 = 0; _i0 < _len_nofp0; _i0++) {
+              nofp[_i0].nof_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_newAccessMode0 = 100;
+          int * newAccessMode = (int *) malloc(_len_newAccessMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_newAccessMode0; _i0++) {
+            newAccessMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_newDenyMode0 = 100;
+          int * newDenyMode = (int *) malloc(_len_newDenyMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_newDenyMode0; _i0++) {
+            newDenyMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_delegated0 = 100;
+          int * delegated = (int *) malloc(_len_delegated0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_delegated0; _i0++) {
+            delegated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          nfs_open_file_remove_open_find(nofp,accessMode,denyMode,newAccessMode,newDenyMode,delegated);
+          free(nofp);
+          free(newAccessMode);
+          free(newDenyMode);
+          free(delegated);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 55
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 34
+          // dynamic_instructions_O3 : 34
+          // ------------------------------- 
+          // static_instructions_Ofast : 34
+          // dynamic_instructions_Ofast : 34
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 35
+          // dynamic_instructions_Oz : 35
+          // ------------------------------- 
+
+          int accessMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int denyMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nofp0 = 1;
+          struct nfs_open_file * nofp = (struct nfs_open_file *) malloc(_len_nofp0*sizeof(struct nfs_open_file));
+          for(int _i0 = 0; _i0 < _len_nofp0; _i0++) {
+              nofp[_i0].nof_access = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_deny = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_r_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_dw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_w_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+          nofp[_i0].nof_d_rw_drw = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_newAccessMode0 = 1;
+          int * newAccessMode = (int *) malloc(_len_newAccessMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_newAccessMode0; _i0++) {
+            newAccessMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_newDenyMode0 = 1;
+          int * newDenyMode = (int *) malloc(_len_newDenyMode0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_newDenyMode0; _i0++) {
+            newDenyMode[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_delegated0 = 1;
+          int * delegated = (int *) malloc(_len_delegated0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_delegated0; _i0++) {
+            delegated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           nfs_open_file_remove_open_find(nofp,accessMode,denyMode,newAccessMode,newDenyMode,delegated);
           free(nofp);
           free(newAccessMode);

@@ -64,12 +64,6 @@ __attribute__((used)) static U32 XXH_swap32 (U32 x)
             ((x >> 24) & 0x000000ff );
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int benchRet = XXH_swap32(x);
           printf("%d\n", benchRet); 
         
@@ -95,12 +90,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 10;
+        
           int benchRet = XXH_swap32(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

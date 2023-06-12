@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ __attribute__((used)) static unsigned int artpec6_pconf_drive_field_to_mA(int fi
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int field = 100;
+        
           unsigned int benchRet = artpec6_pconf_drive_field_to_mA(field);
           printf("%u\n", benchRet); 
         
@@ -112,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int field = 255;
+        
           unsigned int benchRet = artpec6_pconf_drive_field_to_mA(field);
           printf("%u\n", benchRet); 
         
@@ -121,12 +118,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int field = 10;
+        
           unsigned int benchRet = artpec6_pconf_drive_field_to_mA(field);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int field = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = artpec6_pconf_drive_field_to_mA(field);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

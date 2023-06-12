@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int pidff_needs_set_periodic(struct ff_effect *effe
 	       effect->u.periodic.period != old->u.periodic.period;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,25 +82,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_effect0 = 65025;
+          struct ff_effect * effect = (struct ff_effect *) malloc(_len_effect0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_effect0; _i0++) {
+              effect[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_old0 = 65025;
+          struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = pidff_needs_set_periodic(effect,old);
+          printf("%d\n", benchRet); 
+          free(effect);
+          free(old);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_effect0 = 100;
+          struct ff_effect * effect = (struct ff_effect *) malloc(_len_effect0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_effect0; _i0++) {
+              effect[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_old0 = 100;
+          struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
+          for(int _i0 = 0; _i0 < _len_old0; _i0++) {
+              old[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = pidff_needs_set_periodic(effect,old);
+          printf("%d\n", benchRet); 
+          free(effect);
+          free(old);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_effect0 = 1;
           struct ff_effect * effect = (struct ff_effect *) malloc(_len_effect0*sizeof(struct ff_effect));
           for(int _i0 = 0; _i0 < _len_effect0; _i0++) {
-            effect[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
-        effect[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        effect[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
-        effect[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+              effect[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          effect[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_old0 = 1;
           struct ff_effect * old = (struct ff_effect *) malloc(_len_old0*sizeof(struct ff_effect));
           for(int _i0 = 0; _i0 < _len_old0; _i0++) {
-            old[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
-        old[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+              old[_i0].u.periodic.magnitude = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.phase = ((-2 * (next_i()%2)) + 1) * next_i();
+          old[_i0].u.periodic.period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = pidff_needs_set_periodic(effect,old);
           printf("%d\n", benchRet); 
           free(effect);

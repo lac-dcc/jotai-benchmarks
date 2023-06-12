@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ u16 nfp_cpp_interface(struct nfp_cpp *cpp)
 	return cpp->interface;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cpp0 = 1;
+          int _len_cpp0 = 65025;
           struct nfp_cpp * cpp = (struct nfp_cpp *) malloc(_len_cpp0*sizeof(struct nfp_cpp));
           for(int _i0 = 0; _i0 < _len_cpp0; _i0++) {
-            cpp[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpp[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfp_cpp_interface(cpp);
           printf("%d\n", benchRet); 
           free(cpp);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_cpp0 = 100;
           struct nfp_cpp * cpp = (struct nfp_cpp *) malloc(_len_cpp0*sizeof(struct nfp_cpp));
           for(int _i0 = 0; _i0 < _len_cpp0; _i0++) {
-            cpp[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpp[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfp_cpp_interface(cpp);
           printf("%d\n", benchRet); 
           free(cpp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cpp0 = 1;
+          struct nfp_cpp * cpp = (struct nfp_cpp *) malloc(_len_cpp0*sizeof(struct nfp_cpp));
+          for(int _i0 = 0; _i0 < _len_cpp0; _i0++) {
+              cpp[_i0].interface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_cpp_interface(cpp);
+          printf("%d\n", benchRet); 
+          free(cpp);
+        
+        break;
+    }
     default:
         usage();
         break;

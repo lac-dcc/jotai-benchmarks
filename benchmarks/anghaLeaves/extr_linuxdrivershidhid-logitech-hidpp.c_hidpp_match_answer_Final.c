@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline bool hidpp_match_answer(struct hidpp_report 
 	   (answer->fap.funcindex_clientid == question->fap.funcindex_clientid);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_question0 = 1;
+          int _len_question0 = 65025;
           struct hidpp_report * question = (struct hidpp_report *) malloc(_len_question0*sizeof(struct hidpp_report));
           for(int _i0 = 0; _i0 < _len_question0; _i0++) {
-            question[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        question[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+              question[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          question[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_answer0 = 1;
+        
+          int _len_answer0 = 65025;
           struct hidpp_report * answer = (struct hidpp_report *) malloc(_len_answer0*sizeof(struct hidpp_report));
           for(int _i0 = 0; _i0 < _len_answer0; _i0++) {
-            answer[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        answer[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+              answer[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          answer[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hidpp_match_answer(question,answer);
           printf("%d\n", benchRet); 
           free(question);
@@ -104,7 +106,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_question0 = 100;
+          struct hidpp_report * question = (struct hidpp_report *) malloc(_len_question0*sizeof(struct hidpp_report));
+          for(int _i0 = 0; _i0 < _len_question0; _i0++) {
+              question[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          question[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_answer0 = 100;
+          struct hidpp_report * answer = (struct hidpp_report *) malloc(_len_answer0*sizeof(struct hidpp_report));
+          for(int _i0 = 0; _i0 < _len_answer0; _i0++) {
+              answer[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          answer[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hidpp_match_answer(question,answer);
+          printf("%d\n", benchRet); 
+          free(question);
+          free(answer);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_question0 = 1;
+          struct hidpp_report * question = (struct hidpp_report *) malloc(_len_question0*sizeof(struct hidpp_report));
+          for(int _i0 = 0; _i0 < _len_question0; _i0++) {
+              question[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          question[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_answer0 = 1;
+          struct hidpp_report * answer = (struct hidpp_report *) malloc(_len_answer0*sizeof(struct hidpp_report));
+          for(int _i0 = 0; _i0 < _len_answer0; _i0++) {
+              answer[_i0].fap.feature_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          answer[_i0].fap.funcindex_clientid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hidpp_match_answer(question,answer);
+          printf("%d\n", benchRet); 
+          free(question);
+          free(answer);
+        
+        break;
+    }
     default:
         usage();
         break;

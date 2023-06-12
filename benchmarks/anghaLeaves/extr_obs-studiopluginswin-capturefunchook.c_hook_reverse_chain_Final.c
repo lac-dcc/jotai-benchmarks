@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static inline void hook_reverse_chain(struct func_hook *ho
 	*((uint32_t*)&p[1]) = (uint32_t)(hook->hook_addr - hook->func_addr);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hook0 = 1;
+          int _len_hook0 = 65025;
           struct func_hook * hook = (struct func_hook *) malloc(_len_hook0*sizeof(struct func_hook));
           for(int _i0 = 0; _i0 < _len_hook0; _i0++) {
-            hook[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hook[_i0].hooked = ((-2 * (next_i()%2)) + 1) * next_i();
-        hook[_i0].func_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        hook[_i0].hook_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              hook[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].hooked = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].func_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].hook_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_p0 = 1;
+        
+          int _len_p0 = 65025;
           int * p = (int *) malloc(_len_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           hook_reverse_chain(hook,p);
           free(hook);
           free(p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hook0 = 100;
+          struct func_hook * hook = (struct func_hook *) malloc(_len_hook0*sizeof(struct func_hook));
+          for(int _i0 = 0; _i0 < _len_hook0; _i0++) {
+              hook[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].hooked = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].func_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].hook_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 100;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hook_reverse_chain(hook,p);
+          free(hook);
+          free(p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hook0 = 1;
+          struct func_hook * hook = (struct func_hook *) malloc(_len_hook0*sizeof(struct func_hook));
+          for(int _i0 = 0; _i0 < _len_hook0; _i0++) {
+              hook[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].hooked = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].func_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          hook[_i0].hook_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p0 = 1;
+          int * p = (int *) malloc(_len_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hook_reverse_chain(hook,p);
+          free(hook);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

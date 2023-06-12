@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void load_rle(image im, int *rle, int n)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +87,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
-          int n = 10;
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 4102
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 2058
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 2062
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 2062
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 2062
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 2060
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 3341
+          // ------------------------------- 
+
+          int n = 255;
+        
           struct TYPE_3__ im;
           int _len_im_data0 = 1;
           im.data = (int *) malloc(_len_im_data0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
             im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        im.h = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rle0 = 65025;
+          int * rle = (int *) malloc(_len_rle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rle0; _i0++) {
+            rle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          load_rle(im,rle,n);
+          free(im.data);
+          free(rle);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 182
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 98
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 102
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 102
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 102
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 100
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 156
+          // ------------------------------- 
+
+          int n = 10;
+        
+          struct TYPE_3__ im;
+          int _len_im_data0 = 1;
+          im.data = (int *) malloc(_len_im_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
+            im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_rle0 = 100;
           int * rle = (int *) malloc(_len_rle0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rle0; _i0++) {
             rle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          load_rle(im,rle,n);
+          free(im.data);
+          free(rle);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ im;
+          int _len_im_data0 = 1;
+          im.data = (int *) malloc(_len_im_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
+            im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rle0 = 1;
+          int * rle = (int *) malloc(_len_rle0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rle0; _i0++) {
+            rle[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           load_rle(im,rle,n);
           free(im.data);
           free(rle);

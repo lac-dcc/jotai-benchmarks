@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int vbg_ioctl_chk(struct vbg_ioctl_hdr *hdr, size_t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long in_size = 100;
+        
           unsigned long out_size = 100;
+        
           int _len_hdr0 = 1;
           struct vbg_ioctl_hdr * hdr = (struct vbg_ioctl_hdr *) malloc(_len_hdr0*sizeof(struct vbg_ioctl_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].size_in = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].size_out = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].size_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vbg_ioctl_chk(hdr,in_size,out_size);
           printf("%d\n", benchRet); 
           free(hdr);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long in_size = 255;
+        
+          unsigned long out_size = 255;
+        
+          int _len_hdr0 = 65025;
+          struct vbg_ioctl_hdr * hdr = (struct vbg_ioctl_hdr *) malloc(_len_hdr0*sizeof(struct vbg_ioctl_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].size_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vbg_ioctl_chk(hdr,in_size,out_size);
+          printf("%d\n", benchRet); 
+          free(hdr);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long in_size = 10;
+        
+          unsigned long out_size = 10;
+        
+          int _len_hdr0 = 100;
+          struct vbg_ioctl_hdr * hdr = (struct vbg_ioctl_hdr *) malloc(_len_hdr0*sizeof(struct vbg_ioctl_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].size_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vbg_ioctl_chk(hdr,in_size,out_size);
+          printf("%d\n", benchRet); 
+          free(hdr);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long in_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long out_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdr0 = 1;
+          struct vbg_ioctl_hdr * hdr = (struct vbg_ioctl_hdr *) malloc(_len_hdr0*sizeof(struct vbg_ioctl_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].size_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].size_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vbg_ioctl_chk(hdr,in_size,out_size);
+          printf("%d\n", benchRet); 
+          free(hdr);
+        
+        break;
+    }
     default:
         usage();
         break;

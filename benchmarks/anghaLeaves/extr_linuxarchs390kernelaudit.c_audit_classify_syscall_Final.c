@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ int audit_classify_syscall(int abi, unsigned syscall)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int abi = 100;
+        
           unsigned int syscall = 100;
+        
           int benchRet = audit_classify_syscall(abi,syscall);
           printf("%d\n", benchRet); 
         
@@ -112,7 +109,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int abi = 255;
+        
           unsigned int syscall = 255;
+        
           int benchRet = audit_classify_syscall(abi,syscall);
           printf("%d\n", benchRet); 
         
@@ -122,13 +121,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int abi = 10;
+        
           unsigned int syscall = 10;
+        
           int benchRet = audit_classify_syscall(abi,syscall);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int abi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int syscall = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = audit_classify_syscall(abi,syscall);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

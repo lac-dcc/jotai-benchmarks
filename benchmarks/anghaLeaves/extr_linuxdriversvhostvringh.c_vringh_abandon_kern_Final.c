@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void vringh_abandon_kern(struct vringh *vrh, unsigned int num)
 	vrh->last_avail_idx -= num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int num = 100;
+        
           int _len_vrh0 = 1;
           struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
           for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
-            vrh[_i0].last_avail_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              vrh[_i0].last_avail_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          vringh_abandon_kern(vrh,num);
+          free(vrh);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int num = 255;
+        
+          int _len_vrh0 = 65025;
+          struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
+          for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
+              vrh[_i0].last_avail_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           vringh_abandon_kern(vrh,num);
           free(vrh);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int num = 10;
+        
           int _len_vrh0 = 100;
           struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
           for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
-            vrh[_i0].last_avail_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              vrh[_i0].last_avail_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vringh_abandon_kern(vrh,num);
           free(vrh);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vrh0 = 1;
+          struct vringh * vrh = (struct vringh *) malloc(_len_vrh0*sizeof(struct vringh));
+          for(int _i0 = 0; _i0 < _len_vrh0; _i0++) {
+              vrh[_i0].last_avail_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vringh_abandon_kern(vrh,num);
+          free(vrh);
+        
+        break;
+    }
     default:
         usage();
         break;

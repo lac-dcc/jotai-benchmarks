@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void freq_table_redup(struct cpufreq_frequency_tabl
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +88,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int count = 10;
-          int _len_freq_table0 = 100;
+          int count = 255;
+        
+          int _len_freq_table0 = 65025;
           struct cpufreq_frequency_table * freq_table = (struct cpufreq_frequency_table *) malloc(_len_freq_table0*sizeof(struct cpufreq_frequency_table));
           for(int _i0 = 0; _i0 < _len_freq_table0; _i0++) {
-            freq_table[_i0].frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              freq_table[_i0].frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           freq_table_redup(freq_table,count);
           free(freq_table);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int count = 10;
+        
+          int _len_freq_table0 = 100;
+          struct cpufreq_frequency_table * freq_table = (struct cpufreq_frequency_table *) malloc(_len_freq_table0*sizeof(struct cpufreq_frequency_table));
+          for(int _i0 = 0; _i0 < _len_freq_table0; _i0++) {
+              freq_table[_i0].frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          freq_table_redup(freq_table,count);
+          free(freq_table);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_freq_table0 = 1;
+          struct cpufreq_frequency_table * freq_table = (struct cpufreq_frequency_table *) malloc(_len_freq_table0*sizeof(struct cpufreq_frequency_table));
+          for(int _i0 = 0; _i0 < _len_freq_table0; _i0++) {
+              freq_table[_i0].frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          freq_table_redup(freq_table,count);
+          free(freq_table);
+        
+        break;
+    }
     default:
         usage();
         break;

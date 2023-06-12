@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ __attribute__((used)) static void blk_mq_update_dispatch_busy(struct blk_mq_hw_c
 	hctx->dispatch_busy = ewma;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,16 +98,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int busy = 100;
+        
           int _len_hctx0 = 1;
           struct blk_mq_hw_ctx * hctx = (struct blk_mq_hw_ctx *) malloc(_len_hctx0*sizeof(struct blk_mq_hw_ctx));
           for(int _i0 = 0; _i0 < _len_hctx0; _i0++) {
-            hctx[_i0].dispatch_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hctx[_i0].dispatch_busy = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hctx__i0__queue0 = 1;
           hctx[_i0].queue = (struct TYPE_2__ *) malloc(_len_hctx__i0__queue0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_hctx__i0__queue0; _j0++) {
-            hctx[_i0].queue->elevator = ((-2 * (next_i()%2)) + 1) * next_i();
+              hctx[_i0].queue->elevator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           blk_mq_update_dispatch_busy(hctx,busy);
           for(int _aux = 0; _aux < _len_hctx0; _aux++) {
           free(hctx[_aux].queue);
@@ -119,7 +120,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int busy = 255;
+        
+          int _len_hctx0 = 65025;
+          struct blk_mq_hw_ctx * hctx = (struct blk_mq_hw_ctx *) malloc(_len_hctx0*sizeof(struct blk_mq_hw_ctx));
+          for(int _i0 = 0; _i0 < _len_hctx0; _i0++) {
+              hctx[_i0].dispatch_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hctx__i0__queue0 = 1;
+          hctx[_i0].queue = (struct TYPE_2__ *) malloc(_len_hctx__i0__queue0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hctx__i0__queue0; _j0++) {
+              hctx[_i0].queue->elevator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          blk_mq_update_dispatch_busy(hctx,busy);
+          for(int _aux = 0; _aux < _len_hctx0; _aux++) {
+          free(hctx[_aux].queue);
+          }
+          free(hctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int busy = 10;
+        
+          int _len_hctx0 = 100;
+          struct blk_mq_hw_ctx * hctx = (struct blk_mq_hw_ctx *) malloc(_len_hctx0*sizeof(struct blk_mq_hw_ctx));
+          for(int _i0 = 0; _i0 < _len_hctx0; _i0++) {
+              hctx[_i0].dispatch_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hctx__i0__queue0 = 1;
+          hctx[_i0].queue = (struct TYPE_2__ *) malloc(_len_hctx__i0__queue0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hctx__i0__queue0; _j0++) {
+              hctx[_i0].queue->elevator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          blk_mq_update_dispatch_busy(hctx,busy);
+          for(int _aux = 0; _aux < _len_hctx0; _aux++) {
+          free(hctx[_aux].queue);
+          }
+          free(hctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hctx0 = 1;
+          struct blk_mq_hw_ctx * hctx = (struct blk_mq_hw_ctx *) malloc(_len_hctx0*sizeof(struct blk_mq_hw_ctx));
+          for(int _i0 = 0; _i0 < _len_hctx0; _i0++) {
+              hctx[_i0].dispatch_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hctx__i0__queue0 = 1;
+          hctx[_i0].queue = (struct TYPE_2__ *) malloc(_len_hctx__i0__queue0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_hctx__i0__queue0; _j0++) {
+              hctx[_i0].queue->elevator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          blk_mq_update_dispatch_busy(hctx,busy);
+          for(int _aux = 0; _aux < _len_hctx0; _aux++) {
+          free(hctx[_aux].queue);
+          }
+          free(hctx);
+        
+        break;
+    }
     default:
         usage();
         break;

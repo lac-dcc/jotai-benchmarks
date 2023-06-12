@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ bhyvegc_get_image(struct bhyvegc *gc)
 	return (gc->gc_image);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_gc0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_gc0 = 65025;
           struct bhyvegc * gc = (struct bhyvegc *) malloc(_len_gc0*sizeof(struct bhyvegc));
           for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
               int _len_gc__i0__gc_image0 = 1;
           gc[_i0].gc_image = (struct bhyvegc_image *) malloc(_len_gc__i0__gc_image0*sizeof(struct bhyvegc_image));
           for(int _j0 = 0; _j0 < _len_gc__i0__gc_image0; _j0++) {
-            gc[_i0].gc_image->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc[_i0].gc_image->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct bhyvegc_image * benchRet = bhyvegc_get_image(gc);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_gc0; _aux++) {
@@ -105,18 +127,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_gc0 = 100;
+          struct bhyvegc * gc = (struct bhyvegc *) malloc(_len_gc0*sizeof(struct bhyvegc));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              int _len_gc__i0__gc_image0 = 1;
+          gc[_i0].gc_image = (struct bhyvegc_image *) malloc(_len_gc__i0__gc_image0*sizeof(struct bhyvegc_image));
+          for(int _j0 = 0; _j0 < _len_gc__i0__gc_image0; _j0++) {
+              gc[_i0].gc_image->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct bhyvegc_image * benchRet = bhyvegc_get_image(gc);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_gc0; _aux++) {
+          free(gc[_aux].gc_image);
+          }
+          free(gc);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_gc0 = 1;
           struct bhyvegc * gc = (struct bhyvegc *) malloc(_len_gc0*sizeof(struct bhyvegc));
           for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
               int _len_gc__i0__gc_image0 = 1;
           gc[_i0].gc_image = (struct bhyvegc_image *) malloc(_len_gc__i0__gc_image0*sizeof(struct bhyvegc_image));
           for(int _j0 = 0; _j0 < _len_gc__i0__gc_image0; _j0++) {
-            gc[_i0].gc_image->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gc[_i0].gc_image->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct bhyvegc_image * benchRet = bhyvegc_get_image(gc);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_gc0; _aux++) {
+          free(gc[_aux].gc_image);
+          }
+          free(gc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_gc0 = 1;
+          struct bhyvegc * gc = (struct bhyvegc *) malloc(_len_gc0*sizeof(struct bhyvegc));
+          for(int _i0 = 0; _i0 < _len_gc0; _i0++) {
+              int _len_gc__i0__gc_image0 = 1;
+          gc[_i0].gc_image = (struct bhyvegc_image *) malloc(_len_gc__i0__gc_image0*sizeof(struct bhyvegc_image));
+          for(int _j0 = 0; _j0 < _len_gc__i0__gc_image0; _j0++) {
+              gc[_i0].gc_image->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct bhyvegc_image * benchRet = bhyvegc_get_image(gc);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_gc0; _aux++) {

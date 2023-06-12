@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ nv_match_device(struct drm_device *dev, unsigned device,
 		dev->pdev->subsystem_device == sub_device;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +85,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int device = 100;
+        
           unsigned int sub_vendor = 100;
+        
           unsigned int sub_device = 100;
+        
           int _len_dev0 = 1;
           struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__pdev0 = 1;
           dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
-            dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = nv_match_device(dev,device,sub_vendor,sub_device);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {
@@ -110,7 +113,102 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int device = 255;
+        
+          unsigned int sub_vendor = 255;
+        
+          unsigned int sub_device = 255;
+        
+          int _len_dev0 = 65025;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pdev0 = 1;
+          dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = nv_match_device(dev,device,sub_vendor,sub_device);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pdev);
+          }
+          free(dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int device = 10;
+        
+          unsigned int sub_vendor = 10;
+        
+          unsigned int sub_device = 10;
+        
+          int _len_dev0 = 100;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pdev0 = 1;
+          dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = nv_match_device(dev,device,sub_vendor,sub_device);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pdev);
+          }
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int sub_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int sub_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct drm_device * dev = (struct drm_device *) malloc(_len_dev0*sizeof(struct drm_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__pdev0 = 1;
+          dev[_i0].pdev = (struct TYPE_2__ *) malloc(_len_dev__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev__i0__pdev0; _j0++) {
+              dev[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = nv_match_device(dev,device,sub_vendor,sub_device);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].pdev);
+          }
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

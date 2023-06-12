@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static bool sugov_update_next_freq(struct sugov_policy *sg
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +83,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int time = 100;
+        
           unsigned int next_freq = 100;
+        
           int _len_sg_policy0 = 1;
           struct sugov_policy * sg_policy = (struct sugov_policy *) malloc(_len_sg_policy0*sizeof(struct sugov_policy));
           for(int _i0 = 0; _i0 < _len_sg_policy0; _i0++) {
-            sg_policy[_i0].next_freq = ((-2 * (next_i()%2)) + 1) * next_i();
-        sg_policy[_i0].last_freq_update_time = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg_policy[_i0].next_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_policy[_i0].last_freq_update_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sugov_update_next_freq(sg_policy,time,next_freq);
+          printf("%d\n", benchRet); 
+          free(sg_policy);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int time = 255;
+        
+          unsigned int next_freq = 255;
+        
+          int _len_sg_policy0 = 65025;
+          struct sugov_policy * sg_policy = (struct sugov_policy *) malloc(_len_sg_policy0*sizeof(struct sugov_policy));
+          for(int _i0 = 0; _i0 < _len_sg_policy0; _i0++) {
+              sg_policy[_i0].next_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_policy[_i0].last_freq_update_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sugov_update_next_freq(sg_policy,time,next_freq);
+          printf("%d\n", benchRet); 
+          free(sg_policy);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int time = 10;
+        
+          unsigned int next_freq = 10;
+        
+          int _len_sg_policy0 = 100;
+          struct sugov_policy * sg_policy = (struct sugov_policy *) malloc(_len_sg_policy0*sizeof(struct sugov_policy));
+          for(int _i0 = 0; _i0 < _len_sg_policy0; _i0++) {
+              sg_policy[_i0].next_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_policy[_i0].last_freq_update_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sugov_update_next_freq(sg_policy,time,next_freq);
+          printf("%d\n", benchRet); 
+          free(sg_policy);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int next_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sg_policy0 = 1;
+          struct sugov_policy * sg_policy = (struct sugov_policy *) malloc(_len_sg_policy0*sizeof(struct sugov_policy));
+          for(int _i0 = 0; _i0 < _len_sg_policy0; _i0++) {
+              sg_policy[_i0].next_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg_policy[_i0].last_freq_update_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sugov_update_next_freq(sg_policy,time,next_freq);
           printf("%d\n", benchRet); 
           free(sg_policy);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static u32 cypress_get_mclk_split_point(struct atom_memory
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_memory_info0 = 1;
+          int _len_memory_info0 = 65025;
           struct atom_memory_info * memory_info = (struct atom_memory_info *) malloc(_len_memory_info0*sizeof(struct atom_memory_info));
           for(int _i0 = 0; _i0 < _len_memory_info0; _i0++) {
-            memory_info[_i0].mem_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              memory_info[_i0].mem_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cypress_get_mclk_split_point(memory_info);
           printf("%d\n", benchRet); 
           free(memory_info);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_memory_info0 = 100;
           struct atom_memory_info * memory_info = (struct atom_memory_info *) malloc(_len_memory_info0*sizeof(struct atom_memory_info));
           for(int _i0 = 0; _i0 < _len_memory_info0; _i0++) {
-            memory_info[_i0].mem_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              memory_info[_i0].mem_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cypress_get_mclk_split_point(memory_info);
           printf("%d\n", benchRet); 
           free(memory_info);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_memory_info0 = 1;
+          struct atom_memory_info * memory_info = (struct atom_memory_info *) malloc(_len_memory_info0*sizeof(struct atom_memory_info));
+          for(int _i0 = 0; _i0 < _len_memory_info0; _i0++) {
+              memory_info[_i0].mem_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cypress_get_mclk_split_point(memory_info);
+          printf("%d\n", benchRet); 
+          free(memory_info);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void ToWindowCoords(float *x, float *y, windowDef_t *window) {
 	*y += window->rect.y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,27 +82,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_x0 = 1;
+          int _len_x0 = 65025;
           float * x = (float *) malloc(_len_x0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_x0; _i0++) {
             x[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-          int _len_y0 = 1;
+        
+          int _len_y0 = 65025;
           float * y = (float *) malloc(_len_y0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_y0; _i0++) {
             y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-          int _len_window0 = 1;
+        
+          int _len_window0 = 65025;
           struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].border = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        window[_i0].borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].border = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          window[_i0].borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ToWindowCoords(x,y,window);
           free(x);
           free(y);
@@ -114,7 +115,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_x0 = 100;
+          float * x = (float *) malloc(_len_x0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_y0 = 100;
+          float * y = (float *) malloc(_len_y0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_window0 = 100;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].border = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          window[_i0].borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ToWindowCoords(x,y,window);
+          free(x);
+          free(y);
+          free(window);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_x0 = 1;
+          float * x = (float *) malloc(_len_x0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_x0; _i0++) {
+            x[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_y0 = 1;
+          float * y = (float *) malloc(_len_y0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_y0; _i0++) {
+            y[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_window0 = 1;
+          struct TYPE_5__ * window = (struct TYPE_5__ *) malloc(_len_window0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].border = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          window[_i0].rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          window[_i0].borderSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ToWindowCoords(x,y,window);
+          free(x);
+          free(y);
+          free(window);
+        
+        break;
+    }
     default:
         usage();
         break;

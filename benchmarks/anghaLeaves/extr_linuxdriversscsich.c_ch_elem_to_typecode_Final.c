@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ ch_elem_to_typecode(scsi_changer *ch, u_int elem)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,10 +88,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long elem = 100;
+        
           int _len_ch0 = 1;
           struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
@@ -108,7 +129,180 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
             ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = ch_elem_to_typecode(ch,elem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].firsts);
+          }
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].counts);
+          }
+          free(ch);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long elem = 255;
+        
+          int _len_ch0 = 65025;
+          struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              int _len_ch__i0__firsts0 = 1;
+          ch[_i0].firsts = (long *) malloc(_len_ch__i0__firsts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ch__i0__firsts0; _j0++) {
+            ch[_i0].firsts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ch__i0__counts0 = 1;
+          ch[_i0].counts = (long *) malloc(_len_ch__i0__counts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
+            ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ch_elem_to_typecode(ch,elem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].firsts);
+          }
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].counts);
+          }
+          free(ch);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long elem = 10;
+        
+          int _len_ch0 = 100;
+          struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              int _len_ch__i0__firsts0 = 1;
+          ch[_i0].firsts = (long *) malloc(_len_ch__i0__firsts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ch__i0__firsts0; _j0++) {
+            ch[_i0].firsts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ch__i0__counts0 = 1;
+          ch[_i0].counts = (long *) malloc(_len_ch__i0__counts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
+            ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ch_elem_to_typecode(ch,elem);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].firsts);
+          }
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].counts);
+          }
+          free(ch);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long elem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ch0 = 1;
+          struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              int _len_ch__i0__firsts0 = 1;
+          ch[_i0].firsts = (long *) malloc(_len_ch__i0__firsts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ch__i0__firsts0; _j0++) {
+            ch[_i0].firsts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_ch__i0__counts0 = 1;
+          ch[_i0].counts = (long *) malloc(_len_ch__i0__counts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
+            ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = ch_elem_to_typecode(ch,elem);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ch0; _aux++) {

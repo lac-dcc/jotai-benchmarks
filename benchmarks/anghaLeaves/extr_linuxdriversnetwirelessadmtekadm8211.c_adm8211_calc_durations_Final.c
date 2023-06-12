@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -108,12 +111,6 @@ __attribute__((used)) static void adm8211_calc_durations(int *dur, int *plcp, si
 		(*plcp)++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,26 +127,118 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long payload_len = 100;
+        
           int len = 100;
+        
           int plcp_signal = 100;
+        
           int short_preamble = 100;
+        
           int _len_dur0 = 1;
           int * dur = (int *) malloc(_len_dur0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dur0; _i0++) {
             dur[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_plcp0 = 1;
           int * plcp = (int *) malloc(_len_plcp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
             plcp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           adm8211_calc_durations(dur,plcp,payload_len,len,plcp_signal,short_preamble);
           free(dur);
           free(plcp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long payload_len = 255;
+        
+          int len = 255;
+        
+          int plcp_signal = 255;
+        
+          int short_preamble = 255;
+        
+          int _len_dur0 = 65025;
+          int * dur = (int *) malloc(_len_dur0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dur0; _i0++) {
+            dur[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_plcp0 = 65025;
+          int * plcp = (int *) malloc(_len_plcp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+            plcp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          adm8211_calc_durations(dur,plcp,payload_len,len,plcp_signal,short_preamble);
+          free(dur);
+          free(plcp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long payload_len = 10;
+        
+          int len = 10;
+        
+          int plcp_signal = 10;
+        
+          int short_preamble = 10;
+        
+          int _len_dur0 = 100;
+          int * dur = (int *) malloc(_len_dur0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dur0; _i0++) {
+            dur[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_plcp0 = 100;
+          int * plcp = (int *) malloc(_len_plcp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+            plcp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          adm8211_calc_durations(dur,plcp,payload_len,len,plcp_signal,short_preamble);
+          free(dur);
+          free(plcp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int plcp_signal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int short_preamble = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dur0 = 1;
+          int * dur = (int *) malloc(_len_dur0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dur0; _i0++) {
+            dur[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_plcp0 = 1;
+          int * plcp = (int *) malloc(_len_plcp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_plcp0; _i0++) {
+            plcp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          adm8211_calc_durations(dur,plcp,payload_len,len,plcp_signal,short_preamble);
+          free(dur);
+          free(plcp);
+        
+        break;
+    }
     default:
         usage();
         break;

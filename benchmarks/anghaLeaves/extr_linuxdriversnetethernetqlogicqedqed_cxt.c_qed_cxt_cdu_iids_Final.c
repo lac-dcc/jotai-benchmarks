@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void qed_cxt_cdu_iids(struct qed_cxt_mngr *p_mngr,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +85,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_p_mngr0 = 65025;
+          struct qed_cxt_mngr * p_mngr = (struct qed_cxt_mngr *) malloc(_len_p_mngr0*sizeof(struct qed_cxt_mngr));
+          for(int _i0 = 0; _i0 < _len_p_mngr0; _i0++) {
+              int _len_p_mngr__i0__conn_cfg0 = 1;
+          p_mngr[_i0].conn_cfg = (struct TYPE_2__ *) malloc(_len_p_mngr__i0__conn_cfg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_mngr__i0__conn_cfg0; _j0++) {
+              p_mngr[_i0].conn_cfg->cids_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_mngr[_i0].conn_cfg->cid_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_iids0 = 65025;
+          struct qed_cdu_iids * iids = (struct qed_cdu_iids *) malloc(_len_iids0*sizeof(struct qed_cdu_iids));
+          for(int _i0 = 0; _i0 < _len_iids0; _i0++) {
+              iids[_i0].per_vf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+          iids[_i0].pf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qed_cxt_cdu_iids(p_mngr,iids);
+          for(int _aux = 0; _aux < _len_p_mngr0; _aux++) {
+          free(p_mngr[_aux].conn_cfg);
+          }
+          free(p_mngr);
+          free(iids);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_p_mngr0 = 100;
+          struct qed_cxt_mngr * p_mngr = (struct qed_cxt_mngr *) malloc(_len_p_mngr0*sizeof(struct qed_cxt_mngr));
+          for(int _i0 = 0; _i0 < _len_p_mngr0; _i0++) {
+              int _len_p_mngr__i0__conn_cfg0 = 1;
+          p_mngr[_i0].conn_cfg = (struct TYPE_2__ *) malloc(_len_p_mngr__i0__conn_cfg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_mngr__i0__conn_cfg0; _j0++) {
+              p_mngr[_i0].conn_cfg->cids_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_mngr[_i0].conn_cfg->cid_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_iids0 = 100;
+          struct qed_cdu_iids * iids = (struct qed_cdu_iids *) malloc(_len_iids0*sizeof(struct qed_cdu_iids));
+          for(int _i0 = 0; _i0 < _len_iids0; _i0++) {
+              iids[_i0].per_vf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+          iids[_i0].pf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qed_cxt_cdu_iids(p_mngr,iids);
+          for(int _aux = 0; _aux < _len_p_mngr0; _aux++) {
+          free(p_mngr[_aux].conn_cfg);
+          }
+          free(p_mngr);
+          free(iids);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_p_mngr0 = 1;
           struct qed_cxt_mngr * p_mngr = (struct qed_cxt_mngr *) malloc(_len_p_mngr0*sizeof(struct qed_cxt_mngr));
           for(int _i0 = 0; _i0 < _len_p_mngr0; _i0++) {
               int _len_p_mngr__i0__conn_cfg0 = 1;
           p_mngr[_i0].conn_cfg = (struct TYPE_2__ *) malloc(_len_p_mngr__i0__conn_cfg0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_p_mngr__i0__conn_cfg0; _j0++) {
-            p_mngr[_i0].conn_cfg->cids_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_mngr[_i0].conn_cfg->cid_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_mngr[_i0].conn_cfg->cids_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_mngr[_i0].conn_cfg->cid_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_iids0 = 1;
           struct qed_cdu_iids * iids = (struct qed_cdu_iids *) malloc(_len_iids0*sizeof(struct qed_cdu_iids));
           for(int _i0 = 0; _i0 < _len_iids0; _i0++) {
-            iids[_i0].per_vf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
-        iids[_i0].pf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+              iids[_i0].per_vf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+          iids[_i0].pf_cids = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qed_cxt_cdu_iids(p_mngr,iids);
           for(int _aux = 0; _aux < _len_p_mngr0; _aux++) {
           free(p_mngr[_aux].conn_cfg);

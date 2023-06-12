@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ int EVP_PKEY_save_parameters(EVP_PKEY *pkey, int mode)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,16 +97,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int mode = 100;
+        
           int _len_pkey0 = 1;
           struct TYPE_3__ * pkey = (struct TYPE_3__ *) malloc(_len_pkey0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pkey0; _i0++) {
-            pkey[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkey[_i0].save_parameters = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkey[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkey[_i0].save_parameters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = EVP_PKEY_save_parameters(pkey,mode);
+          printf("%d\n", benchRet); 
+          free(pkey);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mode = 255;
+        
+          int _len_pkey0 = 65025;
+          struct TYPE_3__ * pkey = (struct TYPE_3__ *) malloc(_len_pkey0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pkey0; _i0++) {
+              pkey[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkey[_i0].save_parameters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = EVP_PKEY_save_parameters(pkey,mode);
+          printf("%d\n", benchRet); 
+          free(pkey);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mode = 10;
+        
+          int _len_pkey0 = 100;
+          struct TYPE_3__ * pkey = (struct TYPE_3__ *) malloc(_len_pkey0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pkey0; _i0++) {
+              pkey[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkey[_i0].save_parameters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = EVP_PKEY_save_parameters(pkey,mode);
+          printf("%d\n", benchRet); 
+          free(pkey);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pkey0 = 1;
+          struct TYPE_3__ * pkey = (struct TYPE_3__ *) malloc(_len_pkey0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pkey0; _i0++) {
+              pkey[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkey[_i0].save_parameters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = EVP_PKEY_save_parameters(pkey,mode);
           printf("%d\n", benchRet); 
           free(pkey);

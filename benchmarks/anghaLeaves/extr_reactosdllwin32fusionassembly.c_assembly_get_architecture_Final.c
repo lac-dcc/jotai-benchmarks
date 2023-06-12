@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ PEKIND assembly_get_architecture(ASSEMBLY *assembly)
     return peI386; /* x86 assembly */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,25 +99,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_assembly0 = 1;
+          int _len_assembly0 = 65025;
           struct TYPE_9__ * assembly = (struct TYPE_9__ *) malloc(_len_assembly0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_assembly0; _i0++) {
               int _len_assembly__i0__corhdr0 = 1;
           assembly[_i0].corhdr = (struct TYPE_8__ *) malloc(_len_assembly__i0__corhdr0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_assembly__i0__corhdr0; _j0++) {
-            assembly[_i0].corhdr->MajorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
-        assembly[_i0].corhdr->MinorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
-        assembly[_i0].corhdr->Flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              assembly[_i0].corhdr->MajorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          assembly[_i0].corhdr->MinorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          assembly[_i0].corhdr->Flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_assembly__i0__nthdr0 = 1;
           assembly[_i0].nthdr = (struct TYPE_7__ *) malloc(_len_assembly__i0__nthdr0*sizeof(struct TYPE_7__));
           for(int _j0 = 0; _j0 < _len_assembly__i0__nthdr0; _j0++) {
-            assembly[_i0].nthdr->OptionalHeader.Magic = ((-2 * (next_i()%2)) + 1) * next_i();
+              assembly[_i0].nthdr->OptionalHeader.Magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = assembly_get_architecture(assembly);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_assembly0; _aux++) {
@@ -134,7 +135,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_assembly0 = 100;
+          struct TYPE_9__ * assembly = (struct TYPE_9__ *) malloc(_len_assembly0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_assembly0; _i0++) {
+              int _len_assembly__i0__corhdr0 = 1;
+          assembly[_i0].corhdr = (struct TYPE_8__ *) malloc(_len_assembly__i0__corhdr0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_assembly__i0__corhdr0; _j0++) {
+              assembly[_i0].corhdr->MajorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          assembly[_i0].corhdr->MinorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          assembly[_i0].corhdr->Flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_assembly__i0__nthdr0 = 1;
+          assembly[_i0].nthdr = (struct TYPE_7__ *) malloc(_len_assembly__i0__nthdr0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_assembly__i0__nthdr0; _j0++) {
+              assembly[_i0].nthdr->OptionalHeader.Magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = assembly_get_architecture(assembly);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_assembly0; _aux++) {
+          free(assembly[_aux].corhdr);
+          }
+          for(int _aux = 0; _aux < _len_assembly0; _aux++) {
+          free(assembly[_aux].nthdr);
+          }
+          free(assembly);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_assembly0 = 1;
+          struct TYPE_9__ * assembly = (struct TYPE_9__ *) malloc(_len_assembly0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_assembly0; _i0++) {
+              int _len_assembly__i0__corhdr0 = 1;
+          assembly[_i0].corhdr = (struct TYPE_8__ *) malloc(_len_assembly__i0__corhdr0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_assembly__i0__corhdr0; _j0++) {
+              assembly[_i0].corhdr->MajorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          assembly[_i0].corhdr->MinorRuntimeVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+          assembly[_i0].corhdr->Flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_assembly__i0__nthdr0 = 1;
+          assembly[_i0].nthdr = (struct TYPE_7__ *) malloc(_len_assembly__i0__nthdr0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_assembly__i0__nthdr0; _j0++) {
+              assembly[_i0].nthdr->OptionalHeader.Magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = assembly_get_architecture(assembly);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_assembly0; _aux++) {
+          free(assembly[_aux].corhdr);
+          }
+          for(int _aux = 0; _aux < _len_assembly0; _aux++) {
+          free(assembly[_aux].nthdr);
+          }
+          free(assembly);
+        
+        break;
+    }
     default:
         usage();
         break;

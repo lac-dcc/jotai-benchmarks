@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static bool bpf_program__is_function_storage(struct bpf_pr
 	return prog->idx == obj->efile.text_shndx && obj->has_pseudo_calls;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_prog0 = 1;
+          int _len_prog0 = 65025;
           struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
           for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
-            prog[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              prog[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_obj0 = 1;
+        
+          int _len_obj0 = 65025;
           struct bpf_object * obj = (struct bpf_object *) malloc(_len_obj0*sizeof(struct bpf_object));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
-            obj[_i0].has_pseudo_calls = ((-2 * (next_i()%2)) + 1) * next_i();
-        obj[_i0].efile.text_shndx = ((-2 * (next_i()%2)) + 1) * next_i();
+              obj[_i0].has_pseudo_calls = ((-2 * (next_i()%2)) + 1) * next_i();
+          obj[_i0].efile.text_shndx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bpf_program__is_function_storage(prog,obj);
           printf("%d\n", benchRet); 
           free(prog);
@@ -103,7 +104,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_prog0 = 100;
+          struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
+          for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
+              prog[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_obj0 = 100;
+          struct bpf_object * obj = (struct bpf_object *) malloc(_len_obj0*sizeof(struct bpf_object));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              obj[_i0].has_pseudo_calls = ((-2 * (next_i()%2)) + 1) * next_i();
+          obj[_i0].efile.text_shndx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bpf_program__is_function_storage(prog,obj);
+          printf("%d\n", benchRet); 
+          free(prog);
+          free(obj);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_prog0 = 1;
+          struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
+          for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
+              prog[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_obj0 = 1;
+          struct bpf_object * obj = (struct bpf_object *) malloc(_len_obj0*sizeof(struct bpf_object));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              obj[_i0].has_pseudo_calls = ((-2 * (next_i()%2)) + 1) * next_i();
+          obj[_i0].efile.text_shndx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bpf_program__is_function_storage(prog,obj);
+          printf("%d\n", benchRet); 
+          free(prog);
+          free(obj);
+        
+        break;
+    }
     default:
         usage();
         break;

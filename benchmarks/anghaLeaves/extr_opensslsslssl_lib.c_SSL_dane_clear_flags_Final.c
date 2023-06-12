@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ unsigned long SSL_dane_clear_flags(SSL *ssl, unsigned long flags)
     return orig;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long flags = 100;
+        
           int _len_ssl0 = 1;
           struct TYPE_5__ * ssl = (struct TYPE_5__ *) malloc(_len_ssl0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
-            ssl[_i0].dane.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssl[_i0].dane.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          unsigned long benchRet = SSL_dane_clear_flags(ssl,flags);
+          printf("%lu\n", benchRet); 
+          free(ssl);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long flags = 255;
+        
+          int _len_ssl0 = 65025;
+          struct TYPE_5__ * ssl = (struct TYPE_5__ *) malloc(_len_ssl0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+              ssl[_i0].dane.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           unsigned long benchRet = SSL_dane_clear_flags(ssl,flags);
           printf("%lu\n", benchRet); 
           free(ssl);
@@ -102,21 +121,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long flags = 10;
+        
           int _len_ssl0 = 100;
           struct TYPE_5__ * ssl = (struct TYPE_5__ *) malloc(_len_ssl0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
-            ssl[_i0].dane.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ssl[_i0].dane.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned long benchRet = SSL_dane_clear_flags(ssl,flags);
           printf("%lu\n", benchRet); 
           free(ssl);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ssl0 = 1;
+          struct TYPE_5__ * ssl = (struct TYPE_5__ *) malloc(_len_ssl0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ssl0; _i0++) {
+              ssl[_i0].dane.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned long benchRet = SSL_dane_clear_flags(ssl,flags);
+          printf("%lu\n", benchRet); 
+          free(ssl);
+        
+        break;
+    }
     default:
         usage();
         break;

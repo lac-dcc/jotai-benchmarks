@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static int hwa742_setup_plane(int plane, int channel_out,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,52 +84,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int plane = 100;
+        
           int channel_out = 100;
+        
           unsigned long offset = 100;
+        
           int screen_width = 100;
+        
           int pos_x = 100;
+        
           int pos_y = 100;
+        
           int width = 100;
+        
           int height = 100;
+        
           int color_mode = 100;
+        
           int benchRet = hwa742_setup_plane(plane,channel_out,offset,screen_width,pos_x,pos_y,width,height,color_mode);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int plane = 255;
+        
           int channel_out = 255;
+        
           unsigned long offset = 255;
+        
           int screen_width = 255;
+        
           int pos_x = 255;
+        
           int pos_y = 255;
+        
           int width = 255;
+        
           int height = 255;
+        
           int color_mode = 255;
+        
           int benchRet = hwa742_setup_plane(plane,channel_out,offset,screen_width,pos_x,pos_y,width,height,color_mode);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int plane = 10;
+        
           int channel_out = 10;
+        
           unsigned long offset = 10;
+        
           int screen_width = 10;
+        
           int pos_x = 10;
+        
           int pos_y = 10;
+        
           int width = 10;
+        
           int height = 10;
+        
           int color_mode = 10;
+        
+          int benchRet = hwa742_setup_plane(plane,channel_out,offset,screen_width,pos_x,pos_y,width,height,color_mode);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int plane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int channel_out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int screen_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pos_x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pos_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int color_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = hwa742_setup_plane(plane,channel_out,offset,screen_width,pos_x,pos_y,width,height,color_mode);
           printf("%d\n", benchRet); 
         

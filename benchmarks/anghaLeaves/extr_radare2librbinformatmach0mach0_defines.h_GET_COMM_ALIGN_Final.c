@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline uint8_t GET_COMM_ALIGN (uint16_t n_desc) {
 	return (n_desc >> 8u) & 0x0fu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int n_desc = 100;
+        
           unsigned int benchRet = GET_COMM_ALIGN(n_desc);
           printf("%u\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int n_desc = 255;
+        
           unsigned int benchRet = GET_COMM_ALIGN(n_desc);
           printf("%u\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int n_desc = 10;
+        
           unsigned int benchRet = GET_COMM_ALIGN(n_desc);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int n_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = GET_COMM_ALIGN(n_desc);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

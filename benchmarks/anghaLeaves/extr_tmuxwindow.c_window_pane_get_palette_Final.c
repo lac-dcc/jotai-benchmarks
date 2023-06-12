@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ window_pane_get_palette(struct window_pane *wp, int c)
 	return (new);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           int _len_wp0 = 1;
           struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
           for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
@@ -106,7 +103,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_wp__i0__palette0; _j0++) {
             wp[_i0].palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = window_pane_get_palette(wp,c);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wp0; _aux++) {
@@ -116,7 +115,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int c = 255;
+        
+          int _len_wp0 = 65025;
+          struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
+              int _len_wp__i0__palette0 = 1;
+          wp[_i0].palette = (int *) malloc(_len_wp__i0__palette0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_wp__i0__palette0; _j0++) {
+            wp[_i0].palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = window_pane_get_palette(wp,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wp0; _aux++) {
+          free(wp[_aux].palette);
+          }
+          free(wp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int c = 10;
+        
+          int _len_wp0 = 100;
+          struct window_pane * wp = (struct window_pane *) malloc(_len_wp0*sizeof(struct window_pane));
+          for(int _i0 = 0; _i0 < _len_wp0; _i0++) {
+              int _len_wp__i0__palette0 = 1;
+          wp[_i0].palette = (int *) malloc(_len_wp__i0__palette0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_wp__i0__palette0; _j0++) {
+            wp[_i0].palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = window_pane_get_palette(wp,c);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wp0; _aux++) {
+          free(wp[_aux].palette);
+          }
+          free(wp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void rcu_sync_enter_start(struct rcu_sync *rsp)
 	rsp->gp_state = GP_PASSED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,21 +76,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rsp0 = 1;
+          int _len_rsp0 = 65025;
           struct rcu_sync * rsp = (struct rcu_sync *) malloc(_len_rsp0*sizeof(struct rcu_sync));
           for(int _i0 = 0; _i0 < _len_rsp0; _i0++) {
-            rsp[_i0].gp_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        rsp[_i0].gp_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsp[_i0].gp_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          rsp[_i0].gp_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rcu_sync_enter_start(rsp);
           free(rsp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rsp0 = 100;
+          struct rcu_sync * rsp = (struct rcu_sync *) malloc(_len_rsp0*sizeof(struct rcu_sync));
+          for(int _i0 = 0; _i0 < _len_rsp0; _i0++) {
+              rsp[_i0].gp_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          rsp[_i0].gp_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rcu_sync_enter_start(rsp);
+          free(rsp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rsp0 = 1;
+          struct rcu_sync * rsp = (struct rcu_sync *) malloc(_len_rsp0*sizeof(struct rcu_sync));
+          for(int _i0 = 0; _i0 < _len_rsp0; _i0++) {
+              rsp[_i0].gp_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          rsp[_i0].gp_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rcu_sync_enter_start(rsp);
+          free(rsp);
+        
+        break;
+    }
     default:
         usage();
         break;

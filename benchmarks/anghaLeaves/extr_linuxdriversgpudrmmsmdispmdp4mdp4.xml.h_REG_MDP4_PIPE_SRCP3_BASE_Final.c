@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -58,12 +58,6 @@ typedef  enum mdp4_pipe { ____Placeholder_mdp4_pipe } mdp4_pipe ;
 
 __attribute__((used)) static inline uint32_t REG_MDP4_PIPE_SRCP3_BASE(enum mdp4_pipe i0) { return 0x0002001c + 0x10000*i0; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -76,16 +70,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum mdp4_pipe i0 = 0;
+        
           int benchRet = REG_MDP4_PIPE_SRCP3_BASE(i0);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned long adjust_stack_addr(unsigned long addr,
 	return addr + (n * sizeof(long));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long addr = 100;
+        
           unsigned int n = 100;
+        
           unsigned long benchRet = adjust_stack_addr(addr,n);
           printf("%lu\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long addr = 255;
+        
           unsigned int n = 255;
+        
           unsigned long benchRet = adjust_stack_addr(addr,n);
           printf("%lu\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long addr = 10;
+        
           unsigned int n = 10;
+        
           unsigned long benchRet = adjust_stack_addr(addr,n);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = adjust_stack_addr(addr,n);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

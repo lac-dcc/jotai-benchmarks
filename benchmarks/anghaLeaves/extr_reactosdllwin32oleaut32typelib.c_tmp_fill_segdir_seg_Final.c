@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void tmp_fill_segdir_seg(MSFT_pSeg *segdir, WMSFT_S
     segdir->res0c = 0xf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,27 +91,169 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_segdir0 = 65025;
+          struct TYPE_6__ * segdir = (struct TYPE_6__ *) malloc(_len_segdir0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_segdir0; _i0++) {
+              segdir[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].res08 = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].res0c = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_contents0 = 65025;
+          struct TYPE_5__ * contents = (struct TYPE_5__ *) malloc(_len_contents0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_contents0; _i0++) {
+              contents[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_running_offset0 = 65025;
+          int * running_offset = (int *) malloc(_len_running_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_running_offset0; _i0++) {
+            running_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          tmp_fill_segdir_seg(segdir,contents,running_offset);
+          free(segdir);
+          free(contents);
+          free(running_offset);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_segdir0 = 100;
+          struct TYPE_6__ * segdir = (struct TYPE_6__ *) malloc(_len_segdir0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_segdir0; _i0++) {
+              segdir[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].res08 = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].res0c = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_contents0 = 100;
+          struct TYPE_5__ * contents = (struct TYPE_5__ *) malloc(_len_contents0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_contents0; _i0++) {
+              contents[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_running_offset0 = 100;
+          int * running_offset = (int *) malloc(_len_running_offset0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_running_offset0; _i0++) {
+            running_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          tmp_fill_segdir_seg(segdir,contents,running_offset);
+          free(segdir);
+          free(contents);
+          free(running_offset);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_segdir0 = 1;
           struct TYPE_6__ * segdir = (struct TYPE_6__ *) malloc(_len_segdir0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_segdir0; _i0++) {
-            segdir[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        segdir[_i0].res08 = ((-2 * (next_i()%2)) + 1) * next_i();
-        segdir[_i0].res0c = ((-2 * (next_i()%2)) + 1) * next_i();
-        segdir[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              segdir[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].res08 = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].res0c = ((-2 * (next_i()%2)) + 1) * next_i();
+          segdir[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_contents0 = 1;
           struct TYPE_5__ * contents = (struct TYPE_5__ *) malloc(_len_contents0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_contents0; _i0++) {
-            contents[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              contents[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_running_offset0 = 1;
           int * running_offset = (int *) malloc(_len_running_offset0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_running_offset0; _i0++) {
             running_offset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           tmp_fill_segdir_seg(segdir,contents,running_offset);
           free(segdir);
           free(contents);

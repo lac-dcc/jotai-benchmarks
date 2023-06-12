@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ __attribute__((used)) static bool check_condition(struct adapter *adapt, const u
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,21 +101,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           const int condition = 100;
+        
           int _len_adapt0 = 1;
           struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
               int _len_adapt__i0__HalData0 = 1;
           adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
-            adapt[_i0].HalData->odmpriv.BoardType = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapt[_i0].HalData->odmpriv.SupportPlatform = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapt[_i0].HalData->odmpriv.SupportInterface = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapt[_i0].HalData->odmpriv.BoardType = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportPlatform = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportInterface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          int benchRet = check_condition(adapt,condition);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapt0; _aux++) {
+          free(adapt[_aux].HalData);
+          }
+          free(adapt);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          const int condition = 255;
+        
+          int _len_adapt0 = 65025;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              int _len_adapt__i0__HalData0 = 1;
+          adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
+              adapt[_i0].HalData->odmpriv.BoardType = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportPlatform = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportInterface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = check_condition(adapt,condition);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapt0; _aux++) {
+          free(adapt[_aux].HalData);
+          }
+          free(adapt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          const int condition = 10;
+        
+          int _len_adapt0 = 100;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              int _len_adapt__i0__HalData0 = 1;
+          adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
+              adapt[_i0].HalData->odmpriv.BoardType = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportPlatform = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportInterface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = check_condition(adapt,condition);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapt0; _aux++) {
+          free(adapt[_aux].HalData);
+          }
+          free(adapt);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          const int condition = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapt0 = 1;
+          struct adapter * adapt = (struct adapter *) malloc(_len_adapt0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adapt0; _i0++) {
+              int _len_adapt__i0__HalData0 = 1;
+          adapt[_i0].HalData = (struct TYPE_2__ *) malloc(_len_adapt__i0__HalData0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_adapt__i0__HalData0; _j0++) {
+              adapt[_i0].HalData->odmpriv.BoardType = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportPlatform = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapt[_i0].HalData->odmpriv.SupportInterface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           int benchRet = check_condition(adapt,condition);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapt0; _aux++) {

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -66,12 +66,6 @@ __attribute__((used)) static fInt fSubtract (fInt X, fInt Y)
 	return Difference;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +78,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_5__ X;
-        X.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          X.full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_5__ Y;
-        Y.full = ((-2 * (next_i()%2)) + 1) * next_i();
+          Y.full = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_5__ benchRet = fSubtract(X,Y);
           printf("%ld\n", benchRet.full);
         
         break;
     }
-
     default:
         usage();
         break;

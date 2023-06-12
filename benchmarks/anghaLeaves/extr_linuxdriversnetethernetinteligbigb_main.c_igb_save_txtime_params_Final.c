@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static int igb_save_txtime_params(struct igb_adapter *adap
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +86,227 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int queue = 100;
+        
           int enable = 100;
+        
           int _len_adapter0 = 1;
           struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adapter__i0__tx_ring0 = 1;
           adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
           for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
             int _len_adapter__i0__tx_ring1 = 1;
             adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
             for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
-              adapter[_i0].tx_ring[_j0]->launchtime_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+                adapter[_i0].tx_ring[_j0]->launchtime_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int benchRet = igb_save_txtime_params(adapter,queue,enable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int queue = 255;
+        
+          int enable = 255;
+        
+          int _len_adapter0 = 65025;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->launchtime_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = igb_save_txtime_params(adapter,queue,enable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int queue = 10;
+        
+          int enable = 10;
+        
+          int _len_adapter0 = 100;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->launchtime_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = igb_save_txtime_params(adapter,queue,enable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(*(adapter[_aux].tx_ring));
+        free(adapter[_aux].tx_ring);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].num_tx_queues = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__tx_ring0 = 1;
+          adapter[_i0].tx_ring = (struct igb_ring **) malloc(_len_adapter__i0__tx_ring0*sizeof(struct igb_ring *));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__tx_ring0; _j0++) {
+            int _len_adapter__i0__tx_ring1 = 1;
+            adapter[_i0].tx_ring[_j0] = (struct igb_ring *) malloc(_len_adapter__i0__tx_ring1*sizeof(struct igb_ring));
+            for(int _j1 = 0; _j1 < _len_adapter__i0__tx_ring1; _j1++) {
+                adapter[_i0].tx_ring[_j0]->launchtime_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int benchRet = igb_save_txtime_params(adapter,queue,enable);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {

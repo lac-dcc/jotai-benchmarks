@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void tl_set_expand_utf8 (int i) {
   expand_utf8 = i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           tl_set_expand_utf8(i);
         
         break;
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i = 255;
+        
           tl_set_expand_utf8(i);
         
         break;
@@ -99,11 +96,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i = 10;
+        
           tl_set_expand_utf8(i);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tl_set_expand_utf8(i);
+        
+        break;
+    }
     default:
         usage();
         break;

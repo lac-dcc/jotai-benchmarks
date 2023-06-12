@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int step_time_from_reg(u8 reg, u8 mode)
 	return mode ? 400 * reg : 100 * reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int reg = 100;
+        
           int mode = 100;
+        
           unsigned int benchRet = step_time_from_reg(reg,mode);
           printf("%u\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int reg = 255;
+        
           int mode = 255;
+        
           unsigned int benchRet = step_time_from_reg(reg,mode);
           printf("%u\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int reg = 10;
+        
           int mode = 10;
+        
           unsigned int benchRet = step_time_from_reg(reg,mode);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = step_time_from_reg(reg,mode);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

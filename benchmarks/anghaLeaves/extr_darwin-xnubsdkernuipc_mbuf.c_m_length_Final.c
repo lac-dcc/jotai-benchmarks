@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -73,7 +74,6 @@ m_length(struct mbuf *m)
 	return (pktlen);
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct mbuf *_allocate_m(int length, struct mbuf *aux_m[]) {
@@ -83,7 +83,8 @@ struct mbuf *_allocate_m(int length, struct mbuf *aux_m[]) {
 walker->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_len = ((-2 * (next_i()%2)) + 1) * next_i();
   walker->m_next = NULL;
-walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+
 
   struct mbuf *head = walker;
   for(int i = 1; i < length; i++) {
@@ -93,7 +94,8 @@ walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
 walker->m_len = ((-2 * (next_i()%2)) + 1) * next_i();
     walker->m_next = NULL;
-walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+  walker->m_pkthdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+
   }
 
   return head;
@@ -104,7 +106,6 @@ void _delete_m(struct mbuf *aux_m[], int aux_m_size) {
     if(aux_m[i])
       free(aux_m[i]);
 }
-
 
 
 
@@ -120,11 +121,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 110018
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 40011
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 40010
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 40010
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 40010
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 40008
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 50010
+          // ------------------------------- 
+
+          struct mbuf * aux_m[10000];
+          struct mbuf * m = _allocate_m(10000, aux_m);
+        
+          unsigned int benchRet = m_length(m);
+          printf("%u\n", benchRet); 
+          _delete_m(aux_m, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           struct mbuf * aux_m[1];
           struct mbuf * m = _allocate_m(1, aux_m);
+        
           unsigned int benchRet = m_length(m);
           printf("%u\n", benchRet); 
           _delete_m(aux_m, 1);

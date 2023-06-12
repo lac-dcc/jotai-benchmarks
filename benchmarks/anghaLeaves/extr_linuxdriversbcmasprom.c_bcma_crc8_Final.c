@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +98,6 @@ __attribute__((used)) static inline u8 bcma_crc8(u8 crc, u8 data)
 	return t[crc ^ data];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,7 +114,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int crc = 100;
+        
           int data = 100;
+        
           int benchRet = bcma_crc8(crc,data);
           printf("%d\n", benchRet); 
         
@@ -129,7 +126,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int crc = 255;
+        
           int data = 255;
+        
           int benchRet = bcma_crc8(crc,data);
           printf("%d\n", benchRet); 
         
@@ -139,13 +138,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int crc = 10;
+        
           int data = 10;
+        
           int benchRet = bcma_crc8(crc,data);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int crc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = bcma_crc8(crc,data);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

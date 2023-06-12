@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ __attribute__((used)) static struct net_dim_cq_moder mlx5e_get_def_rx_moderation
 	return moder;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cq_period_mode = 100;
+        
           struct net_dim_cq_moder benchRet = mlx5e_get_def_rx_moderation(cq_period_mode);
           printf("%d\n", benchRet.usec);
           printf("%d\n", benchRet.pkts);
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long cq_period_mode = 255;
+        
           struct net_dim_cq_moder benchRet = mlx5e_get_def_rx_moderation(cq_period_mode);
           printf("%d\n", benchRet.usec);
           printf("%d\n", benchRet.pkts);
@@ -119,6 +116,7 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long cq_period_mode = 10;
+        
           struct net_dim_cq_moder benchRet = mlx5e_get_def_rx_moderation(cq_period_mode);
           printf("%d\n", benchRet.usec);
           printf("%d\n", benchRet.pkts);
@@ -126,7 +124,18 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long cq_period_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct net_dim_cq_moder benchRet = mlx5e_get_def_rx_moderation(cq_period_mode);
+          printf("%d\n", benchRet.usec);
+          printf("%d\n", benchRet.pkts);
+          printf("%ld\n", benchRet.cq_period_mode);
+        
+        break;
+    }
     default:
         usage();
         break;

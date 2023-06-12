@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline util_uint128_t util_lshift64_internal_64(uin
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a = 100;
+        
           struct TYPE_3__ benchRet = util_lshift64_internal_64(a);
           printf("%d\n", benchRet.high);
           printf("%ld\n", benchRet.low);
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int a = 255;
+        
           struct TYPE_3__ benchRet = util_lshift64_internal_64(a);
           printf("%d\n", benchRet.high);
           printf("%ld\n", benchRet.low);
@@ -110,13 +107,24 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int a = 10;
+        
           struct TYPE_3__ benchRet = util_lshift64_internal_64(a);
           printf("%d\n", benchRet.high);
           printf("%ld\n", benchRet.low);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ benchRet = util_lshift64_internal_64(a);
+          printf("%d\n", benchRet.high);
+          printf("%ld\n", benchRet.low);
+        
+        break;
+    }
     default:
         usage();
         break;

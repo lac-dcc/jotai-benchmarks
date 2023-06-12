@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static inline u32 umem_nb_avail(struct xdp_umem_uqueue *q,
 	return (entries > nb) ? nb : entries;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,21 +83,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long nb = 100;
+        
           int _len_q0 = 1;
           struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_q__i0__producer0 = 1;
           q[_i0].producer = (long *) malloc(_len_q__i0__producer0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_q__i0__producer0; _j0++) {
             q[_i0].producer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          long benchRet = umem_nb_avail(q,nb);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].producer);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long nb = 255;
+        
+          int _len_q0 = 65025;
+          struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_q__i0__producer0 = 1;
+          q[_i0].producer = (long *) malloc(_len_q__i0__producer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_q__i0__producer0; _j0++) {
+            q[_i0].producer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = umem_nb_avail(q,nb);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].producer);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long nb = 10;
+        
+          int _len_q0 = 100;
+          struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_q__i0__producer0 = 1;
+          q[_i0].producer = (long *) malloc(_len_q__i0__producer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_q__i0__producer0; _j0++) {
+            q[_i0].producer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = umem_nb_avail(q,nb);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_q0; _aux++) {
+          free(q[_aux].producer);
+          }
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long nb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct xdp_umem_uqueue * q = (struct xdp_umem_uqueue *) malloc(_len_q0*sizeof(struct xdp_umem_uqueue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].cached_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].cached_cons = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_q__i0__producer0 = 1;
+          q[_i0].producer = (long *) malloc(_len_q__i0__producer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_q__i0__producer0; _j0++) {
+            q[_i0].producer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           long benchRet = umem_nb_avail(q,nb);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_q0; _aux++) {

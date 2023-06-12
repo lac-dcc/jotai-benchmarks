@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ int tl_scheme_long_value (struct tl_scheme_object *O, long long *value) {
   return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,21 +87,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_O0 = 1;
+          int _len_O0 = 65025;
           struct tl_scheme_object * O = (struct tl_scheme_object *) malloc(_len_O0*sizeof(struct tl_scheme_object));
           for(int _i0 = 0; _i0 < _len_O0; _i0++) {
-            O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        O[_i0].u.i = ((-2 * (next_i()%2)) + 1) * next_i();
-        O[_i0].u.l = ((-2 * (next_i()%2)) + 1) * next_i();
+              O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.i = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_value0 = 1;
+        
+          int _len_value0 = 65025;
           long long * value = (long long *) malloc(_len_value0*sizeof(long long));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = tl_scheme_long_value(O,value);
           printf("%d\n", benchRet); 
           free(O);
@@ -113,7 +113,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_O0 = 100;
+          struct tl_scheme_object * O = (struct tl_scheme_object *) malloc(_len_O0*sizeof(struct tl_scheme_object));
+          for(int _i0 = 0; _i0 < _len_O0; _i0++) {
+              O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.i = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_value0 = 100;
+          long long * value = (long long *) malloc(_len_value0*sizeof(long long));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tl_scheme_long_value(O,value);
+          printf("%d\n", benchRet); 
+          free(O);
+          free(value);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_O0 = 1;
+          struct tl_scheme_object * O = (struct tl_scheme_object *) malloc(_len_O0*sizeof(struct tl_scheme_object));
+          for(int _i0 = 0; _i0 < _len_O0; _i0++) {
+              O[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.i = ((-2 * (next_i()%2)) + 1) * next_i();
+          O[_i0].u.l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_value0 = 1;
+          long long * value = (long long *) malloc(_len_value0*sizeof(long long));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = tl_scheme_long_value(O,value);
+          printf("%d\n", benchRet); 
+          free(O);
+          free(value);
+        
+        break;
+    }
     default:
         usage();
         break;

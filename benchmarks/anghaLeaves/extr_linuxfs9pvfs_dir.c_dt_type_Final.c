@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static inline int dt_type(struct p9_wstat *mistat)
 	return rettype;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,14 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mistat0 = 1;
+          int _len_mistat0 = 65025;
           struct p9_wstat * mistat = (struct p9_wstat *) malloc(_len_mistat0*sizeof(struct p9_wstat));
           for(int _i0 = 0; _i0 < _len_mistat0; _i0++) {
-            mistat[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              mistat[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dt_type(mistat);
           printf("%d\n", benchRet); 
           free(mistat);
@@ -112,15 +109,32 @@ int main(int argc, char *argv[]) {
           int _len_mistat0 = 100;
           struct p9_wstat * mistat = (struct p9_wstat *) malloc(_len_mistat0*sizeof(struct p9_wstat));
           for(int _i0 = 0; _i0 < _len_mistat0; _i0++) {
-            mistat[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              mistat[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dt_type(mistat);
           printf("%d\n", benchRet); 
           free(mistat);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mistat0 = 1;
+          struct p9_wstat * mistat = (struct p9_wstat *) malloc(_len_mistat0*sizeof(struct p9_wstat));
+          for(int _i0 = 0; _i0 < _len_mistat0; _i0++) {
+              mistat[_i0].mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dt_type(mistat);
+          printf("%d\n", benchRet); 
+          free(mistat);
+        
+        break;
+    }
     default:
         usage();
         break;

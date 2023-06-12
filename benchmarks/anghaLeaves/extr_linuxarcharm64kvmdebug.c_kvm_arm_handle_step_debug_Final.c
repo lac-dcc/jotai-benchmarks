@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ bool kvm_arm_handle_step_debug(struct kvm_vcpu *vcpu, struct kvm_run *run)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +88,26 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vcpu0 = 1;
+          int _len_vcpu0 = 65025;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].guest_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].guest_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_run0 = 1;
+        
+          int _len_run0 = 65025;
           struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
           for(int _i0 = 0; _i0 < _len_run0; _i0++) {
-            run[_i0].debug.arch.hsr = ((-2 * (next_i()%2)) + 1) * next_i();
-        run[_i0].exit_reason = ((-2 * (next_i()%2)) + 1) * next_i();
+              run[_i0].debug.arch.hsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          run[_i0].exit_reason = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kvm_arm_handle_step_debug(vcpu,run);
           printf("%d\n", benchRet); 
           free(vcpu);
@@ -113,7 +115,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].guest_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_run0 = 100;
+          struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
+          for(int _i0 = 0; _i0 < _len_run0; _i0++) {
+              run[_i0].debug.arch.hsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          run[_i0].exit_reason = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kvm_arm_handle_step_debug(vcpu,run);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+          free(run);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].guest_debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_run0 = 1;
+          struct kvm_run * run = (struct kvm_run *) malloc(_len_run0*sizeof(struct kvm_run));
+          for(int _i0 = 0; _i0 < _len_run0; _i0++) {
+              run[_i0].debug.arch.hsr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          run[_i0].exit_reason = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kvm_arm_handle_step_debug(vcpu,run);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+          free(run);
+        
+        break;
+    }
     default:
         usage();
         break;

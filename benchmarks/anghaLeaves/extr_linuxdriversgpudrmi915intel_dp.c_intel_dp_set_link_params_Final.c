@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ void intel_dp_set_link_params(struct intel_dp *intel_dp,
 	intel_dp->link_mst = link_mst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,22 +85,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int link_rate = 100;
+        
           int lane_count = 100;
+        
           int link_mst = 100;
+        
           int _len_intel_dp0 = 1;
           struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
           for(int _i0 = 0; _i0 < _len_intel_dp0; _i0++) {
-            intel_dp[_i0].link_trained = ((-2 * (next_i()%2)) + 1) * next_i();
-        intel_dp[_i0].link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        intel_dp[_i0].link_mst = ((-2 * (next_i()%2)) + 1) * next_i();
-        intel_dp[_i0].lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              intel_dp[_i0].link_trained = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_mst = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           intel_dp_set_link_params(intel_dp,link_rate,lane_count,link_mst);
           free(intel_dp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int link_rate = 255;
+        
+          int lane_count = 255;
+        
+          int link_mst = 255;
+        
+          int _len_intel_dp0 = 65025;
+          struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
+          for(int _i0 = 0; _i0 < _len_intel_dp0; _i0++) {
+              intel_dp[_i0].link_trained = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_mst = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_dp_set_link_params(intel_dp,link_rate,lane_count,link_mst);
+          free(intel_dp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int link_rate = 10;
+        
+          int lane_count = 10;
+        
+          int link_mst = 10;
+        
+          int _len_intel_dp0 = 100;
+          struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
+          for(int _i0 = 0; _i0 < _len_intel_dp0; _i0++) {
+              intel_dp[_i0].link_trained = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_mst = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_dp_set_link_params(intel_dp,link_rate,lane_count,link_mst);
+          free(intel_dp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int link_mst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_intel_dp0 = 1;
+          struct intel_dp * intel_dp = (struct intel_dp *) malloc(_len_intel_dp0*sizeof(struct intel_dp));
+          for(int _i0 = 0; _i0 < _len_intel_dp0; _i0++) {
+              intel_dp[_i0].link_trained = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].link_mst = ((-2 * (next_i()%2)) + 1) * next_i();
+          intel_dp[_i0].lane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_dp_set_link_params(intel_dp,link_rate,lane_count,link_mst);
+          free(intel_dp);
+        
+        break;
+    }
     default:
         usage();
         break;

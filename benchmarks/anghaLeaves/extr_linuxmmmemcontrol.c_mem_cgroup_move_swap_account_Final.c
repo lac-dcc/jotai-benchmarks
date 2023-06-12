@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline int mem_cgroup_move_swap_account(swp_entry_t
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int entry = 100;
+        
           int _len_from0 = 1;
           struct mem_cgroup * from = (struct mem_cgroup *) malloc(_len_from0*sizeof(struct mem_cgroup));
           for(int _i0 = 0; _i0 < _len_from0; _i0++) {
-            from[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              from[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_to0 = 1;
           struct mem_cgroup * to = (struct mem_cgroup *) malloc(_len_to0*sizeof(struct mem_cgroup));
           for(int _i0 = 0; _i0 < _len_to0; _i0++) {
-            to[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              to[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mem_cgroup_move_swap_account(entry,from,to);
           printf("%d\n", benchRet); 
           free(from);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int entry = 255;
+        
+          int _len_from0 = 65025;
+          struct mem_cgroup * from = (struct mem_cgroup *) malloc(_len_from0*sizeof(struct mem_cgroup));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_to0 = 65025;
+          struct mem_cgroup * to = (struct mem_cgroup *) malloc(_len_to0*sizeof(struct mem_cgroup));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mem_cgroup_move_swap_account(entry,from,to);
+          printf("%d\n", benchRet); 
+          free(from);
+          free(to);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int entry = 10;
+        
+          int _len_from0 = 100;
+          struct mem_cgroup * from = (struct mem_cgroup *) malloc(_len_from0*sizeof(struct mem_cgroup));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_to0 = 100;
+          struct mem_cgroup * to = (struct mem_cgroup *) malloc(_len_to0*sizeof(struct mem_cgroup));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mem_cgroup_move_swap_account(entry,from,to);
+          printf("%d\n", benchRet); 
+          free(from);
+          free(to);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int entry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_from0 = 1;
+          struct mem_cgroup * from = (struct mem_cgroup *) malloc(_len_from0*sizeof(struct mem_cgroup));
+          for(int _i0 = 0; _i0 < _len_from0; _i0++) {
+              from[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_to0 = 1;
+          struct mem_cgroup * to = (struct mem_cgroup *) malloc(_len_to0*sizeof(struct mem_cgroup));
+          for(int _i0 = 0; _i0 < _len_to0; _i0++) {
+              to[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mem_cgroup_move_swap_account(entry,from,to);
+          printf("%d\n", benchRet); 
+          free(from);
+          free(to);
+        
+        break;
+    }
     default:
         usage();
         break;

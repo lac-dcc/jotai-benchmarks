@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static void ctl2_init_header(
     typelib->typelib_header.nimpinfos = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,40 +99,114 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_typelib0 = 1;
+          int _len_typelib0 = 65025;
           struct TYPE_5__ * typelib = (struct TYPE_5__ *) malloc(_len_typelib0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_typelib0; _i0++) {
-            typelib[_i0].typelib_header.magic1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.magic2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.posguid = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.lcid = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.lcid2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.varflags = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.helpstring = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.NameOffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.helpfile = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.CustomDataOffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.res44 = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.res48 = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.dispatchpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.nimpinfos = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.nametablechars = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.nametablecount = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.helpcontext = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.helpstringcontext = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.nrtypeinfos = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        typelib[_i0].typelib_header.version = ((-2 * (next_i()%2)) + 1) * next_i();
+              typelib[_i0].typelib_header.magic1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.magic2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.posguid = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.lcid = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.lcid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.varflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpstring = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.NameOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpfile = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.CustomDataOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.res44 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.res48 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.dispatchpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nimpinfos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nametablechars = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nametablecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpcontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpstringcontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nrtypeinfos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ctl2_init_header(typelib);
           free(typelib);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_typelib0 = 100;
+          struct TYPE_5__ * typelib = (struct TYPE_5__ *) malloc(_len_typelib0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_typelib0; _i0++) {
+              typelib[_i0].typelib_header.magic1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.magic2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.posguid = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.lcid = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.lcid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.varflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpstring = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.NameOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpfile = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.CustomDataOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.res44 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.res48 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.dispatchpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nimpinfos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nametablechars = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nametablecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpcontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpstringcontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nrtypeinfos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ctl2_init_header(typelib);
+          free(typelib);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_typelib0 = 1;
+          struct TYPE_5__ * typelib = (struct TYPE_5__ *) malloc(_len_typelib0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_typelib0; _i0++) {
+              typelib[_i0].typelib_header.magic1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.magic2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.posguid = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.lcid = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.lcid2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.varflags = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpstring = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.NameOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpfile = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.CustomDataOffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.res44 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.res48 = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.dispatchpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nimpinfos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nametablechars = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nametablecount = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpcontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.helpstringcontext = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.nrtypeinfos = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          typelib[_i0].typelib_header.version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ctl2_init_header(typelib);
+          free(typelib);
+        
+        break;
+    }
     default:
         usage();
         break;

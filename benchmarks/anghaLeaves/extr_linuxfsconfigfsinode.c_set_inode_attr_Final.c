@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static inline void set_inode_attr(struct inode * inode, st
 	inode->i_ctime = iattr->ia_ctime;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,36 +80,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_inode0 = 1;
+          int _len_inode0 = 65025;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].i_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_atime = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_uid = ((-2 * (next_i()%2)) + 1) * next_i();
-        inode[_i0].i_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].i_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_atime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_iattr0 = 1;
+        
+          int _len_iattr0 = 65025;
           struct iattr * iattr = (struct iattr *) malloc(_len_iattr0*sizeof(struct iattr));
           for(int _i0 = 0; _i0 < _len_iattr0; _i0++) {
-            iattr[_i0].ia_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
-        iattr[_i0].ia_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        iattr[_i0].ia_atime = ((-2 * (next_i()%2)) + 1) * next_i();
-        iattr[_i0].ia_gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        iattr[_i0].ia_uid = ((-2 * (next_i()%2)) + 1) * next_i();
-        iattr[_i0].ia_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              iattr[_i0].ia_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_atime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           set_inode_attr(inode,iattr);
           free(inode);
           free(iattr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_atime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_iattr0 = 100;
+          struct iattr * iattr = (struct iattr *) malloc(_len_iattr0*sizeof(struct iattr));
+          for(int _i0 = 0; _i0 < _len_iattr0; _i0++) {
+              iattr[_i0].ia_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_atime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_inode_attr(inode,iattr);
+          free(inode);
+          free(iattr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_inode0 = 1;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].i_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_atime = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          inode[_i0].i_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_iattr0 = 1;
+          struct iattr * iattr = (struct iattr *) malloc(_len_iattr0*sizeof(struct iattr));
+          for(int _i0 = 0; _i0 < _len_iattr0; _i0++) {
+              iattr[_i0].ia_ctime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_mtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_atime = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_uid = ((-2 * (next_i()%2)) + 1) * next_i();
+          iattr[_i0].ia_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_inode_attr(inode,iattr);
+          free(inode);
+          free(iattr);
+        
+        break;
+    }
     default:
         usage();
         break;

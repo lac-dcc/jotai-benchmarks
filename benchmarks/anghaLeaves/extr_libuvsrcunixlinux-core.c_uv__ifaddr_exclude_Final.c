@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int uv__ifaddr_exclude(struct ifaddrs *ent, int exc
   return !exclude_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,20 +89,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int exclude_type = 100;
+        
           int _len_ent0 = 1;
           struct ifaddrs * ent = (struct ifaddrs *) malloc(_len_ent0*sizeof(struct ifaddrs));
           for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
-            ent[_i0].ifa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].ifa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ent__i0__ifa_addr0 = 1;
           ent[_i0].ifa_addr = (struct TYPE_2__ *) malloc(_len_ent__i0__ifa_addr0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ent__i0__ifa_addr0; _j0++) {
-            ent[_i0].ifa_addr->sa_family = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].ifa_addr->sa_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = uv__ifaddr_exclude(ent,exclude_type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].ifa_addr);
+          }
+          free(ent);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int exclude_type = 255;
+        
+          int _len_ent0 = 65025;
+          struct ifaddrs * ent = (struct ifaddrs *) malloc(_len_ent0*sizeof(struct ifaddrs));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].ifa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__ifa_addr0 = 1;
+          ent[_i0].ifa_addr = (struct TYPE_2__ *) malloc(_len_ent__i0__ifa_addr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__ifa_addr0; _j0++) {
+              ent[_i0].ifa_addr->sa_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = uv__ifaddr_exclude(ent,exclude_type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].ifa_addr);
+          }
+          free(ent);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int exclude_type = 10;
+        
+          int _len_ent0 = 100;
+          struct ifaddrs * ent = (struct ifaddrs *) malloc(_len_ent0*sizeof(struct ifaddrs));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].ifa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__ifa_addr0 = 1;
+          ent[_i0].ifa_addr = (struct TYPE_2__ *) malloc(_len_ent__i0__ifa_addr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__ifa_addr0; _j0++) {
+              ent[_i0].ifa_addr->sa_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = uv__ifaddr_exclude(ent,exclude_type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].ifa_addr);
+          }
+          free(ent);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int exclude_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ent0 = 1;
+          struct ifaddrs * ent = (struct ifaddrs *) malloc(_len_ent0*sizeof(struct ifaddrs));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].ifa_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__ifa_addr0 = 1;
+          ent[_i0].ifa_addr = (struct TYPE_2__ *) malloc(_len_ent__i0__ifa_addr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__ifa_addr0; _j0++) {
+              ent[_i0].ifa_addr->sa_family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = uv__ifaddr_exclude(ent,exclude_type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ent0; _aux++) {

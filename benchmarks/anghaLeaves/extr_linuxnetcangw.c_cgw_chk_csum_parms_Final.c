@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static int cgw_chk_csum_parms(s8 fr, s8 to, s8 re)
 		return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fr = 100;
+        
           int to = 100;
+        
           int re = 100;
+        
           int benchRet = cgw_chk_csum_parms(fr,to,re);
           printf("%d\n", benchRet); 
         
@@ -110,8 +108,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fr = 255;
+        
           int to = 255;
+        
           int re = 255;
+        
           int benchRet = cgw_chk_csum_parms(fr,to,re);
           printf("%d\n", benchRet); 
         
@@ -121,14 +122,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fr = 10;
+        
           int to = 10;
+        
           int re = 10;
+        
           int benchRet = cgw_chk_csum_parms(fr,to,re);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int to = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int re = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cgw_chk_csum_parms(fr,to,re);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

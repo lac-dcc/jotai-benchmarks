@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static void nfs_validate_transport_protocol(struct nfs_par
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,27 +86,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mnt0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_mnt0 = 65025;
           struct nfs_parsed_mount_data * mnt = (struct nfs_parsed_mount_data *) malloc(_len_mnt0*sizeof(struct nfs_parsed_mount_data));
           for(int _i0 = 0; _i0 < _len_mnt0; _i0++) {
-            mnt[_i0].nfs_server.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+              mnt[_i0].nfs_server.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nfs_validate_transport_protocol(mnt);
           free(mnt);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_mnt0 = 100;
           struct nfs_parsed_mount_data * mnt = (struct nfs_parsed_mount_data *) malloc(_len_mnt0*sizeof(struct nfs_parsed_mount_data));
           for(int _i0 = 0; _i0 < _len_mnt0; _i0++) {
-            mnt[_i0].nfs_server.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+              mnt[_i0].nfs_server.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          nfs_validate_transport_protocol(mnt);
+          free(mnt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_mnt0 = 1;
+          struct nfs_parsed_mount_data * mnt = (struct nfs_parsed_mount_data *) malloc(_len_mnt0*sizeof(struct nfs_parsed_mount_data));
+          for(int _i0 = 0; _i0 < _len_mnt0; _i0++) {
+              mnt[_i0].nfs_server.protocol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           nfs_validate_transport_protocol(mnt);
           free(mnt);
         

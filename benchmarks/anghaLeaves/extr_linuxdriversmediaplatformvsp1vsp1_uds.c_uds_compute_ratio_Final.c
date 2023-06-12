@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static unsigned int uds_compute_ratio(unsigned int input, 
 	return (input - 1) * 4096 / (output - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int input = 100;
+        
           unsigned int output = 100;
+        
           unsigned int benchRet = uds_compute_ratio(input,output);
           printf("%u\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int input = 255;
+        
           unsigned int output = 255;
+        
           unsigned int benchRet = uds_compute_ratio(input,output);
           printf("%u\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int input = 10;
+        
           unsigned int output = 10;
+        
           unsigned int benchRet = uds_compute_ratio(input,output);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int input = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int output = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = uds_compute_ratio(input,output);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

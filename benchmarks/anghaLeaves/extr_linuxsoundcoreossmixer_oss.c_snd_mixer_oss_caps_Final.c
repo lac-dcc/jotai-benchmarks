@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int snd_mixer_oss_caps(struct snd_mixer_oss_file *f
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fmixer0 = 65025;
+          struct snd_mixer_oss_file * fmixer = (struct snd_mixer_oss_file *) malloc(_len_fmixer0*sizeof(struct snd_mixer_oss_file));
+          for(int _i0 = 0; _i0 < _len_fmixer0; _i0++) {
+              int _len_fmixer__i0__mixer0 = 1;
+          fmixer[_i0].mixer = (struct snd_mixer_oss *) malloc(_len_fmixer__i0__mixer0*sizeof(struct snd_mixer_oss));
+          for(int _j0 = 0; _j0 < _len_fmixer__i0__mixer0; _j0++) {
+              fmixer[_i0].mixer->put_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmixer[_i0].mixer->get_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = snd_mixer_oss_caps(fmixer);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fmixer0; _aux++) {
+          free(fmixer[_aux].mixer);
+          }
+          free(fmixer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_fmixer0 = 100;
+          struct snd_mixer_oss_file * fmixer = (struct snd_mixer_oss_file *) malloc(_len_fmixer0*sizeof(struct snd_mixer_oss_file));
+          for(int _i0 = 0; _i0 < _len_fmixer0; _i0++) {
+              int _len_fmixer__i0__mixer0 = 1;
+          fmixer[_i0].mixer = (struct snd_mixer_oss *) malloc(_len_fmixer__i0__mixer0*sizeof(struct snd_mixer_oss));
+          for(int _j0 = 0; _j0 < _len_fmixer__i0__mixer0; _j0++) {
+              fmixer[_i0].mixer->put_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmixer[_i0].mixer->get_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = snd_mixer_oss_caps(fmixer);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fmixer0; _aux++) {
+          free(fmixer[_aux].mixer);
+          }
+          free(fmixer);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_fmixer0 = 1;
           struct snd_mixer_oss_file * fmixer = (struct snd_mixer_oss_file *) malloc(_len_fmixer0*sizeof(struct snd_mixer_oss_file));
           for(int _i0 = 0; _i0 < _len_fmixer0; _i0++) {
               int _len_fmixer__i0__mixer0 = 1;
           fmixer[_i0].mixer = (struct snd_mixer_oss *) malloc(_len_fmixer__i0__mixer0*sizeof(struct snd_mixer_oss));
           for(int _j0 = 0; _j0 < _len_fmixer__i0__mixer0; _j0++) {
-            fmixer[_i0].mixer->put_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
-        fmixer[_i0].mixer->get_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmixer[_i0].mixer->put_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+          fmixer[_i0].mixer->get_recsrc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = snd_mixer_oss_caps(fmixer);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fmixer0; _aux++) {

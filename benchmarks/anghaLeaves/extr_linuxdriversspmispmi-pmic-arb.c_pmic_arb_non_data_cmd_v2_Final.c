@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ pmic_arb_non_data_cmd_v2(struct spmi_controller *ctrl, u8 opc, u8 sid)
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int opc = 100;
+        
           int sid = 100;
+        
           int _len_ctrl0 = 1;
           struct spmi_controller * ctrl = (struct spmi_controller *) malloc(_len_ctrl0*sizeof(struct spmi_controller));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = pmic_arb_non_data_cmd_v2(ctrl,opc,sid);
+          printf("%d\n", benchRet); 
+          free(ctrl);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int opc = 255;
+        
+          int sid = 255;
+        
+          int _len_ctrl0 = 65025;
+          struct spmi_controller * ctrl = (struct spmi_controller *) malloc(_len_ctrl0*sizeof(struct spmi_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = pmic_arb_non_data_cmd_v2(ctrl,opc,sid);
           printf("%d\n", benchRet); 
           free(ctrl);
@@ -99,22 +119,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int opc = 10;
+        
           int sid = 10;
+        
           int _len_ctrl0 = 100;
           struct spmi_controller * ctrl = (struct spmi_controller *) malloc(_len_ctrl0*sizeof(struct spmi_controller));
           for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
-            ctrl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctrl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pmic_arb_non_data_cmd_v2(ctrl,opc,sid);
           printf("%d\n", benchRet); 
           free(ctrl);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int opc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctrl0 = 1;
+          struct spmi_controller * ctrl = (struct spmi_controller *) malloc(_len_ctrl0*sizeof(struct spmi_controller));
+          for(int _i0 = 0; _i0 < _len_ctrl0; _i0++) {
+              ctrl[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pmic_arb_non_data_cmd_v2(ctrl,opc,sid);
+          printf("%d\n", benchRet); 
+          free(ctrl);
+        
+        break;
+    }
     default:
         usage();
         break;

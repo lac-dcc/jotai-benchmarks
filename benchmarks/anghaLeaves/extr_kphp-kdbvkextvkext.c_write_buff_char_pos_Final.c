@@ -72,12 +72,6 @@ void write_buff_char_pos (char c, int pos) {
   *(result_buff + pos) = c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           char c = 100;
+        
           int pos = 100;
+        
           write_buff_char_pos(c,pos);
         
         break;
@@ -103,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           char c = 255;
+        
           int pos = 255;
+        
           write_buff_char_pos(c,pos);
         
         break;
@@ -112,12 +110,13 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           char c = 10;
+        
           int pos = 10;
+        
           write_buff_char_pos(c,pos);
         
         break;
     }
-
     default:
         usage();
         break;

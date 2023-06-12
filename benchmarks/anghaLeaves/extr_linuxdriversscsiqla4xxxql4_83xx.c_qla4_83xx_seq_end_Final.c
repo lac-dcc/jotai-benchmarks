@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void qla4_83xx_seq_end(struct scsi_qla_host *ha,
 	ha->reset_tmplt.seq_end = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ha0 = 65025;
+          struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].reset_tmplt.seq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_hdr0 = 65025;
+          struct qla4_83xx_reset_entry_hdr * p_hdr = (struct qla4_83xx_reset_entry_hdr *) malloc(_len_p_hdr0*sizeof(struct qla4_83xx_reset_entry_hdr));
+          for(int _i0 = 0; _i0 < _len_p_hdr0; _i0++) {
+              p_hdr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qla4_83xx_seq_end(ha,p_hdr);
+          free(ha);
+          free(p_hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ha0 = 100;
+          struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
+          for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
+              ha[_i0].reset_tmplt.seq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_p_hdr0 = 100;
+          struct qla4_83xx_reset_entry_hdr * p_hdr = (struct qla4_83xx_reset_entry_hdr *) malloc(_len_p_hdr0*sizeof(struct qla4_83xx_reset_entry_hdr));
+          for(int _i0 = 0; _i0 < _len_p_hdr0; _i0++) {
+              p_hdr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qla4_83xx_seq_end(ha,p_hdr);
+          free(ha);
+          free(p_hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_ha0 = 1;
           struct scsi_qla_host * ha = (struct scsi_qla_host *) malloc(_len_ha0*sizeof(struct scsi_qla_host));
           for(int _i0 = 0; _i0 < _len_ha0; _i0++) {
-            ha[_i0].reset_tmplt.seq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              ha[_i0].reset_tmplt.seq_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_p_hdr0 = 1;
           struct qla4_83xx_reset_entry_hdr * p_hdr = (struct qla4_83xx_reset_entry_hdr *) malloc(_len_p_hdr0*sizeof(struct qla4_83xx_reset_entry_hdr));
           for(int _i0 = 0; _i0 < _len_p_hdr0; _i0++) {
-            p_hdr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hdr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qla4_83xx_seq_end(ha,p_hdr);
           free(ha);
           free(p_hdr);

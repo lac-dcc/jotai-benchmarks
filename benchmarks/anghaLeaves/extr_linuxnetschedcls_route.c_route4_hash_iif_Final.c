@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int route4_hash_iif(int iif)
 	return 16 + ((iif >> 16) & 0xF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int iif = 100;
+        
           int benchRet = route4_hash_iif(iif);
           printf("%d\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int iif = 255;
+        
           int benchRet = route4_hash_iif(iif);
           printf("%d\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int iif = 10;
+        
           int benchRet = route4_hash_iif(iif);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int iif = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = route4_hash_iif(iif);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

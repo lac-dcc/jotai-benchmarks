@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline struct ath6kl_sdio *ath6kl_sdio_priv(struct 
 	return ar->hif_priv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ar0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ar0 = 65025;
           struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
               int _len_ar__i0__hif_priv0 = 1;
           ar[_i0].hif_priv = (struct ath6kl_sdio *) malloc(_len_ar__i0__hif_priv0*sizeof(struct ath6kl_sdio));
           for(int _j0 = 0; _j0 < _len_ar__i0__hif_priv0; _j0++) {
-            ar[_i0].hif_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].hif_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct ath6kl_sdio * benchRet = ath6kl_sdio_priv(ar);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ar0; _aux++) {
@@ -101,18 +123,141 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ar0 = 100;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              int _len_ar__i0__hif_priv0 = 1;
+          ar[_i0].hif_priv = (struct ath6kl_sdio *) malloc(_len_ar__i0__hif_priv0*sizeof(struct ath6kl_sdio));
+          for(int _j0 = 0; _j0 < _len_ar__i0__hif_priv0; _j0++) {
+              ar[_i0].hif_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct ath6kl_sdio * benchRet = ath6kl_sdio_priv(ar);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ar0; _aux++) {
+          free(ar[_aux].hif_priv);
+          }
+          free(ar);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_ar0 = 1;
           struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
           for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
               int _len_ar__i0__hif_priv0 = 1;
           ar[_i0].hif_priv = (struct ath6kl_sdio *) malloc(_len_ar__i0__hif_priv0*sizeof(struct ath6kl_sdio));
           for(int _j0 = 0; _j0 < _len_ar__i0__hif_priv0; _j0++) {
-            ar[_i0].hif_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ar[_i0].hif_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct ath6kl_sdio * benchRet = ath6kl_sdio_priv(ar);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_ar0; _aux++) {
+          free(ar[_aux].hif_priv);
+          }
+          free(ar);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ar0 = 1;
+          struct ath6kl * ar = (struct ath6kl *) malloc(_len_ar0*sizeof(struct ath6kl));
+          for(int _i0 = 0; _i0 < _len_ar0; _i0++) {
+              int _len_ar__i0__hif_priv0 = 1;
+          ar[_i0].hif_priv = (struct ath6kl_sdio *) malloc(_len_ar__i0__hif_priv0*sizeof(struct ath6kl_sdio));
+          for(int _j0 = 0; _j0 < _len_ar__i0__hif_priv0; _j0++) {
+              ar[_i0].hif_priv->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct ath6kl_sdio * benchRet = ath6kl_sdio_priv(ar);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_ar0; _aux++) {

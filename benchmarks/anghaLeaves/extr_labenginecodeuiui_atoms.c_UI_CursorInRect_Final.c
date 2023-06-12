@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ qboolean UI_CursorInRect (int x, int y, int width, int height)
 	return qtrue;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,9 +92,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int y = 100;
+        
           int width = 100;
+        
           int height = 100;
+        
           int benchRet = UI_CursorInRect(x,y,width,height);
           printf("%d\n", benchRet); 
         
@@ -109,9 +108,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int y = 255;
+        
           int width = 255;
+        
           int height = 255;
+        
           int benchRet = UI_CursorInRect(x,y,width,height);
           printf("%d\n", benchRet); 
         
@@ -121,15 +124,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int y = 10;
+        
           int width = 10;
+        
           int height = 10;
+        
           int benchRet = UI_CursorInRect(x,y,width,height);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = UI_CursorInRect(x,y,width,height);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

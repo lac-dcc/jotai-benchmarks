@@ -67,12 +67,6 @@ __attribute__((used)) static u32 mul_by_x2(u32 w)
 	return (x << 2) ^ (y >> 7) * 0x36 ^ (z >> 6) * 0x1b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int w = 100;
+        
           int benchRet = mul_by_x2(w);
           printf("%d\n", benchRet); 
         
@@ -98,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int w = 255;
+        
           int benchRet = mul_by_x2(w);
           printf("%d\n", benchRet); 
         
@@ -107,12 +103,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int w = 10;
+        
           int benchRet = mul_by_x2(w);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

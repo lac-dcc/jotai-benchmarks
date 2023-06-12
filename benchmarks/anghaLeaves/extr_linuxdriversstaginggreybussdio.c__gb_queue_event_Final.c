@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void _gb_queue_event(struct gb_sdio_host *host, u8 
 	host->queued_events |= event;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,31 +87,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int event = 100;
+        
           int _len_host0 = 1;
           struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].queued_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].queued_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          _gb_queue_event(host,event);
+          free(host);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int event = 255;
+        
+          int _len_host0 = 65025;
+          struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].queued_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           _gb_queue_event(host,event);
           free(host);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int event = 10;
+        
           int _len_host0 = 100;
           struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].queued_events = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].queued_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           _gb_queue_event(host,event);
           free(host);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_host0 = 1;
+          struct gb_sdio_host * host = (struct gb_sdio_host *) malloc(_len_host0*sizeof(struct gb_sdio_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].queued_events = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          _gb_queue_event(host,event);
+          free(host);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -131,12 +134,6 @@ xmlSAXVersion(xmlSAXHandler *hdlr, int version)
     return(0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,42 +146,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int version = 100;
+        
           int _len_hdlr0 = 1;
           struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
-            hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hdlr__i0__serror0 = 1;
           hdlr[_i0].serror = (int *) malloc(_len_hdlr__i0__serror0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_hdlr__i0__serror0; _j0++) {
             hdlr[_i0].serror[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_hdlr__i0__endElement0 = 1;
           hdlr[_i0].endElement = (int *) malloc(_len_hdlr__i0__endElement0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_hdlr__i0__endElement0; _j0++) {
@@ -195,7 +216,276 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_hdlr__i0__startElement0; _j0++) {
             hdlr[_i0].startElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = xmlSAXVersion(hdlr,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].serror);
+          }
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].endElement);
+          }
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].startElement);
+          }
+          free(hdlr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int version = 255;
+        
+          int _len_hdlr0 = 65025;
+          struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
+              hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdlr__i0__serror0 = 1;
+          hdlr[_i0].serror = (int *) malloc(_len_hdlr__i0__serror0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__serror0; _j0++) {
+            hdlr[_i0].serror[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdlr__i0__endElement0 = 1;
+          hdlr[_i0].endElement = (int *) malloc(_len_hdlr__i0__endElement0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__endElement0; _j0++) {
+            hdlr[_i0].endElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hdlr__i0__startElement0 = 1;
+          hdlr[_i0].startElement = (int *) malloc(_len_hdlr__i0__startElement0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__startElement0; _j0++) {
+            hdlr[_i0].startElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xmlSAXVersion(hdlr,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].serror);
+          }
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].endElement);
+          }
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].startElement);
+          }
+          free(hdlr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int version = 10;
+        
+          int _len_hdlr0 = 100;
+          struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
+              hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdlr__i0__serror0 = 1;
+          hdlr[_i0].serror = (int *) malloc(_len_hdlr__i0__serror0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__serror0; _j0++) {
+            hdlr[_i0].serror[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdlr__i0__endElement0 = 1;
+          hdlr[_i0].endElement = (int *) malloc(_len_hdlr__i0__endElement0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__endElement0; _j0++) {
+            hdlr[_i0].endElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hdlr__i0__startElement0 = 1;
+          hdlr[_i0].startElement = (int *) malloc(_len_hdlr__i0__startElement0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__startElement0; _j0++) {
+            hdlr[_i0].startElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xmlSAXVersion(hdlr,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].serror);
+          }
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].endElement);
+          }
+          for(int _aux = 0; _aux < _len_hdlr0; _aux++) {
+          free(hdlr[_aux].startElement);
+          }
+          free(hdlr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdlr0 = 1;
+          struct TYPE_3__ * hdlr = (struct TYPE_3__ *) malloc(_len_hdlr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hdlr0; _i0++) {
+              hdlr[_i0].warning = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].comment = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].processingInstruction = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].cdataBlock = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].reference = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].endDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startDocument = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].setDocumentLocator = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].unparsedEntityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].notationDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].elementDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].attributeDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].entityDecl = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getParameterEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].getEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].resolveEntity = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasExternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].hasInternalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].isStandalone = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].externalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].internalSubset = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].initialized = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdlr__i0__serror0 = 1;
+          hdlr[_i0].serror = (int *) malloc(_len_hdlr__i0__serror0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__serror0; _j0++) {
+            hdlr[_i0].serror[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          hdlr[_i0].endElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdlr[_i0].startElementNs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_hdlr__i0__endElement0 = 1;
+          hdlr[_i0].endElement = (int *) malloc(_len_hdlr__i0__endElement0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__endElement0; _j0++) {
+            hdlr[_i0].endElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_hdlr__i0__startElement0 = 1;
+          hdlr[_i0].startElement = (int *) malloc(_len_hdlr__i0__startElement0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_hdlr__i0__startElement0; _j0++) {
+            hdlr[_i0].startElement[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = xmlSAXVersion(hdlr,version);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hdlr0; _aux++) {

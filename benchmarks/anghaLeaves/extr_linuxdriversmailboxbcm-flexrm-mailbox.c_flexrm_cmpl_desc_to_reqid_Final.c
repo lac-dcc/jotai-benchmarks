@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static u32 flexrm_cmpl_desc_to_reqid(u64 cmpl_desc)
 	return (u32)(cmpl_desc & CMPL_OPAQUE_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmpl_desc = 100;
+        
           int benchRet = flexrm_cmpl_desc_to_reqid(cmpl_desc);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cmpl_desc = 255;
+        
           int benchRet = flexrm_cmpl_desc_to_reqid(cmpl_desc);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cmpl_desc = 10;
+        
           int benchRet = flexrm_cmpl_desc_to_reqid(cmpl_desc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cmpl_desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = flexrm_cmpl_desc_to_reqid(cmpl_desc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

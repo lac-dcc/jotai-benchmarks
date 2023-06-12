@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ char* _strnset(char* szToFill, int szFill, size_t sizeMaxFill)
 	return t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 6401
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 1539
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 1539
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 1539
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 1539
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 1537
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 1793
+          // ------------------------------- 
+
+          int szFill = 255;
+        
+          unsigned long sizeMaxFill = 255;
+        
+          int _len_szToFill0 = 65025;
+          char * szToFill = (char *) malloc(_len_szToFill0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_szToFill0; _i0++) {
+            szToFill[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = _strnset(szToFill,szFill,sizeMaxFill);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(szToFill);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 276
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 69
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 69
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 69
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 69
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 67
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 78
+          // ------------------------------- 
+
           int szFill = 10;
+        
           unsigned long sizeMaxFill = 10;
+        
           int _len_szToFill0 = 100;
           char * szToFill = (char *) malloc(_len_szToFill0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_szToFill0; _i0++) {
             szToFill[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          char * benchRet = _strnset(szToFill,szFill,sizeMaxFill);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(szToFill);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int szFill = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long sizeMaxFill = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_szToFill0 = 1;
+          char * szToFill = (char *) malloc(_len_szToFill0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_szToFill0; _i0++) {
+            szToFill[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           char * benchRet = _strnset(szToFill,szFill,sizeMaxFill);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(szToFill);

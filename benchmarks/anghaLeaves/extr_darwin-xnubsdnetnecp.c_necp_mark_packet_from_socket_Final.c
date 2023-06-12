@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +106,6 @@ necp_mark_packet_from_socket(struct mbuf *packet, struct inpcb *inp, necp_kernel
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,30 +118,262 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long policy_id = 100;
+        
           long route_rule_id = 100;
+        
           long skip_policy_id = 100;
+        
           int _len_packet0 = 1;
           struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
-            packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.necp_mtag.necp_skip_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.necp_mtag.necp_app_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.necp_mtag.necp_route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.necp_mtag.necp_last_interface_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_skip_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_last_interface_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_inp0 = 1;
           struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
           for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
-            inp[_i0].inp_policyresult.app_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_policyresult.results.result = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_policyresult.results.route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        inp[_i0].inp_policyresult.policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              inp[_i0].inp_policyresult.app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.result = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_policyresult.policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = necp_mark_packet_from_socket(packet,inp,policy_id,route_rule_id,skip_policy_id);
+          printf("%d\n", benchRet); 
+          free(packet);
+          free(inp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long policy_id = 255;
+        
+          long route_rule_id = 255;
+        
+          long skip_policy_id = 255;
+        
+          int _len_packet0 = 65025;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_skip_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_last_interface_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_inp0 = 65025;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_policyresult.app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.result = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_policyresult.policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_from_socket(packet,inp,policy_id,route_rule_id,skip_policy_id);
+          printf("%d\n", benchRet); 
+          free(packet);
+          free(inp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long policy_id = 10;
+        
+          long route_rule_id = 10;
+        
+          long skip_policy_id = 10;
+        
+          int _len_packet0 = 100;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_skip_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_last_interface_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_inp0 = 100;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_policyresult.app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.result = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_policyresult.policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = necp_mark_packet_from_socket(packet,inp,policy_id,route_rule_id,skip_policy_id);
+          printf("%d\n", benchRet); 
+          free(packet);
+          free(inp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long skip_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_packet0 = 1;
+          struct mbuf * packet = (struct mbuf *) malloc(_len_packet0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_packet0; _i0++) {
+              packet[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_skip_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_last_interface_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          packet[_i0].m_pkthdr.necp_mtag.necp_policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_inp0 = 1;
+          struct inpcb * inp = (struct inpcb *) malloc(_len_inp0*sizeof(struct inpcb));
+          for(int _i0 = 0; _i0 < _len_inp0; _i0++) {
+              inp[_i0].inp_policyresult.app_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.result = ((-2 * (next_i()%2)) + 1) * next_i();
+          inp[_i0].inp_policyresult.results.route_rule_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          inp[_i0].inp_policyresult.policy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = necp_mark_packet_from_socket(packet,inp,policy_id,route_rule_id,skip_policy_id);
           printf("%d\n", benchRet); 
           free(packet);

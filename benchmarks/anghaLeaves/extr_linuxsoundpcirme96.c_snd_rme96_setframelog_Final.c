@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ snd_rme96_setframelog(struct rme96 *rme96,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,18 +94,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int n_channels = 100;
+        
           int is_playback = 100;
+        
           int _len_rme960 = 1;
           struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
           for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
-            rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
-        rme96[_i0].playback_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
-        rme96[_i0].capture_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].playback_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].capture_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          snd_rme96_setframelog(rme96,n_channels,is_playback);
+          free(rme96);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int n_channels = 255;
+        
+          int is_playback = 255;
+        
+          int _len_rme960 = 65025;
+          struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
+          for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].playback_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].capture_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_rme96_setframelog(rme96,n_channels,is_playback);
+          free(rme96);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int n_channels = 10;
+        
+          int is_playback = 10;
+        
+          int _len_rme960 = 100;
+          struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
+          for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].playback_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].capture_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_rme96_setframelog(rme96,n_channels,is_playback);
+          free(rme96);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int n_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_playback = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rme960 = 1;
+          struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
+          for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].playback_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rme96[_i0].capture_frlog = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           snd_rme96_setframelog(rme96,n_channels,is_playback);
           free(rme96);
         

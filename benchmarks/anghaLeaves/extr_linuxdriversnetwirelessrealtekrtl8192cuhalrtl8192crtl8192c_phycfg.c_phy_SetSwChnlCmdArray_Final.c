@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +100,6 @@ phy_SetSwChnlCmdArray(
 	return _TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,23 +112,219 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long CmdTableIdx = 100;
+        
           long CmdTableSz = 100;
+        
           int CmdID = 100;
+        
           long Para1 = 100;
+        
           long Para2 = 100;
+        
           long msDelay = 100;
+        
           int _len_CmdTable0 = 1;
           struct TYPE_3__ * CmdTable = (struct TYPE_3__ *) malloc(_len_CmdTable0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_CmdTable0; _i0++) {
-            CmdTable[_i0].msDelay = ((-2 * (next_i()%2)) + 1) * next_i();
-        CmdTable[_i0].Para2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        CmdTable[_i0].Para1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        CmdTable[_i0].CmdID = ((-2 * (next_i()%2)) + 1) * next_i();
+              CmdTable[_i0].msDelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].CmdID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = phy_SetSwChnlCmdArray(CmdTable,CmdTableIdx,CmdTableSz,CmdID,Para1,Para2,msDelay);
+          printf("%d\n", benchRet); 
+          free(CmdTable);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long CmdTableIdx = 255;
+        
+          long CmdTableSz = 255;
+        
+          int CmdID = 255;
+        
+          long Para1 = 255;
+        
+          long Para2 = 255;
+        
+          long msDelay = 255;
+        
+          int _len_CmdTable0 = 65025;
+          struct TYPE_3__ * CmdTable = (struct TYPE_3__ *) malloc(_len_CmdTable0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CmdTable0; _i0++) {
+              CmdTable[_i0].msDelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].CmdID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phy_SetSwChnlCmdArray(CmdTable,CmdTableIdx,CmdTableSz,CmdID,Para1,Para2,msDelay);
+          printf("%d\n", benchRet); 
+          free(CmdTable);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long CmdTableIdx = 10;
+        
+          long CmdTableSz = 10;
+        
+          int CmdID = 10;
+        
+          long Para1 = 10;
+        
+          long Para2 = 10;
+        
+          long msDelay = 10;
+        
+          int _len_CmdTable0 = 100;
+          struct TYPE_3__ * CmdTable = (struct TYPE_3__ *) malloc(_len_CmdTable0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CmdTable0; _i0++) {
+              CmdTable[_i0].msDelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].CmdID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phy_SetSwChnlCmdArray(CmdTable,CmdTableIdx,CmdTableSz,CmdID,Para1,Para2,msDelay);
+          printf("%d\n", benchRet); 
+          free(CmdTable);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long CmdTableIdx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long CmdTableSz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int CmdID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long Para1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long Para2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long msDelay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_CmdTable0 = 1;
+          struct TYPE_3__ * CmdTable = (struct TYPE_3__ *) malloc(_len_CmdTable0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CmdTable0; _i0++) {
+              CmdTable[_i0].msDelay = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].Para1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          CmdTable[_i0].CmdID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = phy_SetSwChnlCmdArray(CmdTable,CmdTableIdx,CmdTableSz,CmdID,Para1,Para2,msDelay);
           printf("%d\n", benchRet); 
           free(CmdTable);

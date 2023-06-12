@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline unsigned long long cpuset_str2ull(char **s) 
     return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,9 +78,124 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
+          char ** s = (char **) malloc(_len_s0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            int _len_s1 = 1;
+            s[_i0] = (char *) malloc(_len_s1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_s1; _i1++) {
+              s[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          unsigned long long benchRet = cpuset_str2ull(s);
+          printf("%llu\n", benchRet); 
+          for(int i1 = 0; i1 < _len_s0; i1++) {
+              free(s[i1]);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          char ** s = (char **) malloc(_len_s0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            int _len_s1 = 1;
+            s[_i0] = (char *) malloc(_len_s1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_s1; _i1++) {
+              s[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          unsigned long long benchRet = cpuset_str2ull(s);
+          printf("%llu\n", benchRet); 
+          for(int i1 = 0; i1 < _len_s0; i1++) {
+              free(s[i1]);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_s0 = 1;
           char ** s = (char **) malloc(_len_s0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
@@ -94,10 +205,10 @@ int main(int argc, char *argv[]) {
               s[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           unsigned long long benchRet = cpuset_str2ull(s);
           printf("%llu\n", benchRet); 
           for(int i1 = 0; i1 < _len_s0; i1++) {
-            int _len_s1 = 1;
               free(s[i1]);
           }
           free(s);

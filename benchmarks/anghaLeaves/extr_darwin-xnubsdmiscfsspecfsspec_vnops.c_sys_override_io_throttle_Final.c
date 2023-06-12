@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ sys_override_io_throttle(boolean_t enable_override)
 		lowpri_throttle_enabled = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long enable_override = 100;
+        
           sys_override_io_throttle(enable_override);
         
         break;
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long enable_override = 255;
+        
           sys_override_io_throttle(enable_override);
         
         break;
@@ -105,11 +102,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long enable_override = 10;
+        
           sys_override_io_throttle(enable_override);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long enable_override = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sys_override_io_throttle(enable_override);
+        
+        break;
+    }
     default:
         usage();
         break;

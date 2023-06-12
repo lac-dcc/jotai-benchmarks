@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ u8 *rtw_get_capability_from_ie(u8 *ie)
 	return (ie + 8 + 2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +73,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_ie0 = 100;
+          int _len_ie0 = 65025;
           int * ie = (int *) malloc(_len_ie0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ie0; _i0++) {
             ie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int * benchRet = rtw_get_capability_from_ie(ie);
           printf("%d\n", (*benchRet)); 
           free(ie);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ie0 = 100;
+          int * ie = (int *) malloc(_len_ie0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ie0; _i0++) {
+            ie[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = rtw_get_capability_from_ie(ie);
+          printf("%d\n", (*benchRet)); 
+          free(ie);
+        
+        break;
+    }
     default:
         usage();
         break;

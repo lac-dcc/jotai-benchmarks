@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ snd_rme96_getattenuation(struct rme96 *rme96)
 		(((rme96->wcreg >> RME96_WCR_BITPOS_GAIN_1) & 1) << 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rme960 = 1;
+          int _len_rme960 = 65025;
           struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
           for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
-            rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_rme96_getattenuation(rme96);
           printf("%d\n", benchRet); 
           free(rme96);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_rme960 = 100;
           struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
           for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
-            rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_rme96_getattenuation(rme96);
           printf("%d\n", benchRet); 
           free(rme96);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rme960 = 1;
+          struct rme96 * rme96 = (struct rme96 *) malloc(_len_rme960*sizeof(struct rme96));
+          for(int _i0 = 0; _i0 < _len_rme960; _i0++) {
+              rme96[_i0].wcreg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_rme96_getattenuation(rme96);
+          printf("%d\n", benchRet); 
+          free(rme96);
+        
+        break;
+    }
     default:
         usage();
         break;

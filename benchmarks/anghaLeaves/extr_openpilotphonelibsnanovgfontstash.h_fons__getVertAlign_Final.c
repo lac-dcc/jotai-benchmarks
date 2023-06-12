@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ __attribute__((used)) static float fons__getVertAlign(FONScontext* stash, FONSfo
 	return 0.0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,22 +108,214 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int align = 100;
+        
           short isize = 100;
+        
           int _len_stash0 = 1;
           struct TYPE_8__ * stash = (struct TYPE_8__ *) malloc(_len_stash0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
-            stash[_i0].params.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              stash[_i0].params.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_font0 = 1;
           struct TYPE_7__ * font = (struct TYPE_7__ *) malloc(_len_font0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_font0; _i0++) {
-            font[_i0].ascender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        font[_i0].descender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              font[_i0].ascender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          font[_i0].descender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
+          float benchRet = fons__getVertAlign(stash,font,align,isize);
+          printf("%f\n", benchRet); 
+          free(stash);
+          free(font);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int align = 255;
+        
+          short isize = 255;
+        
+          int _len_stash0 = 65025;
+          struct TYPE_8__ * stash = (struct TYPE_8__ *) malloc(_len_stash0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
+              stash[_i0].params.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_font0 = 65025;
+          struct TYPE_7__ * font = (struct TYPE_7__ *) malloc(_len_font0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_font0; _i0++) {
+              font[_i0].ascender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          font[_i0].descender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          float benchRet = fons__getVertAlign(stash,font,align,isize);
+          printf("%f\n", benchRet); 
+          free(stash);
+          free(font);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int align = 10;
+        
+          short isize = 10;
+        
+          int _len_stash0 = 100;
+          struct TYPE_8__ * stash = (struct TYPE_8__ *) malloc(_len_stash0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
+              stash[_i0].params.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_font0 = 100;
+          struct TYPE_7__ * font = (struct TYPE_7__ *) malloc(_len_font0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_font0; _i0++) {
+              font[_i0].ascender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          font[_i0].descender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          float benchRet = fons__getVertAlign(stash,font,align,isize);
+          printf("%f\n", benchRet); 
+          free(stash);
+          free(font);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int align = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          short isize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stash0 = 1;
+          struct TYPE_8__ * stash = (struct TYPE_8__ *) malloc(_len_stash0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
+              stash[_i0].params.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_font0 = 1;
+          struct TYPE_7__ * font = (struct TYPE_7__ *) malloc(_len_font0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_font0; _i0++) {
+              font[_i0].ascender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          font[_i0].descender = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
           float benchRet = fons__getVertAlign(stash,font,align,isize);
           printf("%f\n", benchRet); 
           free(stash);

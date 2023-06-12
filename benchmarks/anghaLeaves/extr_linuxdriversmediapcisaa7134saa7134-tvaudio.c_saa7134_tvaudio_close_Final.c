@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int saa7134_tvaudio_close(struct saa7134_dev *dev)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct saa7134_dev * dev = (struct saa7134_dev *) malloc(_len_dev0*sizeof(struct saa7134_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].automute = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].automute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = saa7134_tvaudio_close(dev);
           printf("%d\n", benchRet); 
           free(dev);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_dev0 = 100;
           struct saa7134_dev * dev = (struct saa7134_dev *) malloc(_len_dev0*sizeof(struct saa7134_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].automute = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].automute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = saa7134_tvaudio_close(dev);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct saa7134_dev * dev = (struct saa7134_dev *) malloc(_len_dev0*sizeof(struct saa7134_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].automute = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = saa7134_tvaudio_close(dev);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

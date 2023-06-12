@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline struct net_device *dscc4_to_dev(struct dscc4
 	return p->dev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_p0 = 65025;
+          struct dscc4_dev_priv * p = (struct dscc4_dev_priv *) malloc(_len_p0*sizeof(struct dscc4_dev_priv));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__dev0 = 1;
+          p[_i0].dev = (struct net_device *) malloc(_len_p__i0__dev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_p__i0__dev0; _j0++) {
+              p[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct net_device * benchRet = dscc4_to_dev(p);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].dev);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_p0 = 100;
+          struct dscc4_dev_priv * p = (struct dscc4_dev_priv *) malloc(_len_p0*sizeof(struct dscc4_dev_priv));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              int _len_p__i0__dev0 = 1;
+          p[_i0].dev = (struct net_device *) malloc(_len_p__i0__dev0*sizeof(struct net_device));
+          for(int _j0 = 0; _j0 < _len_p__i0__dev0; _j0++) {
+              p[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct net_device * benchRet = dscc4_to_dev(p);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_p0; _aux++) {
+          free(p[_aux].dev);
+          }
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_p0 = 1;
           struct dscc4_dev_priv * p = (struct dscc4_dev_priv *) malloc(_len_p0*sizeof(struct dscc4_dev_priv));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
               int _len_p__i0__dev0 = 1;
           p[_i0].dev = (struct net_device *) malloc(_len_p__i0__dev0*sizeof(struct net_device));
           for(int _j0 = 0; _j0 < _len_p__i0__dev0; _j0++) {
-            p[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].dev->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct net_device * benchRet = dscc4_to_dev(p);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_p0; _aux++) {

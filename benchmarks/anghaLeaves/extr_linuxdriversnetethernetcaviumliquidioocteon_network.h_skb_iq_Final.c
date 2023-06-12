@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int skb_iq(struct octeon_device *oct, struct
 	return skb->queue_mapping % oct->num_iqs;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_oct0 = 1;
+          int _len_oct0 = 65025;
           struct octeon_device * oct = (struct octeon_device *) malloc(_len_oct0*sizeof(struct octeon_device));
           for(int _i0 = 0; _i0 < _len_oct0; _i0++) {
-            oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_skb0 = 1;
+        
+          int _len_skb0 = 65025;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].queue_mapping = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].queue_mapping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = skb_iq(oct,skb);
           printf("%d\n", benchRet); 
           free(oct);
@@ -99,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_oct0 = 100;
+          struct octeon_device * oct = (struct octeon_device *) malloc(_len_oct0*sizeof(struct octeon_device));
+          for(int _i0 = 0; _i0 < _len_oct0; _i0++) {
+              oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].queue_mapping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = skb_iq(oct,skb);
+          printf("%d\n", benchRet); 
+          free(oct);
+          free(skb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_oct0 = 1;
+          struct octeon_device * oct = (struct octeon_device *) malloc(_len_oct0*sizeof(struct octeon_device));
+          for(int _i0 = 0; _i0 < _len_oct0; _i0++) {
+              oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].queue_mapping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = skb_iq(oct,skb);
+          printf("%d\n", benchRet); 
+          free(oct);
+          free(skb);
+        
+        break;
+    }
     default:
         usage();
         break;

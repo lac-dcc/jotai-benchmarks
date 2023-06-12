@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static u64 fuse_get_unique(struct fuse_iqueue *fiq)
 	return ++fiq->reqctr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fiq0 = 1;
+          int _len_fiq0 = 65025;
           struct fuse_iqueue * fiq = (struct fuse_iqueue *) malloc(_len_fiq0*sizeof(struct fuse_iqueue));
           for(int _i0 = 0; _i0 < _len_fiq0; _i0++) {
-            fiq[_i0].reqctr = ((-2 * (next_i()%2)) + 1) * next_i();
+              fiq[_i0].reqctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fuse_get_unique(fiq);
           printf("%d\n", benchRet); 
           free(fiq);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_fiq0 = 100;
           struct fuse_iqueue * fiq = (struct fuse_iqueue *) malloc(_len_fiq0*sizeof(struct fuse_iqueue));
           for(int _i0 = 0; _i0 < _len_fiq0; _i0++) {
-            fiq[_i0].reqctr = ((-2 * (next_i()%2)) + 1) * next_i();
+              fiq[_i0].reqctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fuse_get_unique(fiq);
           printf("%d\n", benchRet); 
           free(fiq);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fiq0 = 1;
+          struct fuse_iqueue * fiq = (struct fuse_iqueue *) malloc(_len_fiq0*sizeof(struct fuse_iqueue));
+          for(int _i0 = 0; _i0 < _len_fiq0; _i0++) {
+              fiq[_i0].reqctr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fuse_get_unique(fiq);
+          printf("%d\n", benchRet); 
+          free(fiq);
+        
+        break;
+    }
     default:
         usage();
         break;

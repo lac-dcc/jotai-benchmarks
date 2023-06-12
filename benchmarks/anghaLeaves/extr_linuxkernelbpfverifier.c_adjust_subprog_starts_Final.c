@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void adjust_subprog_starts(struct bpf_verifier_env 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +91,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int off = 100;
+        
           int len = 100;
+        
           int _len_env0 = 1;
           struct bpf_verifier_env * env = (struct bpf_verifier_env *) malloc(_len_env0*sizeof(struct bpf_verifier_env));
           for(int _i0 = 0; _i0 < _len_env0; _i0++) {
-            env[_i0].subprog_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              env[_i0].subprog_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_env__i0__subprog_info0 = 1;
           env[_i0].subprog_info = (struct TYPE_2__ *) malloc(_len_env__i0__subprog_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_env__i0__subprog_info0; _j0++) {
-            env[_i0].subprog_info->start = ((-2 * (next_i()%2)) + 1) * next_i();
+              env[_i0].subprog_info->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           adjust_subprog_starts(env,off,len);
           for(int _aux = 0; _aux < _len_env0; _aux++) {
           free(env[_aux].subprog_info);
@@ -113,7 +115,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int off = 255;
+        
+          int len = 255;
+        
+          int _len_env0 = 65025;
+          struct bpf_verifier_env * env = (struct bpf_verifier_env *) malloc(_len_env0*sizeof(struct bpf_verifier_env));
+          for(int _i0 = 0; _i0 < _len_env0; _i0++) {
+              env[_i0].subprog_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_env__i0__subprog_info0 = 1;
+          env[_i0].subprog_info = (struct TYPE_2__ *) malloc(_len_env__i0__subprog_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_env__i0__subprog_info0; _j0++) {
+              env[_i0].subprog_info->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          adjust_subprog_starts(env,off,len);
+          for(int _aux = 0; _aux < _len_env0; _aux++) {
+          free(env[_aux].subprog_info);
+          }
+          free(env);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int off = 10;
+        
+          int len = 10;
+        
+          int _len_env0 = 100;
+          struct bpf_verifier_env * env = (struct bpf_verifier_env *) malloc(_len_env0*sizeof(struct bpf_verifier_env));
+          for(int _i0 = 0; _i0 < _len_env0; _i0++) {
+              env[_i0].subprog_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_env__i0__subprog_info0 = 1;
+          env[_i0].subprog_info = (struct TYPE_2__ *) malloc(_len_env__i0__subprog_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_env__i0__subprog_info0; _j0++) {
+              env[_i0].subprog_info->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          adjust_subprog_starts(env,off,len);
+          for(int _aux = 0; _aux < _len_env0; _aux++) {
+          free(env[_aux].subprog_info);
+          }
+          free(env);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_env0 = 1;
+          struct bpf_verifier_env * env = (struct bpf_verifier_env *) malloc(_len_env0*sizeof(struct bpf_verifier_env));
+          for(int _i0 = 0; _i0 < _len_env0; _i0++) {
+              env[_i0].subprog_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_env__i0__subprog_info0 = 1;
+          env[_i0].subprog_info = (struct TYPE_2__ *) malloc(_len_env__i0__subprog_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_env__i0__subprog_info0; _j0++) {
+              env[_i0].subprog_info->start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          adjust_subprog_starts(env,off,len);
+          for(int _aux = 0; _aux < _len_env0; _aux++) {
+          free(env[_aux].subprog_info);
+          }
+          free(env);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ void bc_poolsize(struct bufferchain *bc, size_t pool_size, size_t bufblock)
 	bc->bufblock = bufblock;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,17 +76,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned long pool_size = 100;
+        
           unsigned long bufblock = 100;
+        
           int _len_bc0 = 1;
           struct bufferchain * bc = (struct bufferchain *) malloc(_len_bc0*sizeof(struct bufferchain));
           for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
-            bc[_i0].pool_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        bc[_i0].bufblock = ((-2 * (next_i()%2)) + 1) * next_i();
+              bc[_i0].pool_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].bufblock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bc_poolsize(bc,pool_size,bufblock);
+          free(bc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long pool_size = 255;
+        
+          unsigned long bufblock = 255;
+        
+          int _len_bc0 = 65025;
+          struct bufferchain * bc = (struct bufferchain *) malloc(_len_bc0*sizeof(struct bufferchain));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+              bc[_i0].pool_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].bufblock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bc_poolsize(bc,pool_size,bufblock);
+          free(bc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long pool_size = 10;
+        
+          unsigned long bufblock = 10;
+        
+          int _len_bc0 = 100;
+          struct bufferchain * bc = (struct bufferchain *) malloc(_len_bc0*sizeof(struct bufferchain));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+              bc[_i0].pool_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].bufblock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bc_poolsize(bc,pool_size,bufblock);
+          free(bc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long pool_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long bufblock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bc0 = 1;
+          struct bufferchain * bc = (struct bufferchain *) malloc(_len_bc0*sizeof(struct bufferchain));
+          for(int _i0 = 0; _i0 < _len_bc0; _i0++) {
+              bc[_i0].pool_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          bc[_i0].bufblock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bc_poolsize(bc,pool_size,bufblock);
           free(bc);
         

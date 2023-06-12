@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void luaE_setdebt (global_State *g, l_mem debt) {
   g->GCdebt = debt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long debt = 100;
+        
           int _len_g0 = 1;
           struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_g0; _i0++) {
-            g[_i0].GCdebt = ((-2 * (next_i()%2)) + 1) * next_i();
-        g[_i0].totalbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              g[_i0].GCdebt = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].totalbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           luaE_setdebt(g,debt);
           free(g);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long debt = 255;
+        
+          int _len_g0 = 65025;
+          struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].GCdebt = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].totalbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          luaE_setdebt(g,debt);
+          free(g);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long debt = 10;
+        
+          int _len_g0 = 100;
+          struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].GCdebt = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].totalbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          luaE_setdebt(g,debt);
+          free(g);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long debt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_g0 = 1;
+          struct TYPE_3__ * g = (struct TYPE_3__ *) malloc(_len_g0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+              g[_i0].GCdebt = ((-2 * (next_i()%2)) + 1) * next_i();
+          g[_i0].totalbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          luaE_setdebt(g,debt);
+          free(g);
+        
+        break;
+    }
     default:
         usage();
         break;

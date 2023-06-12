@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ dasd_diag_erp_action(struct dasd_ccw_req * cqr)
 	return dasd_default_erp_action;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cqr0 = 1;
+          int _len_cqr0 = 65025;
           struct dasd_ccw_req * cqr = (struct dasd_ccw_req *) malloc(_len_cqr0*sizeof(struct dasd_ccw_req));
           for(int _i0 = 0; _i0 < _len_cqr0; _i0++) {
-            cqr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dasd_diag_erp_action(cqr);
           printf("%d\n", benchRet); 
           free(cqr);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_cqr0 = 100;
           struct dasd_ccw_req * cqr = (struct dasd_ccw_req *) malloc(_len_cqr0*sizeof(struct dasd_ccw_req));
           for(int _i0 = 0; _i0 < _len_cqr0; _i0++) {
-            cqr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dasd_diag_erp_action(cqr);
           printf("%d\n", benchRet); 
           free(cqr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cqr0 = 1;
+          struct dasd_ccw_req * cqr = (struct dasd_ccw_req *) malloc(_len_cqr0*sizeof(struct dasd_ccw_req));
+          for(int _i0 = 0; _i0 < _len_cqr0; _i0++) {
+              cqr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dasd_diag_erp_action(cqr);
+          printf("%d\n", benchRet); 
+          free(cqr);
+        
+        break;
+    }
     default:
         usage();
         break;

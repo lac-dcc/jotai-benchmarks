@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void shrink_readahead_size_eio(struct file *filp,
 	ra->ra_pages /= 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,26 +76,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_filp0 = 1;
+          int _len_filp0 = 65025;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
-            filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ra0 = 1;
+        
+          int _len_ra0 = 65025;
           struct file_ra_state * ra = (struct file_ra_state *) malloc(_len_ra0*sizeof(struct file_ra_state));
           for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
-            ra[_i0].ra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              ra[_i0].ra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           shrink_readahead_size_eio(filp,ra);
           free(filp);
           free(ra);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_filp0 = 100;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ra0 = 100;
+          struct file_ra_state * ra = (struct file_ra_state *) malloc(_len_ra0*sizeof(struct file_ra_state));
+          for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
+              ra[_i0].ra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          shrink_readahead_size_eio(filp,ra);
+          free(filp);
+          free(ra);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_filp0 = 1;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ra0 = 1;
+          struct file_ra_state * ra = (struct file_ra_state *) malloc(_len_ra0*sizeof(struct file_ra_state));
+          for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
+              ra[_i0].ra_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          shrink_readahead_size_eio(filp,ra);
+          free(filp);
+          free(ra);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ int LZXreset(struct LZXstate *pState)
     return DECR_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,15 +93,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pState0 = 1;
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_pState0 = 65025;
           struct LZXstate * pState = (struct LZXstate *) malloc(_len_pState0*sizeof(struct LZXstate));
           for(int _i0 = 0; _i0 < _len_pState0; _i0++) {
-            pState[_i0].R0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].R1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].R2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              pState[_i0].R0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].R1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].R2 = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pState__i0__LENGTH_len0 = 1;
           pState[_i0].LENGTH_len = (long *) malloc(_len_pState__i0__LENGTH_len0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_pState__i0__LENGTH_len0; _j0++) {
@@ -116,14 +135,146 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_pState__i0__MAINTREE_len0; _j0++) {
             pState[_i0].MAINTREE_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        pState[_i0].window_posn = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].intel_started = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].intel_curpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].block_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].block_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].frames_read = ((-2 * (next_i()%2)) + 1) * next_i();
-        pState[_i0].header_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].window_posn = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].intel_started = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].intel_curpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].block_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].block_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].frames_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].header_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = LZXreset(pState);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pState0; _aux++) {
+          free(pState[_aux].LENGTH_len);
+          }
+          for(int _aux = 0; _aux < _len_pState0; _aux++) {
+          free(pState[_aux].MAINTREE_len);
+          }
+          free(pState);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_pState0 = 100;
+          struct LZXstate * pState = (struct LZXstate *) malloc(_len_pState0*sizeof(struct LZXstate));
+          for(int _i0 = 0; _i0 < _len_pState0; _i0++) {
+              pState[_i0].R0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].R1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].R2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pState__i0__LENGTH_len0 = 1;
+          pState[_i0].LENGTH_len = (long *) malloc(_len_pState__i0__LENGTH_len0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_pState__i0__LENGTH_len0; _j0++) {
+            pState[_i0].LENGTH_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pState__i0__MAINTREE_len0 = 1;
+          pState[_i0].MAINTREE_len = (long *) malloc(_len_pState__i0__MAINTREE_len0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_pState__i0__MAINTREE_len0; _j0++) {
+            pState[_i0].MAINTREE_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pState[_i0].window_posn = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].intel_started = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].intel_curpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].block_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].block_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].frames_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].header_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = LZXreset(pState);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pState0; _aux++) {
+          free(pState[_aux].LENGTH_len);
+          }
+          for(int _aux = 0; _aux < _len_pState0; _aux++) {
+          free(pState[_aux].MAINTREE_len);
+          }
+          free(pState);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 39
+          // dynamic_instructions_O0 : 39
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_pState0 = 1;
+          struct LZXstate * pState = (struct LZXstate *) malloc(_len_pState0*sizeof(struct LZXstate));
+          for(int _i0 = 0; _i0 < _len_pState0; _i0++) {
+              pState[_i0].R0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].R1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].R2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pState__i0__LENGTH_len0 = 1;
+          pState[_i0].LENGTH_len = (long *) malloc(_len_pState__i0__LENGTH_len0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_pState__i0__LENGTH_len0; _j0++) {
+            pState[_i0].LENGTH_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_pState__i0__MAINTREE_len0 = 1;
+          pState[_i0].MAINTREE_len = (long *) malloc(_len_pState__i0__MAINTREE_len0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_pState__i0__MAINTREE_len0; _j0++) {
+            pState[_i0].MAINTREE_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          pState[_i0].window_posn = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].intel_started = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].intel_curpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].block_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].block_remaining = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].frames_read = ((-2 * (next_i()%2)) + 1) * next_i();
+          pState[_i0].header_read = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = LZXreset(pState);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pState0; _aux++) {

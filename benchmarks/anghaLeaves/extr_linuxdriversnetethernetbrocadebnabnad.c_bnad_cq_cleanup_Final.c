@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ bnad_cq_cleanup(struct bnad *bnad, struct bna_ccb *ccb)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,27 +83,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bnad0 = 1;
+          int _len_bnad0 = 65025;
           struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
           for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
-            bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ccb0 = 1;
+        
+          int _len_ccb0 = 65025;
           struct bna_ccb * ccb = (struct bna_ccb *) malloc(_len_ccb0*sizeof(struct bna_ccb));
           for(int _i0 = 0; _i0 < _len_ccb0; _i0++) {
-            ccb[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
-        ccb[_i0].sw_q = ((-2 * (next_i()%2)) + 1) * next_i();
+              ccb[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccb[_i0].sw_q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bnad_cq_cleanup(bnad,ccb);
           free(bnad);
           free(ccb);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bnad0 = 100;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ccb0 = 100;
+          struct bna_ccb * ccb = (struct bna_ccb *) malloc(_len_ccb0*sizeof(struct bna_ccb));
+          for(int _i0 = 0; _i0 < _len_ccb0; _i0++) {
+              ccb[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccb[_i0].sw_q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnad_cq_cleanup(bnad,ccb);
+          free(bnad);
+          free(ccb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bnad0 = 1;
+          struct bnad * bnad = (struct bnad *) malloc(_len_bnad0*sizeof(struct bnad));
+          for(int _i0 = 0; _i0 < _len_bnad0; _i0++) {
+              bnad[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ccb0 = 1;
+          struct bna_ccb * ccb = (struct bna_ccb *) malloc(_len_ccb0*sizeof(struct bna_ccb));
+          for(int _i0 = 0; _i0 < _len_ccb0; _i0++) {
+              ccb[_i0].q_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          ccb[_i0].sw_q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bnad_cq_cleanup(bnad,ccb);
+          free(bnad);
+          free(ccb);
+        
+        break;
+    }
     default:
         usage();
         break;

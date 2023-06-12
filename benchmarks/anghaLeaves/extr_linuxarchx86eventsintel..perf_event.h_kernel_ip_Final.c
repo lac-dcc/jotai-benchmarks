@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline bool kernel_ip(unsigned long ip)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ip = 100;
+        
           int benchRet = kernel_ip(ip);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long ip = 255;
+        
           int benchRet = kernel_ip(ip);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long ip = 10;
+        
           int benchRet = kernel_ip(ip);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long ip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kernel_ip(ip);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

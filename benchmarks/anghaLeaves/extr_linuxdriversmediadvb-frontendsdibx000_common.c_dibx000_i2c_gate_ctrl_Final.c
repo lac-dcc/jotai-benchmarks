@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static int dibx000_i2c_gate_ctrl(struct dibx000_i2c_master
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,22 +94,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int addr = 100;
+        
           int onoff = 100;
+        
           int _len_mst0 = 1;
           struct dibx000_i2c_master * mst = (struct dibx000_i2c_master *) malloc(_len_mst0*sizeof(struct dibx000_i2c_master));
           for(int _i0 = 0; _i0 < _len_mst0; _i0++) {
-            mst[_i0].device_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        mst[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              mst[_i0].device_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          mst[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tx0 = 4;
           int * tx = (int *) malloc(_len_tx0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
             tx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = dibx000_i2c_gate_ctrl(mst,tx,addr,onoff);
+          printf("%d\n", benchRet); 
+          free(mst);
+          free(tx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int addr = 255;
+        
+          int onoff = 255;
+        
+          int _len_mst0 = 65025;
+          struct dibx000_i2c_master * mst = (struct dibx000_i2c_master *) malloc(_len_mst0*sizeof(struct dibx000_i2c_master));
+          for(int _i0 = 0; _i0 < _len_mst0; _i0++) {
+              mst[_i0].device_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          mst[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tx0 = 65025;
+          int * tx = (int *) malloc(_len_tx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+            tx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dibx000_i2c_gate_ctrl(mst,tx,addr,onoff);
+          printf("%d\n", benchRet); 
+          free(mst);
+          free(tx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int addr = 10;
+        
+          int onoff = 10;
+        
+          int _len_mst0 = 100;
+          struct dibx000_i2c_master * mst = (struct dibx000_i2c_master *) malloc(_len_mst0*sizeof(struct dibx000_i2c_master));
+          for(int _i0 = 0; _i0 < _len_mst0; _i0++) {
+              mst[_i0].device_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          mst[_i0].base_reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tx0 = 100;
+          int * tx = (int *) malloc(_len_tx0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx0; _i0++) {
+            tx[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = dibx000_i2c_gate_ctrl(mst,tx,addr,onoff);
           printf("%d\n", benchRet); 
           free(mst);

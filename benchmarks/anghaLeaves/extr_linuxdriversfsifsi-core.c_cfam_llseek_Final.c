@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static loff_t cfam_llseek(struct file *file, loff_t offset
 	return offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,32 +89,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int offset = 100;
+        
           int whence = 100;
+        
           int _len_file0 = 1;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].f_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].f_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cfam_llseek(file,offset,whence);
           printf("%d\n", benchRet); 
           free(file);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int offset = 255;
+        
+          int whence = 255;
+        
+          int _len_file0 = 65025;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].f_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cfam_llseek(file,offset,whence);
+          printf("%d\n", benchRet); 
+          free(file);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int offset = 10;
+        
           int whence = 10;
+        
           int _len_file0 = 100;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].f_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].f_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cfam_llseek(file,offset,whence);
+          printf("%d\n", benchRet); 
+          free(file);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int whence = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_file0 = 1;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].f_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cfam_llseek(file,offset,whence);
           printf("%d\n", benchRet); 
           free(file);

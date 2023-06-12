@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int perf_event_set_bpf_prog(struct perf_event *even
 	return -ENOENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int prog_fd = 100;
+        
           int _len_event0 = 1;
           struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = perf_event_set_bpf_prog(event,prog_fd);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int prog_fd = 255;
+        
+          int _len_event0 = 65025;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = perf_event_set_bpf_prog(event,prog_fd);
           printf("%d\n", benchRet); 
           free(event);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int prog_fd = 10;
+        
           int _len_event0 = 100;
           struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
           for(int _i0 = 0; _i0 < _len_event0; _i0++) {
-            event[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              event[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = perf_event_set_bpf_prog(event,prog_fd);
           printf("%d\n", benchRet); 
           free(event);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int prog_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_event0 = 1;
+          struct perf_event * event = (struct perf_event *) malloc(_len_event0*sizeof(struct perf_event));
+          for(int _i0 = 0; _i0 < _len_event0; _i0++) {
+              event[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = perf_event_set_bpf_prog(event,prog_fd);
+          printf("%d\n", benchRet); 
+          free(event);
+        
+        break;
+    }
     default:
         usage();
         break;

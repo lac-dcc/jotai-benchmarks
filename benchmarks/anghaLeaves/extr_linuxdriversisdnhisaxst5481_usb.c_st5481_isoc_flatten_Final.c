@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static int st5481_isoc_flatten(struct urb *urb)
 	return (dst - (unsigned char *)urb->transfer_buffer);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,14 +107,14 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_urb0 = 1;
+          int _len_urb0 = 65025;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_urb__i0__transfer_buffer0 = 1;
           urb[_i0].transfer_buffer = (unsigned char *) malloc(_len_urb__i0__transfer_buffer0*sizeof(unsigned char));
           for(int _j0 = 0; _j0 < _len_urb__i0__transfer_buffer0; _j0++) {
@@ -127,11 +123,14 @@ int main(int argc, char *argv[]) {
           int _len_urb__i0__iso_frame_desc0 = 1;
           urb[_i0].iso_frame_desc = (struct usb_iso_packet_descriptor *) malloc(_len_urb__i0__iso_frame_desc0*sizeof(struct usb_iso_packet_descriptor));
           for(int _j0 = 0; _j0 < _len_urb__i0__iso_frame_desc0; _j0++) {
-            urb[_i0].iso_frame_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].iso_frame_desc->actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        urb[_i0].iso_frame_desc->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].iso_frame_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].iso_frame_desc->actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].iso_frame_desc->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = st5481_isoc_flatten(urb);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_urb0; _aux++) {
@@ -144,7 +143,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_urb0 = 100;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_urb__i0__transfer_buffer0 = 1;
+          urb[_i0].transfer_buffer = (unsigned char *) malloc(_len_urb__i0__transfer_buffer0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_urb__i0__transfer_buffer0; _j0++) {
+            urb[_i0].transfer_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_urb__i0__iso_frame_desc0 = 1;
+          urb[_i0].iso_frame_desc = (struct usb_iso_packet_descriptor *) malloc(_len_urb__i0__iso_frame_desc0*sizeof(struct usb_iso_packet_descriptor));
+          for(int _j0 = 0; _j0 < _len_urb__i0__iso_frame_desc0; _j0++) {
+              urb[_i0].iso_frame_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].iso_frame_desc->actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].iso_frame_desc->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = st5481_isoc_flatten(urb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].transfer_buffer);
+          }
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].iso_frame_desc);
+          }
+          free(urb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_urb0 = 1;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].status = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].number_of_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_urb__i0__transfer_buffer0 = 1;
+          urb[_i0].transfer_buffer = (unsigned char *) malloc(_len_urb__i0__transfer_buffer0*sizeof(unsigned char));
+          for(int _j0 = 0; _j0 < _len_urb__i0__transfer_buffer0; _j0++) {
+            urb[_i0].transfer_buffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_urb__i0__iso_frame_desc0 = 1;
+          urb[_i0].iso_frame_desc = (struct usb_iso_packet_descriptor *) malloc(_len_urb__i0__iso_frame_desc0*sizeof(struct usb_iso_packet_descriptor));
+          for(int _j0 = 0; _j0 < _len_urb__i0__iso_frame_desc0; _j0++) {
+              urb[_i0].iso_frame_desc->status = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].iso_frame_desc->actual_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          urb[_i0].iso_frame_desc->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = st5481_isoc_flatten(urb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].transfer_buffer);
+          }
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].iso_frame_desc);
+          }
+          free(urb);
+        
+        break;
+    }
     default:
         usage();
         break;

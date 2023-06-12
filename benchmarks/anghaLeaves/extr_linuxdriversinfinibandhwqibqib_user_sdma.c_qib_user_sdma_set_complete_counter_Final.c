@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void qib_user_sdma_set_complete_counter(struct qib_
 	pq->sent_counter = c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int c = 100;
+        
           int _len_pq0 = 1;
           struct qib_user_sdma_queue * pq = (struct qib_user_sdma_queue *) malloc(_len_pq0*sizeof(struct qib_user_sdma_queue));
           for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
-            pq[_i0].sent_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+              pq[_i0].sent_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qib_user_sdma_set_complete_counter(pq,c);
           free(pq);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int c = 255;
+        
+          int _len_pq0 = 65025;
+          struct qib_user_sdma_queue * pq = (struct qib_user_sdma_queue *) malloc(_len_pq0*sizeof(struct qib_user_sdma_queue));
+          for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
+              pq[_i0].sent_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qib_user_sdma_set_complete_counter(pq,c);
+          free(pq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int c = 10;
+        
           int _len_pq0 = 100;
           struct qib_user_sdma_queue * pq = (struct qib_user_sdma_queue *) malloc(_len_pq0*sizeof(struct qib_user_sdma_queue));
           for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
-            pq[_i0].sent_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+              pq[_i0].sent_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          qib_user_sdma_set_complete_counter(pq,c);
+          free(pq);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pq0 = 1;
+          struct qib_user_sdma_queue * pq = (struct qib_user_sdma_queue *) malloc(_len_pq0*sizeof(struct qib_user_sdma_queue));
+          for(int _i0 = 0; _i0 < _len_pq0; _i0++) {
+              pq[_i0].sent_counter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           qib_user_sdma_set_complete_counter(pq,c);
           free(pq);
         

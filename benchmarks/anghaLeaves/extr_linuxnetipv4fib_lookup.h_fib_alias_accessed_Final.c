@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void fib_alias_accessed(struct fib_alias *fa
 		fa->fa_state |= FA_S_ACCESSED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fa0 = 1;
+          int _len_fa0 = 65025;
           struct fib_alias * fa = (struct fib_alias *) malloc(_len_fa0*sizeof(struct fib_alias));
           for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
-            fa[_i0].fa_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              fa[_i0].fa_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fib_alias_accessed(fa);
           free(fa);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_fa0 = 100;
           struct fib_alias * fa = (struct fib_alias *) malloc(_len_fa0*sizeof(struct fib_alias));
           for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
-            fa[_i0].fa_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              fa[_i0].fa_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fib_alias_accessed(fa);
           free(fa);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fa0 = 1;
+          struct fib_alias * fa = (struct fib_alias *) malloc(_len_fa0*sizeof(struct fib_alias));
+          for(int _i0 = 0; _i0 < _len_fa0; _i0++) {
+              fa[_i0].fa_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fib_alias_accessed(fa);
+          free(fa);
+        
+        break;
+    }
     default:
         usage();
         break;

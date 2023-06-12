@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static unsigned int sel_netnode_hashfn_ipv4(__be32 addr)
 	return (addr & (SEL_NETNODE_HASH_SIZE - 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           unsigned int benchRet = sel_netnode_hashfn_ipv4(addr);
           printf("%u\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int addr = 255;
+        
           unsigned int benchRet = sel_netnode_hashfn_ipv4(addr);
           printf("%u\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int addr = 10;
+        
           unsigned int benchRet = sel_netnode_hashfn_ipv4(addr);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = sel_netnode_hashfn_ipv4(addr);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

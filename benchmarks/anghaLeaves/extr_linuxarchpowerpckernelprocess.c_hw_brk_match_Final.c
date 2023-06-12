@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline bool hw_brk_match(struct arch_hw_breakpoint 
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 65025;
+          struct arch_hw_breakpoint * a = (struct arch_hw_breakpoint *) malloc(_len_a0*sizeof(struct arch_hw_breakpoint));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct arch_hw_breakpoint * b = (struct arch_hw_breakpoint *) malloc(_len_b0*sizeof(struct arch_hw_breakpoint));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hw_brk_match(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_a0 = 100;
+          struct arch_hw_breakpoint * a = (struct arch_hw_breakpoint *) malloc(_len_a0*sizeof(struct arch_hw_breakpoint));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct arch_hw_breakpoint * b = (struct arch_hw_breakpoint *) malloc(_len_b0*sizeof(struct arch_hw_breakpoint));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hw_brk_match(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_a0 = 1;
           struct arch_hw_breakpoint * a = (struct arch_hw_breakpoint *) malloc(_len_a0*sizeof(struct arch_hw_breakpoint));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct arch_hw_breakpoint * b = (struct arch_hw_breakpoint *) malloc(_len_b0*sizeof(struct arch_hw_breakpoint));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].address = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hw_brk_match(a,b);
           printf("%d\n", benchRet); 
           free(a);

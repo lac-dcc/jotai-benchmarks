@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static int sfp_module_info(struct sfp *sfp, struct ethtool
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,21 +94,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_sfp0 = 65025;
+          struct sfp * sfp = (struct sfp *) malloc(_len_sfp0*sizeof(struct sfp));
+          for(int _i0 = 0; _i0 < _len_sfp0; _i0++) {
+              sfp[_i0].id.ext.diagmon = ((-2 * (next_i()%2)) + 1) * next_i();
+          sfp[_i0].id.ext.sff8472_compliance = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_modinfo0 = 65025;
+          struct ethtool_modinfo * modinfo = (struct ethtool_modinfo *) malloc(_len_modinfo0*sizeof(struct ethtool_modinfo));
+          for(int _i0 = 0; _i0 < _len_modinfo0; _i0++) {
+              modinfo[_i0].eeprom_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          modinfo[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfp_module_info(sfp,modinfo);
+          printf("%d\n", benchRet); 
+          free(sfp);
+          free(modinfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_sfp0 = 100;
+          struct sfp * sfp = (struct sfp *) malloc(_len_sfp0*sizeof(struct sfp));
+          for(int _i0 = 0; _i0 < _len_sfp0; _i0++) {
+              sfp[_i0].id.ext.diagmon = ((-2 * (next_i()%2)) + 1) * next_i();
+          sfp[_i0].id.ext.sff8472_compliance = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_modinfo0 = 100;
+          struct ethtool_modinfo * modinfo = (struct ethtool_modinfo *) malloc(_len_modinfo0*sizeof(struct ethtool_modinfo));
+          for(int _i0 = 0; _i0 < _len_modinfo0; _i0++) {
+              modinfo[_i0].eeprom_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          modinfo[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sfp_module_info(sfp,modinfo);
+          printf("%d\n", benchRet); 
+          free(sfp);
+          free(modinfo);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_sfp0 = 1;
           struct sfp * sfp = (struct sfp *) malloc(_len_sfp0*sizeof(struct sfp));
           for(int _i0 = 0; _i0 < _len_sfp0; _i0++) {
-            sfp[_i0].id.ext.diagmon = ((-2 * (next_i()%2)) + 1) * next_i();
-        sfp[_i0].id.ext.sff8472_compliance = ((-2 * (next_i()%2)) + 1) * next_i();
+              sfp[_i0].id.ext.diagmon = ((-2 * (next_i()%2)) + 1) * next_i();
+          sfp[_i0].id.ext.sff8472_compliance = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_modinfo0 = 1;
           struct ethtool_modinfo * modinfo = (struct ethtool_modinfo *) malloc(_len_modinfo0*sizeof(struct ethtool_modinfo));
           for(int _i0 = 0; _i0 < _len_modinfo0; _i0++) {
-            modinfo[_i0].eeprom_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        modinfo[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              modinfo[_i0].eeprom_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          modinfo[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sfp_module_info(sfp,modinfo);
           printf("%d\n", benchRet); 
           free(sfp);

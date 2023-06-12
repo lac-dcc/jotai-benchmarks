@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ __attribute__((used)) static u8 revise_ssc_depth(u8 ssc_depth, u8 div)
 	return ssc_depth;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ssc_depth = 100;
+        
           int div = 100;
+        
           int benchRet = revise_ssc_depth(ssc_depth,div);
           printf("%d\n", benchRet); 
         
@@ -103,7 +100,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ssc_depth = 255;
+        
           int div = 255;
+        
           int benchRet = revise_ssc_depth(ssc_depth,div);
           printf("%d\n", benchRet); 
         
@@ -113,13 +112,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ssc_depth = 10;
+        
           int div = 10;
+        
           int benchRet = revise_ssc_depth(ssc_depth,div);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ssc_depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int div = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = revise_ssc_depth(ssc_depth,div);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

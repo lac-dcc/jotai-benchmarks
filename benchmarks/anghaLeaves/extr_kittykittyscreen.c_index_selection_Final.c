@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ index_selection(Screen *self, Selection *s, bool up) {
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,25 +91,215 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int up = 100;
+        
           int _len_self0 = 1;
           struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          index_selection(self,s,up);
+          free(self);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int up = 255;
+        
+          int _len_self0 = 65025;
+          struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          index_selection(self,s,up);
+          free(self);
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int up = 10;
+        
+          int _len_self0 = 100;
+          struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          index_selection(self,s,up);
+          free(self);
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int up = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_self0 = 1;
+          struct TYPE_6__ * self = (struct TYPE_6__ *) malloc(_len_self0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           index_selection(self,s,up);
           free(self);
           free(s);

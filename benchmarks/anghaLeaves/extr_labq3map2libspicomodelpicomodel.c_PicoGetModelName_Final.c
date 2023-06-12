@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ char *PicoGetModelName( picoModel_t *model ){
 	return model->name;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,9 +81,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_model0 = 65025;
+          struct TYPE_3__ * model = (struct TYPE_3__ *) malloc(_len_model0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_model0; _i0++) {
+              int _len_model__i0__name0 = 1;
+          model[_i0].name = (char *) malloc(_len_model__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_model__i0__name0; _j0++) {
+            model[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = PicoGetModelName(model);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_model0; _aux++) {
+          free(model[_aux].name);
+          }
+          free(model);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_model0 = 100;
+          struct TYPE_3__ * model = (struct TYPE_3__ *) malloc(_len_model0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_model0; _i0++) {
+              int _len_model__i0__name0 = 1;
+          model[_i0].name = (char *) malloc(_len_model__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_model__i0__name0; _j0++) {
+            model[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          char * benchRet = PicoGetModelName(model);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_model0; _aux++) {
+          free(model[_aux].name);
+          }
+          free(model);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_model0 = 1;
           struct TYPE_3__ * model = (struct TYPE_3__ *) malloc(_len_model0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_model0; _i0++) {
@@ -96,7 +209,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_model__i0__name0; _j0++) {
             model[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           char * benchRet = PicoGetModelName(model);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           for(int _aux = 0; _aux < _len_model0; _aux++) {

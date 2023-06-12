@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int mdp5_cmd_encoder_set_split_display(
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_encoder0 = 1;
+          int _len_encoder0 = 65025;
           struct drm_encoder * encoder = (struct drm_encoder *) malloc(_len_encoder0*sizeof(struct drm_encoder));
           for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
-            encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_slave_encoder0 = 1;
+        
+          int _len_slave_encoder0 = 65025;
           struct drm_encoder * slave_encoder = (struct drm_encoder *) malloc(_len_slave_encoder0*sizeof(struct drm_encoder));
           for(int _i0 = 0; _i0 < _len_slave_encoder0; _i0++) {
-            slave_encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              slave_encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mdp5_cmd_encoder_set_split_display(encoder,slave_encoder);
           printf("%d\n", benchRet); 
           free(encoder);
@@ -100,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_encoder0 = 100;
+          struct drm_encoder * encoder = (struct drm_encoder *) malloc(_len_encoder0*sizeof(struct drm_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_slave_encoder0 = 100;
+          struct drm_encoder * slave_encoder = (struct drm_encoder *) malloc(_len_slave_encoder0*sizeof(struct drm_encoder));
+          for(int _i0 = 0; _i0 < _len_slave_encoder0; _i0++) {
+              slave_encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mdp5_cmd_encoder_set_split_display(encoder,slave_encoder);
+          printf("%d\n", benchRet); 
+          free(encoder);
+          free(slave_encoder);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_encoder0 = 1;
+          struct drm_encoder * encoder = (struct drm_encoder *) malloc(_len_encoder0*sizeof(struct drm_encoder));
+          for(int _i0 = 0; _i0 < _len_encoder0; _i0++) {
+              encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_slave_encoder0 = 1;
+          struct drm_encoder * slave_encoder = (struct drm_encoder *) malloc(_len_slave_encoder0*sizeof(struct drm_encoder));
+          for(int _i0 = 0; _i0 < _len_slave_encoder0; _i0++) {
+              slave_encoder[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mdp5_cmd_encoder_set_split_display(encoder,slave_encoder);
+          printf("%d\n", benchRet); 
+          free(encoder);
+          free(slave_encoder);
+        
+        break;
+    }
     default:
         usage();
         break;

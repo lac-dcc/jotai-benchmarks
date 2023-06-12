@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void aat1290_led_validate_mm_current(struct aat1290
 	cfg->max_brightness = b + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,9 +88,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_led0 = 65025;
+          struct aat1290_led * led = (struct aat1290_led *) malloc(_len_led0*sizeof(struct aat1290_led));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              int _len_led__i0__mm_current_scale0 = 1;
+          led[_i0].mm_current_scale = (long *) malloc(_len_led__i0__mm_current_scale0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_led__i0__mm_current_scale0; _j0++) {
+            led[_i0].mm_current_scale[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_cfg0 = 65025;
+          struct aat1290_led_config_data * cfg = (struct aat1290_led_config_data *) malloc(_len_cfg0*sizeof(struct aat1290_led_config_data));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].max_mm_current = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          aat1290_led_validate_mm_current(led,cfg);
+          for(int _aux = 0; _aux < _len_led0; _aux++) {
+          free(led[_aux].mm_current_scale);
+          }
+          free(led);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_led0 = 100;
+          struct aat1290_led * led = (struct aat1290_led *) malloc(_len_led0*sizeof(struct aat1290_led));
+          for(int _i0 = 0; _i0 < _len_led0; _i0++) {
+              int _len_led__i0__mm_current_scale0 = 1;
+          led[_i0].mm_current_scale = (long *) malloc(_len_led__i0__mm_current_scale0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_led__i0__mm_current_scale0; _j0++) {
+            led[_i0].mm_current_scale[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct aat1290_led_config_data * cfg = (struct aat1290_led_config_data *) malloc(_len_cfg0*sizeof(struct aat1290_led_config_data));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].max_mm_current = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          aat1290_led_validate_mm_current(led,cfg);
+          for(int _aux = 0; _aux < _len_led0; _aux++) {
+          free(led[_aux].mm_current_scale);
+          }
+          free(led);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_led0 = 1;
           struct aat1290_led * led = (struct aat1290_led *) malloc(_len_led0*sizeof(struct aat1290_led));
           for(int _i0 = 0; _i0 < _len_led0; _i0++) {
@@ -103,13 +232,17 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_led__i0__mm_current_scale0; _j0++) {
             led[_i0].mm_current_scale[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_cfg0 = 1;
           struct aat1290_led_config_data * cfg = (struct aat1290_led_config_data *) malloc(_len_cfg0*sizeof(struct aat1290_led_config_data));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].max_mm_current = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].max_mm_current = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].max_brightness = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           aat1290_led_validate_mm_current(led,cfg);
           for(int _aux = 0; _aux < _len_led0; _aux++) {
           free(led[_aux].mm_current_scale);

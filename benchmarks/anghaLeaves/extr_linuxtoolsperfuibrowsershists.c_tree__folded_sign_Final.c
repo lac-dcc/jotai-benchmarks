@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static char tree__folded_sign(bool unfolded)
 	return unfolded ? '-' : '+';
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int unfolded = 100;
+        
           char benchRet = tree__folded_sign(unfolded);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int unfolded = 255;
+        
           char benchRet = tree__folded_sign(unfolded);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int unfolded = 10;
+        
           char benchRet = tree__folded_sign(unfolded);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int unfolded = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char benchRet = tree__folded_sign(unfolded);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ il_get_cmd_idx(struct il_queue *q, u32 idx, int is_huge)
 	return idx & (q->n_win - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,32 +87,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int idx = 100;
+        
           int is_huge = 100;
+        
           int _len_q0 = 1;
           struct il_queue * q = (struct il_queue *) malloc(_len_q0*sizeof(struct il_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].n_win = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].n_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = il_get_cmd_idx(q,idx,is_huge);
           printf("%d\n", benchRet); 
           free(q);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int idx = 255;
+        
+          int is_huge = 255;
+        
+          int _len_q0 = 65025;
+          struct il_queue * q = (struct il_queue *) malloc(_len_q0*sizeof(struct il_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].n_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = il_get_cmd_idx(q,idx,is_huge);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int idx = 10;
+        
           int is_huge = 10;
+        
           int _len_q0 = 100;
           struct il_queue * q = (struct il_queue *) malloc(_len_q0*sizeof(struct il_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].n_win = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].n_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = il_get_cmd_idx(q,idx,is_huge);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int is_huge = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct il_queue * q = (struct il_queue *) malloc(_len_q0*sizeof(struct il_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].n_win = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = il_get_cmd_idx(q,idx,is_huge);
           printf("%d\n", benchRet); 
           free(q);

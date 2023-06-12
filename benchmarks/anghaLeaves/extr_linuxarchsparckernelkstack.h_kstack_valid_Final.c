@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static inline bool kstack_valid(struct thread_info *tp, un
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,11 +103,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long sp = 100;
+        
           int _len_tp0 = 1;
           struct thread_info * tp = (struct thread_info *) malloc(_len_tp0*sizeof(struct thread_info));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = kstack_valid(tp,sp);
+          printf("%d\n", benchRet); 
+          free(tp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long sp = 255;
+        
+          int _len_tp0 = 65025;
+          struct thread_info * tp = (struct thread_info *) malloc(_len_tp0*sizeof(struct thread_info));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = kstack_valid(tp,sp);
           printf("%d\n", benchRet); 
           free(tp);
@@ -119,21 +136,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long sp = 10;
+        
           int _len_tp0 = 100;
           struct thread_info * tp = (struct thread_info *) malloc(_len_tp0*sizeof(struct thread_info));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kstack_valid(tp,sp);
           printf("%d\n", benchRet); 
           free(tp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long sp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tp0 = 1;
+          struct thread_info * tp = (struct thread_info *) malloc(_len_tp0*sizeof(struct thread_info));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kstack_valid(tp,sp);
+          printf("%d\n", benchRet); 
+          free(tp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static ulong gasket_components_to_dev_address(struct gaske
 	       (lvl1_index << GASKET_EXTENDED_LVL1_SHIFT) | offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,21 +107,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_simple = 100;
+        
           int page_index = 100;
+        
           int offset = 100;
+        
           int _len_pg_tbl0 = 1;
           struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
           for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
-            pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        pg_tbl[_i0].config.total_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pg_tbl[_i0].config.total_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = gasket_components_to_dev_address(pg_tbl,is_simple,page_index,offset);
           printf("%d\n", benchRet); 
           free(pg_tbl);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_simple = 255;
+        
+          int page_index = 255;
+        
+          int offset = 255;
+        
+          int _len_pg_tbl0 = 65025;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pg_tbl[_i0].config.total_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = gasket_components_to_dev_address(pg_tbl,is_simple,page_index,offset);
+          printf("%d\n", benchRet); 
+          free(pg_tbl);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_simple = 10;
+        
+          int page_index = 10;
+        
+          int offset = 10;
+        
+          int _len_pg_tbl0 = 100;
+          struct gasket_page_table * pg_tbl = (struct gasket_page_table *) malloc(_len_pg_tbl0*sizeof(struct gasket_page_table));
+          for(int _i0 = 0; _i0 < _len_pg_tbl0; _i0++) {
+              pg_tbl[_i0].extended_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pg_tbl[_i0].config.total_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = gasket_components_to_dev_address(pg_tbl,is_simple,page_index,offset);
+          printf("%d\n", benchRet); 
+          free(pg_tbl);
+        
+        break;
+    }
     default:
         usage();
         break;

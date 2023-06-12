@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int ptls_is_server(ptls_t *tls)
     return tls->is_server;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tls0 = 1;
+          int _len_tls0 = 65025;
           struct TYPE_3__ * tls = (struct TYPE_3__ *) malloc(_len_tls0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
-            tls[_i0].is_server = ((-2 * (next_i()%2)) + 1) * next_i();
+              tls[_i0].is_server = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ptls_is_server(tls);
           printf("%d\n", benchRet); 
           free(tls);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_tls0 = 100;
           struct TYPE_3__ * tls = (struct TYPE_3__ *) malloc(_len_tls0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
-            tls[_i0].is_server = ((-2 * (next_i()%2)) + 1) * next_i();
+              tls[_i0].is_server = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ptls_is_server(tls);
           printf("%d\n", benchRet); 
           free(tls);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tls0 = 1;
+          struct TYPE_3__ * tls = (struct TYPE_3__ *) malloc(_len_tls0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tls0; _i0++) {
+              tls[_i0].is_server = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ptls_is_server(tls);
+          printf("%d\n", benchRet); 
+          free(tls);
+        
+        break;
+    }
     default:
         usage();
         break;

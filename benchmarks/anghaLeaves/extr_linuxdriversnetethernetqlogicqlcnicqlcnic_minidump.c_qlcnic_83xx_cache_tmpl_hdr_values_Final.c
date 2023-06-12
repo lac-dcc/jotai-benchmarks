@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ void qlcnic_83xx_cache_tmpl_hdr_values(struct qlcnic_fw_dump *fw_dump)
 			       QLCNIC_TEMPLATE_VERSION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,29 +88,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_fw_dump0 = 1;
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_fw_dump0 = 65025;
           struct qlcnic_fw_dump * fw_dump = (struct qlcnic_fw_dump *) malloc(_len_fw_dump0*sizeof(struct qlcnic_fw_dump));
           for(int _i0 = 0; _i0 < _len_fw_dump0; _i0++) {
-            fw_dump[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].use_pex_dma = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].tmpl_hdr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw_dump[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].use_pex_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fw_dump__i0__tmpl_hdr0 = 1;
           fw_dump[_i0].tmpl_hdr = (struct qlcnic_83xx_dump_template_hdr *) malloc(_len_fw_dump__i0__tmpl_hdr0*sizeof(struct qlcnic_83xx_dump_template_hdr));
           for(int _j0 = 0; _j0 < _len_fw_dump__i0__tmpl_hdr0; _j0++) {
-            fw_dump[_i0].tmpl_hdr->version = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].tmpl_hdr->cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].tmpl_hdr->drv_cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].tmpl_hdr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].tmpl_hdr->num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_dump[_i0].tmpl_hdr->size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw_dump[_i0].tmpl_hdr->version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->drv_cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          qlcnic_83xx_cache_tmpl_hdr_values(fw_dump);
+          for(int _aux = 0; _aux < _len_fw_dump0; _aux++) {
+          free(fw_dump[_aux].tmpl_hdr);
+          }
+          free(fw_dump);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_fw_dump0 = 100;
+          struct qlcnic_fw_dump * fw_dump = (struct qlcnic_fw_dump *) malloc(_len_fw_dump0*sizeof(struct qlcnic_fw_dump));
+          for(int _i0 = 0; _i0 < _len_fw_dump0; _i0++) {
+              fw_dump[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].use_pex_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fw_dump__i0__tmpl_hdr0 = 1;
+          fw_dump[_i0].tmpl_hdr = (struct qlcnic_83xx_dump_template_hdr *) malloc(_len_fw_dump__i0__tmpl_hdr0*sizeof(struct qlcnic_83xx_dump_template_hdr));
+          for(int _j0 = 0; _j0 < _len_fw_dump__i0__tmpl_hdr0; _j0++) {
+              fw_dump[_i0].tmpl_hdr->version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->drv_cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qlcnic_83xx_cache_tmpl_hdr_values(fw_dump);
+          for(int _aux = 0; _aux < _len_fw_dump0; _aux++) {
+          free(fw_dump[_aux].tmpl_hdr);
+          }
+          free(fw_dump);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_fw_dump0 = 1;
+          struct qlcnic_fw_dump * fw_dump = (struct qlcnic_fw_dump *) malloc(_len_fw_dump0*sizeof(struct qlcnic_fw_dump));
+          for(int _i0 = 0; _i0 < _len_fw_dump0; _i0++) {
+              fw_dump[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].use_pex_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fw_dump__i0__tmpl_hdr0 = 1;
+          fw_dump[_i0].tmpl_hdr = (struct qlcnic_83xx_dump_template_hdr *) malloc(_len_fw_dump__i0__tmpl_hdr0*sizeof(struct qlcnic_83xx_dump_template_hdr));
+          for(int _j0 = 0; _j0 < _len_fw_dump__i0__tmpl_hdr0; _j0++) {
+              fw_dump[_i0].tmpl_hdr->version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->drv_cap_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_dump[_i0].tmpl_hdr->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           qlcnic_83xx_cache_tmpl_hdr_values(fw_dump);
           for(int _aux = 0; _aux < _len_fw_dump0; _aux++) {
           free(fw_dump[_aux].tmpl_hdr);

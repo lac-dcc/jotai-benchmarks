@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool xhci_is_sync_in_ep(unsigned int ep_type)
 	return (ep_type == ISOC_IN_EP || ep_type == INT_IN_EP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int ep_type = 100;
+        
           int benchRet = xhci_is_sync_in_ep(ep_type);
           printf("%d\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int ep_type = 255;
+        
           int benchRet = xhci_is_sync_in_ep(ep_type);
           printf("%d\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int ep_type = 10;
+        
           int benchRet = xhci_is_sync_in_ep(ep_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int ep_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xhci_is_sync_in_ep(ep_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

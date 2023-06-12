@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static bool brcms_c_stf_stbc_tx_set(struct brcms_c_info *w
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,6 +99,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long int_val = 100;
+        
           int _len_wlc0 = 1;
           struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
           for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
@@ -111,14 +109,18 @@ int main(int argc, char *argv[]) {
             int _len_wlc__i0__bandstate1 = 1;
             wlc[_i0].bandstate[_j0] = (struct TYPE_4__ *) malloc(_len_wlc__i0__bandstate1*sizeof(struct TYPE_4__));
             for(int _j1 = 0; _j1 < _len_wlc__i0__bandstate1; _j1++) {
-                  }
+              
+            }
           }
           int _len_wlc__i0__stf0 = 1;
           wlc[_i0].stf = (struct TYPE_3__ *) malloc(_len_wlc__i0__stf0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_wlc__i0__stf0; _j0++) {
-            wlc[_i0].stf->txstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+              wlc[_i0].stf->txstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = brcms_c_stf_stbc_tx_set(wlc,int_val);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_wlc0; _aux++) {
@@ -132,7 +134,123 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long int_val = 255;
+        
+          int _len_wlc0 = 65025;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__bandstate0 = 1;
+          wlc[_i0].bandstate = (struct TYPE_4__ **) malloc(_len_wlc__i0__bandstate0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__bandstate0; _j0++) {
+            int _len_wlc__i0__bandstate1 = 1;
+            wlc[_i0].bandstate[_j0] = (struct TYPE_4__ *) malloc(_len_wlc__i0__bandstate1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_wlc__i0__bandstate1; _j1++) {
+              
+            }
+          }
+          int _len_wlc__i0__stf0 = 1;
+          wlc[_i0].stf = (struct TYPE_3__ *) malloc(_len_wlc__i0__stf0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__stf0; _j0++) {
+              wlc[_i0].stf->txstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_stf_stbc_tx_set(wlc,int_val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(*(wlc[_aux].bandstate));
+        free(wlc[_aux].bandstate);
+          }
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].stf);
+          }
+          free(wlc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long int_val = 10;
+        
+          int _len_wlc0 = 100;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__bandstate0 = 1;
+          wlc[_i0].bandstate = (struct TYPE_4__ **) malloc(_len_wlc__i0__bandstate0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__bandstate0; _j0++) {
+            int _len_wlc__i0__bandstate1 = 1;
+            wlc[_i0].bandstate[_j0] = (struct TYPE_4__ *) malloc(_len_wlc__i0__bandstate1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_wlc__i0__bandstate1; _j1++) {
+              
+            }
+          }
+          int _len_wlc__i0__stf0 = 1;
+          wlc[_i0].stf = (struct TYPE_3__ *) malloc(_len_wlc__i0__stf0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__stf0; _j0++) {
+              wlc[_i0].stf->txstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_stf_stbc_tx_set(wlc,int_val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(*(wlc[_aux].bandstate));
+        free(wlc[_aux].bandstate);
+          }
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].stf);
+          }
+          free(wlc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long int_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wlc0 = 1;
+          struct brcms_c_info * wlc = (struct brcms_c_info *) malloc(_len_wlc0*sizeof(struct brcms_c_info));
+          for(int _i0 = 0; _i0 < _len_wlc0; _i0++) {
+              int _len_wlc__i0__bandstate0 = 1;
+          wlc[_i0].bandstate = (struct TYPE_4__ **) malloc(_len_wlc__i0__bandstate0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__bandstate0; _j0++) {
+            int _len_wlc__i0__bandstate1 = 1;
+            wlc[_i0].bandstate[_j0] = (struct TYPE_4__ *) malloc(_len_wlc__i0__bandstate1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_wlc__i0__bandstate1; _j1++) {
+              
+            }
+          }
+          int _len_wlc__i0__stf0 = 1;
+          wlc[_i0].stf = (struct TYPE_3__ *) malloc(_len_wlc__i0__stf0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_wlc__i0__stf0; _j0++) {
+              wlc[_i0].stf->txstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = brcms_c_stf_stbc_tx_set(wlc,int_val);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(*(wlc[_aux].bandstate));
+        free(wlc[_aux].bandstate);
+          }
+          for(int _aux = 0; _aux < _len_wlc0; _aux++) {
+          free(wlc[_aux].stf);
+          }
+          free(wlc);
+        
+        break;
+    }
     default:
         usage();
         break;

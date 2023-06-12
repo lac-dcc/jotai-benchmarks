@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static uint32_t phar_tar_number(char *buf, size_t len) /* 
 	return num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,11 +91,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long len = 100;
+        
           int _len_buf0 = 1;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = phar_tar_number(buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long len = 255;
+        
+          int _len_buf0 = 65025;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = phar_tar_number(buf,len);
           printf("%d\n", benchRet); 
           free(buf);
@@ -107,21 +122,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long len = 10;
+        
           int _len_buf0 = 100;
           char * buf = (char *) malloc(_len_buf0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = phar_tar_number(buf,len);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          char * buf = (char *) malloc(_len_buf0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = phar_tar_number(buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void inc_ep_stats_reqs(struct pxa_ep *ep, int is_in
 		ep->stats.out_ops++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,18 +84,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_in = 100;
+        
           int _len_ep0 = 1;
           struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].stats.out_ops = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].stats.in_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].stats.out_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.in_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           inc_ep_stats_reqs(ep,is_in);
           free(ep);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_in = 255;
+        
+          int _len_ep0 = 65025;
+          struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].stats.out_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.in_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          inc_ep_stats_reqs(ep,is_in);
+          free(ep);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_in = 10;
+        
+          int _len_ep0 = 100;
+          struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].stats.out_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.in_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          inc_ep_stats_reqs(ep,is_in);
+          free(ep);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ep0 = 1;
+          struct pxa_ep * ep = (struct pxa_ep *) malloc(_len_ep0*sizeof(struct pxa_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].stats.out_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stats.in_ops = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          inc_ep_stats_reqs(ep,is_in);
+          free(ep);
+        
+        break;
+    }
     default:
         usage();
         break;

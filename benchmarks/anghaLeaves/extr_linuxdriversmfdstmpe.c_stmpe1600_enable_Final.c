@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int stmpe1600_enable(struct stmpe *stmpe, unsigned 
 		return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,12 +85,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int blocks = 100;
+        
           int enable = 100;
+        
           int _len_stmpe0 = 1;
           struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
           for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
-            stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = stmpe1600_enable(stmpe,blocks,enable);
+          printf("%d\n", benchRet); 
+          free(stmpe);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int blocks = 255;
+        
+          int enable = 255;
+        
+          int _len_stmpe0 = 65025;
+          struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
+          for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = stmpe1600_enable(stmpe,blocks,enable);
           printf("%d\n", benchRet); 
           free(stmpe);
@@ -102,22 +122,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int blocks = 10;
+        
           int enable = 10;
+        
           int _len_stmpe0 = 100;
           struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
           for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
-            stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stmpe1600_enable(stmpe,blocks,enable);
           printf("%d\n", benchRet); 
           free(stmpe);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stmpe0 = 1;
+          struct stmpe * stmpe = (struct stmpe *) malloc(_len_stmpe0*sizeof(struct stmpe));
+          for(int _i0 = 0; _i0 < _len_stmpe0; _i0++) {
+              stmpe[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stmpe1600_enable(stmpe,blocks,enable);
+          printf("%d\n", benchRet); 
+          free(stmpe);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static int ice_free_res(struct ice_res_tracker *res, u16 i
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +90,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long index = 100;
+        
           long id = 100;
+        
           int _len_res0 = 1;
           struct ice_res_tracker * res = (struct ice_res_tracker *) malloc(_len_res0*sizeof(struct ice_res_tracker));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
-            res[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              res[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_res__i0__list0 = 1;
           res[_i0].list = (long *) malloc(_len_res__i0__list0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_res__i0__list0; _j0++) {
             res[_i0].list[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = ice_free_res(res,index,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].list);
+          }
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long index = 255;
+        
+          long id = 255;
+        
+          int _len_res0 = 65025;
+          struct ice_res_tracker * res = (struct ice_res_tracker *) malloc(_len_res0*sizeof(struct ice_res_tracker));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_res__i0__list0 = 1;
+          res[_i0].list = (long *) malloc(_len_res__i0__list0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_res__i0__list0; _j0++) {
+            res[_i0].list[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ice_free_res(res,index,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].list);
+          }
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long index = 10;
+        
+          long id = 10;
+        
+          int _len_res0 = 100;
+          struct ice_res_tracker * res = (struct ice_res_tracker *) malloc(_len_res0*sizeof(struct ice_res_tracker));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_res__i0__list0 = 1;
+          res[_i0].list = (long *) malloc(_len_res__i0__list0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_res__i0__list0; _j0++) {
+            res[_i0].list[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ice_free_res(res,index,id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_res0; _aux++) {
+          free(res[_aux].list);
+          }
+          free(res);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_res0 = 1;
+          struct ice_res_tracker * res = (struct ice_res_tracker *) malloc(_len_res0*sizeof(struct ice_res_tracker));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+              res[_i0].num_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_res__i0__list0 = 1;
+          res[_i0].list = (long *) malloc(_len_res__i0__list0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_res__i0__list0; _j0++) {
+            res[_i0].list[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = ice_free_res(res,index,id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_res0; _aux++) {

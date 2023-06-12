@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int hns_get_gid_index(struct hns_roce_dev *hr_dev, u8 port, int gid_index)
 	return gid_index * hr_dev->caps.num_ports + port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,32 +78,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int port = 100;
+        
           int gid_index = 100;
+        
           int _len_hr_dev0 = 1;
           struct hns_roce_dev * hr_dev = (struct hns_roce_dev *) malloc(_len_hr_dev0*sizeof(struct hns_roce_dev));
           for(int _i0 = 0; _i0 < _len_hr_dev0; _i0++) {
-            hr_dev[_i0].caps.num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+              hr_dev[_i0].caps.num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = hns_get_gid_index(hr_dev,port,gid_index);
           printf("%d\n", benchRet); 
           free(hr_dev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int port = 255;
+        
+          int gid_index = 255;
+        
+          int _len_hr_dev0 = 65025;
+          struct hns_roce_dev * hr_dev = (struct hns_roce_dev *) malloc(_len_hr_dev0*sizeof(struct hns_roce_dev));
+          for(int _i0 = 0; _i0 < _len_hr_dev0; _i0++) {
+              hr_dev[_i0].caps.num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = hns_get_gid_index(hr_dev,port,gid_index);
+          printf("%d\n", benchRet); 
+          free(hr_dev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int port = 10;
+        
           int gid_index = 10;
+        
           int _len_hr_dev0 = 100;
           struct hns_roce_dev * hr_dev = (struct hns_roce_dev *) malloc(_len_hr_dev0*sizeof(struct hns_roce_dev));
           for(int _i0 = 0; _i0 < _len_hr_dev0; _i0++) {
-            hr_dev[_i0].caps.num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+              hr_dev[_i0].caps.num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = hns_get_gid_index(hr_dev,port,gid_index);
+          printf("%d\n", benchRet); 
+          free(hr_dev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int gid_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hr_dev0 = 1;
+          struct hns_roce_dev * hr_dev = (struct hns_roce_dev *) malloc(_len_hr_dev0*sizeof(struct hns_roce_dev));
+          for(int _i0 = 0; _i0 < _len_hr_dev0; _i0++) {
+              hr_dev[_i0].caps.num_ports = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = hns_get_gid_index(hr_dev,port,gid_index);
           printf("%d\n", benchRet); 
           free(hr_dev);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ void CRYP_KeyStructInit(CRYP_KeyInitTypeDef* CRYP_KeyInitStruct)
   CRYP_KeyInitStruct->CRYP_Key3Right = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,27 +83,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_CRYP_KeyInitStruct0 = 1;
+          int _len_CRYP_KeyInitStruct0 = 65025;
           struct TYPE_3__ * CRYP_KeyInitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_KeyInitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_CRYP_KeyInitStruct0; _i0++) {
-            CRYP_KeyInitStruct[_i0].CRYP_Key3Right = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key3Left = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key2Right = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key2Left = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key1Right = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key1Left = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key0Right = ((-2 * (next_i()%2)) + 1) * next_i();
-        CRYP_KeyInitStruct[_i0].CRYP_Key0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+              CRYP_KeyInitStruct[_i0].CRYP_Key3Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key3Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key2Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key2Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key1Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key1Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key0Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           CRYP_KeyStructInit(CRYP_KeyInitStruct);
           free(CRYP_KeyInitStruct);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_CRYP_KeyInitStruct0 = 100;
+          struct TYPE_3__ * CRYP_KeyInitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_KeyInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CRYP_KeyInitStruct0; _i0++) {
+              CRYP_KeyInitStruct[_i0].CRYP_Key3Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key3Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key2Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key2Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key1Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key1Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key0Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CRYP_KeyStructInit(CRYP_KeyInitStruct);
+          free(CRYP_KeyInitStruct);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_CRYP_KeyInitStruct0 = 1;
+          struct TYPE_3__ * CRYP_KeyInitStruct = (struct TYPE_3__ *) malloc(_len_CRYP_KeyInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_CRYP_KeyInitStruct0; _i0++) {
+              CRYP_KeyInitStruct[_i0].CRYP_Key3Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key3Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key2Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key2Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key1Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key1Left = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key0Right = ((-2 * (next_i()%2)) + 1) * next_i();
+          CRYP_KeyInitStruct[_i0].CRYP_Key0Left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          CRYP_KeyStructInit(CRYP_KeyInitStruct);
+          free(CRYP_KeyInitStruct);
+        
+        break;
+    }
     default:
         usage();
         break;

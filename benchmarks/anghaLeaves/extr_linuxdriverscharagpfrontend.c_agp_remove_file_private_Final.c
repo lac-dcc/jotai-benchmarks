@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,8 +82,50 @@ __attribute__((used)) static void agp_remove_file_private(struct agp_file_privat
 	}
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct agp_file_private *_allocate_Dlinked_priv(int length, struct agp_file_private *aux_dlinked_priv[] ) {
+  struct agp_file_private *walker = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
+
+  aux_dlinked_priv[0] = walker;
+  walker->prev = NULL;
+  walker->next = NULL;
+
+  struct agp_file_private *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->next = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
+    walker->next->prev = walker;
+    walker = walker->next;
+    aux_dlinked_priv[i] = walker;
+    if (i == (length - 1)) 
+      walker->next = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_priv(struct agp_file_private *aux_dlinked_priv[], int aux_dlinked_priv_size) {
+  for(int i = 0; i < aux_dlinked_priv_size; i++) 
+    if(aux_dlinked_priv[i])
+      free(aux_dlinked_priv[i]);
+}
+
+struct agp_file_private *_allocateBinTree_priv(int length, struct agp_file_private *aux_tree_priv[], int *counter_priv) {
+  if(length == 0)
+    return NULL;
+  struct agp_file_private *walker = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
+
+  aux_tree_priv[*counter_priv] = walker;
+  (*counter_priv)++;
+  walker->prev = _allocateBinTree_priv(length - 1, aux_tree_priv, counter_priv);
+  walker->next = _allocateBinTree_priv(length - 1, aux_tree_priv, counter_priv);
+  return walker;
+}
+
+void _deleteBinTree_priv(struct agp_file_private *aux_tree_priv[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_priv[i])
+      free(aux_tree_priv[i]);
+}
 
 struct agp_file_private *_allocate_priv(int length, struct agp_file_private *aux_priv[]) {
   struct agp_file_private *walker = (struct agp_file_private *)malloc(sizeof(struct agp_file_private));
@@ -113,7 +157,6 @@ void _delete_priv(struct agp_file_private *aux_priv[], int aux_priv_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,17 +169,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // dlinked
     case 0:
+    {
+          struct agp_file_private * aux_dlinked_priv[10000];
+          struct agp_file_private * priv = _allocate_Dlinked_priv(10000, aux_dlinked_priv);
+        
+          agp_remove_file_private(priv);
+          _delete_Dlinked_priv(aux_dlinked_priv, 10000);
+        
+        break;
+    }
+    // bintree
+    case 1:
+    {
+          int counter_priv= 0;
+          struct agp_file_private *  aux_tree_priv[1023];
+          struct agp_file_private * priv = _allocateBinTree_priv(10, aux_tree_priv, &counter_priv);
+        
+          agp_remove_file_private(priv);
+          _deleteBinTree_priv(aux_tree_priv);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           struct agp_file_private * aux_priv[1];
           struct agp_file_private * priv = _allocate_priv(1, aux_priv);
+        
           agp_remove_file_private(priv);
           _delete_priv(aux_priv, 1);
         
         break;
     }
-
     default:
         usage();
         break;

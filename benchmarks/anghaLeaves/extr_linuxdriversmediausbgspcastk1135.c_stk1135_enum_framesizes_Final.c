@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static int stk1135_enum_framesizes(struct gspca_dev *gspca
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,27 +92,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gspca_dev0 = 1;
+          int _len_gspca_dev0 = 65025;
           struct gspca_dev * gspca_dev = (struct gspca_dev *) malloc(_len_gspca_dev0*sizeof(struct gspca_dev));
           for(int _i0 = 0; _i0 < _len_gspca_dev0; _i0++) {
-            gspca_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              gspca_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_fsize0 = 1;
+        
+          int _len_fsize0 = 65025;
           struct v4l2_frmsizeenum * fsize = (struct v4l2_frmsizeenum *) malloc(_len_fsize0*sizeof(struct v4l2_frmsizeenum));
           for(int _i0 = 0; _i0 < _len_fsize0; _i0++) {
-            fsize[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].pixel_format = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].stepwise.min_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].stepwise.min_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].stepwise.max_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].stepwise.max_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].stepwise.step_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].stepwise.step_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsize[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsize[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].pixel_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.min_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.min_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.step_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.step_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fsize[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stk1135_enum_framesizes(gspca_dev,fsize);
           printf("%d\n", benchRet); 
           free(gspca_dev);
@@ -124,7 +125,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_gspca_dev0 = 100;
+          struct gspca_dev * gspca_dev = (struct gspca_dev *) malloc(_len_gspca_dev0*sizeof(struct gspca_dev));
+          for(int _i0 = 0; _i0 < _len_gspca_dev0; _i0++) {
+              gspca_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fsize0 = 100;
+          struct v4l2_frmsizeenum * fsize = (struct v4l2_frmsizeenum *) malloc(_len_fsize0*sizeof(struct v4l2_frmsizeenum));
+          for(int _i0 = 0; _i0 < _len_fsize0; _i0++) {
+              fsize[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].pixel_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.min_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.min_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.step_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.step_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fsize[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stk1135_enum_framesizes(gspca_dev,fsize);
+          printf("%d\n", benchRet); 
+          free(gspca_dev);
+          free(fsize);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_gspca_dev0 = 1;
+          struct gspca_dev * gspca_dev = (struct gspca_dev *) malloc(_len_gspca_dev0*sizeof(struct gspca_dev));
+          for(int _i0 = 0; _i0 < _len_gspca_dev0; _i0++) {
+              gspca_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fsize0 = 1;
+          struct v4l2_frmsizeenum * fsize = (struct v4l2_frmsizeenum *) malloc(_len_fsize0*sizeof(struct v4l2_frmsizeenum));
+          for(int _i0 = 0; _i0 < _len_fsize0; _i0++) {
+              fsize[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].pixel_format = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.min_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.min_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.max_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.step_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsize[_i0].stepwise.step_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          fsize[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stk1135_enum_framesizes(gspca_dev,fsize);
+          printf("%d\n", benchRet); 
+          free(gspca_dev);
+          free(fsize);
+        
+        break;
+    }
     default:
         usage();
         break;

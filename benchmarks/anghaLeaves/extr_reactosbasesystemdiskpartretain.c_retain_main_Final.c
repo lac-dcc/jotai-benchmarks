@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ BOOL retain_main(INT argc, LPWSTR *argv)
     return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,11 +82,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int argc = 100;
+        
           int _len_argv0 = 1;
           int * argv = (int *) malloc(_len_argv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
             argv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = retain_main(argc,argv);
+          printf("%d\n", benchRet); 
+          free(argv);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int argc = 255;
+        
+          int _len_argv0 = 65025;
+          int * argv = (int *) malloc(_len_argv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            argv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = retain_main(argc,argv);
           printf("%d\n", benchRet); 
           free(argv);
@@ -98,21 +113,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int argc = 10;
+        
           int _len_argv0 = 100;
           int * argv = (int *) malloc(_len_argv0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
             argv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = retain_main(argc,argv);
           printf("%d\n", benchRet); 
           free(argv);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int argc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_argv0 = 1;
+          int * argv = (int *) malloc(_len_argv0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_argv0; _i0++) {
+            argv[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = retain_main(argc,argv);
+          printf("%d\n", benchRet); 
+          free(argv);
+        
+        break;
+    }
     default:
         usage();
         break;

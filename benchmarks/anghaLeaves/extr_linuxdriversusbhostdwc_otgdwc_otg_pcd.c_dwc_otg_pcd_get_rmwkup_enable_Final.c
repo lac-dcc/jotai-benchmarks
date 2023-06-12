@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ int dwc_otg_pcd_get_rmwkup_enable(dwc_otg_pcd_t * pcd)
 	return pcd->remote_wakeup_enable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pcd0 = 1;
+          int _len_pcd0 = 65025;
           struct TYPE_3__ * pcd = (struct TYPE_3__ *) malloc(_len_pcd0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pcd0; _i0++) {
-            pcd[_i0].remote_wakeup_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcd[_i0].remote_wakeup_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc_otg_pcd_get_rmwkup_enable(pcd);
           printf("%d\n", benchRet); 
           free(pcd);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_pcd0 = 100;
           struct TYPE_3__ * pcd = (struct TYPE_3__ *) malloc(_len_pcd0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pcd0; _i0++) {
-            pcd[_i0].remote_wakeup_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcd[_i0].remote_wakeup_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc_otg_pcd_get_rmwkup_enable(pcd);
           printf("%d\n", benchRet); 
           free(pcd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pcd0 = 1;
+          struct TYPE_3__ * pcd = (struct TYPE_3__ *) malloc(_len_pcd0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pcd0; _i0++) {
+              pcd[_i0].remote_wakeup_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dwc_otg_pcd_get_rmwkup_enable(pcd);
+          printf("%d\n", benchRet); 
+          free(pcd);
+        
+        break;
+    }
     default:
         usage();
         break;

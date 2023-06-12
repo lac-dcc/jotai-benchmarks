@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u64 clocksource_delta(u64 now, u64 last, u64
 	return (now - last) & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int now = 100;
+        
           int last = 100;
+        
           int mask = 100;
+        
           int benchRet = clocksource_delta(now,last,mask);
           printf("%d\n", benchRet); 
         
@@ -95,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int now = 255;
+        
           int last = 255;
+        
           int mask = 255;
+        
           int benchRet = clocksource_delta(now,last,mask);
           printf("%d\n", benchRet); 
         
@@ -106,14 +107,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int now = 10;
+        
           int last = 10;
+        
           int mask = 10;
+        
           int benchRet = clocksource_delta(now,last,mask);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int now = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int last = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = clocksource_delta(now,last,mask);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

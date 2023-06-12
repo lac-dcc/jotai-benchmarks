@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void perf_top__reset_sample_counters(struct perf_top *top)
 	top->guest_us_samples = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_top0 = 65025;
+          struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              top[_i0].guest_us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].guest_kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].exact_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          perf_top__reset_sample_counters(top);
+          free(top);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_top0 = 100;
+          struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
+          for(int _i0 = 0; _i0 < _len_top0; _i0++) {
+              top[_i0].guest_us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].guest_kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].exact_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          perf_top__reset_sample_counters(top);
+          free(top);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_top0 = 1;
           struct perf_top * top = (struct perf_top *) malloc(_len_top0*sizeof(struct perf_top));
           for(int _i0 = 0; _i0 < _len_top0; _i0++) {
-            top[_i0].guest_us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        top[_i0].guest_kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        top[_i0].exact_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        top[_i0].kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        top[_i0].us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
-        top[_i0].samples = ((-2 * (next_i()%2)) + 1) * next_i();
+              top[_i0].guest_us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].guest_kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].exact_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].kernel_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].us_samples = ((-2 * (next_i()%2)) + 1) * next_i();
+          top[_i0].samples = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           perf_top__reset_sample_counters(top);
           free(top);
         

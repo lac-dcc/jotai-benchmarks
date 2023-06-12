@@ -94,12 +94,6 @@ __attribute__((used)) static unsigned int cache_estimate(unsigned long gfporder,
 	return num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,17 +106,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           unsigned long gfporder = 10;
+        
           unsigned long buffer_size = 10;
+        
           int flags = 10;
+        
           int _len_left_over0 = 100;
           unsigned long * left_over = (unsigned long *) malloc(_len_left_over0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_left_over0; _i0++) {
             left_over[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = cache_estimate(gfporder,buffer_size,flags,left_over);
           printf("%u\n", benchRet); 
           free(left_over);

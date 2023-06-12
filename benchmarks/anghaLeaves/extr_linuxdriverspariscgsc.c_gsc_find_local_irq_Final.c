@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ int gsc_find_local_irq(unsigned int irq, int *global_irqs, int limit)
 	return NO_IRQ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +81,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 3329
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 1285
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 1285
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 1285
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 1285
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 1284
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 1540
+          // ------------------------------- 
+
+          unsigned int irq = 255;
+        
+          int limit = 255;
+        
+          int _len_global_irqs0 = 65025;
+          int * global_irqs = (int *) malloc(_len_global_irqs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_global_irqs0; _i0++) {
+            global_irqs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = gsc_find_local_irq(irq,global_irqs,limit);
+          printf("%d\n", benchRet); 
+          free(global_irqs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 144
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 60
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 60
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 60
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 60
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 59
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 70
+          // ------------------------------- 
+
           unsigned int irq = 10;
+        
           int limit = 10;
+        
           int _len_global_irqs0 = 100;
           int * global_irqs = (int *) malloc(_len_global_irqs0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_global_irqs0; _i0++) {
             global_irqs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = gsc_find_local_irq(irq,global_irqs,limit);
+          printf("%d\n", benchRet); 
+          free(global_irqs);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned int irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_global_irqs0 = 1;
+          int * global_irqs = (int *) malloc(_len_global_irqs0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_global_irqs0; _i0++) {
+            global_irqs[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = gsc_find_local_irq(irq,global_irqs,limit);
           printf("%d\n", benchRet); 
           free(global_irqs);

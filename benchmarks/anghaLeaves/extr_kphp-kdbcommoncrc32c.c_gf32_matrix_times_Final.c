@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static unsigned gf32_matrix_times (unsigned *matrix, unsig
   return sum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +79,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int vector = 10;
-          int _len_matrix0 = 100;
+          unsigned int vector = 255;
+        
+          int _len_matrix0 = 65025;
           unsigned int * matrix = (unsigned int *) malloc(_len_matrix0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_matrix0; _i0++) {
             matrix[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = gf32_matrix_times(matrix,vector);
           printf("%u\n", benchRet); 
           free(matrix);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int vector = 10;
+        
+          int _len_matrix0 = 100;
+          unsigned int * matrix = (unsigned int *) malloc(_len_matrix0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_matrix0; _i0++) {
+            matrix[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = gf32_matrix_times(matrix,vector);
+          printf("%u\n", benchRet); 
+          free(matrix);
+        
+        break;
+    }
     default:
         usage();
         break;

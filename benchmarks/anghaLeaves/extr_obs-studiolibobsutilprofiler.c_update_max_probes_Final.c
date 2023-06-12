@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void update_max_probes(profile_times_table *
 		val : map->max_probe_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long val = 100;
+        
           int _len_map0 = 1;
           struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].max_probe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].max_probe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          update_max_probes(map,val);
+          free(map);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long val = 255;
+        
+          int _len_map0 = 65025;
+          struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].max_probe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           update_max_probes(map,val);
           free(map);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long val = 10;
+        
           int _len_map0 = 100;
           struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].max_probe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].max_probe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_max_probes(map,val);
           free(map);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_map0 = 1;
+          struct TYPE_3__ * map = (struct TYPE_3__ *) malloc(_len_map0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].max_probe_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_max_probes(map,val);
+          free(map);
+        
+        break;
+    }
     default:
         usage();
         break;

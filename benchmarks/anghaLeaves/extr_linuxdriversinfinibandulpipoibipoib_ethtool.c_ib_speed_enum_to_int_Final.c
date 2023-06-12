@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static inline int ib_speed_enum_to_int(int speed)
 	return SPEED_UNKNOWN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int speed = 100;
+        
           int benchRet = ib_speed_enum_to_int(speed);
           printf("%d\n", benchRet); 
         
@@ -118,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int speed = 255;
+        
           int benchRet = ib_speed_enum_to_int(speed);
           printf("%d\n", benchRet); 
         
@@ -127,12 +124,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int speed = 10;
+        
           int benchRet = ib_speed_enum_to_int(speed);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ib_speed_enum_to_int(speed);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

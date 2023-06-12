@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -102,12 +105,6 @@ __attribute__((used)) static int validate_keys_sizes(struct cc_cipher_ctx *ctx_p
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,16 +117,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int size = 100;
+        
           int _len_ctx_p0 = 1;
           struct cc_cipher_ctx * ctx_p = (struct cc_cipher_ctx *) malloc(_len_ctx_p0*sizeof(struct cc_cipher_ctx));
           for(int _i0 = 0; _i0 < _len_ctx_p0; _i0++) {
-            ctx_p[_i0].flow_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx_p[_i0].cipher_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx_p[_i0].flow_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx_p[_i0].cipher_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = validate_keys_sizes(ctx_p,size);
+          printf("%d\n", benchRet); 
+          free(ctx_p);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int size = 255;
+        
+          int _len_ctx_p0 = 65025;
+          struct cc_cipher_ctx * ctx_p = (struct cc_cipher_ctx *) malloc(_len_ctx_p0*sizeof(struct cc_cipher_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx_p0; _i0++) {
+              ctx_p[_i0].flow_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx_p[_i0].cipher_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = validate_keys_sizes(ctx_p,size);
+          printf("%d\n", benchRet); 
+          free(ctx_p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int size = 10;
+        
+          int _len_ctx_p0 = 100;
+          struct cc_cipher_ctx * ctx_p = (struct cc_cipher_ctx *) malloc(_len_ctx_p0*sizeof(struct cc_cipher_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx_p0; _i0++) {
+              ctx_p[_i0].flow_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx_p[_i0].cipher_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = validate_keys_sizes(ctx_p,size);
+          printf("%d\n", benchRet); 
+          free(ctx_p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx_p0 = 1;
+          struct cc_cipher_ctx * ctx_p = (struct cc_cipher_ctx *) malloc(_len_ctx_p0*sizeof(struct cc_cipher_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx_p0; _i0++) {
+              ctx_p[_i0].flow_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx_p[_i0].cipher_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = validate_keys_sizes(ctx_p,size);
           printf("%d\n", benchRet); 
           free(ctx_p);

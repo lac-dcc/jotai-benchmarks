@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ void sm750_hw_cursor_setSize(struct lynx_cursor *cursor, int w, int h)
 	cursor->h = h;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int w = 100;
+        
           int h = 100;
+        
           int _len_cursor0 = 1;
           struct lynx_cursor * cursor = (struct lynx_cursor *) malloc(_len_cursor0*sizeof(struct lynx_cursor));
           for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
-            cursor[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
-        cursor[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+              cursor[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           sm750_hw_cursor_setSize(cursor,w,h);
           free(cursor);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int w = 255;
+        
+          int h = 255;
+        
+          int _len_cursor0 = 65025;
+          struct lynx_cursor * cursor = (struct lynx_cursor *) malloc(_len_cursor0*sizeof(struct lynx_cursor));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+              cursor[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm750_hw_cursor_setSize(cursor,w,h);
+          free(cursor);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int w = 10;
+        
+          int h = 10;
+        
+          int _len_cursor0 = 100;
+          struct lynx_cursor * cursor = (struct lynx_cursor *) malloc(_len_cursor0*sizeof(struct lynx_cursor));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+              cursor[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm750_hw_cursor_setSize(cursor,w,h);
+          free(cursor);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cursor0 = 1;
+          struct lynx_cursor * cursor = (struct lynx_cursor *) malloc(_len_cursor0*sizeof(struct lynx_cursor));
+          for(int _i0 = 0; _i0 < _len_cursor0; _i0++) {
+              cursor[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          cursor[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          sm750_hw_cursor_setSize(cursor,w,h);
+          free(cursor);
+        
+        break;
+    }
     default:
         usage();
         break;

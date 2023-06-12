@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int snd_trident_allocate_pcm_channel(struct snd_tri
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +86,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_trident0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_trident0 = 65025;
           struct snd_trident * trident = (struct snd_trident *) malloc(_len_trident0*sizeof(struct snd_trident));
           for(int _i0 = 0; _i0 < _len_trident0; _i0++) {
-            trident[_i0].ChanPCMcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        trident[_i0].ChanPCM = ((-2 * (next_i()%2)) + 1) * next_i();
+              trident[_i0].ChanPCMcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          trident[_i0].ChanPCM = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_trident__i0__ChanMap0 = 1;
           trident[_i0].ChanMap = (int *) malloc(_len_trident__i0__ChanMap0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_trident__i0__ChanMap0; _j0++) {
             trident[_i0].ChanMap[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = snd_trident_allocate_pcm_channel(trident);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_trident0; _aux++) {
+          free(trident[_aux].ChanMap);
+          }
+          free(trident);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_trident0 = 100;
+          struct snd_trident * trident = (struct snd_trident *) malloc(_len_trident0*sizeof(struct snd_trident));
+          for(int _i0 = 0; _i0 < _len_trident0; _i0++) {
+              trident[_i0].ChanPCMcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          trident[_i0].ChanPCM = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trident__i0__ChanMap0 = 1;
+          trident[_i0].ChanMap = (int *) malloc(_len_trident__i0__ChanMap0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_trident__i0__ChanMap0; _j0++) {
+            trident[_i0].ChanMap[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = snd_trident_allocate_pcm_channel(trident);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_trident0; _aux++) {
+          free(trident[_aux].ChanMap);
+          }
+          free(trident);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_trident0 = 1;
+          struct snd_trident * trident = (struct snd_trident *) malloc(_len_trident0*sizeof(struct snd_trident));
+          for(int _i0 = 0; _i0 < _len_trident0; _i0++) {
+              trident[_i0].ChanPCMcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          trident[_i0].ChanPCM = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_trident__i0__ChanMap0 = 1;
+          trident[_i0].ChanMap = (int *) malloc(_len_trident__i0__ChanMap0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_trident__i0__ChanMap0; _j0++) {
+            trident[_i0].ChanMap[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = snd_trident_allocate_pcm_channel(trident);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_trident0; _aux++) {

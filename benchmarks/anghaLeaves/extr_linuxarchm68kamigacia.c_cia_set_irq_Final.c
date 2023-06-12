@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +79,6 @@ unsigned char cia_set_irq(struct ciabase *base, unsigned char mask)
 	return old & base->icr_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,18 +95,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char mask = 100;
+        
           int _len_base0 = 1;
           struct ciabase * base = (struct ciabase *) malloc(_len_base0*sizeof(struct ciabase));
           for(int _i0 = 0; _i0 < _len_base0; _i0++) {
-            base[_i0].icr_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        base[_i0].icr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        base[_i0].int_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              base[_i0].icr_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].icr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].int_mask = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_base__i0__cia0 = 1;
           base[_i0].cia = (struct TYPE_3__ *) malloc(_len_base__i0__cia0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_base__i0__cia0; _j0++) {
-            base[_i0].cia->icr = ((-2 * (next_i()%2)) + 1) * next_i();
+              base[_i0].cia->icr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned char benchRet = cia_set_irq(base,mask);
           printf("%c\n", (benchRet %26) + 'a'); 
           for(int _aux = 0; _aux < _len_base0; _aux++) {
@@ -119,7 +120,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned char mask = 255;
+        
+          int _len_base0 = 65025;
+          struct ciabase * base = (struct ciabase *) malloc(_len_base0*sizeof(struct ciabase));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+              base[_i0].icr_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].icr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].int_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_base__i0__cia0 = 1;
+          base[_i0].cia = (struct TYPE_3__ *) malloc(_len_base__i0__cia0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_base__i0__cia0; _j0++) {
+              base[_i0].cia->icr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned char benchRet = cia_set_irq(base,mask);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_base0; _aux++) {
+          free(base[_aux].cia);
+          }
+          free(base);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned char mask = 10;
+        
+          int _len_base0 = 100;
+          struct ciabase * base = (struct ciabase *) malloc(_len_base0*sizeof(struct ciabase));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+              base[_i0].icr_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].icr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].int_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_base__i0__cia0 = 1;
+          base[_i0].cia = (struct TYPE_3__ *) malloc(_len_base__i0__cia0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_base__i0__cia0; _j0++) {
+              base[_i0].cia->icr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned char benchRet = cia_set_irq(base,mask);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_base0; _aux++) {
+          free(base[_aux].cia);
+          }
+          free(base);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned char mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_base0 = 1;
+          struct ciabase * base = (struct ciabase *) malloc(_len_base0*sizeof(struct ciabase));
+          for(int _i0 = 0; _i0 < _len_base0; _i0++) {
+              base[_i0].icr_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].icr_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          base[_i0].int_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_base__i0__cia0 = 1;
+          base[_i0].cia = (struct TYPE_3__ *) malloc(_len_base__i0__cia0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_base__i0__cia0; _j0++) {
+              base[_i0].cia->icr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned char benchRet = cia_set_irq(base,mask);
+          printf("%c\n", (benchRet %26) + 'a'); 
+          for(int _aux = 0; _aux < _len_base0; _aux++) {
+          free(base[_aux].cia);
+          }
+          free(base);
+        
+        break;
+    }
     default:
         usage();
         break;

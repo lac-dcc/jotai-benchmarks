@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -194,12 +197,6 @@ out_err:
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -212,31 +209,268 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int start_len = 100;
+        
           int hdr_len = 100;
+        
           int _len_trans0 = 1;
           struct iwl_trans * trans = (struct iwl_trans *) malloc(_len_trans0*sizeof(struct iwl_trans));
           for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
-            trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tfd0 = 1;
           struct iwl_tfh_tfd * tfd = (struct iwl_tfh_tfd *) malloc(_len_tfd0*sizeof(struct iwl_tfh_tfd));
           for(int _i0 = 0; _i0 < _len_tfd0; _i0++) {
-            tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dev_cmd0 = 1;
           struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
           for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
-            dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = iwl_pcie_gen2_build_amsdu(trans,skb,tfd,start_len,hdr_len,dev_cmd);
+          printf("%d\n", benchRet); 
+          free(trans);
+          free(skb);
+          free(tfd);
+          free(dev_cmd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int start_len = 255;
+        
+          int hdr_len = 255;
+        
+          int _len_trans0 = 65025;
+          struct iwl_trans * trans = (struct iwl_trans *) malloc(_len_trans0*sizeof(struct iwl_trans));
+          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
+              trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tfd0 = 65025;
+          struct iwl_tfh_tfd * tfd = (struct iwl_tfh_tfd *) malloc(_len_tfd0*sizeof(struct iwl_tfh_tfd));
+          for(int _i0 = 0; _i0 < _len_tfd0; _i0++) {
+              tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev_cmd0 = 65025;
+          struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
+          for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
+              dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_pcie_gen2_build_amsdu(trans,skb,tfd,start_len,hdr_len,dev_cmd);
+          printf("%d\n", benchRet); 
+          free(trans);
+          free(skb);
+          free(tfd);
+          free(dev_cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int start_len = 10;
+        
+          int hdr_len = 10;
+        
+          int _len_trans0 = 100;
+          struct iwl_trans * trans = (struct iwl_trans *) malloc(_len_trans0*sizeof(struct iwl_trans));
+          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
+              trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 100;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tfd0 = 100;
+          struct iwl_tfh_tfd * tfd = (struct iwl_tfh_tfd *) malloc(_len_tfd0*sizeof(struct iwl_tfh_tfd));
+          for(int _i0 = 0; _i0 < _len_tfd0; _i0++) {
+              tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev_cmd0 = 100;
+          struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
+          for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
+              dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_pcie_gen2_build_amsdu(trans,skb,tfd,start_len,hdr_len,dev_cmd);
+          printf("%d\n", benchRet); 
+          free(trans);
+          free(skb);
+          free(tfd);
+          free(dev_cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int start_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hdr_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_trans0 = 1;
+          struct iwl_trans * trans = (struct iwl_trans *) malloc(_len_trans0*sizeof(struct iwl_trans));
+          for(int _i0 = 0; _i0 < _len_trans0; _i0++) {
+              trans[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tfd0 = 1;
+          struct iwl_tfh_tfd * tfd = (struct iwl_tfh_tfd *) malloc(_len_tfd0*sizeof(struct iwl_tfh_tfd));
+          for(int _i0 = 0; _i0 < _len_tfd0; _i0++) {
+              tfd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dev_cmd0 = 1;
+          struct iwl_device_cmd * dev_cmd = (struct iwl_device_cmd *) malloc(_len_dev_cmd0*sizeof(struct iwl_device_cmd));
+          for(int _i0 = 0; _i0 < _len_dev_cmd0; _i0++) {
+              dev_cmd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = iwl_pcie_gen2_build_amsdu(trans,skb,tfd,start_len,hdr_len,dev_cmd);
           printf("%d\n", benchRet); 
           free(trans);

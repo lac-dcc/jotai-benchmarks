@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void enable_surface_flip_reporting(struct dc_plane_state *plane_state,
 	/*register_flip_interrupt(surface);*/
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,29 +79,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long controller_id = 100;
+        
           int _len_plane_state0 = 1;
           struct dc_plane_state * plane_state = (struct dc_plane_state *) malloc(_len_plane_state0*sizeof(struct dc_plane_state));
           for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
-            plane_state[_i0].irq_source = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane_state[_i0].irq_source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           enable_surface_flip_reporting(plane_state,controller_id);
           free(plane_state);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long controller_id = 255;
+        
+          int _len_plane_state0 = 65025;
+          struct dc_plane_state * plane_state = (struct dc_plane_state *) malloc(_len_plane_state0*sizeof(struct dc_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].irq_source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          enable_surface_flip_reporting(plane_state,controller_id);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long controller_id = 10;
+        
           int _len_plane_state0 = 100;
           struct dc_plane_state * plane_state = (struct dc_plane_state *) malloc(_len_plane_state0*sizeof(struct dc_plane_state));
           for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
-            plane_state[_i0].irq_source = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane_state[_i0].irq_source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          enable_surface_flip_reporting(plane_state,controller_id);
+          free(plane_state);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long controller_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_plane_state0 = 1;
+          struct dc_plane_state * plane_state = (struct dc_plane_state *) malloc(_len_plane_state0*sizeof(struct dc_plane_state));
+          for(int _i0 = 0; _i0 < _len_plane_state0; _i0++) {
+              plane_state[_i0].irq_source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           enable_surface_flip_reporting(plane_state,controller_id);
           free(plane_state);
         

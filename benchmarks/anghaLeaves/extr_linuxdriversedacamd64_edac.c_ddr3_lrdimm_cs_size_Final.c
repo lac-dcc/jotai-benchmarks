@@ -74,12 +74,6 @@ __attribute__((used)) static int ddr3_lrdimm_cs_size(unsigned i, unsigned rank_m
 	return cs_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,13 +90,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int i = 10;
+        
           unsigned int rank_multiply = 10;
+        
           int benchRet = ddr3_lrdimm_cs_size(i,rank_multiply);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

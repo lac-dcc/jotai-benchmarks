@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -58,12 +59,6 @@ typedef int bool;
 
 __attribute__((used)) static short FSEv05_abs(short a) { return a<0 ? -a : a; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,6 +75,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           short a = 100;
+        
           short benchRet = FSEv05_abs(a);
           printf("%hi\n", benchRet); 
         
@@ -89,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           short a = 255;
+        
           short benchRet = FSEv05_abs(a);
           printf("%hi\n", benchRet); 
         
@@ -98,12 +95,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           short a = 10;
+        
           short benchRet = FSEv05_abs(a);
           printf("%hi\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          short a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          short benchRet = FSEv05_abs(a);
+          printf("%hi\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

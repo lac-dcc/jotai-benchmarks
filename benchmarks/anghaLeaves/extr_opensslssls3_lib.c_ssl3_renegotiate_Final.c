@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int ssl3_renegotiate(SSL *s)
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          int _len_s0 = 65025;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].s3.renegotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].s3.renegotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_s__i0__handshake_func0 = 1;
           s[_i0].handshake_func = (int *) malloc(_len_s__i0__handshake_func0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_s__i0__handshake_func0; _j0++) {
             s[_i0].handshake_func[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ssl3_renegotiate(s);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {
@@ -108,7 +107,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].s3.renegotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s__i0__handshake_func0 = 1;
+          s[_i0].handshake_func = (int *) malloc(_len_s__i0__handshake_func0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__handshake_func0; _j0++) {
+            s[_i0].handshake_func[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ssl3_renegotiate(s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].handshake_func);
+          }
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].s3.renegotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s__i0__handshake_func0 = 1;
+          s[_i0].handshake_func = (int *) malloc(_len_s__i0__handshake_func0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__handshake_func0; _j0++) {
+            s[_i0].handshake_func[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ssl3_renegotiate(s);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].handshake_func);
+          }
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

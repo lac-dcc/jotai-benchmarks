@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ xring_remove(struct XRing *xring)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,20 +99,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_xring0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_xring0 = 65025;
           struct XRing * xring = (struct XRing *) malloc(_len_xring0*sizeof(struct XRing));
           for(int _i0 = 0; _i0 < _len_xring0; _i0++) {
-            xring[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        xring[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+              xring[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          xring[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_xring__i0__ring0 = 1;
           xring[_i0].ring = (long *) malloc(_len_xring__i0__ring0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_xring__i0__ring0; _j0++) {
             xring[_i0].ring[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          long benchRet = xring_remove(xring);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xring0; _aux++) {
+          free(xring[_aux].ring);
+          }
+          free(xring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_xring0 = 100;
+          struct XRing * xring = (struct XRing *) malloc(_len_xring0*sizeof(struct XRing));
+          for(int _i0 = 0; _i0 < _len_xring0; _i0++) {
+              xring[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          xring[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_xring__i0__ring0 = 1;
+          xring[_i0].ring = (long *) malloc(_len_xring__i0__ring0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_xring__i0__ring0; _j0++) {
+            xring[_i0].ring[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          long benchRet = xring_remove(xring);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_xring0; _aux++) {
+          free(xring[_aux].ring);
+          }
+          free(xring);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_xring0 = 1;
+          struct XRing * xring = (struct XRing *) malloc(_len_xring0*sizeof(struct XRing));
+          for(int _i0 = 0; _i0 < _len_xring0; _i0++) {
+              xring[_i0].tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          xring[_i0].head = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_xring__i0__ring0 = 1;
+          xring[_i0].ring = (long *) malloc(_len_xring__i0__ring0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_xring__i0__ring0; _j0++) {
+            xring[_i0].ring[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           long benchRet = xring_remove(xring);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_xring0; _aux++) {

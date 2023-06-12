@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static void mlxsw_sp_adj_grp_size_round_up(u16 *p_adj_grp_
 		*p_adj_grp_size = 4096;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_p_adj_grp_size0 = 1;
+          int _len_p_adj_grp_size0 = 65025;
           int * p_adj_grp_size = (int *) malloc(_len_p_adj_grp_size0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
             p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mlxsw_sp_adj_grp_size_round_up(p_adj_grp_size);
           free(p_adj_grp_size);
         
@@ -112,12 +108,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
             p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mlxsw_sp_adj_grp_size_round_up(p_adj_grp_size);
           free(p_adj_grp_size);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_p_adj_grp_size0 = 1;
+          int * p_adj_grp_size = (int *) malloc(_len_p_adj_grp_size0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_adj_grp_size0; _i0++) {
+            p_adj_grp_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mlxsw_sp_adj_grp_size_round_up(p_adj_grp_size);
+          free(p_adj_grp_size);
+        
+        break;
+    }
     default:
         usage();
         break;

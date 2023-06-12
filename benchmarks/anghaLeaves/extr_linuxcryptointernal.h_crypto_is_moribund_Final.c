@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int crypto_is_moribund(struct crypto_alg *al
 	return alg->cra_flags & (CRYPTO_ALG_DEAD | CRYPTO_ALG_DYING);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_alg0 = 1;
+          int _len_alg0 = 65025;
           struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
           for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
-            alg[_i0].cra_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              alg[_i0].cra_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = crypto_is_moribund(alg);
           printf("%d\n", benchRet); 
           free(alg);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_alg0 = 100;
           struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
           for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
-            alg[_i0].cra_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              alg[_i0].cra_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = crypto_is_moribund(alg);
           printf("%d\n", benchRet); 
           free(alg);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_alg0 = 1;
+          struct crypto_alg * alg = (struct crypto_alg *) malloc(_len_alg0*sizeof(struct crypto_alg));
+          for(int _i0 = 0; _i0 < _len_alg0; _i0++) {
+              alg[_i0].cra_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = crypto_is_moribund(alg);
+          printf("%d\n", benchRet); 
+          free(alg);
+        
+        break;
+    }
     default:
         usage();
         break;

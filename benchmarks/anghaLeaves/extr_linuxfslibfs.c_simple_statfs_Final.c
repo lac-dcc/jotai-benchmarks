@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int simple_statfs(struct dentry *dentry, struct kstatfs *buf)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,25 +82,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dentry0 = 1;
+          int _len_dentry0 = 65025;
           struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
           for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
               int _len_dentry__i0__d_sb0 = 1;
           dentry[_i0].d_sb = (struct TYPE_2__ *) malloc(_len_dentry__i0__d_sb0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dentry__i0__d_sb0; _j0++) {
-            dentry[_i0].d_sb->s_magic = ((-2 * (next_i()%2)) + 1) * next_i();
+              dentry[_i0].d_sb->s_magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_buf0 = 1;
+        
+          int _len_buf0 = 65025;
           struct kstatfs * buf = (struct kstatfs *) malloc(_len_buf0*sizeof(struct kstatfs));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
-        buf[_i0].f_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = simple_statfs(dentry,buf);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dentry0; _aux++) {
@@ -115,7 +116,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dentry0 = 100;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              int _len_dentry__i0__d_sb0 = 1;
+          dentry[_i0].d_sb = (struct TYPE_2__ *) malloc(_len_dentry__i0__d_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dentry__i0__d_sb0; _j0++) {
+              dentry[_i0].d_sb->s_magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_buf0 = 100;
+          struct kstatfs * buf = (struct kstatfs *) malloc(_len_buf0*sizeof(struct kstatfs));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = simple_statfs(dentry,buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dentry0; _aux++) {
+          free(dentry[_aux].d_sb);
+          }
+          free(dentry);
+          free(buf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dentry0 = 1;
+          struct dentry * dentry = (struct dentry *) malloc(_len_dentry0*sizeof(struct dentry));
+          for(int _i0 = 0; _i0 < _len_dentry0; _i0++) {
+              int _len_dentry__i0__d_sb0 = 1;
+          dentry[_i0].d_sb = (struct TYPE_2__ *) malloc(_len_dentry__i0__d_sb0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dentry__i0__d_sb0; _j0++) {
+              dentry[_i0].d_sb->s_magic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_buf0 = 1;
+          struct kstatfs * buf = (struct kstatfs *) malloc(_len_buf0*sizeof(struct kstatfs));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].f_namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_bsize = ((-2 * (next_i()%2)) + 1) * next_i();
+          buf[_i0].f_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = simple_statfs(dentry,buf);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dentry0; _aux++) {
+          free(dentry[_aux].d_sb);
+          }
+          free(dentry);
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

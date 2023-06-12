@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static int dns_write_iterator_advance (dns_write_iterator_
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +85,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int len = 100;
+        
           int _len_B0 = 1;
           struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_B0; _i0++) {
-            B[_i0].avail_out = ((-2 * (next_i()%2)) + 1) * next_i();
-        B[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].avail_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dns_write_iterator_advance(B,len);
           printf("%d\n", benchRet); 
           free(B);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int len = 255;
+        
+          int _len_B0 = 65025;
+          struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].avail_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dns_write_iterator_advance(B,len);
+          printf("%d\n", benchRet); 
+          free(B);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int len = 10;
+        
+          int _len_B0 = 100;
+          struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].avail_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dns_write_iterator_advance(B,len);
+          printf("%d\n", benchRet); 
+          free(B);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_B0 = 1;
+          struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].avail_out = ((-2 * (next_i()%2)) + 1) * next_i();
+          B[_i0].wptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dns_write_iterator_advance(B,len);
+          printf("%d\n", benchRet); 
+          free(B);
+        
+        break;
+    }
     default:
         usage();
         break;

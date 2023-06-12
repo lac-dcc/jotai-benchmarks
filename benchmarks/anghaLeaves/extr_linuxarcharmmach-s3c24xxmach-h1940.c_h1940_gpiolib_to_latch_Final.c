@@ -59,12 +59,6 @@ __attribute__((used)) static inline int h1940_gpiolib_to_latch(int offset)
 	return 1 << (offset + 16);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,12 +75,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 10;
+        
           int benchRet = h1940_gpiolib_to_latch(offset);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static bool match_keycode(struct hid_usage *usage,
 	return (usage->type == EV_KEY && usage->code == keycode);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,17 +80,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned int cur_idx = 100;
+        
           unsigned int keycode = 100;
+        
           int _len_usage0 = 1;
           struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
           for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
-            usage[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        usage[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+              usage[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          usage[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = match_keycode(usage,cur_idx,keycode);
+          printf("%d\n", benchRet); 
+          free(usage);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int cur_idx = 255;
+        
+          unsigned int keycode = 255;
+        
+          int _len_usage0 = 65025;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          usage[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = match_keycode(usage,cur_idx,keycode);
+          printf("%d\n", benchRet); 
+          free(usage);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int cur_idx = 10;
+        
+          unsigned int keycode = 10;
+        
+          int _len_usage0 = 100;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          usage[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = match_keycode(usage,cur_idx,keycode);
+          printf("%d\n", benchRet); 
+          free(usage);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned int cur_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int keycode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_usage0 = 1;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          usage[_i0].code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = match_keycode(usage,cur_idx,keycode);
           printf("%d\n", benchRet); 
           free(usage);

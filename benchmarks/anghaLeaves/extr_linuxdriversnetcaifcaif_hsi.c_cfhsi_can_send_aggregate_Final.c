@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static bool cfhsi_can_send_aggregate(struct cfhsi *cfhsi)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,19 +94,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cfhsi0 = 65025;
+          struct cfhsi * cfhsi = (struct cfhsi *) malloc(_len_cfhsi0*sizeof(struct cfhsi));
+          for(int _i0 = 0; _i0 < _len_cfhsi0; _i0++) {
+              int _len_cfhsi__i0__qhead0 = 1;
+          cfhsi[_i0].qhead = (struct TYPE_4__ *) malloc(_len_cfhsi__i0__qhead0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cfhsi__i0__qhead0; _j0++) {
+              cfhsi[_i0].qhead->qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          cfhsi[_i0].cfg.aggregation_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cfhsi_can_send_aggregate(cfhsi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfhsi0; _aux++) {
+          free(cfhsi[_aux].qhead);
+          }
+          free(cfhsi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cfhsi0 = 100;
+          struct cfhsi * cfhsi = (struct cfhsi *) malloc(_len_cfhsi0*sizeof(struct cfhsi));
+          for(int _i0 = 0; _i0 < _len_cfhsi0; _i0++) {
+              int _len_cfhsi__i0__qhead0 = 1;
+          cfhsi[_i0].qhead = (struct TYPE_4__ *) malloc(_len_cfhsi__i0__qhead0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_cfhsi__i0__qhead0; _j0++) {
+              cfhsi[_i0].qhead->qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          cfhsi[_i0].cfg.aggregation_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = cfhsi_can_send_aggregate(cfhsi);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfhsi0; _aux++) {
+          free(cfhsi[_aux].qhead);
+          }
+          free(cfhsi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_cfhsi0 = 1;
           struct cfhsi * cfhsi = (struct cfhsi *) malloc(_len_cfhsi0*sizeof(struct cfhsi));
           for(int _i0 = 0; _i0 < _len_cfhsi0; _i0++) {
               int _len_cfhsi__i0__qhead0 = 1;
           cfhsi[_i0].qhead = (struct TYPE_4__ *) malloc(_len_cfhsi__i0__qhead0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_cfhsi__i0__qhead0; _j0++) {
-            cfhsi[_i0].qhead->qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfhsi[_i0].qhead->qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        cfhsi[_i0].cfg.aggregation_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfhsi[_i0].cfg.aggregation_timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = cfhsi_can_send_aggregate(cfhsi);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cfhsi0; _aux++) {

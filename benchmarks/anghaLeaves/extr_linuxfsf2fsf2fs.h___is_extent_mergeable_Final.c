@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline bool __is_extent_mergeable(struct extent_inf
 			back->blk + back->len == front->blk);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_back0 = 1;
+          int _len_back0 = 65025;
           struct extent_info * back = (struct extent_info *) malloc(_len_back0*sizeof(struct extent_info));
           for(int _i0 = 0; _i0 < _len_back0; _i0++) {
-            back[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
-        back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        back[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+              back[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_front0 = 1;
+        
+          int _len_front0 = 65025;
           struct extent_info * front = (struct extent_info *) malloc(_len_front0*sizeof(struct extent_info));
           for(int _i0 = 0; _i0 < _len_front0; _i0++) {
-            front[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
-        front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        front[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+              front[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __is_extent_mergeable(back,front);
           printf("%d\n", benchRet); 
           free(back);
@@ -104,7 +104,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_back0 = 100;
+          struct extent_info * back = (struct extent_info *) malloc(_len_back0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_back0; _i0++) {
+              back[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_front0 = 100;
+          struct extent_info * front = (struct extent_info *) malloc(_len_front0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_front0; _i0++) {
+              front[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_extent_mergeable(back,front);
+          printf("%d\n", benchRet); 
+          free(back);
+          free(front);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_back0 = 1;
+          struct extent_info * back = (struct extent_info *) malloc(_len_back0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_back0; _i0++) {
+              back[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_front0 = 1;
+          struct extent_info * front = (struct extent_info *) malloc(_len_front0*sizeof(struct extent_info));
+          for(int _i0 = 0; _i0 < _len_front0; _i0++) {
+              front[_i0].fofs = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].blk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_extent_mergeable(back,front);
+          printf("%d\n", benchRet); 
+          free(back);
+          free(front);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int usnic_vnic_res_free_cnt(struct usnic_vnic *vnic,
 	return vnic->chunks[type].free_cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum usnic_vnic_res_type type = 0;
-          int _len_vnic0 = 1;
+        
+          int _len_vnic0 = 65025;
           struct usnic_vnic * vnic = (struct usnic_vnic *) malloc(_len_vnic0*sizeof(struct usnic_vnic));
           for(int _i0 = 0; _i0 < _len_vnic0; _i0++) {
               int _len_vnic__i0__chunks0 = 1;
           vnic[_i0].chunks = (struct TYPE_2__ *) malloc(_len_vnic__i0__chunks0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vnic__i0__chunks0; _j0++) {
-            vnic[_i0].chunks->free_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              vnic[_i0].chunks->free_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = usnic_vnic_res_free_cnt(vnic,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vnic0; _aux++) {
@@ -104,7 +104,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum usnic_vnic_res_type type = 0;
+        
+          int _len_vnic0 = 100;
+          struct usnic_vnic * vnic = (struct usnic_vnic *) malloc(_len_vnic0*sizeof(struct usnic_vnic));
+          for(int _i0 = 0; _i0 < _len_vnic0; _i0++) {
+              int _len_vnic__i0__chunks0 = 1;
+          vnic[_i0].chunks = (struct TYPE_2__ *) malloc(_len_vnic__i0__chunks0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vnic__i0__chunks0; _j0++) {
+              vnic[_i0].chunks->free_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = usnic_vnic_res_free_cnt(vnic,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vnic0; _aux++) {
+          free(vnic[_aux].chunks);
+          }
+          free(vnic);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum usnic_vnic_res_type type = 0;
+        
+          int _len_vnic0 = 1;
+          struct usnic_vnic * vnic = (struct usnic_vnic *) malloc(_len_vnic0*sizeof(struct usnic_vnic));
+          for(int _i0 = 0; _i0 < _len_vnic0; _i0++) {
+              int _len_vnic__i0__chunks0 = 1;
+          vnic[_i0].chunks = (struct TYPE_2__ *) malloc(_len_vnic__i0__chunks0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vnic__i0__chunks0; _j0++) {
+              vnic[_i0].chunks->free_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = usnic_vnic_res_free_cnt(vnic,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vnic0; _aux++) {
+          free(vnic[_aux].chunks);
+          }
+          free(vnic);
+        
+        break;
+    }
     default:
         usage();
         break;

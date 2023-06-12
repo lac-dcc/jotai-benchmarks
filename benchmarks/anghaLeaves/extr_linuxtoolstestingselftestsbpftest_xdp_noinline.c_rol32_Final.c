@@ -60,12 +60,6 @@ __attribute__((used)) static __u32 rol32(__u32 word, unsigned int shift)
 	return (word << shift) | (word >> ((-shift) & 31));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,13 +76,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int word = 10;
+        
           unsigned int shift = 10;
+        
           unsigned int benchRet = rol32(word,shift);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -316,12 +318,6 @@ __attribute__((used)) static void init_stype_info(STypeInfo *type_info)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -334,41 +330,114 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_type_info0 = 1;
+          int _len_type_info0 = 65025;
           struct TYPE_3__ * type_info = (struct TYPE_3__ *) malloc(_len_type_info0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_type_info0; _i0++) {
-            type_info[_i0].leaf_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_print_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_mlist = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_arglist = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_this_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_class_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_return_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_utype = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_vshape = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_derived = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_base_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_index_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_element_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_arg_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_members = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_name_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_name = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].free_ = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].is_fwdref = ((-2 * (next_i()%2)) + 1) * next_i();
-        type_info[_i0].get_modified_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              type_info[_i0].leaf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_print_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_mlist = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_arglist = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_this_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_return_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_utype = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_vshape = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_derived = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_base_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_index_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_element_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_arg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_members = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].free_ = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].is_fwdref = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_modified_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_stype_info(type_info);
           free(type_info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_type_info0 = 100;
+          struct TYPE_3__ * type_info = (struct TYPE_3__ *) malloc(_len_type_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_type_info0; _i0++) {
+              type_info[_i0].leaf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_print_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_mlist = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_arglist = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_this_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_return_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_utype = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_vshape = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_derived = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_base_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_index_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_element_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_arg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_members = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].free_ = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].is_fwdref = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_modified_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_stype_info(type_info);
+          free(type_info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_type_info0 = 1;
+          struct TYPE_3__ * type_info = (struct TYPE_3__ *) malloc(_len_type_info0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_type_info0; _i0++) {
+              type_info[_i0].leaf_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_print_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_mlist = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_arglist = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_this_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_return_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_utype = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_vshape = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_derived = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_base_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_index_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_element_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_arg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_members = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_name_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].free_ = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].is_fwdref = ((-2 * (next_i()%2)) + 1) * next_i();
+          type_info[_i0].get_modified_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_stype_info(type_info);
+          free(type_info);
+        
+        break;
+    }
     default:
         usage();
         break;

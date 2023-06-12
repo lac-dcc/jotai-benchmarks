@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int goldfish_tty_console_setup(struct console *co, 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_co0 = 1;
+          int _len_co0 = 65025;
           struct console * co = (struct console *) malloc(_len_co0*sizeof(struct console));
           for(int _i0 = 0; _i0 < _len_co0; _i0++) {
-            co[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+              co[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_options0 = 1;
+        
+          int _len_options0 = 65025;
           char * options = (char *) malloc(_len_options0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_options0; _i0++) {
             options[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = goldfish_tty_console_setup(co,options);
           printf("%d\n", benchRet); 
           free(co);
@@ -107,7 +106,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_co0 = 100;
+          struct console * co = (struct console *) malloc(_len_co0*sizeof(struct console));
+          for(int _i0 = 0; _i0 < _len_co0; _i0++) {
+              co[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_options0 = 100;
+          char * options = (char *) malloc(_len_options0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_options0; _i0++) {
+            options[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = goldfish_tty_console_setup(co,options);
+          printf("%d\n", benchRet); 
+          free(co);
+          free(options);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_co0 = 1;
+          struct console * co = (struct console *) malloc(_len_co0*sizeof(struct console));
+          for(int _i0 = 0; _i0 < _len_co0; _i0++) {
+              co[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_options0 = 1;
+          char * options = (char *) malloc(_len_options0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_options0; _i0++) {
+            options[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = goldfish_tty_console_setup(co,options);
+          printf("%d\n", benchRet); 
+          free(co);
+          free(options);
+        
+        break;
+    }
     default:
         usage();
         break;

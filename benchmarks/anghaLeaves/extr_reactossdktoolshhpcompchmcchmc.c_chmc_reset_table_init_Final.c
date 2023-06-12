@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void chmc_reset_table_init(struct chmcLzxcResetTable *reset_table)
 	reset_table->block_len = 0x8000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +81,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_reset_table0 = 65025;
+          struct chmcLzxcResetTable * reset_table = (struct chmcLzxcResetTable *) malloc(_len_reset_table0*sizeof(struct chmcLzxcResetTable));
+          for(int _i0 = 0; _i0 < _len_reset_table0; _i0++) {
+              reset_table[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].block_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].compressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].uncompressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].table_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].block_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          chmc_reset_table_init(reset_table);
+          free(reset_table);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_reset_table0 = 100;
+          struct chmcLzxcResetTable * reset_table = (struct chmcLzxcResetTable *) malloc(_len_reset_table0*sizeof(struct chmcLzxcResetTable));
+          for(int _i0 = 0; _i0 < _len_reset_table0; _i0++) {
+              reset_table[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].block_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].compressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].uncompressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].table_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].block_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          chmc_reset_table_init(reset_table);
+          free(reset_table);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_reset_table0 = 1;
           struct chmcLzxcResetTable * reset_table = (struct chmcLzxcResetTable *) malloc(_len_reset_table0*sizeof(struct chmcLzxcResetTable));
           for(int _i0 = 0; _i0 < _len_reset_table0; _i0++) {
-            reset_table[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        reset_table[_i0].entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        reset_table[_i0].block_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        reset_table[_i0].compressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        reset_table[_i0].uncompressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        reset_table[_i0].table_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        reset_table[_i0].block_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              reset_table[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].entry_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].block_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].compressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].uncompressed_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].table_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          reset_table[_i0].block_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           chmc_reset_table_init(reset_table);
           free(reset_table);
         

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ u32 vxge_hw_device_set_intr_type(struct __vxge_hw_device *hldev, u32 intr_mode)
 	return intr_mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,30 +90,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           long intr_mode = 100;
+        
           int _len_hldev0 = 1;
           struct __vxge_hw_device * hldev = (struct __vxge_hw_device *) malloc(_len_hldev0*sizeof(struct __vxge_hw_device));
           for(int _i0 = 0; _i0 < _len_hldev0; _i0++) {
-            hldev[_i0].config.intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              hldev[_i0].config.intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           long benchRet = vxge_hw_device_set_intr_type(hldev,intr_mode);
           printf("%ld\n", benchRet); 
           free(hldev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long intr_mode = 255;
+        
+          int _len_hldev0 = 65025;
+          struct __vxge_hw_device * hldev = (struct __vxge_hw_device *) malloc(_len_hldev0*sizeof(struct __vxge_hw_device));
+          for(int _i0 = 0; _i0 < _len_hldev0; _i0++) {
+              hldev[_i0].config.intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          long benchRet = vxge_hw_device_set_intr_type(hldev,intr_mode);
+          printf("%ld\n", benchRet); 
+          free(hldev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           long intr_mode = 10;
+        
           int _len_hldev0 = 100;
           struct __vxge_hw_device * hldev = (struct __vxge_hw_device *) malloc(_len_hldev0*sizeof(struct __vxge_hw_device));
           for(int _i0 = 0; _i0 < _len_hldev0; _i0++) {
-            hldev[_i0].config.intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              hldev[_i0].config.intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          long benchRet = vxge_hw_device_set_intr_type(hldev,intr_mode);
+          printf("%ld\n", benchRet); 
+          free(hldev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          long intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hldev0 = 1;
+          struct __vxge_hw_device * hldev = (struct __vxge_hw_device *) malloc(_len_hldev0*sizeof(struct __vxge_hw_device));
+          for(int _i0 = 0; _i0 < _len_hldev0; _i0++) {
+              hldev[_i0].config.intr_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           long benchRet = vxge_hw_device_set_intr_type(hldev,intr_mode);
           printf("%ld\n", benchRet); 
           free(hldev);

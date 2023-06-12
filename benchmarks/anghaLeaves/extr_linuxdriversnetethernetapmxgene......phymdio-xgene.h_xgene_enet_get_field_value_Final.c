@@ -60,12 +60,6 @@ __attribute__((used)) static inline u64 xgene_enet_get_field_value(int pos, int 
 	return (src >> pos) & ((1ULL << len) - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +76,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pos = 10;
+        
           int len = 10;
+        
           int src = 10;
+        
           int benchRet = xgene_enet_get_field_value(pos,len,src);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

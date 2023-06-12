@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static bool qede_pkt_is_ip_fragmented(struct eth_fast_path
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,30 +92,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int flag = 100;
+        
           int _len_cqe0 = 1;
           struct eth_fast_path_rx_reg_cqe * cqe = (struct eth_fast_path_rx_reg_cqe *) malloc(_len_cqe0*sizeof(struct eth_fast_path_rx_reg_cqe));
           for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
-            cqe[_i0].tunnel_pars_flags.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqe[_i0].tunnel_pars_flags.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = qede_pkt_is_ip_fragmented(cqe,flag);
           printf("%d\n", benchRet); 
           free(cqe);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int flag = 255;
+        
+          int _len_cqe0 = 65025;
+          struct eth_fast_path_rx_reg_cqe * cqe = (struct eth_fast_path_rx_reg_cqe *) malloc(_len_cqe0*sizeof(struct eth_fast_path_rx_reg_cqe));
+          for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
+              cqe[_i0].tunnel_pars_flags.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = qede_pkt_is_ip_fragmented(cqe,flag);
+          printf("%d\n", benchRet); 
+          free(cqe);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int flag = 10;
+        
           int _len_cqe0 = 100;
           struct eth_fast_path_rx_reg_cqe * cqe = (struct eth_fast_path_rx_reg_cqe *) malloc(_len_cqe0*sizeof(struct eth_fast_path_rx_reg_cqe));
           for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
-            cqe[_i0].tunnel_pars_flags.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqe[_i0].tunnel_pars_flags.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = qede_pkt_is_ip_fragmented(cqe,flag);
+          printf("%d\n", benchRet); 
+          free(cqe);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cqe0 = 1;
+          struct eth_fast_path_rx_reg_cqe * cqe = (struct eth_fast_path_rx_reg_cqe *) malloc(_len_cqe0*sizeof(struct eth_fast_path_rx_reg_cqe));
+          for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
+              cqe[_i0].tunnel_pars_flags.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = qede_pkt_is_ip_fragmented(cqe,flag);
           printf("%d\n", benchRet); 
           free(cqe);

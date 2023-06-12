@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline bool nfp_app_has_tc(struct nfp_app *app)
 	return app && app->type->setup_tc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_app0 = 1;
+          int _len_app0 = 65025;
           struct nfp_app * app = (struct nfp_app *) malloc(_len_app0*sizeof(struct nfp_app));
           for(int _i0 = 0; _i0 < _len_app0; _i0++) {
               int _len_app__i0__type0 = 1;
           app[_i0].type = (struct TYPE_2__ *) malloc(_len_app__i0__type0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_app__i0__type0; _j0++) {
-            app[_i0].type->setup_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+              app[_i0].type->setup_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = nfp_app_has_tc(app);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_app0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_app0 = 100;
+          struct nfp_app * app = (struct nfp_app *) malloc(_len_app0*sizeof(struct nfp_app));
+          for(int _i0 = 0; _i0 < _len_app0; _i0++) {
+              int _len_app__i0__type0 = 1;
+          app[_i0].type = (struct TYPE_2__ *) malloc(_len_app__i0__type0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_app__i0__type0; _j0++) {
+              app[_i0].type->setup_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = nfp_app_has_tc(app);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_app0; _aux++) {
+          free(app[_aux].type);
+          }
+          free(app);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_app0 = 1;
+          struct nfp_app * app = (struct nfp_app *) malloc(_len_app0*sizeof(struct nfp_app));
+          for(int _i0 = 0; _i0 < _len_app0; _i0++) {
+              int _len_app__i0__type0 = 1;
+          app[_i0].type = (struct TYPE_2__ *) malloc(_len_app__i0__type0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_app__i0__type0; _j0++) {
+              app[_i0].type->setup_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = nfp_app_has_tc(app);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_app0; _aux++) {
+          free(app[_aux].type);
+          }
+          free(app);
+        
+        break;
+    }
     default:
         usage();
         break;

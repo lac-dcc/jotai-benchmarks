@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ xmlBufferSetAllocationScheme(xmlBufferPtr buf,
 	buf->alloc = scheme;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,29 +97,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           long scheme = 100;
+        
           int _len_buf0 = 1;
           struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xmlBufferSetAllocationScheme(buf,scheme);
           free(buf);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long scheme = 255;
+        
+          int _len_buf0 = 65025;
+          struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xmlBufferSetAllocationScheme(buf,scheme);
+          free(buf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           long scheme = 10;
+        
           int _len_buf0 = 100;
           struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          xmlBufferSetAllocationScheme(buf,scheme);
+          free(buf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long scheme = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           xmlBufferSetAllocationScheme(buf,scheme);
           free(buf);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void restore_cache_bottom(struct traverse_info *inf
 	o->cache_bottom = bottom;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +84,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bottom = 100;
+        
           int _len_info0 = 1;
           struct traverse_info * info = (struct traverse_info *) malloc(_len_info0*sizeof(struct traverse_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
               int _len_info__i0__data0 = 1;
           info[_i0].data = (struct unpack_trees_options *) malloc(_len_info__i0__data0*sizeof(struct unpack_trees_options));
           for(int _j0 = 0; _j0 < _len_info__i0__data0; _j0++) {
-            info[_i0].data->cache_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].data->diff_index_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].data->cache_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data->diff_index_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           restore_cache_bottom(info,bottom);
           for(int _aux = 0; _aux < _len_info0; _aux++) {
           free(info[_aux].data);
@@ -105,7 +106,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bottom = 255;
+        
+          int _len_info0 = 65025;
+          struct traverse_info * info = (struct traverse_info *) malloc(_len_info0*sizeof(struct traverse_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__data0 = 1;
+          info[_i0].data = (struct unpack_trees_options *) malloc(_len_info__i0__data0*sizeof(struct unpack_trees_options));
+          for(int _j0 = 0; _j0 < _len_info__i0__data0; _j0++) {
+              info[_i0].data->cache_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data->diff_index_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          restore_cache_bottom(info,bottom);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].data);
+          }
+          free(info);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bottom = 10;
+        
+          int _len_info0 = 100;
+          struct traverse_info * info = (struct traverse_info *) malloc(_len_info0*sizeof(struct traverse_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__data0 = 1;
+          info[_i0].data = (struct unpack_trees_options *) malloc(_len_info__i0__data0*sizeof(struct unpack_trees_options));
+          for(int _j0 = 0; _j0 < _len_info__i0__data0; _j0++) {
+              info[_i0].data->cache_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data->diff_index_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          restore_cache_bottom(info,bottom);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].data);
+          }
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct traverse_info * info = (struct traverse_info *) malloc(_len_info0*sizeof(struct traverse_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__data0 = 1;
+          info[_i0].data = (struct unpack_trees_options *) malloc(_len_info__i0__data0*sizeof(struct unpack_trees_options));
+          for(int _j0 = 0; _j0 < _len_info__i0__data0; _j0++) {
+              info[_i0].data->cache_bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].data->diff_index_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          restore_cache_bottom(info,bottom);
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].data);
+          }
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

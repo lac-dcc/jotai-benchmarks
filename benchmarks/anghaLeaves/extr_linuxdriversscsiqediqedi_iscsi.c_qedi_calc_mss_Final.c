@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static u16 qedi_calc_mss(u16 pmtu, u8 is_ipv6, u8 tcp_ts_e
 	return mss;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,9 +97,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pmtu = 100;
+        
           long is_ipv6 = 100;
+        
           long tcp_ts_en = 100;
+        
           long vlan_en = 100;
+        
           long benchRet = qedi_calc_mss(pmtu,is_ipv6,tcp_ts_en,vlan_en);
           printf("%ld\n", benchRet); 
         
@@ -114,9 +113,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long pmtu = 255;
+        
           long is_ipv6 = 255;
+        
           long tcp_ts_en = 255;
+        
           long vlan_en = 255;
+        
           long benchRet = qedi_calc_mss(pmtu,is_ipv6,tcp_ts_en,vlan_en);
           printf("%ld\n", benchRet); 
         
@@ -126,15 +129,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long pmtu = 10;
+        
           long is_ipv6 = 10;
+        
           long tcp_ts_en = 10;
+        
           long vlan_en = 10;
+        
           long benchRet = qedi_calc_mss(pmtu,is_ipv6,tcp_ts_en,vlan_en);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long pmtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long is_ipv6 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long tcp_ts_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long vlan_en = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = qedi_calc_mss(pmtu,is_ipv6,tcp_ts_en,vlan_en);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

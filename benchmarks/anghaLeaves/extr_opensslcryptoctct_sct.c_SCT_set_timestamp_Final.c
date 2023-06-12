@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ void SCT_set_timestamp(SCT *sct, uint64_t timestamp)
     sct->validation_status = SCT_VALIDATION_STATUS_NOT_SET;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,18 +84,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int timestamp = 100;
+        
           int _len_sct0 = 1;
           struct TYPE_3__ * sct = (struct TYPE_3__ *) malloc(_len_sct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_sct0; _i0++) {
-            sct[_i0].validation_status = ((-2 * (next_i()%2)) + 1) * next_i();
-        sct[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              sct[_i0].validation_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          sct[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           SCT_set_timestamp(sct,timestamp);
           free(sct);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int timestamp = 255;
+        
+          int _len_sct0 = 65025;
+          struct TYPE_3__ * sct = (struct TYPE_3__ *) malloc(_len_sct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sct0; _i0++) {
+              sct[_i0].validation_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          sct[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SCT_set_timestamp(sct,timestamp);
+          free(sct);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int timestamp = 10;
+        
+          int _len_sct0 = 100;
+          struct TYPE_3__ * sct = (struct TYPE_3__ *) malloc(_len_sct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sct0; _i0++) {
+              sct[_i0].validation_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          sct[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SCT_set_timestamp(sct,timestamp);
+          free(sct);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sct0 = 1;
+          struct TYPE_3__ * sct = (struct TYPE_3__ *) malloc(_len_sct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_sct0; _i0++) {
+              sct[_i0].validation_status = ((-2 * (next_i()%2)) + 1) * next_i();
+          sct[_i0].timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          SCT_set_timestamp(sct,timestamp);
+          free(sct);
+        
+        break;
+    }
     default:
         usage();
         break;

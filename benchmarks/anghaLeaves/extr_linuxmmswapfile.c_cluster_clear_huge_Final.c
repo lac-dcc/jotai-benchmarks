@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void cluster_clear_huge(struct swap_cluster_
 	info->flags &= ~CLUSTER_FLAG_HUGE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          int _len_info0 = 65025;
           struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cluster_clear_huge(info);
           free(info);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_info0 = 100;
           struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cluster_clear_huge(info);
           free(info);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_info0 = 1;
+          struct swap_cluster_info * info = (struct swap_cluster_info *) malloc(_len_info0*sizeof(struct swap_cluster_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cluster_clear_huge(info);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

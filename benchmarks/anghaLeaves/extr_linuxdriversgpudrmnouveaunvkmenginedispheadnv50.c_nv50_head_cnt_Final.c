@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ nv50_head_cnt(struct nvkm_disp *disp, unsigned long *pmask)
 	return 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_disp0 = 1;
+          int _len_disp0 = 65025;
           struct nvkm_disp * disp = (struct nvkm_disp *) malloc(_len_disp0*sizeof(struct nvkm_disp));
           for(int _i0 = 0; _i0 < _len_disp0; _i0++) {
-            disp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              disp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pmask0 = 1;
+        
+          int _len_pmask0 = 65025;
           unsigned long * pmask = (unsigned long *) malloc(_len_pmask0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pmask0; _i0++) {
             pmask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nv50_head_cnt(disp,pmask);
           printf("%d\n", benchRet); 
           free(disp);
@@ -100,7 +99,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_disp0 = 100;
+          struct nvkm_disp * disp = (struct nvkm_disp *) malloc(_len_disp0*sizeof(struct nvkm_disp));
+          for(int _i0 = 0; _i0 < _len_disp0; _i0++) {
+              disp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pmask0 = 100;
+          unsigned long * pmask = (unsigned long *) malloc(_len_pmask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pmask0; _i0++) {
+            pmask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nv50_head_cnt(disp,pmask);
+          printf("%d\n", benchRet); 
+          free(disp);
+          free(pmask);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_disp0 = 1;
+          struct nvkm_disp * disp = (struct nvkm_disp *) malloc(_len_disp0*sizeof(struct nvkm_disp));
+          for(int _i0 = 0; _i0 < _len_disp0; _i0++) {
+              disp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pmask0 = 1;
+          unsigned long * pmask = (unsigned long *) malloc(_len_pmask0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pmask0; _i0++) {
+            pmask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nv50_head_cnt(disp,pmask);
+          printf("%d\n", benchRet); 
+          free(disp);
+          free(pmask);
+        
+        break;
+    }
     default:
         usage();
         break;

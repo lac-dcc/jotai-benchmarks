@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static bool is_neigh_solicit(u8 *buf, size_t len)
 		msg->icmph.icmp6_type == NDISC_NEIGHBOUR_SOLICITATION);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,22 +85,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long len = 10;
-          int _len_buf0 = 100;
+          unsigned long len = 255;
+        
+          int _len_buf0 = 65025;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_neigh_solicit(buf,len);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long len = 10;
+        
+          int _len_buf0 = 100;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_neigh_solicit(buf,len);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

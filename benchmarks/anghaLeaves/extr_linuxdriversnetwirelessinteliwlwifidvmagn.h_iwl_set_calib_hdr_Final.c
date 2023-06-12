@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static inline void iwl_set_calib_hdr(struct iwl_calib_hdr 
 	hdr->data_valid = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +79,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int cmd = 100;
+        
           int _len_hdr0 = 1;
           struct iwl_calib_hdr * hdr = (struct iwl_calib_hdr *) malloc(_len_hdr0*sizeof(struct iwl_calib_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].groups_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].data_valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].first_group = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].op_code = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].groups_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].data_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].first_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].op_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          iwl_set_calib_hdr(hdr,cmd);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int cmd = 255;
+        
+          int _len_hdr0 = 65025;
+          struct iwl_calib_hdr * hdr = (struct iwl_calib_hdr *) malloc(_len_hdr0*sizeof(struct iwl_calib_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].groups_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].data_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].first_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].op_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iwl_set_calib_hdr(hdr,cmd);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int cmd = 10;
+        
+          int _len_hdr0 = 100;
+          struct iwl_calib_hdr * hdr = (struct iwl_calib_hdr *) malloc(_len_hdr0*sizeof(struct iwl_calib_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].groups_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].data_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].first_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].op_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iwl_set_calib_hdr(hdr,cmd);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdr0 = 1;
+          struct iwl_calib_hdr * hdr = (struct iwl_calib_hdr *) malloc(_len_hdr0*sizeof(struct iwl_calib_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].groups_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].data_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].first_group = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].op_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           iwl_set_calib_hdr(hdr,cmd);
           free(hdr);
         

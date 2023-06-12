@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static unsigned int se6x_adjust_dac_routing(struct oxygen 
 	       ((play_routing << 2) & OXYGEN_PLAY_DAC1_SOURCE_MASK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int play_routing = 100;
+        
           int _len_chip0 = 1;
           struct oxygen * chip = (struct oxygen *) malloc(_len_chip0*sizeof(struct oxygen));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = se6x_adjust_dac_routing(chip,play_routing);
+          printf("%u\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int play_routing = 255;
+        
+          int _len_chip0 = 65025;
+          struct oxygen * chip = (struct oxygen *) malloc(_len_chip0*sizeof(struct oxygen));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = se6x_adjust_dac_routing(chip,play_routing);
           printf("%u\n", benchRet); 
           free(chip);
@@ -100,21 +117,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int play_routing = 10;
+        
           int _len_chip0 = 100;
           struct oxygen * chip = (struct oxygen *) malloc(_len_chip0*sizeof(struct oxygen));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = se6x_adjust_dac_routing(chip,play_routing);
           printf("%u\n", benchRet); 
           free(chip);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int play_routing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct oxygen * chip = (struct oxygen *) malloc(_len_chip0*sizeof(struct oxygen));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = se6x_adjust_dac_routing(chip,play_routing);
+          printf("%u\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
     default:
         usage();
         break;

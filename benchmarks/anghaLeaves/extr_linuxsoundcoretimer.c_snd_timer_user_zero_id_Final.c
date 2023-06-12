@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void snd_timer_user_zero_id(struct snd_timer_id *id
 	id->subdevice = -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +80,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_id0 = 65025;
+          struct snd_timer_id * id = (struct snd_timer_id *) malloc(_len_id0*sizeof(struct snd_timer_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_timer_user_zero_id(id);
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_id0 = 100;
+          struct snd_timer_id * id = (struct snd_timer_id *) malloc(_len_id0*sizeof(struct snd_timer_id));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+              id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          snd_timer_user_zero_id(id);
+          free(id);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_id0 = 1;
           struct snd_timer_id * id = (struct snd_timer_id *) malloc(_len_id0*sizeof(struct snd_timer_id));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
-            id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
-        id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+              id[_i0].card = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].device = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].subdevice = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_sclass = ((-2 * (next_i()%2)) + 1) * next_i();
+          id[_i0].dev_class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           snd_timer_user_zero_id(id);
           free(id);
         

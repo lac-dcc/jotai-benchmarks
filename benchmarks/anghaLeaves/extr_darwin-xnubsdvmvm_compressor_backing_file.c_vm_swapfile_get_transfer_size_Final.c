@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ vm_swapfile_get_transfer_size(vnode_t vp)
 	return((uint64_t)vp->v_mount->mnt_vfsstat.f_iosize);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,18 +82,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_vp0 = 65025;
+          struct TYPE_7__ * vp = (struct TYPE_7__ *) malloc(_len_vp0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_6__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_vfsstat.f_iosize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = vm_swapfile_get_transfer_size(vp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_vp0 = 100;
+          struct TYPE_7__ * vp = (struct TYPE_7__ *) malloc(_len_vp0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
+              int _len_vp__i0__v_mount0 = 1;
+          vp[_i0].v_mount = (struct TYPE_6__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
+              vp[_i0].v_mount->mnt_vfsstat.f_iosize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = vm_swapfile_get_transfer_size(vp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vp0; _aux++) {
+          free(vp[_aux].v_mount);
+          }
+          free(vp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_vp0 = 1;
           struct TYPE_7__ * vp = (struct TYPE_7__ *) malloc(_len_vp0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_vp0; _i0++) {
               int _len_vp__i0__v_mount0 = 1;
           vp[_i0].v_mount = (struct TYPE_6__ *) malloc(_len_vp__i0__v_mount0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_vp__i0__v_mount0; _j0++) {
-            vp[_i0].v_mount->mnt_vfsstat.f_iosize = ((-2 * (next_i()%2)) + 1) * next_i();
+              vp[_i0].v_mount->mnt_vfsstat.f_iosize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = vm_swapfile_get_transfer_size(vp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vp0; _aux++) {

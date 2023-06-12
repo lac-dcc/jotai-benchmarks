@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -90,12 +92,6 @@ int r8712_txframes_sta_ac_pending(struct _adapter *padapter,
 	return ptxservq->qcnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,27 +104,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
-            padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pattrib0 = 1;
+        
+          int _len_pattrib0 = 65025;
           struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
           for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
-            pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pattrib__i0__psta0 = 1;
           pattrib[_i0].psta = (struct sta_info *) malloc(_len_pattrib__i0__psta0*sizeof(struct sta_info));
           for(int _j0 = 0; _j0 < _len_pattrib__i0__psta0; _j0++) {
-            pattrib[_i0].psta->sta_xmitpriv.be_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.vo_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.vi_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        pattrib[_i0].psta->sta_xmitpriv.bk_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              pattrib[_i0].psta->sta_xmitpriv.be_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.vo_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.vi_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.bk_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           int benchRet = r8712_txframes_sta_ac_pending(padapter,pattrib);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -139,7 +145,88 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pattrib0 = 100;
+          struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
+          for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
+              pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pattrib__i0__psta0 = 1;
+          pattrib[_i0].psta = (struct sta_info *) malloc(_len_pattrib__i0__psta0*sizeof(struct sta_info));
+          for(int _j0 = 0; _j0 < _len_pattrib__i0__psta0; _j0++) {
+              pattrib[_i0].psta->sta_xmitpriv.be_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.vo_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.vi_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.bk_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = r8712_txframes_sta_ac_pending(padapter,pattrib);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          for(int _aux = 0; _aux < _len_pattrib0; _aux++) {
+          free(pattrib[_aux].psta);
+          }
+          free(pattrib);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          struct _adapter * padapter = (struct _adapter *) malloc(_len_padapter0*sizeof(struct _adapter));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+              padapter[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pattrib0 = 1;
+          struct pkt_attrib * pattrib = (struct pkt_attrib *) malloc(_len_pattrib0*sizeof(struct pkt_attrib));
+          for(int _i0 = 0; _i0 < _len_pattrib0; _i0++) {
+              pattrib[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pattrib__i0__psta0 = 1;
+          pattrib[_i0].psta = (struct sta_info *) malloc(_len_pattrib__i0__psta0*sizeof(struct sta_info));
+          for(int _j0 = 0; _j0 < _len_pattrib__i0__psta0; _j0++) {
+              pattrib[_i0].psta->sta_xmitpriv.be_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.vo_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.vi_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pattrib[_i0].psta->sta_xmitpriv.bk_q.qcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int benchRet = r8712_txframes_sta_ac_pending(padapter,pattrib);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          for(int _aux = 0; _aux < _len_pattrib0; _aux++) {
+          free(pattrib[_aux].psta);
+          }
+          free(pattrib);
+        
+        break;
+    }
     default:
         usage();
         break;

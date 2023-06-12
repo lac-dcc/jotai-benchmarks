@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int pvc_is_used(struct pvc_device *pvc)
 	return pvc->main || pvc->ether;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pvc0 = 1;
+          int _len_pvc0 = 65025;
           struct pvc_device * pvc = (struct pvc_device *) malloc(_len_pvc0*sizeof(struct pvc_device));
           for(int _i0 = 0; _i0 < _len_pvc0; _i0++) {
-            pvc[_i0].ether = ((-2 * (next_i()%2)) + 1) * next_i();
-        pvc[_i0].main = ((-2 * (next_i()%2)) + 1) * next_i();
+              pvc[_i0].ether = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvc[_i0].main = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pvc_is_used(pvc);
           printf("%d\n", benchRet); 
           free(pvc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pvc0 = 100;
+          struct pvc_device * pvc = (struct pvc_device *) malloc(_len_pvc0*sizeof(struct pvc_device));
+          for(int _i0 = 0; _i0 < _len_pvc0; _i0++) {
+              pvc[_i0].ether = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvc[_i0].main = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pvc_is_used(pvc);
+          printf("%d\n", benchRet); 
+          free(pvc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pvc0 = 1;
+          struct pvc_device * pvc = (struct pvc_device *) malloc(_len_pvc0*sizeof(struct pvc_device));
+          for(int _i0 = 0; _i0 < _len_pvc0; _i0++) {
+              pvc[_i0].ether = ((-2 * (next_i()%2)) + 1) * next_i();
+          pvc[_i0].main = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pvc_is_used(pvc);
+          printf("%d\n", benchRet); 
+          free(pvc);
+        
+        break;
+    }
     default:
         usage();
         break;

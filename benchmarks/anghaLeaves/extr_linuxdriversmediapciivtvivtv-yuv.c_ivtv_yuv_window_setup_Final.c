@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -206,12 +208,6 @@ __attribute__((used)) static u32 ivtv_yuv_window_setup(struct ivtv *itv, struct 
 	return yuv_update;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -224,50 +220,241 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 56
+          // dynamic_instructions_O1 : 56
+          // ------------------------------- 
+          // static_instructions_O2 : 57
+          // dynamic_instructions_O2 : 57
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 57
+          // dynamic_instructions_Os : 57
+          // ------------------------------- 
+          // static_instructions_Oz : 57
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
+          int _len_itv0 = 65025;
+          struct ivtv * itv = (struct ivtv *) malloc(_len_itv0*sizeof(struct ivtv));
+          for(int _i0 = 0; _i0 < _len_itv0; _i0++) {
+              itv[_i0].yuv_info.osd_x_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.osd_y_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.track_osd = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_f0 = 65025;
+          struct yuv_frame_info * f = (struct yuv_frame_info *) malloc(_len_f0*sizeof(struct yuv_frame_info));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ivtv_yuv_window_setup(itv,f);
+          printf("%d\n", benchRet); 
+          free(itv);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 56
+          // dynamic_instructions_O1 : 56
+          // ------------------------------- 
+          // static_instructions_O2 : 57
+          // dynamic_instructions_O2 : 57
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 57
+          // dynamic_instructions_Os : 57
+          // ------------------------------- 
+          // static_instructions_Oz : 57
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
+          int _len_itv0 = 100;
+          struct ivtv * itv = (struct ivtv *) malloc(_len_itv0*sizeof(struct ivtv));
+          for(int _i0 = 0; _i0 < _len_itv0; _i0++) {
+              itv[_i0].yuv_info.osd_x_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.osd_y_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.track_osd = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_f0 = 100;
+          struct yuv_frame_info * f = (struct yuv_frame_info *) malloc(_len_f0*sizeof(struct yuv_frame_info));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ivtv_yuv_window_setup(itv,f);
+          printf("%d\n", benchRet); 
+          free(itv);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 71
+          // dynamic_instructions_O0 : 71
+          // ------------------------------- 
+          // static_instructions_O1 : 56
+          // dynamic_instructions_O1 : 56
+          // ------------------------------- 
+          // static_instructions_O2 : 57
+          // dynamic_instructions_O2 : 57
+          // ------------------------------- 
+          // static_instructions_O3 : 58
+          // dynamic_instructions_O3 : 58
+          // ------------------------------- 
+          // static_instructions_Ofast : 58
+          // dynamic_instructions_Ofast : 58
+          // ------------------------------- 
+          // static_instructions_Os : 57
+          // dynamic_instructions_Os : 57
+          // ------------------------------- 
+          // static_instructions_Oz : 57
+          // dynamic_instructions_Oz : 57
+          // ------------------------------- 
+
           int _len_itv0 = 1;
           struct ivtv * itv = (struct ivtv *) malloc(_len_itv0*sizeof(struct ivtv));
           for(int _i0 = 0; _i0 < _len_itv0; _i0++) {
-            itv[_i0].yuv_info.osd_x_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.osd_y_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.track_osd = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.src_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.src_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.src_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.src_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv[_i0].yuv_info.old_frame_info.interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+              itv[_i0].yuv_info.osd_x_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.osd_y_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.track_osd = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv[_i0].yuv_info.old_frame_info.interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_f0 = 1;
           struct yuv_frame_info * f = (struct yuv_frame_info *) malloc(_len_f0*sizeof(struct yuv_frame_info));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].interlaced_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pan_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].vis_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].pan_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].vis_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].lace_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].interlaced_uv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ivtv_yuv_window_setup(itv,f);
           printf("%d\n", benchRet); 
           free(itv);

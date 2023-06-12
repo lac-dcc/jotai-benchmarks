@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ is_append_parent(RelOptInfo *rel, RangeTblEntry *rte)
 		   rte->relkind == RELKIND_RELATION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rel0 = 1;
+          int _len_rel0 = 65025;
           struct TYPE_5__ * rel = (struct TYPE_5__ *) malloc(_len_rel0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_rel0; _i0++) {
-            rel[_i0].reloptkind = ((-2 * (next_i()%2)) + 1) * next_i();
-        rel[_i0].rtekind = ((-2 * (next_i()%2)) + 1) * next_i();
+              rel[_i0].reloptkind = ((-2 * (next_i()%2)) + 1) * next_i();
+          rel[_i0].rtekind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_rte0 = 1;
+        
+          int _len_rte0 = 65025;
           struct TYPE_6__ * rte = (struct TYPE_6__ *) malloc(_len_rte0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
-            rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
-        rte[_i0].relkind = ((-2 * (next_i()%2)) + 1) * next_i();
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+          rte[_i0].relkind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_append_parent(rel,rte);
           printf("%d\n", benchRet); 
           free(rel);
@@ -110,7 +110,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rel0 = 100;
+          struct TYPE_5__ * rel = (struct TYPE_5__ *) malloc(_len_rel0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_rel0; _i0++) {
+              rel[_i0].reloptkind = ((-2 * (next_i()%2)) + 1) * next_i();
+          rel[_i0].rtekind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rte0 = 100;
+          struct TYPE_6__ * rte = (struct TYPE_6__ *) malloc(_len_rte0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+          rte[_i0].relkind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_append_parent(rel,rte);
+          printf("%d\n", benchRet); 
+          free(rel);
+          free(rte);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rel0 = 1;
+          struct TYPE_5__ * rel = (struct TYPE_5__ *) malloc(_len_rel0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_rel0; _i0++) {
+              rel[_i0].reloptkind = ((-2 * (next_i()%2)) + 1) * next_i();
+          rel[_i0].rtekind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rte0 = 1;
+          struct TYPE_6__ * rte = (struct TYPE_6__ *) malloc(_len_rte0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+          rte[_i0].relkind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_append_parent(rel,rte);
+          printf("%d\n", benchRet); 
+          free(rel);
+          free(rte);
+        
+        break;
+    }
     default:
         usage();
         break;

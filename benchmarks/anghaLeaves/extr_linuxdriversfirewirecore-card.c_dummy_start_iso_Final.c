@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int dummy_start_iso(struct fw_iso_context *ctx,
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,13 +83,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cycle = 100;
+        
           int sync = 100;
+        
           int tags = 100;
+        
           int _len_ctx0 = 1;
           struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dummy_start_iso(ctx,cycle,sync,tags);
+          printf("%d\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cycle = 255;
+        
+          int sync = 255;
+        
+          int tags = 255;
+        
+          int _len_ctx0 = 65025;
+          struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dummy_start_iso(ctx,cycle,sync,tags);
           printf("%d\n", benchRet); 
           free(ctx);
@@ -101,23 +124,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cycle = 10;
+        
           int sync = 10;
+        
           int tags = 10;
+        
           int _len_ctx0 = 100;
           struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dummy_start_iso(ctx,cycle,sync,tags);
           printf("%d\n", benchRet); 
           free(ctx);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cycle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sync = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct fw_iso_context * ctx = (struct fw_iso_context *) malloc(_len_ctx0*sizeof(struct fw_iso_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_start_iso(ctx,cycle,sync,tags);
+          printf("%d\n", benchRet); 
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

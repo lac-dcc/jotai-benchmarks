@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ magic_getflags(struct magic_set *ms)
 	return ms->flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ms0 = 1;
+          int _len_ms0 = 65025;
           struct magic_set * ms = (struct magic_set *) malloc(_len_ms0*sizeof(struct magic_set));
           for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
-            ms[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ms[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = magic_getflags(ms);
           printf("%d\n", benchRet); 
           free(ms);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_ms0 = 100;
           struct magic_set * ms = (struct magic_set *) malloc(_len_ms0*sizeof(struct magic_set));
           for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
-            ms[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ms[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = magic_getflags(ms);
           printf("%d\n", benchRet); 
           free(ms);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ms0 = 1;
+          struct magic_set * ms = (struct magic_set *) malloc(_len_ms0*sizeof(struct magic_set));
+          for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
+              ms[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = magic_getflags(ms);
+          printf("%d\n", benchRet); 
+          free(ms);
+        
+        break;
+    }
     default:
         usage();
         break;

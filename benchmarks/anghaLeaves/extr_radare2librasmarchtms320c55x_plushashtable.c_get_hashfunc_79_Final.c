@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -118,12 +119,6 @@ st32 get_hashfunc_79(st32 arg1, st32 arg2) {
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,7 +135,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int arg1 = 100;
+        
           int arg2 = 100;
+        
           int benchRet = get_hashfunc_79(arg1,arg2);
           printf("%d\n", benchRet); 
         
@@ -150,7 +147,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int arg1 = 255;
+        
           int arg2 = 255;
+        
           int benchRet = get_hashfunc_79(arg1,arg2);
           printf("%d\n", benchRet); 
         
@@ -160,13 +159,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int arg1 = 10;
+        
           int arg2 = 10;
+        
           int benchRet = get_hashfunc_79(arg1,arg2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int arg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int arg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_hashfunc_79(arg1,arg2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

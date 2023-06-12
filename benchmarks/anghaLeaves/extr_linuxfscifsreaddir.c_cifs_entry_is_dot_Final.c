@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static int cifs_entry_is_dot(struct cifs_dirent *de, bool 
 	return rc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int is_unicode = 100;
+        
           int _len_de0 = 1;
           struct cifs_dirent * de = (struct cifs_dirent *) malloc(_len_de0*sizeof(struct cifs_dirent));
           for(int _i0 = 0; _i0 < _len_de0; _i0++) {
@@ -119,8 +117,10 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_de__i0__name0; _j0++) {
             de[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        de[_i0].namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+          de[_i0].namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cifs_entry_is_dot(de,is_unicode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_de0; _aux++) {
@@ -130,7 +130,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int is_unicode = 255;
+        
+          int _len_de0 = 65025;
+          struct cifs_dirent * de = (struct cifs_dirent *) malloc(_len_de0*sizeof(struct cifs_dirent));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              int _len_de__i0__name0 = 1;
+          de[_i0].name = (char *) malloc(_len_de__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_de__i0__name0; _j0++) {
+            de[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          de[_i0].namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cifs_entry_is_dot(de,is_unicode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name);
+          }
+          free(de);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int is_unicode = 10;
+        
+          int _len_de0 = 100;
+          struct cifs_dirent * de = (struct cifs_dirent *) malloc(_len_de0*sizeof(struct cifs_dirent));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              int _len_de__i0__name0 = 1;
+          de[_i0].name = (char *) malloc(_len_de__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_de__i0__name0; _j0++) {
+            de[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          de[_i0].namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cifs_entry_is_dot(de,is_unicode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name);
+          }
+          free(de);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int is_unicode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_de0 = 1;
+          struct cifs_dirent * de = (struct cifs_dirent *) malloc(_len_de0*sizeof(struct cifs_dirent));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              int _len_de__i0__name0 = 1;
+          de[_i0].name = (char *) malloc(_len_de__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_de__i0__name0; _j0++) {
+            de[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          de[_i0].namelen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cifs_entry_is_dot(de,is_unicode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name);
+          }
+          free(de);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ chunk_index_columns_changed(int hypertable_natts, bool hypertable_has_oid, Tuple
 	return !(hypertable_natts == chunkdesc->natts && hypertable_has_oid == chunkdesc->tdhasoid);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,17 +83,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int hypertable_natts = 100;
+        
           int hypertable_has_oid = 100;
+        
           int _len_chunkdesc0 = 1;
           struct TYPE_3__ * chunkdesc = (struct TYPE_3__ *) malloc(_len_chunkdesc0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_chunkdesc0; _i0++) {
-            chunkdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
-        chunkdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+              chunkdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          chunkdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = chunk_index_columns_changed(hypertable_natts,hypertable_has_oid,chunkdesc);
+          printf("%d\n", benchRet); 
+          free(chunkdesc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int hypertable_natts = 255;
+        
+          int hypertable_has_oid = 255;
+        
+          int _len_chunkdesc0 = 65025;
+          struct TYPE_3__ * chunkdesc = (struct TYPE_3__ *) malloc(_len_chunkdesc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_chunkdesc0; _i0++) {
+              chunkdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          chunkdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chunk_index_columns_changed(hypertable_natts,hypertable_has_oid,chunkdesc);
+          printf("%d\n", benchRet); 
+          free(chunkdesc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int hypertable_natts = 10;
+        
+          int hypertable_has_oid = 10;
+        
+          int _len_chunkdesc0 = 100;
+          struct TYPE_3__ * chunkdesc = (struct TYPE_3__ *) malloc(_len_chunkdesc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_chunkdesc0; _i0++) {
+              chunkdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          chunkdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chunk_index_columns_changed(hypertable_natts,hypertable_has_oid,chunkdesc);
+          printf("%d\n", benchRet); 
+          free(chunkdesc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int hypertable_natts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hypertable_has_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chunkdesc0 = 1;
+          struct TYPE_3__ * chunkdesc = (struct TYPE_3__ *) malloc(_len_chunkdesc0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_chunkdesc0; _i0++) {
+              chunkdesc[_i0].natts = ((-2 * (next_i()%2)) + 1) * next_i();
+          chunkdesc[_i0].tdhasoid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = chunk_index_columns_changed(hypertable_natts,hypertable_has_oid,chunkdesc);
           printf("%d\n", benchRet); 
           free(chunkdesc);

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -60,7 +61,6 @@ __attribute__((used)) static bool ipmmu_is_root(struct ipmmu_vmsa_device *mmu)
 	return mmu->root == mmu;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct ipmmu_vmsa_device *_allocate_mmu(int length, struct ipmmu_vmsa_device *aux_mmu[]) {
@@ -88,7 +88,6 @@ void _delete_mmu(struct ipmmu_vmsa_device *aux_mmu[], int aux_mmu_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,11 +100,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          struct ipmmu_vmsa_device * aux_mmu[10000];
+          struct ipmmu_vmsa_device * mmu = _allocate_mmu(10000, aux_mmu);
+        
+          int benchRet = ipmmu_is_root(mmu);
+          printf("%d\n", benchRet); 
+          _delete_mmu(aux_mmu, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           struct ipmmu_vmsa_device * aux_mmu[1];
           struct ipmmu_vmsa_device * mmu = _allocate_mmu(1, aux_mmu);
+        
           int benchRet = ipmmu_is_root(mmu);
           printf("%d\n", benchRet); 
           _delete_mmu(aux_mmu, 1);

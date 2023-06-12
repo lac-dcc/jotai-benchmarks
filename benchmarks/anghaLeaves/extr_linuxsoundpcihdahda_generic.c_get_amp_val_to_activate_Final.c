@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static int get_amp_val_to_activate(struct hda_codec *codec
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,14 +98,44 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nid = 100;
+        
           int dir = 100;
+        
           unsigned int caps = 100;
+        
           int enable = 100;
+        
           int _len_codec0 = 1;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = get_amp_val_to_activate(codec,nid,dir,caps,enable);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int nid = 255;
+        
+          int dir = 255;
+        
+          unsigned int caps = 255;
+        
+          int enable = 255;
+        
+          int _len_codec0 = 65025;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = get_amp_val_to_activate(codec,nid,dir,caps,enable);
           printf("%d\n", benchRet); 
           free(codec);
@@ -117,24 +143,53 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int nid = 10;
+        
           int dir = 10;
+        
           unsigned int caps = 10;
+        
           int enable = 10;
+        
           int _len_codec0 = 100;
           struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
           for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
-            codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_amp_val_to_activate(codec,nid,dir,caps,enable);
           printf("%d\n", benchRet); 
           free(codec);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int nid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_codec0 = 1;
+          struct hda_codec * codec = (struct hda_codec *) malloc(_len_codec0*sizeof(struct hda_codec));
+          for(int _i0 = 0; _i0 < _len_codec0; _i0++) {
+              codec[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_amp_val_to_activate(codec,nid,dir,caps,enable);
+          printf("%d\n", benchRet); 
+          free(codec);
+        
+        break;
+    }
     default:
         usage();
         break;

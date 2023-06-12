@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool preserve_active(struct obs_output *outp
 	return (output->delay_flags & OBS_OUTPUT_DELAY_PRESERVE) != 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_output0 = 1;
+          int _len_output0 = 65025;
           struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
-            output[_i0].delay_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].delay_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = preserve_active(output);
           printf("%d\n", benchRet); 
           free(output);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_output0 = 100;
           struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
-            output[_i0].delay_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].delay_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = preserve_active(output);
           printf("%d\n", benchRet); 
           free(output);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_output0 = 1;
+          struct obs_output * output = (struct obs_output *) malloc(_len_output0*sizeof(struct obs_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              output[_i0].delay_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = preserve_active(output);
+          printf("%d\n", benchRet); 
+          free(output);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline void zd_mc_add_all(struct zd_mc_hash *hash)
 	hash->low = hash->high = 0xffffffff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,21 +74,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hash0 = 1;
+          int _len_hash0 = 65025;
           struct zd_mc_hash * hash = (struct zd_mc_hash *) malloc(_len_hash0*sizeof(struct zd_mc_hash));
           for(int _i0 = 0; _i0 < _len_hash0; _i0++) {
-            hash[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
-        hash[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+              hash[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          hash[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zd_mc_add_all(hash);
           free(hash);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hash0 = 100;
+          struct zd_mc_hash * hash = (struct zd_mc_hash *) malloc(_len_hash0*sizeof(struct zd_mc_hash));
+          for(int _i0 = 0; _i0 < _len_hash0; _i0++) {
+              hash[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          hash[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zd_mc_add_all(hash);
+          free(hash);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hash0 = 1;
+          struct zd_mc_hash * hash = (struct zd_mc_hash *) malloc(_len_hash0*sizeof(struct zd_mc_hash));
+          for(int _i0 = 0; _i0 < _len_hash0; _i0++) {
+              hash[_i0].low = ((-2 * (next_i()%2)) + 1) * next_i();
+          hash[_i0].high = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zd_mc_add_all(hash);
+          free(hash);
+        
+        break;
+    }
     default:
         usage();
         break;

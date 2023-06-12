@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static u32 compute_split_timeout_timestamp(struct fw_card 
 	return timestamp;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,30 +87,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int request_timestamp = 100;
+        
           int _len_card0 = 1;
           struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].split_timeout_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].split_timeout_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = compute_split_timeout_timestamp(card,request_timestamp);
           printf("%d\n", benchRet); 
           free(card);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int request_timestamp = 255;
+        
+          int _len_card0 = 65025;
+          struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].split_timeout_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = compute_split_timeout_timestamp(card,request_timestamp);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int request_timestamp = 10;
+        
           int _len_card0 = 100;
           struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].split_timeout_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].split_timeout_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = compute_split_timeout_timestamp(card,request_timestamp);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int request_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_card0 = 1;
+          struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].split_timeout_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = compute_split_timeout_timestamp(card,request_timestamp);
           printf("%d\n", benchRet); 
           free(card);

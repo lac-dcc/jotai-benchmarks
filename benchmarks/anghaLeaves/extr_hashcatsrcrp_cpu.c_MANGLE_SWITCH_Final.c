@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void MANGLE_SWITCH (char *arr, const int l, const i
   arr[l] = c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +74,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          const int l = 10;
-          const int r = 10;
-          int _len_arr0 = 100;
+          const int l = 255;
+        
+          const int r = 255;
+        
+          int _len_arr0 = 65025;
           char * arr = (char *) malloc(_len_arr0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_arr0; _i0++) {
             arr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           MANGLE_SWITCH(arr,l,r);
           free(arr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          const int l = 10;
+        
+          const int r = 10;
+        
+          int _len_arr0 = 100;
+          char * arr = (char *) malloc(_len_arr0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_arr0; _i0++) {
+            arr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          MANGLE_SWITCH(arr,l,r);
+          free(arr);
+        
+        break;
+    }
     default:
         usage();
         break;

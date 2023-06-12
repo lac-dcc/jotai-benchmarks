@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void michael_clear(struct michael_mic *mic)
 	mic->m_bytes = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_mic0 = 65025;
+          struct michael_mic * mic = (struct michael_mic *) malloc(_len_mic0*sizeof(struct michael_mic));
+          for(int _i0 = 0; _i0 < _len_mic0; _i0++) {
+              mic[_i0].m_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].k1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].k0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          michael_clear(mic);
+          free(mic);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_mic0 = 100;
+          struct michael_mic * mic = (struct michael_mic *) malloc(_len_mic0*sizeof(struct michael_mic));
+          for(int _i0 = 0; _i0 < _len_mic0; _i0++) {
+              mic[_i0].m_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].k1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].k0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          michael_clear(mic);
+          free(mic);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_mic0 = 1;
           struct michael_mic * mic = (struct michael_mic *) malloc(_len_mic0*sizeof(struct michael_mic));
           for(int _i0 = 0; _i0 < _len_mic0; _i0++) {
-            mic[_i0].m_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        mic[_i0].k1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        mic[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
-        mic[_i0].k0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        mic[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+              mic[_i0].m_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].k1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].r = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].k0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          mic[_i0].l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           michael_clear(mic);
           free(mic);
         

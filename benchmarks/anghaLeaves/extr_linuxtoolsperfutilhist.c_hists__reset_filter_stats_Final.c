@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void hists__reset_filter_stats(struct hists *hists)
 	hists->stats.total_non_filtered_period = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +77,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hists0 = 1;
+          int _len_hists0 = 65025;
           struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
           for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
-            hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           hists__reset_filter_stats(hists);
           free(hists);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hists0 = 100;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hists__reset_filter_stats(hists);
+          free(hists);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hists0 = 1;
+          struct hists * hists = (struct hists *) malloc(_len_hists0*sizeof(struct hists));
+          for(int _i0 = 0; _i0 < _len_hists0; _i0++) {
+              hists[_i0].stats.total_non_filtered_period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hists[_i0].nr_non_filtered_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          hists__reset_filter_stats(hists);
+          free(hists);
+        
+        break;
+    }
     default:
         usage();
         break;

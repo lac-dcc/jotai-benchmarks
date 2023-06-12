@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -103,12 +105,6 @@ __attribute__((used)) static void doit12(register uint32_t *a,register long x,re
   }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -125,35 +121,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long x = 100;
+        
           long y = 100;
+        
           int start = 100;
+        
           int _len_a0 = 1;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          doit12(a,x,y,start);
+          free(a);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long x = 255;
+        
+          long y = 255;
+        
+          int start = 255;
+        
+          int _len_a0 = 65025;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           doit12(a,x,y,start);
           free(a);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long x = 10;
+        
           long y = 10;
+        
           int start = 10;
+        
           int _len_a0 = 100;
           int * a = (int *) malloc(_len_a0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
             a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           doit12(a,x,y,start);
           free(a);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          int * a = (int *) malloc(_len_a0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+            a[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          doit12(a,x,y,start);
+          free(a);
+        
+        break;
+    }
     default:
         usage();
         break;

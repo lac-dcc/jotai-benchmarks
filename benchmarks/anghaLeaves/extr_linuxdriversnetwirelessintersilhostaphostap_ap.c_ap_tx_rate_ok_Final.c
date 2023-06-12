@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int ap_tx_rate_ok(int rateidx, struct sta_info *sta
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +86,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int rateidx = 100;
+        
           int _len_sta0 = 1;
           struct sta_info * sta = (struct sta_info *) malloc(_len_sta0*sizeof(struct sta_info));
           for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
-            sta[_i0].tx_max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        sta[_i0].tx_supp_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+              sta[_i0].tx_max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta[_i0].tx_supp_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_local0 = 1;
           struct TYPE_3__ * local = (struct TYPE_3__ *) malloc(_len_local0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_local0; _i0++) {
-            local[_i0].tx_rate_control = ((-2 * (next_i()%2)) + 1) * next_i();
+              local[_i0].tx_rate_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ap_tx_rate_ok(rateidx,sta,local);
+          printf("%d\n", benchRet); 
+          free(sta);
+          free(local);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int rateidx = 255;
+        
+          int _len_sta0 = 65025;
+          struct sta_info * sta = (struct sta_info *) malloc(_len_sta0*sizeof(struct sta_info));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].tx_max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta[_i0].tx_supp_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_local0 = 65025;
+          struct TYPE_3__ * local = (struct TYPE_3__ *) malloc(_len_local0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_local0; _i0++) {
+              local[_i0].tx_rate_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ap_tx_rate_ok(rateidx,sta,local);
+          printf("%d\n", benchRet); 
+          free(sta);
+          free(local);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int rateidx = 10;
+        
+          int _len_sta0 = 100;
+          struct sta_info * sta = (struct sta_info *) malloc(_len_sta0*sizeof(struct sta_info));
+          for(int _i0 = 0; _i0 < _len_sta0; _i0++) {
+              sta[_i0].tx_max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          sta[_i0].tx_supp_rates = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_local0 = 100;
+          struct TYPE_3__ * local = (struct TYPE_3__ *) malloc(_len_local0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_local0; _i0++) {
+              local[_i0].tx_rate_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ap_tx_rate_ok(rateidx,sta,local);
           printf("%d\n", benchRet); 
           free(sta);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ASN1_INTEGER *OSSL_CRMF_CERTTEMPLATE_get0_serialNumber(OSSL_CRMF_CERTTEMPLATE *t
     return tmpl != NULL ? tmpl->serialNumber : NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_tmpl0 = 65025;
+          struct TYPE_3__ * tmpl = (struct TYPE_3__ *) malloc(_len_tmpl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tmpl0; _i0++) {
+              int _len_tmpl__i0__serialNumber0 = 1;
+          tmpl[_i0].serialNumber = (int *) malloc(_len_tmpl__i0__serialNumber0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tmpl__i0__serialNumber0; _j0++) {
+            tmpl[_i0].serialNumber[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = OSSL_CRMF_CERTTEMPLATE_get0_serialNumber(tmpl);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_tmpl0; _aux++) {
+          free(tmpl[_aux].serialNumber);
+          }
+          free(tmpl);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_tmpl0 = 100;
+          struct TYPE_3__ * tmpl = (struct TYPE_3__ *) malloc(_len_tmpl0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_tmpl0; _i0++) {
+              int _len_tmpl__i0__serialNumber0 = 1;
+          tmpl[_i0].serialNumber = (int *) malloc(_len_tmpl__i0__serialNumber0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tmpl__i0__serialNumber0; _j0++) {
+            tmpl[_i0].serialNumber[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = OSSL_CRMF_CERTTEMPLATE_get0_serialNumber(tmpl);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_tmpl0; _aux++) {
+          free(tmpl[_aux].serialNumber);
+          }
+          free(tmpl);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_tmpl0 = 1;
           struct TYPE_3__ * tmpl = (struct TYPE_3__ *) malloc(_len_tmpl0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_tmpl0; _i0++) {
@@ -92,7 +205,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_tmpl__i0__serialNumber0; _j0++) {
             tmpl[_i0].serialNumber[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = OSSL_CRMF_CERTTEMPLATE_get0_serialNumber(tmpl);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_tmpl0; _aux++) {

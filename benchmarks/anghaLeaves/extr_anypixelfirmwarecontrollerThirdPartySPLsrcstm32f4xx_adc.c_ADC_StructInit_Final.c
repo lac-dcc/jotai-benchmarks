@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -86,12 +88,6 @@ void ADC_StructInit(ADC_InitTypeDef* ADC_InitStruct)
   ADC_InitStruct->ADC_NbrOfConversion = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,18 +100,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_ADC_InitStruct0 = 65025;
+          struct TYPE_3__ * ADC_InitStruct = (struct TYPE_3__ *) malloc(_len_ADC_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ADC_InitStruct0; _i0++) {
+              ADC_InitStruct[_i0].ADC_NbrOfConversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_DataAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_ExternalTrigConv = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_ExternalTrigConvEdge = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_Resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ADC_StructInit(ADC_InitStruct);
+          free(ADC_InitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_ADC_InitStruct0 = 100;
+          struct TYPE_3__ * ADC_InitStruct = (struct TYPE_3__ *) malloc(_len_ADC_InitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ADC_InitStruct0; _i0++) {
+              ADC_InitStruct[_i0].ADC_NbrOfConversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_DataAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_ExternalTrigConv = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_ExternalTrigConvEdge = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_Resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ADC_StructInit(ADC_InitStruct);
+          free(ADC_InitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int _len_ADC_InitStruct0 = 1;
           struct TYPE_3__ * ADC_InitStruct = (struct TYPE_3__ *) malloc(_len_ADC_InitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ADC_InitStruct0; _i0++) {
-            ADC_InitStruct[_i0].ADC_NbrOfConversion = ((-2 * (next_i()%2)) + 1) * next_i();
-        ADC_InitStruct[_i0].ADC_DataAlign = ((-2 * (next_i()%2)) + 1) * next_i();
-        ADC_InitStruct[_i0].ADC_ExternalTrigConv = ((-2 * (next_i()%2)) + 1) * next_i();
-        ADC_InitStruct[_i0].ADC_ExternalTrigConvEdge = ((-2 * (next_i()%2)) + 1) * next_i();
-        ADC_InitStruct[_i0].ADC_Resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+              ADC_InitStruct[_i0].ADC_NbrOfConversion = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_DataAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_ExternalTrigConv = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_ExternalTrigConvEdge = ((-2 * (next_i()%2)) + 1) * next_i();
+          ADC_InitStruct[_i0].ADC_Resolution = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ADC_StructInit(ADC_InitStruct);
           free(ADC_InitStruct);
         

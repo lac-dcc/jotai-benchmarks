@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static int vmlfb_vram_offset(struct vml_info *vinfo, unsig
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,22 +88,155 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           unsigned long offset = 100;
+        
           int _len_vinfo0 = 1;
           struct vml_info * vinfo = (struct vml_info *) malloc(_len_vinfo0*sizeof(struct vml_info));
           for(int _i0 = 0; _i0 < _len_vinfo0; _i0++) {
-            vinfo[_i0].num_areas = ((-2 * (next_i()%2)) + 1) * next_i();
-        vinfo[_i0].vram_start = ((-2 * (next_i()%2)) + 1) * next_i();
+              vinfo[_i0].num_areas = ((-2 * (next_i()%2)) + 1) * next_i();
+          vinfo[_i0].vram_start = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vinfo__i0__vram0 = 1;
           vinfo[_i0].vram = (struct TYPE_2__ *) malloc(_len_vinfo__i0__vram0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vinfo__i0__vram0; _j0++) {
-            vinfo[_i0].vram->phys = ((-2 * (next_i()%2)) + 1) * next_i();
-        vinfo[_i0].vram->size = ((-2 * (next_i()%2)) + 1) * next_i();
+              vinfo[_i0].vram->phys = ((-2 * (next_i()%2)) + 1) * next_i();
+          vinfo[_i0].vram->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = vmlfb_vram_offset(vinfo,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vinfo0; _aux++) {
+          free(vinfo[_aux].vram);
+          }
+          free(vinfo);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned long offset = 255;
+        
+          int _len_vinfo0 = 65025;
+          struct vml_info * vinfo = (struct vml_info *) malloc(_len_vinfo0*sizeof(struct vml_info));
+          for(int _i0 = 0; _i0 < _len_vinfo0; _i0++) {
+              vinfo[_i0].num_areas = ((-2 * (next_i()%2)) + 1) * next_i();
+          vinfo[_i0].vram_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vinfo__i0__vram0 = 1;
+          vinfo[_i0].vram = (struct TYPE_2__ *) malloc(_len_vinfo__i0__vram0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vinfo__i0__vram0; _j0++) {
+              vinfo[_i0].vram->phys = ((-2 * (next_i()%2)) + 1) * next_i();
+          vinfo[_i0].vram->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = vmlfb_vram_offset(vinfo,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vinfo0; _aux++) {
+          free(vinfo[_aux].vram);
+          }
+          free(vinfo);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          unsigned long offset = 10;
+        
+          int _len_vinfo0 = 100;
+          struct vml_info * vinfo = (struct vml_info *) malloc(_len_vinfo0*sizeof(struct vml_info));
+          for(int _i0 = 0; _i0 < _len_vinfo0; _i0++) {
+              vinfo[_i0].num_areas = ((-2 * (next_i()%2)) + 1) * next_i();
+          vinfo[_i0].vram_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vinfo__i0__vram0 = 1;
+          vinfo[_i0].vram = (struct TYPE_2__ *) malloc(_len_vinfo__i0__vram0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vinfo__i0__vram0; _j0++) {
+              vinfo[_i0].vram->phys = ((-2 * (next_i()%2)) + 1) * next_i();
+          vinfo[_i0].vram->size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = vmlfb_vram_offset(vinfo,offset);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vinfo0; _aux++) {

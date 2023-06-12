@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ iv_checksum(ipc_voucher_t voucher, boolean_t *emptyp)
 	return c;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,24 +98,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_voucher0 = 1;
+          int _len_voucher0 = 65025;
           struct TYPE_3__ * voucher = (struct TYPE_3__ *) malloc(_len_voucher0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_voucher0; _i0++) {
-            voucher[_i0].iv_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              voucher[_i0].iv_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_voucher__i0__iv_table0 = 1;
           voucher[_i0].iv_table = (unsigned long *) malloc(_len_voucher__i0__iv_table0*sizeof(unsigned long));
           for(int _j0 = 0; _j0 < _len_voucher__i0__iv_table0; _j0++) {
             voucher[_i0].iv_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_emptyp0 = 1;
+        
+          int _len_emptyp0 = 65025;
           int * emptyp = (int *) malloc(_len_emptyp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_emptyp0; _i0++) {
             emptyp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = iv_checksum(voucher,emptyp);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_voucher0; _aux++) {
@@ -130,7 +129,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_voucher0 = 100;
+          struct TYPE_3__ * voucher = (struct TYPE_3__ *) malloc(_len_voucher0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_voucher0; _i0++) {
+              voucher[_i0].iv_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_voucher__i0__iv_table0 = 1;
+          voucher[_i0].iv_table = (unsigned long *) malloc(_len_voucher__i0__iv_table0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_voucher__i0__iv_table0; _j0++) {
+            voucher[_i0].iv_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_emptyp0 = 100;
+          int * emptyp = (int *) malloc(_len_emptyp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_emptyp0; _i0++) {
+            emptyp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = iv_checksum(voucher,emptyp);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_voucher0; _aux++) {
+          free(voucher[_aux].iv_table);
+          }
+          free(voucher);
+          free(emptyp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_voucher0 = 1;
+          struct TYPE_3__ * voucher = (struct TYPE_3__ *) malloc(_len_voucher0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_voucher0; _i0++) {
+              voucher[_i0].iv_table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_voucher__i0__iv_table0 = 1;
+          voucher[_i0].iv_table = (unsigned long *) malloc(_len_voucher__i0__iv_table0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_voucher__i0__iv_table0; _j0++) {
+            voucher[_i0].iv_table[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_emptyp0 = 1;
+          int * emptyp = (int *) malloc(_len_emptyp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_emptyp0; _i0++) {
+            emptyp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = iv_checksum(voucher,emptyp);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_voucher0; _aux++) {
+          free(voucher[_aux].iv_table);
+          }
+          free(voucher);
+          free(emptyp);
+        
+        break;
+    }
     default:
         usage();
         break;

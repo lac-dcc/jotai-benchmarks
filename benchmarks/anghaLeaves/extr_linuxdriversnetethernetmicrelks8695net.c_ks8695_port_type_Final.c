@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ ks8695_port_type(struct ks8695_priv *ksp)
 	return "UNKNOWN";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,14 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ksp0 = 1;
+          int _len_ksp0 = 65025;
           struct ks8695_priv * ksp = (struct ks8695_priv *) malloc(_len_ksp0*sizeof(struct ks8695_priv));
           for(int _i0 = 0; _i0 < _len_ksp0; _i0++) {
-            ksp[_i0].dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              ksp[_i0].dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = ks8695_port_type(ksp);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(ksp);
@@ -112,15 +109,32 @@ int main(int argc, char *argv[]) {
           int _len_ksp0 = 100;
           struct ks8695_priv * ksp = (struct ks8695_priv *) malloc(_len_ksp0*sizeof(struct ks8695_priv));
           for(int _i0 = 0; _i0 < _len_ksp0; _i0++) {
-            ksp[_i0].dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              ksp[_i0].dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = ks8695_port_type(ksp);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(ksp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ksp0 = 1;
+          struct ks8695_priv * ksp = (struct ks8695_priv *) malloc(_len_ksp0*sizeof(struct ks8695_priv));
+          for(int _i0 = 0; _i0 < _len_ksp0; _i0++) {
+              ksp[_i0].dtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          const char * benchRet = ks8695_port_type(ksp);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(ksp);
+        
+        break;
+    }
     default:
         usage();
         break;

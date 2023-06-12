@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static int get_encoded_page_size(int pg_sz)
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +83,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pg_sz = 100;
+        
           int benchRet = get_encoded_page_size(pg_sz);
           printf("%d\n", benchRet); 
         
@@ -97,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pg_sz = 255;
+        
           int benchRet = get_encoded_page_size(pg_sz);
           printf("%d\n", benchRet); 
         
@@ -106,12 +103,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pg_sz = 10;
+        
           int benchRet = get_encoded_page_size(pg_sz);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pg_sz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_encoded_page_size(pg_sz);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

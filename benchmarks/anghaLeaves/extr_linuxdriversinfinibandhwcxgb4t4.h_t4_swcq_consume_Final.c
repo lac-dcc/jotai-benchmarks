@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void t4_swcq_consume(struct t4_cq *cq)
 		cq->sw_cidx = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cq0 = 65025;
+          struct t4_cq * cq = (struct t4_cq *) malloc(_len_cq0*sizeof(struct t4_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].sw_cidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cq[_i0].sw_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          t4_swcq_consume(cq);
+          free(cq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_cq0 = 100;
+          struct t4_cq * cq = (struct t4_cq *) malloc(_len_cq0*sizeof(struct t4_cq));
+          for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
+              cq[_i0].sw_cidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cq[_i0].sw_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          t4_swcq_consume(cq);
+          free(cq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_cq0 = 1;
           struct t4_cq * cq = (struct t4_cq *) malloc(_len_cq0*sizeof(struct t4_cq));
           for(int _i0 = 0; _i0 < _len_cq0; _i0++) {
-            cq[_i0].sw_cidx = ((-2 * (next_i()%2)) + 1) * next_i();
-        cq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cq[_i0].sw_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+              cq[_i0].sw_cidx = ((-2 * (next_i()%2)) + 1) * next_i();
+          cq[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cq[_i0].sw_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           t4_swcq_consume(cq);
           free(cq);
         

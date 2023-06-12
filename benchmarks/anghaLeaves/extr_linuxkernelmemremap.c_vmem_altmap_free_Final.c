@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ void vmem_altmap_free(struct vmem_altmap *altmap, unsigned long nr_pfns)
 	altmap->alloc -= nr_pfns;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long nr_pfns = 100;
+        
           int _len_altmap0 = 1;
           struct vmem_altmap * altmap = (struct vmem_altmap *) malloc(_len_altmap0*sizeof(struct vmem_altmap));
           for(int _i0 = 0; _i0 < _len_altmap0; _i0++) {
-            altmap[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              altmap[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          vmem_altmap_free(altmap,nr_pfns);
+          free(altmap);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long nr_pfns = 255;
+        
+          int _len_altmap0 = 65025;
+          struct vmem_altmap * altmap = (struct vmem_altmap *) malloc(_len_altmap0*sizeof(struct vmem_altmap));
+          for(int _i0 = 0; _i0 < _len_altmap0; _i0++) {
+              altmap[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           vmem_altmap_free(altmap,nr_pfns);
           free(altmap);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long nr_pfns = 10;
+        
           int _len_altmap0 = 100;
           struct vmem_altmap * altmap = (struct vmem_altmap *) malloc(_len_altmap0*sizeof(struct vmem_altmap));
           for(int _i0 = 0; _i0 < _len_altmap0; _i0++) {
-            altmap[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              altmap[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vmem_altmap_free(altmap,nr_pfns);
           free(altmap);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long nr_pfns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_altmap0 = 1;
+          struct vmem_altmap * altmap = (struct vmem_altmap *) malloc(_len_altmap0*sizeof(struct vmem_altmap));
+          for(int _i0 = 0; _i0 < _len_altmap0; _i0++) {
+              altmap[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vmem_altmap_free(altmap,nr_pfns);
+          free(altmap);
+        
+        break;
+    }
     default:
         usage();
         break;

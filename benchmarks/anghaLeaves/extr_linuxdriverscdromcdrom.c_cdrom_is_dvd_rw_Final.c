@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static int cdrom_is_dvd_rw(struct cdrom_device_info *cdi)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cdi0 = 1;
+          int _len_cdi0 = 65025;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
-            cdi[_i0].mmc3_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].mmc3_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cdrom_is_dvd_rw(cdi);
           printf("%d\n", benchRet); 
           free(cdi);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_cdi0 = 100;
           struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
           for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
-            cdi[_i0].mmc3_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdi[_i0].mmc3_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cdrom_is_dvd_rw(cdi);
           printf("%d\n", benchRet); 
           free(cdi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cdi0 = 1;
+          struct cdrom_device_info * cdi = (struct cdrom_device_info *) malloc(_len_cdi0*sizeof(struct cdrom_device_info));
+          for(int _i0 = 0; _i0 < _len_cdi0; _i0++) {
+              cdi[_i0].mmc3_profile = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cdrom_is_dvd_rw(cdi);
+          printf("%d\n", benchRet); 
+          free(cdi);
+        
+        break;
+    }
     default:
         usage();
         break;

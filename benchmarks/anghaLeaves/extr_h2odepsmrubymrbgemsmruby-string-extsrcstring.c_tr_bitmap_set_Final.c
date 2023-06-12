@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ tr_bitmap_set(uint8_t bitmap[32], uint8_t ch)
   bitmap[idx1] |= (1<<idx2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +81,50 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ch = 100;
+        
           int _len_bitmap0 = 32;
           int * bitmap = (int *) malloc(_len_bitmap0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
             bitmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          tr_bitmap_set(bitmap,ch);
+          free(bitmap);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ch = 255;
+        
+          int _len_bitmap0 = 65025;
+          int * bitmap = (int *) malloc(_len_bitmap0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
+            bitmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           tr_bitmap_set(bitmap,ch);
           free(bitmap);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ch = 10;
+        
           int _len_bitmap0 = 100;
           int * bitmap = (int *) malloc(_len_bitmap0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bitmap0; _i0++) {
             bitmap[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           tr_bitmap_set(bitmap,ch);
           free(bitmap);
         
         break;
     }
-
     default:
         usage();
         break;

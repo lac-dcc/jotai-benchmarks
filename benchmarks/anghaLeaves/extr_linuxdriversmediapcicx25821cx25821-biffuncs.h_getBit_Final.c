@@ -61,12 +61,6 @@ __attribute__((used)) static inline u8 getBit(u32 sample, u8 index)
 	return (u8) ((sample >> index) & 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,13 +77,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sample = 10;
+        
           int index = 10;
+        
           int benchRet = getBit(sample,index);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

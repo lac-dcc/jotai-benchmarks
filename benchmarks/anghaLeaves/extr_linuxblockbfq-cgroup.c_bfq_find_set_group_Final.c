@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ struct bfq_group *bfq_find_set_group(struct bfq_data *bfqd, struct blkcg *blkcg)
 	return bfqd->root_group;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_bfqd0 = 65025;
+          struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
+          for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
+              int _len_bfqd__i0__root_group0 = 1;
+          bfqd[_i0].root_group = (struct bfq_group *) malloc(_len_bfqd__i0__root_group0*sizeof(struct bfq_group));
+          for(int _j0 = 0; _j0 < _len_bfqd__i0__root_group0; _j0++) {
+              bfqd[_i0].root_group->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_blkcg0 = 65025;
+          struct blkcg * blkcg = (struct blkcg *) malloc(_len_blkcg0*sizeof(struct blkcg));
+          for(int _i0 = 0; _i0 < _len_blkcg0; _i0++) {
+              blkcg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct bfq_group * benchRet = bfq_find_set_group(bfqd,blkcg);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_bfqd0; _aux++) {
+          free(bfqd[_aux].root_group);
+          }
+          free(bfqd);
+          free(blkcg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_bfqd0 = 100;
+          struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
+          for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
+              int _len_bfqd__i0__root_group0 = 1;
+          bfqd[_i0].root_group = (struct bfq_group *) malloc(_len_bfqd__i0__root_group0*sizeof(struct bfq_group));
+          for(int _j0 = 0; _j0 < _len_bfqd__i0__root_group0; _j0++) {
+              bfqd[_i0].root_group->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_blkcg0 = 100;
+          struct blkcg * blkcg = (struct blkcg *) malloc(_len_blkcg0*sizeof(struct blkcg));
+          for(int _i0 = 0; _i0 < _len_blkcg0; _i0++) {
+              blkcg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct bfq_group * benchRet = bfq_find_set_group(bfqd,blkcg);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_bfqd0; _aux++) {
+          free(bfqd[_aux].root_group);
+          }
+          free(bfqd);
+          free(blkcg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_bfqd0 = 1;
           struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
           for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
               int _len_bfqd__i0__root_group0 = 1;
           bfqd[_i0].root_group = (struct bfq_group *) malloc(_len_bfqd__i0__root_group0*sizeof(struct bfq_group));
           for(int _j0 = 0; _j0 < _len_bfqd__i0__root_group0; _j0++) {
-            bfqd[_i0].root_group->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bfqd[_i0].root_group->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_blkcg0 = 1;
           struct blkcg * blkcg = (struct blkcg *) malloc(_len_blkcg0*sizeof(struct blkcg));
           for(int _i0 = 0; _i0 < _len_blkcg0; _i0++) {
-            blkcg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              blkcg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct bfq_group * benchRet = bfq_find_set_group(bfqd,blkcg);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_bfqd0; _aux++) {

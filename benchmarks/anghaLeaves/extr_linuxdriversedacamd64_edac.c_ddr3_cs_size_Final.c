@@ -76,12 +76,6 @@ __attribute__((used)) static int ddr3_cs_size(unsigned i, bool dct_width)
 	return cs_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,13 +92,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int i = 10;
+        
           int dct_width = 10;
+        
           int benchRet = ddr3_cs_size(i,dct_width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

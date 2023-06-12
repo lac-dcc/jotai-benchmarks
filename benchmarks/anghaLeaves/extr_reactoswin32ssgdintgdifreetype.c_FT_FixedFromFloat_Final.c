@@ -65,12 +65,6 @@ __attribute__((used)) static __inline FT_Fixed FT_FixedFromFloat(FLOAT f)
     return (FT_Fixed)((long)value << 16 | (unsigned long)fract);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           short f = 100;
+        
           int benchRet = FT_FixedFromFloat(f);
           printf("%d\n", benchRet); 
         
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           short f = 255;
+        
           int benchRet = FT_FixedFromFloat(f);
           printf("%d\n", benchRet); 
         
@@ -105,12 +101,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           short f = 10;
+        
           int benchRet = FT_FixedFromFloat(f);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

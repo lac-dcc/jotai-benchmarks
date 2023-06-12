@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ bool dm_bm_is_read_only(struct dm_block_manager *bm)
 	return bm->read_only;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bm0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_bm0 = 65025;
           struct dm_block_manager * bm = (struct dm_block_manager *) malloc(_len_bm0*sizeof(struct dm_block_manager));
           for(int _i0 = 0; _i0 < _len_bm0; _i0++) {
-            bm[_i0].read_only = ((-2 * (next_i()%2)) + 1) * next_i();
+              bm[_i0].read_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dm_bm_is_read_only(bm);
           printf("%d\n", benchRet); 
           free(bm);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_bm0 = 100;
           struct dm_block_manager * bm = (struct dm_block_manager *) malloc(_len_bm0*sizeof(struct dm_block_manager));
           for(int _i0 = 0; _i0 < _len_bm0; _i0++) {
-            bm[_i0].read_only = ((-2 * (next_i()%2)) + 1) * next_i();
+              bm[_i0].read_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dm_bm_is_read_only(bm);
+          printf("%d\n", benchRet); 
+          free(bm);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_bm0 = 1;
+          struct dm_block_manager * bm = (struct dm_block_manager *) malloc(_len_bm0*sizeof(struct dm_block_manager));
+          for(int _i0 = 0; _i0 < _len_bm0; _i0++) {
+              bm[_i0].read_only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dm_bm_is_read_only(bm);
           printf("%d\n", benchRet); 
           free(bm);

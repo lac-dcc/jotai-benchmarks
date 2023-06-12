@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -158,12 +161,6 @@ __attribute__((used)) static void iwlagn_count_tx_err_status(struct iwl_priv *pr
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -176,37 +173,256 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int status = 100;
+        
           int _len_priv0 = 1;
           struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].reply_tx_stats.unknown = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.sta_color_mismatch = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.fail_hw_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.insuff_cf_poll = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.fifo_flush = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.tid_disable = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.frag_drop = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.sta_invalid = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.bt_retry = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.host_abort = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.dest_ps = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.life_expire = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.rfkill_flush = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.drain_flow = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.fifo_underrun = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.long_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.short_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.int_crossed_retry = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.pp_calc_ttak = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.pp_quiet_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.pp_bt_prio = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.pp_few_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        priv[_i0].reply_tx_stats.pp_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].reply_tx_stats.unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_color_mismatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fail_hw_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.insuff_cf_poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.tid_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.frag_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_invalid = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.bt_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.host_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.dest_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.life_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.rfkill_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.drain_flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_underrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.long_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.short_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.int_crossed_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_calc_ttak = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_quiet_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_bt_prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_few_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          iwlagn_count_tx_err_status(priv,status);
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int status = 255;
+        
+          int _len_priv0 = 65025;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].reply_tx_stats.unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_color_mismatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fail_hw_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.insuff_cf_poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.tid_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.frag_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_invalid = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.bt_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.host_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.dest_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.life_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.rfkill_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.drain_flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_underrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.long_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.short_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.int_crossed_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_calc_ttak = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_quiet_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_bt_prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_few_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iwlagn_count_tx_err_status(priv,status);
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int status = 10;
+        
+          int _len_priv0 = 100;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].reply_tx_stats.unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_color_mismatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fail_hw_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.insuff_cf_poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.tid_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.frag_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_invalid = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.bt_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.host_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.dest_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.life_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.rfkill_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.drain_flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_underrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.long_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.short_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.int_crossed_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_calc_ttak = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_quiet_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_bt_prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_few_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          iwlagn_count_tx_err_status(priv,status);
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_priv0 = 1;
+          struct iwl_priv * priv = (struct iwl_priv *) malloc(_len_priv0*sizeof(struct iwl_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].reply_tx_stats.unknown = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_color_mismatch = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fail_hw_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.insuff_cf_poll = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.tid_disable = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.frag_drop = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.sta_invalid = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.bt_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.host_abort = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.dest_ps = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.life_expire = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.rfkill_flush = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.drain_flow = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.fifo_underrun = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.long_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.short_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.int_crossed_retry = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_calc_ttak = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_quiet_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_bt_prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_few_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].reply_tx_stats.pp_delay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           iwlagn_count_tx_err_status(priv,status);
           free(priv);
         

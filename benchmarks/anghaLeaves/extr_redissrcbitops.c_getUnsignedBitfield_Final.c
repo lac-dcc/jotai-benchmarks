@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ uint64_t getUnsignedBitfield(unsigned char *p, uint64_t offset, uint64_t bits) {
     return value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +86,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 10;
+        
           long bits = 10;
+        
           int _len_p0 = 100;
           unsigned char * p = (unsigned char *) malloc(_len_p0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           long benchRet = getUnsignedBitfield(p,offset,bits);
           printf("%ld\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 1:
+    {
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          unsigned char * p = (unsigned char *) malloc(_len_p0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          long benchRet = getUnsignedBitfield(p,offset,bits);
+          printf("%ld\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

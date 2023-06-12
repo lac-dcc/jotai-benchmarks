@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool efx_default_channel_want_txqs(struct efx_chann
 		channel->efx->n_tx_channels;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_channel0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_channel0 = 65025;
           struct efx_channel * channel = (struct efx_channel *) malloc(_len_channel0*sizeof(struct efx_channel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_channel__i0__efx0 = 1;
           channel[_i0].efx = (struct TYPE_2__ *) malloc(_len_channel__i0__efx0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_channel__i0__efx0; _j0++) {
-            channel[_i0].efx->tx_channel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        channel[_i0].efx->n_tx_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].efx->tx_channel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          channel[_i0].efx->n_tx_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = efx_default_channel_want_txqs(channel);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_channel0; _aux++) {
+          free(channel[_aux].efx);
+          }
+          free(channel);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_channel0 = 100;
+          struct efx_channel * channel = (struct efx_channel *) malloc(_len_channel0*sizeof(struct efx_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_channel__i0__efx0 = 1;
+          channel[_i0].efx = (struct TYPE_2__ *) malloc(_len_channel__i0__efx0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_channel__i0__efx0; _j0++) {
+              channel[_i0].efx->tx_channel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          channel[_i0].efx->n_tx_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = efx_default_channel_want_txqs(channel);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_channel0; _aux++) {
+          free(channel[_aux].efx);
+          }
+          free(channel);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_channel0 = 1;
+          struct efx_channel * channel = (struct efx_channel *) malloc(_len_channel0*sizeof(struct efx_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_channel__i0__efx0 = 1;
+          channel[_i0].efx = (struct TYPE_2__ *) malloc(_len_channel__i0__efx0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_channel__i0__efx0; _j0++) {
+              channel[_i0].efx->tx_channel_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          channel[_i0].efx->n_tx_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = efx_default_channel_want_txqs(channel);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_channel0; _aux++) {

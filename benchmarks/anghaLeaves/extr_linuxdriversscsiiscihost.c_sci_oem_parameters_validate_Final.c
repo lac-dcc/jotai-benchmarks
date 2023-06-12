@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -148,12 +151,6 @@ int sci_oem_parameters_validate(struct sci_oem_params *oem, u8 version)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -170,27 +167,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long version = 100;
+        
           int _len_oem0 = 1;
           struct sci_oem_params * oem = (struct sci_oem_params *) malloc(_len_oem0*sizeof(struct sci_oem_params));
           for(int _i0 = 0; _i0 < _len_oem0; _i0++) {
-            oem[_i0].controller.mode_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        oem[_i0].controller.max_concurr_spin_up = ((-2 * (next_i()%2)) + 1) * next_i();
-        oem[_i0].controller.do_enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
-        oem[_i0].controller.ssc_sata_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        oem[_i0].controller.ssc_sas_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
-        oem[_i0].controller.ssc_sas_tx_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              oem[_i0].controller.mode_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.max_concurr_spin_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.do_enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sata_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_oem__i0__ports0 = 1;
           oem[_i0].ports = (struct TYPE_7__ *) malloc(_len_oem__i0__ports0*sizeof(struct TYPE_7__));
           for(int _j0 = 0; _j0 < _len_oem__i0__ports0; _j0++) {
-            oem[_i0].ports->phy_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              oem[_i0].ports->phy_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_oem__i0__phys0 = 1;
           oem[_i0].phys = (struct TYPE_6__ *) malloc(_len_oem__i0__phys0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_oem__i0__phys0; _j0++) {
-            oem[_i0].phys->sas_address.high = ((-2 * (next_i()%2)) + 1) * next_i();
-        oem[_i0].phys->sas_address.low = ((-2 * (next_i()%2)) + 1) * next_i();
+              oem[_i0].phys->sas_address.high = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].phys->sas_address.low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = sci_oem_parameters_validate(oem,version);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_oem0; _aux++) {
@@ -203,7 +207,138 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long version = 255;
+        
+          int _len_oem0 = 65025;
+          struct sci_oem_params * oem = (struct sci_oem_params *) malloc(_len_oem0*sizeof(struct sci_oem_params));
+          for(int _i0 = 0; _i0 < _len_oem0; _i0++) {
+              oem[_i0].controller.mode_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.max_concurr_spin_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.do_enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sata_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oem__i0__ports0 = 1;
+          oem[_i0].ports = (struct TYPE_7__ *) malloc(_len_oem__i0__ports0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_oem__i0__ports0; _j0++) {
+              oem[_i0].ports->phy_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_oem__i0__phys0 = 1;
+          oem[_i0].phys = (struct TYPE_6__ *) malloc(_len_oem__i0__phys0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_oem__i0__phys0; _j0++) {
+              oem[_i0].phys->sas_address.high = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].phys->sas_address.low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = sci_oem_parameters_validate(oem,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_oem0; _aux++) {
+          free(oem[_aux].ports);
+          }
+          for(int _aux = 0; _aux < _len_oem0; _aux++) {
+          free(oem[_aux].phys);
+          }
+          free(oem);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long version = 10;
+        
+          int _len_oem0 = 100;
+          struct sci_oem_params * oem = (struct sci_oem_params *) malloc(_len_oem0*sizeof(struct sci_oem_params));
+          for(int _i0 = 0; _i0 < _len_oem0; _i0++) {
+              oem[_i0].controller.mode_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.max_concurr_spin_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.do_enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sata_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oem__i0__ports0 = 1;
+          oem[_i0].ports = (struct TYPE_7__ *) malloc(_len_oem__i0__ports0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_oem__i0__ports0; _j0++) {
+              oem[_i0].ports->phy_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_oem__i0__phys0 = 1;
+          oem[_i0].phys = (struct TYPE_6__ *) malloc(_len_oem__i0__phys0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_oem__i0__phys0; _j0++) {
+              oem[_i0].phys->sas_address.high = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].phys->sas_address.low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = sci_oem_parameters_validate(oem,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_oem0; _aux++) {
+          free(oem[_aux].ports);
+          }
+          for(int _aux = 0; _aux < _len_oem0; _aux++) {
+          free(oem[_aux].phys);
+          }
+          free(oem);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oem0 = 1;
+          struct sci_oem_params * oem = (struct sci_oem_params *) malloc(_len_oem0*sizeof(struct sci_oem_params));
+          for(int _i0 = 0; _i0 < _len_oem0; _i0++) {
+              oem[_i0].controller.mode_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.max_concurr_spin_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.do_enable_ssc = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sata_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_spread_level = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].controller.ssc_sas_tx_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oem__i0__ports0 = 1;
+          oem[_i0].ports = (struct TYPE_7__ *) malloc(_len_oem__i0__ports0*sizeof(struct TYPE_7__));
+          for(int _j0 = 0; _j0 < _len_oem__i0__ports0; _j0++) {
+              oem[_i0].ports->phy_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_oem__i0__phys0 = 1;
+          oem[_i0].phys = (struct TYPE_6__ *) malloc(_len_oem__i0__phys0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_oem__i0__phys0; _j0++) {
+              oem[_i0].phys->sas_address.high = ((-2 * (next_i()%2)) + 1) * next_i();
+          oem[_i0].phys->sas_address.low = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = sci_oem_parameters_validate(oem,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_oem0; _aux++) {
+          free(oem[_aux].ports);
+          }
+          for(int _aux = 0; _aux < _len_oem0; _aux++) {
+          free(oem[_aux].phys);
+          }
+          free(oem);
+        
+        break;
+    }
     default:
         usage();
         break;

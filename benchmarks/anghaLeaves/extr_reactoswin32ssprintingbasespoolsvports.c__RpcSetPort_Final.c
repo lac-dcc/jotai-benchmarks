@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ _RpcSetPort(WINSPOOL_HANDLE pName, WCHAR* pPortName, WINSPOOL_PORT_CONTAINER* pP
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int pName = 100;
+        
           int _len_pPortName0 = 1;
           int * pPortName = (int *) malloc(_len_pPortName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPortName0; _i0++) {
             pPortName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pPortContainer0 = 1;
           int * pPortContainer = (int *) malloc(_len_pPortContainer0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pPortContainer0; _i0++) {
             pPortContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcSetPort(pName,pPortName,pPortContainer);
+          printf("%d\n", benchRet); 
+          free(pPortName);
+          free(pPortContainer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = 255;
+        
+          int _len_pPortName0 = 65025;
+          int * pPortName = (int *) malloc(_len_pPortName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPortName0; _i0++) {
+            pPortName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPortContainer0 = 65025;
+          int * pPortContainer = (int *) malloc(_len_pPortContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPortContainer0; _i0++) {
+            pPortContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcSetPort(pName,pPortName,pPortContainer);
+          printf("%d\n", benchRet); 
+          free(pPortName);
+          free(pPortContainer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = 10;
+        
+          int _len_pPortName0 = 100;
+          int * pPortName = (int *) malloc(_len_pPortName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPortName0; _i0++) {
+            pPortName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPortContainer0 = 100;
+          int * pPortContainer = (int *) malloc(_len_pPortContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPortContainer0; _i0++) {
+            pPortContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcSetPort(pName,pPortName,pPortContainer);
+          printf("%d\n", benchRet); 
+          free(pPortName);
+          free(pPortContainer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int pName = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pPortName0 = 1;
+          int * pPortName = (int *) malloc(_len_pPortName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPortName0; _i0++) {
+            pPortName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pPortContainer0 = 1;
+          int * pPortContainer = (int *) malloc(_len_pPortContainer0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pPortContainer0; _i0++) {
+            pPortContainer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcSetPort(pName,pPortName,pPortContainer);
           printf("%d\n", benchRet); 
           free(pPortName);

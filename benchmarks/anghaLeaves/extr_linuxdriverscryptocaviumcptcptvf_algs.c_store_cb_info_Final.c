@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline void store_cb_info(struct ablkcipher_request
 	req_info->callback_arg = (void *)&req->base;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_req0 = 65025;
+          struct ablkcipher_request * req = (struct ablkcipher_request *) malloc(_len_req0*sizeof(struct ablkcipher_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_req_info0 = 65025;
+          struct cpt_request_info * req_info = (struct cpt_request_info *) malloc(_len_req_info0*sizeof(struct cpt_request_info));
+          for(int _i0 = 0; _i0 < _len_req_info0; _i0++) {
+            
+          }
+        
+          store_cb_info(req,req_info);
+          free(req);
+          free(req_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_req0 = 100;
+          struct ablkcipher_request * req = (struct ablkcipher_request *) malloc(_len_req0*sizeof(struct ablkcipher_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_req_info0 = 100;
+          struct cpt_request_info * req_info = (struct cpt_request_info *) malloc(_len_req_info0*sizeof(struct cpt_request_info));
+          for(int _i0 = 0; _i0 < _len_req_info0; _i0++) {
+            
+          }
+        
+          store_cb_info(req,req_info);
+          free(req);
+          free(req_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_req0 = 1;
           struct ablkcipher_request * req = (struct ablkcipher_request *) malloc(_len_req0*sizeof(struct ablkcipher_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_req_info0 = 1;
           struct cpt_request_info * req_info = (struct cpt_request_info *) malloc(_len_req_info0*sizeof(struct cpt_request_info));
           for(int _i0 = 0; _i0 < _len_req_info0; _i0++) {
-              }
+            
+          }
+        
           store_cb_info(req,req_info);
           free(req);
           free(req_info);

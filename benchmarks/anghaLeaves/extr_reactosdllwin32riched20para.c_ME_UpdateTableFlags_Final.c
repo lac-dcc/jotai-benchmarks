@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static void ME_UpdateTableFlags(ME_DisplayItem *para)
     para->member.para.fmt.wEffects &= ~PFE_TABLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,17 +103,135 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_para0 = 65025;
+          struct TYPE_9__ * para = (struct TYPE_9__ *) malloc(_len_para0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_para0; _i0++) {
+              para[_i0].member.para.nFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+          para[_i0].member.para.fmt.dwMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          para[_i0].member.para.fmt.wEffects = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          para[_i0].member.para.pCell = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          ME_UpdateTableFlags(para);
+          free(para);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int _len_para0 = 100;
+          struct TYPE_9__ * para = (struct TYPE_9__ *) malloc(_len_para0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_para0; _i0++) {
+              para[_i0].member.para.nFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+          para[_i0].member.para.fmt.dwMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          para[_i0].member.para.fmt.wEffects = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          para[_i0].member.para.pCell = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          ME_UpdateTableFlags(para);
+          free(para);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 26
+          // dynamic_instructions_O1 : 26
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           int _len_para0 = 1;
           struct TYPE_9__ * para = (struct TYPE_9__ *) malloc(_len_para0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_para0; _i0++) {
-            para[_i0].member.para.nFlags = ((-2 * (next_i()%2)) + 1) * next_i();
-        para[_i0].member.para.fmt.dwMask = ((-2 * (next_i()%2)) + 1) * next_i();
-        para[_i0].member.para.fmt.wEffects = ((-2 * (next_i()%2)) + 1) * next_i();
-        para[_i0].member.para.pCell = ((-2 * (next_i()%2)) + 1) * next_i();
+              para[_i0].member.para.nFlags = ((-2 * (next_i()%2)) + 1) * next_i();
+          para[_i0].member.para.fmt.dwMask = ((-2 * (next_i()%2)) + 1) * next_i();
+          para[_i0].member.para.fmt.wEffects = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          para[_i0].member.para.pCell = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           ME_UpdateTableFlags(para);
           free(para);
         

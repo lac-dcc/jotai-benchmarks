@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ nvbios_perfSe(struct nvkm_bios *bios, u32 perfE, int idx,
 	return data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +84,245 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int perfE = 100;
+        
           int idx = 100;
+        
           int cnt = 100;
+        
           int len = 100;
+        
           int _len_bios0 = 1;
           struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
           for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
-            bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ver0 = 1;
           int * ver = (int *) malloc(_len_ver0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
             ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_hdr0 = 1;
           int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
             hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = nvbios_perfSe(bios,perfE,idx,ver,hdr,cnt,len);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int perfE = 255;
+        
+          int idx = 255;
+        
+          int cnt = 255;
+        
+          int len = 255;
+        
+          int _len_bios0 = 65025;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 65025;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 65025;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvbios_perfSe(bios,perfE,idx,ver,hdr,cnt,len);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int perfE = 10;
+        
+          int idx = 10;
+        
+          int cnt = 10;
+        
+          int len = 10;
+        
+          int _len_bios0 = 100;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 100;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 100;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nvbios_perfSe(bios,perfE,idx,ver,hdr,cnt,len);
+          printf("%d\n", benchRet); 
+          free(bios);
+          free(ver);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int perfE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bios0 = 1;
+          struct nvkm_bios * bios = (struct nvkm_bios *) malloc(_len_bios0*sizeof(struct nvkm_bios));
+          for(int _i0 = 0; _i0 < _len_bios0; _i0++) {
+              bios[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ver0 = 1;
+          int * ver = (int *) malloc(_len_ver0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ver0; _i0++) {
+            ver[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 1;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = nvbios_perfSe(bios,perfE,idx,ver,hdr,cnt,len);
           printf("%d\n", benchRet); 
           free(bios);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline int xgpio_index(struct xgpio_instance *chip,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int gpio = 100;
+        
           int _len_chip0 = 1;
           struct xgpio_instance * chip = (struct xgpio_instance *) malloc(_len_chip0*sizeof(struct xgpio_instance));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
@@ -93,7 +91,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_chip__i0__gpio_width0; _j0++) {
             chip[_i0].gpio_width[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = xgpio_index(chip,gpio);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_chip0; _aux++) {
@@ -103,7 +103,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int gpio = 255;
+        
+          int _len_chip0 = 65025;
+          struct xgpio_instance * chip = (struct xgpio_instance *) malloc(_len_chip0*sizeof(struct xgpio_instance));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__gpio_width0 = 1;
+          chip[_i0].gpio_width = (int *) malloc(_len_chip__i0__gpio_width0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__gpio_width0; _j0++) {
+            chip[_i0].gpio_width[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xgpio_index(chip,gpio);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].gpio_width);
+          }
+          free(chip);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int gpio = 10;
+        
+          int _len_chip0 = 100;
+          struct xgpio_instance * chip = (struct xgpio_instance *) malloc(_len_chip0*sizeof(struct xgpio_instance));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__gpio_width0 = 1;
+          chip[_i0].gpio_width = (int *) malloc(_len_chip__i0__gpio_width0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__gpio_width0; _j0++) {
+            chip[_i0].gpio_width[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xgpio_index(chip,gpio);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].gpio_width);
+          }
+          free(chip);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int gpio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct xgpio_instance * chip = (struct xgpio_instance *) malloc(_len_chip0*sizeof(struct xgpio_instance));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__gpio_width0 = 1;
+          chip[_i0].gpio_width = (int *) malloc(_len_chip__i0__gpio_width0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__gpio_width0; _j0++) {
+            chip[_i0].gpio_width[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = xgpio_index(chip,gpio);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].gpio_width);
+          }
+          free(chip);
+        
+        break;
+    }
     default:
         usage();
         break;

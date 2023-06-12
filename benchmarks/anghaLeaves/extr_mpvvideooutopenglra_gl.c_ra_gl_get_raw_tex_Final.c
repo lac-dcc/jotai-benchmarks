@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void ra_gl_get_raw_tex(struct ra *ra, struct ra_tex *tex,
     *out_target = tex_gl->target;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,34 +82,64 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ra0 = 1;
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_ra0 = 65025;
           struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
           for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
-            ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_tex0 = 1;
+        
+          int _len_tex0 = 65025;
           struct ra_tex * tex = (struct ra_tex *) malloc(_len_tex0*sizeof(struct ra_tex));
           for(int _i0 = 0; _i0 < _len_tex0; _i0++) {
               int _len_tex__i0__priv0 = 1;
           tex[_i0].priv = (struct ra_tex_gl *) malloc(_len_tex__i0__priv0*sizeof(struct ra_tex_gl));
           for(int _j0 = 0; _j0 < _len_tex__i0__priv0; _j0++) {
-            tex[_i0].priv->target = ((-2 * (next_i()%2)) + 1) * next_i();
-        tex[_i0].priv->texture = ((-2 * (next_i()%2)) + 1) * next_i();
+              tex[_i0].priv->target = ((-2 * (next_i()%2)) + 1) * next_i();
+          tex[_i0].priv->texture = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_out_texture0 = 1;
+        
+          int _len_out_texture0 = 65025;
           int * out_texture = (int *) malloc(_len_out_texture0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_texture0; _i0++) {
             out_texture[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_out_target0 = 1;
+        
+          int _len_out_target0 = 65025;
           int * out_target = (int *) malloc(_len_out_target0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_target0; _i0++) {
             out_target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ra_gl_get_raw_tex(ra,tex,out_texture,out_target);
           free(ra);
           for(int _aux = 0; _aux < _len_tex0; _aux++) {
@@ -125,34 +151,205 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_ra0 = 100;
+          struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
+          for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tex0 = 100;
+          struct ra_tex * tex = (struct ra_tex *) malloc(_len_tex0*sizeof(struct ra_tex));
+          for(int _i0 = 0; _i0 < _len_tex0; _i0++) {
+              int _len_tex__i0__priv0 = 1;
+          tex[_i0].priv = (struct ra_tex_gl *) malloc(_len_tex__i0__priv0*sizeof(struct ra_tex_gl));
+          for(int _j0 = 0; _j0 < _len_tex__i0__priv0; _j0++) {
+              tex[_i0].priv->target = ((-2 * (next_i()%2)) + 1) * next_i();
+          tex[_i0].priv->texture = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_out_texture0 = 100;
+          int * out_texture = (int *) malloc(_len_out_texture0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_texture0; _i0++) {
+            out_texture[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_target0 = 100;
+          int * out_target = (int *) malloc(_len_out_target0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_target0; _i0++) {
+            out_target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ra_gl_get_raw_tex(ra,tex,out_texture,out_target);
+          free(ra);
+          for(int _aux = 0; _aux < _len_tex0; _aux++) {
+          free(tex[_aux].priv);
+          }
+          free(tex);
+          free(out_texture);
+          free(out_target);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_ra0 = 1;
           struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
           for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
-            ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tex0 = 1;
           struct ra_tex * tex = (struct ra_tex *) malloc(_len_tex0*sizeof(struct ra_tex));
           for(int _i0 = 0; _i0 < _len_tex0; _i0++) {
               int _len_tex__i0__priv0 = 1;
           tex[_i0].priv = (struct ra_tex_gl *) malloc(_len_tex__i0__priv0*sizeof(struct ra_tex_gl));
           for(int _j0 = 0; _j0 < _len_tex__i0__priv0; _j0++) {
-            tex[_i0].priv->target = ((-2 * (next_i()%2)) + 1) * next_i();
-        tex[_i0].priv->texture = ((-2 * (next_i()%2)) + 1) * next_i();
+              tex[_i0].priv->target = ((-2 * (next_i()%2)) + 1) * next_i();
+          tex[_i0].priv->texture = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_out_texture0 = 1;
           int * out_texture = (int *) malloc(_len_out_texture0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_texture0; _i0++) {
             out_texture[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_out_target0 = 1;
           int * out_target = (int *) malloc(_len_out_target0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_out_target0; _i0++) {
             out_target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          ra_gl_get_raw_tex(ra,tex,out_texture,out_target);
+          free(ra);
+          for(int _aux = 0; _aux < _len_tex0; _aux++) {
+          free(tex[_aux].priv);
+          }
+          free(tex);
+          free(out_texture);
+          free(out_target);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_ra0 = 1;
+          struct ra * ra = (struct ra *) malloc(_len_ra0*sizeof(struct ra));
+          for(int _i0 = 0; _i0 < _len_ra0; _i0++) {
+              ra[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tex0 = 1;
+          struct ra_tex * tex = (struct ra_tex *) malloc(_len_tex0*sizeof(struct ra_tex));
+          for(int _i0 = 0; _i0 < _len_tex0; _i0++) {
+              int _len_tex__i0__priv0 = 1;
+          tex[_i0].priv = (struct ra_tex_gl *) malloc(_len_tex__i0__priv0*sizeof(struct ra_tex_gl));
+          for(int _j0 = 0; _j0 < _len_tex__i0__priv0; _j0++) {
+              tex[_i0].priv->target = ((-2 * (next_i()%2)) + 1) * next_i();
+          tex[_i0].priv->texture = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_out_texture0 = 1;
+          int * out_texture = (int *) malloc(_len_out_texture0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_texture0; _i0++) {
+            out_texture[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_out_target0 = 1;
+          int * out_target = (int *) malloc(_len_out_target0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_out_target0; _i0++) {
+            out_target[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           ra_gl_get_raw_tex(ra,tex,out_texture,out_target);
           free(ra);
           for(int _aux = 0; _aux < _len_tex0; _aux++) {

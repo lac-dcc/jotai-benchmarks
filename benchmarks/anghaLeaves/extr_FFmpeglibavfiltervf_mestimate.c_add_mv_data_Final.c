@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void add_mv_data(AVMotionVector *mv, int mb_size,
     mv->flags = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,27 +85,232 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int mb_size = 100;
+        
           int x = 100;
+        
           int y = 100;
+        
           int x_mv = 100;
+        
           int y_mv = 100;
+        
           int dir = 100;
+        
           int _len_mv0 = 1;
           struct TYPE_3__ * mv = (struct TYPE_3__ *) malloc(_len_mv0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mv0; _i0++) {
-            mv[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].source = ((-2 * (next_i()%2)) + 1) * next_i();
-        mv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              mv[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].source = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          add_mv_data(mv,mb_size,x,y,x_mv,y_mv,dir);
+          free(mv);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int mb_size = 255;
+        
+          int x = 255;
+        
+          int y = 255;
+        
+          int x_mv = 255;
+        
+          int y_mv = 255;
+        
+          int dir = 255;
+        
+          int _len_mv0 = 65025;
+          struct TYPE_3__ * mv = (struct TYPE_3__ *) malloc(_len_mv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mv0; _i0++) {
+              mv[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].source = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          add_mv_data(mv,mb_size,x,y,x_mv,y_mv,dir);
+          free(mv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int mb_size = 10;
+        
+          int x = 10;
+        
+          int y = 10;
+        
+          int x_mv = 10;
+        
+          int y_mv = 10;
+        
+          int dir = 10;
+        
+          int _len_mv0 = 100;
+          struct TYPE_3__ * mv = (struct TYPE_3__ *) malloc(_len_mv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mv0; _i0++) {
+              mv[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].source = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          add_mv_data(mv,mb_size,x,y,x_mv,y_mv,dir);
+          free(mv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 50
+          // dynamic_instructions_O0 : 50
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int mb_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int x_mv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y_mv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mv0 = 1;
+          struct TYPE_3__ * mv = (struct TYPE_3__ *) malloc(_len_mv0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mv0; _i0++) {
+              mv[_i0].w = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].h = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].dst_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].src_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].source = ((-2 * (next_i()%2)) + 1) * next_i();
+          mv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           add_mv_data(mv,mb_size,x,y,x_mv,y_mv,dir);
           free(mv);
         

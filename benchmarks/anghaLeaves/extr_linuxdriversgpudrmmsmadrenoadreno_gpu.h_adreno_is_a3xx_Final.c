@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline bool adreno_is_a3xx(struct adreno_gpu *gpu)
 	return (gpu->revn >= 300) && (gpu->revn < 400);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_gpu0 = 1;
+          int _len_gpu0 = 65025;
           struct adreno_gpu * gpu = (struct adreno_gpu *) malloc(_len_gpu0*sizeof(struct adreno_gpu));
           for(int _i0 = 0; _i0 < _len_gpu0; _i0++) {
-            gpu[_i0].revn = ((-2 * (next_i()%2)) + 1) * next_i();
+              gpu[_i0].revn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = adreno_is_a3xx(gpu);
           printf("%d\n", benchRet); 
           free(gpu);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_gpu0 = 100;
           struct adreno_gpu * gpu = (struct adreno_gpu *) malloc(_len_gpu0*sizeof(struct adreno_gpu));
           for(int _i0 = 0; _i0 < _len_gpu0; _i0++) {
-            gpu[_i0].revn = ((-2 * (next_i()%2)) + 1) * next_i();
+              gpu[_i0].revn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = adreno_is_a3xx(gpu);
           printf("%d\n", benchRet); 
           free(gpu);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_gpu0 = 1;
+          struct adreno_gpu * gpu = (struct adreno_gpu *) malloc(_len_gpu0*sizeof(struct adreno_gpu));
+          for(int _i0 = 0; _i0 < _len_gpu0; _i0++) {
+              gpu[_i0].revn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = adreno_is_a3xx(gpu);
+          printf("%d\n", benchRet); 
+          free(gpu);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -193,12 +195,6 @@ bool ieee80211_chandef_to_operating_class(struct cfg80211_chan_def *chandef,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -211,25 +207,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_chandef0 = 1;
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_chandef0 = 65025;
           struct cfg80211_chan_def * chandef = (struct cfg80211_chan_def *) malloc(_len_chandef0*sizeof(struct cfg80211_chan_def));
           for(int _i0 = 0; _i0 < _len_chandef0; _i0++) {
-            chandef[_i0].center_freq1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        chandef[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+              chandef[_i0].center_freq1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          chandef[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_chandef__i0__chan0 = 1;
           chandef[_i0].chan = (struct TYPE_2__ *) malloc(_len_chandef__i0__chan0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_chandef__i0__chan0; _j0++) {
-            chandef[_i0].chan->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+              chandef[_i0].chan->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int _len_op_class0 = 65025;
+          int * op_class = (int *) malloc(_len_op_class0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op_class0; _i0++) {
+            op_class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ieee80211_chandef_to_operating_class(chandef,op_class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chandef0; _aux++) {
+          free(chandef[_aux].chan);
+          }
+          free(chandef);
+          free(op_class);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_chandef0 = 100;
+          struct cfg80211_chan_def * chandef = (struct cfg80211_chan_def *) malloc(_len_chandef0*sizeof(struct cfg80211_chan_def));
+          for(int _i0 = 0; _i0 < _len_chandef0; _i0++) {
+              chandef[_i0].center_freq1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          chandef[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_chandef__i0__chan0 = 1;
+          chandef[_i0].chan = (struct TYPE_2__ *) malloc(_len_chandef__i0__chan0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_chandef__i0__chan0; _j0++) {
+              chandef[_i0].chan->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_op_class0 = 100;
+          int * op_class = (int *) malloc(_len_op_class0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_op_class0; _i0++) {
+            op_class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ieee80211_chandef_to_operating_class(chandef,op_class);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chandef0; _aux++) {
+          free(chandef[_aux].chan);
+          }
+          free(chandef);
+          free(op_class);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 33
+          // dynamic_instructions_O1 : 33
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
+          int _len_chandef0 = 1;
+          struct cfg80211_chan_def * chandef = (struct cfg80211_chan_def *) malloc(_len_chandef0*sizeof(struct cfg80211_chan_def));
+          for(int _i0 = 0; _i0 < _len_chandef0; _i0++) {
+              chandef[_i0].center_freq1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          chandef[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_chandef__i0__chan0 = 1;
+          chandef[_i0].chan = (struct TYPE_2__ *) malloc(_len_chandef__i0__chan0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_chandef__i0__chan0; _j0++) {
+              chandef[_i0].chan->center_freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int _len_op_class0 = 1;
           int * op_class = (int *) malloc(_len_op_class0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_op_class0; _i0++) {
             op_class[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ieee80211_chandef_to_operating_class(chandef,op_class);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_chandef0; _aux++) {

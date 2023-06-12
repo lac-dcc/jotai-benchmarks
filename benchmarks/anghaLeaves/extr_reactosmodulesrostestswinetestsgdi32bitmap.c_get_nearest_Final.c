@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static COLORREF get_nearest( int r, int g, int b )
     return (r*r + g*g + b*b < (255-r)*(255-r) + (255-g)*(255-g) + (255-b)*(255-b)) ? 0x000000 : 0xffffff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int r = 100;
+        
           int g = 100;
+        
           int b = 100;
+        
           int benchRet = get_nearest(r,g,b);
           printf("%d\n", benchRet); 
         
@@ -95,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int r = 255;
+        
           int g = 255;
+        
           int b = 255;
+        
           int benchRet = get_nearest(r,g,b);
           printf("%d\n", benchRet); 
         
@@ -106,14 +107,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int r = 10;
+        
           int g = 10;
+        
           int b = 10;
+        
           int benchRet = get_nearest(r,g,b);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int g = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_nearest(r,g,b);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

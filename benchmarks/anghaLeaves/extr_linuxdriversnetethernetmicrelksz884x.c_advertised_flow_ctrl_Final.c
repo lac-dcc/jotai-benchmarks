@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static u16 advertised_flow_ctrl(struct ksz_port *port, u16
 	return ctrl;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,30 +91,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int ctrl = 100;
+        
           int _len_port0 = 1;
           struct ksz_port * port = (struct ksz_port *) malloc(_len_port0*sizeof(struct ksz_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = advertised_flow_ctrl(port,ctrl);
           printf("%d\n", benchRet); 
           free(port);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int ctrl = 255;
+        
+          int _len_port0 = 65025;
+          struct ksz_port * port = (struct ksz_port *) malloc(_len_port0*sizeof(struct ksz_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = advertised_flow_ctrl(port,ctrl);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int ctrl = 10;
+        
           int _len_port0 = 100;
           struct ksz_port * port = (struct ksz_port *) malloc(_len_port0*sizeof(struct ksz_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = advertised_flow_ctrl(port,ctrl);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct ksz_port * port = (struct ksz_port *) malloc(_len_port0*sizeof(struct ksz_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].flow_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = advertised_flow_ctrl(port,ctrl);
           printf("%d\n", benchRet); 
           free(port);

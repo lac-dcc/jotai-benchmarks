@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int dummy_update_phy_reg(struct fw_card *card, int 
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,13 +81,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int address = 100;
+        
           int clear_bits = 100;
+        
           int set_bits = 100;
+        
           int _len_card0 = 1;
           struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dummy_update_phy_reg(card,address,clear_bits,set_bits);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int address = 255;
+        
+          int clear_bits = 255;
+        
+          int set_bits = 255;
+        
+          int _len_card0 = 65025;
+          struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dummy_update_phy_reg(card,address,clear_bits,set_bits);
           printf("%d\n", benchRet); 
           free(card);
@@ -99,23 +122,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int address = 10;
+        
           int clear_bits = 10;
+        
           int set_bits = 10;
+        
           int _len_card0 = 100;
           struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dummy_update_phy_reg(card,address,clear_bits,set_bits);
           printf("%d\n", benchRet); 
           free(card);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int clear_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int set_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_card0 = 1;
+          struct fw_card * card = (struct fw_card *) malloc(_len_card0*sizeof(struct fw_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dummy_update_phy_reg(card,address,clear_bits,set_bits);
+          printf("%d\n", benchRet); 
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static int hdsp_input_to_output_key (struct hdsp *hdsp, in
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,20 +97,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int in = 100;
+        
           int out = 100;
+        
           int _len_hdsp0 = 1;
           struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
           for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
-            hdsp[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdsp[_i0].firmware_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdsp[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdsp[_i0].firmware_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hdsp_input_to_output_key(hdsp,in,out);
           printf("%d\n", benchRet); 
           free(hdsp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int in = 255;
+        
+          int out = 255;
+        
+          int _len_hdsp0 = 65025;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              hdsp[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdsp[_i0].firmware_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hdsp_input_to_output_key(hdsp,in,out);
+          printf("%d\n", benchRet); 
+          free(hdsp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int in = 10;
+        
+          int out = 10;
+        
+          int _len_hdsp0 = 100;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              hdsp[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdsp[_i0].firmware_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hdsp_input_to_output_key(hdsp,in,out);
+          printf("%d\n", benchRet); 
+          free(hdsp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int out = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdsp0 = 1;
+          struct hdsp * hdsp = (struct hdsp *) malloc(_len_hdsp0*sizeof(struct hdsp));
+          for(int _i0 = 0; _i0 < _len_hdsp0; _i0++) {
+              hdsp[_i0].io_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdsp[_i0].firmware_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hdsp_input_to_output_key(hdsp,in,out);
+          printf("%d\n", benchRet); 
+          free(hdsp);
+        
+        break;
+    }
     default:
         usage();
         break;

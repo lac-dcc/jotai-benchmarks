@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -303,12 +304,6 @@ int err_win_to_posix(DWORD winerr)
 	return error;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -325,6 +320,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int winerr = 100;
+        
           int benchRet = err_win_to_posix(winerr);
           printf("%d\n", benchRet); 
         
@@ -334,6 +330,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int winerr = 255;
+        
           int benchRet = err_win_to_posix(winerr);
           printf("%d\n", benchRet); 
         
@@ -343,12 +340,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int winerr = 10;
+        
           int benchRet = err_win_to_posix(winerr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int winerr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = err_win_to_posix(winerr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

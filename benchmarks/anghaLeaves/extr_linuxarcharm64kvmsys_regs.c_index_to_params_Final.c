@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -99,12 +102,6 @@ __attribute__((used)) static bool index_to_params(u64 id, struct sys_reg_params 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,19 +114,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int id = 100;
+        
           int _len_params0 = 1;
           struct sys_reg_params * params = (struct sys_reg_params *) malloc(_len_params0*sizeof(struct sys_reg_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].Op0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].Op0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = index_to_params(id,params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_params0 = 65025;
+          struct sys_reg_params * params = (struct sys_reg_params *) malloc(_len_params0*sizeof(struct sys_reg_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].Op0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = index_to_params(id,params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int id = 10;
+        
+          int _len_params0 = 100;
+          struct sys_reg_params * params = (struct sys_reg_params *) malloc(_len_params0*sizeof(struct sys_reg_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].Op0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = index_to_params(id,params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_params0 = 1;
+          struct sys_reg_params * params = (struct sys_reg_params *) malloc(_len_params0*sizeof(struct sys_reg_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].Op0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRn = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].CRm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].Op2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = index_to_params(id,params);
           printf("%d\n", benchRet); 
           free(params);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ int UI_get_result_string_length(UI_STRING *uis)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,15 +92,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_uis0 = 65025;
+          struct TYPE_3__ * uis = (struct TYPE_3__ *) malloc(_len_uis0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_uis0; _i0++) {
+              uis[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          uis[_i0].result_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = UI_get_result_string_length(uis);
+          printf("%d\n", benchRet); 
+          free(uis);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_uis0 = 100;
+          struct TYPE_3__ * uis = (struct TYPE_3__ *) malloc(_len_uis0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_uis0; _i0++) {
+              uis[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          uis[_i0].result_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = UI_get_result_string_length(uis);
+          printf("%d\n", benchRet); 
+          free(uis);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_uis0 = 1;
           struct TYPE_3__ * uis = (struct TYPE_3__ *) malloc(_len_uis0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_uis0; _i0++) {
-            uis[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        uis[_i0].result_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              uis[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          uis[_i0].result_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = UI_get_result_string_length(uis);
           printf("%d\n", benchRet); 
           free(uis);

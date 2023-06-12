@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void ccu_nk_find_best(unsigned long parent, unsigne
 	nk->n = best_n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,23 +100,98 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long parent = 100;
+        
           unsigned long rate = 100;
+        
           int _len_nk0 = 1;
           struct _ccu_nk * nk = (struct _ccu_nk *) malloc(_len_nk0*sizeof(struct _ccu_nk));
           for(int _i0 = 0; _i0 < _len_nk0; _i0++) {
-            nk[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
-        nk[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
-        nk[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
-        nk[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
-        nk[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
-        nk[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+              nk[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ccu_nk_find_best(parent,rate,nk);
           free(nk);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long parent = 255;
+        
+          unsigned long rate = 255;
+        
+          int _len_nk0 = 65025;
+          struct _ccu_nk * nk = (struct _ccu_nk *) malloc(_len_nk0*sizeof(struct _ccu_nk));
+          for(int _i0 = 0; _i0 < _len_nk0; _i0++) {
+              nk[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccu_nk_find_best(parent,rate,nk);
+          free(nk);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long parent = 10;
+        
+          unsigned long rate = 10;
+        
+          int _len_nk0 = 100;
+          struct _ccu_nk * nk = (struct _ccu_nk *) malloc(_len_nk0*sizeof(struct _ccu_nk));
+          for(int _i0 = 0; _i0 < _len_nk0; _i0++) {
+              nk[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccu_nk_find_best(parent,rate,nk);
+          free(nk);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nk0 = 1;
+          struct _ccu_nk * nk = (struct _ccu_nk *) malloc(_len_nk0*sizeof(struct _ccu_nk));
+          for(int _i0 = 0; _i0 < _len_nk0; _i0++) {
+              nk[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nk[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccu_nk_find_best(parent,rate,nk);
+          free(nk);
+        
+        break;
+    }
     default:
         usage();
         break;

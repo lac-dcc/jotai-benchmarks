@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline void mt7530_hw_vlan_entry_init(struct mt7530
 	e->untagged = untagged;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +77,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int port = 100;
+        
           int untagged = 100;
+        
           int _len_e0 = 1;
           struct mt7530_hw_vlan_entry * e = (struct mt7530_hw_vlan_entry *) malloc(_len_e0*sizeof(struct mt7530_hw_vlan_entry));
           for(int _i0 = 0; _i0 < _len_e0; _i0++) {
-            e[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
-        e[_i0].untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+              e[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mt7530_hw_vlan_entry_init(e,port,untagged);
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int port = 255;
+        
+          int untagged = 255;
+        
+          int _len_e0 = 65025;
+          struct mt7530_hw_vlan_entry * e = (struct mt7530_hw_vlan_entry *) malloc(_len_e0*sizeof(struct mt7530_hw_vlan_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mt7530_hw_vlan_entry_init(e,port,untagged);
+          free(e);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int port = 10;
+        
+          int untagged = 10;
+        
+          int _len_e0 = 100;
+          struct mt7530_hw_vlan_entry * e = (struct mt7530_hw_vlan_entry *) malloc(_len_e0*sizeof(struct mt7530_hw_vlan_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mt7530_hw_vlan_entry_init(e,port,untagged);
+          free(e);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_e0 = 1;
+          struct mt7530_hw_vlan_entry * e = (struct mt7530_hw_vlan_entry *) malloc(_len_e0*sizeof(struct mt7530_hw_vlan_entry));
+          for(int _i0 = 0; _i0 < _len_e0; _i0++) {
+              e[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          e[_i0].untagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mt7530_hw_vlan_entry_init(e,port,untagged);
           free(e);
         

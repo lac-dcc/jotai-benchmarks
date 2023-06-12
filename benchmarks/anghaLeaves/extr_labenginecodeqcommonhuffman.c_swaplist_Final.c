@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,8 +90,93 @@ __attribute__((used)) static void swaplist(node_t *node1, node_t *node2) {
 	}
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct TYPE_4__ *_allocate_Dlinked_node1(int length, struct TYPE_4__ *aux_dlinked_node1[] ) {
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_dlinked_node1[0] = walker;
+  walker->next = NULL;
+  walker->prev = NULL;
+
+  struct TYPE_4__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->prev = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+    walker->prev->next = walker;
+    walker = walker->prev;
+    aux_dlinked_node1[i] = walker;
+    if (i == (length - 1)) 
+      walker->prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_node1(struct TYPE_4__ *aux_dlinked_node1[], int aux_dlinked_node1_size) {
+  for(int i = 0; i < aux_dlinked_node1_size; i++) 
+    if(aux_dlinked_node1[i])
+      free(aux_dlinked_node1[i]);
+}
+
+struct TYPE_4__ *_allocate_Dlinked_node2(int length, struct TYPE_4__ *aux_dlinked_node2[] ) {
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_dlinked_node2[0] = walker;
+  walker->next = NULL;
+  walker->prev = NULL;
+
+  struct TYPE_4__ *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->prev = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+    walker->prev->next = walker;
+    walker = walker->prev;
+    aux_dlinked_node2[i] = walker;
+    if (i == (length - 1)) 
+      walker->prev = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_node2(struct TYPE_4__ *aux_dlinked_node2[], int aux_dlinked_node2_size) {
+  for(int i = 0; i < aux_dlinked_node2_size; i++) 
+    if(aux_dlinked_node2[i])
+      free(aux_dlinked_node2[i]);
+}
+
+struct TYPE_4__ *_allocateBinTree_node1(int length, struct TYPE_4__ *aux_tree_node1[], int *counter_node1) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_tree_node1[*counter_node1] = walker;
+  (*counter_node1)++;
+  walker->next = _allocateBinTree_node1(length - 1, aux_tree_node1, counter_node1);
+  walker->prev = _allocateBinTree_node1(length - 1, aux_tree_node1, counter_node1);
+  return walker;
+}
+
+void _deleteBinTree_node1(struct TYPE_4__ *aux_tree_node1[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_node1[i])
+      free(aux_tree_node1[i]);
+}
+
+struct TYPE_4__ *_allocateBinTree_node2(int length, struct TYPE_4__ *aux_tree_node2[], int *counter_node2) {
+  if(length == 0)
+    return NULL;
+  struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
+
+  aux_tree_node2[*counter_node2] = walker;
+  (*counter_node2)++;
+  walker->next = _allocateBinTree_node2(length - 1, aux_tree_node2, counter_node2);
+  walker->prev = _allocateBinTree_node2(length - 1, aux_tree_node2, counter_node2);
+  return walker;
+}
+
+void _deleteBinTree_node2(struct TYPE_4__ *aux_tree_node2[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_node2[i])
+      free(aux_tree_node2[i]);
+}
 
 struct TYPE_4__ *_allocate_node1(int length, struct TYPE_4__ *aux_node1[]) {
   struct TYPE_4__ *walker = (struct TYPE_4__ *)malloc(sizeof(struct TYPE_4__));
@@ -149,7 +236,6 @@ void _delete_node2(struct TYPE_4__ *aux_node2[], int aux_node2_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -162,13 +248,118 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // dlinked
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          struct TYPE_4__ * aux_dlinked_node1[10000];
+          struct TYPE_4__ * node1 = _allocate_Dlinked_node1(10000, aux_dlinked_node1);
+        
+          struct TYPE_4__ * aux_dlinked_node2[10000];
+          struct TYPE_4__ * node2 = _allocate_Dlinked_node2(10000, aux_dlinked_node2);
+        
+          swaplist(node1,node2);
+          _delete_Dlinked_node1(aux_dlinked_node1, 10000);
+          _delete_Dlinked_node2(aux_dlinked_node2, 10000);
+        
+        break;
+    }
+
+
+    // bintree
+    case 1:
+    {
+          // static_instructions_O0 : 62
+          // dynamic_instructions_O0 : 62
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 29
+          // dynamic_instructions_O2 : 29
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 29
+          // dynamic_instructions_Ofast : 29
+          // ------------------------------- 
+          // static_instructions_Os : 29
+          // dynamic_instructions_Os : 29
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int counter_node1= 0;
+          struct TYPE_4__ *  aux_tree_node1[1023];
+          struct TYPE_4__ * node1 = _allocateBinTree_node1(10, aux_tree_node1, &counter_node1);
+        
+          int counter_node2= 0;
+          struct TYPE_4__ *  aux_tree_node2[1023];
+          struct TYPE_4__ * node2 = _allocateBinTree_node2(10, aux_tree_node2, &counter_node2);
+        
+          swaplist(node1,node2);
+          _deleteBinTree_node1(aux_tree_node1);
+          _deleteBinTree_node2(aux_tree_node2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           struct TYPE_4__ * aux_node1[1];
           struct TYPE_4__ * node1 = _allocate_node1(1, aux_node1);
+        
           struct TYPE_4__ * aux_node2[1];
           struct TYPE_4__ * node2 = _allocate_node2(1, aux_node2);
+        
           swaplist(node1,node2);
           _delete_node1(aux_node1, 1);
           _delete_node2(aux_node2, 1);

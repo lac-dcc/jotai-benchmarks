@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static u32 aq_ethtool_get_rss_indir_size(struct net_device
 	return AQ_CFG_RSS_INDIRECTION_TABLE_MAX;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ndev0 = 1;
+          int _len_ndev0 = 65025;
           struct net_device * ndev = (struct net_device *) malloc(_len_ndev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
-            ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = aq_ethtool_get_rss_indir_size(ndev);
           printf("%d\n", benchRet); 
           free(ndev);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_ndev0 = 100;
           struct net_device * ndev = (struct net_device *) malloc(_len_ndev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
-            ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = aq_ethtool_get_rss_indir_size(ndev);
           printf("%d\n", benchRet); 
           free(ndev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ndev0 = 1;
+          struct net_device * ndev = (struct net_device *) malloc(_len_ndev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_ndev0; _i0++) {
+              ndev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = aq_ethtool_get_rss_indir_size(ndev);
+          printf("%d\n", benchRet); 
+          free(ndev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline u32 host1x_opcode_imm(unsigned offset, unsig
 	return (4 << 28) | (offset << 16) | value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           unsigned int value = 100;
+        
           int benchRet = host1x_opcode_imm(offset,value);
           printf("%d\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int offset = 255;
+        
           unsigned int value = 255;
+        
           int benchRet = host1x_opcode_imm(offset,value);
           printf("%d\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int offset = 10;
+        
           unsigned int value = 10;
+        
           int benchRet = host1x_opcode_imm(offset,value);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = host1x_opcode_imm(offset,value);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

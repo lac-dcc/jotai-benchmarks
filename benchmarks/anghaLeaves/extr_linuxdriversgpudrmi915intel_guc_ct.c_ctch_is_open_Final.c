@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool ctch_is_open(struct intel_guc_ct_channel *ctch
 	return ctch->vma != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctch0 = 1;
+          int _len_ctch0 = 65025;
           struct intel_guc_ct_channel * ctch = (struct intel_guc_ct_channel *) malloc(_len_ctch0*sizeof(struct intel_guc_ct_channel));
           for(int _i0 = 0; _i0 < _len_ctch0; _i0++) {
               int _len_ctch__i0__vma0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ctch__i0__vma0; _j0++) {
             ctch[_i0].vma[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ctch_is_open(ctch);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ctch0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctch0 = 100;
+          struct intel_guc_ct_channel * ctch = (struct intel_guc_ct_channel *) malloc(_len_ctch0*sizeof(struct intel_guc_ct_channel));
+          for(int _i0 = 0; _i0 < _len_ctch0; _i0++) {
+              int _len_ctch__i0__vma0 = 1;
+          ctch[_i0].vma = (int *) malloc(_len_ctch__i0__vma0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ctch__i0__vma0; _j0++) {
+            ctch[_i0].vma[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ctch_is_open(ctch);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctch0; _aux++) {
+          free(ctch[_aux].vma);
+          }
+          free(ctch);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctch0 = 1;
+          struct intel_guc_ct_channel * ctch = (struct intel_guc_ct_channel *) malloc(_len_ctch0*sizeof(struct intel_guc_ct_channel));
+          for(int _i0 = 0; _i0 < _len_ctch0; _i0++) {
+              int _len_ctch__i0__vma0 = 1;
+          ctch[_i0].vma = (int *) malloc(_len_ctch__i0__vma0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ctch__i0__vma0; _j0++) {
+            ctch[_i0].vma[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ctch_is_open(ctch);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctch0; _aux++) {
+          free(ctch[_aux].vma);
+          }
+          free(ctch);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void fm_rx_get_region(struct fmdev *fmdev, u8 *region)
 	*region = fmdev->rx.region.fm_band;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_fmdev0 = 65025;
+          struct fmdev * fmdev = (struct fmdev *) malloc(_len_fmdev0*sizeof(struct fmdev));
+          for(int _i0 = 0; _i0 < _len_fmdev0; _i0++) {
+              fmdev[_i0].rx.region.fm_band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_region0 = 65025;
+          int * region = (int *) malloc(_len_region0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+            region[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fm_rx_get_region(fmdev,region);
+          free(fmdev);
+          free(region);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_fmdev0 = 100;
+          struct fmdev * fmdev = (struct fmdev *) malloc(_len_fmdev0*sizeof(struct fmdev));
+          for(int _i0 = 0; _i0 < _len_fmdev0; _i0++) {
+              fmdev[_i0].rx.region.fm_band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_region0 = 100;
+          int * region = (int *) malloc(_len_region0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+            region[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fm_rx_get_region(fmdev,region);
+          free(fmdev);
+          free(region);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_fmdev0 = 1;
           struct fmdev * fmdev = (struct fmdev *) malloc(_len_fmdev0*sizeof(struct fmdev));
           for(int _i0 = 0; _i0 < _len_fmdev0; _i0++) {
-            fmdev[_i0].rx.region.fm_band = ((-2 * (next_i()%2)) + 1) * next_i();
+              fmdev[_i0].rx.region.fm_band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_region0 = 1;
           int * region = (int *) malloc(_len_region0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_region0; _i0++) {
             region[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fm_rx_get_region(fmdev,region);
           free(fmdev);
           free(region);

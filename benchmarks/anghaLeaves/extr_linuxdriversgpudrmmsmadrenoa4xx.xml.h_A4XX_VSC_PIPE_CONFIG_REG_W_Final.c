@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t A4XX_VSC_PIPE_CONFIG_REG_W(uint32_t
 	return ((val) << A4XX_VSC_PIPE_CONFIG_REG_W__SHIFT) & A4XX_VSC_PIPE_CONFIG_REG_W__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = A4XX_VSC_PIPE_CONFIG_REG_W(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = A4XX_VSC_PIPE_CONFIG_REG_W(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = A4XX_VSC_PIPE_CONFIG_REG_W(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

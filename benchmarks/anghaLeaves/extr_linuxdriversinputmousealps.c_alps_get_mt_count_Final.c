@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int alps_get_mt_count(struct input_mt_pos *mt)
 	return fingers;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,22 +82,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mt0 = 1;
+          int _len_mt0 = 65025;
           struct input_mt_pos * mt = (struct input_mt_pos *) malloc(_len_mt0*sizeof(struct input_mt_pos));
           for(int _i0 = 0; _i0 < _len_mt0; _i0++) {
-            mt[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        mt[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              mt[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mt[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = alps_get_mt_count(mt);
           printf("%d\n", benchRet); 
           free(mt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mt0 = 100;
+          struct input_mt_pos * mt = (struct input_mt_pos *) malloc(_len_mt0*sizeof(struct input_mt_pos));
+          for(int _i0 = 0; _i0 < _len_mt0; _i0++) {
+              mt[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mt[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = alps_get_mt_count(mt);
+          printf("%d\n", benchRet); 
+          free(mt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mt0 = 1;
+          struct input_mt_pos * mt = (struct input_mt_pos *) malloc(_len_mt0*sizeof(struct input_mt_pos));
+          for(int _i0 = 0; _i0 < _len_mt0; _i0++) {
+              mt[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          mt[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = alps_get_mt_count(mt);
+          printf("%d\n", benchRet); 
+          free(mt);
+        
+        break;
+    }
     default:
         usage();
         break;

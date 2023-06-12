@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static int xvid_ff_2pass_destroy(struct xvid_context *ref,
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,10 +80,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ref0 = 1;
+          int _len_ref0 = 65025;
           struct xvid_context * ref = (struct xvid_context *) malloc(_len_ref0*sizeof(struct xvid_context));
           for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
               int _len_ref__i0__twopassbuffer0 = 1;
@@ -95,12 +91,15 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ref__i0__twopassbuffer0; _j0++) {
             ref[_i0].twopassbuffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_param0 = 1;
+        
+          int _len_param0 = 65025;
           int * param = (int *) malloc(_len_param0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
             param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xvid_ff_2pass_destroy(ref,param);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ref0; _aux++) {
@@ -111,7 +110,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ref0 = 100;
+          struct xvid_context * ref = (struct xvid_context *) malloc(_len_ref0*sizeof(struct xvid_context));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              int _len_ref__i0__twopassbuffer0 = 1;
+          ref[_i0].twopassbuffer = (long *) malloc(_len_ref__i0__twopassbuffer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ref__i0__twopassbuffer0; _j0++) {
+            ref[_i0].twopassbuffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_param0 = 100;
+          int * param = (int *) malloc(_len_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+            param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xvid_ff_2pass_destroy(ref,param);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ref0; _aux++) {
+          free(ref[_aux].twopassbuffer);
+          }
+          free(ref);
+          free(param);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ref0 = 1;
+          struct xvid_context * ref = (struct xvid_context *) malloc(_len_ref0*sizeof(struct xvid_context));
+          for(int _i0 = 0; _i0 < _len_ref0; _i0++) {
+              int _len_ref__i0__twopassbuffer0 = 1;
+          ref[_i0].twopassbuffer = (long *) malloc(_len_ref__i0__twopassbuffer0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_ref__i0__twopassbuffer0; _j0++) {
+            ref[_i0].twopassbuffer[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_param0 = 1;
+          int * param = (int *) malloc(_len_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+            param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xvid_ff_2pass_destroy(ref,param);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ref0; _aux++) {
+          free(ref[_aux].twopassbuffer);
+          }
+          free(ref);
+          free(param);
+        
+        break;
+    }
     default:
         usage();
         break;

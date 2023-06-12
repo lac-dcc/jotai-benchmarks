@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +109,6 @@ ahc_update_neg_request(struct ahc_softc *ahc, struct ahc_devinfo *devinfo,
 	return (auto_negotiate_orig != tstate->auto_negotiate);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,33 +125,44 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long neg_type = 100;
+        
           int _len_ahc0 = 1;
           struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
           for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
-            ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_devinfo0 = 1;
           struct ahc_devinfo * devinfo = (struct ahc_devinfo *) malloc(_len_devinfo0*sizeof(struct ahc_devinfo));
           for(int _i0 = 0; _i0 < _len_devinfo0; _i0++) {
-            devinfo[_i0].target_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              devinfo[_i0].target_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tstate0 = 1;
           struct ahc_tmode_tstate * tstate = (struct ahc_tmode_tstate *) malloc(_len_tstate0*sizeof(struct ahc_tmode_tstate));
           for(int _i0 = 0; _i0 < _len_tstate0; _i0++) {
-            tstate[_i0].auto_negotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+              tstate[_i0].auto_negotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_tinfo0 = 1;
           struct ahc_initiator_tinfo * tinfo = (struct ahc_initiator_tinfo *) malloc(_len_tinfo0*sizeof(struct ahc_initiator_tinfo));
           for(int _i0 = 0; _i0 < _len_tinfo0; _i0++) {
-            tinfo[_i0].goal.period = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].goal.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].goal.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].goal.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].curr.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].curr.period = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].curr.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        tinfo[_i0].curr.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+              tinfo[_i0].goal.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tinfo[_i0].curr.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ahc_update_neg_request(ahc,devinfo,tstate,tinfo,neg_type);
           printf("%d\n", benchRet); 
           free(ahc);
@@ -164,7 +172,159 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long neg_type = 255;
+        
+          int _len_ahc0 = 65025;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_devinfo0 = 65025;
+          struct ahc_devinfo * devinfo = (struct ahc_devinfo *) malloc(_len_devinfo0*sizeof(struct ahc_devinfo));
+          for(int _i0 = 0; _i0 < _len_devinfo0; _i0++) {
+              devinfo[_i0].target_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tstate0 = 65025;
+          struct ahc_tmode_tstate * tstate = (struct ahc_tmode_tstate *) malloc(_len_tstate0*sizeof(struct ahc_tmode_tstate));
+          for(int _i0 = 0; _i0 < _len_tstate0; _i0++) {
+              tstate[_i0].auto_negotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tinfo0 = 65025;
+          struct ahc_initiator_tinfo * tinfo = (struct ahc_initiator_tinfo *) malloc(_len_tinfo0*sizeof(struct ahc_initiator_tinfo));
+          for(int _i0 = 0; _i0 < _len_tinfo0; _i0++) {
+              tinfo[_i0].goal.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tinfo[_i0].curr.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ahc_update_neg_request(ahc,devinfo,tstate,tinfo,neg_type);
+          printf("%d\n", benchRet); 
+          free(ahc);
+          free(devinfo);
+          free(tstate);
+          free(tinfo);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long neg_type = 10;
+        
+          int _len_ahc0 = 100;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_devinfo0 = 100;
+          struct ahc_devinfo * devinfo = (struct ahc_devinfo *) malloc(_len_devinfo0*sizeof(struct ahc_devinfo));
+          for(int _i0 = 0; _i0 < _len_devinfo0; _i0++) {
+              devinfo[_i0].target_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tstate0 = 100;
+          struct ahc_tmode_tstate * tstate = (struct ahc_tmode_tstate *) malloc(_len_tstate0*sizeof(struct ahc_tmode_tstate));
+          for(int _i0 = 0; _i0 < _len_tstate0; _i0++) {
+              tstate[_i0].auto_negotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tinfo0 = 100;
+          struct ahc_initiator_tinfo * tinfo = (struct ahc_initiator_tinfo *) malloc(_len_tinfo0*sizeof(struct ahc_initiator_tinfo));
+          for(int _i0 = 0; _i0 < _len_tinfo0; _i0++) {
+              tinfo[_i0].goal.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tinfo[_i0].curr.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ahc_update_neg_request(ahc,devinfo,tstate,tinfo,neg_type);
+          printf("%d\n", benchRet); 
+          free(ahc);
+          free(devinfo);
+          free(tstate);
+          free(tinfo);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long neg_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ahc0 = 1;
+          struct ahc_softc * ahc = (struct ahc_softc *) malloc(_len_ahc0*sizeof(struct ahc_softc));
+          for(int _i0 = 0; _i0 < _len_ahc0; _i0++) {
+              ahc[_i0].features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_devinfo0 = 1;
+          struct ahc_devinfo * devinfo = (struct ahc_devinfo *) malloc(_len_devinfo0*sizeof(struct ahc_devinfo));
+          for(int _i0 = 0; _i0 < _len_devinfo0; _i0++) {
+              devinfo[_i0].target_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tstate0 = 1;
+          struct ahc_tmode_tstate * tstate = (struct ahc_tmode_tstate *) malloc(_len_tstate0*sizeof(struct ahc_tmode_tstate));
+          for(int _i0 = 0; _i0 < _len_tstate0; _i0++) {
+              tstate[_i0].auto_negotiate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_tinfo0 = 1;
+          struct ahc_initiator_tinfo * tinfo = (struct ahc_initiator_tinfo *) malloc(_len_tinfo0*sizeof(struct ahc_initiator_tinfo));
+          for(int _i0 = 0; _i0 < _len_tinfo0; _i0++) {
+              tinfo[_i0].goal.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].goal.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tinfo[_i0].curr.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.period = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          tinfo[_i0].curr.ppr_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ahc_update_neg_request(ahc,devinfo,tstate,tinfo,neg_type);
+          printf("%d\n", benchRet); 
+          free(ahc);
+          free(devinfo);
+          free(tstate);
+          free(tinfo);
+        
+        break;
+    }
     default:
         usage();
         break;

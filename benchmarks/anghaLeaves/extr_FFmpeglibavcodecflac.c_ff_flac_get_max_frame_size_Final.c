@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ int ff_flac_get_max_frame_size(int blocksize, int ch, int bps)
     return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blocksize = 100;
+        
           int ch = 100;
+        
           int bps = 100;
+        
           int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
           printf("%d\n", benchRet); 
         
@@ -110,8 +108,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int blocksize = 255;
+        
           int ch = 255;
+        
           int bps = 255;
+        
           int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
           printf("%d\n", benchRet); 
         
@@ -121,14 +122,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int blocksize = 10;
+        
           int ch = 10;
+        
           int bps = 10;
+        
           int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int ch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ff_flac_get_max_frame_size(blocksize,ch,bps);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

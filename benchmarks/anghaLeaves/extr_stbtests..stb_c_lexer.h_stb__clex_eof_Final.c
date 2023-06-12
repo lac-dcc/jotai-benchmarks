@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static int stb__clex_eof(stb_lexer *lexer)
    return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lexer0 = 1;
+          int _len_lexer0 = 65025;
           struct TYPE_3__ * lexer = (struct TYPE_3__ *) malloc(_len_lexer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_lexer0; _i0++) {
-            lexer[_i0].token = ((-2 * (next_i()%2)) + 1) * next_i();
+              lexer[_i0].token = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stb__clex_eof(lexer);
           printf("%d\n", benchRet); 
           free(lexer);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_lexer0 = 100;
           struct TYPE_3__ * lexer = (struct TYPE_3__ *) malloc(_len_lexer0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_lexer0; _i0++) {
-            lexer[_i0].token = ((-2 * (next_i()%2)) + 1) * next_i();
+              lexer[_i0].token = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stb__clex_eof(lexer);
           printf("%d\n", benchRet); 
           free(lexer);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_lexer0 = 1;
+          struct TYPE_3__ * lexer = (struct TYPE_3__ *) malloc(_len_lexer0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_lexer0; _i0++) {
+              lexer[_i0].token = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stb__clex_eof(lexer);
+          printf("%d\n", benchRet); 
+          free(lexer);
+        
+        break;
+    }
     default:
         usage();
         break;

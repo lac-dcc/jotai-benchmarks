@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ cfq_group_slice(struct cfq_data *cfqd, struct cfq_group *cfqg)
 	return cfqd->cfq_target_latency * cfqg->vfraction >> CFQ_SERVICE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfqd0 = 1;
+          int _len_cfqd0 = 65025;
           struct cfq_data * cfqd = (struct cfq_data *) malloc(_len_cfqd0*sizeof(struct cfq_data));
           for(int _i0 = 0; _i0 < _len_cfqd0; _i0++) {
-            cfqd[_i0].cfq_target_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfqd[_i0].cfq_target_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cfqg0 = 1;
+        
+          int _len_cfqg0 = 65025;
           struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
           for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
-            cfqg[_i0].vfraction = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfqg[_i0].vfraction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cfq_group_slice(cfqd,cfqg);
           printf("%d\n", benchRet); 
           free(cfqd);
@@ -102,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cfqd0 = 100;
+          struct cfq_data * cfqd = (struct cfq_data *) malloc(_len_cfqd0*sizeof(struct cfq_data));
+          for(int _i0 = 0; _i0 < _len_cfqd0; _i0++) {
+              cfqd[_i0].cfq_target_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfqg0 = 100;
+          struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
+          for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
+              cfqg[_i0].vfraction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cfq_group_slice(cfqd,cfqg);
+          printf("%d\n", benchRet); 
+          free(cfqd);
+          free(cfqg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cfqd0 = 1;
+          struct cfq_data * cfqd = (struct cfq_data *) malloc(_len_cfqd0*sizeof(struct cfq_data));
+          for(int _i0 = 0; _i0 < _len_cfqd0; _i0++) {
+              cfqd[_i0].cfq_target_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cfqg0 = 1;
+          struct cfq_group * cfqg = (struct cfq_group *) malloc(_len_cfqg0*sizeof(struct cfq_group));
+          for(int _i0 = 0; _i0 < _len_cfqg0; _i0++) {
+              cfqg[_i0].vfraction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cfq_group_slice(cfqd,cfqg);
+          printf("%d\n", benchRet); 
+          free(cfqd);
+          free(cfqg);
+        
+        break;
+    }
     default:
         usage();
         break;

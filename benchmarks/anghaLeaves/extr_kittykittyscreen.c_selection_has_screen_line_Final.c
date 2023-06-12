@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ selection_has_screen_line(Selection *s, int y) {
     return top <= y && y <= bottom;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +80,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int y = 100;
+        
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = selection_has_screen_line(s,y);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int y = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = selection_has_screen_line(s,y);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int y = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = selection_has_screen_line(s,y);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].start_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_scrolled_by = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].start_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].end_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = selection_has_screen_line(s,y);
           printf("%d\n", benchRet); 
           free(s);

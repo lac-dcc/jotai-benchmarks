@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ extract_scp_header(unsigned int header,
 		*target_id = header & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,46 +98,55 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int header = 100;
+        
           int _len_target_id0 = 1;
           unsigned int * target_id = (unsigned int *) malloc(_len_target_id0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_target_id0; _i0++) {
             target_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_source_id0 = 1;
           unsigned int * source_id = (unsigned int *) malloc(_len_source_id0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_source_id0; _i0++) {
             source_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_get_flag0 = 1;
           unsigned int * get_flag = (unsigned int *) malloc(_len_get_flag0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_get_flag0; _i0++) {
             get_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_req0 = 1;
           unsigned int * req = (unsigned int *) malloc(_len_req0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
             req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_device_flag0 = 1;
           unsigned int * device_flag = (unsigned int *) malloc(_len_device_flag0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_device_flag0; _i0++) {
             device_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_resp_flag0 = 1;
           unsigned int * resp_flag = (unsigned int *) malloc(_len_resp_flag0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_resp_flag0; _i0++) {
             resp_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_error_flag0 = 1;
           unsigned int * error_flag = (unsigned int *) malloc(_len_error_flag0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_error_flag0; _i0++) {
             error_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_data_size0 = 1;
           unsigned int * data_size = (unsigned int *) malloc(_len_data_size0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_data_size0; _i0++) {
             data_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           extract_scp_header(header,target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
           free(target_id);
           free(source_id);
@@ -153,7 +159,201 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int header = 255;
+        
+          int _len_target_id0 = 65025;
+          unsigned int * target_id = (unsigned int *) malloc(_len_target_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_target_id0; _i0++) {
+            target_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_source_id0 = 65025;
+          unsigned int * source_id = (unsigned int *) malloc(_len_source_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_source_id0; _i0++) {
+            source_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_get_flag0 = 65025;
+          unsigned int * get_flag = (unsigned int *) malloc(_len_get_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_get_flag0; _i0++) {
+            get_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_req0 = 65025;
+          unsigned int * req = (unsigned int *) malloc(_len_req0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+            req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_device_flag0 = 65025;
+          unsigned int * device_flag = (unsigned int *) malloc(_len_device_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_device_flag0; _i0++) {
+            device_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resp_flag0 = 65025;
+          unsigned int * resp_flag = (unsigned int *) malloc(_len_resp_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_resp_flag0; _i0++) {
+            resp_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_error_flag0 = 65025;
+          unsigned int * error_flag = (unsigned int *) malloc(_len_error_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_error_flag0; _i0++) {
+            error_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data_size0 = 65025;
+          unsigned int * data_size = (unsigned int *) malloc(_len_data_size0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_data_size0; _i0++) {
+            data_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_scp_header(header,target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
+          free(target_id);
+          free(source_id);
+          free(get_flag);
+          free(req);
+          free(device_flag);
+          free(resp_flag);
+          free(error_flag);
+          free(data_size);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int header = 10;
+        
+          int _len_target_id0 = 100;
+          unsigned int * target_id = (unsigned int *) malloc(_len_target_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_target_id0; _i0++) {
+            target_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_source_id0 = 100;
+          unsigned int * source_id = (unsigned int *) malloc(_len_source_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_source_id0; _i0++) {
+            source_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_get_flag0 = 100;
+          unsigned int * get_flag = (unsigned int *) malloc(_len_get_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_get_flag0; _i0++) {
+            get_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_req0 = 100;
+          unsigned int * req = (unsigned int *) malloc(_len_req0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+            req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_device_flag0 = 100;
+          unsigned int * device_flag = (unsigned int *) malloc(_len_device_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_device_flag0; _i0++) {
+            device_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resp_flag0 = 100;
+          unsigned int * resp_flag = (unsigned int *) malloc(_len_resp_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_resp_flag0; _i0++) {
+            resp_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_error_flag0 = 100;
+          unsigned int * error_flag = (unsigned int *) malloc(_len_error_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_error_flag0; _i0++) {
+            error_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data_size0 = 100;
+          unsigned int * data_size = (unsigned int *) malloc(_len_data_size0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_data_size0; _i0++) {
+            data_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_scp_header(header,target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
+          free(target_id);
+          free(source_id);
+          free(get_flag);
+          free(req);
+          free(device_flag);
+          free(resp_flag);
+          free(error_flag);
+          free(data_size);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int header = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_target_id0 = 1;
+          unsigned int * target_id = (unsigned int *) malloc(_len_target_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_target_id0; _i0++) {
+            target_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_source_id0 = 1;
+          unsigned int * source_id = (unsigned int *) malloc(_len_source_id0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_source_id0; _i0++) {
+            source_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_get_flag0 = 1;
+          unsigned int * get_flag = (unsigned int *) malloc(_len_get_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_get_flag0; _i0++) {
+            get_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_req0 = 1;
+          unsigned int * req = (unsigned int *) malloc(_len_req0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+            req[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_device_flag0 = 1;
+          unsigned int * device_flag = (unsigned int *) malloc(_len_device_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_device_flag0; _i0++) {
+            device_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resp_flag0 = 1;
+          unsigned int * resp_flag = (unsigned int *) malloc(_len_resp_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_resp_flag0; _i0++) {
+            resp_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_error_flag0 = 1;
+          unsigned int * error_flag = (unsigned int *) malloc(_len_error_flag0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_error_flag0; _i0++) {
+            error_flag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data_size0 = 1;
+          unsigned int * data_size = (unsigned int *) malloc(_len_data_size0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_data_size0; _i0++) {
+            data_size[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          extract_scp_header(header,target_id,source_id,get_flag,req,device_flag,resp_flag,error_flag,data_size);
+          free(target_id);
+          free(source_id);
+          free(get_flag);
+          free(req);
+          free(device_flag);
+          free(resp_flag);
+          free(error_flag);
+          free(data_size);
+        
+        break;
+    }
     default:
         usage();
         break;

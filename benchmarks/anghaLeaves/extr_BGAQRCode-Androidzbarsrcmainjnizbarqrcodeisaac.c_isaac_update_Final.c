@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -113,12 +115,6 @@ __attribute__((used)) static void isaac_update(isaac_ctx *_ctx){
   _ctx->n=ISAAC_SZ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,9 +127,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          int _len__ctx0 = 65025;
+          struct TYPE_3__ * _ctx = (struct TYPE_3__ *) malloc(_len__ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len__ctx0; _i0++) {
+              int _len__ctx__i0__m0 = 1;
+          _ctx[_i0].m = (unsigned int *) malloc(_len__ctx__i0__m0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len__ctx__i0__m0; _j0++) {
+            _ctx[_i0].m[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len__ctx__i0__r0 = 1;
+          _ctx[_i0].r = (unsigned int *) malloc(_len__ctx__i0__r0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len__ctx__i0__r0; _j0++) {
+            _ctx[_i0].r[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          _ctx[_i0].a = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          isaac_update(_ctx);
+          for(int _aux = 0; _aux < _len__ctx0; _aux++) {
+          free(_ctx[_aux].m);
+          }
+          for(int _aux = 0; _aux < _len__ctx0; _aux++) {
+          free(_ctx[_aux].r);
+          }
+          free(_ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
+          int _len__ctx0 = 100;
+          struct TYPE_3__ * _ctx = (struct TYPE_3__ *) malloc(_len__ctx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len__ctx0; _i0++) {
+              int _len__ctx__i0__m0 = 1;
+          _ctx[_i0].m = (unsigned int *) malloc(_len__ctx__i0__m0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len__ctx__i0__m0; _j0++) {
+            _ctx[_i0].m[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len__ctx__i0__r0 = 1;
+          _ctx[_i0].r = (unsigned int *) malloc(_len__ctx__i0__r0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len__ctx__i0__r0; _j0++) {
+            _ctx[_i0].r[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          _ctx[_i0].a = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          isaac_update(_ctx);
+          for(int _aux = 0; _aux < _len__ctx0; _aux++) {
+          free(_ctx[_aux].m);
+          }
+          for(int _aux = 0; _aux < _len__ctx0; _aux++) {
+          free(_ctx[_aux].r);
+          }
+          free(_ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 51
+          // dynamic_instructions_O0 : 51
+          // ------------------------------- 
+          // static_instructions_O1 : 35
+          // dynamic_instructions_O1 : 35
+          // ------------------------------- 
+          // static_instructions_O2 : 35
+          // dynamic_instructions_O2 : 35
+          // ------------------------------- 
+          // static_instructions_O3 : 35
+          // dynamic_instructions_O3 : 35
+          // ------------------------------- 
+          // static_instructions_Ofast : 35
+          // dynamic_instructions_Ofast : 35
+          // ------------------------------- 
+          // static_instructions_Os : 35
+          // dynamic_instructions_Os : 35
+          // ------------------------------- 
+          // static_instructions_Oz : 48
+          // dynamic_instructions_Oz : 48
+          // ------------------------------- 
+
           int _len__ctx0 = 1;
           struct TYPE_3__ * _ctx = (struct TYPE_3__ *) malloc(_len__ctx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len__ctx0; _i0++) {
@@ -147,11 +282,13 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len__ctx__i0__r0; _j0++) {
             _ctx[_i0].r[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        _ctx[_i0].a = ((-2 * (next_i()%2)) + 1) * next_i();
-        _ctx[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
-        _ctx[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
-        _ctx[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].a = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].b = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].c = ((-2 * (next_i()%2)) + 1) * next_i();
+          _ctx[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           isaac_update(_ctx);
           for(int _aux = 0; _aux < _len__ctx0; _aux++) {
           free(_ctx[_aux].m);

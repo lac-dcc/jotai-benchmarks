@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ d_checkpoint (struct d_info *di, struct d_info_checkpoint *checkpoint)
   checkpoint->expansion = di->expansion;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,32 +79,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_di0 = 1;
+          int _len_di0 = 65025;
           struct d_info * di = (struct d_info *) malloc(_len_di0*sizeof(struct d_info));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
-        di[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_checkpoint0 = 1;
+        
+          int _len_checkpoint0 = 65025;
           struct d_info_checkpoint * checkpoint = (struct d_info_checkpoint *) malloc(_len_checkpoint0*sizeof(struct d_info_checkpoint));
           for(int _i0 = 0; _i0 < _len_checkpoint0; _i0++) {
-            checkpoint[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
-        checkpoint[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
-        checkpoint[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
-        checkpoint[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+              checkpoint[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           d_checkpoint(di,checkpoint);
           free(di);
           free(checkpoint);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_di0 = 100;
+          struct d_info * di = (struct d_info *) malloc(_len_di0*sizeof(struct d_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_checkpoint0 = 100;
+          struct d_info_checkpoint * checkpoint = (struct d_info_checkpoint *) malloc(_len_checkpoint0*sizeof(struct d_info_checkpoint));
+          for(int _i0 = 0; _i0 < _len_checkpoint0; _i0++) {
+              checkpoint[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          d_checkpoint(di,checkpoint);
+          free(di);
+          free(checkpoint);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_di0 = 1;
+          struct d_info * di = (struct d_info *) malloc(_len_di0*sizeof(struct d_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          di[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_checkpoint0 = 1;
+          struct d_info_checkpoint * checkpoint = (struct d_info_checkpoint *) malloc(_len_checkpoint0*sizeof(struct d_info_checkpoint));
+          for(int _i0 = 0; _i0 < _len_checkpoint0; _i0++) {
+              checkpoint[_i0].expansion = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].next_sub = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].next_comp = ((-2 * (next_i()%2)) + 1) * next_i();
+          checkpoint[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          d_checkpoint(di,checkpoint);
+          free(di);
+          free(checkpoint);
+        
+        break;
+    }
     default:
         usage();
         break;

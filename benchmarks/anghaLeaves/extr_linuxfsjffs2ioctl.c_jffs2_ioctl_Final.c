@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ long jffs2_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	return -ENOTTY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int cmd = 100;
+        
           unsigned long arg = 100;
+        
           int _len_filp0 = 1;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
-            filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = jffs2_ioctl(filp,cmd,arg);
+          printf("%ld\n", benchRet); 
+          free(filp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int cmd = 255;
+        
+          unsigned long arg = 255;
+        
+          int _len_filp0 = 65025;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = jffs2_ioctl(filp,cmd,arg);
           printf("%ld\n", benchRet); 
           free(filp);
@@ -99,22 +119,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int cmd = 10;
+        
           unsigned long arg = 10;
+        
           int _len_filp0 = 100;
           struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
-            filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = jffs2_ioctl(filp,cmd,arg);
           printf("%ld\n", benchRet); 
           free(filp);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_filp0 = 1;
+          struct file * filp = (struct file *) malloc(_len_filp0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_filp0; _i0++) {
+              filp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = jffs2_ioctl(filp,cmd,arg);
+          printf("%ld\n", benchRet); 
+          free(filp);
+        
+        break;
+    }
     default:
         usage();
         break;

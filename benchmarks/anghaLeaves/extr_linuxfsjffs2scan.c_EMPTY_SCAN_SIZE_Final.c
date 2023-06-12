@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline uint32_t EMPTY_SCAN_SIZE(uint32_t sector_siz
 		return DEFAULT_EMPTY_SCAN_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long sector_size = 100;
+        
           long benchRet = EMPTY_SCAN_SIZE(sector_size);
           printf("%ld\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long sector_size = 255;
+        
           long benchRet = EMPTY_SCAN_SIZE(sector_size);
           printf("%ld\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long sector_size = 10;
+        
           long benchRet = EMPTY_SCAN_SIZE(sector_size);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = EMPTY_SCAN_SIZE(sector_size);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -101,12 +103,6 @@ __attribute__((used)) static int setcmap_pseudo_palette(struct fb_cmap *cmap, st
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,14 +115,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cmap0 = 1;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cmap0 = 65025;
           struct fb_cmap * cmap = (struct fb_cmap *) malloc(_len_cmap0*sizeof(struct fb_cmap));
           for(int _i0 = 0; _i0 < _len_cmap0; _i0++) {
-            cmap[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmap[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmap[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmap[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cmap__i0__red0 = 1;
           cmap[_i0].red = (int *) malloc(_len_cmap__i0__red0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_cmap__i0__red0; _j0++) {
@@ -142,20 +161,201 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_cmap__i0__blue0; _j0++) {
             cmap[_i0].blue[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = setcmap_pseudo_palette(cmap,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmap0; _aux++) {
+          free(cmap[_aux].red);
+          }
+          for(int _aux = 0; _aux < _len_cmap0; _aux++) {
+          free(cmap[_aux].green);
+          }
+          for(int _aux = 0; _aux < _len_cmap0; _aux++) {
+          free(cmap[_aux].blue);
+          }
+          free(cmap);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cmap0 = 100;
+          struct fb_cmap * cmap = (struct fb_cmap *) malloc(_len_cmap0*sizeof(struct fb_cmap));
+          for(int _i0 = 0; _i0 < _len_cmap0; _i0++) {
+              cmap[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmap[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmap__i0__red0 = 1;
+          cmap[_i0].red = (int *) malloc(_len_cmap__i0__red0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmap__i0__red0; _j0++) {
+            cmap[_i0].red[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmap__i0__green0 = 1;
+          cmap[_i0].green = (int *) malloc(_len_cmap__i0__green0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmap__i0__green0; _j0++) {
+            cmap[_i0].green[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmap__i0__blue0 = 1;
+          cmap[_i0].blue = (int *) malloc(_len_cmap__i0__blue0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmap__i0__blue0; _j0++) {
+            cmap[_i0].blue[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = setcmap_pseudo_palette(cmap,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmap0; _aux++) {
+          free(cmap[_aux].red);
+          }
+          for(int _aux = 0; _aux < _len_cmap0; _aux++) {
+          free(cmap[_aux].green);
+          }
+          for(int _aux = 0; _aux < _len_cmap0; _aux++) {
+          free(cmap[_aux].blue);
+          }
+          free(cmap);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_cmap0 = 1;
+          struct fb_cmap * cmap = (struct fb_cmap *) malloc(_len_cmap0*sizeof(struct fb_cmap));
+          for(int _i0 = 0; _i0 < _len_cmap0; _i0++) {
+              cmap[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmap[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmap__i0__red0 = 1;
+          cmap[_i0].red = (int *) malloc(_len_cmap__i0__red0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmap__i0__red0; _j0++) {
+            cmap[_i0].red[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmap__i0__green0 = 1;
+          cmap[_i0].green = (int *) malloc(_len_cmap__i0__green0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmap__i0__green0; _j0++) {
+            cmap[_i0].green[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cmap__i0__blue0 = 1;
+          cmap[_i0].blue = (int *) malloc(_len_cmap__i0__blue0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cmap__i0__blue0; _j0++) {
+            cmap[_i0].blue[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].var.transp.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.transp.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.blue.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.blue.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].var.red.length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.red.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].pseudo_palette = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = setcmap_pseudo_palette(cmap,info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cmap0; _aux++) {

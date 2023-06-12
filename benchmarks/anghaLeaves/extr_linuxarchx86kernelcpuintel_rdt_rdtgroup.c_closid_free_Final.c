@@ -60,12 +60,6 @@ void closid_free(int closid)
 	closid_free_map |= 1 << closid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,11 +76,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int closid = 10;
+        
           closid_free(closid);
         
         break;
     }
-
     default:
         usage();
         break;

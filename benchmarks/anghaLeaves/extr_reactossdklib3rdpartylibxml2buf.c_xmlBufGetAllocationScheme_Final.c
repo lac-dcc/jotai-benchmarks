@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ xmlBufGetAllocationScheme(xmlBufPtr buf) {
     return(buf->alloc);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_buf0 = 1;
+          int _len_buf0 = 65025;
           struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xmlBufGetAllocationScheme(buf);
           printf("%d\n", benchRet); 
           free(buf);
@@ -108,15 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_buf0 = 100;
           struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
-            buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xmlBufGetAllocationScheme(buf);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_buf0 = 1;
+          struct TYPE_3__ * buf = (struct TYPE_3__ *) malloc(_len_buf0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+              buf[_i0].alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xmlBufGetAllocationScheme(buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

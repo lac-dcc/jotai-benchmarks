@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ __attribute__((used)) static unsigned int fons__decutf8(unsigned int* state, uns
 	return *state;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,20 +102,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           unsigned int byte = 100;
+        
           int _len_state0 = 1;
           unsigned int * state = (unsigned int *) malloc(_len_state0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_codep0 = 1;
           unsigned int * codep = (unsigned int *) malloc(_len_codep0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_codep0; _i0++) {
             codep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          unsigned int benchRet = fons__decutf8(state,codep,byte);
+          printf("%u\n", benchRet); 
+          free(state);
+          free(codep);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int byte = 255;
+        
+          int _len_state0 = 65025;
+          unsigned int * state = (unsigned int *) malloc(_len_state0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_codep0 = 65025;
+          unsigned int * codep = (unsigned int *) malloc(_len_codep0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_codep0; _i0++) {
+            codep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned int benchRet = fons__decutf8(state,codep,byte);
+          printf("%u\n", benchRet); 
+          free(state);
+          free(codep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned int byte = 10;
+        
+          int _len_state0 = 100;
+          unsigned int * state = (unsigned int *) malloc(_len_state0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_codep0 = 100;
+          unsigned int * codep = (unsigned int *) malloc(_len_codep0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_codep0; _i0++) {
+            codep[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           unsigned int benchRet = fons__decutf8(state,codep,byte);
           printf("%u\n", benchRet); 
           free(state);

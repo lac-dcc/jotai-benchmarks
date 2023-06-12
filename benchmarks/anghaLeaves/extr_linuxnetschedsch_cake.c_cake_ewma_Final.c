@@ -63,12 +63,6 @@ __attribute__((used)) static u64 cake_ewma(u64 avg, u64 sample, u32 shift)
 	return avg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +79,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int avg = 10;
+        
           int sample = 10;
+        
           int shift = 10;
+        
           int benchRet = cake_ewma(avg,sample,shift);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

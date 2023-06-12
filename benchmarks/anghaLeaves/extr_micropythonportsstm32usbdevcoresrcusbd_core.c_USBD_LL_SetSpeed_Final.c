@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ USBD_StatusTypeDef USBD_LL_SetSpeed(USBD_HandleTypeDef  *pdev, USBD_SpeedTypeDef
   return USBD_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,30 +81,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int speed = 100;
+        
           int _len_pdev0 = 1;
           struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
-            pdev[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = USBD_LL_SetSpeed(pdev,speed);
           printf("%d\n", benchRet); 
           free(pdev);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int speed = 255;
+        
+          int _len_pdev0 = 65025;
+          struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = USBD_LL_SetSpeed(pdev,speed);
+          printf("%d\n", benchRet); 
+          free(pdev);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int speed = 10;
+        
           int _len_pdev0 = 100;
           struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
-            pdev[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = USBD_LL_SetSpeed(pdev,speed);
+          printf("%d\n", benchRet); 
+          free(pdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdev0 = 1;
+          struct TYPE_3__ * pdev = (struct TYPE_3__ *) malloc(_len_pdev0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].dev_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = USBD_LL_SetSpeed(pdev,speed);
           printf("%d\n", benchRet); 
           free(pdev);

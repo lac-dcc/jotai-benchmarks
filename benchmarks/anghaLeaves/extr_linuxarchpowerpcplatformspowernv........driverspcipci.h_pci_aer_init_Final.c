@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ struct pci_dev {int dummy; } ;
 
 __attribute__((used)) static inline int pci_aer_init(struct pci_dev *d) { return -ENODEV; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,14 +72,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_d0 = 1;
+          int _len_d0 = 65025;
           struct pci_dev * d = (struct pci_dev *) malloc(_len_d0*sizeof(struct pci_dev));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pci_aer_init(d);
           printf("%d\n", benchRet); 
           free(d);
@@ -97,15 +94,32 @@ int main(int argc, char *argv[]) {
           int _len_d0 = 100;
           struct pci_dev * d = (struct pci_dev *) malloc(_len_d0*sizeof(struct pci_dev));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pci_aer_init(d);
           printf("%d\n", benchRet); 
           free(d);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_d0 = 1;
+          struct pci_dev * d = (struct pci_dev *) malloc(_len_d0*sizeof(struct pci_dev));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pci_aer_init(d);
+          printf("%d\n", benchRet); 
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

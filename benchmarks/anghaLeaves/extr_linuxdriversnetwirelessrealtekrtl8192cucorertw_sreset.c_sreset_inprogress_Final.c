@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ bool sreset_inprogress(_adapter *padapter)
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
             padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sreset_inprogress(padapter);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -107,13 +103,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
             padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sreset_inprogress(padapter);
           printf("%d\n", benchRet); 
           free(padapter);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sreset_inprogress(padapter);
+          printf("%d\n", benchRet); 
+          free(padapter);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void qbman_eq_desc_set_no_orp(struct qbman_eq_desc *d, int respond_success)
 		d->verb |= enqueue_rejects_to_fq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +86,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int respond_success = 100;
+        
           int _len_d0 = 1;
           struct qbman_eq_desc * d = (struct qbman_eq_desc *) malloc(_len_d0*sizeof(struct qbman_eq_desc));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].verb = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].verb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          qbman_eq_desc_set_no_orp(d,respond_success);
+          free(d);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int respond_success = 255;
+        
+          int _len_d0 = 65025;
+          struct qbman_eq_desc * d = (struct qbman_eq_desc *) malloc(_len_d0*sizeof(struct qbman_eq_desc));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].verb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           qbman_eq_desc_set_no_orp(d,respond_success);
           free(d);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int respond_success = 10;
+        
           int _len_d0 = 100;
           struct qbman_eq_desc * d = (struct qbman_eq_desc *) malloc(_len_d0*sizeof(struct qbman_eq_desc));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].verb = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].verb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qbman_eq_desc_set_no_orp(d,respond_success);
           free(d);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int respond_success = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_d0 = 1;
+          struct qbman_eq_desc * d = (struct qbman_eq_desc *) malloc(_len_d0*sizeof(struct qbman_eq_desc));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].verb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qbman_eq_desc_set_no_orp(d,respond_success);
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

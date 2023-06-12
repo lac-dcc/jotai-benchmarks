@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static const char *rh_state_string(struct ohci_hcd *ohci)
 	return "?";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ohci0 = 1;
+          int _len_ohci0 = 65025;
           struct ohci_hcd * ohci = (struct ohci_hcd *) malloc(_len_ohci0*sizeof(struct ohci_hcd));
           for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
-            ohci[_i0].rh_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ohci[_i0].rh_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = rh_state_string(ohci);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(ohci);
@@ -110,15 +107,32 @@ int main(int argc, char *argv[]) {
           int _len_ohci0 = 100;
           struct ohci_hcd * ohci = (struct ohci_hcd *) malloc(_len_ohci0*sizeof(struct ohci_hcd));
           for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
-            ohci[_i0].rh_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              ohci[_i0].rh_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           const char * benchRet = rh_state_string(ohci);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(ohci);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ohci0 = 1;
+          struct ohci_hcd * ohci = (struct ohci_hcd *) malloc(_len_ohci0*sizeof(struct ohci_hcd));
+          for(int _i0 = 0; _i0 < _len_ohci0; _i0++) {
+              ohci[_i0].rh_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          const char * benchRet = rh_state_string(ohci);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(ohci);
+        
+        break;
+    }
     default:
         usage();
         break;

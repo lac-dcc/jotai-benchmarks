@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -88,12 +88,6 @@ __attribute__((used)) static inline uint64_t convert_speaker_layout(enum speaker
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,16 +100,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum speaker_layout layout = 0;
+        
           int benchRet = convert_speaker_layout(layout);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static bool bq27xxx_battery_dead(struct bq27xxx_device_inf
 		return flags & (BQ27XXX_FLAG_SOC1 | BQ27XXX_FLAG_SOCF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,11 +88,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_di0 = 1;
           struct bq27xxx_device_info * di = (struct bq27xxx_device_info *) malloc(_len_di0*sizeof(struct bq27xxx_device_info));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].opts = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].opts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bq27xxx_battery_dead(di,flags);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_di0 = 65025;
+          struct bq27xxx_device_info * di = (struct bq27xxx_device_info *) malloc(_len_di0*sizeof(struct bq27xxx_device_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].opts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bq27xxx_battery_dead(di,flags);
           printf("%d\n", benchRet); 
           free(di);
@@ -104,21 +121,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_di0 = 100;
           struct bq27xxx_device_info * di = (struct bq27xxx_device_info *) malloc(_len_di0*sizeof(struct bq27xxx_device_info));
           for(int _i0 = 0; _i0 < _len_di0; _i0++) {
-            di[_i0].opts = ((-2 * (next_i()%2)) + 1) * next_i();
+              di[_i0].opts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bq27xxx_battery_dead(di,flags);
           printf("%d\n", benchRet); 
           free(di);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_di0 = 1;
+          struct bq27xxx_device_info * di = (struct bq27xxx_device_info *) malloc(_len_di0*sizeof(struct bq27xxx_device_info));
+          for(int _i0 = 0; _i0 < _len_di0; _i0++) {
+              di[_i0].opts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bq27xxx_battery_dead(di,flags);
+          printf("%d\n", benchRet); 
+          free(di);
+        
+        break;
+    }
     default:
         usage();
         break;

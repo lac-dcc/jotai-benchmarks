@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void kernel_queue_init_cik(struct kernel_queue_ops *ops)
 	ops->submit_packet = submit_packet_cik;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +79,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ops0 = 1;
+          int _len_ops0 = 65025;
           struct kernel_queue_ops * ops = (struct kernel_queue_ops *) malloc(_len_ops0*sizeof(struct kernel_queue_ops));
           for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
-            ops[_i0].submit_packet = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].uninitialize = ((-2 * (next_i()%2)) + 1) * next_i();
-        ops[_i0].initialize = ((-2 * (next_i()%2)) + 1) * next_i();
+              ops[_i0].submit_packet = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].uninitialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].initialize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           kernel_queue_init_cik(ops);
           free(ops);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ops0 = 100;
+          struct kernel_queue_ops * ops = (struct kernel_queue_ops *) malloc(_len_ops0*sizeof(struct kernel_queue_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].submit_packet = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].uninitialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].initialize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kernel_queue_init_cik(ops);
+          free(ops);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ops0 = 1;
+          struct kernel_queue_ops * ops = (struct kernel_queue_ops *) malloc(_len_ops0*sizeof(struct kernel_queue_ops));
+          for(int _i0 = 0; _i0 < _len_ops0; _i0++) {
+              ops[_i0].submit_packet = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].uninitialize = ((-2 * (next_i()%2)) + 1) * next_i();
+          ops[_i0].initialize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kernel_queue_init_cik(ops);
+          free(ops);
+        
+        break;
+    }
     default:
         usage();
         break;

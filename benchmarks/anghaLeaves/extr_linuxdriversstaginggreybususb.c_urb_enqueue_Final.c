@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int urb_enqueue(struct usb_hcd *hcd, struct urb *ur
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mem_flags = 100;
+        
           int _len_hcd0 = 1;
           struct usb_hcd * hcd = (struct usb_hcd *) malloc(_len_hcd0*sizeof(struct usb_hcd));
           for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
-            hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_urb0 = 1;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
-            urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = urb_enqueue(hcd,urb,mem_flags);
           printf("%d\n", benchRet); 
           free(hcd);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int mem_flags = 255;
+        
+          int _len_hcd0 = 65025;
+          struct usb_hcd * hcd = (struct usb_hcd *) malloc(_len_hcd0*sizeof(struct usb_hcd));
+          for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
+              hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb0 = 65025;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = urb_enqueue(hcd,urb,mem_flags);
+          printf("%d\n", benchRet); 
+          free(hcd);
+          free(urb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int mem_flags = 10;
+        
+          int _len_hcd0 = 100;
+          struct usb_hcd * hcd = (struct usb_hcd *) malloc(_len_hcd0*sizeof(struct usb_hcd));
+          for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
+              hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb0 = 100;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = urb_enqueue(hcd,urb,mem_flags);
+          printf("%d\n", benchRet); 
+          free(hcd);
+          free(urb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int mem_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hcd0 = 1;
+          struct usb_hcd * hcd = (struct usb_hcd *) malloc(_len_hcd0*sizeof(struct usb_hcd));
+          for(int _i0 = 0; _i0 < _len_hcd0; _i0++) {
+              hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb0 = 1;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              urb[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = urb_enqueue(hcd,urb,mem_flags);
+          printf("%d\n", benchRet); 
+          free(hcd);
+          free(urb);
+        
+        break;
+    }
     default:
         usage();
         break;

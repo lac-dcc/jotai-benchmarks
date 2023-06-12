@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +90,6 @@ __attribute__((used)) static unsigned int fwcap_to_speed(fw_port_cap32_t caps)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,6 +106,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int caps = 100;
+        
           unsigned int benchRet = fwcap_to_speed(caps);
           printf("%u\n", benchRet); 
         
@@ -120,6 +116,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int caps = 255;
+        
           unsigned int benchRet = fwcap_to_speed(caps);
           printf("%u\n", benchRet); 
         
@@ -129,12 +126,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int caps = 10;
+        
           unsigned int benchRet = fwcap_to_speed(caps);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = fwcap_to_speed(caps);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

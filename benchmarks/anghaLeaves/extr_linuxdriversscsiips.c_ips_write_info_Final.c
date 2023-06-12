@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ ips_write_info(struct Scsi_Host *host, char *buffer, int length)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +96,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int length = 100;
+        
           int _len_host0 = 1;
           struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].hostdata = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].hostdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_buffer0 = 1;
           char * buffer = (char *) malloc(_len_buffer0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
             buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = ips_write_info(host,buffer,length);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int length = 255;
+        
+          int _len_host0 = 65025;
+          struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].hostdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buffer0 = 65025;
+          char * buffer = (char *) malloc(_len_buffer0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ips_write_info(host,buffer,length);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int length = 10;
+        
+          int _len_host0 = 100;
+          struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].hostdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buffer0 = 100;
+          char * buffer = (char *) malloc(_len_buffer0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ips_write_info(host,buffer,length);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(buffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_host0 = 1;
+          struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].hostdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_buffer0 = 1;
+          char * buffer = (char *) malloc(_len_buffer0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+            buffer[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = ips_write_info(host,buffer,length);
           printf("%d\n", benchRet); 
           free(host);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int same_tt(struct usb_device *dev1, struct usb_dev
 		return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,29 +83,190 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dev10 = 1;
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_dev10 = 65025;
           struct usb_device * dev1 = (struct usb_device *) malloc(_len_dev10*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_dev10; _i0++) {
-            dev1[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev1[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev1__i0__tt0 = 1;
           dev1[_i0].tt = (struct TYPE_2__ *) malloc(_len_dev1__i0__tt0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dev1__i0__tt0; _j0++) {
-            dev1[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev1[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_dev20 = 1;
+        
+          int _len_dev20 = 65025;
           struct usb_device * dev2 = (struct usb_device *) malloc(_len_dev20*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_dev20; _i0++) {
-            dev2[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev2[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dev2__i0__tt0 = 1;
           dev2[_i0].tt = (struct TYPE_2__ *) malloc(_len_dev2__i0__tt0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dev2__i0__tt0; _j0++) {
-            dev2[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev2[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = same_tt(dev1,dev2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev10; _aux++) {
+          free(dev1[_aux].tt);
+          }
+          free(dev1);
+          for(int _aux = 0; _aux < _len_dev20; _aux++) {
+          free(dev2[_aux].tt);
+          }
+          free(dev2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_dev10 = 100;
+          struct usb_device * dev1 = (struct usb_device *) malloc(_len_dev10*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_dev10; _i0++) {
+              dev1[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev1__i0__tt0 = 1;
+          dev1[_i0].tt = (struct TYPE_2__ *) malloc(_len_dev1__i0__tt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev1__i0__tt0; _j0++) {
+              dev1[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev20 = 100;
+          struct usb_device * dev2 = (struct usb_device *) malloc(_len_dev20*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_dev20; _i0++) {
+              dev2[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev2__i0__tt0 = 1;
+          dev2[_i0].tt = (struct TYPE_2__ *) malloc(_len_dev2__i0__tt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev2__i0__tt0; _j0++) {
+              dev2[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = same_tt(dev1,dev2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev10; _aux++) {
+          free(dev1[_aux].tt);
+          }
+          free(dev1);
+          for(int _aux = 0; _aux < _len_dev20; _aux++) {
+          free(dev2[_aux].tt);
+          }
+          free(dev2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_dev10 = 1;
+          struct usb_device * dev1 = (struct usb_device *) malloc(_len_dev10*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_dev10; _i0++) {
+              dev1[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev1__i0__tt0 = 1;
+          dev1[_i0].tt = (struct TYPE_2__ *) malloc(_len_dev1__i0__tt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev1__i0__tt0; _j0++) {
+              dev1[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev20 = 1;
+          struct usb_device * dev2 = (struct usb_device *) malloc(_len_dev20*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_dev20; _i0++) {
+              dev2[_i0].ttport = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dev2__i0__tt0 = 1;
+          dev2[_i0].tt = (struct TYPE_2__ *) malloc(_len_dev2__i0__tt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dev2__i0__tt0; _j0++) {
+              dev2[_i0].tt->multi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = same_tt(dev1,dev2);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev10; _aux++) {

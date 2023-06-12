@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline struct iproc_pcie *iproc_data(struct pci_bus
 	return pcie;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bus0 = 1;
+          int _len_bus0 = 65025;
           struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
               int _len_bus__i0__sysdata0 = 1;
           bus[_i0].sysdata = (struct iproc_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct iproc_pcie));
           for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
-            bus[_i0].sysdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].sysdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct iproc_pcie * benchRet = iproc_data(bus);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_bus0; _aux++) {
@@ -101,7 +100,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bus0 = 100;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              int _len_bus__i0__sysdata0 = 1;
+          bus[_i0].sysdata = (struct iproc_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct iproc_pcie));
+          for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
+              bus[_i0].sysdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct iproc_pcie * benchRet = iproc_data(bus);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].sysdata);
+          }
+          free(bus);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bus0 = 1;
+          struct pci_bus * bus = (struct pci_bus *) malloc(_len_bus0*sizeof(struct pci_bus));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              int _len_bus__i0__sysdata0 = 1;
+          bus[_i0].sysdata = (struct iproc_pcie *) malloc(_len_bus__i0__sysdata0*sizeof(struct iproc_pcie));
+          for(int _j0 = 0; _j0 < _len_bus__i0__sysdata0; _j0++) {
+              bus[_i0].sysdata->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct iproc_pcie * benchRet = iproc_data(bus);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_bus0; _aux++) {
+          free(bus[_aux].sysdata);
+          }
+          free(bus);
+        
+        break;
+    }
     default:
         usage();
         break;

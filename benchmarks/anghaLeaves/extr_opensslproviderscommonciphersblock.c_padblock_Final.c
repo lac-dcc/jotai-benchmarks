@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void padblock(unsigned char *buf, size_t *buflen, size_t blocksize)
         buf[i] = pad;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +82,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long blocksize = 100;
+        
           int _len_buf0 = 1;
           unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_buflen0 = 1;
           unsigned long * buflen = (unsigned long *) malloc(_len_buflen0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_buflen0; _i0++) {
             buflen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           padblock(buf,buflen,blocksize);
           free(buf);
           free(buflen);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long blocksize = 255;
+        
+          int _len_buf0 = 65025;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buflen0 = 65025;
+          unsigned long * buflen = (unsigned long *) malloc(_len_buflen0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_buflen0; _i0++) {
+            buflen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          padblock(buf,buflen,blocksize);
+          free(buf);
+          free(buflen);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long blocksize = 10;
+        
+          int _len_buf0 = 100;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buflen0 = 100;
+          unsigned long * buflen = (unsigned long *) malloc(_len_buflen0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_buflen0; _i0++) {
+            buflen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          padblock(buf,buflen,blocksize);
+          free(buf);
+          free(buflen);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          unsigned char * buf = (unsigned char *) malloc(_len_buf0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_buflen0 = 1;
+          unsigned long * buflen = (unsigned long *) malloc(_len_buflen0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_buflen0; _i0++) {
+            buflen[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          padblock(buf,buflen,blocksize);
+          free(buf);
+          free(buflen);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static void cyy_baud_calc(struct cyclades_port *info, __u3
 	info->tco = info->rco = co;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,21 +101,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int baud = 100;
+        
           int _len_info0 = 1;
           struct cyclades_port * info = (struct cyclades_port *) malloc(_len_info0*sizeof(struct cyclades_port));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].chip_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].tbpr = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].tco = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].rbpr = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].rco = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].chip_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tco = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           cyy_baud_calc(info,baud);
           free(info);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int baud = 255;
+        
+          int _len_info0 = 65025;
+          struct cyclades_port * info = (struct cyclades_port *) malloc(_len_info0*sizeof(struct cyclades_port));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].chip_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tco = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cyy_baud_calc(info,baud);
+          free(info);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int baud = 10;
+        
+          int _len_info0 = 100;
+          struct cyclades_port * info = (struct cyclades_port *) malloc(_len_info0*sizeof(struct cyclades_port));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].chip_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tco = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cyy_baud_calc(info,baud);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int baud = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct cyclades_port * info = (struct cyclades_port *) malloc(_len_info0*sizeof(struct cyclades_port));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].chip_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].tco = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rbpr = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].rco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cyy_baud_calc(info,baud);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void hns_ae_get_ring_bdnum_limit(struct hnae_queue 
 	*uplimit = HNS_RCB_RING_MAX_PENDING_BD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_queue0 = 65025;
+          struct hnae_queue * queue = (struct hnae_queue *) malloc(_len_queue0*sizeof(struct hnae_queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uplimit0 = 65025;
+          int * uplimit = (int *) malloc(_len_uplimit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_uplimit0; _i0++) {
+            uplimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hns_ae_get_ring_bdnum_limit(queue,uplimit);
+          free(queue);
+          free(uplimit);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_queue0 = 100;
+          struct hnae_queue * queue = (struct hnae_queue *) malloc(_len_queue0*sizeof(struct hnae_queue));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_uplimit0 = 100;
+          int * uplimit = (int *) malloc(_len_uplimit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_uplimit0; _i0++) {
+            uplimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hns_ae_get_ring_bdnum_limit(queue,uplimit);
+          free(queue);
+          free(uplimit);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_queue0 = 1;
           struct hnae_queue * queue = (struct hnae_queue *) malloc(_len_queue0*sizeof(struct hnae_queue));
           for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
-            queue[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              queue[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_uplimit0 = 1;
           int * uplimit = (int *) malloc(_len_uplimit0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_uplimit0; _i0++) {
             uplimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           hns_ae_get_ring_bdnum_limit(queue,uplimit);
           free(queue);
           free(uplimit);

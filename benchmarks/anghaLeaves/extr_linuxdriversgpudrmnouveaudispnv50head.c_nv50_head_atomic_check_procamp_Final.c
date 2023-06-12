@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ nv50_head_atomic_check_procamp(struct nv50_head_atom *armh,
 	asyh->set.procamp = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,29 +91,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_armh0 = 1;
+          int _len_armh0 = 65025;
           struct nv50_head_atom * armh = (struct nv50_head_atom *) malloc(_len_armh0*sizeof(struct nv50_head_atom));
           for(int _i0 = 0; _i0 < _len_armh0; _i0++) {
-            armh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        armh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
-        armh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+              armh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          armh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
+          armh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_asyh0 = 1;
+        
+          int _len_asyh0 = 65025;
           struct nv50_head_atom * asyh = (struct nv50_head_atom *) malloc(_len_asyh0*sizeof(struct nv50_head_atom));
           for(int _i0 = 0; _i0 < _len_asyh0; _i0++) {
-            asyh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        asyh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
-        asyh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+              asyh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          asyh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_asyc0 = 1;
+        
+          int _len_asyc0 = 65025;
           struct nouveau_conn_atom * asyc = (struct nouveau_conn_atom *) malloc(_len_asyc0*sizeof(struct nouveau_conn_atom));
           for(int _i0 = 0; _i0 < _len_asyc0; _i0++) {
-            asyc[_i0].procamp.color_vibrance = ((-2 * (next_i()%2)) + 1) * next_i();
-        asyc[_i0].procamp.vibrant_hue = ((-2 * (next_i()%2)) + 1) * next_i();
+              asyc[_i0].procamp.color_vibrance = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyc[_i0].procamp.vibrant_hue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nv50_head_atomic_check_procamp(armh,asyh,asyc);
           free(armh);
           free(asyh);
@@ -125,7 +134,92 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_armh0 = 100;
+          struct nv50_head_atom * armh = (struct nv50_head_atom *) malloc(_len_armh0*sizeof(struct nv50_head_atom));
+          for(int _i0 = 0; _i0 < _len_armh0; _i0++) {
+              armh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          armh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
+          armh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_asyh0 = 100;
+          struct nv50_head_atom * asyh = (struct nv50_head_atom *) malloc(_len_asyh0*sizeof(struct nv50_head_atom));
+          for(int _i0 = 0; _i0 < _len_asyh0; _i0++) {
+              asyh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          asyh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_asyc0 = 100;
+          struct nouveau_conn_atom * asyc = (struct nouveau_conn_atom *) malloc(_len_asyc0*sizeof(struct nouveau_conn_atom));
+          for(int _i0 = 0; _i0 < _len_asyc0; _i0++) {
+              asyc[_i0].procamp.color_vibrance = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyc[_i0].procamp.vibrant_hue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nv50_head_atomic_check_procamp(armh,asyh,asyc);
+          free(armh);
+          free(asyh);
+          free(asyc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_armh0 = 1;
+          struct nv50_head_atom * armh = (struct nv50_head_atom *) malloc(_len_armh0*sizeof(struct nv50_head_atom));
+          for(int _i0 = 0; _i0 < _len_armh0; _i0++) {
+              armh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          armh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
+          armh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_asyh0 = 1;
+          struct nv50_head_atom * asyh = (struct nv50_head_atom *) malloc(_len_asyh0*sizeof(struct nv50_head_atom));
+          for(int _i0 = 0; _i0 < _len_asyh0; _i0++) {
+              asyh[_i0].set.procamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          asyh[_i0].procamp.sat.cos = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyh[_i0].procamp.sat.sin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_asyc0 = 1;
+          struct nouveau_conn_atom * asyc = (struct nouveau_conn_atom *) malloc(_len_asyc0*sizeof(struct nouveau_conn_atom));
+          for(int _i0 = 0; _i0 < _len_asyc0; _i0++) {
+              asyc[_i0].procamp.color_vibrance = ((-2 * (next_i()%2)) + 1) * next_i();
+          asyc[_i0].procamp.vibrant_hue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nv50_head_atomic_check_procamp(armh,asyh,asyc);
+          free(armh);
+          free(asyh);
+          free(asyc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -117,12 +119,6 @@ __attribute__((used)) static int ixgbe_flowspec_to_flow_type(struct ethtool_rx_f
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -135,21 +131,157 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_fsp0 = 65025;
+          struct ethtool_rx_flow_spec * fsp = (struct ethtool_rx_flow_spec *) malloc(_len_fsp0*sizeof(struct ethtool_rx_flow_spec));
+          for(int _i0 = 0; _i0 < _len_fsp0; _i0++) {
+              fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsp[_i0].m_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          fsp[_i0].h_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_flow_type0 = 65025;
+          int * flow_type = (int *) malloc(_len_flow_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flow_type0; _i0++) {
+            flow_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ixgbe_flowspec_to_flow_type(fsp,flow_type);
+          printf("%d\n", benchRet); 
+          free(fsp);
+          free(flow_type);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_fsp0 = 100;
+          struct ethtool_rx_flow_spec * fsp = (struct ethtool_rx_flow_spec *) malloc(_len_fsp0*sizeof(struct ethtool_rx_flow_spec));
+          for(int _i0 = 0; _i0 < _len_fsp0; _i0++) {
+              fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsp[_i0].m_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          fsp[_i0].h_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_flow_type0 = 100;
+          int * flow_type = (int *) malloc(_len_flow_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flow_type0; _i0++) {
+            flow_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ixgbe_flowspec_to_flow_type(fsp,flow_type);
+          printf("%d\n", benchRet); 
+          free(fsp);
+          free(flow_type);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_fsp0 = 1;
           struct ethtool_rx_flow_spec * fsp = (struct ethtool_rx_flow_spec *) malloc(_len_fsp0*sizeof(struct ethtool_rx_flow_spec));
           for(int _i0 = 0; _i0 < _len_fsp0; _i0++) {
-            fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsp[_i0].m_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsp[_i0].h_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsp[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsp[_i0].m_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          fsp[_i0].h_u.usr_ip4_spec.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_flow_type0 = 1;
           int * flow_type = (int *) malloc(_len_flow_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flow_type0; _i0++) {
             flow_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ixgbe_flowspec_to_flow_type(fsp,flow_type);
           printf("%d\n", benchRet); 
           free(fsp);

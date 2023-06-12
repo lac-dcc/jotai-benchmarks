@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static bool cmp_component(struct fb_bitfield *f1, struct f
 		f1->msb_right == f2->msb_right;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_f10 = 1;
+          int _len_f10 = 65025;
           struct fb_bitfield * f1 = (struct fb_bitfield *) malloc(_len_f10*sizeof(struct fb_bitfield));
           for(int _i0 = 0; _i0 < _len_f10; _i0++) {
-            f1[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+              f1[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_f20 = 1;
+        
+          int _len_f20 = 65025;
           struct fb_bitfield * f2 = (struct fb_bitfield *) malloc(_len_f20*sizeof(struct fb_bitfield));
           for(int _i0 = 0; _i0 < _len_f20; _i0++) {
-            f2[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+              f2[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cmp_component(f1,f2);
           printf("%d\n", benchRet); 
           free(f1);
@@ -104,7 +104,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_f10 = 100;
+          struct fb_bitfield * f1 = (struct fb_bitfield *) malloc(_len_f10*sizeof(struct fb_bitfield));
+          for(int _i0 = 0; _i0 < _len_f10; _i0++) {
+              f1[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_f20 = 100;
+          struct fb_bitfield * f2 = (struct fb_bitfield *) malloc(_len_f20*sizeof(struct fb_bitfield));
+          for(int _i0 = 0; _i0 < _len_f20; _i0++) {
+              f2[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_component(f1,f2);
+          printf("%d\n", benchRet); 
+          free(f1);
+          free(f2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_f10 = 1;
+          struct fb_bitfield * f1 = (struct fb_bitfield *) malloc(_len_f10*sizeof(struct fb_bitfield));
+          for(int _i0 = 0; _i0 < _len_f10; _i0++) {
+              f1[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_f20 = 1;
+          struct fb_bitfield * f2 = (struct fb_bitfield *) malloc(_len_f20*sizeof(struct fb_bitfield));
+          for(int _i0 = 0; _i0 < _len_f20; _i0++) {
+              f2[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2[_i0].msb_right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cmp_component(f1,f2);
+          printf("%d\n", benchRet); 
+          free(f1);
+          free(f2);
+        
+        break;
+    }
     default:
         usage();
         break;

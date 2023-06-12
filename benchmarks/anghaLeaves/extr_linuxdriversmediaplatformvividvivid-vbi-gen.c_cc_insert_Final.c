@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void cc_insert(u8 *cc, u8 ch)
 	cc[14] = cc[15] = !(tot & 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +80,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int ch = 10;
-          int _len_cc0 = 100;
+          int ch = 255;
+        
+          int _len_cc0 = 65025;
           int * cc = (int *) malloc(_len_cc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
             cc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           cc_insert(cc,ch);
           free(cc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int ch = 10;
+        
+          int _len_cc0 = 100;
+          int * cc = (int *) malloc(_len_cc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
+            cc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cc_insert(cc,ch);
+          free(cc);
+        
+        break;
+    }
     default:
         usage();
         break;

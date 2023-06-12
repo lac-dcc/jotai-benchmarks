@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static int find_free_ate(struct ate_resource *ate_resource
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,21 +102,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int start = 100;
+        
           int count = 100;
+        
           int _len_ate_resource0 = 1;
           struct ate_resource * ate_resource = (struct ate_resource *) malloc(_len_ate_resource0*sizeof(struct ate_resource));
           for(int _i0 = 0; _i0 < _len_ate_resource0; _i0++) {
-            ate_resource[_i0].num_ate = ((-2 * (next_i()%2)) + 1) * next_i();
+              ate_resource[_i0].num_ate = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ate_resource__i0__ate0 = 1;
           ate_resource[_i0].ate = (int *) malloc(_len_ate_resource__i0__ate0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ate_resource__i0__ate0; _j0++) {
             ate_resource[_i0].ate[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = find_free_ate(ate_resource,start,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ate_resource0; _aux++) {
+          free(ate_resource[_aux].ate);
+          }
+          free(ate_resource);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int start = 255;
+        
+          int count = 255;
+        
+          int _len_ate_resource0 = 65025;
+          struct ate_resource * ate_resource = (struct ate_resource *) malloc(_len_ate_resource0*sizeof(struct ate_resource));
+          for(int _i0 = 0; _i0 < _len_ate_resource0; _i0++) {
+              ate_resource[_i0].num_ate = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ate_resource__i0__ate0 = 1;
+          ate_resource[_i0].ate = (int *) malloc(_len_ate_resource__i0__ate0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ate_resource__i0__ate0; _j0++) {
+            ate_resource[_i0].ate[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = find_free_ate(ate_resource,start,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ate_resource0; _aux++) {
+          free(ate_resource[_aux].ate);
+          }
+          free(ate_resource);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int start = 10;
+        
+          int count = 10;
+        
+          int _len_ate_resource0 = 100;
+          struct ate_resource * ate_resource = (struct ate_resource *) malloc(_len_ate_resource0*sizeof(struct ate_resource));
+          for(int _i0 = 0; _i0 < _len_ate_resource0; _i0++) {
+              ate_resource[_i0].num_ate = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ate_resource__i0__ate0 = 1;
+          ate_resource[_i0].ate = (int *) malloc(_len_ate_resource__i0__ate0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ate_resource__i0__ate0; _j0++) {
+            ate_resource[_i0].ate[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = find_free_ate(ate_resource,start,count);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ate_resource0; _aux++) {
+          free(ate_resource[_aux].ate);
+          }
+          free(ate_resource);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ate_resource0 = 1;
+          struct ate_resource * ate_resource = (struct ate_resource *) malloc(_len_ate_resource0*sizeof(struct ate_resource));
+          for(int _i0 = 0; _i0 < _len_ate_resource0; _i0++) {
+              ate_resource[_i0].num_ate = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ate_resource__i0__ate0 = 1;
+          ate_resource[_i0].ate = (int *) malloc(_len_ate_resource__i0__ate0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ate_resource__i0__ate0; _j0++) {
+            ate_resource[_i0].ate[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = find_free_ate(ate_resource,start,count);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ate_resource0; _aux++) {

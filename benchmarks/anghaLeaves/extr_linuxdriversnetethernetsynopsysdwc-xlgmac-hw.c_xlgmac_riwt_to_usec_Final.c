@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static unsigned int xlgmac_riwt_to_usec(struct xlgmac_pdat
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,30 +88,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int riwt = 100;
+        
           int _len_pdata0 = 1;
           struct xlgmac_pdata * pdata = (struct xlgmac_pdata *) malloc(_len_pdata0*sizeof(struct xlgmac_pdata));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
-            pdata[_i0].sysclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].sysclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = xlgmac_riwt_to_usec(pdata,riwt);
           printf("%u\n", benchRet); 
           free(pdata);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int riwt = 255;
+        
+          int _len_pdata0 = 65025;
+          struct xlgmac_pdata * pdata = (struct xlgmac_pdata *) malloc(_len_pdata0*sizeof(struct xlgmac_pdata));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].sysclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = xlgmac_riwt_to_usec(pdata,riwt);
+          printf("%u\n", benchRet); 
+          free(pdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned int riwt = 10;
+        
           int _len_pdata0 = 100;
           struct xlgmac_pdata * pdata = (struct xlgmac_pdata *) malloc(_len_pdata0*sizeof(struct xlgmac_pdata));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
-            pdata[_i0].sysclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].sysclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = xlgmac_riwt_to_usec(pdata,riwt);
+          printf("%u\n", benchRet); 
+          free(pdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned int riwt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pdata0 = 1;
+          struct xlgmac_pdata * pdata = (struct xlgmac_pdata *) malloc(_len_pdata0*sizeof(struct xlgmac_pdata));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].sysclk_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = xlgmac_riwt_to_usec(pdata,riwt);
           printf("%u\n", benchRet); 
           free(pdata);

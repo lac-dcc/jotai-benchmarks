@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ ceil_quot(unsigned int d1, unsigned int d2)
 	return (d1 + (d2 - 1)) / d2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,7 +79,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int d1 = 100;
+        
           unsigned int d2 = 100;
+        
           unsigned int benchRet = ceil_quot(d1,d2);
           printf("%u\n", benchRet); 
         
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int d1 = 255;
+        
           unsigned int d2 = 255;
+        
           unsigned int benchRet = ceil_quot(d1,d2);
           printf("%u\n", benchRet); 
         
@@ -104,13 +103,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int d1 = 10;
+        
           unsigned int d2 = 10;
+        
           unsigned int benchRet = ceil_quot(d1,d2);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int d1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int d2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = ceil_quot(d1,d2);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

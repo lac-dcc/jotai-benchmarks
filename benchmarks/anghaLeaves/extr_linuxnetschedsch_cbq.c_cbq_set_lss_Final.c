@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static int cbq_set_lss(struct cbq_class *cl, struct tc_cbq
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,18 +99,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cl0 = 1;
+          int _len_cl0 = 65025;
           struct cbq_class * cl = (struct cbq_class *) malloc(_len_cl0*sizeof(struct cbq_class));
           for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
-            cl[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].avgidle = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cl[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+              cl[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].avgidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cl__i0__tparent0 = 1;
           cl[_i0].tparent = (int *) malloc(_len_cl__i0__tparent0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_cl__i0__tparent0; _j0++) {
@@ -130,18 +126,22 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_cl__i0__share0; _j0++) {
             cl[_i0].share[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_lss0 = 1;
+        
+          int _len_lss0 = 65025;
           struct tc_cbq_lssopt * lss = (struct tc_cbq_lssopt *) malloc(_len_lss0*sizeof(struct tc_cbq_lssopt));
           for(int _i0 = 0; _i0 < _len_lss0; _i0++) {
-            lss[_i0].change = ((-2 * (next_i()%2)) + 1) * next_i();
-        lss[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        lss[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        lss[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
-        lss[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
-        lss[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
-        lss[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+              lss[_i0].change = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cbq_set_lss(cl,lss);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cl0; _aux++) {
@@ -158,7 +158,124 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cl0 = 100;
+          struct cbq_class * cl = (struct cbq_class *) malloc(_len_cl0*sizeof(struct cbq_class));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              cl[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].avgidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cl__i0__tparent0 = 1;
+          cl[_i0].tparent = (int *) malloc(_len_cl__i0__tparent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cl__i0__tparent0; _j0++) {
+            cl[_i0].tparent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cl__i0__borrow0 = 1;
+          cl[_i0].borrow = (int *) malloc(_len_cl__i0__borrow0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cl__i0__borrow0; _j0++) {
+            cl[_i0].borrow[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cl__i0__share0 = 1;
+          cl[_i0].share = (int *) malloc(_len_cl__i0__share0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cl__i0__share0; _j0++) {
+            cl[_i0].share[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_lss0 = 100;
+          struct tc_cbq_lssopt * lss = (struct tc_cbq_lssopt *) malloc(_len_lss0*sizeof(struct tc_cbq_lssopt));
+          for(int _i0 = 0; _i0 < _len_lss0; _i0++) {
+              lss[_i0].change = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cbq_set_lss(cl,lss);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].tparent);
+          }
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].borrow);
+          }
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].share);
+          }
+          free(cl);
+          free(lss);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cl0 = 1;
+          struct cbq_class * cl = (struct cbq_class *) malloc(_len_cl0*sizeof(struct cbq_class));
+          for(int _i0 = 0; _i0 < _len_cl0; _i0++) {
+              cl[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].avgidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cl[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cl__i0__tparent0 = 1;
+          cl[_i0].tparent = (int *) malloc(_len_cl__i0__tparent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cl__i0__tparent0; _j0++) {
+            cl[_i0].tparent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cl__i0__borrow0 = 1;
+          cl[_i0].borrow = (int *) malloc(_len_cl__i0__borrow0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cl__i0__borrow0; _j0++) {
+            cl[_i0].borrow[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_cl__i0__share0 = 1;
+          cl[_i0].share = (int *) malloc(_len_cl__i0__share0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_cl__i0__share0; _j0++) {
+            cl[_i0].share[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_lss0 = 1;
+          struct tc_cbq_lssopt * lss = (struct tc_cbq_lssopt *) malloc(_len_lss0*sizeof(struct tc_cbq_lssopt));
+          for(int _i0 = 0; _i0 < _len_lss0; _i0++) {
+              lss[_i0].change = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].offtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].maxidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].minidle = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].avpkt = ((-2 * (next_i()%2)) + 1) * next_i();
+          lss[_i0].ewma_log = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cbq_set_lss(cl,lss);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].tparent);
+          }
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].borrow);
+          }
+          for(int _aux = 0; _aux < _len_cl0; _aux++) {
+          free(cl[_aux].share);
+          }
+          free(cl);
+          free(lss);
+        
+        break;
+    }
     default:
         usage();
         break;

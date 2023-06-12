@@ -64,12 +64,6 @@ __attribute__((used)) static void release_tx_fifo(dwc_otg_core_if_t * core_if, u
 	    (core_if->tx_msk & (1 << (fifo_num - 1))) ^ core_if->tx_msk;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +76,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int fifo_num = 10;
+        
           int _len_core_if0 = 100;
           struct TYPE_3__ * core_if = (struct TYPE_3__ *) malloc(_len_core_if0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_core_if0; _i0++) {
-            core_if[_i0].tx_msk = ((-2 * (next_i()%2)) + 1) * next_i();
+              core_if[_i0].tx_msk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           release_tx_fifo(core_if,fifo_num);
           free(core_if);
         

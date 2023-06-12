@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -77,12 +77,6 @@ __attribute__((used)) static int qat_get_inter_state_size(enum icp_qat_hw_auth_a
 	return -EFAULT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,16 +89,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum icp_qat_hw_auth_algo qat_hash_alg = 0;
+        
           int benchRet = qat_get_inter_state_size(qat_hash_alg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

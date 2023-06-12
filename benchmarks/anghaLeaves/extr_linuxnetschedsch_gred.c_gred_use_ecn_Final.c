@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int gred_use_ecn(struct gred_sched *t)
 	return t->red_flags & TC_RED_ECN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct gred_sched * t = (struct gred_sched *) malloc(_len_t0*sizeof(struct gred_sched));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].red_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].red_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gred_use_ecn(t);
           printf("%d\n", benchRet); 
           free(t);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_t0 = 100;
           struct gred_sched * t = (struct gred_sched *) malloc(_len_t0*sizeof(struct gred_sched));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].red_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].red_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gred_use_ecn(t);
           printf("%d\n", benchRet); 
           free(t);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct gred_sched * t = (struct gred_sched *) malloc(_len_t0*sizeof(struct gred_sched));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].red_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gred_use_ecn(t);
+          printf("%d\n", benchRet); 
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

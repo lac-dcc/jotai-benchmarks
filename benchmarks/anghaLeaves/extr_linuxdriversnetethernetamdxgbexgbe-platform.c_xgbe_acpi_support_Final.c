@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int xgbe_acpi_support(struct xgbe_prv_data *pdata)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pdata0 = 1;
+          int _len_pdata0 = 65025;
           struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
-            pdata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xgbe_acpi_support(pdata);
           printf("%d\n", benchRet); 
           free(pdata);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_pdata0 = 100;
           struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
           for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
-            pdata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xgbe_acpi_support(pdata);
           printf("%d\n", benchRet); 
           free(pdata);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pdata0 = 1;
+          struct xgbe_prv_data * pdata = (struct xgbe_prv_data *) malloc(_len_pdata0*sizeof(struct xgbe_prv_data));
+          for(int _i0 = 0; _i0 < _len_pdata0; _i0++) {
+              pdata[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xgbe_acpi_support(pdata);
+          printf("%d\n", benchRet); 
+          free(pdata);
+        
+        break;
+    }
     default:
         usage();
         break;

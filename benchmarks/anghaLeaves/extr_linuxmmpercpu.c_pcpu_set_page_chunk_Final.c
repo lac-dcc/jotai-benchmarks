@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void pcpu_set_page_chunk(struct page *page, struct 
 	page->index = (unsigned long)pcpu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_page0 = 65025;
+          struct page * page = (struct page *) malloc(_len_page0*sizeof(struct page));
+          for(int _i0 = 0; _i0 < _len_page0; _i0++) {
+              page[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pcpu0 = 65025;
+          struct pcpu_chunk * pcpu = (struct pcpu_chunk *) malloc(_len_pcpu0*sizeof(struct pcpu_chunk));
+          for(int _i0 = 0; _i0 < _len_pcpu0; _i0++) {
+              pcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pcpu_set_page_chunk(page,pcpu);
+          free(page);
+          free(pcpu);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_page0 = 100;
+          struct page * page = (struct page *) malloc(_len_page0*sizeof(struct page));
+          for(int _i0 = 0; _i0 < _len_page0; _i0++) {
+              page[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pcpu0 = 100;
+          struct pcpu_chunk * pcpu = (struct pcpu_chunk *) malloc(_len_pcpu0*sizeof(struct pcpu_chunk));
+          for(int _i0 = 0; _i0 < _len_pcpu0; _i0++) {
+              pcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pcpu_set_page_chunk(page,pcpu);
+          free(page);
+          free(pcpu);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_page0 = 1;
           struct page * page = (struct page *) malloc(_len_page0*sizeof(struct page));
           for(int _i0 = 0; _i0 < _len_page0; _i0++) {
-            page[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+              page[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pcpu0 = 1;
           struct pcpu_chunk * pcpu = (struct pcpu_chunk *) malloc(_len_pcpu0*sizeof(struct pcpu_chunk));
           for(int _i0 = 0; _i0 < _len_pcpu0; _i0++) {
-            pcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pcpu_set_page_chunk(page,pcpu);
           free(page);
           free(pcpu);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ xlog_verify_bp(
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,12 +88,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long blk_no = 100;
+        
           int bbcount = 100;
+        
           int _len_log0 = 1;
           struct xlog * log = (struct xlog *) malloc(_len_log0*sizeof(struct xlog));
           for(int _i0 = 0; _i0 < _len_log0; _i0++) {
-            log[_i0].l_logBBsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              log[_i0].l_logBBsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = xlog_verify_bp(log,blk_no,bbcount);
+          printf("%d\n", benchRet); 
+          free(log);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long blk_no = 255;
+        
+          int bbcount = 255;
+        
+          int _len_log0 = 65025;
+          struct xlog * log = (struct xlog *) malloc(_len_log0*sizeof(struct xlog));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+              log[_i0].l_logBBsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = xlog_verify_bp(log,blk_no,bbcount);
           printf("%d\n", benchRet); 
           free(log);
@@ -105,22 +125,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long blk_no = 10;
+        
           int bbcount = 10;
+        
           int _len_log0 = 100;
           struct xlog * log = (struct xlog *) malloc(_len_log0*sizeof(struct xlog));
           for(int _i0 = 0; _i0 < _len_log0; _i0++) {
-            log[_i0].l_logBBsize = ((-2 * (next_i()%2)) + 1) * next_i();
+              log[_i0].l_logBBsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xlog_verify_bp(log,blk_no,bbcount);
           printf("%d\n", benchRet); 
           free(log);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long blk_no = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bbcount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_log0 = 1;
+          struct xlog * log = (struct xlog *) malloc(_len_log0*sizeof(struct xlog));
+          for(int _i0 = 0; _i0 < _len_log0; _i0++) {
+              log[_i0].l_logBBsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xlog_verify_bp(log,blk_no,bbcount);
+          printf("%d\n", benchRet); 
+          free(log);
+        
+        break;
+    }
     default:
         usage();
         break;

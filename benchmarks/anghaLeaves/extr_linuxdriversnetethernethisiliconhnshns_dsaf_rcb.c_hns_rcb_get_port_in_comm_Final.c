@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static int hns_rcb_get_port_in_comm(
 	return ring_idx / (rcb_common->max_q_per_vf * rcb_common->max_vfn);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +76,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int ring_idx = 100;
+        
           int _len_rcb_common0 = 1;
           struct rcb_common_cb * rcb_common = (struct rcb_common_cb *) malloc(_len_rcb_common0*sizeof(struct rcb_common_cb));
           for(int _i0 = 0; _i0 < _len_rcb_common0; _i0++) {
-            rcb_common[_i0].max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
-        rcb_common[_i0].max_vfn = ((-2 * (next_i()%2)) + 1) * next_i();
+              rcb_common[_i0].max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb_common[_i0].max_vfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hns_rcb_get_port_in_comm(rcb_common,ring_idx);
+          printf("%d\n", benchRet); 
+          free(rcb_common);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ring_idx = 255;
+        
+          int _len_rcb_common0 = 65025;
+          struct rcb_common_cb * rcb_common = (struct rcb_common_cb *) malloc(_len_rcb_common0*sizeof(struct rcb_common_cb));
+          for(int _i0 = 0; _i0 < _len_rcb_common0; _i0++) {
+              rcb_common[_i0].max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb_common[_i0].max_vfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hns_rcb_get_port_in_comm(rcb_common,ring_idx);
+          printf("%d\n", benchRet); 
+          free(rcb_common);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ring_idx = 10;
+        
+          int _len_rcb_common0 = 100;
+          struct rcb_common_cb * rcb_common = (struct rcb_common_cb *) malloc(_len_rcb_common0*sizeof(struct rcb_common_cb));
+          for(int _i0 = 0; _i0 < _len_rcb_common0; _i0++) {
+              rcb_common[_i0].max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb_common[_i0].max_vfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hns_rcb_get_port_in_comm(rcb_common,ring_idx);
+          printf("%d\n", benchRet); 
+          free(rcb_common);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int ring_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rcb_common0 = 1;
+          struct rcb_common_cb * rcb_common = (struct rcb_common_cb *) malloc(_len_rcb_common0*sizeof(struct rcb_common_cb));
+          for(int _i0 = 0; _i0 < _len_rcb_common0; _i0++) {
+              rcb_common[_i0].max_q_per_vf = ((-2 * (next_i()%2)) + 1) * next_i();
+          rcb_common[_i0].max_vfn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hns_rcb_get_port_in_comm(rcb_common,ring_idx);
           printf("%d\n", benchRet); 
           free(rcb_common);

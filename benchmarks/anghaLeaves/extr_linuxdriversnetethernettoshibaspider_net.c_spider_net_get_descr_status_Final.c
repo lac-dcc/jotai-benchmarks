@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ spider_net_get_descr_status(struct spider_net_hw_descr *hwdescr)
 	return hwdescr->dmac_cmd_status & SPIDER_NET_DESCR_IND_PROC_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hwdescr0 = 1;
+          int _len_hwdescr0 = 65025;
           struct spider_net_hw_descr * hwdescr = (struct spider_net_hw_descr *) malloc(_len_hwdescr0*sizeof(struct spider_net_hw_descr));
           for(int _i0 = 0; _i0 < _len_hwdescr0; _i0++) {
-            hwdescr[_i0].dmac_cmd_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdescr[_i0].dmac_cmd_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = spider_net_get_descr_status(hwdescr);
           printf("%d\n", benchRet); 
           free(hwdescr);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_hwdescr0 = 100;
           struct spider_net_hw_descr * hwdescr = (struct spider_net_hw_descr *) malloc(_len_hwdescr0*sizeof(struct spider_net_hw_descr));
           for(int _i0 = 0; _i0 < _len_hwdescr0; _i0++) {
-            hwdescr[_i0].dmac_cmd_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwdescr[_i0].dmac_cmd_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = spider_net_get_descr_status(hwdescr);
           printf("%d\n", benchRet); 
           free(hwdescr);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hwdescr0 = 1;
+          struct spider_net_hw_descr * hwdescr = (struct spider_net_hw_descr *) malloc(_len_hwdescr0*sizeof(struct spider_net_hw_descr));
+          for(int _i0 = 0; _i0 < _len_hwdescr0; _i0++) {
+              hwdescr[_i0].dmac_cmd_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = spider_net_get_descr_status(hwdescr);
+          printf("%d\n", benchRet); 
+          free(hwdescr);
+        
+        break;
+    }
     default:
         usage();
         break;

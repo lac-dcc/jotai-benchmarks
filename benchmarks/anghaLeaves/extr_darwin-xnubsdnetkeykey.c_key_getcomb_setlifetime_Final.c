@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ key_getcomb_setlifetime(
 	comb->sadb_comb_hard_usetime = comb->sadb_comb_hard_usetime * 80 / 100;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,138 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_comb0 = 65025;
+          struct sadb_comb * comb = (struct sadb_comb *) malloc(_len_comb0*sizeof(struct sadb_comb));
+          for(int _i0 = 0; _i0 < _len_comb0; _i0++) {
+              comb[_i0].sadb_comb_soft_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          key_getcomb_setlifetime(comb);
+          free(comb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_comb0 = 100;
+          struct sadb_comb * comb = (struct sadb_comb *) malloc(_len_comb0*sizeof(struct sadb_comb));
+          for(int _i0 = 0; _i0 < _len_comb0; _i0++) {
+              comb[_i0].sadb_comb_soft_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          key_getcomb_setlifetime(comb);
+          free(comb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_comb0 = 1;
           struct sadb_comb * comb = (struct sadb_comb *) malloc(_len_comb0*sizeof(struct sadb_comb));
           for(int _i0 = 0; _i0 < _len_comb0; _i0++) {
-            comb[_i0].sadb_comb_soft_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_hard_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_hard_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_soft_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_soft_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_hard_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_hard_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        comb[_i0].sadb_comb_soft_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              comb[_i0].sadb_comb_soft_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_allocations = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_addtime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_usetime = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_hard_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          comb[_i0].sadb_comb_soft_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           key_getcomb_setlifetime(comb);
           free(comb);
         

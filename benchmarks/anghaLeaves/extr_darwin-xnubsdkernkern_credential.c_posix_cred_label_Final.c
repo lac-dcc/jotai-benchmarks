@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ posix_cred_label(kauth_cred_t cred, posix_cred_t pcred)
 	cred->cr_posix = *pcred;	/* structure assign for now */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,26 +78,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cred0 = 1;
+          int _len_cred0 = 65025;
           struct TYPE_3__ * cred = (struct TYPE_3__ *) malloc(_len_cred0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cred0; _i0++) {
-            cred[_i0].cr_posix = ((-2 * (next_i()%2)) + 1) * next_i();
+              cred[_i0].cr_posix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pcred0 = 1;
+        
+          int _len_pcred0 = 65025;
           int * pcred = (int *) malloc(_len_pcred0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pcred0; _i0++) {
             pcred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           posix_cred_label(cred,pcred);
           free(cred);
           free(pcred);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cred0 = 100;
+          struct TYPE_3__ * cred = (struct TYPE_3__ *) malloc(_len_cred0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cred0; _i0++) {
+              cred[_i0].cr_posix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pcred0 = 100;
+          int * pcred = (int *) malloc(_len_pcred0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcred0; _i0++) {
+            pcred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          posix_cred_label(cred,pcred);
+          free(cred);
+          free(pcred);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cred0 = 1;
+          struct TYPE_3__ * cred = (struct TYPE_3__ *) malloc(_len_cred0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cred0; _i0++) {
+              cred[_i0].cr_posix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pcred0 = 1;
+          int * pcred = (int *) malloc(_len_pcred0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcred0; _i0++) {
+            pcred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          posix_cred_label(cred,pcred);
+          free(cred);
+          free(pcred);
+        
+        break;
+    }
     default:
         usage();
         break;

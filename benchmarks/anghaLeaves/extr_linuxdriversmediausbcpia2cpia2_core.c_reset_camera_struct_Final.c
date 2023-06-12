@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -140,12 +142,6 @@ __attribute__((used)) static void reset_camera_struct(struct camera_data *cam)
 	cam->height = cam->params.roi.height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -158,30 +154,189 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 43
+          // dynamic_instructions_O1 : 43
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_cam0 = 65025;
+          struct camera_data * cam = (struct camera_data *) malloc(_len_cam0*sizeof(struct camera_data));
+          for(int _i0 = 0; _i0 < _len_cam0; _i0++) {
+              cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.version.sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.vp_params.gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.vp_params.gpio_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.vp_params.lowlight_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.pnp_id.device_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.vc_params.quality = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.compression.creep_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.user_squeeze = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.inhibit_htables = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.jpeg_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].video_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].sensor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_camera_struct(cam);
+          free(cam);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 43
+          // dynamic_instructions_O1 : 43
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
+          int _len_cam0 = 100;
+          struct camera_data * cam = (struct camera_data *) malloc(_len_cam0*sizeof(struct camera_data));
+          for(int _i0 = 0; _i0 < _len_cam0; _i0++) {
+              cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.version.sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.vp_params.gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.vp_params.gpio_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.vp_params.lowlight_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.pnp_id.device_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.vc_params.quality = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.compression.creep_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.user_squeeze = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.inhibit_htables = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.jpeg_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].video_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].sensor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_camera_struct(cam);
+          free(cam);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 56
+          // dynamic_instructions_O0 : 56
+          // ------------------------------- 
+          // static_instructions_O1 : 43
+          // dynamic_instructions_O1 : 43
+          // ------------------------------- 
+          // static_instructions_O2 : 36
+          // dynamic_instructions_O2 : 36
+          // ------------------------------- 
+          // static_instructions_O3 : 36
+          // dynamic_instructions_O3 : 36
+          // ------------------------------- 
+          // static_instructions_Ofast : 36
+          // dynamic_instructions_Ofast : 36
+          // ------------------------------- 
+          // static_instructions_Os : 37
+          // dynamic_instructions_Os : 37
+          // ------------------------------- 
+          // static_instructions_Oz : 37
+          // dynamic_instructions_Oz : 37
+          // ------------------------------- 
+
           int _len_cam0 = 1;
           struct camera_data * cam = (struct camera_data *) malloc(_len_cam0*sizeof(struct camera_data));
           for(int _i0 = 0; _i0 < _len_cam0; _i0++) {
-            cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.version.sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.vp_params.gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.vp_params.gpio_direction = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.vp_params.lowlight_boost = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.pnp_id.device_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.vc_params.quality = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.compression.creep_period = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.compression.user_squeeze = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.compression.inhibit_htables = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.compression.jpeg_options = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].video_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cam[_i0].sensor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              cam[_i0].params.roi.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.roi.width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.version.sensor_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.vp_params.gpio_data = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.vp_params.gpio_direction = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.vp_params.lowlight_boost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.pnp_id.device_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.vc_params.quality = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.compression.creep_period = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.user_squeeze = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.inhibit_htables = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].params.compression.jpeg_options = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cam[_i0].params.flicker_control.flicker_mode_req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          cam[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].video_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cam[_i0].sensor_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           reset_camera_struct(cam);
           free(cam);
         

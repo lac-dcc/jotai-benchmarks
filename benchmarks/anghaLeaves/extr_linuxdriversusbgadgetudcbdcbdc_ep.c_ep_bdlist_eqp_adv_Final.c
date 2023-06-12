@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void ep_bdlist_eqp_adv(struct bdc_ep *ep)
 		ep->bd_list.eqp_bdi = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,16 +83,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_ep0 = 65025;
+          struct bdc_ep * ep = (struct bdc_ep *) malloc(_len_ep0*sizeof(struct bdc_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].bd_list.eqp_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].bd_list.num_bds_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].bd_list.max_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ep_bdlist_eqp_adv(ep);
+          free(ep);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_ep0 = 100;
+          struct bdc_ep * ep = (struct bdc_ep *) malloc(_len_ep0*sizeof(struct bdc_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].bd_list.eqp_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].bd_list.num_bds_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].bd_list.max_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ep_bdlist_eqp_adv(ep);
+          free(ep);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_ep0 = 1;
           struct bdc_ep * ep = (struct bdc_ep *) malloc(_len_ep0*sizeof(struct bdc_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].bd_list.eqp_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].bd_list.num_bds_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].bd_list.max_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].bd_list.eqp_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].bd_list.num_bds_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].bd_list.max_bdi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ep_bdlist_eqp_adv(ep);
           free(ep);
         

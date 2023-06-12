@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static int ipipe_validate_cfa_params(struct vpfe_ipipe_cfa
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,34 +105,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfa0 = 1;
+          int _len_cfa0 = 65025;
           struct vpfe_ipipe_cfa * cfa = (struct vpfe_ipipe_cfa *) malloc(_len_cfa0*sizeof(struct vpfe_ipipe_cfa));
           for(int _i0 = 0; _i0 < _len_cfa0; _i0++) {
-            cfa[_i0].hpf_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].hpf_slp_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].hp_mix_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].hp_mix_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].dir_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].dir_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].nd_wt_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].hue_fract_daa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].edge_thr_daa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].thr_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].thr_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].slope_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].slope_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfa[_i0].lp_wt_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfa[_i0].hpf_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hpf_slp_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hp_mix_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hp_mix_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].dir_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].dir_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].nd_wt_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hue_fract_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].edge_thr_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].thr_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].thr_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].slope_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].slope_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].lp_wt_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ipipe_validate_cfa_params(cfa);
           printf("%d\n", benchRet); 
           free(cfa);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cfa0 = 100;
+          struct vpfe_ipipe_cfa * cfa = (struct vpfe_ipipe_cfa *) malloc(_len_cfa0*sizeof(struct vpfe_ipipe_cfa));
+          for(int _i0 = 0; _i0 < _len_cfa0; _i0++) {
+              cfa[_i0].hpf_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hpf_slp_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hp_mix_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hp_mix_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].dir_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].dir_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].nd_wt_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hue_fract_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].edge_thr_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].thr_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].thr_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].slope_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].slope_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].lp_wt_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipipe_validate_cfa_params(cfa);
+          printf("%d\n", benchRet); 
+          free(cfa);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cfa0 = 1;
+          struct vpfe_ipipe_cfa * cfa = (struct vpfe_ipipe_cfa *) malloc(_len_cfa0*sizeof(struct vpfe_ipipe_cfa));
+          for(int _i0 = 0; _i0 < _len_cfa0; _i0++) {
+              cfa[_i0].hpf_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hpf_slp_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hp_mix_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hp_mix_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].dir_thr_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].dir_slope_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].nd_wt_2dir = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].hue_fract_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].edge_thr_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].thr_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].thr_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].slope_min_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].slope_slope_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfa[_i0].lp_wt_daa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ipipe_validate_cfa_params(cfa);
+          printf("%d\n", benchRet); 
+          free(cfa);
+        
+        break;
+    }
     default:
         usage();
         break;

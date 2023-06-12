@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline unsigned char seconds_to_ticks(int seconds)
 	return (seconds * 10) / 6;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int seconds = 100;
+        
           unsigned char benchRet = seconds_to_ticks(seconds);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int seconds = 255;
+        
           unsigned char benchRet = seconds_to_ticks(seconds);
           printf("%c\n", (benchRet %26) + 'a'); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int seconds = 10;
+        
           unsigned char benchRet = seconds_to_ticks(seconds);
           printf("%c\n", (benchRet %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int seconds = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned char benchRet = seconds_to_ticks(seconds);
+          printf("%c\n", (benchRet %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

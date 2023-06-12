@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static inline bool device_status_valid(unsigned int sta)
 	return (sta & mask) == mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int sta = 100;
+        
           int benchRet = device_status_valid(sta);
           printf("%d\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int sta = 255;
+        
           int benchRet = device_status_valid(sta);
           printf("%d\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int sta = 10;
+        
           int benchRet = device_status_valid(sta);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int sta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = device_status_valid(sta);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

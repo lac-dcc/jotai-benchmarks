@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static char *get_w32_excep_name(unsigned long code) {
 	return desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long code = 100;
+        
           char * benchRet = get_w32_excep_name(code);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -118,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long code = 255;
+        
           char * benchRet = get_w32_excep_name(code);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -127,12 +124,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long code = 10;
+        
           char * benchRet = get_w32_excep_name(code);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          char * benchRet = get_w32_excep_name(code);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

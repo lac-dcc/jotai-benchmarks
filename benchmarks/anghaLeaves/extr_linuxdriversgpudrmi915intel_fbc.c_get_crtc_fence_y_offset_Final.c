@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static unsigned int get_crtc_fence_y_offset(struct intel_f
 	return fbc->state_cache.plane.y - fbc->state_cache.plane.adjusted_y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_fbc0 = 65025;
+          struct intel_fbc * fbc = (struct intel_fbc *) malloc(_len_fbc0*sizeof(struct intel_fbc));
+          for(int _i0 = 0; _i0 < _len_fbc0; _i0++) {
+              fbc[_i0].state_cache.plane.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbc[_i0].state_cache.plane.adjusted_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          unsigned int benchRet = get_crtc_fence_y_offset(fbc);
+          printf("%u\n", benchRet); 
+          free(fbc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_fbc0 = 100;
+          struct intel_fbc * fbc = (struct intel_fbc *) malloc(_len_fbc0*sizeof(struct intel_fbc));
+          for(int _i0 = 0; _i0 < _len_fbc0; _i0++) {
+              fbc[_i0].state_cache.plane.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbc[_i0].state_cache.plane.adjusted_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          unsigned int benchRet = get_crtc_fence_y_offset(fbc);
+          printf("%u\n", benchRet); 
+          free(fbc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_fbc0 = 1;
           struct intel_fbc * fbc = (struct intel_fbc *) malloc(_len_fbc0*sizeof(struct intel_fbc));
           for(int _i0 = 0; _i0 < _len_fbc0; _i0++) {
-            fbc[_i0].state_cache.plane.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        fbc[_i0].state_cache.plane.adjusted_y = ((-2 * (next_i()%2)) + 1) * next_i();
+              fbc[_i0].state_cache.plane.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fbc[_i0].state_cache.plane.adjusted_y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           unsigned int benchRet = get_crtc_fence_y_offset(fbc);
           printf("%u\n", benchRet); 
           free(fbc);

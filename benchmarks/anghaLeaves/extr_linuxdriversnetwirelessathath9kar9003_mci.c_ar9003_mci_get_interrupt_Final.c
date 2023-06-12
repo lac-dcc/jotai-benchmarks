@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ void ar9003_mci_get_interrupt(struct ath_hw *ah, u32 *raw_intr,
 	mci->rx_msg_intr = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,25 +86,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ah0 = 1;
+          int _len_ah0 = 65025;
           struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
           for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
-            ah[_i0].btcoex_hw.mci.rx_msg_intr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ah[_i0].btcoex_hw.mci.raw_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+              ah[_i0].btcoex_hw.mci.rx_msg_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].btcoex_hw.mci.raw_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_raw_intr0 = 1;
+        
+          int _len_raw_intr0 = 65025;
           long * raw_intr = (long *) malloc(_len_raw_intr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_raw_intr0; _i0++) {
             raw_intr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_rx_msg_intr0 = 1;
+        
+          int _len_rx_msg_intr0 = 65025;
           long * rx_msg_intr = (long *) malloc(_len_rx_msg_intr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_rx_msg_intr0; _i0++) {
             rx_msg_intr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ar9003_mci_get_interrupt(ah,raw_intr,rx_msg_intr);
           free(ah);
           free(raw_intr);
@@ -116,7 +118,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ah0 = 100;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].btcoex_hw.mci.rx_msg_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].btcoex_hw.mci.raw_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_raw_intr0 = 100;
+          long * raw_intr = (long *) malloc(_len_raw_intr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_raw_intr0; _i0++) {
+            raw_intr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rx_msg_intr0 = 100;
+          long * rx_msg_intr = (long *) malloc(_len_rx_msg_intr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_rx_msg_intr0; _i0++) {
+            rx_msg_intr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ar9003_mci_get_interrupt(ah,raw_intr,rx_msg_intr);
+          free(ah);
+          free(raw_intr);
+          free(rx_msg_intr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ah0 = 1;
+          struct ath_hw * ah = (struct ath_hw *) malloc(_len_ah0*sizeof(struct ath_hw));
+          for(int _i0 = 0; _i0 < _len_ah0; _i0++) {
+              ah[_i0].btcoex_hw.mci.rx_msg_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ah[_i0].btcoex_hw.mci.raw_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_raw_intr0 = 1;
+          long * raw_intr = (long *) malloc(_len_raw_intr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_raw_intr0; _i0++) {
+            raw_intr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rx_msg_intr0 = 1;
+          long * rx_msg_intr = (long *) malloc(_len_rx_msg_intr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_rx_msg_intr0; _i0++) {
+            rx_msg_intr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ar9003_mci_get_interrupt(ah,raw_intr,rx_msg_intr);
+          free(ah);
+          free(raw_intr);
+          free(rx_msg_intr);
+        
+        break;
+    }
     default:
         usage();
         break;

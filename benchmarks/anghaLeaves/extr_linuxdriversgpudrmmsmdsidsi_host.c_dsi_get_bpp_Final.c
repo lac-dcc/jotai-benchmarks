@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -71,12 +71,6 @@ __attribute__((used)) static u32 dsi_get_bpp(const enum mipi_dsi_pixel_format fm
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           const enum mipi_dsi_pixel_format fmt = 0;
+        
           int benchRet = dsi_get_bpp(fmt);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

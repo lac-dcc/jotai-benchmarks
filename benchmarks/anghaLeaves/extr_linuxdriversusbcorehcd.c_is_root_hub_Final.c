@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int is_root_hub(struct usb_device *udev)
 	return (udev->parent == NULL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_udev0 = 1;
+          int _len_udev0 = 65025;
           struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
           for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
               int _len_udev__i0__parent0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_udev__i0__parent0; _j0++) {
             udev[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_root_hub(udev);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_udev0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_udev0 = 100;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              int _len_udev__i0__parent0 = 1;
+          udev[_i0].parent = (int *) malloc(_len_udev__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_udev__i0__parent0; _j0++) {
+            udev[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_root_hub(udev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_udev0; _aux++) {
+          free(udev[_aux].parent);
+          }
+          free(udev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_udev0 = 1;
+          struct usb_device * udev = (struct usb_device *) malloc(_len_udev0*sizeof(struct usb_device));
+          for(int _i0 = 0; _i0 < _len_udev0; _i0++) {
+              int _len_udev__i0__parent0 = 1;
+          udev[_i0].parent = (int *) malloc(_len_udev__i0__parent0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_udev__i0__parent0; _j0++) {
+            udev[_i0].parent[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_root_hub(udev);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_udev0; _aux++) {
+          free(udev[_aux].parent);
+          }
+          free(udev);
+        
+        break;
+    }
     default:
         usage();
         break;

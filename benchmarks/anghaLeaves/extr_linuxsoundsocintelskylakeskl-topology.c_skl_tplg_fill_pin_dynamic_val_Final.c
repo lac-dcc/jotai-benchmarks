@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void skl_tplg_fill_pin_dynamic_val(
 		mpin[i].is_dynamic = value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,16 +79,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 2816
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 1029
+          // ------------------------------- 
+          // static_instructions_O2 : 63
+          // dynamic_instructions_O2 : 155
+          // ------------------------------- 
+          // static_instructions_O3 : 63
+          // dynamic_instructions_O3 : 155
+          // ------------------------------- 
+          // static_instructions_Ofast : 63
+          // dynamic_instructions_Ofast : 155
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 1028
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 1284
+          // ------------------------------- 
+
+          int pin_count = 255;
+        
+          int value = 255;
+        
+          int _len_mpin0 = 65025;
+          struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
+          for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
+              mpin[_i0].is_dynamic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          skl_tplg_fill_pin_dynamic_val(mpin,pin_count,value);
+          free(mpin);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 121
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 49
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 46
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 46
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 46
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 48
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 59
+          // ------------------------------- 
+
           int pin_count = 10;
+        
           int value = 10;
+        
           int _len_mpin0 = 100;
           struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
           for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
-            mpin[_i0].is_dynamic = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpin[_i0].is_dynamic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          skl_tplg_fill_pin_dynamic_val(mpin,pin_count,value);
+          free(mpin);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int pin_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mpin0 = 1;
+          struct skl_module_pin * mpin = (struct skl_module_pin *) malloc(_len_mpin0*sizeof(struct skl_module_pin));
+          for(int _i0 = 0; _i0 < _len_mpin0; _i0++) {
+              mpin[_i0].is_dynamic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           skl_tplg_fill_pin_dynamic_val(mpin,pin_count,value);
           free(mpin);
         

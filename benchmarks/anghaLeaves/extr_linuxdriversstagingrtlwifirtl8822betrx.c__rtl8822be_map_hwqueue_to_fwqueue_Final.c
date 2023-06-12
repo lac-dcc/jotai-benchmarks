@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static u8 _rtl8822be_map_hwqueue_to_fwqueue(struct sk_buff
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,11 +99,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hw_queue = 100;
+        
           int _len_skb0 = 1;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = _rtl8822be_map_hwqueue_to_fwqueue(skb,hw_queue);
+          printf("%d\n", benchRet); 
+          free(skb);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int hw_queue = 255;
+        
+          int _len_skb0 = 65025;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = _rtl8822be_map_hwqueue_to_fwqueue(skb,hw_queue);
           printf("%d\n", benchRet); 
           free(skb);
@@ -115,21 +132,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int hw_queue = 10;
+        
           int _len_skb0 = 100;
           struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
           for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
-            skb[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+              skb[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = _rtl8822be_map_hwqueue_to_fwqueue(skb,hw_queue);
           printf("%d\n", benchRet); 
           free(skb);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hw_queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_skb0 = 1;
+          struct sk_buff * skb = (struct sk_buff *) malloc(_len_skb0*sizeof(struct sk_buff));
+          for(int _i0 = 0; _i0 < _len_skb0; _i0++) {
+              skb[_i0].priority = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = _rtl8822be_map_hwqueue_to_fwqueue(skb,hw_queue);
+          printf("%d\n", benchRet); 
+          free(skb);
+        
+        break;
+    }
     default:
         usage();
         break;

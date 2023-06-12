@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void ext4_xattr_inode_set_hash(struct inode *ea_ino
 	ea_inode->i_atime.tv_sec = hash;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,31 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hash = 100;
+        
           int _len_ea_inode0 = 1;
           struct inode * ea_inode = (struct inode *) malloc(_len_ea_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_ea_inode0; _i0++) {
-            ea_inode[_i0].i_atime.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              ea_inode[_i0].i_atime.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          ext4_xattr_inode_set_hash(ea_inode,hash);
+          free(ea_inode);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int hash = 255;
+        
+          int _len_ea_inode0 = 65025;
+          struct inode * ea_inode = (struct inode *) malloc(_len_ea_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_ea_inode0; _i0++) {
+              ea_inode[_i0].i_atime.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           ext4_xattr_inode_set_hash(ea_inode,hash);
           free(ea_inode);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int hash = 10;
+        
           int _len_ea_inode0 = 100;
           struct inode * ea_inode = (struct inode *) malloc(_len_ea_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_ea_inode0; _i0++) {
-            ea_inode[_i0].i_atime.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              ea_inode[_i0].i_atime.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ext4_xattr_inode_set_hash(ea_inode,hash);
           free(ea_inode);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ea_inode0 = 1;
+          struct inode * ea_inode = (struct inode *) malloc(_len_ea_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_ea_inode0; _i0++) {
+              ea_inode[_i0].i_atime.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ext4_xattr_inode_set_hash(ea_inode,hash);
+          free(ea_inode);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ int vpfe_video_is_pipe_ready(struct vpfe_pipeline *pipe)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,22 +89,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pipe0 = 1;
+          int _len_pipe0 = 65025;
           struct vpfe_pipeline * pipe = (struct vpfe_pipeline *) malloc(_len_pipe0*sizeof(struct vpfe_pipeline));
           for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
-            pipe[_i0].input_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipe[_i0].output_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe[_i0].input_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].output_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pipe__i0__outputs0 = 1;
           pipe[_i0].outputs = (struct TYPE_3__ **) malloc(_len_pipe__i0__outputs0*sizeof(struct TYPE_3__ *));
           for(int _j0 = 0; _j0 < _len_pipe__i0__outputs0; _j0++) {
             int _len_pipe__i0__outputs1 = 1;
             pipe[_i0].outputs[_j0] = (struct TYPE_3__ *) malloc(_len_pipe__i0__outputs1*sizeof(struct TYPE_3__));
             for(int _j1 = 0; _j1 < _len_pipe__i0__outputs1; _j1++) {
-              pipe[_i0].outputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipe[_i0].outputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+                pipe[_i0].outputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].outputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_pipe__i0__inputs0 = 1;
@@ -117,11 +114,14 @@ int main(int argc, char *argv[]) {
             int _len_pipe__i0__inputs1 = 1;
             pipe[_i0].inputs[_j0] = (struct TYPE_4__ *) malloc(_len_pipe__i0__inputs1*sizeof(struct TYPE_4__));
             for(int _j1 = 0; _j1 < _len_pipe__i0__inputs1; _j1++) {
-              pipe[_i0].inputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
-        pipe[_i0].inputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+                pipe[_i0].inputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].inputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int benchRet = vpfe_video_is_pipe_ready(pipe);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pipe0; _aux++) {
@@ -136,7 +136,100 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pipe0 = 100;
+          struct vpfe_pipeline * pipe = (struct vpfe_pipeline *) malloc(_len_pipe0*sizeof(struct vpfe_pipeline));
+          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
+              pipe[_i0].input_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].output_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pipe__i0__outputs0 = 1;
+          pipe[_i0].outputs = (struct TYPE_3__ **) malloc(_len_pipe__i0__outputs0*sizeof(struct TYPE_3__ *));
+          for(int _j0 = 0; _j0 < _len_pipe__i0__outputs0; _j0++) {
+            int _len_pipe__i0__outputs1 = 1;
+            pipe[_i0].outputs[_j0] = (struct TYPE_3__ *) malloc(_len_pipe__i0__outputs1*sizeof(struct TYPE_3__));
+            for(int _j1 = 0; _j1 < _len_pipe__i0__outputs1; _j1++) {
+                pipe[_i0].outputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].outputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_pipe__i0__inputs0 = 1;
+          pipe[_i0].inputs = (struct TYPE_4__ **) malloc(_len_pipe__i0__inputs0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_pipe__i0__inputs0; _j0++) {
+            int _len_pipe__i0__inputs1 = 1;
+            pipe[_i0].inputs[_j0] = (struct TYPE_4__ *) malloc(_len_pipe__i0__inputs1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_pipe__i0__inputs1; _j1++) {
+                pipe[_i0].inputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].inputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = vpfe_video_is_pipe_ready(pipe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pipe0; _aux++) {
+          free(*(pipe[_aux].outputs));
+        free(pipe[_aux].outputs);
+          }
+          for(int _aux = 0; _aux < _len_pipe0; _aux++) {
+          free(*(pipe[_aux].inputs));
+        free(pipe[_aux].inputs);
+          }
+          free(pipe);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pipe0 = 1;
+          struct vpfe_pipeline * pipe = (struct vpfe_pipeline *) malloc(_len_pipe0*sizeof(struct vpfe_pipeline));
+          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
+              pipe[_i0].input_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].output_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pipe__i0__outputs0 = 1;
+          pipe[_i0].outputs = (struct TYPE_3__ **) malloc(_len_pipe__i0__outputs0*sizeof(struct TYPE_3__ *));
+          for(int _j0 = 0; _j0 < _len_pipe__i0__outputs0; _j0++) {
+            int _len_pipe__i0__outputs1 = 1;
+            pipe[_i0].outputs[_j0] = (struct TYPE_3__ *) malloc(_len_pipe__i0__outputs1*sizeof(struct TYPE_3__));
+            for(int _j1 = 0; _j1 < _len_pipe__i0__outputs1; _j1++) {
+                pipe[_i0].outputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].outputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+          int _len_pipe__i0__inputs0 = 1;
+          pipe[_i0].inputs = (struct TYPE_4__ **) malloc(_len_pipe__i0__inputs0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_pipe__i0__inputs0; _j0++) {
+            int _len_pipe__i0__inputs1 = 1;
+            pipe[_i0].inputs[_j0] = (struct TYPE_4__ *) malloc(_len_pipe__i0__inputs1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_pipe__i0__inputs1; _j1++) {
+                pipe[_i0].inputs[_j0]->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          pipe[_i0].inputs[_j0]->started = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = vpfe_video_is_pipe_ready(pipe);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pipe0; _aux++) {
+          free(*(pipe[_aux].outputs));
+        free(pipe[_aux].outputs);
+          }
+          for(int _aux = 0; _aux < _len_pipe0; _aux++) {
+          free(*(pipe[_aux].inputs));
+        free(pipe[_aux].inputs);
+          }
+          free(pipe);
+        
+        break;
+    }
     default:
         usage();
         break;

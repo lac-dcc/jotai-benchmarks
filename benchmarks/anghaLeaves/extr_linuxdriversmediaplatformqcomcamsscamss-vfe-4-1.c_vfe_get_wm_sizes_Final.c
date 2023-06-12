@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ __attribute__((used)) static void vfe_get_wm_sizes(struct v4l2_pix_format_mplane
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,37 +99,286 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int plane = 100;
+        
           int _len_pix0 = 1;
           struct v4l2_pix_format_mplane * pix = (struct v4l2_pix_format_mplane *) malloc(_len_pix0*sizeof(struct v4l2_pix_format_mplane));
           for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
-            pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pix__i0__plane_fmt0 = 1;
           pix[_i0].plane_fmt = (struct TYPE_2__ *) malloc(_len_pix__i0__plane_fmt0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pix__i0__plane_fmt0; _j0++) {
-            pix[_i0].plane_fmt->bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+              pix[_i0].plane_fmt->bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_width0 = 1;
           int * width = (int *) malloc(_len_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_width0; _i0++) {
             width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_height0 = 1;
           int * height = (int *) malloc(_len_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_height0; _i0++) {
             height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_bytesperline0 = 1;
           int * bytesperline = (int *) malloc(_len_bytesperline0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_bytesperline0; _i0++) {
             bytesperline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          vfe_get_wm_sizes(pix,plane,width,height,bytesperline);
+          for(int _aux = 0; _aux < _len_pix0; _aux++) {
+          free(pix[_aux].plane_fmt);
+          }
+          free(pix);
+          free(width);
+          free(height);
+          free(bytesperline);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int plane = 255;
+        
+          int _len_pix0 = 65025;
+          struct v4l2_pix_format_mplane * pix = (struct v4l2_pix_format_mplane *) malloc(_len_pix0*sizeof(struct v4l2_pix_format_mplane));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pix__i0__plane_fmt0 = 1;
+          pix[_i0].plane_fmt = (struct TYPE_2__ *) malloc(_len_pix__i0__plane_fmt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pix__i0__plane_fmt0; _j0++) {
+              pix[_i0].plane_fmt->bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_width0 = 65025;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 65025;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bytesperline0 = 65025;
+          int * bytesperline = (int *) malloc(_len_bytesperline0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytesperline0; _i0++) {
+            bytesperline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          vfe_get_wm_sizes(pix,plane,width,height,bytesperline);
+          for(int _aux = 0; _aux < _len_pix0; _aux++) {
+          free(pix[_aux].plane_fmt);
+          }
+          free(pix);
+          free(width);
+          free(height);
+          free(bytesperline);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int plane = 10;
+        
+          int _len_pix0 = 100;
+          struct v4l2_pix_format_mplane * pix = (struct v4l2_pix_format_mplane *) malloc(_len_pix0*sizeof(struct v4l2_pix_format_mplane));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pix__i0__plane_fmt0 = 1;
+          pix[_i0].plane_fmt = (struct TYPE_2__ *) malloc(_len_pix__i0__plane_fmt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pix__i0__plane_fmt0; _j0++) {
+              pix[_i0].plane_fmt->bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_width0 = 100;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 100;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bytesperline0 = 100;
+          int * bytesperline = (int *) malloc(_len_bytesperline0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytesperline0; _i0++) {
+            bytesperline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          vfe_get_wm_sizes(pix,plane,width,height,bytesperline);
+          for(int _aux = 0; _aux < _len_pix0; _aux++) {
+          free(pix[_aux].plane_fmt);
+          }
+          free(pix);
+          free(width);
+          free(height);
+          free(bytesperline);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int plane = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pix0 = 1;
+          struct v4l2_pix_format_mplane * pix = (struct v4l2_pix_format_mplane *) malloc(_len_pix0*sizeof(struct v4l2_pix_format_mplane));
+          for(int _i0 = 0; _i0 < _len_pix0; _i0++) {
+              pix[_i0].pixelformat = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          pix[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pix__i0__plane_fmt0 = 1;
+          pix[_i0].plane_fmt = (struct TYPE_2__ *) malloc(_len_pix__i0__plane_fmt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pix__i0__plane_fmt0; _j0++) {
+              pix[_i0].plane_fmt->bytesperline = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_width0 = 1;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 1;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_bytesperline0 = 1;
+          int * bytesperline = (int *) malloc(_len_bytesperline0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_bytesperline0; _i0++) {
+            bytesperline[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           vfe_get_wm_sizes(pix,plane,width,height,bytesperline);
           for(int _aux = 0; _aux < _len_pix0; _aux++) {
           free(pix[_aux].plane_fmt);

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ int ipu_degrees_to_rot_mode(enum ipu_rotate_mode *mode, int degrees,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,13 +107,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int degrees = 100;
+        
           int hflip = 100;
+        
           int vflip = 100;
+        
           int _len_mode0 = 1;
           enum ipu_rotate_mode * mode = (enum ipu_rotate_mode *) malloc(_len_mode0*sizeof(enum ipu_rotate_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = 0;
           }
+        
+          int benchRet = ipu_degrees_to_rot_mode(mode,degrees,hflip,vflip);
+          printf("%d\n", benchRet); 
+          free(mode);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int degrees = 255;
+        
+          int hflip = 255;
+        
+          int vflip = 255;
+        
+          int _len_mode0 = 65025;
+          enum ipu_rotate_mode * mode = (enum ipu_rotate_mode *) malloc(_len_mode0*sizeof(enum ipu_rotate_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = 0;
+          }
+        
           int benchRet = ipu_degrees_to_rot_mode(mode,degrees,hflip,vflip);
           printf("%d\n", benchRet); 
           free(mode);
@@ -125,23 +146,47 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int degrees = 10;
+        
           int hflip = 10;
+        
           int vflip = 10;
+        
           int _len_mode0 = 100;
           enum ipu_rotate_mode * mode = (enum ipu_rotate_mode *) malloc(_len_mode0*sizeof(enum ipu_rotate_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
             mode[_i0] = 0;
           }
+        
           int benchRet = ipu_degrees_to_rot_mode(mode,degrees,hflip,vflip);
           printf("%d\n", benchRet); 
           free(mode);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int degrees = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hflip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int vflip = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mode0 = 1;
+          enum ipu_rotate_mode * mode = (enum ipu_rotate_mode *) malloc(_len_mode0*sizeof(enum ipu_rotate_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+            mode[_i0] = 0;
+          }
+        
+          int benchRet = ipu_degrees_to_rot_mode(mode,degrees,hflip,vflip);
+          printf("%d\n", benchRet); 
+          free(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -150,12 +152,6 @@ png_init_palette_transformations(png_structrp png_ptr)
 #endif /* READ_EXPAND && READ_BACKGROUND */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -168,21 +164,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_png_ptr0 = 1;
+          int _len_png_ptr0 = 65025;
           struct TYPE_3__ * png_ptr = (struct TYPE_3__ *) malloc(_len_png_ptr0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_png_ptr0; _i0++) {
-            png_ptr[_i0].num_trans = ((-2 * (next_i()%2)) + 1) * next_i();
+              png_ptr[_i0].num_trans = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_png_ptr__i0__trans_alpha0 = 1;
           png_ptr[_i0].trans_alpha = (int *) malloc(_len_png_ptr__i0__trans_alpha0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_png_ptr__i0__trans_alpha0; _j0++) {
             png_ptr[_i0].trans_alpha[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        png_ptr[_i0].transformations = ((-2 * (next_i()%2)) + 1) * next_i();
-        png_ptr[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          png_ptr[_i0].transformations = ((-2 * (next_i()%2)) + 1) * next_i();
+          png_ptr[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           png_init_palette_transformations(png_ptr);
           for(int _aux = 0; _aux < _len_png_ptr0; _aux++) {
           free(png_ptr[_aux].trans_alpha);
@@ -191,7 +189,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_png_ptr0 = 100;
+          struct TYPE_3__ * png_ptr = (struct TYPE_3__ *) malloc(_len_png_ptr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_png_ptr0; _i0++) {
+              png_ptr[_i0].num_trans = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_png_ptr__i0__trans_alpha0 = 1;
+          png_ptr[_i0].trans_alpha = (int *) malloc(_len_png_ptr__i0__trans_alpha0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_png_ptr__i0__trans_alpha0; _j0++) {
+            png_ptr[_i0].trans_alpha[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          png_ptr[_i0].transformations = ((-2 * (next_i()%2)) + 1) * next_i();
+          png_ptr[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          png_init_palette_transformations(png_ptr);
+          for(int _aux = 0; _aux < _len_png_ptr0; _aux++) {
+          free(png_ptr[_aux].trans_alpha);
+          }
+          free(png_ptr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_png_ptr0 = 1;
+          struct TYPE_3__ * png_ptr = (struct TYPE_3__ *) malloc(_len_png_ptr0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_png_ptr0; _i0++) {
+              png_ptr[_i0].num_trans = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_png_ptr__i0__trans_alpha0 = 1;
+          png_ptr[_i0].trans_alpha = (int *) malloc(_len_png_ptr__i0__trans_alpha0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_png_ptr__i0__trans_alpha0; _j0++) {
+            png_ptr[_i0].trans_alpha[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          png_ptr[_i0].transformations = ((-2 * (next_i()%2)) + 1) * next_i();
+          png_ptr[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          png_init_palette_transformations(png_ptr);
+          for(int _aux = 0; _aux < _len_png_ptr0; _aux++) {
+          free(png_ptr[_aux].trans_alpha);
+          }
+          free(png_ptr);
+        
+        break;
+    }
     default:
         usage();
         break;

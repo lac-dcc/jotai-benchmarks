@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline unsigned int ad5064_num_vref(struct ad5064_s
 	return st->chip_info->shared_vref ? 1 : st->chip_info->num_channels;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_st0 = 1;
+          int _len_st0 = 65025;
           struct ad5064_state * st = (struct ad5064_state *) malloc(_len_st0*sizeof(struct ad5064_state));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
               int _len_st__i0__chip_info0 = 1;
           st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
-            st[_i0].chip_info->num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        st[_i0].chip_info->shared_vref = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].chip_info->num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->shared_vref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned int benchRet = ad5064_num_vref(st);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_st0; _aux++) {
@@ -102,7 +101,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_st0 = 100;
+          struct ad5064_state * st = (struct ad5064_state *) malloc(_len_st0*sizeof(struct ad5064_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->shared_vref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = ad5064_num_vref(st);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_st0 = 1;
+          struct ad5064_state * st = (struct ad5064_state *) malloc(_len_st0*sizeof(struct ad5064_state));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              int _len_st__i0__chip_info0 = 1;
+          st[_i0].chip_info = (struct TYPE_2__ *) malloc(_len_st__i0__chip_info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_st__i0__chip_info0; _j0++) {
+              st[_i0].chip_info->num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          st[_i0].chip_info->shared_vref = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = ad5064_num_vref(st);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].chip_info);
+          }
+          free(st);
+        
+        break;
+    }
     default:
         usage();
         break;

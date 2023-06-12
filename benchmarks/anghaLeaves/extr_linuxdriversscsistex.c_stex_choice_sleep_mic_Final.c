@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static int stex_choice_sleep_mic(struct st_hba *hba, pm_me
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,16 +90,19 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hba0 = 1;
+          int _len_hba0 = 65025;
           struct st_hba * hba = (struct st_hba *) malloc(_len_hba0*sizeof(struct st_hba));
           for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].msi_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              hba[_i0].msi_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_3__ state;
-        state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+          state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = stex_choice_sleep_mic(hba,state);
           printf("%d\n", benchRet); 
           free(hba);
@@ -117,17 +115,38 @@ int main(int argc, char *argv[]) {
           int _len_hba0 = 100;
           struct st_hba * hba = (struct st_hba *) malloc(_len_hba0*sizeof(struct st_hba));
           for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
-            hba[_i0].msi_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+              hba[_i0].msi_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_3__ state;
-        state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+          state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = stex_choice_sleep_mic(hba,state);
           printf("%d\n", benchRet); 
           free(hba);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hba0 = 1;
+          struct st_hba * hba = (struct st_hba *) malloc(_len_hba0*sizeof(struct st_hba));
+          for(int _i0 = 0; _i0 < _len_hba0; _i0++) {
+              hba[_i0].msi_lock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_3__ state;
+          state.event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = stex_choice_sleep_mic(hba,state);
+          printf("%d\n", benchRet); 
+          free(hba);
+        
+        break;
+    }
     default:
         usage();
         break;

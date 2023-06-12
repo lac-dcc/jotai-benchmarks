@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void dummy_udc_update_ep0(struct dummy *dum)
 		dum->ep[0].ep.maxpacket = 64;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dum0 = 1;
+          int _len_dum0 = 65025;
           struct dummy * dum = (struct dummy *) malloc(_len_dum0*sizeof(struct dummy));
           for(int _i0 = 0; _i0 < _len_dum0; _i0++) {
               int _len_dum__i0__ep0 = 1;
           dum[_i0].ep = (struct TYPE_6__ *) malloc(_len_dum__i0__ep0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_dum__i0__ep0; _j0++) {
-            dum[_i0].ep->ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+              dum[_i0].ep->ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-        dum[_i0].gadget.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+          dum[_i0].gadget.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           dummy_udc_update_ep0(dum);
           for(int _aux = 0; _aux < _len_dum0; _aux++) {
           free(dum[_aux].ep);
@@ -109,7 +110,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dum0 = 100;
+          struct dummy * dum = (struct dummy *) malloc(_len_dum0*sizeof(struct dummy));
+          for(int _i0 = 0; _i0 < _len_dum0; _i0++) {
+              int _len_dum__i0__ep0 = 1;
+          dum[_i0].ep = (struct TYPE_6__ *) malloc(_len_dum__i0__ep0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_dum__i0__ep0; _j0++) {
+              dum[_i0].ep->ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          dum[_i0].gadget.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dummy_udc_update_ep0(dum);
+          for(int _aux = 0; _aux < _len_dum0; _aux++) {
+          free(dum[_aux].ep);
+          }
+          free(dum);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dum0 = 1;
+          struct dummy * dum = (struct dummy *) malloc(_len_dum0*sizeof(struct dummy));
+          for(int _i0 = 0; _i0 < _len_dum0; _i0++) {
+              int _len_dum__i0__ep0 = 1;
+          dum[_i0].ep = (struct TYPE_6__ *) malloc(_len_dum__i0__ep0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_dum__i0__ep0; _j0++) {
+              dum[_i0].ep->ep.maxpacket = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          dum[_i0].gadget.speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          dummy_udc_update_ep0(dum);
+          for(int _aux = 0; _aux < _len_dum0; _aux++) {
+          free(dum[_aux].ep);
+          }
+          free(dum);
+        
+        break;
+    }
     default:
         usage();
         break;

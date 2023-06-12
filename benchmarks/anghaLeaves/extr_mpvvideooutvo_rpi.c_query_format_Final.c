@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int query_format(struct vo *vo, int format)
     return format == IMGFMT_MMAL || format == IMGFMT_420P;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int format = 100;
+        
           int _len_vo0 = 1;
           struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
           for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
-            vo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = query_format(vo,format);
+          printf("%d\n", benchRet); 
+          free(vo);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int format = 255;
+        
+          int _len_vo0 = 65025;
+          struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
+          for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
+              vo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = query_format(vo,format);
           printf("%d\n", benchRet); 
           free(vo);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int format = 10;
+        
           int _len_vo0 = 100;
           struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
           for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
-            vo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = query_format(vo,format);
           printf("%d\n", benchRet); 
           free(vo);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vo0 = 1;
+          struct vo * vo = (struct vo *) malloc(_len_vo0*sizeof(struct vo));
+          for(int _i0 = 0; _i0 < _len_vo0; _i0++) {
+              vo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = query_format(vo,format);
+          printf("%d\n", benchRet); 
+          free(vo);
+        
+        break;
+    }
     default:
         usage();
         break;

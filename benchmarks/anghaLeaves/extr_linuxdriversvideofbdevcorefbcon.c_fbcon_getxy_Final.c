@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -100,12 +103,6 @@ __attribute__((used)) static unsigned long fbcon_getxy(struct vc_data *vc, unsig
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,24 +119,29 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long pos = 100;
+        
           int _len_vc0 = 1;
           struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
           for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
-            vc[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
-        vc[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              vc[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_px0 = 1;
           int * px = (int *) malloc(_len_px0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_px0; _i0++) {
             px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_py0 = 1;
           int * py = (int *) malloc(_len_py0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_py0; _i0++) {
             py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = fbcon_getxy(vc,pos,px,py);
           printf("%lu\n", benchRet); 
           free(vc);
@@ -148,7 +150,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long pos = 255;
+        
+          int _len_vc0 = 65025;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_px0 = 65025;
+          int * px = (int *) malloc(_len_px0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_py0 = 65025;
+          int * py = (int *) malloc(_len_py0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_py0; _i0++) {
+            py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = fbcon_getxy(vc,pos,px,py);
+          printf("%lu\n", benchRet); 
+          free(vc);
+          free(px);
+          free(py);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long pos = 10;
+        
+          int _len_vc0 = 100;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_px0 = 100;
+          int * px = (int *) malloc(_len_px0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_py0 = 100;
+          int * py = (int *) malloc(_len_py0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_py0; _i0++) {
+            py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = fbcon_getxy(vc,pos,px,py);
+          printf("%lu\n", benchRet); 
+          free(vc);
+          free(px);
+          free(py);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vc0 = 1;
+          struct vc_data * vc = (struct vc_data *) malloc(_len_vc0*sizeof(struct vc_data));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].vc_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_scr_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_cols = ((-2 * (next_i()%2)) + 1) * next_i();
+          vc[_i0].vc_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_px0 = 1;
+          int * px = (int *) malloc(_len_px0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_px0; _i0++) {
+            px[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_py0 = 1;
+          int * py = (int *) malloc(_len_py0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_py0; _i0++) {
+            py[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = fbcon_getxy(vc,pos,px,py);
+          printf("%lu\n", benchRet); 
+          free(vc);
+          free(px);
+          free(py);
+        
+        break;
+    }
     default:
         usage();
         break;

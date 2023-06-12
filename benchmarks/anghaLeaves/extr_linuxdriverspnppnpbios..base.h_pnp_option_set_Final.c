@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline unsigned int pnp_option_set(struct pnp_optio
 	return (option->flags >> PNP_OPTION_SET_SHIFT) & PNP_OPTION_SET_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_option0 = 1;
+          int _len_option0 = 65025;
           struct pnp_option * option = (struct pnp_option *) malloc(_len_option0*sizeof(struct pnp_option));
           for(int _i0 = 0; _i0 < _len_option0; _i0++) {
-            option[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              option[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = pnp_option_set(option);
           printf("%u\n", benchRet); 
           free(option);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_option0 = 100;
           struct pnp_option * option = (struct pnp_option *) malloc(_len_option0*sizeof(struct pnp_option));
           for(int _i0 = 0; _i0 < _len_option0; _i0++) {
-            option[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              option[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = pnp_option_set(option);
           printf("%u\n", benchRet); 
           free(option);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_option0 = 1;
+          struct pnp_option * option = (struct pnp_option *) malloc(_len_option0*sizeof(struct pnp_option));
+          for(int _i0 = 0; _i0 < _len_option0; _i0++) {
+              option[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = pnp_option_set(option);
+          printf("%u\n", benchRet); 
+          free(option);
+        
+        break;
+    }
     default:
         usage();
         break;

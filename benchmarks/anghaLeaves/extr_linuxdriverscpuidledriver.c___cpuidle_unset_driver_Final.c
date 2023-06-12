@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void __cpuidle_unset_driver(struct cpuidle_d
 		cpuidle_curr_driver = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_drv0 = 1;
+          int _len_drv0 = 65025;
           struct cpuidle_driver * drv = (struct cpuidle_driver *) malloc(_len_drv0*sizeof(struct cpuidle_driver));
           for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
-            drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __cpuidle_unset_driver(drv);
           free(drv);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_drv0 = 100;
           struct cpuidle_driver * drv = (struct cpuidle_driver *) malloc(_len_drv0*sizeof(struct cpuidle_driver));
           for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
-            drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __cpuidle_unset_driver(drv);
           free(drv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_drv0 = 1;
+          struct cpuidle_driver * drv = (struct cpuidle_driver *) malloc(_len_drv0*sizeof(struct cpuidle_driver));
+          for(int _i0 = 0; _i0 < _len_drv0; _i0++) {
+              drv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __cpuidle_unset_driver(drv);
+          free(drv);
+        
+        break;
+    }
     default:
         usage();
         break;

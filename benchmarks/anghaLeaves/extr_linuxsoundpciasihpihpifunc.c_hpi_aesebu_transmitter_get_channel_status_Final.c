@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ u16 hpi_aesebu_transmitter_get_channel_status(u32 h_control, u16 index,
 	return HPI_ERROR_INVALID_OPERATION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,12 +82,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int h_control = 100;
+        
           int index = 100;
+        
           int _len_pw_data0 = 1;
           int * pw_data = (int *) malloc(_len_pw_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pw_data0; _i0++) {
             pw_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = hpi_aesebu_transmitter_get_channel_status(h_control,index,pw_data);
+          printf("%d\n", benchRet); 
+          free(pw_data);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int h_control = 255;
+        
+          int index = 255;
+        
+          int _len_pw_data0 = 65025;
+          int * pw_data = (int *) malloc(_len_pw_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pw_data0; _i0++) {
+            pw_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = hpi_aesebu_transmitter_get_channel_status(h_control,index,pw_data);
           printf("%d\n", benchRet); 
           free(pw_data);
@@ -99,22 +117,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int h_control = 10;
+        
           int index = 10;
+        
           int _len_pw_data0 = 100;
           int * pw_data = (int *) malloc(_len_pw_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pw_data0; _i0++) {
             pw_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hpi_aesebu_transmitter_get_channel_status(h_control,index,pw_data);
           printf("%d\n", benchRet); 
           free(pw_data);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int h_control = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pw_data0 = 1;
+          int * pw_data = (int *) malloc(_len_pw_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pw_data0; _i0++) {
+            pw_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hpi_aesebu_transmitter_get_channel_status(h_control,index,pw_data);
+          printf("%d\n", benchRet); 
+          free(pw_data);
+        
+        break;
+    }
     default:
         usage();
         break;

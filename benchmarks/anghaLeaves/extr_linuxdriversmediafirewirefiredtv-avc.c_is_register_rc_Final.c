@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static bool is_register_rc(struct avc_response_frame *r)
 	       r->operand[3] == SFE_VENDOR_OPCODE_REGISTER_REMOTE_CONTROL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_r0 = 1;
+          int _len_r0 = 65025;
           struct avc_response_frame * r = (struct avc_response_frame *) malloc(_len_r0*sizeof(struct avc_response_frame));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_r__i0__operand0 = 1;
           r[_i0].operand = (long *) malloc(_len_r__i0__operand0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_r__i0__operand0; _j0++) {
             r[_i0].operand[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = is_register_rc(r);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_r0; _aux++) {
@@ -109,7 +107,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_r0 = 100;
+          struct avc_response_frame * r = (struct avc_response_frame *) malloc(_len_r0*sizeof(struct avc_response_frame));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__operand0 = 1;
+          r[_i0].operand = (long *) malloc(_len_r__i0__operand0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_r__i0__operand0; _j0++) {
+            r[_i0].operand[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_register_rc(r);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].operand);
+          }
+          free(r);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_r0 = 1;
+          struct avc_response_frame * r = (struct avc_response_frame *) malloc(_len_r0*sizeof(struct avc_response_frame));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].opcode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_r__i0__operand0 = 1;
+          r[_i0].operand = (long *) malloc(_len_r__i0__operand0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_r__i0__operand0; _j0++) {
+            r[_i0].operand[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = is_register_rc(r);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].operand);
+          }
+          free(r);
+        
+        break;
+    }
     default:
         usage();
         break;

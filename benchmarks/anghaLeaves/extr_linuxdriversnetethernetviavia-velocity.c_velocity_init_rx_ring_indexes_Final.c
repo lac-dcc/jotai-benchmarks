@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void velocity_init_rx_ring_indexes(struct velocity_
 	vptr->rx.dirty = vptr->rx.filled = vptr->rx.curr = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +76,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vptr0 = 65025;
+          struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
+          for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
+              vptr[_i0].rx.curr = ((-2 * (next_i()%2)) + 1) * next_i();
+          vptr[_i0].rx.filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          vptr[_i0].rx.dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          velocity_init_rx_ring_indexes(vptr);
+          free(vptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_vptr0 = 100;
+          struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
+          for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
+              vptr[_i0].rx.curr = ((-2 * (next_i()%2)) + 1) * next_i();
+          vptr[_i0].rx.filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          vptr[_i0].rx.dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          velocity_init_rx_ring_indexes(vptr);
+          free(vptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_vptr0 = 1;
           struct velocity_info * vptr = (struct velocity_info *) malloc(_len_vptr0*sizeof(struct velocity_info));
           for(int _i0 = 0; _i0 < _len_vptr0; _i0++) {
-            vptr[_i0].rx.curr = ((-2 * (next_i()%2)) + 1) * next_i();
-        vptr[_i0].rx.filled = ((-2 * (next_i()%2)) + 1) * next_i();
-        vptr[_i0].rx.dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+              vptr[_i0].rx.curr = ((-2 * (next_i()%2)) + 1) * next_i();
+          vptr[_i0].rx.filled = ((-2 * (next_i()%2)) + 1) * next_i();
+          vptr[_i0].rx.dirty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           velocity_init_rx_ring_indexes(vptr);
           free(vptr);
         

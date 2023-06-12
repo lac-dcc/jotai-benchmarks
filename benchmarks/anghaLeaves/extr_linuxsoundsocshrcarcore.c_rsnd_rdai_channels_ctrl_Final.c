@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int rsnd_rdai_channels_ctrl(struct rsnd_dai *rdai,
 	return rdai->max_channels;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int max_channels = 100;
+        
           int _len_rdai0 = 1;
           struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
           for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
-            rdai[_i0].max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdai[_i0].max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rsnd_rdai_channels_ctrl(rdai,max_channels);
+          printf("%d\n", benchRet); 
+          free(rdai);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int max_channels = 255;
+        
+          int _len_rdai0 = 65025;
+          struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
+          for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
+              rdai[_i0].max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rsnd_rdai_channels_ctrl(rdai,max_channels);
           printf("%d\n", benchRet); 
           free(rdai);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int max_channels = 10;
+        
           int _len_rdai0 = 100;
           struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
           for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
-            rdai[_i0].max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdai[_i0].max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rsnd_rdai_channels_ctrl(rdai,max_channels);
           printf("%d\n", benchRet); 
           free(rdai);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdai0 = 1;
+          struct rsnd_dai * rdai = (struct rsnd_dai *) malloc(_len_rdai0*sizeof(struct rsnd_dai));
+          for(int _i0 = 0; _i0 < _len_rdai0; _i0++) {
+              rdai[_i0].max_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rsnd_rdai_channels_ctrl(rdai,max_channels);
+          printf("%d\n", benchRet); 
+          free(rdai);
+        
+        break;
+    }
     default:
         usage();
         break;

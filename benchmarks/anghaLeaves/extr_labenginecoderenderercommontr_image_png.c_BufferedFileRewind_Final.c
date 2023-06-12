@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -108,12 +111,6 @@ __attribute__((used)) static qboolean BufferedFileRewind(struct BufferedFile *BF
 	return(qtrue);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,21 +127,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int Offset = 100;
+        
           int _len_BF0 = 1;
           struct BufferedFile * BF = (struct BufferedFile *) malloc(_len_BF0*sizeof(struct BufferedFile));
           for(int _i0 = 0; _i0 < _len_BF0; _i0++) {
-            BF[_i0].Ptr = ((-2 * (next_i()%2)) + 1) * next_i();
-        BF[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
-        BF[_i0].BytesLeft = ((-2 * (next_i()%2)) + 1) * next_i();
-        BF[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+              BF[_i0].Ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].BytesLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = BufferedFileRewind(BF,Offset);
           printf("%d\n", benchRet); 
           free(BF);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int Offset = 255;
+        
+          int _len_BF0 = 65025;
+          struct BufferedFile * BF = (struct BufferedFile *) malloc(_len_BF0*sizeof(struct BufferedFile));
+          for(int _i0 = 0; _i0 < _len_BF0; _i0++) {
+              BF[_i0].Ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].BytesLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = BufferedFileRewind(BF,Offset);
+          printf("%d\n", benchRet); 
+          free(BF);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int Offset = 10;
+        
+          int _len_BF0 = 100;
+          struct BufferedFile * BF = (struct BufferedFile *) malloc(_len_BF0*sizeof(struct BufferedFile));
+          for(int _i0 = 0; _i0 < _len_BF0; _i0++) {
+              BF[_i0].Ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].BytesLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = BufferedFileRewind(BF,Offset);
+          printf("%d\n", benchRet); 
+          free(BF);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int Offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_BF0 = 1;
+          struct BufferedFile * BF = (struct BufferedFile *) malloc(_len_BF0*sizeof(struct BufferedFile));
+          for(int _i0 = 0; _i0 < _len_BF0; _i0++) {
+              BF[_i0].Ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Buffer = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].BytesLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          BF[_i0].Length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = BufferedFileRewind(BF,Offset);
+          printf("%d\n", benchRet); 
+          free(BF);
+        
+        break;
+    }
     default:
         usage();
         break;

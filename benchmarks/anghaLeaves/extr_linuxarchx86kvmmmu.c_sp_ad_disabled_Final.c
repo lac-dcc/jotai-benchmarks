@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool sp_ad_disabled(struct kvm_mmu_page *sp)
 	return sp->role.ad_disabled;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sp0 = 1;
+          int _len_sp0 = 65025;
           struct kvm_mmu_page * sp = (struct kvm_mmu_page *) malloc(_len_sp0*sizeof(struct kvm_mmu_page));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
-            sp[_i0].role.ad_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              sp[_i0].role.ad_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sp_ad_disabled(sp);
           printf("%d\n", benchRet); 
           free(sp);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_sp0 = 100;
           struct kvm_mmu_page * sp = (struct kvm_mmu_page *) malloc(_len_sp0*sizeof(struct kvm_mmu_page));
           for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
-            sp[_i0].role.ad_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              sp[_i0].role.ad_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = sp_ad_disabled(sp);
           printf("%d\n", benchRet); 
           free(sp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sp0 = 1;
+          struct kvm_mmu_page * sp = (struct kvm_mmu_page *) malloc(_len_sp0*sizeof(struct kvm_mmu_page));
+          for(int _i0 = 0; _i0 < _len_sp0; _i0++) {
+              sp[_i0].role.ad_disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = sp_ad_disabled(sp);
+          printf("%d\n", benchRet); 
+          free(sp);
+        
+        break;
+    }
     default:
         usage();
         break;

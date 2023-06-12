@@ -61,12 +61,6 @@ __attribute__((used)) static inline int left_child(int i)
 	return (i << 1) + 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           int benchRet = left_child(i);
           printf("%d\n", benchRet); 
         
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i = 255;
+        
           int benchRet = left_child(i);
           printf("%d\n", benchRet); 
         
@@ -101,12 +97,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i = 10;
+        
           int benchRet = left_child(i);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

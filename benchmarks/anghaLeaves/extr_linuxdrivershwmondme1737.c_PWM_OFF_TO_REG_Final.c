@@ -59,12 +59,6 @@ __attribute__((used)) static inline int PWM_OFF_TO_REG(int val, int ix, int reg)
 	return (reg & ~(1 << (ix + 5))) | ((val & 0x01) << (ix + 5));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +75,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 10;
+        
           int ix = 10;
+        
           int reg = 10;
+        
           int benchRet = PWM_OFF_TO_REG(val,ix,reg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

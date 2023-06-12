@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int insn_offset_rex_prefix(struct insn *insn
 	return insn->prefixes.nbytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_insn0 = 1;
+          int _len_insn0 = 65025;
           struct insn * insn = (struct insn *) malloc(_len_insn0*sizeof(struct insn));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
-            insn[_i0].prefixes.nbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              insn[_i0].prefixes.nbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = insn_offset_rex_prefix(insn);
           printf("%d\n", benchRet); 
           free(insn);
@@ -101,15 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_insn0 = 100;
           struct insn * insn = (struct insn *) malloc(_len_insn0*sizeof(struct insn));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
-            insn[_i0].prefixes.nbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              insn[_i0].prefixes.nbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = insn_offset_rex_prefix(insn);
           printf("%d\n", benchRet); 
           free(insn);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_insn0 = 1;
+          struct insn * insn = (struct insn *) malloc(_len_insn0*sizeof(struct insn));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+              insn[_i0].prefixes.nbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = insn_offset_rex_prefix(insn);
+          printf("%d\n", benchRet); 
+          free(insn);
+        
+        break;
+    }
     default:
         usage();
         break;

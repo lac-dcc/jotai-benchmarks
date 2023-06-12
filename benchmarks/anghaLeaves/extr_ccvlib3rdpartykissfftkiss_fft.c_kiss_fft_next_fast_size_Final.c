@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ int kiss_fft_next_fast_size(int n)
     return n;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,28 +83,136 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 79
+          // ------------------------------- 
+          // static_instructions_O1 : 44
+          // dynamic_instructions_O1 : 61
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 53
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 51
+          // ------------------------------- 
+
           int n = 100;
+        
           int benchRet = kiss_fft_next_fast_size(n);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 53
+          // dynamic_instructions_O0 : 179
+          // ------------------------------- 
+          // static_instructions_O1 : 56
+          // dynamic_instructions_O1 : 122
+          // ------------------------------- 
+          // static_instructions_O2 : 54
+          // dynamic_instructions_O2 : 118
+          // ------------------------------- 
+          // static_instructions_O3 : 54
+          // dynamic_instructions_O3 : 118
+          // ------------------------------- 
+          // static_instructions_Ofast : 54
+          // dynamic_instructions_Ofast : 118
+          // ------------------------------- 
+          // static_instructions_Os : 46
+          // dynamic_instructions_Os : 110
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 98
+          // ------------------------------- 
+
           int n = 255;
+        
           int benchRet = kiss_fft_next_fast_size(n);
           printf("%d\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 55
+          // ------------------------------- 
+          // static_instructions_O1 : 44
+          // dynamic_instructions_O1 : 44
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 42
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 42
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 42
+          // ------------------------------- 
+          // static_instructions_Os : 36
+          // dynamic_instructions_Os : 36
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 39
+          // ------------------------------- 
+
           int n = 10;
+        
+          int benchRet = kiss_fft_next_fast_size(n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = kiss_fft_next_fast_size(n);
           printf("%d\n", benchRet); 
         

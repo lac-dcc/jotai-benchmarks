@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ void tl_int_array_release (struct tl_int_array *a, int mark) {
   a->pos = mark;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,31 +78,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mark = 100;
+        
           int _len_a0 = 1;
           struct tl_int_array * a = (struct tl_int_array *) malloc(_len_a0*sizeof(struct tl_int_array));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          tl_int_array_release(a,mark);
+          free(a);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mark = 255;
+        
+          int _len_a0 = 65025;
+          struct tl_int_array * a = (struct tl_int_array *) malloc(_len_a0*sizeof(struct tl_int_array));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           tl_int_array_release(a,mark);
           free(a);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mark = 10;
+        
           int _len_a0 = 100;
           struct tl_int_array * a = (struct tl_int_array *) malloc(_len_a0*sizeof(struct tl_int_array));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tl_int_array_release(a,mark);
           free(a);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mark = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          struct tl_int_array * a = (struct tl_int_array *) malloc(_len_a0*sizeof(struct tl_int_array));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tl_int_array_release(a,mark);
+          free(a);
+        
+        break;
+    }
     default:
         usage();
         break;

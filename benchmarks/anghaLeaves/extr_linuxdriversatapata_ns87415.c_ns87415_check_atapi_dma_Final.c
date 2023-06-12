@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int ns87415_check_atapi_dma(struct ata_queued_cmd *
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qc0 = 1;
+          int _len_qc0 = 65025;
           struct ata_queued_cmd * qc = (struct ata_queued_cmd *) malloc(_len_qc0*sizeof(struct ata_queued_cmd));
           for(int _i0 = 0; _i0 < _len_qc0; _i0++) {
-            qc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              qc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ns87415_check_atapi_dma(qc);
           printf("%d\n", benchRet); 
           free(qc);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_qc0 = 100;
           struct ata_queued_cmd * qc = (struct ata_queued_cmd *) malloc(_len_qc0*sizeof(struct ata_queued_cmd));
           for(int _i0 = 0; _i0 < _len_qc0; _i0++) {
-            qc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              qc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ns87415_check_atapi_dma(qc);
           printf("%d\n", benchRet); 
           free(qc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_qc0 = 1;
+          struct ata_queued_cmd * qc = (struct ata_queued_cmd *) malloc(_len_qc0*sizeof(struct ata_queued_cmd));
+          for(int _i0 = 0; _i0 < _len_qc0; _i0++) {
+              qc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ns87415_check_atapi_dma(qc);
+          printf("%d\n", benchRet); 
+          free(qc);
+        
+        break;
+    }
     default:
         usage();
         break;

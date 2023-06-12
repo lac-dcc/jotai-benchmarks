@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ cfil_info_idle_timed_out(struct cfil_info *cfil_info, int timeout, u_int32_t cur
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +86,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int timeout = 100;
+        
           long current_time = 100;
+        
           int _len_cfil_info0 = 1;
           struct cfil_info * cfil_info = (struct cfil_info *) malloc(_len_cfil_info0*sizeof(struct cfil_info));
           for(int _i0 = 0; _i0 < _len_cfil_info0; _i0++) {
               int _len_cfil_info__i0__cfi_hash_entry0 = 1;
           cfil_info[_i0].cfi_hash_entry = (struct TYPE_2__ *) malloc(_len_cfil_info__i0__cfi_hash_entry0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cfil_info__i0__cfi_hash_entry0; _j0++) {
-            cfil_info[_i0].cfi_hash_entry->cfentry_lastused = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfil_info[_i0].cfi_hash_entry->cfentry_lastused = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = cfil_info_idle_timed_out(cfil_info,timeout,current_time);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfil_info0; _aux++) {
+          free(cfil_info[_aux].cfi_hash_entry);
+          }
+          free(cfil_info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int timeout = 255;
+        
+          long current_time = 255;
+        
+          int _len_cfil_info0 = 65025;
+          struct cfil_info * cfil_info = (struct cfil_info *) malloc(_len_cfil_info0*sizeof(struct cfil_info));
+          for(int _i0 = 0; _i0 < _len_cfil_info0; _i0++) {
+              int _len_cfil_info__i0__cfi_hash_entry0 = 1;
+          cfil_info[_i0].cfi_hash_entry = (struct TYPE_2__ *) malloc(_len_cfil_info__i0__cfi_hash_entry0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cfil_info__i0__cfi_hash_entry0; _j0++) {
+              cfil_info[_i0].cfi_hash_entry->cfentry_lastused = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cfil_info_idle_timed_out(cfil_info,timeout,current_time);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfil_info0; _aux++) {
+          free(cfil_info[_aux].cfi_hash_entry);
+          }
+          free(cfil_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int timeout = 10;
+        
+          long current_time = 10;
+        
+          int _len_cfil_info0 = 100;
+          struct cfil_info * cfil_info = (struct cfil_info *) malloc(_len_cfil_info0*sizeof(struct cfil_info));
+          for(int _i0 = 0; _i0 < _len_cfil_info0; _i0++) {
+              int _len_cfil_info__i0__cfi_hash_entry0 = 1;
+          cfil_info[_i0].cfi_hash_entry = (struct TYPE_2__ *) malloc(_len_cfil_info__i0__cfi_hash_entry0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cfil_info__i0__cfi_hash_entry0; _j0++) {
+              cfil_info[_i0].cfi_hash_entry->cfentry_lastused = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = cfil_info_idle_timed_out(cfil_info,timeout,current_time);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cfil_info0; _aux++) {
+          free(cfil_info[_aux].cfi_hash_entry);
+          }
+          free(cfil_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int timeout = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long current_time = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cfil_info0 = 1;
+          struct cfil_info * cfil_info = (struct cfil_info *) malloc(_len_cfil_info0*sizeof(struct cfil_info));
+          for(int _i0 = 0; _i0 < _len_cfil_info0; _i0++) {
+              int _len_cfil_info__i0__cfi_hash_entry0 = 1;
+          cfil_info[_i0].cfi_hash_entry = (struct TYPE_2__ *) malloc(_len_cfil_info__i0__cfi_hash_entry0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cfil_info__i0__cfi_hash_entry0; _j0++) {
+              cfil_info[_i0].cfi_hash_entry->cfentry_lastused = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = cfil_info_idle_timed_out(cfil_info,timeout,current_time);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cfil_info0; _aux++) {

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ hv_set_next_write_location(struct hv_ring_buffer_info *ring_info,
 	ring_info->ring_buffer->write_index = next_write_location;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,193 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int next_write_location = 100;
+        
           int _len_ring_info0 = 1;
           struct hv_ring_buffer_info * ring_info = (struct hv_ring_buffer_info *) malloc(_len_ring_info0*sizeof(struct hv_ring_buffer_info));
           for(int _i0 = 0; _i0 < _len_ring_info0; _i0++) {
               int _len_ring_info__i0__ring_buffer0 = 1;
           ring_info[_i0].ring_buffer = (struct TYPE_2__ *) malloc(_len_ring_info__i0__ring_buffer0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ring_info__i0__ring_buffer0; _j0++) {
-            ring_info[_i0].ring_buffer->write_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring_info[_i0].ring_buffer->write_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          hv_set_next_write_location(ring_info,next_write_location);
+          for(int _aux = 0; _aux < _len_ring_info0; _aux++) {
+          free(ring_info[_aux].ring_buffer);
+          }
+          free(ring_info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int next_write_location = 255;
+        
+          int _len_ring_info0 = 65025;
+          struct hv_ring_buffer_info * ring_info = (struct hv_ring_buffer_info *) malloc(_len_ring_info0*sizeof(struct hv_ring_buffer_info));
+          for(int _i0 = 0; _i0 < _len_ring_info0; _i0++) {
+              int _len_ring_info__i0__ring_buffer0 = 1;
+          ring_info[_i0].ring_buffer = (struct TYPE_2__ *) malloc(_len_ring_info__i0__ring_buffer0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring_info__i0__ring_buffer0; _j0++) {
+              ring_info[_i0].ring_buffer->write_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          hv_set_next_write_location(ring_info,next_write_location);
+          for(int _aux = 0; _aux < _len_ring_info0; _aux++) {
+          free(ring_info[_aux].ring_buffer);
+          }
+          free(ring_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int next_write_location = 10;
+        
+          int _len_ring_info0 = 100;
+          struct hv_ring_buffer_info * ring_info = (struct hv_ring_buffer_info *) malloc(_len_ring_info0*sizeof(struct hv_ring_buffer_info));
+          for(int _i0 = 0; _i0 < _len_ring_info0; _i0++) {
+              int _len_ring_info__i0__ring_buffer0 = 1;
+          ring_info[_i0].ring_buffer = (struct TYPE_2__ *) malloc(_len_ring_info__i0__ring_buffer0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring_info__i0__ring_buffer0; _j0++) {
+              ring_info[_i0].ring_buffer->write_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          hv_set_next_write_location(ring_info,next_write_location);
+          for(int _aux = 0; _aux < _len_ring_info0; _aux++) {
+          free(ring_info[_aux].ring_buffer);
+          }
+          free(ring_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int next_write_location = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ring_info0 = 1;
+          struct hv_ring_buffer_info * ring_info = (struct hv_ring_buffer_info *) malloc(_len_ring_info0*sizeof(struct hv_ring_buffer_info));
+          for(int _i0 = 0; _i0 < _len_ring_info0; _i0++) {
+              int _len_ring_info__i0__ring_buffer0 = 1;
+          ring_info[_i0].ring_buffer = (struct TYPE_2__ *) malloc(_len_ring_info__i0__ring_buffer0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ring_info__i0__ring_buffer0; _j0++) {
+              ring_info[_i0].ring_buffer->write_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           hv_set_next_write_location(ring_info,next_write_location);
           for(int _aux = 0; _aux < _len_ring_info0; _aux++) {
           free(ring_info[_aux].ring_buffer);

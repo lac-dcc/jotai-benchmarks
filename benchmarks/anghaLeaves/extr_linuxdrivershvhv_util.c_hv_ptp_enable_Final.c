@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static int hv_ptp_enable(struct ptp_clock_info *info,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int on = 100;
+        
           int _len_info0 = 1;
           struct ptp_clock_info * info = (struct ptp_clock_info *) malloc(_len_info0*sizeof(struct ptp_clock_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_request0 = 1;
           struct ptp_clock_request * request = (struct ptp_clock_request *) malloc(_len_request0*sizeof(struct ptp_clock_request));
           for(int _i0 = 0; _i0 < _len_request0; _i0++) {
-            request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = hv_ptp_enable(info,request,on);
           printf("%d\n", benchRet); 
           free(info);
@@ -102,7 +104,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int on = 255;
+        
+          int _len_info0 = 65025;
+          struct ptp_clock_info * info = (struct ptp_clock_info *) malloc(_len_info0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_request0 = 65025;
+          struct ptp_clock_request * request = (struct ptp_clock_request *) malloc(_len_request0*sizeof(struct ptp_clock_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hv_ptp_enable(info,request,on);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(request);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int on = 10;
+        
+          int _len_info0 = 100;
+          struct ptp_clock_info * info = (struct ptp_clock_info *) malloc(_len_info0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_request0 = 100;
+          struct ptp_clock_request * request = (struct ptp_clock_request *) malloc(_len_request0*sizeof(struct ptp_clock_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hv_ptp_enable(info,request,on);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(request);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct ptp_clock_info * info = (struct ptp_clock_info *) malloc(_len_info0*sizeof(struct ptp_clock_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_request0 = 1;
+          struct ptp_clock_request * request = (struct ptp_clock_request *) malloc(_len_request0*sizeof(struct ptp_clock_request));
+          for(int _i0 = 0; _i0 < _len_request0; _i0++) {
+              request[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hv_ptp_enable(info,request,on);
+          printf("%d\n", benchRet); 
+          free(info);
+          free(request);
+        
+        break;
+    }
     default:
         usage();
         break;

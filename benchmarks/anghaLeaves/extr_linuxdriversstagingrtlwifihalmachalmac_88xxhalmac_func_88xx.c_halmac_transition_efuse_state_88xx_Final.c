@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +100,6 @@ enum halmac_ret_status halmac_transition_efuse_state_88xx(
 	return HALMAC_RET_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,15 +112,20 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum halmac_efuse_cmd_construct_state dest_state = 0;
-          int _len_halmac_adapter0 = 1;
+        
+          int _len_halmac_adapter0 = 65025;
           struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
           for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
-            halmac_adapter[_i0].halmac_state.efuse_state_set.efuse_cmd_construct_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              halmac_adapter[_i0].halmac_state.efuse_state_set.efuse_cmd_construct_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           enum halmac_ret_status benchRet = halmac_transition_efuse_state_88xx(halmac_adapter,dest_state);
           free(halmac_adapter);
         
@@ -135,17 +135,40 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum halmac_efuse_cmd_construct_state dest_state = 0;
+        
           int _len_halmac_adapter0 = 100;
           struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
           for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
-            halmac_adapter[_i0].halmac_state.efuse_state_set.efuse_cmd_construct_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              halmac_adapter[_i0].halmac_state.efuse_state_set.efuse_cmd_construct_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           enum halmac_ret_status benchRet = halmac_transition_efuse_state_88xx(halmac_adapter,dest_state);
           free(halmac_adapter);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum halmac_efuse_cmd_construct_state dest_state = 0;
+        
+          int _len_halmac_adapter0 = 1;
+          struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
+          for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
+              halmac_adapter[_i0].halmac_state.efuse_state_set.efuse_cmd_construct_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          enum halmac_ret_status benchRet = halmac_transition_efuse_state_88xx(halmac_adapter,dest_state);
+          free(halmac_adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

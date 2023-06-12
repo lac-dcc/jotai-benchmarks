@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static int unifb_pan_display(struct fb_var_screeninfo *var
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,27 +96,32 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_var0 = 1;
+          int _len_var0 = 65025;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].vmode = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_info0 = 1;
+        
+          int _len_info0 = 65025;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].var.yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].var.yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = unifb_pan_display(var,info);
           printf("%d\n", benchRet); 
           free(var);
@@ -128,7 +129,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].var.yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = unifb_pan_display(var,info);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_var0 = 1;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 1;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].var.yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.xoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.vmode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = unifb_pan_display(var,info);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

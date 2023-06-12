@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline int dv_write_dif_id(enum dv_section_type t, 
     return 3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,25 +81,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
           enum dv_section_type t = 0;
-          int chan_num = 10;
-          int seq_num = 10;
-          int dif_num = 10;
-          int _len_buf0 = 100;
+        
+          int chan_num = 255;
+        
+          int seq_num = 255;
+        
+          int dif_num = 255;
+        
+          int _len_buf0 = 65025;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dv_write_dif_id(t,chan_num,seq_num,dif_num,buf);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum dv_section_type t = 0;
+        
+          int chan_num = 10;
+        
+          int seq_num = 10;
+        
+          int dif_num = 10;
+        
+          int _len_buf0 = 100;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dv_write_dif_id(t,chan_num,seq_num,dif_num,buf);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

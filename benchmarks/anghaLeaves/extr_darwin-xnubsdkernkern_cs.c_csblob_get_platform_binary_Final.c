@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ csblob_get_platform_binary(struct cs_blob *blob)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_blob0 = 1;
+          int _len_blob0 = 65025;
           struct cs_blob * blob = (struct cs_blob *) malloc(_len_blob0*sizeof(struct cs_blob));
           for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
-            blob[_i0].csb_platform_binary = ((-2 * (next_i()%2)) + 1) * next_i();
+              blob[_i0].csb_platform_binary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = csblob_get_platform_binary(blob);
           printf("%d\n", benchRet); 
           free(blob);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_blob0 = 100;
           struct cs_blob * blob = (struct cs_blob *) malloc(_len_blob0*sizeof(struct cs_blob));
           for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
-            blob[_i0].csb_platform_binary = ((-2 * (next_i()%2)) + 1) * next_i();
+              blob[_i0].csb_platform_binary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = csblob_get_platform_binary(blob);
           printf("%d\n", benchRet); 
           free(blob);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_blob0 = 1;
+          struct cs_blob * blob = (struct cs_blob *) malloc(_len_blob0*sizeof(struct cs_blob));
+          for(int _i0 = 0; _i0 < _len_blob0; _i0++) {
+              blob[_i0].csb_platform_binary = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = csblob_get_platform_binary(blob);
+          printf("%d\n", benchRet); 
+          free(blob);
+        
+        break;
+    }
     default:
         usage();
         break;

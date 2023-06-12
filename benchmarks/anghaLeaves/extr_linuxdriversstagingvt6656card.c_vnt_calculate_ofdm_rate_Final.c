@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -145,12 +148,6 @@ __attribute__((used)) static void vnt_calculate_ofdm_rate(u16 rate, u8 bb_type,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -163,21 +160,195 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int rate = 100;
+        
           int bb_type = 100;
+        
           int _len_tx_rate0 = 1;
           int * tx_rate = (int *) malloc(_len_tx_rate0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tx_rate0; _i0++) {
             tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_rsv_time0 = 1;
           int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
             rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          vnt_calculate_ofdm_rate(rate,bb_type,tx_rate,rsv_time);
+          free(tx_rate);
+          free(rsv_time);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int rate = 255;
+        
+          int bb_type = 255;
+        
+          int _len_tx_rate0 = 65025;
+          int * tx_rate = (int *) malloc(_len_tx_rate0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_rate0; _i0++) {
+            tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rsv_time0 = 65025;
+          int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
+            rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          vnt_calculate_ofdm_rate(rate,bb_type,tx_rate,rsv_time);
+          free(tx_rate);
+          free(rsv_time);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int rate = 10;
+        
+          int bb_type = 10;
+        
+          int _len_tx_rate0 = 100;
+          int * tx_rate = (int *) malloc(_len_tx_rate0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_rate0; _i0++) {
+            tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rsv_time0 = 100;
+          int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
+            rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          vnt_calculate_ofdm_rate(rate,bb_type,tx_rate,rsv_time);
+          free(tx_rate);
+          free(rsv_time);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bb_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx_rate0 = 1;
+          int * tx_rate = (int *) malloc(_len_tx_rate0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tx_rate0; _i0++) {
+            tx_rate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_rsv_time0 = 1;
+          int * rsv_time = (int *) malloc(_len_rsv_time0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rsv_time0; _i0++) {
+            rsv_time[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           vnt_calculate_ofdm_rate(rate,bb_type,tx_rate,rsv_time);
           free(tx_rate);
           free(rsv_time);

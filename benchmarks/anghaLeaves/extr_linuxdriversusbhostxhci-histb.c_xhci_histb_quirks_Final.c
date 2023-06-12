@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void xhci_histb_quirks(struct device *dev, struct x
 	xhci->quirks |= XHCI_PLAT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +81,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_xhci0 = 1;
+        
+          int _len_xhci0 = 65025;
           struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
           for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
-            xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+              xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xhci_histb_quirks(dev,xhci);
           free(dev);
           free(xhci);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xhci0 = 100;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xhci_histb_quirks(dev,xhci);
+          free(dev);
+          free(xhci);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_xhci0 = 1;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].quirks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xhci_histb_quirks(dev,xhci);
+          free(dev);
+          free(xhci);
+        
+        break;
+    }
     default:
         usage();
         break;

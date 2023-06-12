@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static bool rotate_command(struct mp_filter *f, struct mp_
     return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,24 +85,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_f0 = 1;
+          int _len_f0 = 65025;
           struct mp_filter * f = (struct mp_filter *) malloc(_len_f0*sizeof(struct mp_filter));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
               int _len_f__i0__priv0 = 1;
           f[_i0].priv = (struct rotate_priv *) malloc(_len_f__i0__priv0*sizeof(struct rotate_priv));
           for(int _j0 = 0; _j0 < _len_f__i0__priv0; _j0++) {
-            f[_i0].priv->sub.filter = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].priv->sub.filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
-          int _len_cmd0 = 1;
+        
+          int _len_cmd0 = 65025;
           struct mp_filter_command * cmd = (struct mp_filter_command *) malloc(_len_cmd0*sizeof(struct mp_filter_command));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].is_active = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].is_active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rotate_command(f,cmd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_f0; _aux++) {
@@ -117,7 +119,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_f0 = 100;
+          struct mp_filter * f = (struct mp_filter *) malloc(_len_f0*sizeof(struct mp_filter));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              int _len_f__i0__priv0 = 1;
+          f[_i0].priv = (struct rotate_priv *) malloc(_len_f__i0__priv0*sizeof(struct rotate_priv));
+          for(int _j0 = 0; _j0 < _len_f__i0__priv0; _j0++) {
+              f[_i0].priv->sub.filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_cmd0 = 100;
+          struct mp_filter_command * cmd = (struct mp_filter_command *) malloc(_len_cmd0*sizeof(struct mp_filter_command));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].is_active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rotate_command(f,cmd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(f[_aux].priv);
+          }
+          free(f);
+          free(cmd);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_f0 = 1;
+          struct mp_filter * f = (struct mp_filter *) malloc(_len_f0*sizeof(struct mp_filter));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              int _len_f__i0__priv0 = 1;
+          f[_i0].priv = (struct rotate_priv *) malloc(_len_f__i0__priv0*sizeof(struct rotate_priv));
+          for(int _j0 = 0; _j0 < _len_f__i0__priv0; _j0++) {
+              f[_i0].priv->sub.filter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_cmd0 = 1;
+          struct mp_filter_command * cmd = (struct mp_filter_command *) malloc(_len_cmd0*sizeof(struct mp_filter_command));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].is_active = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rotate_command(f,cmd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(f[_aux].priv);
+          }
+          free(f);
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

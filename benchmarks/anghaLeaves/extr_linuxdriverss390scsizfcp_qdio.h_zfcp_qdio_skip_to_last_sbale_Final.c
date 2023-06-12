@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void zfcp_qdio_skip_to_last_sbale(struct zfcp_qdio *qdio,
 	q_req->sbale_curr = qdio->max_sbale_per_sbal - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,26 +77,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_qdio0 = 1;
+          int _len_qdio0 = 65025;
           struct zfcp_qdio * qdio = (struct zfcp_qdio *) malloc(_len_qdio0*sizeof(struct zfcp_qdio));
           for(int _i0 = 0; _i0 < _len_qdio0; _i0++) {
-            qdio[_i0].max_sbale_per_sbal = ((-2 * (next_i()%2)) + 1) * next_i();
+              qdio[_i0].max_sbale_per_sbal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_q_req0 = 1;
+        
+          int _len_q_req0 = 65025;
           struct zfcp_qdio_req * q_req = (struct zfcp_qdio_req *) malloc(_len_q_req0*sizeof(struct zfcp_qdio_req));
           for(int _i0 = 0; _i0 < _len_q_req0; _i0++) {
-            q_req[_i0].sbale_curr = ((-2 * (next_i()%2)) + 1) * next_i();
+              q_req[_i0].sbale_curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zfcp_qdio_skip_to_last_sbale(qdio,q_req);
           free(qdio);
           free(q_req);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_qdio0 = 100;
+          struct zfcp_qdio * qdio = (struct zfcp_qdio *) malloc(_len_qdio0*sizeof(struct zfcp_qdio));
+          for(int _i0 = 0; _i0 < _len_qdio0; _i0++) {
+              qdio[_i0].max_sbale_per_sbal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_q_req0 = 100;
+          struct zfcp_qdio_req * q_req = (struct zfcp_qdio_req *) malloc(_len_q_req0*sizeof(struct zfcp_qdio_req));
+          for(int _i0 = 0; _i0 < _len_q_req0; _i0++) {
+              q_req[_i0].sbale_curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zfcp_qdio_skip_to_last_sbale(qdio,q_req);
+          free(qdio);
+          free(q_req);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_qdio0 = 1;
+          struct zfcp_qdio * qdio = (struct zfcp_qdio *) malloc(_len_qdio0*sizeof(struct zfcp_qdio));
+          for(int _i0 = 0; _i0 < _len_qdio0; _i0++) {
+              qdio[_i0].max_sbale_per_sbal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_q_req0 = 1;
+          struct zfcp_qdio_req * q_req = (struct zfcp_qdio_req *) malloc(_len_q_req0*sizeof(struct zfcp_qdio_req));
+          for(int _i0 = 0; _i0 < _len_q_req0; _i0++) {
+              q_req[_i0].sbale_curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zfcp_qdio_skip_to_last_sbale(qdio,q_req);
+          free(qdio);
+          free(q_req);
+        
+        break;
+    }
     default:
         usage();
         break;

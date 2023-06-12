@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static void cm_format_mad_hdr(struct ib_mad_hdr *hdr,
 	hdr->tid	   = tid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,21 +87,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int attr_id = 100;
+        
           int tid = 100;
+        
           int _len_hdr0 = 1;
           struct ib_mad_hdr * hdr = (struct ib_mad_hdr *) malloc(_len_hdr0*sizeof(struct ib_mad_hdr));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
-            hdr[_i0].tid = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].attr_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].class_version = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
-        hdr[_i0].base_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdr[_i0].tid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].attr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].class_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].base_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          cm_format_mad_hdr(hdr,attr_id,tid);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int attr_id = 255;
+        
+          int tid = 255;
+        
+          int _len_hdr0 = 65025;
+          struct ib_mad_hdr * hdr = (struct ib_mad_hdr *) malloc(_len_hdr0*sizeof(struct ib_mad_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].tid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].attr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].class_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].base_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cm_format_mad_hdr(hdr,attr_id,tid);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int attr_id = 10;
+        
+          int tid = 10;
+        
+          int _len_hdr0 = 100;
+          struct ib_mad_hdr * hdr = (struct ib_mad_hdr *) malloc(_len_hdr0*sizeof(struct ib_mad_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].tid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].attr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].class_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].base_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          cm_format_mad_hdr(hdr,attr_id,tid);
+          free(hdr);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int attr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdr0 = 1;
+          struct ib_mad_hdr * hdr = (struct ib_mad_hdr *) malloc(_len_hdr0*sizeof(struct ib_mad_hdr));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+              hdr[_i0].tid = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].attr_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].method = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].class_version = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].mgmt_class = ((-2 * (next_i()%2)) + 1) * next_i();
+          hdr[_i0].base_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           cm_format_mad_hdr(hdr,attr_id,tid);
           free(hdr);
         

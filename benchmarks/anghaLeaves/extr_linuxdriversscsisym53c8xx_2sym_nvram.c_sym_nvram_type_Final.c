@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ char *sym_nvram_type(struct sym_nvram *nvp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,14 +86,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_nvp0 = 1;
+          int _len_nvp0 = 65025;
           struct sym_nvram * nvp = (struct sym_nvram *) malloc(_len_nvp0*sizeof(struct sym_nvram));
           for(int _i0 = 0; _i0 < _len_nvp0; _i0++) {
-            nvp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              nvp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char * benchRet = sym_nvram_type(nvp);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(nvp);
@@ -111,15 +108,32 @@ int main(int argc, char *argv[]) {
           int _len_nvp0 = 100;
           struct sym_nvram * nvp = (struct sym_nvram *) malloc(_len_nvp0*sizeof(struct sym_nvram));
           for(int _i0 = 0; _i0 < _len_nvp0; _i0++) {
-            nvp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              nvp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           char * benchRet = sym_nvram_type(nvp);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(nvp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_nvp0 = 1;
+          struct sym_nvram * nvp = (struct sym_nvram *) malloc(_len_nvp0*sizeof(struct sym_nvram));
+          for(int _i0 = 0; _i0 < _len_nvp0; _i0++) {
+              nvp[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          char * benchRet = sym_nvram_type(nvp);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(nvp);
+        
+        break;
+    }
     default:
         usage();
         break;

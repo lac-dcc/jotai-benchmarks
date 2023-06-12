@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ BOOL kull_m_pn532_Diagnose(PKULL_M_PN532_COMM comm /*, ...*/)
 	return status;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int comm = 100;
+        
           int benchRet = kull_m_pn532_Diagnose(comm);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int comm = 255;
+        
           int benchRet = kull_m_pn532_Diagnose(comm);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int comm = 10;
+        
           int benchRet = kull_m_pn532_Diagnose(comm);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int comm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = kull_m_pn532_Diagnose(comm);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

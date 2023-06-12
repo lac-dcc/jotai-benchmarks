@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ skl_tplg_free_pipe_mem(struct skl *skl, struct skl_module_cfg *mconfig)
 	skl->resource.mem -= mconfig->pipe->memory_pages;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,23 +80,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_skl0 = 1;
+          int _len_skl0 = 65025;
           struct skl * skl = (struct skl *) malloc(_len_skl0*sizeof(struct skl));
           for(int _i0 = 0; _i0 < _len_skl0; _i0++) {
-            skl[_i0].resource.mem = ((-2 * (next_i()%2)) + 1) * next_i();
+              skl[_i0].resource.mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_mconfig0 = 1;
+        
+          int _len_mconfig0 = 65025;
           struct skl_module_cfg * mconfig = (struct skl_module_cfg *) malloc(_len_mconfig0*sizeof(struct skl_module_cfg));
           for(int _i0 = 0; _i0 < _len_mconfig0; _i0++) {
               int _len_mconfig__i0__pipe0 = 1;
           mconfig[_i0].pipe = (struct TYPE_4__ *) malloc(_len_mconfig__i0__pipe0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_mconfig__i0__pipe0; _j0++) {
-            mconfig[_i0].pipe->memory_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              mconfig[_i0].pipe->memory_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           skl_tplg_free_pipe_mem(skl,mconfig);
           free(skl);
           for(int _aux = 0; _aux < _len_mconfig0; _aux++) {
@@ -110,7 +112,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_skl0 = 100;
+          struct skl * skl = (struct skl *) malloc(_len_skl0*sizeof(struct skl));
+          for(int _i0 = 0; _i0 < _len_skl0; _i0++) {
+              skl[_i0].resource.mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_mconfig0 = 100;
+          struct skl_module_cfg * mconfig = (struct skl_module_cfg *) malloc(_len_mconfig0*sizeof(struct skl_module_cfg));
+          for(int _i0 = 0; _i0 < _len_mconfig0; _i0++) {
+              int _len_mconfig__i0__pipe0 = 1;
+          mconfig[_i0].pipe = (struct TYPE_4__ *) malloc(_len_mconfig__i0__pipe0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mconfig__i0__pipe0; _j0++) {
+              mconfig[_i0].pipe->memory_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          skl_tplg_free_pipe_mem(skl,mconfig);
+          free(skl);
+          for(int _aux = 0; _aux < _len_mconfig0; _aux++) {
+          free(mconfig[_aux].pipe);
+          }
+          free(mconfig);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_skl0 = 1;
+          struct skl * skl = (struct skl *) malloc(_len_skl0*sizeof(struct skl));
+          for(int _i0 = 0; _i0 < _len_skl0; _i0++) {
+              skl[_i0].resource.mem = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_mconfig0 = 1;
+          struct skl_module_cfg * mconfig = (struct skl_module_cfg *) malloc(_len_mconfig0*sizeof(struct skl_module_cfg));
+          for(int _i0 = 0; _i0 < _len_mconfig0; _i0++) {
+              int _len_mconfig__i0__pipe0 = 1;
+          mconfig[_i0].pipe = (struct TYPE_4__ *) malloc(_len_mconfig__i0__pipe0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_mconfig__i0__pipe0; _j0++) {
+              mconfig[_i0].pipe->memory_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          skl_tplg_free_pipe_mem(skl,mconfig);
+          free(skl);
+          for(int _aux = 0; _aux < _len_mconfig0; _aux++) {
+          free(mconfig[_aux].pipe);
+          }
+          free(mconfig);
+        
+        break;
+    }
     default:
         usage();
         break;

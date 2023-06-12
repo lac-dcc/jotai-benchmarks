@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static unsigned int xhci_get_last_burst_packet_count(struc
 	return total_packet_count - 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,29 +103,264 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned int total_packet_count = 100;
+        
           int _len_xhci0 = 1;
           struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
           for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
-            xhci[_i0].hci_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              xhci[_i0].hci_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_urb0 = 1;
           struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
           for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
               int _len_urb__i0__ep0 = 1;
           urb[_i0].ep = (struct TYPE_6__ *) malloc(_len_urb__i0__ep0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_urb__i0__ep0; _j0++) {
-            urb[_i0].ep->ss_ep_comp.bMaxBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].ep->ss_ep_comp.bMaxBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
           int _len_urb__i0__dev0 = 1;
           urb[_i0].dev = (struct TYPE_4__ *) malloc(_len_urb__i0__dev0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_urb__i0__dev0; _j0++) {
-            urb[_i0].dev->speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              urb[_i0].dev->speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned int benchRet = xhci_get_last_burst_packet_count(xhci,urb,total_packet_count);
+          printf("%u\n", benchRet); 
+          free(xhci);
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].ep);
+          }
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].dev);
+          }
+          free(urb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int total_packet_count = 255;
+        
+          int _len_xhci0 = 65025;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].hci_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb0 = 65025;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              int _len_urb__i0__ep0 = 1;
+          urb[_i0].ep = (struct TYPE_6__ *) malloc(_len_urb__i0__ep0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_urb__i0__ep0; _j0++) {
+              urb[_i0].ep->ss_ep_comp.bMaxBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_urb__i0__dev0 = 1;
+          urb[_i0].dev = (struct TYPE_4__ *) malloc(_len_urb__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_urb__i0__dev0; _j0++) {
+              urb[_i0].dev->speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = xhci_get_last_burst_packet_count(xhci,urb,total_packet_count);
+          printf("%u\n", benchRet); 
+          free(xhci);
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].ep);
+          }
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].dev);
+          }
+          free(urb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int total_packet_count = 10;
+        
+          int _len_xhci0 = 100;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].hci_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb0 = 100;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              int _len_urb__i0__ep0 = 1;
+          urb[_i0].ep = (struct TYPE_6__ *) malloc(_len_urb__i0__ep0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_urb__i0__ep0; _j0++) {
+              urb[_i0].ep->ss_ep_comp.bMaxBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_urb__i0__dev0 = 1;
+          urb[_i0].dev = (struct TYPE_4__ *) malloc(_len_urb__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_urb__i0__dev0; _j0++) {
+              urb[_i0].dev->speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned int benchRet = xhci_get_last_burst_packet_count(xhci,urb,total_packet_count);
+          printf("%u\n", benchRet); 
+          free(xhci);
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].ep);
+          }
+          for(int _aux = 0; _aux < _len_urb0; _aux++) {
+          free(urb[_aux].dev);
+          }
+          free(urb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned int total_packet_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_xhci0 = 1;
+          struct xhci_hcd * xhci = (struct xhci_hcd *) malloc(_len_xhci0*sizeof(struct xhci_hcd));
+          for(int _i0 = 0; _i0 < _len_xhci0; _i0++) {
+              xhci[_i0].hci_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_urb0 = 1;
+          struct urb * urb = (struct urb *) malloc(_len_urb0*sizeof(struct urb));
+          for(int _i0 = 0; _i0 < _len_urb0; _i0++) {
+              int _len_urb__i0__ep0 = 1;
+          urb[_i0].ep = (struct TYPE_6__ *) malloc(_len_urb__i0__ep0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_urb__i0__ep0; _j0++) {
+              urb[_i0].ep->ss_ep_comp.bMaxBurst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+          int _len_urb__i0__dev0 = 1;
+          urb[_i0].dev = (struct TYPE_4__ *) malloc(_len_urb__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_urb__i0__dev0; _j0++) {
+              urb[_i0].dev->speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned int benchRet = xhci_get_last_burst_packet_count(xhci,urb,total_packet_count);
           printf("%u\n", benchRet); 
           free(xhci);

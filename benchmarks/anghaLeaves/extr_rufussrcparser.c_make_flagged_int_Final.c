@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static size_t make_flagged_int(unsigned long value, uint8_
 	return buf_len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,23 +87,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long value = 10;
-          unsigned long buf_len = 10;
-          int _len_buf0 = 100;
+          unsigned long value = 255;
+        
+          unsigned long buf_len = 255;
+        
+          int _len_buf0 = 65025;
           long * buf = (long *) malloc(_len_buf0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = make_flagged_int(value,buf,buf_len);
           printf("%lu\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long value = 10;
+        
+          unsigned long buf_len = 10;
+        
+          int _len_buf0 = 100;
+          long * buf = (long *) malloc(_len_buf0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = make_flagged_int(value,buf,buf_len);
+          printf("%lu\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

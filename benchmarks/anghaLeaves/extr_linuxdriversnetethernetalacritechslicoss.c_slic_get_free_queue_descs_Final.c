@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline int slic_get_free_queue_descs(unsigned int p
 	return (done_idx - put_idx - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,8 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int put_idx = 100;
+        
           unsigned int done_idx = 100;
+        
           unsigned int qlen = 100;
+        
           int benchRet = slic_get_free_queue_descs(put_idx,done_idx,qlen);
           printf("%d\n", benchRet); 
         
@@ -98,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int put_idx = 255;
+        
           unsigned int done_idx = 255;
+        
           unsigned int qlen = 255;
+        
           int benchRet = slic_get_free_queue_descs(put_idx,done_idx,qlen);
           printf("%d\n", benchRet); 
         
@@ -109,14 +110,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int put_idx = 10;
+        
           unsigned int done_idx = 10;
+        
           unsigned int qlen = 10;
+        
           int benchRet = slic_get_free_queue_descs(put_idx,done_idx,qlen);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int put_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int done_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int qlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = slic_get_free_queue_descs(put_idx,done_idx,qlen);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

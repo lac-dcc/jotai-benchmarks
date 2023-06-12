@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ nvkm_therm_fan_safety_checks(struct nvkm_therm *therm)
 		therm->fan->bios.min_duty = therm->fan->bios.max_duty;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,19 +85,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_therm0 = 1;
+          int _len_therm0 = 65025;
           struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
           for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
               int _len_therm__i0__fan0 = 1;
           therm[_i0].fan = (struct TYPE_3__ *) malloc(_len_therm__i0__fan0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_therm__i0__fan0; _j0++) {
-            therm[_i0].fan->bios.min_duty = ((-2 * (next_i()%2)) + 1) * next_i();
-        therm[_i0].fan->bios.max_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+              therm[_i0].fan->bios.min_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].fan->bios.max_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           nvkm_therm_fan_safety_checks(therm);
           for(int _aux = 0; _aux < _len_therm0; _aux++) {
           free(therm[_aux].fan);
@@ -110,7 +110,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_therm0 = 100;
+          struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
+          for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
+              int _len_therm__i0__fan0 = 1;
+          therm[_i0].fan = (struct TYPE_3__ *) malloc(_len_therm__i0__fan0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_therm__i0__fan0; _j0++) {
+              therm[_i0].fan->bios.min_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].fan->bios.max_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          nvkm_therm_fan_safety_checks(therm);
+          for(int _aux = 0; _aux < _len_therm0; _aux++) {
+          free(therm[_aux].fan);
+          }
+          free(therm);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_therm0 = 1;
+          struct nvkm_therm * therm = (struct nvkm_therm *) malloc(_len_therm0*sizeof(struct nvkm_therm));
+          for(int _i0 = 0; _i0 < _len_therm0; _i0++) {
+              int _len_therm__i0__fan0 = 1;
+          therm[_i0].fan = (struct TYPE_3__ *) malloc(_len_therm__i0__fan0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_therm__i0__fan0; _j0++) {
+              therm[_i0].fan->bios.min_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+          therm[_i0].fan->bios.max_duty = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          nvkm_therm_fan_safety_checks(therm);
+          for(int _aux = 0; _aux < _len_therm0; _aux++) {
+          free(therm[_aux].fan);
+          }
+          free(therm);
+        
+        break;
+    }
     default:
         usage();
         break;

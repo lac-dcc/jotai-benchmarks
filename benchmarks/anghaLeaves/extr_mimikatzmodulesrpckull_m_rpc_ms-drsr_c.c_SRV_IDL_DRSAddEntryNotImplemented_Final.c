@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ ULONG SRV_IDL_DRSAddEntryNotImplemented(DRS_HANDLE hDrs, DWORD dwInVersion, DRS_
 	return STATUS_NOT_IMPLEMENTED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,26 +80,225 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int hDrs = 100;
+        
           int dwInVersion = 100;
+        
           int _len_pmsgIn0 = 1;
           int * pmsgIn = (int *) malloc(_len_pmsgIn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pmsgIn0; _i0++) {
             pmsgIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pdwOutVersion0 = 1;
           int * pdwOutVersion = (int *) malloc(_len_pdwOutVersion0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pdwOutVersion0; _i0++) {
             pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pmsgOut0 = 1;
           int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
             pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = SRV_IDL_DRSAddEntryNotImplemented(hDrs,dwInVersion,pmsgIn,pdwOutVersion,pmsgOut);
+          printf("%d\n", benchRet); 
+          free(pmsgIn);
+          free(pdwOutVersion);
+          free(pmsgOut);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hDrs = 255;
+        
+          int dwInVersion = 255;
+        
+          int _len_pmsgIn0 = 65025;
+          int * pmsgIn = (int *) malloc(_len_pmsgIn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pmsgIn0; _i0++) {
+            pmsgIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdwOutVersion0 = 65025;
+          int * pdwOutVersion = (int *) malloc(_len_pdwOutVersion0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdwOutVersion0; _i0++) {
+            pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pmsgOut0 = 65025;
+          int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
+            pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = SRV_IDL_DRSAddEntryNotImplemented(hDrs,dwInVersion,pmsgIn,pdwOutVersion,pmsgOut);
+          printf("%d\n", benchRet); 
+          free(pmsgIn);
+          free(pdwOutVersion);
+          free(pmsgOut);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hDrs = 10;
+        
+          int dwInVersion = 10;
+        
+          int _len_pmsgIn0 = 100;
+          int * pmsgIn = (int *) malloc(_len_pmsgIn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pmsgIn0; _i0++) {
+            pmsgIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdwOutVersion0 = 100;
+          int * pdwOutVersion = (int *) malloc(_len_pdwOutVersion0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdwOutVersion0; _i0++) {
+            pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pmsgOut0 = 100;
+          int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
+            pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = SRV_IDL_DRSAddEntryNotImplemented(hDrs,dwInVersion,pmsgIn,pdwOutVersion,pmsgOut);
+          printf("%d\n", benchRet); 
+          free(pmsgIn);
+          free(pdwOutVersion);
+          free(pmsgOut);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int hDrs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwInVersion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pmsgIn0 = 1;
+          int * pmsgIn = (int *) malloc(_len_pmsgIn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pmsgIn0; _i0++) {
+            pmsgIn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdwOutVersion0 = 1;
+          int * pdwOutVersion = (int *) malloc(_len_pdwOutVersion0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pdwOutVersion0; _i0++) {
+            pdwOutVersion[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pmsgOut0 = 1;
+          int * pmsgOut = (int *) malloc(_len_pmsgOut0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pmsgOut0; _i0++) {
+            pmsgOut[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = SRV_IDL_DRSAddEntryNotImplemented(hDrs,dwInVersion,pmsgIn,pdwOutVersion,pmsgOut);
           printf("%d\n", benchRet); 
           free(pmsgIn);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static bool separate_dirty_bits(struct dm_cache_metadata *
 	return cmd->version >= 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmd0 = 1;
+          int _len_cmd0 = 65025;
           struct dm_cache_metadata * cmd = (struct dm_cache_metadata *) malloc(_len_cmd0*sizeof(struct dm_cache_metadata));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = separate_dirty_bits(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_cmd0 = 100;
           struct dm_cache_metadata * cmd = (struct dm_cache_metadata *) malloc(_len_cmd0*sizeof(struct dm_cache_metadata));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = separate_dirty_bits(cmd);
           printf("%d\n", benchRet); 
           free(cmd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cmd0 = 1;
+          struct dm_cache_metadata * cmd = (struct dm_cache_metadata *) malloc(_len_cmd0*sizeof(struct dm_cache_metadata));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = separate_dirty_bits(cmd);
+          printf("%d\n", benchRet); 
+          free(cmd);
+        
+        break;
+    }
     default:
         usage();
         break;

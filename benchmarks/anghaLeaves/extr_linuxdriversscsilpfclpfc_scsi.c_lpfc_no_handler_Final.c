@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ lpfc_no_handler(struct scsi_cmnd *cmnd)
 	return FAILED;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cmnd0 = 1;
+          int _len_cmnd0 = 65025;
           struct scsi_cmnd * cmnd = (struct scsi_cmnd *) malloc(_len_cmnd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmnd0; _i0++) {
-            cmnd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmnd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lpfc_no_handler(cmnd);
           printf("%d\n", benchRet); 
           free(cmnd);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_cmnd0 = 100;
           struct scsi_cmnd * cmnd = (struct scsi_cmnd *) malloc(_len_cmnd0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_cmnd0; _i0++) {
-            cmnd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmnd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lpfc_no_handler(cmnd);
           printf("%d\n", benchRet); 
           free(cmnd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cmnd0 = 1;
+          struct scsi_cmnd * cmnd = (struct scsi_cmnd *) malloc(_len_cmnd0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_cmnd0; _i0++) {
+              cmnd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lpfc_no_handler(cmnd);
+          printf("%d\n", benchRet); 
+          free(cmnd);
+        
+        break;
+    }
     default:
         usage();
         break;

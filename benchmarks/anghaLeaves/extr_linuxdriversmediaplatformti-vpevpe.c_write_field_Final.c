@@ -64,12 +64,6 @@ __attribute__((used)) static void write_field(u32 *valp, u32 field, u32 mask, in
 	*valp = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,17 +76,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int field = 10;
+        
           int mask = 10;
+        
           int shift = 10;
+        
           int _len_valp0 = 100;
           int * valp = (int *) malloc(_len_valp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_valp0; _i0++) {
             valp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           write_field(valp,field,mask,shift);
           free(valp);
         

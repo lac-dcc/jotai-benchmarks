@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ u32 cx18_find_handle(struct cx18 *cx)
 	return CX18_INVALID_TASK_HANDLE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +90,46 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cx0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cx0 = 65025;
           struct cx18 * cx = (struct cx18 *) malloc(_len_cx0*sizeof(struct cx18));
           for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
               int _len_cx__i0__streams0 = 1;
           cx[_i0].streams = (struct cx18_stream *) malloc(_len_cx__i0__streams0*sizeof(struct cx18_stream));
           for(int _j0 = 0; _j0 < _len_cx__i0__streams0; _j0++) {
-            cx[_i0].streams->handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        cx[_i0].streams->video_dev.v4l2_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              cx[_i0].streams->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cx[_i0].streams->video_dev.v4l2_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           long benchRet = cx18_find_handle(cx);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_cx0; _aux++) {
@@ -116,19 +139,147 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cx0 = 100;
+          struct cx18 * cx = (struct cx18 *) malloc(_len_cx0*sizeof(struct cx18));
+          for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
+              int _len_cx__i0__streams0 = 1;
+          cx[_i0].streams = (struct cx18_stream *) malloc(_len_cx__i0__streams0*sizeof(struct cx18_stream));
+          for(int _j0 = 0; _j0 < _len_cx__i0__streams0; _j0++) {
+              cx[_i0].streams->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cx[_i0].streams->video_dev.v4l2_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          long benchRet = cx18_find_handle(cx);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cx0; _aux++) {
+          free(cx[_aux].streams);
+          }
+          free(cx);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_cx0 = 1;
           struct cx18 * cx = (struct cx18 *) malloc(_len_cx0*sizeof(struct cx18));
           for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
               int _len_cx__i0__streams0 = 1;
           cx[_i0].streams = (struct cx18_stream *) malloc(_len_cx__i0__streams0*sizeof(struct cx18_stream));
           for(int _j0 = 0; _j0 < _len_cx__i0__streams0; _j0++) {
-            cx[_i0].streams->handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        cx[_i0].streams->video_dev.v4l2_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              cx[_i0].streams->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cx[_i0].streams->video_dev.v4l2_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          long benchRet = cx18_find_handle(cx);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cx0; _aux++) {
+          free(cx[_aux].streams);
+          }
+          free(cx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cx0 = 1;
+          struct cx18 * cx = (struct cx18 *) malloc(_len_cx0*sizeof(struct cx18));
+          for(int _i0 = 0; _i0 < _len_cx0; _i0++) {
+              int _len_cx__i0__streams0 = 1;
+          cx[_i0].streams = (struct cx18_stream *) malloc(_len_cx__i0__streams0*sizeof(struct cx18_stream));
+          for(int _j0 = 0; _j0 < _len_cx__i0__streams0; _j0++) {
+              cx[_i0].streams->handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          cx[_i0].streams->video_dev.v4l2_dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           long benchRet = cx18_find_handle(cx);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_cx0; _aux++) {

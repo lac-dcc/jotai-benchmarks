@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void srandom(unsigned int seed){
     _seed = seed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int seed = 100;
+        
           srandom(seed);
         
         break;
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int seed = 255;
+        
           srandom(seed);
         
         break;
@@ -99,11 +96,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int seed = 10;
+        
           srandom(seed);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int seed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          srandom(seed);
+        
+        break;
+    }
     default:
         usage();
         break;

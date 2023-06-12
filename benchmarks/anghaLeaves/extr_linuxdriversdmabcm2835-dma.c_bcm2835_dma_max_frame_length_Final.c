@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline size_t bcm2835_dma_max_frame_length(struct b
 	return c->is_lite_channel ? MAX_LITE_DMA_LEN : MAX_DMA_LEN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_c0 = 1;
+          int _len_c0 = 65025;
           struct bcm2835_chan * c = (struct bcm2835_chan *) malloc(_len_c0*sizeof(struct bcm2835_chan));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].is_lite_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].is_lite_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = bcm2835_dma_max_frame_length(c);
           printf("%lu\n", benchRet); 
           free(c);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_c0 = 100;
           struct bcm2835_chan * c = (struct bcm2835_chan *) malloc(_len_c0*sizeof(struct bcm2835_chan));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].is_lite_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].is_lite_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = bcm2835_dma_max_frame_length(c);
           printf("%lu\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_c0 = 1;
+          struct bcm2835_chan * c = (struct bcm2835_chan *) malloc(_len_c0*sizeof(struct bcm2835_chan));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].is_lite_channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = bcm2835_dma_max_frame_length(c);
+          printf("%lu\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ timer_longterm_dequeued_locked(timer_call_t call)
 		tlp->threshold.call = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +85,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_call0 = 1;
+          int _len_call0 = 65025;
           int * call = (int *) malloc(_len_call0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_call0; _i0++) {
             call[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           timer_longterm_dequeued_locked(call);
           free(call);
         
@@ -111,12 +107,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_call0; _i0++) {
             call[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           timer_longterm_dequeued_locked(call);
           free(call);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_call0 = 1;
+          int * call = (int *) malloc(_len_call0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_call0; _i0++) {
+            call[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          timer_longterm_dequeued_locked(call);
+          free(call);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ __attribute__((used)) static bool bnx2x_vf_mbx_is_windows_vm(struct bnx2x *bp,
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,21 +93,154 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_bp0 = 65025;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_acquire0 = 65025;
+          struct vfpf_acquire_tlv * acquire = (struct vfpf_acquire_tlv *) malloc(_len_acquire0*sizeof(struct vfpf_acquire_tlv));
+          for(int _i0 = 0; _i0 < _len_acquire0; _i0++) {
+              acquire[_i0].vfdev_info.vf_os = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          acquire[_i0].resc_request.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          acquire[_i0].bulletin_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnx2x_vf_mbx_is_windows_vm(bp,acquire);
+          printf("%d\n", benchRet); 
+          free(bp);
+          free(acquire);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_bp0 = 100;
+          struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_acquire0 = 100;
+          struct vfpf_acquire_tlv * acquire = (struct vfpf_acquire_tlv *) malloc(_len_acquire0*sizeof(struct vfpf_acquire_tlv));
+          for(int _i0 = 0; _i0 < _len_acquire0; _i0++) {
+              acquire[_i0].vfdev_info.vf_os = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          acquire[_i0].resc_request.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          acquire[_i0].bulletin_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnx2x_vf_mbx_is_windows_vm(bp,acquire);
+          printf("%d\n", benchRet); 
+          free(bp);
+          free(acquire);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_bp0 = 1;
           struct bnx2x * bp = (struct bnx2x *) malloc(_len_bp0*sizeof(struct bnx2x));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_acquire0 = 1;
           struct vfpf_acquire_tlv * acquire = (struct vfpf_acquire_tlv *) malloc(_len_acquire0*sizeof(struct vfpf_acquire_tlv));
           for(int _i0 = 0; _i0 < _len_acquire0; _i0++) {
-            acquire[_i0].vfdev_info.vf_os = ((-2 * (next_i()%2)) + 1) * next_i();
-        acquire[_i0].resc_request.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
-        acquire[_i0].bulletin_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+              acquire[_i0].vfdev_info.vf_os = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          acquire[_i0].resc_request.num_mc_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          acquire[_i0].bulletin_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnx2x_vf_mbx_is_windows_vm(bp,acquire);
           printf("%d\n", benchRet); 
           free(bp);

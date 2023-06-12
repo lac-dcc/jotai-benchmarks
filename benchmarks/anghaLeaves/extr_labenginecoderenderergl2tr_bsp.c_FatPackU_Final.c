@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static float FatPackU(float input, int lightmapnum)
 	return input;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,7 +93,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           float input = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int lightmapnum = 100;
+        
           float benchRet = FatPackU(input,lightmapnum);
           printf("%f\n", benchRet); 
         
@@ -108,7 +105,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           float input = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int lightmapnum = 255;
+        
           float benchRet = FatPackU(input,lightmapnum);
           printf("%f\n", benchRet); 
         
@@ -118,13 +117,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           float input = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int lightmapnum = 10;
+        
           float benchRet = FatPackU(input,lightmapnum);
           printf("%f\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          float input = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int lightmapnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          float benchRet = FatPackU(input,lightmapnum);
+          printf("%f\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

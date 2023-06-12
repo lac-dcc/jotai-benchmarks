@@ -63,12 +63,6 @@ __attribute__((used)) static inline u8 sad_pkg_socket(u8 pkg)
 	return ((pkg >> 3) << 2) | (pkg & 0x3);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pkg = 100;
+        
           int benchRet = sad_pkg_socket(pkg);
           printf("%d\n", benchRet); 
         
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pkg = 255;
+        
           int benchRet = sad_pkg_socket(pkg);
           printf("%d\n", benchRet); 
         
@@ -103,12 +99,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pkg = 10;
+        
           int benchRet = sad_pkg_socket(pkg);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

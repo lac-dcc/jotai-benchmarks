@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ int pblk_rl_max_io(struct pblk_rl *rl)
 	return rl->rb_max_io;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rl0 = 1;
+          int _len_rl0 = 65025;
           struct pblk_rl * rl = (struct pblk_rl *) malloc(_len_rl0*sizeof(struct pblk_rl));
           for(int _i0 = 0; _i0 < _len_rl0; _i0++) {
-            rl[_i0].rb_max_io = ((-2 * (next_i()%2)) + 1) * next_i();
+              rl[_i0].rb_max_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pblk_rl_max_io(rl);
           printf("%d\n", benchRet); 
           free(rl);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_rl0 = 100;
           struct pblk_rl * rl = (struct pblk_rl *) malloc(_len_rl0*sizeof(struct pblk_rl));
           for(int _i0 = 0; _i0 < _len_rl0; _i0++) {
-            rl[_i0].rb_max_io = ((-2 * (next_i()%2)) + 1) * next_i();
+              rl[_i0].rb_max_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pblk_rl_max_io(rl);
           printf("%d\n", benchRet); 
           free(rl);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rl0 = 1;
+          struct pblk_rl * rl = (struct pblk_rl *) malloc(_len_rl0*sizeof(struct pblk_rl));
+          for(int _i0 = 0; _i0 < _len_rl0; _i0++) {
+              rl[_i0].rb_max_io = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pblk_rl_max_io(rl);
+          printf("%d\n", benchRet); 
+          free(rl);
+        
+        break;
+    }
     default:
         usage();
         break;

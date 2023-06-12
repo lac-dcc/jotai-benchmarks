@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline void ipvlan_mark_vepa(struct ipvl_port *port
 	port->flags |= IPVLAN_F_VEPA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_port0 = 1;
+          int _len_port0 = 65025;
           struct ipvl_port * port = (struct ipvl_port *) malloc(_len_port0*sizeof(struct ipvl_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipvlan_mark_vepa(port);
           free(port);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_port0 = 100;
           struct ipvl_port * port = (struct ipvl_port *) malloc(_len_port0*sizeof(struct ipvl_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipvlan_mark_vepa(port);
           free(port);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_port0 = 1;
+          struct ipvl_port * port = (struct ipvl_port *) malloc(_len_port0*sizeof(struct ipvl_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipvlan_mark_vepa(port);
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

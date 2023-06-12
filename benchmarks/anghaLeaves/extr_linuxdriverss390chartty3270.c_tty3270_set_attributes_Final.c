@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -122,12 +124,6 @@ tty3270_set_attributes(struct tty3270 *tp)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,20 +136,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tp0 = 1;
+          int _len_tp0 = 65025;
           struct tty3270 * tp = (struct tty3270 *) malloc(_len_tp0*sizeof(struct tty3270));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].esc_npar = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].esc_npar = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_tp__i0__esc_par0 = 1;
           tp[_i0].esc_par = (int *) malloc(_len_tp__i0__esc_par0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_tp__i0__esc_par0; _j0++) {
             tp[_i0].esc_par[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        tp[_i0].f_color = ((-2 * (next_i()%2)) + 1) * next_i();
+          tp[_i0].f_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tty3270_set_attributes(tp);
           for(int _aux = 0; _aux < _len_tp0; _aux++) {
           free(tp[_aux].esc_par);
@@ -162,7 +160,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_tp0 = 100;
+          struct tty3270 * tp = (struct tty3270 *) malloc(_len_tp0*sizeof(struct tty3270));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].esc_npar = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tp__i0__esc_par0 = 1;
+          tp[_i0].esc_par = (int *) malloc(_len_tp__i0__esc_par0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tp__i0__esc_par0; _j0++) {
+            tp[_i0].esc_par[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          tp[_i0].f_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tty3270_set_attributes(tp);
+          for(int _aux = 0; _aux < _len_tp0; _aux++) {
+          free(tp[_aux].esc_par);
+          }
+          free(tp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_tp0 = 1;
+          struct tty3270 * tp = (struct tty3270 *) malloc(_len_tp0*sizeof(struct tty3270));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].esc_npar = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tp__i0__esc_par0 = 1;
+          tp[_i0].esc_par = (int *) malloc(_len_tp__i0__esc_par0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_tp__i0__esc_par0; _j0++) {
+            tp[_i0].esc_par[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          tp[_i0].f_color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tty3270_set_attributes(tp);
+          for(int _aux = 0; _aux < _len_tp0; _aux++) {
+          free(tp[_aux].esc_par);
+          }
+          free(tp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -62,12 +62,6 @@ __attribute__((used)) static inline int between48(const u64 seq1, const u64 seq2
 	return (seq3 << 16) - (seq2 << 16) >= (seq1 << 16) - (seq2 << 16);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +78,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int seq1 = 100;
+        
           const int seq2 = 100;
+        
           const int seq3 = 100;
+        
           int benchRet = between48(seq1,seq2,seq3);
           printf("%d\n", benchRet); 
         
@@ -95,8 +92,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int seq1 = 255;
+        
           const int seq2 = 255;
+        
           const int seq3 = 255;
+        
           int benchRet = between48(seq1,seq2,seq3);
           printf("%d\n", benchRet); 
         
@@ -106,14 +106,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int seq1 = 10;
+        
           const int seq2 = 10;
+        
           const int seq3 = 10;
+        
           int benchRet = between48(seq1,seq2,seq3);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

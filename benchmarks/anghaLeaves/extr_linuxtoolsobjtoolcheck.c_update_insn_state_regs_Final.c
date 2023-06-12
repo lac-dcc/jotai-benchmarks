@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -91,12 +93,6 @@ __attribute__((used)) static int update_insn_state_regs(struct instruction *insn
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,24 +105,169 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_insn0 = 65025;
+          struct instruction * insn = (struct instruction *) malloc(_len_insn0*sizeof(struct instruction));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+              insn[_i0].stack_op.src.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.src.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.src.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          insn[_i0].stack_op.dest.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.dest.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_state0 = 65025;
+          struct insn_state * state = (struct insn_state *) malloc(_len_state0*sizeof(struct insn_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].cfa.base = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].cfa.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = update_insn_state_regs(insn,state);
+          printf("%d\n", benchRet); 
+          free(insn);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_insn0 = 100;
+          struct instruction * insn = (struct instruction *) malloc(_len_insn0*sizeof(struct instruction));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+              insn[_i0].stack_op.src.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.src.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.src.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          insn[_i0].stack_op.dest.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.dest.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_state0 = 100;
+          struct insn_state * state = (struct insn_state *) malloc(_len_state0*sizeof(struct insn_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].cfa.base = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].cfa.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = update_insn_state_regs(insn,state);
+          printf("%d\n", benchRet); 
+          free(insn);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_insn0 = 1;
           struct instruction * insn = (struct instruction *) malloc(_len_insn0*sizeof(struct instruction));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
-            insn[_i0].stack_op.src.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        insn[_i0].stack_op.src.reg = ((-2 * (next_i()%2)) + 1) * next_i();
-        insn[_i0].stack_op.src.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        insn[_i0].stack_op.dest.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        insn[_i0].stack_op.dest.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+              insn[_i0].stack_op.src.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.src.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.src.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          insn[_i0].stack_op.dest.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          insn[_i0].stack_op.dest.reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_state0 = 1;
           struct insn_state * state = (struct insn_state *) malloc(_len_state0*sizeof(struct insn_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].cfa.base = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].cfa.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].cfa.base = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].cfa.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = update_insn_state_regs(insn,state);
           printf("%d\n", benchRet); 
           free(insn);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ struct sway_view *view_from_wlr_xdg_surface_v6(
        return xdg_surface_v6->data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_xdg_surface_v60 = 65025;
+          struct wlr_xdg_surface_v6 * xdg_surface_v6 = (struct wlr_xdg_surface_v6 *) malloc(_len_xdg_surface_v60*sizeof(struct wlr_xdg_surface_v6));
+          for(int _i0 = 0; _i0 < _len_xdg_surface_v60; _i0++) {
+              int _len_xdg_surface_v6__i0__data0 = 1;
+          xdg_surface_v6[_i0].data = (struct sway_view *) malloc(_len_xdg_surface_v6__i0__data0*sizeof(struct sway_view));
+          for(int _j0 = 0; _j0 < _len_xdg_surface_v6__i0__data0; _j0++) {
+              xdg_surface_v6[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct sway_view * benchRet = view_from_wlr_xdg_surface_v6(xdg_surface_v6);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_xdg_surface_v60; _aux++) {
+          free(xdg_surface_v6[_aux].data);
+          }
+          free(xdg_surface_v6);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_xdg_surface_v60 = 100;
+          struct wlr_xdg_surface_v6 * xdg_surface_v6 = (struct wlr_xdg_surface_v6 *) malloc(_len_xdg_surface_v60*sizeof(struct wlr_xdg_surface_v6));
+          for(int _i0 = 0; _i0 < _len_xdg_surface_v60; _i0++) {
+              int _len_xdg_surface_v6__i0__data0 = 1;
+          xdg_surface_v6[_i0].data = (struct sway_view *) malloc(_len_xdg_surface_v6__i0__data0*sizeof(struct sway_view));
+          for(int _j0 = 0; _j0 < _len_xdg_surface_v6__i0__data0; _j0++) {
+              xdg_surface_v6[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct sway_view * benchRet = view_from_wlr_xdg_surface_v6(xdg_surface_v6);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_xdg_surface_v60; _aux++) {
+          free(xdg_surface_v6[_aux].data);
+          }
+          free(xdg_surface_v6);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_xdg_surface_v60 = 1;
           struct wlr_xdg_surface_v6 * xdg_surface_v6 = (struct wlr_xdg_surface_v6 *) malloc(_len_xdg_surface_v60*sizeof(struct wlr_xdg_surface_v6));
           for(int _i0 = 0; _i0 < _len_xdg_surface_v60; _i0++) {
               int _len_xdg_surface_v6__i0__data0 = 1;
           xdg_surface_v6[_i0].data = (struct sway_view *) malloc(_len_xdg_surface_v6__i0__data0*sizeof(struct sway_view));
           for(int _j0 = 0; _j0 < _len_xdg_surface_v6__i0__data0; _j0++) {
-            xdg_surface_v6[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              xdg_surface_v6[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct sway_view * benchRet = view_from_wlr_xdg_surface_v6(xdg_surface_v6);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_xdg_surface_v60; _aux++) {

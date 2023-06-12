@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -168,12 +169,6 @@ __attribute__((used)) static int ssl_check_allowed_versions(int min_version, int
     return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -190,7 +185,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int min_version = 100;
+        
           int max_version = 100;
+        
           int benchRet = ssl_check_allowed_versions(min_version,max_version);
           printf("%d\n", benchRet); 
         
@@ -200,7 +197,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int min_version = 255;
+        
           int max_version = 255;
+        
           int benchRet = ssl_check_allowed_versions(min_version,max_version);
           printf("%d\n", benchRet); 
         
@@ -210,13 +209,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int min_version = 10;
+        
           int max_version = 10;
+        
           int benchRet = ssl_check_allowed_versions(min_version,max_version);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int min_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ssl_check_allowed_versions(min_version,max_version);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

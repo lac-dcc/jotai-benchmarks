@@ -60,12 +60,6 @@ __attribute__((used)) static inline uint16_t scl_cal_scale(int src, int dst, int
 	return ((src * 2 - 3) << (shift - 1)) / (dst - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +76,16 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src = 10;
+        
           int dst = 10;
+        
           int shift = 10;
+        
           int benchRet = scl_cal_scale(src,dst,shift);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

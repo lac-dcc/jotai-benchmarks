@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ cpumask_t *aq_vec_get_affinity_mask(struct aq_vec_s *self)
 	return &self->aq_ring_param.affinity_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_self0 = 1;
+          int _len_self0 = 65025;
           struct aq_vec_s * self = (struct aq_vec_s *) malloc(_len_self0*sizeof(struct aq_vec_s));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].aq_ring_param.affinity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].aq_ring_param.affinity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int * benchRet = aq_vec_get_affinity_mask(self);
           printf("%d\n", (*benchRet)); 
           free(self);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_self0 = 100;
           struct aq_vec_s * self = (struct aq_vec_s *) malloc(_len_self0*sizeof(struct aq_vec_s));
           for(int _i0 = 0; _i0 < _len_self0; _i0++) {
-            self[_i0].aq_ring_param.affinity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              self[_i0].aq_ring_param.affinity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int * benchRet = aq_vec_get_affinity_mask(self);
           printf("%d\n", (*benchRet)); 
           free(self);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_self0 = 1;
+          struct aq_vec_s * self = (struct aq_vec_s *) malloc(_len_self0*sizeof(struct aq_vec_s));
+          for(int _i0 = 0; _i0 < _len_self0; _i0++) {
+              self[_i0].aq_ring_param.affinity_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int * benchRet = aq_vec_get_affinity_mask(self);
+          printf("%d\n", (*benchRet)); 
+          free(self);
+        
+        break;
+    }
     default:
         usage();
         break;

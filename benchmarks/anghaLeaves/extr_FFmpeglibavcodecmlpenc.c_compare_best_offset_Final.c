@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int compare_best_offset(BestOffset *prev, BestOffse
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_prev0 = 1;
+          int _len_prev0 = 65025;
           struct TYPE_4__ * prev = (struct TYPE_4__ *) malloc(_len_prev0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
-            prev[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              prev[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_cur0 = 1;
+        
+          int _len_cur0 = 65025;
           struct TYPE_4__ * cur = (struct TYPE_4__ *) malloc(_len_cur0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
-            cur[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+              cur[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = compare_best_offset(prev,cur);
           printf("%d\n", benchRet); 
           free(prev);
@@ -103,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_prev0 = 100;
+          struct TYPE_4__ * prev = (struct TYPE_4__ *) malloc(_len_prev0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+              prev[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cur0 = 100;
+          struct TYPE_4__ * cur = (struct TYPE_4__ *) malloc(_len_cur0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = compare_best_offset(prev,cur);
+          printf("%d\n", benchRet); 
+          free(prev);
+          free(cur);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_prev0 = 1;
+          struct TYPE_4__ * prev = (struct TYPE_4__ *) malloc(_len_prev0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_prev0; _i0++) {
+              prev[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cur0 = 1;
+          struct TYPE_4__ * cur = (struct TYPE_4__ *) malloc(_len_cur0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].lsb_bits = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = compare_best_offset(prev,cur);
+          printf("%d\n", benchRet); 
+          free(prev);
+          free(cur);
+        
+        break;
+    }
     default:
         usage();
         break;

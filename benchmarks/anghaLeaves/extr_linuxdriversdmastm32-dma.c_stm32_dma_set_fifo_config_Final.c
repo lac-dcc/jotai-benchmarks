@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ __attribute__((used)) static void stm32_dma_set_fifo_config(struct stm32_dma_cha
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,19 +94,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int src_burst = 100;
+        
           int dst_burst = 100;
+        
           int _len_chan0 = 1;
           struct stm32_dma_chan * chan = (struct stm32_dma_chan *) malloc(_len_chan0*sizeof(struct stm32_dma_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].chan_reg.dma_sfcr = ((-2 * (next_i()%2)) + 1) * next_i();
-        chan[_i0].chan_reg.dma_scr = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].chan_reg.dma_sfcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].chan_reg.dma_scr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           stm32_dma_set_fifo_config(chan,src_burst,dst_burst);
           free(chan);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int src_burst = 255;
+        
+          int dst_burst = 255;
+        
+          int _len_chan0 = 65025;
+          struct stm32_dma_chan * chan = (struct stm32_dma_chan *) malloc(_len_chan0*sizeof(struct stm32_dma_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].chan_reg.dma_sfcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].chan_reg.dma_scr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          stm32_dma_set_fifo_config(chan,src_burst,dst_burst);
+          free(chan);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int src_burst = 10;
+        
+          int dst_burst = 10;
+        
+          int _len_chan0 = 100;
+          struct stm32_dma_chan * chan = (struct stm32_dma_chan *) malloc(_len_chan0*sizeof(struct stm32_dma_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].chan_reg.dma_sfcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].chan_reg.dma_scr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          stm32_dma_set_fifo_config(chan,src_burst,dst_burst);
+          free(chan);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int src_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst_burst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chan0 = 1;
+          struct stm32_dma_chan * chan = (struct stm32_dma_chan *) malloc(_len_chan0*sizeof(struct stm32_dma_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].chan_reg.dma_sfcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          chan[_i0].chan_reg.dma_scr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          stm32_dma_set_fifo_config(chan,src_burst,dst_burst);
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

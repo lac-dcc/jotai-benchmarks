@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline u16 norm_ctrl_async_buffer_size(u16 buf_size
 	return buf_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const long buf_size = 100;
+        
           const long benchRet = norm_ctrl_async_buffer_size(buf_size);
           printf("%ld\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const long buf_size = 255;
+        
           const long benchRet = norm_ctrl_async_buffer_size(buf_size);
           printf("%ld\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const long buf_size = 10;
+        
           const long benchRet = norm_ctrl_async_buffer_size(buf_size);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const long buf_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const long benchRet = norm_ctrl_async_buffer_size(buf_size);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

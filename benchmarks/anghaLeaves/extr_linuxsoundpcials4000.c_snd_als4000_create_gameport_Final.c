@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -59,12 +61,6 @@ struct snd_card_als4000 {int dummy; } ;
 
 __attribute__((used)) static inline int snd_als4000_create_gameport(struct snd_card_als4000 *acard, int dev) { return -ENOSYS; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,11 +77,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dev = 100;
+        
           int _len_acard0 = 1;
           struct snd_card_als4000 * acard = (struct snd_card_als4000 *) malloc(_len_acard0*sizeof(struct snd_card_als4000));
           for(int _i0 = 0; _i0 < _len_acard0; _i0++) {
-            acard[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              acard[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = snd_als4000_create_gameport(acard,dev);
+          printf("%d\n", benchRet); 
+          free(acard);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int dev = 255;
+        
+          int _len_acard0 = 65025;
+          struct snd_card_als4000 * acard = (struct snd_card_als4000 *) malloc(_len_acard0*sizeof(struct snd_card_als4000));
+          for(int _i0 = 0; _i0 < _len_acard0; _i0++) {
+              acard[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = snd_als4000_create_gameport(acard,dev);
           printf("%d\n", benchRet); 
           free(acard);
@@ -93,21 +110,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int dev = 10;
+        
           int _len_acard0 = 100;
           struct snd_card_als4000 * acard = (struct snd_card_als4000 *) malloc(_len_acard0*sizeof(struct snd_card_als4000));
           for(int _i0 = 0; _i0 < _len_acard0; _i0++) {
-            acard[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              acard[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_als4000_create_gameport(acard,dev);
           printf("%d\n", benchRet); 
           free(acard);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_acard0 = 1;
+          struct snd_card_als4000 * acard = (struct snd_card_als4000 *) malloc(_len_acard0*sizeof(struct snd_card_als4000));
+          for(int _i0 = 0; _i0 < _len_acard0; _i0++) {
+              acard[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_als4000_create_gameport(acard,dev);
+          printf("%d\n", benchRet); 
+          free(acard);
+        
+        break;
+    }
     default:
         usage();
         break;

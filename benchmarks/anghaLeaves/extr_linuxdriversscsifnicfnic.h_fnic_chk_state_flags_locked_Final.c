@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ fnic_chk_state_flags_locked(struct fnic *fnic, unsigned long st_flags)
 	return ((fnic->state_flags & st_flags) == st_flags);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long st_flags = 100;
+        
           int _len_fnic0 = 1;
           struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
           for(int _i0 = 0; _i0 < _len_fnic0; _i0++) {
-            fnic[_i0].state_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fnic[_i0].state_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = fnic_chk_state_flags_locked(fnic,st_flags);
+          printf("%d\n", benchRet); 
+          free(fnic);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long st_flags = 255;
+        
+          int _len_fnic0 = 65025;
+          struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
+          for(int _i0 = 0; _i0 < _len_fnic0; _i0++) {
+              fnic[_i0].state_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = fnic_chk_state_flags_locked(fnic,st_flags);
           printf("%d\n", benchRet); 
           free(fnic);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long st_flags = 10;
+        
           int _len_fnic0 = 100;
           struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
           for(int _i0 = 0; _i0 < _len_fnic0; _i0++) {
-            fnic[_i0].state_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fnic[_i0].state_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fnic_chk_state_flags_locked(fnic,st_flags);
           printf("%d\n", benchRet); 
           free(fnic);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long st_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fnic0 = 1;
+          struct fnic * fnic = (struct fnic *) malloc(_len_fnic0*sizeof(struct fnic));
+          for(int _i0 = 0; _i0 < _len_fnic0; _i0++) {
+              fnic[_i0].state_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fnic_chk_state_flags_locked(fnic,st_flags);
+          printf("%d\n", benchRet); 
+          free(fnic);
+        
+        break;
+    }
     default:
         usage();
         break;

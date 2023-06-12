@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline bool __is_discard_mergeable(struct discard_i
 		(back->len + front->len <= max_len);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +81,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int max_len = 100;
+        
           int _len_back0 = 1;
           struct discard_info * back = (struct discard_info *) malloc(_len_back0*sizeof(struct discard_info));
           for(int _i0 = 0; _i0 < _len_back0; _i0++) {
-            back[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
-        back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              back[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_front0 = 1;
           struct discard_info * front = (struct discard_info *) malloc(_len_front0*sizeof(struct discard_info));
           for(int _i0 = 0; _i0 < _len_front0; _i0++) {
-            front[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
-        front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              front[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = __is_discard_mergeable(back,front,max_len);
           printf("%d\n", benchRet); 
           free(back);
@@ -103,7 +105,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int max_len = 255;
+        
+          int _len_back0 = 65025;
+          struct discard_info * back = (struct discard_info *) malloc(_len_back0*sizeof(struct discard_info));
+          for(int _i0 = 0; _i0 < _len_back0; _i0++) {
+              back[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_front0 = 65025;
+          struct discard_info * front = (struct discard_info *) malloc(_len_front0*sizeof(struct discard_info));
+          for(int _i0 = 0; _i0 < _len_front0; _i0++) {
+              front[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_discard_mergeable(back,front,max_len);
+          printf("%d\n", benchRet); 
+          free(back);
+          free(front);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int max_len = 10;
+        
+          int _len_back0 = 100;
+          struct discard_info * back = (struct discard_info *) malloc(_len_back0*sizeof(struct discard_info));
+          for(int _i0 = 0; _i0 < _len_back0; _i0++) {
+              back[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_front0 = 100;
+          struct discard_info * front = (struct discard_info *) malloc(_len_front0*sizeof(struct discard_info));
+          for(int _i0 = 0; _i0 < _len_front0; _i0++) {
+              front[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_discard_mergeable(back,front,max_len);
+          printf("%d\n", benchRet); 
+          free(back);
+          free(front);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int max_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_back0 = 1;
+          struct discard_info * back = (struct discard_info *) malloc(_len_back0*sizeof(struct discard_info));
+          for(int _i0 = 0; _i0 < _len_back0; _i0++) {
+              back[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          back[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_front0 = 1;
+          struct discard_info * front = (struct discard_info *) malloc(_len_front0*sizeof(struct discard_info));
+          for(int _i0 = 0; _i0 < _len_front0; _i0++) {
+              front[_i0].lstart = ((-2 * (next_i()%2)) + 1) * next_i();
+          front[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = __is_discard_mergeable(back,front,max_len);
+          printf("%d\n", benchRet); 
+          free(back);
+          free(front);
+        
+        break;
+    }
     default:
         usage();
         break;

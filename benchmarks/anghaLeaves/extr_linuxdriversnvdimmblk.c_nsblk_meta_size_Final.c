@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static u32 nsblk_meta_size(struct nd_namespace_blk *nsblk)
 	return nsblk->lbasize - ((nsblk->lbasize >= 4096) ? 4096 : 512);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_nsblk0 = 1;
+          int _len_nsblk0 = 65025;
           struct nd_namespace_blk * nsblk = (struct nd_namespace_blk *) malloc(_len_nsblk0*sizeof(struct nd_namespace_blk));
           for(int _i0 = 0; _i0 < _len_nsblk0; _i0++) {
-            nsblk[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+              nsblk[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nsblk_meta_size(nsblk);
           printf("%d\n", benchRet); 
           free(nsblk);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_nsblk0 = 100;
           struct nd_namespace_blk * nsblk = (struct nd_namespace_blk *) malloc(_len_nsblk0*sizeof(struct nd_namespace_blk));
           for(int _i0 = 0; _i0 < _len_nsblk0; _i0++) {
-            nsblk[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+              nsblk[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nsblk_meta_size(nsblk);
           printf("%d\n", benchRet); 
           free(nsblk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_nsblk0 = 1;
+          struct nd_namespace_blk * nsblk = (struct nd_namespace_blk *) malloc(_len_nsblk0*sizeof(struct nd_namespace_blk));
+          for(int _i0 = 0; _i0 < _len_nsblk0; _i0++) {
+              nsblk[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nsblk_meta_size(nsblk);
+          printf("%d\n", benchRet); 
+          free(nsblk);
+        
+        break;
+    }
     default:
         usage();
         break;

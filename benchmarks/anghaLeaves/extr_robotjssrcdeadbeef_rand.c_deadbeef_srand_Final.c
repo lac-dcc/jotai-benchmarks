@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ void deadbeef_srand(uint32_t x)
 	deadbeef_beef = 0xdeadbeef;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           deadbeef_srand(x);
         
         break;
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           deadbeef_srand(x);
         
         break;
@@ -103,11 +100,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           deadbeef_srand(x);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          deadbeef_srand(x);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -70,7 +71,6 @@ struct property *reverse_properties(struct property *first)
 	return head;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct property *_allocate_first(int length, struct property *aux_first[]) {
@@ -98,7 +98,6 @@ void _delete_first(struct property *aux_first[], int aux_first_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,17 +110,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct property * aux_first[10000];
+          struct property * first = _allocate_first(10000, aux_first);
+        
+          struct property * benchRet = reverse_properties(first);
+          _delete_first(aux_first, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct property * aux_first[1];
           struct property * first = _allocate_first(1, aux_first);
+        
           struct property * benchRet = reverse_properties(first);
           _delete_first(aux_first, 1);
         
         break;
     }
-
     default:
         usage();
         break;

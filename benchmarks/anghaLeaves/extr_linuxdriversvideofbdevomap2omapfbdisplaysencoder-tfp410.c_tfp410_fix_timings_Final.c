@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static void tfp410_fix_timings(struct omap_video_timings *
 	timings->de_level = OMAPDSS_SIG_ACTIVE_HIGH;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,27 +78,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_timings0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_timings0 = 65025;
           struct omap_video_timings * timings = (struct omap_video_timings *) malloc(_len_timings0*sizeof(struct omap_video_timings));
           for(int _i0 = 0; _i0 < _len_timings0; _i0++) {
-            timings[_i0].de_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              timings[_i0].de_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tfp410_fix_timings(timings);
           free(timings);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_timings0 = 100;
           struct omap_video_timings * timings = (struct omap_video_timings *) malloc(_len_timings0*sizeof(struct omap_video_timings));
           for(int _i0 = 0; _i0 < _len_timings0; _i0++) {
-            timings[_i0].de_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              timings[_i0].de_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          tfp410_fix_timings(timings);
+          free(timings);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_timings0 = 1;
+          struct omap_video_timings * timings = (struct omap_video_timings *) malloc(_len_timings0*sizeof(struct omap_video_timings));
+          for(int _i0 = 0; _i0 < _len_timings0; _i0++) {
+              timings[_i0].de_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           tfp410_fix_timings(timings);
           free(timings);
         

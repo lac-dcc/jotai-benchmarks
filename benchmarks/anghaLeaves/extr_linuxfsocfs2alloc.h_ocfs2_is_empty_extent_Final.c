@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int ocfs2_is_empty_extent(struct ocfs2_exten
 	return !rec->e_leaf_clusters;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rec0 = 1;
+          int _len_rec0 = 65025;
           struct ocfs2_extent_rec * rec = (struct ocfs2_extent_rec *) malloc(_len_rec0*sizeof(struct ocfs2_extent_rec));
           for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
-            rec[_i0].e_leaf_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+              rec[_i0].e_leaf_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocfs2_is_empty_extent(rec);
           printf("%d\n", benchRet); 
           free(rec);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_rec0 = 100;
           struct ocfs2_extent_rec * rec = (struct ocfs2_extent_rec *) malloc(_len_rec0*sizeof(struct ocfs2_extent_rec));
           for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
-            rec[_i0].e_leaf_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+              rec[_i0].e_leaf_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ocfs2_is_empty_extent(rec);
           printf("%d\n", benchRet); 
           free(rec);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rec0 = 1;
+          struct ocfs2_extent_rec * rec = (struct ocfs2_extent_rec *) malloc(_len_rec0*sizeof(struct ocfs2_extent_rec));
+          for(int _i0 = 0; _i0 < _len_rec0; _i0++) {
+              rec[_i0].e_leaf_clusters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ocfs2_is_empty_extent(rec);
+          printf("%d\n", benchRet); 
+          free(rec);
+        
+        break;
+    }
     default:
         usage();
         break;

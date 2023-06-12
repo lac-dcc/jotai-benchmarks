@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int smu8_construct_boot_state(struct pp_hwmgr *hwmg
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,29 +97,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hwmgr0 = 1;
+          int _len_hwmgr0 = 65025;
           struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
           for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
               int _len_hwmgr__i0__backend0 = 1;
           hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
           for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
-            hwmgr[_i0].backend->boot_power_level.allowGnbSlow = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.vce_wm = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.display_wm = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.numSIMDToPowerDown = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.hysteresis_up = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.forceNBPstate = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.ssDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.dsDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.vddcIndex = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->boot_power_level.engineClock = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->sys_info.bootup_nb_voltage_index = ((-2 * (next_i()%2)) + 1) * next_i();
-        hwmgr[_i0].backend->sys_info.bootup_engine_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+              hwmgr[_i0].backend->boot_power_level.allowGnbSlow = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.vce_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.display_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.numSIMDToPowerDown = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.hysteresis_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.forceNBPstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.ssDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.dsDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.vddcIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.engineClock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hwmgr[_i0].backend->sys_info.bootup_nb_voltage_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->sys_info.bootup_engine_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = smu8_construct_boot_state(hwmgr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
@@ -133,7 +134,80 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hwmgr0 = 100;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->boot_power_level.allowGnbSlow = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.vce_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.display_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.numSIMDToPowerDown = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.hysteresis_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.forceNBPstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.ssDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.dsDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.vddcIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.engineClock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hwmgr[_i0].backend->sys_info.bootup_nb_voltage_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->sys_info.bootup_engine_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_construct_boot_state(hwmgr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hwmgr0 = 1;
+          struct pp_hwmgr * hwmgr = (struct pp_hwmgr *) malloc(_len_hwmgr0*sizeof(struct pp_hwmgr));
+          for(int _i0 = 0; _i0 < _len_hwmgr0; _i0++) {
+              int _len_hwmgr__i0__backend0 = 1;
+          hwmgr[_i0].backend = (struct smu8_hwmgr *) malloc(_len_hwmgr__i0__backend0*sizeof(struct smu8_hwmgr));
+          for(int _j0 = 0; _j0 < _len_hwmgr__i0__backend0; _j0++) {
+              hwmgr[_i0].backend->boot_power_level.allowGnbSlow = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.vce_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.display_wm = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.numSIMDToPowerDown = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.hysteresis_up = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.forceNBPstate = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.ssDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.dsDividerIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.vddcIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->boot_power_level.engineClock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hwmgr[_i0].backend->sys_info.bootup_nb_voltage_index = ((-2 * (next_i()%2)) + 1) * next_i();
+          hwmgr[_i0].backend->sys_info.bootup_engine_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = smu8_construct_boot_state(hwmgr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_hwmgr0; _aux++) {
+          free(hwmgr[_aux].backend);
+          }
+          free(hwmgr);
+        
+        break;
+    }
     default:
         usage();
         break;

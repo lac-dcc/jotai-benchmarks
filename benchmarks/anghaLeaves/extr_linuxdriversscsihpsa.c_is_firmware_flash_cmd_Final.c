@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int is_firmware_flash_cmd(u8 *cdb)
 	return cdb[0] == BMIC_WRITE && cdb[6] == BMIC_FLASH_FIRMWARE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cdb0 = 1;
+          int _len_cdb0 = 65025;
           long * cdb = (long *) malloc(_len_cdb0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
             cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_firmware_flash_cmd(cdb);
           printf("%d\n", benchRet); 
           free(cdb);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
             cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = is_firmware_flash_cmd(cdb);
           printf("%d\n", benchRet); 
           free(cdb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cdb0 = 1;
+          long * cdb = (long *) malloc(_len_cdb0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_cdb0; _i0++) {
+            cdb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = is_firmware_flash_cmd(cdb);
+          printf("%d\n", benchRet); 
+          free(cdb);
+        
+        break;
+    }
     default:
         usage();
         break;

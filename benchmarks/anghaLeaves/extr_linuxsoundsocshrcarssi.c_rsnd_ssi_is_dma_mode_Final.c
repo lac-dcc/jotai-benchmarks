@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int rsnd_ssi_is_dma_mode(struct rsnd_mod *mod)
 	return mod->ops == &rsnd_ssi_dma_ops;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,9 +75,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mod0 = 65025;
+          struct rsnd_mod * mod = (struct rsnd_mod *) malloc(_len_mod0*sizeof(struct rsnd_mod));
+          for(int _i0 = 0; _i0 < _len_mod0; _i0++) {
+              int _len_mod__i0__ops0 = 1;
+          mod[_i0].ops = (int *) malloc(_len_mod__i0__ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mod__i0__ops0; _j0++) {
+            mod[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rsnd_ssi_is_dma_mode(mod);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mod0; _aux++) {
+          free(mod[_aux].ops);
+          }
+          free(mod);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_mod0 = 100;
+          struct rsnd_mod * mod = (struct rsnd_mod *) malloc(_len_mod0*sizeof(struct rsnd_mod));
+          for(int _i0 = 0; _i0 < _len_mod0; _i0++) {
+              int _len_mod__i0__ops0 = 1;
+          mod[_i0].ops = (int *) malloc(_len_mod__i0__ops0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mod__i0__ops0; _j0++) {
+            mod[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rsnd_ssi_is_dma_mode(mod);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mod0; _aux++) {
+          free(mod[_aux].ops);
+          }
+          free(mod);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_mod0 = 1;
           struct rsnd_mod * mod = (struct rsnd_mod *) malloc(_len_mod0*sizeof(struct rsnd_mod));
           for(int _i0 = 0; _i0 < _len_mod0; _i0++) {
@@ -90,7 +203,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_mod__i0__ops0; _j0++) {
             mod[_i0].ops[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = rsnd_ssi_is_dma_mode(mod);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mod0; _aux++) {

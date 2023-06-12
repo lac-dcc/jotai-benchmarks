@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static int __ocfs2_node_num_to_slot(struct ocfs2_slot_info
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,17 +93,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int node_num = 100;
+        
           int _len_si0 = 1;
           struct ocfs2_slot_info * si = (struct ocfs2_slot_info *) malloc(_len_si0*sizeof(struct ocfs2_slot_info));
           for(int _i0 = 0; _i0 < _len_si0; _i0++) {
-            si[_i0].si_num_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+              si[_i0].si_num_slots = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_si__i0__si_slots0 = 1;
           si[_i0].si_slots = (struct TYPE_2__ *) malloc(_len_si__i0__si_slots0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_si__i0__si_slots0; _j0++) {
-            si[_i0].si_slots->sl_node_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        si[_i0].si_slots->sl_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+              si[_i0].si_slots->sl_node_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].si_slots->sl_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = __ocfs2_node_num_to_slot(si,node_num);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_si0; _aux++) {
@@ -116,7 +117,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int node_num = 255;
+        
+          int _len_si0 = 65025;
+          struct ocfs2_slot_info * si = (struct ocfs2_slot_info *) malloc(_len_si0*sizeof(struct ocfs2_slot_info));
+          for(int _i0 = 0; _i0 < _len_si0; _i0++) {
+              si[_i0].si_num_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_si__i0__si_slots0 = 1;
+          si[_i0].si_slots = (struct TYPE_2__ *) malloc(_len_si__i0__si_slots0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_si__i0__si_slots0; _j0++) {
+              si[_i0].si_slots->sl_node_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].si_slots->sl_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __ocfs2_node_num_to_slot(si,node_num);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_si0; _aux++) {
+          free(si[_aux].si_slots);
+          }
+          free(si);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int node_num = 10;
+        
+          int _len_si0 = 100;
+          struct ocfs2_slot_info * si = (struct ocfs2_slot_info *) malloc(_len_si0*sizeof(struct ocfs2_slot_info));
+          for(int _i0 = 0; _i0 < _len_si0; _i0++) {
+              si[_i0].si_num_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_si__i0__si_slots0 = 1;
+          si[_i0].si_slots = (struct TYPE_2__ *) malloc(_len_si__i0__si_slots0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_si__i0__si_slots0; _j0++) {
+              si[_i0].si_slots->sl_node_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].si_slots->sl_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __ocfs2_node_num_to_slot(si,node_num);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_si0; _aux++) {
+          free(si[_aux].si_slots);
+          }
+          free(si);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int node_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_si0 = 1;
+          struct ocfs2_slot_info * si = (struct ocfs2_slot_info *) malloc(_len_si0*sizeof(struct ocfs2_slot_info));
+          for(int _i0 = 0; _i0 < _len_si0; _i0++) {
+              si[_i0].si_num_slots = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_si__i0__si_slots0 = 1;
+          si[_i0].si_slots = (struct TYPE_2__ *) malloc(_len_si__i0__si_slots0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_si__i0__si_slots0; _j0++) {
+              si[_i0].si_slots->sl_node_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          si[_i0].si_slots->sl_valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = __ocfs2_node_num_to_slot(si,node_num);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_si0; _aux++) {
+          free(si[_aux].si_slots);
+          }
+          free(si);
+        
+        break;
+    }
     default:
         usage();
         break;

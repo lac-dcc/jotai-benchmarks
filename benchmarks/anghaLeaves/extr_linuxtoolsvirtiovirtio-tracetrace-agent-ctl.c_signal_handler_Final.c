@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void signal_handler(int sig)
 	global_signal_val = sig;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sig = 100;
+        
           signal_handler(sig);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sig = 255;
+        
           signal_handler(sig);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sig = 10;
+        
           signal_handler(sig);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          signal_handler(sig);
+        
+        break;
+    }
     default:
         usage();
         break;

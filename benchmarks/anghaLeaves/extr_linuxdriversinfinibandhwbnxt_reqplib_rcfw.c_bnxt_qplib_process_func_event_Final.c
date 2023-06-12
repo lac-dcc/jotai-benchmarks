@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -109,12 +111,6 @@ __attribute__((used)) static int bnxt_qplib_process_func_event(struct bnxt_qplib
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,19 +123,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rcfw0 = 1;
+          int _len_rcfw0 = 65025;
           struct bnxt_qplib_rcfw * rcfw = (struct bnxt_qplib_rcfw *) malloc(_len_rcfw0*sizeof(struct bnxt_qplib_rcfw));
           for(int _i0 = 0; _i0 < _len_rcfw0; _i0++) {
-            rcfw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rcfw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_func_event0 = 1;
+        
+          int _len_func_event0 = 65025;
           struct creq_func_event * func_event = (struct creq_func_event *) malloc(_len_func_event0*sizeof(struct creq_func_event));
           for(int _i0 = 0; _i0 < _len_func_event0; _i0++) {
-            func_event[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+              func_event[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnxt_qplib_process_func_event(rcfw,func_event);
           printf("%d\n", benchRet); 
           free(rcfw);
@@ -147,7 +147,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rcfw0 = 100;
+          struct bnxt_qplib_rcfw * rcfw = (struct bnxt_qplib_rcfw *) malloc(_len_rcfw0*sizeof(struct bnxt_qplib_rcfw));
+          for(int _i0 = 0; _i0 < _len_rcfw0; _i0++) {
+              rcfw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_func_event0 = 100;
+          struct creq_func_event * func_event = (struct creq_func_event *) malloc(_len_func_event0*sizeof(struct creq_func_event));
+          for(int _i0 = 0; _i0 < _len_func_event0; _i0++) {
+              func_event[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnxt_qplib_process_func_event(rcfw,func_event);
+          printf("%d\n", benchRet); 
+          free(rcfw);
+          free(func_event);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rcfw0 = 1;
+          struct bnxt_qplib_rcfw * rcfw = (struct bnxt_qplib_rcfw *) malloc(_len_rcfw0*sizeof(struct bnxt_qplib_rcfw));
+          for(int _i0 = 0; _i0 < _len_rcfw0; _i0++) {
+              rcfw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_func_event0 = 1;
+          struct creq_func_event * func_event = (struct creq_func_event *) malloc(_len_func_event0*sizeof(struct creq_func_event));
+          for(int _i0 = 0; _i0 < _len_func_event0; _i0++) {
+              func_event[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnxt_qplib_process_func_event(rcfw,func_event);
+          printf("%d\n", benchRet); 
+          free(rcfw);
+          free(func_event);
+        
+        break;
+    }
     default:
         usage();
         break;

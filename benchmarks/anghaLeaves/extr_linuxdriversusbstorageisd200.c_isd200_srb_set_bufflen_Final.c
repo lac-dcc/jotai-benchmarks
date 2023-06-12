@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static void isd200_srb_set_bufflen(struct scsi_cmnd *srb, 
 	srb->sdb.length = bufflen;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,29 +77,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int bufflen = 100;
+        
           int _len_srb0 = 1;
           struct scsi_cmnd * srb = (struct scsi_cmnd *) malloc(_len_srb0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
-            srb[_i0].sdb.length = ((-2 * (next_i()%2)) + 1) * next_i();
+              srb[_i0].sdb.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           isd200_srb_set_bufflen(srb,bufflen);
           free(srb);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int bufflen = 255;
+        
+          int _len_srb0 = 65025;
+          struct scsi_cmnd * srb = (struct scsi_cmnd *) malloc(_len_srb0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
+              srb[_i0].sdb.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          isd200_srb_set_bufflen(srb,bufflen);
+          free(srb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           unsigned int bufflen = 10;
+        
           int _len_srb0 = 100;
           struct scsi_cmnd * srb = (struct scsi_cmnd *) malloc(_len_srb0*sizeof(struct scsi_cmnd));
           for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
-            srb[_i0].sdb.length = ((-2 * (next_i()%2)) + 1) * next_i();
+              srb[_i0].sdb.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          isd200_srb_set_bufflen(srb,bufflen);
+          free(srb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          unsigned int bufflen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_srb0 = 1;
+          struct scsi_cmnd * srb = (struct scsi_cmnd *) malloc(_len_srb0*sizeof(struct scsi_cmnd));
+          for(int _i0 = 0; _i0 < _len_srb0; _i0++) {
+              srb[_i0].sdb.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           isd200_srb_set_bufflen(srb,bufflen);
           free(srb);
         

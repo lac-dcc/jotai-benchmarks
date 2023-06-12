@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void random_globals_ctor(php_random_globals *random
 	random_globals_p->fd = -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_random_globals_p0 = 1;
+          int _len_random_globals_p0 = 65025;
           struct TYPE_3__ * random_globals_p = (struct TYPE_3__ *) malloc(_len_random_globals_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_random_globals_p0; _i0++) {
-            random_globals_p[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              random_globals_p[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           random_globals_ctor(random_globals_p);
           free(random_globals_p);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_random_globals_p0 = 100;
           struct TYPE_3__ * random_globals_p = (struct TYPE_3__ *) malloc(_len_random_globals_p0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_random_globals_p0; _i0++) {
-            random_globals_p[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+              random_globals_p[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           random_globals_ctor(random_globals_p);
           free(random_globals_p);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_random_globals_p0 = 1;
+          struct TYPE_3__ * random_globals_p = (struct TYPE_3__ *) malloc(_len_random_globals_p0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_random_globals_p0; _i0++) {
+              random_globals_p[_i0].fd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          random_globals_ctor(random_globals_p);
+          free(random_globals_p);
+        
+        break;
+    }
     default:
         usage();
         break;

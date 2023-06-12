@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -103,12 +104,6 @@ __attribute__((used)) static void unpack_metafile_pointers_short (list_t *L) {
   OTree.A = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -121,14 +116,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_L0 = 1;
+          int _len_L0 = 65025;
           struct TYPE_5__ * L = (struct TYPE_5__ *) malloc(_len_L0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_L0; _i0++) {
-            L[_i0].o_tree = ((-2 * (next_i()%2)) + 1) * next_i();
+              L[_i0].o_tree = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unpack_metafile_pointers_short(L);
           free(L);
         
@@ -140,14 +137,30 @@ int main(int argc, char *argv[]) {
           int _len_L0 = 100;
           struct TYPE_5__ * L = (struct TYPE_5__ *) malloc(_len_L0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_L0; _i0++) {
-            L[_i0].o_tree = ((-2 * (next_i()%2)) + 1) * next_i();
+              L[_i0].o_tree = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unpack_metafile_pointers_short(L);
           free(L);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_L0 = 1;
+          struct TYPE_5__ * L = (struct TYPE_5__ *) malloc(_len_L0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_L0; _i0++) {
+              L[_i0].o_tree = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unpack_metafile_pointers_short(L);
+          free(L);
+        
+        break;
+    }
     default:
         usage();
         break;

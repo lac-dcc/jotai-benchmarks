@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int pll_get_rate_index(struct iproc_pll *pll, unsig
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +91,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int target_rate = 100;
+        
           int _len_pll0 = 1;
           struct iproc_pll * pll = (struct iproc_pll *) malloc(_len_pll0*sizeof(struct iproc_pll));
           for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
-            pll[_i0].num_vco_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].num_vco_entries = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pll__i0__vco_param0 = 1;
           pll[_i0].vco_param = (struct TYPE_2__ *) malloc(_len_pll__i0__vco_param0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_pll__i0__vco_param0; _j0++) {
-            pll[_i0].vco_param->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].vco_param->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = pll_get_rate_index(pll,target_rate);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_pll0; _aux++) {
@@ -113,7 +114,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int target_rate = 255;
+        
+          int _len_pll0 = 65025;
+          struct iproc_pll * pll = (struct iproc_pll *) malloc(_len_pll0*sizeof(struct iproc_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].num_vco_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pll__i0__vco_param0 = 1;
+          pll[_i0].vco_param = (struct TYPE_2__ *) malloc(_len_pll__i0__vco_param0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pll__i0__vco_param0; _j0++) {
+              pll[_i0].vco_param->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pll_get_rate_index(pll,target_rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pll0; _aux++) {
+          free(pll[_aux].vco_param);
+          }
+          free(pll);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int target_rate = 10;
+        
+          int _len_pll0 = 100;
+          struct iproc_pll * pll = (struct iproc_pll *) malloc(_len_pll0*sizeof(struct iproc_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].num_vco_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pll__i0__vco_param0 = 1;
+          pll[_i0].vco_param = (struct TYPE_2__ *) malloc(_len_pll__i0__vco_param0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pll__i0__vco_param0; _j0++) {
+              pll[_i0].vco_param->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pll_get_rate_index(pll,target_rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pll0; _aux++) {
+          free(pll[_aux].vco_param);
+          }
+          free(pll);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int target_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pll0 = 1;
+          struct iproc_pll * pll = (struct iproc_pll *) malloc(_len_pll0*sizeof(struct iproc_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].num_vco_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pll__i0__vco_param0 = 1;
+          pll[_i0].vco_param = (struct TYPE_2__ *) malloc(_len_pll__i0__vco_param0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_pll__i0__vco_param0; _j0++) {
+              pll[_i0].vco_param->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pll_get_rate_index(pll,target_rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pll0; _aux++) {
+          free(pll[_aux].vco_param);
+          }
+          free(pll);
+        
+        break;
+    }
     default:
         usage();
         break;

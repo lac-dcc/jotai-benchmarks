@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -117,12 +118,6 @@ __attribute__((used)) static __u16 verify_ckctl_value(__u16 newval)
 	return newval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -139,6 +134,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int newval = 100;
+        
           int benchRet = verify_ckctl_value(newval);
           printf("%d\n", benchRet); 
         
@@ -148,6 +144,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int newval = 255;
+        
           int benchRet = verify_ckctl_value(newval);
           printf("%d\n", benchRet); 
         
@@ -157,12 +154,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int newval = 10;
+        
           int benchRet = verify_ckctl_value(newval);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int newval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = verify_ckctl_value(newval);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

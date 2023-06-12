@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void init_abr_vc (IADEV *dev, srv_cls_param_t *srv_
   srv_p->adtf       = 50;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,37 +90,108 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct TYPE_6__ * dev = (struct TYPE_6__ *) malloc(_len_dev0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].LineRate = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].LineRate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_srv_p0 = 1;
+        
+          int _len_srv_p0 = 65025;
           struct TYPE_5__ * srv_p = (struct TYPE_5__ *) malloc(_len_srv_p0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_srv_p0; _i0++) {
-            srv_p[_i0].icr = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].tbe = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].frtt = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].rif = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].rdf = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].nrm = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].trm = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].cdf = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].adtf = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].mcr = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].pcr = ((-2 * (next_i()%2)) + 1) * next_i();
-        srv_p[_i0].class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              srv_p[_i0].icr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].tbe = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].frtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].rif = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].rdf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].nrm = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].trm = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].cdf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].adtf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].mcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].pcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_abr_vc(dev,srv_p);
           free(dev);
           free(srv_p);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct TYPE_6__ * dev = (struct TYPE_6__ *) malloc(_len_dev0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].LineRate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_srv_p0 = 100;
+          struct TYPE_5__ * srv_p = (struct TYPE_5__ *) malloc(_len_srv_p0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_srv_p0; _i0++) {
+              srv_p[_i0].icr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].tbe = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].frtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].rif = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].rdf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].nrm = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].trm = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].cdf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].adtf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].mcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].pcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_abr_vc(dev,srv_p);
+          free(dev);
+          free(srv_p);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct TYPE_6__ * dev = (struct TYPE_6__ *) malloc(_len_dev0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].LineRate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_srv_p0 = 1;
+          struct TYPE_5__ * srv_p = (struct TYPE_5__ *) malloc(_len_srv_p0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_srv_p0; _i0++) {
+              srv_p[_i0].icr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].tbe = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].frtt = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].rif = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].rdf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].nrm = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].trm = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].cdf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].adtf = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].mcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].pcr = ((-2 * (next_i()%2)) + 1) * next_i();
+          srv_p[_i0].class_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_abr_vc(dev,srv_p);
+          free(dev);
+          free(srv_p);
+        
+        break;
+    }
     default:
         usage();
         break;

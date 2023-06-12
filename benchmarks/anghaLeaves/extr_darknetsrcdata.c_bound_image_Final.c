@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -82,12 +82,6 @@ box bound_image(image im)
     return b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,17 +94,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 30
+          // dynamic_instructions_Oz : 30
+          // ------------------------------- 
+
           struct TYPE_5__ im;
-        im.w = ((-2 * (next_i()%2)) + 1) * next_i();
-        im.h = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.w = ((-2 * (next_i()%2)) + 1) * next_i();
+          im.h = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_im_data0 = 1;
           im.data = (long *) malloc(_len_im_data0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_im_data0; _j0++) {
             im.data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           struct TYPE_6__ benchRet = bound_image(im);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);

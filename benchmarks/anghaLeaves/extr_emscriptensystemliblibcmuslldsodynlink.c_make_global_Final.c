@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -59,7 +60,6 @@ __attribute__((used)) static void make_global(struct dso *p)
 {
 	for (; p; p=p->next) p->global = 1;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -90,7 +90,6 @@ void _delete_p(struct dso *aux_p[], int aux_p_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,11 +102,70 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 80007
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 40007
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 40007
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 40007
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 40007
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 50006
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 50006
+          // ------------------------------- 
+
+          struct dso * aux_p[10000];
+          struct dso * p = _allocate_p(10000, aux_p);
+        
+          make_global(p);
+          _delete_p(aux_p, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           struct dso * aux_p[1];
           struct dso * p = _allocate_p(1, aux_p);
+        
           make_global(p);
           _delete_p(aux_p, 1);
         

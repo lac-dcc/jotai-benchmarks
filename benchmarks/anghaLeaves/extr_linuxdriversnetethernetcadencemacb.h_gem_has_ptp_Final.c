@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool gem_has_ptp(struct macb *bp)
 	return !!(bp->caps & MACB_CAPS_GEM_HAS_PTP);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          int _len_bp0 = 65025;
           struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gem_has_ptp(bp);
           printf("%d\n", benchRet); 
           free(bp);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_bp0 = 100;
           struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = gem_has_ptp(bp);
           printf("%d\n", benchRet); 
           free(bp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bp0 = 1;
+          struct macb * bp = (struct macb *) malloc(_len_bp0*sizeof(struct macb));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = gem_has_ptp(bp);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
     default:
         usage();
         break;

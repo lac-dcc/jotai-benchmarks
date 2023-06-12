@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -105,12 +107,6 @@ __attribute__((used)) static inline u32 pblk_ppa64_to_ppa32(struct pblk *pblk, s
 	return ppa32;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,36 +119,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pblk0 = 1;
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_pblk0 = 65025;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
-            pblk[_i0].addrf.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pblk[_i0].addrf.lun_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pblk[_i0].addrf.chk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        pblk[_i0].addrf.sec_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].addrf.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.lun_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.chk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.sec_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_pblk__i0__dev0 = 1;
           pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
           for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
-            pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct ppa_addr ppa64;
-        ppa64.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.m.grp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.m.pu = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.m.chk = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.m.sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.g.ch = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.g.lun = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.g.blk = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.g.pg = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.g.pl = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.g.sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.c.line = ((-2 * (next_i()%2)) + 1) * next_i();
-        ppa64.c.is_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.grp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.pu = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ppa64.g.ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.lun = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.blk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.pg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.pl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ppa64.c.line = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.c.is_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          unsigned int benchRet = pblk_ppa64_to_ppa32(pblk,ppa64);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pblk0; _aux++) {
+          free(pblk[_aux].dev);
+          }
+          free(pblk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_pblk0 = 100;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].addrf.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.lun_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.chk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.sec_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pblk__i0__dev0 = 1;
+          pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
+          for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct ppa_addr ppa64;
+          ppa64.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.grp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.pu = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ppa64.g.ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.lun = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.blk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.pg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.pl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ppa64.c.line = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.c.is_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          unsigned int benchRet = pblk_ppa64_to_ppa32(pblk,ppa64);
+          printf("%u\n", benchRet); 
+          for(int _aux = 0; _aux < _len_pblk0; _aux++) {
+          free(pblk[_aux].dev);
+          }
+          free(pblk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_pblk0 = 1;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].addrf.ch_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.lun_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.chk_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          pblk[_i0].addrf.sec_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pblk__i0__dev0 = 1;
+          pblk[_i0].dev = (struct nvm_tgt_dev *) malloc(_len_pblk__i0__dev0*sizeof(struct nvm_tgt_dev));
+          for(int _j0 = 0; _j0 < _len_pblk__i0__dev0; _j0++) {
+              pblk[_i0].dev->geo.version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct ppa_addr ppa64;
+          ppa64.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.grp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.pu = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.chk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.m.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ppa64.g.ch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.lun = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.blk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.pg = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.pl = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.g.sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ppa64.c.line = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa64.c.is_cached = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           unsigned int benchRet = pblk_ppa64_to_ppa32(pblk,ppa64);
           printf("%u\n", benchRet); 
           for(int _aux = 0; _aux < _len_pblk0; _aux++) {

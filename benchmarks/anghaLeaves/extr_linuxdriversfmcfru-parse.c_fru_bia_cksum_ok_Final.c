@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ int fru_bia_cksum_ok(struct fru_board_info_area *bia)
 	return (sum & 0xff) == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bia0 = 1;
+          int _len_bia0 = 65025;
           struct fru_board_info_area * bia = (struct fru_board_info_area *) malloc(_len_bia0*sizeof(struct fru_board_info_area));
           for(int _i0 = 0; _i0 < _len_bia0; _i0++) {
-            bia[_i0].area_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              bia[_i0].area_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fru_bia_cksum_ok(bia);
           printf("%d\n", benchRet); 
           free(bia);
@@ -105,15 +102,32 @@ int main(int argc, char *argv[]) {
           int _len_bia0 = 100;
           struct fru_board_info_area * bia = (struct fru_board_info_area *) malloc(_len_bia0*sizeof(struct fru_board_info_area));
           for(int _i0 = 0; _i0 < _len_bia0; _i0++) {
-            bia[_i0].area_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              bia[_i0].area_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fru_bia_cksum_ok(bia);
           printf("%d\n", benchRet); 
           free(bia);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bia0 = 1;
+          struct fru_board_info_area * bia = (struct fru_board_info_area *) malloc(_len_bia0*sizeof(struct fru_board_info_area));
+          for(int _i0 = 0; _i0 < _len_bia0; _i0++) {
+              bia[_i0].area_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fru_bia_cksum_ok(bia);
+          printf("%d\n", benchRet); 
+          free(bia);
+        
+        break;
+    }
     default:
         usage();
         break;

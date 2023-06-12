@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int dns_read_iterator_fetch_ushort (dns_read_iterat
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +81,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_B0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_B0 = 65025;
           struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_B0; _i0++) {
-            B[_i0].avail_in = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].avail_in = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_B__i0__rptr0 = 1;
           B[_i0].rptr = (long *) malloc(_len_B__i0__rptr0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_B__i0__rptr0; _j0++) {
             B[_i0].rptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int _len_res0 = 65025;
+          unsigned short * res = (unsigned short *) malloc(_len_res0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dns_read_iterator_fetch_ushort(B,res);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_B0; _aux++) {
+          free(B[_aux].rptr);
+          }
+          free(B);
+          free(res);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_B0 = 100;
+          struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].avail_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_B__i0__rptr0 = 1;
+          B[_i0].rptr = (long *) malloc(_len_B__i0__rptr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_B__i0__rptr0; _j0++) {
+            B[_i0].rptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_res0 = 100;
+          unsigned short * res = (unsigned short *) malloc(_len_res0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_res0; _i0++) {
+            res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = dns_read_iterator_fetch_ushort(B,res);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_B0; _aux++) {
+          free(B[_aux].rptr);
+          }
+          free(B);
+          free(res);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_B0 = 1;
+          struct TYPE_3__ * B = (struct TYPE_3__ *) malloc(_len_B0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].avail_in = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_B__i0__rptr0 = 1;
+          B[_i0].rptr = (long *) malloc(_len_B__i0__rptr0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_B__i0__rptr0; _j0++) {
+            B[_i0].rptr[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int _len_res0 = 1;
           unsigned short * res = (unsigned short *) malloc(_len_res0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_res0; _i0++) {
             res[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = dns_read_iterator_fetch_ushort(B,res);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_B0; _aux++) {

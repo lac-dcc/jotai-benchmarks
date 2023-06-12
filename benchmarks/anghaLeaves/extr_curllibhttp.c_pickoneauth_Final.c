@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -95,12 +98,6 @@ __attribute__((used)) static bool pickoneauth(struct auth *pick, unsigned long m
   return picked;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,20 +114,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long mask = 100;
+        
           int _len_pick0 = 1;
           struct auth * pick = (struct auth *) malloc(_len_pick0*sizeof(struct auth));
           for(int _i0 = 0; _i0 < _len_pick0; _i0++) {
-            pick[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
-        pick[_i0].want = ((-2 * (next_i()%2)) + 1) * next_i();
-        pick[_i0].picked = ((-2 * (next_i()%2)) + 1) * next_i();
+              pick[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].want = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].picked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pickoneauth(pick,mask);
           printf("%d\n", benchRet); 
           free(pick);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long mask = 255;
+        
+          int _len_pick0 = 65025;
+          struct auth * pick = (struct auth *) malloc(_len_pick0*sizeof(struct auth));
+          for(int _i0 = 0; _i0 < _len_pick0; _i0++) {
+              pick[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].want = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].picked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pickoneauth(pick,mask);
+          printf("%d\n", benchRet); 
+          free(pick);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long mask = 10;
+        
+          int _len_pick0 = 100;
+          struct auth * pick = (struct auth *) malloc(_len_pick0*sizeof(struct auth));
+          for(int _i0 = 0; _i0 < _len_pick0; _i0++) {
+              pick[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].want = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].picked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pickoneauth(pick,mask);
+          printf("%d\n", benchRet); 
+          free(pick);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pick0 = 1;
+          struct auth * pick = (struct auth *) malloc(_len_pick0*sizeof(struct auth));
+          for(int _i0 = 0; _i0 < _len_pick0; _i0++) {
+              pick[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].want = ((-2 * (next_i()%2)) + 1) * next_i();
+          pick[_i0].picked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pickoneauth(pick,mask);
+          printf("%d\n", benchRet); 
+          free(pick);
+        
+        break;
+    }
     default:
         usage();
         break;

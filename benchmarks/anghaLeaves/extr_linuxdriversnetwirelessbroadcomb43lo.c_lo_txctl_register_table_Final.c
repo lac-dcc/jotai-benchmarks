@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -92,12 +94,6 @@ __attribute__((used)) static u16 lo_txctl_register_table(struct b43_wldev *dev,
 	return reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,26 +106,31 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct b43_wldev * dev = (struct b43_wldev *) malloc(_len_dev0*sizeof(struct b43_wldev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].phy.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_value0 = 1;
+        
+          int _len_value0 = 65025;
           int * value = (int *) malloc(_len_value0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_value0; _i0++) {
             value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_pad_mix_gain0 = 1;
+        
+          int _len_pad_mix_gain0 = 65025;
           int * pad_mix_gain = (int *) malloc(_len_pad_mix_gain0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pad_mix_gain0; _i0++) {
             pad_mix_gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = lo_txctl_register_table(dev,value,pad_mix_gain);
           printf("%d\n", benchRet); 
           free(dev);
@@ -138,7 +139,72 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct b43_wldev * dev = (struct b43_wldev *) malloc(_len_dev0*sizeof(struct b43_wldev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_value0 = 100;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pad_mix_gain0 = 100;
+          int * pad_mix_gain = (int *) malloc(_len_pad_mix_gain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pad_mix_gain0; _i0++) {
+            pad_mix_gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lo_txctl_register_table(dev,value,pad_mix_gain);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(value);
+          free(pad_mix_gain);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct b43_wldev * dev = (struct b43_wldev *) malloc(_len_dev0*sizeof(struct b43_wldev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].phy.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.radio_rev = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].phy.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_value0 = 1;
+          int * value = (int *) malloc(_len_value0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_value0; _i0++) {
+            value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pad_mix_gain0 = 1;
+          int * pad_mix_gain = (int *) malloc(_len_pad_mix_gain0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pad_mix_gain0; _i0++) {
+            pad_mix_gain[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lo_txctl_register_table(dev,value,pad_mix_gain);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(value);
+          free(pad_mix_gain);
+        
+        break;
+    }
     default:
         usage();
         break;

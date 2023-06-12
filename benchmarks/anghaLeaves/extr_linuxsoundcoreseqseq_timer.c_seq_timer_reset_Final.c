@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void seq_timer_reset(struct snd_seq_timer *tmr)
 	tmr->tick.fraction = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +83,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_tmr0 = 65025;
+          struct snd_seq_timer * tmr = (struct snd_seq_timer *) malloc(_len_tmr0*sizeof(struct snd_seq_timer));
+          for(int _i0 = 0; _i0 < _len_tmr0; _i0++) {
+              tmr[_i0].tick.fraction = ((-2 * (next_i()%2)) + 1) * next_i();
+          tmr[_i0].tick.cur_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tmr[_i0].cur_time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          tmr[_i0].cur_time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          seq_timer_reset(tmr);
+          free(tmr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_tmr0 = 100;
+          struct snd_seq_timer * tmr = (struct snd_seq_timer *) malloc(_len_tmr0*sizeof(struct snd_seq_timer));
+          for(int _i0 = 0; _i0 < _len_tmr0; _i0++) {
+              tmr[_i0].tick.fraction = ((-2 * (next_i()%2)) + 1) * next_i();
+          tmr[_i0].tick.cur_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tmr[_i0].cur_time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          tmr[_i0].cur_time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          seq_timer_reset(tmr);
+          free(tmr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_tmr0 = 1;
           struct snd_seq_timer * tmr = (struct snd_seq_timer *) malloc(_len_tmr0*sizeof(struct snd_seq_timer));
           for(int _i0 = 0; _i0 < _len_tmr0; _i0++) {
-            tmr[_i0].tick.fraction = ((-2 * (next_i()%2)) + 1) * next_i();
-        tmr[_i0].tick.cur_tick = ((-2 * (next_i()%2)) + 1) * next_i();
-        tmr[_i0].cur_time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
-        tmr[_i0].cur_time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+              tmr[_i0].tick.fraction = ((-2 * (next_i()%2)) + 1) * next_i();
+          tmr[_i0].tick.cur_tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tmr[_i0].cur_time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          tmr[_i0].cur_time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           seq_timer_reset(tmr);
           free(tmr);
         

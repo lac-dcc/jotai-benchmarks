@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool need_flush(struct iommu_map_table *iomm
 	return ((iommu->flags & IOMMU_NEED_FLUSH) != 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_iommu0 = 1;
+          int _len_iommu0 = 65025;
           struct iommu_map_table * iommu = (struct iommu_map_table *) malloc(_len_iommu0*sizeof(struct iommu_map_table));
           for(int _i0 = 0; _i0 < _len_iommu0; _i0++) {
-            iommu[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              iommu[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = need_flush(iommu);
           printf("%d\n", benchRet); 
           free(iommu);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_iommu0 = 100;
           struct iommu_map_table * iommu = (struct iommu_map_table *) malloc(_len_iommu0*sizeof(struct iommu_map_table));
           for(int _i0 = 0; _i0 < _len_iommu0; _i0++) {
-            iommu[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              iommu[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = need_flush(iommu);
           printf("%d\n", benchRet); 
           free(iommu);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_iommu0 = 1;
+          struct iommu_map_table * iommu = (struct iommu_map_table *) malloc(_len_iommu0*sizeof(struct iommu_map_table));
+          for(int _i0 = 0; _i0 < _len_iommu0; _i0++) {
+              iommu[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = need_flush(iommu);
+          printf("%d\n", benchRet); 
+          free(iommu);
+        
+        break;
+    }
     default:
         usage();
         break;

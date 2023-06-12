@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static inline int mv_cesa_req_needs_cleanup(struct crypto_
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,11 +99,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ret = 100;
+        
           int _len_req0 = 1;
           struct crypto_async_request * req = (struct crypto_async_request *) malloc(_len_req0*sizeof(struct crypto_async_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mv_cesa_req_needs_cleanup(req,ret);
+          printf("%d\n", benchRet); 
+          free(req);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ret = 255;
+        
+          int _len_req0 = 65025;
+          struct crypto_async_request * req = (struct crypto_async_request *) malloc(_len_req0*sizeof(struct crypto_async_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mv_cesa_req_needs_cleanup(req,ret);
           printf("%d\n", benchRet); 
           free(req);
@@ -115,21 +132,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ret = 10;
+        
           int _len_req0 = 100;
           struct crypto_async_request * req = (struct crypto_async_request *) malloc(_len_req0*sizeof(struct crypto_async_request));
           for(int _i0 = 0; _i0 < _len_req0; _i0++) {
-            req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mv_cesa_req_needs_cleanup(req,ret);
           printf("%d\n", benchRet); 
           free(req);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ret = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_req0 = 1;
+          struct crypto_async_request * req = (struct crypto_async_request *) malloc(_len_req0*sizeof(struct crypto_async_request));
+          for(int _i0 = 0; _i0 < _len_req0; _i0++) {
+              req[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mv_cesa_req_needs_cleanup(req,ret);
+          printf("%d\n", benchRet); 
+          free(req);
+        
+        break;
+    }
     default:
         usage();
         break;

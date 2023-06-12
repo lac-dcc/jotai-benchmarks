@@ -31,7 +31,10 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            linked\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            linked\n\
+       4            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ mlxsw_sp_acl_atcam_generic_lkey_id_get(struct mlxsw_sp_acl_atcam_region *aregion
 	return &region_generic->dummy_lkey_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,24 +86,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int erp_id = 100;
+        
           int _len_aregion0 = 1;
           struct mlxsw_sp_acl_atcam_region * aregion = (struct mlxsw_sp_acl_atcam_region *) malloc(_len_aregion0*sizeof(struct mlxsw_sp_acl_atcam_region));
           for(int _i0 = 0; _i0 < _len_aregion0; _i0++) {
               int _len_aregion__i0__priv0 = 1;
           aregion[_i0].priv = (struct mlxsw_sp_acl_atcam_region_generic *) malloc(_len_aregion__i0__priv0*sizeof(struct mlxsw_sp_acl_atcam_region_generic));
           for(int _j0 = 0; _j0 < _len_aregion__i0__priv0; _j0++) {
-            aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_rulei0 = 1;
           struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
           for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
-            rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct mlxsw_sp_acl_atcam_lkey_id * benchRet = mlxsw_sp_acl_atcam_generic_lkey_id_get(aregion,rulei,erp_id);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_aregion0; _aux++) {
@@ -117,24 +144,232 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int erp_id = 255;
+        
+          int _len_aregion0 = 65025;
+          struct mlxsw_sp_acl_atcam_region * aregion = (struct mlxsw_sp_acl_atcam_region *) malloc(_len_aregion0*sizeof(struct mlxsw_sp_acl_atcam_region));
+          for(int _i0 = 0; _i0 < _len_aregion0; _i0++) {
+              int _len_aregion__i0__priv0 = 1;
+          aregion[_i0].priv = (struct mlxsw_sp_acl_atcam_region_generic *) malloc(_len_aregion__i0__priv0*sizeof(struct mlxsw_sp_acl_atcam_region_generic));
+          for(int _j0 = 0; _j0 < _len_aregion__i0__priv0; _j0++) {
+              aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_rulei0 = 65025;
+          struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
+              rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct mlxsw_sp_acl_atcam_lkey_id * benchRet = mlxsw_sp_acl_atcam_generic_lkey_id_get(aregion,rulei,erp_id);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_aregion0; _aux++) {
+          free(aregion[_aux].priv);
+          }
+          free(aregion);
+          free(rulei);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int erp_id = 10;
+        
+          int _len_aregion0 = 100;
+          struct mlxsw_sp_acl_atcam_region * aregion = (struct mlxsw_sp_acl_atcam_region *) malloc(_len_aregion0*sizeof(struct mlxsw_sp_acl_atcam_region));
+          for(int _i0 = 0; _i0 < _len_aregion0; _i0++) {
+              int _len_aregion__i0__priv0 = 1;
+          aregion[_i0].priv = (struct mlxsw_sp_acl_atcam_region_generic *) malloc(_len_aregion__i0__priv0*sizeof(struct mlxsw_sp_acl_atcam_region_generic));
+          for(int _j0 = 0; _j0 < _len_aregion__i0__priv0; _j0++) {
+              aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_rulei0 = 100;
+          struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
+              rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct mlxsw_sp_acl_atcam_lkey_id * benchRet = mlxsw_sp_acl_atcam_generic_lkey_id_get(aregion,rulei,erp_id);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_aregion0; _aux++) {
+          free(aregion[_aux].priv);
+          }
+          free(aregion);
+          free(rulei);
+        
+        break;
+    }
+
+
+    // linked
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int erp_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int _len_aregion0 = 1;
           struct mlxsw_sp_acl_atcam_region * aregion = (struct mlxsw_sp_acl_atcam_region *) malloc(_len_aregion0*sizeof(struct mlxsw_sp_acl_atcam_region));
           for(int _i0 = 0; _i0 < _len_aregion0; _i0++) {
               int _len_aregion__i0__priv0 = 1;
           aregion[_i0].priv = (struct mlxsw_sp_acl_atcam_region_generic *) malloc(_len_aregion__i0__priv0*sizeof(struct mlxsw_sp_acl_atcam_region_generic));
           for(int _j0 = 0; _j0 < _len_aregion__i0__priv0; _j0++) {
-            aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_rulei0 = 1;
           struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
           for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
-            rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          struct mlxsw_sp_acl_atcam_lkey_id * benchRet = mlxsw_sp_acl_atcam_generic_lkey_id_get(aregion,rulei,erp_id);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_aregion0; _aux++) {
+          free(aregion[_aux].priv);
+          }
+          free(aregion);
+          free(rulei);
+        
+        break;
+    }
+
+
+    // empty
+    case 4:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int erp_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_aregion0 = 1;
+          struct mlxsw_sp_acl_atcam_region * aregion = (struct mlxsw_sp_acl_atcam_region *) malloc(_len_aregion0*sizeof(struct mlxsw_sp_acl_atcam_region));
+          for(int _i0 = 0; _i0 < _len_aregion0; _i0++) {
+              int _len_aregion__i0__priv0 = 1;
+          aregion[_i0].priv = (struct mlxsw_sp_acl_atcam_region_generic *) malloc(_len_aregion__i0__priv0*sizeof(struct mlxsw_sp_acl_atcam_region_generic));
+          for(int _j0 = 0; _j0 < _len_aregion__i0__priv0; _j0++) {
+              aregion[_i0].priv->dummy_lkey_id.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_rulei0 = 1;
+          struct mlxsw_sp_acl_rule_info * rulei = (struct mlxsw_sp_acl_rule_info *) malloc(_len_rulei0*sizeof(struct mlxsw_sp_acl_rule_info));
+          for(int _i0 = 0; _i0 < _len_rulei0; _i0++) {
+              rulei[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           struct mlxsw_sp_acl_atcam_lkey_id * benchRet = mlxsw_sp_acl_atcam_generic_lkey_id_get(aregion,rulei,erp_id);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_aregion0; _aux++) {

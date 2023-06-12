@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static bool rule_contains(struct ieee80211_reg_rule *r1,
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,29 +99,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_r10 = 65025;
+          struct ieee80211_reg_rule * r1 = (struct ieee80211_reg_rule *) malloc(_len_r10*sizeof(struct ieee80211_reg_rule));
+          for(int _i0 = 0; _i0 < _len_r10; _i0++) {
+              r1[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          r1[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_r20 = 65025;
+          struct ieee80211_reg_rule * r2 = (struct ieee80211_reg_rule *) malloc(_len_r20*sizeof(struct ieee80211_reg_rule));
+          for(int _i0 = 0; _i0 < _len_r20; _i0++) {
+              r2[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          r2[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rule_contains(r1,r2);
+          printf("%d\n", benchRet); 
+          free(r1);
+          free(r2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_r10 = 100;
+          struct ieee80211_reg_rule * r1 = (struct ieee80211_reg_rule *) malloc(_len_r10*sizeof(struct ieee80211_reg_rule));
+          for(int _i0 = 0; _i0 < _len_r10; _i0++) {
+              r1[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          r1[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_r20 = 100;
+          struct ieee80211_reg_rule * r2 = (struct ieee80211_reg_rule *) malloc(_len_r20*sizeof(struct ieee80211_reg_rule));
+          for(int _i0 = 0; _i0 < _len_r20; _i0++) {
+              r2[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          r2[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = rule_contains(r1,r2);
+          printf("%d\n", benchRet); 
+          free(r1);
+          free(r2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_r10 = 1;
           struct ieee80211_reg_rule * r1 = (struct ieee80211_reg_rule *) malloc(_len_r10*sizeof(struct ieee80211_reg_rule));
           for(int _i0 = 0; _i0 < _len_r10; _i0++) {
-            r1[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        r1[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        r1[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        r1[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        r1[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        r1[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+              r1[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          r1[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          r1[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_r20 = 1;
           struct ieee80211_reg_rule * r2 = (struct ieee80211_reg_rule *) malloc(_len_r20*sizeof(struct ieee80211_reg_rule));
           for(int _i0 = 0; _i0 < _len_r20; _i0++) {
-            r2[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        r2[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        r2[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        r2[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
-        r2[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
-        r2[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+              r2[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.start_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.end_freq_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].freq_range.max_bandwidth_khz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          r2[_i0].power_rule.max_antenna_gain = ((-2 * (next_i()%2)) + 1) * next_i();
+          r2[_i0].power_rule.max_eirp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = rule_contains(r1,r2);
           printf("%d\n", benchRet); 
           free(r1);

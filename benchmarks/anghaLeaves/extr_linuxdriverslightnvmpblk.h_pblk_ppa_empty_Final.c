@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static inline int pblk_ppa_empty(struct ppa_addr ppa_addr)
 	return (ppa_addr.ppa == ADDR_EMPTY);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,17 +73,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct ppa_addr ppa_addr;
-        ppa_addr.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ppa_addr.ppa = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = pblk_ppa_empty(ppa_addr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

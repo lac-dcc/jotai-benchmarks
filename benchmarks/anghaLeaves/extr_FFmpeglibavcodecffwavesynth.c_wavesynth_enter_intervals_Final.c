@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static void wavesynth_enter_intervals(struct wavesynth_con
     *last = -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,27 +102,31 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long ts = 100;
+        
           int _len_ws0 = 1;
           struct wavesynth_context * ws = (struct wavesynth_context *) malloc(_len_ws0*sizeof(struct wavesynth_context));
           for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
-            ws[_i0].cur_inter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].next_inter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].nb_inter = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].next_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+              ws[_i0].cur_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].nb_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_ts = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ws__i0__inter0 = 1;
           ws[_i0].inter = (struct ws_interval *) malloc(_len_ws__i0__inter0*sizeof(struct ws_interval));
           for(int _j0 = 0; _j0 < _len_ws__i0__inter0; _j0++) {
-            ws[_i0].inter->next = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->ts_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->amp0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->amp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->dphi = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        ws[_i0].inter->phi = ((-2 * (next_i()%2)) + 1) * next_i();
+              ws[_i0].inter->next = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           wavesynth_enter_intervals(ws,ts);
           for(int _aux = 0; _aux < _len_ws0; _aux++) {
           free(ws[_aux].inter);
@@ -134,7 +135,117 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long ts = 255;
+        
+          int _len_ws0 = 65025;
+          struct wavesynth_context * ws = (struct wavesynth_context *) malloc(_len_ws0*sizeof(struct wavesynth_context));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].cur_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].nb_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ws__i0__inter0 = 1;
+          ws[_i0].inter = (struct ws_interval *) malloc(_len_ws__i0__inter0*sizeof(struct ws_interval));
+          for(int _j0 = 0; _j0 < _len_ws__i0__inter0; _j0++) {
+              ws[_i0].inter->next = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          wavesynth_enter_intervals(ws,ts);
+          for(int _aux = 0; _aux < _len_ws0; _aux++) {
+          free(ws[_aux].inter);
+          }
+          free(ws);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long ts = 10;
+        
+          int _len_ws0 = 100;
+          struct wavesynth_context * ws = (struct wavesynth_context *) malloc(_len_ws0*sizeof(struct wavesynth_context));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].cur_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].nb_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ws__i0__inter0 = 1;
+          ws[_i0].inter = (struct ws_interval *) malloc(_len_ws__i0__inter0*sizeof(struct ws_interval));
+          for(int _j0 = 0; _j0 < _len_ws__i0__inter0; _j0++) {
+              ws[_i0].inter->next = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          wavesynth_enter_intervals(ws,ts);
+          for(int _aux = 0; _aux < _len_ws0; _aux++) {
+          free(ws[_aux].inter);
+          }
+          free(ws);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ws0 = 1;
+          struct wavesynth_context * ws = (struct wavesynth_context *) malloc(_len_ws0*sizeof(struct wavesynth_context));
+          for(int _i0 = 0; _i0 < _len_ws0; _i0++) {
+              ws[_i0].cur_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].nb_inter = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].next_ts = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ws__i0__inter0 = 1;
+          ws[_i0].inter = (struct ws_interval *) malloc(_len_ws__i0__inter0*sizeof(struct ws_interval));
+          for(int _j0 = 0; _j0 < _len_ws__i0__inter0; _j0++) {
+              ws[_i0].inter->next = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->ts_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->amp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->dphi = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          ws[_i0].inter->phi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          wavesynth_enter_intervals(ws,ts);
+          for(int _aux = 0; _aux < _len_ws0; _aux++) {
+          free(ws[_aux].inter);
+          }
+          free(ws);
+        
+        break;
+    }
     default:
         usage();
         break;

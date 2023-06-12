@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -138,12 +140,6 @@ halmac_check_efuse_enough_88xx(struct halmac_adapter *halmac_adapter,
 	return HALMAC_RET_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -156,25 +152,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_halmac_adapter0 = 65025;
+          struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
+          for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
+              halmac_adapter[_i0].efuse_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          halmac_adapter[_i0].hw_config_info.efuse_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pg_efuse_info0 = 65025;
+          struct halmac_pg_efuse_info * pg_efuse_info = (struct halmac_pg_efuse_info *) malloc(_len_pg_efuse_info0*sizeof(struct halmac_pg_efuse_info));
+          for(int _i0 = 0; _i0 < _len_pg_efuse_info0; _i0++) {
+              pg_efuse_info[_i0].efuse_map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_eeprom_mask_updated0 = 65025;
+          int * eeprom_mask_updated = (int *) malloc(_len_eeprom_mask_updated0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eeprom_mask_updated0; _i0++) {
+            eeprom_mask_updated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          enum halmac_ret_status benchRet = halmac_check_efuse_enough_88xx(halmac_adapter,pg_efuse_info,eeprom_mask_updated);
+          free(halmac_adapter);
+          free(pg_efuse_info);
+          free(eeprom_mask_updated);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_halmac_adapter0 = 100;
+          struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
+          for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
+              halmac_adapter[_i0].efuse_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          halmac_adapter[_i0].hw_config_info.efuse_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_pg_efuse_info0 = 100;
+          struct halmac_pg_efuse_info * pg_efuse_info = (struct halmac_pg_efuse_info *) malloc(_len_pg_efuse_info0*sizeof(struct halmac_pg_efuse_info));
+          for(int _i0 = 0; _i0 < _len_pg_efuse_info0; _i0++) {
+              pg_efuse_info[_i0].efuse_map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_eeprom_mask_updated0 = 100;
+          int * eeprom_mask_updated = (int *) malloc(_len_eeprom_mask_updated0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_eeprom_mask_updated0; _i0++) {
+            eeprom_mask_updated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          enum halmac_ret_status benchRet = halmac_check_efuse_enough_88xx(halmac_adapter,pg_efuse_info,eeprom_mask_updated);
+          free(halmac_adapter);
+          free(pg_efuse_info);
+          free(eeprom_mask_updated);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_halmac_adapter0 = 1;
           struct halmac_adapter * halmac_adapter = (struct halmac_adapter *) malloc(_len_halmac_adapter0*sizeof(struct halmac_adapter));
           for(int _i0 = 0; _i0 < _len_halmac_adapter0; _i0++) {
-            halmac_adapter[_i0].efuse_end = ((-2 * (next_i()%2)) + 1) * next_i();
-        halmac_adapter[_i0].hw_config_info.efuse_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              halmac_adapter[_i0].efuse_end = ((-2 * (next_i()%2)) + 1) * next_i();
+          halmac_adapter[_i0].hw_config_info.efuse_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_pg_efuse_info0 = 1;
           struct halmac_pg_efuse_info * pg_efuse_info = (struct halmac_pg_efuse_info *) malloc(_len_pg_efuse_info0*sizeof(struct halmac_pg_efuse_info));
           for(int _i0 = 0; _i0 < _len_pg_efuse_info0; _i0++) {
-            pg_efuse_info[_i0].efuse_map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              pg_efuse_info[_i0].efuse_map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_eeprom_mask_updated0 = 1;
           int * eeprom_mask_updated = (int *) malloc(_len_eeprom_mask_updated0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_eeprom_mask_updated0; _i0++) {
             eeprom_mask_updated[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           enum halmac_ret_status benchRet = halmac_check_efuse_enough_88xx(halmac_adapter,pg_efuse_info,eeprom_mask_updated);
           free(halmac_adapter);
           free(pg_efuse_info);

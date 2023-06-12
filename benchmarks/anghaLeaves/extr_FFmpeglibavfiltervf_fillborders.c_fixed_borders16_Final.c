@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ __attribute__((used)) static void fixed_borders16(FillBordersContext *s, AVFrame
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,19 +110,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_s0 = 1;
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_s0 = 65025;
           struct TYPE_7__ * s = (struct TYPE_7__ *) malloc(_len_s0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].nb_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].nb_planes = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__fill0 = 1;
           s[_i0].fill = (int *) malloc(_len_s__i0__fill0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_s__i0__fill0; _j0++) {
             s[_i0].fill[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        s[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__planeheight0 = 1;
           s[_i0].planeheight = (int *) malloc(_len_s__i0__planeheight0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_s__i0__planeheight0; _j0++) {
@@ -140,12 +159,213 @@ int main(int argc, char *argv[]) {
           int _len_s__i0__borders0 = 1;
           s[_i0].borders = (struct TYPE_6__ *) malloc(_len_s__i0__borders0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_s__i0__borders0; _j0++) {
-            s[_i0].borders->top = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].borders->bottom = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].borders->left = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].borders->right = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].borders->top = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->left = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int _len_frame0 = 65025;
+          struct TYPE_8__ * frame = (struct TYPE_8__ *) malloc(_len_frame0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (long *) malloc(_len_frame__i0__data0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          fixed_borders16(s,frame);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].fill);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].planeheight);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].planewidth);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].borders);
+          }
+          free(s);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_s0 = 100;
+          struct TYPE_7__ * s = (struct TYPE_7__ *) malloc(_len_s0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].nb_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__fill0 = 1;
+          s[_i0].fill = (int *) malloc(_len_s__i0__fill0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__fill0; _j0++) {
+            s[_i0].fill[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__planeheight0 = 1;
+          s[_i0].planeheight = (int *) malloc(_len_s__i0__planeheight0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__planeheight0; _j0++) {
+            s[_i0].planeheight[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__planewidth0 = 1;
+          s[_i0].planewidth = (int *) malloc(_len_s__i0__planewidth0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__planewidth0; _j0++) {
+            s[_i0].planewidth[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__borders0 = 1;
+          s[_i0].borders = (struct TYPE_6__ *) malloc(_len_s__i0__borders0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_s__i0__borders0; _j0++) {
+              s[_i0].borders->top = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->left = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_frame0 = 100;
+          struct TYPE_8__ * frame = (struct TYPE_8__ *) malloc(_len_frame0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
+              int _len_frame__i0__linesize0 = 1;
+          frame[_i0].linesize = (int *) malloc(_len_frame__i0__linesize0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_frame__i0__linesize0; _j0++) {
+            frame[_i0].linesize[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_frame__i0__data0 = 1;
+          frame[_i0].data = (long *) malloc(_len_frame__i0__data0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
+            frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          fixed_borders16(s,frame);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].fill);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].planeheight);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].planewidth);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].borders);
+          }
+          free(s);
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].linesize);
+          }
+          for(int _aux = 0; _aux < _len_frame0; _aux++) {
+          free(frame[_aux].data);
+          }
+          free(frame);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_s0 = 1;
+          struct TYPE_7__ * s = (struct TYPE_7__ *) malloc(_len_s0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].nb_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__fill0 = 1;
+          s[_i0].fill = (int *) malloc(_len_s__i0__fill0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__fill0; _j0++) {
+            s[_i0].fill[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].depth = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__planeheight0 = 1;
+          s[_i0].planeheight = (int *) malloc(_len_s__i0__planeheight0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__planeheight0; _j0++) {
+            s[_i0].planeheight[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__planewidth0 = 1;
+          s[_i0].planewidth = (int *) malloc(_len_s__i0__planewidth0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__planewidth0; _j0++) {
+            s[_i0].planewidth[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__borders0 = 1;
+          s[_i0].borders = (struct TYPE_6__ *) malloc(_len_s__i0__borders0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_s__i0__borders0; _j0++) {
+              s[_i0].borders->top = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->bottom = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->left = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].borders->right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int _len_frame0 = 1;
           struct TYPE_8__ * frame = (struct TYPE_8__ *) malloc(_len_frame0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_frame0; _i0++) {
@@ -159,7 +379,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_frame__i0__data0; _j0++) {
             frame[_i0].data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           fixed_borders16(s,frame);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].fill);

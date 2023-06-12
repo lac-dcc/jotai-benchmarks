@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool ata_sstatus_online(u32 sstatus)
 	return (sstatus & 0xf) == 0x3;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sstatus = 100;
+        
           int benchRet = ata_sstatus_online(sstatus);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sstatus = 255;
+        
           int benchRet = ata_sstatus_online(sstatus);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sstatus = 10;
+        
           int benchRet = ata_sstatus_online(sstatus);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sstatus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ata_sstatus_online(sstatus);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

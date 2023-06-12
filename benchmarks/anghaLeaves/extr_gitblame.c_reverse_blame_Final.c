@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -66,7 +67,6 @@ __attribute__((used)) static struct blame_entry *reverse_blame(struct blame_entr
 	}
 	return tail;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -118,7 +118,6 @@ void _delete_tail(struct blame_entry *aux_tail[], int aux_tail_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -131,20 +130,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct blame_entry * aux_head[10000];
+          struct blame_entry * head = _allocate_head(10000, aux_head);
+        
+          struct blame_entry * aux_tail[10000];
+          struct blame_entry * tail = _allocate_tail(10000, aux_tail);
+        
+          struct blame_entry * benchRet = reverse_blame(head,tail);
+          _delete_head(aux_head, 10000);
+          _delete_tail(aux_tail, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct blame_entry * aux_head[1];
           struct blame_entry * head = _allocate_head(1, aux_head);
+        
           struct blame_entry * aux_tail[1];
           struct blame_entry * tail = _allocate_tail(1, aux_tail);
+        
           struct blame_entry * benchRet = reverse_blame(head,tail);
           _delete_head(aux_head, 1);
           _delete_tail(aux_tail, 1);
         
         break;
     }
-
     default:
         usage();
         break;

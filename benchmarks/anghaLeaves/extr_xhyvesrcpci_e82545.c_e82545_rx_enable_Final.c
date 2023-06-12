@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ e82545_rx_enable(struct e82545_softc *sc)
 	sc->esc_rx_enabled = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sc0 = 1;
+          int _len_sc0 = 65025;
           struct e82545_softc * sc = (struct e82545_softc *) malloc(_len_sc0*sizeof(struct e82545_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].esc_rx_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].esc_rx_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           e82545_rx_enable(sc);
           free(sc);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_sc0 = 100;
           struct e82545_softc * sc = (struct e82545_softc *) malloc(_len_sc0*sizeof(struct e82545_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].esc_rx_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].esc_rx_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           e82545_rx_enable(sc);
           free(sc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sc0 = 1;
+          struct e82545_softc * sc = (struct e82545_softc *) malloc(_len_sc0*sizeof(struct e82545_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].esc_rx_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          e82545_rx_enable(sc);
+          free(sc);
+        
+        break;
+    }
     default:
         usage();
         break;

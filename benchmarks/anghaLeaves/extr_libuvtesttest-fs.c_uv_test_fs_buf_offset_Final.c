@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static size_t uv_test_fs_buf_offset(uv_buf_t* bufs, size_t
   return offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +86,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned long size = 100;
+        
           int _len_bufs0 = 1;
           struct TYPE_3__ * bufs = (struct TYPE_3__ *) malloc(_len_bufs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_bufs0; _i0++) {
-            bufs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
-        bufs[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+              bufs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          bufs[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = uv_test_fs_buf_offset(bufs,size);
+          printf("%lu\n", benchRet); 
+          free(bufs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long size = 255;
+        
+          int _len_bufs0 = 65025;
+          struct TYPE_3__ * bufs = (struct TYPE_3__ *) malloc(_len_bufs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bufs0; _i0++) {
+              bufs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          bufs[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = uv_test_fs_buf_offset(bufs,size);
+          printf("%lu\n", benchRet); 
+          free(bufs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long size = 10;
+        
+          int _len_bufs0 = 100;
+          struct TYPE_3__ * bufs = (struct TYPE_3__ *) malloc(_len_bufs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bufs0; _i0++) {
+              bufs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          bufs[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = uv_test_fs_buf_offset(bufs,size);
+          printf("%lu\n", benchRet); 
+          free(bufs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bufs0 = 1;
+          struct TYPE_3__ * bufs = (struct TYPE_3__ *) malloc(_len_bufs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_bufs0; _i0++) {
+              bufs[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+          bufs[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = uv_test_fs_buf_offset(bufs,size);
           printf("%lu\n", benchRet); 
           free(bufs);

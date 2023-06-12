@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ skynet_harbor_init(int harbor) {
 	HARBOR = (unsigned int)harbor << HANDLE_REMOTE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int harbor = 100;
+        
           skynet_harbor_init(harbor);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int harbor = 255;
+        
           skynet_harbor_init(harbor);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int harbor = 10;
+        
           skynet_harbor_init(harbor);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int harbor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          skynet_harbor_init(harbor);
+        
+        break;
+    }
     default:
         usage();
         break;

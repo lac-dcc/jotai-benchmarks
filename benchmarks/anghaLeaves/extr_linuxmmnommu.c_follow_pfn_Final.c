@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ int follow_pfn(struct vm_area_struct *vma, unsigned long address,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long address = 100;
+        
           int _len_vma0 = 1;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pfn0 = 1;
           unsigned long * pfn = (unsigned long *) malloc(_len_pfn0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
             pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = follow_pfn(vma,address,pfn);
           printf("%d\n", benchRet); 
           free(vma);
@@ -108,7 +109,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long address = 255;
+        
+          int _len_vma0 = 65025;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pfn0 = 65025;
+          unsigned long * pfn = (unsigned long *) malloc(_len_pfn0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
+            pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = follow_pfn(vma,address,pfn);
+          printf("%d\n", benchRet); 
+          free(vma);
+          free(pfn);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long address = 10;
+        
+          int _len_vma0 = 100;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pfn0 = 100;
+          unsigned long * pfn = (unsigned long *) malloc(_len_pfn0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
+            pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = follow_pfn(vma,address,pfn);
+          printf("%d\n", benchRet); 
+          free(vma);
+          free(pfn);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long address = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vma0 = 1;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pfn0 = 1;
+          unsigned long * pfn = (unsigned long *) malloc(_len_pfn0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_pfn0; _i0++) {
+            pfn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = follow_pfn(vma,address,pfn);
+          printf("%d\n", benchRet); 
+          free(vma);
+          free(pfn);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ void pm8001_get_external_phy_settings(struct pm8001_hba_info *pm8001_ha,
 	phycfg->LaneBctCtrl  = 0x00FB33F8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,34 +85,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pm8001_ha0 = 1;
+          int _len_pm8001_ha0 = 65025;
           struct pm8001_hba_info * pm8001_ha = (struct pm8001_hba_info *) malloc(_len_pm8001_ha0*sizeof(struct pm8001_hba_info));
           for(int _i0 = 0; _i0 < _len_pm8001_ha0; _i0++) {
-            pm8001_ha[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pm8001_ha[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_phycfg0 = 1;
+        
+          int _len_phycfg0 = 65025;
           struct pm8001_mpi3_phy_pg_trx_config * phycfg = (struct pm8001_mpi3_phy_pg_trx_config *) malloc(_len_phycfg0*sizeof(struct pm8001_mpi3_phy_pg_trx_config));
           for(int _i0 = 0; _i0 < _len_phycfg0; _i0++) {
-            phycfg[_i0].LaneLosCfg = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePgaCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePisoCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePisoCfg2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePisoCfg3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePisoCfg4 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePisoCfg5 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LanePisoCfg6 = ((-2 * (next_i()%2)) + 1) * next_i();
-        phycfg[_i0].LaneBctCtrl = ((-2 * (next_i()%2)) + 1) * next_i();
+              phycfg[_i0].LaneLosCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePgaCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LaneBctCtrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pm8001_get_external_phy_settings(pm8001_ha,phycfg);
           free(pm8001_ha);
           free(phycfg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pm8001_ha0 = 100;
+          struct pm8001_hba_info * pm8001_ha = (struct pm8001_hba_info *) malloc(_len_pm8001_ha0*sizeof(struct pm8001_hba_info));
+          for(int _i0 = 0; _i0 < _len_pm8001_ha0; _i0++) {
+              pm8001_ha[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_phycfg0 = 100;
+          struct pm8001_mpi3_phy_pg_trx_config * phycfg = (struct pm8001_mpi3_phy_pg_trx_config *) malloc(_len_phycfg0*sizeof(struct pm8001_mpi3_phy_pg_trx_config));
+          for(int _i0 = 0; _i0 < _len_phycfg0; _i0++) {
+              phycfg[_i0].LaneLosCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePgaCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LaneBctCtrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pm8001_get_external_phy_settings(pm8001_ha,phycfg);
+          free(pm8001_ha);
+          free(phycfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pm8001_ha0 = 1;
+          struct pm8001_hba_info * pm8001_ha = (struct pm8001_hba_info *) malloc(_len_pm8001_ha0*sizeof(struct pm8001_hba_info));
+          for(int _i0 = 0; _i0 < _len_pm8001_ha0; _i0++) {
+              pm8001_ha[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_phycfg0 = 1;
+          struct pm8001_mpi3_phy_pg_trx_config * phycfg = (struct pm8001_mpi3_phy_pg_trx_config *) malloc(_len_phycfg0*sizeof(struct pm8001_mpi3_phy_pg_trx_config));
+          for(int _i0 = 0; _i0 < _len_phycfg0; _i0++) {
+              phycfg[_i0].LaneLosCfg = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePgaCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg4 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg5 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LanePisoCfg6 = ((-2 * (next_i()%2)) + 1) * next_i();
+          phycfg[_i0].LaneBctCtrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pm8001_get_external_phy_settings(pm8001_ha,phycfg);
+          free(pm8001_ha);
+          free(phycfg);
+        
+        break;
+    }
     default:
         usage();
         break;

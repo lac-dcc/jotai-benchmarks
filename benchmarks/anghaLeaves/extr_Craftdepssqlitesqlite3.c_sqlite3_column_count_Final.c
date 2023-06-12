@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int sqlite3_column_count(sqlite3_stmt *pStmt){
   return pVm ? pVm->nResColumn : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pStmt0 = 1;
+          int _len_pStmt0 = 65025;
           int * pStmt = (int *) malloc(_len_pStmt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pStmt0; _i0++) {
             pStmt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sqlite3_column_count(pStmt);
           printf("%d\n", benchRet); 
           free(pStmt);
@@ -104,13 +100,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_pStmt0; _i0++) {
             pStmt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sqlite3_column_count(pStmt);
           printf("%d\n", benchRet); 
           free(pStmt);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pStmt0 = 1;
+          int * pStmt = (int *) malloc(_len_pStmt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pStmt0; _i0++) {
+            pStmt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sqlite3_column_count(pStmt);
+          printf("%d\n", benchRet); 
+          free(pStmt);
+        
+        break;
+    }
     default:
         usage();
         break;

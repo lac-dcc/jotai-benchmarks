@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int amixer_mgr_get_ctrl_blk(void **rblk)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +75,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rblk0 = 1;
+          int _len_rblk0 = 65025;
           void ** rblk = (void **) malloc(_len_rblk0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_rblk0; _i0++) {
           }
+        
           int benchRet = amixer_mgr_get_ctrl_blk(rblk);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_rblk0; i1++) {
-            int _len_rblk1 = 1;
               }
           free(rblk);
         
@@ -103,16 +98,31 @@ int main(int argc, char *argv[]) {
           void ** rblk = (void **) malloc(_len_rblk0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_rblk0; _i0++) {
           }
+        
           int benchRet = amixer_mgr_get_ctrl_blk(rblk);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_rblk0; i1++) {
-            int _len_rblk1 = 1;
               }
           free(rblk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rblk0 = 1;
+          void ** rblk = (void **) malloc(_len_rblk0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_rblk0; _i0++) {
+          }
+        
+          int benchRet = amixer_mgr_get_ctrl_blk(rblk);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_rblk0; i1++) {
+              }
+          free(rblk);
+        
+        break;
+    }
     default:
         usage();
         break;

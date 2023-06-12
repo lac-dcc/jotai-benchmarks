@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -79,12 +79,6 @@ range_is_overlap(struct Range lhs, struct Range rhs)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,15 +91,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           struct Range lhs;
-        lhs.begin = ((-2 * (next_i()%2)) + 1) * next_i();
-        lhs.end = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs.begin = ((-2 * (next_i()%2)) + 1) * next_i();
+          lhs.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct Range rhs;
-        rhs.begin = ((-2 * (next_i()%2)) + 1) * next_i();
-        rhs.end = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs.begin = ((-2 * (next_i()%2)) + 1) * next_i();
+          rhs.end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = range_is_overlap(lhs,rhs);
           printf("%d\n", benchRet); 
         

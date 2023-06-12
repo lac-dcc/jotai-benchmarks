@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ size_t ZSTD_ldm_getMaxNbSeq(ldmParams_t params, size_t maxChunkSize)
     return params.enableLdm ? (maxChunkSize / params.minMatchLength) : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,37 +77,152 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long maxChunkSize = 100;
+        
           struct TYPE_3__ params;
-        params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = ZSTD_ldm_getMaxNbSeq(params,maxChunkSize);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long maxChunkSize = 255;
+        
           struct TYPE_3__ params;
-        params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = ZSTD_ldm_getMaxNbSeq(params,maxChunkSize);
           printf("%lu\n", benchRet); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           unsigned long maxChunkSize = 10;
+        
           struct TYPE_3__ params;
-        params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
-        params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = ZSTD_ldm_getMaxNbSeq(params,maxChunkSize);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long maxChunkSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct TYPE_3__ params;
+          params.minMatchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          params.enableLdm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           unsigned long benchRet = ZSTD_ldm_getMaxNbSeq(params,maxChunkSize);
           printf("%lu\n", benchRet); 
         

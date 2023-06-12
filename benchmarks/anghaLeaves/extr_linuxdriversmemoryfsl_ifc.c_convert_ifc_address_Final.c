@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ unsigned int convert_ifc_address(phys_addr_t addr_base)
 	return addr_base & CSPR_BA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int addr_base = 100;
+        
           unsigned int benchRet = convert_ifc_address(addr_base);
           printf("%u\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int addr_base = 255;
+        
           unsigned int benchRet = convert_ifc_address(addr_base);
           printf("%u\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int addr_base = 10;
+        
           unsigned int benchRet = convert_ifc_address(addr_base);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int addr_base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = convert_ifc_address(addr_base);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

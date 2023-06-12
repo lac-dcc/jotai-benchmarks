@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void s5p_mfc_clean_ctx_int_flags(struct s5p_mfc_ctx *ctx)
 	ctx->int_err = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct s5p_mfc_ctx * ctx = (struct s5p_mfc_ctx *) malloc(_len_ctx0*sizeof(struct s5p_mfc_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].int_err = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].int_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].int_cond = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].int_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].int_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].int_cond = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           s5p_mfc_clean_ctx_int_flags(ctx);
           free(ctx);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct s5p_mfc_ctx * ctx = (struct s5p_mfc_ctx *) malloc(_len_ctx0*sizeof(struct s5p_mfc_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].int_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].int_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].int_cond = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          s5p_mfc_clean_ctx_int_flags(ctx);
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct s5p_mfc_ctx * ctx = (struct s5p_mfc_ctx *) malloc(_len_ctx0*sizeof(struct s5p_mfc_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].int_err = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].int_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].int_cond = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          s5p_mfc_clean_ctx_int_flags(ctx);
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

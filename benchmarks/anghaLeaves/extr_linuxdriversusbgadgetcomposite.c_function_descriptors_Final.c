@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -99,12 +99,6 @@ function_descriptors(struct usb_function *f,
 	return descriptors;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,10 +111,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           enum usb_device_speed speed = 0;
+        
           int _len_f0 = 1;
           struct usb_function * f = (struct usb_function *) malloc(_len_f0*sizeof(struct usb_function));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
@@ -130,7 +148,8 @@ int main(int argc, char *argv[]) {
             int _len_f__i0__fs_descriptors1 = 1;
             f[_i0].fs_descriptors[_j0] = (struct usb_descriptor_header *) malloc(_len_f__i0__fs_descriptors1*sizeof(struct usb_descriptor_header));
             for(int _j1 = 0; _j1 < _len_f__i0__fs_descriptors1; _j1++) {
-              f[_i0].fs_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                f[_i0].fs_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_f__i0__hs_descriptors0 = 1;
@@ -139,7 +158,8 @@ int main(int argc, char *argv[]) {
             int _len_f__i0__hs_descriptors1 = 1;
             f[_i0].hs_descriptors[_j0] = (struct usb_descriptor_header *) malloc(_len_f__i0__hs_descriptors1*sizeof(struct usb_descriptor_header));
             for(int _j1 = 0; _j1 < _len_f__i0__hs_descriptors1; _j1++) {
-              f[_i0].hs_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                f[_i0].hs_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_f__i0__ss_descriptors0 = 1;
@@ -148,7 +168,8 @@ int main(int argc, char *argv[]) {
             int _len_f__i0__ss_descriptors1 = 1;
             f[_i0].ss_descriptors[_j0] = (struct usb_descriptor_header *) malloc(_len_f__i0__ss_descriptors1*sizeof(struct usb_descriptor_header));
             for(int _j1 = 0; _j1 < _len_f__i0__ss_descriptors1; _j1++) {
-              f[_i0].ss_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                f[_i0].ss_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
           int _len_f__i0__ssp_descriptors0 = 1;
@@ -157,10 +178,13 @@ int main(int argc, char *argv[]) {
             int _len_f__i0__ssp_descriptors1 = 1;
             f[_i0].ssp_descriptors[_j0] = (struct usb_descriptor_header *) malloc(_len_f__i0__ssp_descriptors1*sizeof(struct usb_descriptor_header));
             for(int _j1 = 0; _j1 < _len_f__i0__ssp_descriptors1; _j1++) {
-              f[_i0].ssp_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                f[_i0].ssp_descriptors[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           struct usb_descriptor_header ** benchRet = function_descriptors(f,speed);
           printf("%d\n", (**benchRet).dummy);
           for(int _aux = 0; _aux < _len_f0; _aux++) {

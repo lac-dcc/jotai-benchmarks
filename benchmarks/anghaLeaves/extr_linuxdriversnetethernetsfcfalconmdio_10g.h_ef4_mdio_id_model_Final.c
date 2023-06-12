@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ typedef  int u32 ;
 
 __attribute__((used)) static inline unsigned ef4_mdio_id_model(u32 id) { return (id >> 4) & 0x3f; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,6 +76,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int id = 100;
+        
           unsigned int benchRet = ef4_mdio_id_model(id);
           printf("%u\n", benchRet); 
         
@@ -90,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int id = 255;
+        
           unsigned int benchRet = ef4_mdio_id_model(id);
           printf("%u\n", benchRet); 
         
@@ -99,12 +96,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int id = 10;
+        
           unsigned int benchRet = ef4_mdio_id_model(id);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = ef4_mdio_id_model(id);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static int find_timestamp_in_playlist(HLSContext *c, struc
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,31 +107,38 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long timestamp = 100;
+        
           int _len_c0 = 1;
           struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].first_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].first_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pls0 = 1;
           struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
           for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
-            pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
-        pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+              pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pls__i0__segments0 = 1;
           pls[_i0].segments = (struct TYPE_4__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_4__ *));
           for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
             int _len_pls__i0__segments1 = 1;
             pls[_i0].segments[_j0] = (struct TYPE_4__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_4__));
             for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
-              pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
           int _len_seq_no0 = 1;
           int * seq_no = (int *) malloc(_len_seq_no0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_seq_no0; _i0++) {
             seq_no[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = find_timestamp_in_playlist(c,pls,timestamp,seq_no);
           printf("%d\n", benchRet); 
           free(c);
@@ -147,7 +151,150 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long timestamp = 255;
+        
+          int _len_c0 = 65025;
+          struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].first_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pls0 = 65025;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct TYPE_4__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct TYPE_4__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_seq_no0 = 65025;
+          int * seq_no = (int *) malloc(_len_seq_no0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_seq_no0; _i0++) {
+            seq_no[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = find_timestamp_in_playlist(c,pls,timestamp,seq_no);
+          printf("%d\n", benchRet); 
+          free(c);
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+          free(seq_no);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long timestamp = 10;
+        
+          int _len_c0 = 100;
+          struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].first_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pls0 = 100;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct TYPE_4__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct TYPE_4__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_seq_no0 = 100;
+          int * seq_no = (int *) malloc(_len_seq_no0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_seq_no0; _i0++) {
+            seq_no[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = find_timestamp_in_playlist(c,pls,timestamp,seq_no);
+          printf("%d\n", benchRet); 
+          free(c);
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+          free(seq_no);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct TYPE_5__ * c = (struct TYPE_5__ *) malloc(_len_c0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].first_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pls0 = 1;
+          struct playlist * pls = (struct playlist *) malloc(_len_pls0*sizeof(struct playlist));
+          for(int _i0 = 0; _i0 < _len_pls0; _i0++) {
+              pls[_i0].start_seq_no = ((-2 * (next_i()%2)) + 1) * next_i();
+          pls[_i0].n_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pls__i0__segments0 = 1;
+          pls[_i0].segments = (struct TYPE_4__ **) malloc(_len_pls__i0__segments0*sizeof(struct TYPE_4__ *));
+          for(int _j0 = 0; _j0 < _len_pls__i0__segments0; _j0++) {
+            int _len_pls__i0__segments1 = 1;
+            pls[_i0].segments[_j0] = (struct TYPE_4__ *) malloc(_len_pls__i0__segments1*sizeof(struct TYPE_4__));
+            for(int _j1 = 0; _j1 < _len_pls__i0__segments1; _j1++) {
+                pls[_i0].segments[_j0]->duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_seq_no0 = 1;
+          int * seq_no = (int *) malloc(_len_seq_no0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_seq_no0; _i0++) {
+            seq_no[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = find_timestamp_in_playlist(c,pls,timestamp,seq_no);
+          printf("%d\n", benchRet); 
+          free(c);
+          for(int _aux = 0; _aux < _len_pls0; _aux++) {
+          free(*(pls[_aux].segments));
+        free(pls[_aux].segments);
+          }
+          free(pls);
+          free(seq_no);
+        
+        break;
+    }
     default:
         usage();
         break;

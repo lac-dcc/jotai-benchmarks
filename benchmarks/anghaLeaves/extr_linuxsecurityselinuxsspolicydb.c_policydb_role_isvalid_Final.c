@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int policydb_role_isvalid(struct policydb *p, unsigned int role)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int role = 100;
+        
           int _len_p0 = 1;
           struct policydb * p = (struct policydb *) malloc(_len_p0*sizeof(struct policydb));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_roles.nprim = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_roles.nprim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = policydb_role_isvalid(p,role);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int role = 255;
+        
+          int _len_p0 = 65025;
+          struct policydb * p = (struct policydb *) malloc(_len_p0*sizeof(struct policydb));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_roles.nprim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = policydb_role_isvalid(p,role);
           printf("%d\n", benchRet); 
           free(p);
@@ -99,21 +118,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int role = 10;
+        
           int _len_p0 = 100;
           struct policydb * p = (struct policydb *) malloc(_len_p0*sizeof(struct policydb));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].p_roles.nprim = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].p_roles.nprim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = policydb_role_isvalid(p,role);
           printf("%d\n", benchRet); 
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int role = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct policydb * p = (struct policydb *) malloc(_len_p0*sizeof(struct policydb));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].p_roles.nprim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = policydb_role_isvalid(p,role);
+          printf("%d\n", benchRet); 
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

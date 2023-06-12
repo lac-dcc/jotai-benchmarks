@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static void get_vf_stats(struct octeon_device *oct,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,22 +98,47 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_oct0 = 1;
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_oct0 = 65025;
           struct octeon_device * oct = (struct octeon_device *) malloc(_len_oct0*sizeof(struct octeon_device));
           for(int _i0 = 0; _i0 < _len_oct0; _i0++) {
-            oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
-        oct[_i0].num_oqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].num_oqs = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_oct__i0__droq0 = 1;
           oct[_i0].droq = (struct TYPE_8__ **) malloc(_len_oct__i0__droq0*sizeof(struct TYPE_8__ *));
           for(int _j0 = 0; _j0 < _len_oct__i0__droq0; _j0++) {
             int _len_oct__i0__droq1 = 1;
             oct[_i0].droq[_j0] = (struct TYPE_8__ *) malloc(_len_oct__i0__droq1*sizeof(struct TYPE_8__));
             for(int _j1 = 0; _j1 < _len_oct__i0__droq1; _j1++) {
-              oct[_i0].droq[_j0]->stats.rx_bytes_received = ((-2 * (next_i()%2)) + 1) * next_i();
-        oct[_i0].droq[_j0]->stats.rx_pkts_received = ((-2 * (next_i()%2)) + 1) * next_i();
+                oct[_i0].droq[_j0]->stats.rx_bytes_received = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].droq[_j0]->stats.rx_pkts_received = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
             }
           }
           int _len_oct__i0__instr_queue0 = 1;
@@ -126,19 +147,191 @@ int main(int argc, char *argv[]) {
             int _len_oct__i0__instr_queue1 = 1;
             oct[_i0].instr_queue[_j0] = (struct TYPE_6__ *) malloc(_len_oct__i0__instr_queue1*sizeof(struct TYPE_6__));
             for(int _j1 = 0; _j1 < _len_oct__i0__instr_queue1; _j1++) {
-              oct[_i0].instr_queue[_j0]->stats.tx_tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        oct[_i0].instr_queue[_j0]->stats.tx_done = ((-2 * (next_i()%2)) + 1) * next_i();
+                oct[_i0].instr_queue[_j0]->stats.tx_tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].instr_queue[_j0]->stats.tx_done = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
             }
           }
+        
           }
+        
+          int _len_stats0 = 65025;
+          struct oct_vf_stats * stats = (struct oct_vf_stats *) malloc(_len_stats0*sizeof(struct oct_vf_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_vf_stats(oct,stats);
+          for(int _aux = 0; _aux < _len_oct0; _aux++) {
+          free(*(oct[_aux].droq));
+        free(oct[_aux].droq);
+          }
+          for(int _aux = 0; _aux < _len_oct0; _aux++) {
+          free(*(oct[_aux].instr_queue));
+        free(oct[_aux].instr_queue);
+          }
+          free(oct);
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_oct0 = 100;
+          struct octeon_device * oct = (struct octeon_device *) malloc(_len_oct0*sizeof(struct octeon_device));
+          for(int _i0 = 0; _i0 < _len_oct0; _i0++) {
+              oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].num_oqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_oct__i0__droq0 = 1;
+          oct[_i0].droq = (struct TYPE_8__ **) malloc(_len_oct__i0__droq0*sizeof(struct TYPE_8__ *));
+          for(int _j0 = 0; _j0 < _len_oct__i0__droq0; _j0++) {
+            int _len_oct__i0__droq1 = 1;
+            oct[_i0].droq[_j0] = (struct TYPE_8__ *) malloc(_len_oct__i0__droq1*sizeof(struct TYPE_8__));
+            for(int _j1 = 0; _j1 < _len_oct__i0__droq1; _j1++) {
+                oct[_i0].droq[_j0]->stats.rx_bytes_received = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].droq[_j0]->stats.rx_pkts_received = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+          int _len_oct__i0__instr_queue0 = 1;
+          oct[_i0].instr_queue = (struct TYPE_6__ **) malloc(_len_oct__i0__instr_queue0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_oct__i0__instr_queue0; _j0++) {
+            int _len_oct__i0__instr_queue1 = 1;
+            oct[_i0].instr_queue[_j0] = (struct TYPE_6__ *) malloc(_len_oct__i0__instr_queue1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_oct__i0__instr_queue1; _j1++) {
+                oct[_i0].instr_queue[_j0]->stats.tx_tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].instr_queue[_j0]->stats.tx_done = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          int _len_stats0 = 100;
+          struct oct_vf_stats * stats = (struct oct_vf_stats *) malloc(_len_stats0*sizeof(struct oct_vf_stats));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          get_vf_stats(oct,stats);
+          for(int _aux = 0; _aux < _len_oct0; _aux++) {
+          free(*(oct[_aux].droq));
+        free(oct[_aux].droq);
+          }
+          for(int _aux = 0; _aux < _len_oct0; _aux++) {
+          free(*(oct[_aux].instr_queue));
+        free(oct[_aux].instr_queue);
+          }
+          free(oct);
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_oct0 = 1;
+          struct octeon_device * oct = (struct octeon_device *) malloc(_len_oct0*sizeof(struct octeon_device));
+          for(int _i0 = 0; _i0 < _len_oct0; _i0++) {
+              oct[_i0].num_iqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].num_oqs = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_oct__i0__droq0 = 1;
+          oct[_i0].droq = (struct TYPE_8__ **) malloc(_len_oct__i0__droq0*sizeof(struct TYPE_8__ *));
+          for(int _j0 = 0; _j0 < _len_oct__i0__droq0; _j0++) {
+            int _len_oct__i0__droq1 = 1;
+            oct[_i0].droq[_j0] = (struct TYPE_8__ *) malloc(_len_oct__i0__droq1*sizeof(struct TYPE_8__));
+            for(int _j1 = 0; _j1 < _len_oct__i0__droq1; _j1++) {
+                oct[_i0].droq[_j0]->stats.rx_bytes_received = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].droq[_j0]->stats.rx_pkts_received = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+          int _len_oct__i0__instr_queue0 = 1;
+          oct[_i0].instr_queue = (struct TYPE_6__ **) malloc(_len_oct__i0__instr_queue0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_oct__i0__instr_queue0; _j0++) {
+            int _len_oct__i0__instr_queue1 = 1;
+            oct[_i0].instr_queue[_j0] = (struct TYPE_6__ *) malloc(_len_oct__i0__instr_queue1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_oct__i0__instr_queue1; _j1++) {
+                oct[_i0].instr_queue[_j0]->stats.tx_tot_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          oct[_i0].instr_queue[_j0]->stats.tx_done = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
           int _len_stats0 = 1;
           struct oct_vf_stats * stats = (struct oct_vf_stats *) malloc(_len_stats0*sizeof(struct oct_vf_stats));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].rx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].rx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].tx_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           get_vf_stats(oct,stats);
           for(int _aux = 0; _aux < _len_oct0; _aux++) {
           free(*(oct[_aux].droq));

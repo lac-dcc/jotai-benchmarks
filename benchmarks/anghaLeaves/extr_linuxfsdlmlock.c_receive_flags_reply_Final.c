@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void receive_flags_reply(struct dlm_lkb *lkb, struc
 		         (ms->m_flags & 0x0000FFFF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,28 +81,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lkb0 = 1;
+          int _len_lkb0 = 65025;
           struct dlm_lkb * lkb = (struct dlm_lkb *) malloc(_len_lkb0*sizeof(struct dlm_lkb));
           for(int _i0 = 0; _i0 < _len_lkb0; _i0++) {
-            lkb[_i0].lkb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        lkb[_i0].lkb_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              lkb[_i0].lkb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          lkb[_i0].lkb_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ms0 = 1;
+        
+          int _len_ms0 = 65025;
           struct dlm_message * ms = (struct dlm_message *) malloc(_len_ms0*sizeof(struct dlm_message));
           for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
-            ms[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ms[_i0].m_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ms[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ms[_i0].m_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           receive_flags_reply(lkb,ms);
           free(lkb);
           free(ms);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_lkb0 = 100;
+          struct dlm_lkb * lkb = (struct dlm_lkb *) malloc(_len_lkb0*sizeof(struct dlm_lkb));
+          for(int _i0 = 0; _i0 < _len_lkb0; _i0++) {
+              lkb[_i0].lkb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          lkb[_i0].lkb_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ms0 = 100;
+          struct dlm_message * ms = (struct dlm_message *) malloc(_len_ms0*sizeof(struct dlm_message));
+          for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
+              ms[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ms[_i0].m_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          receive_flags_reply(lkb,ms);
+          free(lkb);
+          free(ms);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_lkb0 = 1;
+          struct dlm_lkb * lkb = (struct dlm_lkb *) malloc(_len_lkb0*sizeof(struct dlm_lkb));
+          for(int _i0 = 0; _i0 < _len_lkb0; _i0++) {
+              lkb[_i0].lkb_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          lkb[_i0].lkb_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ms0 = 1;
+          struct dlm_message * ms = (struct dlm_message *) malloc(_len_ms0*sizeof(struct dlm_message));
+          for(int _i0 = 0; _i0 < _len_ms0; _i0++) {
+              ms[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ms[_i0].m_sbflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          receive_flags_reply(lkb,ms);
+          free(lkb);
+          free(ms);
+        
+        break;
+    }
     default:
         usage();
         break;

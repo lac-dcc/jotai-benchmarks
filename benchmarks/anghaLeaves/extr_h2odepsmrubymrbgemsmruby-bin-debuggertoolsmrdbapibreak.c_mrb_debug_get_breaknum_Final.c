@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ mrb_debug_get_breaknum(mrb_state *mrb, mrb_debug_context *dbg)
   return dbg->bpnum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +84,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mrb0 = 1;
+          int _len_mrb0 = 65025;
           int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
             mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_dbg0 = 1;
+        
+          int _len_dbg0 = 65025;
           struct TYPE_3__ * dbg = (struct TYPE_3__ *) malloc(_len_dbg0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
-            dbg[_i0].bpnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              dbg[_i0].bpnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mrb_debug_get_breaknum(mrb,dbg);
           printf("%d\n", benchRet); 
           free(mrb);
@@ -108,7 +107,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mrb0 = 100;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dbg0 = 100;
+          struct TYPE_3__ * dbg = (struct TYPE_3__ *) malloc(_len_dbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].bpnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mrb_debug_get_breaknum(mrb,dbg);
+          printf("%d\n", benchRet); 
+          free(mrb);
+          free(dbg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mrb0 = 1;
+          int * mrb = (int *) malloc(_len_mrb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mrb0; _i0++) {
+            mrb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_dbg0 = 1;
+          struct TYPE_3__ * dbg = (struct TYPE_3__ *) malloc(_len_dbg0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_dbg0; _i0++) {
+              dbg[_i0].bpnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mrb_debug_get_breaknum(mrb,dbg);
+          printf("%d\n", benchRet); 
+          free(mrb);
+          free(dbg);
+        
+        break;
+    }
     default:
         usage();
         break;

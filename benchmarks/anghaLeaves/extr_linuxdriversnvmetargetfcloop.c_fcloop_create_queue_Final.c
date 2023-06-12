@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ fcloop_create_queue(struct nvme_fc_local_port *localport,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,27 +84,114 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int qidx = 100;
+        
           int qsize = 100;
+        
           int _len_localport0 = 1;
           struct nvme_fc_local_port * localport = (struct nvme_fc_local_port *) malloc(_len_localport0*sizeof(struct nvme_fc_local_port));
           for(int _i0 = 0; _i0 < _len_localport0; _i0++) {
-            localport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              localport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_handle0 = 1;
           void ** handle = (void **) malloc(_len_handle0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
           }
+        
           int benchRet = fcloop_create_queue(localport,qidx,qsize,handle);
           printf("%d\n", benchRet); 
           free(localport);
           for(int i1 = 0; i1 < _len_handle0; i1++) {
-            int _len_handle1 = 1;
               }
           free(handle);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int qidx = 255;
+        
+          int qsize = 255;
+        
+          int _len_localport0 = 65025;
+          struct nvme_fc_local_port * localport = (struct nvme_fc_local_port *) malloc(_len_localport0*sizeof(struct nvme_fc_local_port));
+          for(int _i0 = 0; _i0 < _len_localport0; _i0++) {
+              localport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_handle0 = 65025;
+          void ** handle = (void **) malloc(_len_handle0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+          }
+        
+          int benchRet = fcloop_create_queue(localport,qidx,qsize,handle);
+          printf("%d\n", benchRet); 
+          free(localport);
+          for(int i1 = 0; i1 < _len_handle0; i1++) {
+              }
+          free(handle);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int qidx = 10;
+        
+          int qsize = 10;
+        
+          int _len_localport0 = 100;
+          struct nvme_fc_local_port * localport = (struct nvme_fc_local_port *) malloc(_len_localport0*sizeof(struct nvme_fc_local_port));
+          for(int _i0 = 0; _i0 < _len_localport0; _i0++) {
+              localport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_handle0 = 100;
+          void ** handle = (void **) malloc(_len_handle0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+          }
+        
+          int benchRet = fcloop_create_queue(localport,qidx,qsize,handle);
+          printf("%d\n", benchRet); 
+          free(localport);
+          for(int i1 = 0; i1 < _len_handle0; i1++) {
+              }
+          free(handle);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int qidx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int qsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_localport0 = 1;
+          struct nvme_fc_local_port * localport = (struct nvme_fc_local_port *) malloc(_len_localport0*sizeof(struct nvme_fc_local_port));
+          for(int _i0 = 0; _i0 < _len_localport0; _i0++) {
+              localport[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_handle0 = 1;
+          void ** handle = (void **) malloc(_len_handle0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_handle0; _i0++) {
+          }
+        
+          int benchRet = fcloop_create_queue(localport,qidx,qsize,handle);
+          printf("%d\n", benchRet); 
+          free(localport);
+          for(int i1 = 0; i1 < _len_handle0; i1++) {
+              }
+          free(handle);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ lookup_validate_creation_path(struct nameidata *ndp)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,22 +95,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ndp0 = 1;
+          int _len_ndp0 = 65025;
           struct nameidata * ndp = (struct nameidata *) malloc(_len_ndp0*sizeof(struct nameidata));
           for(int _i0 = 0; _i0 < _len_ndp0; _i0++) {
-            ndp[_i0].ni_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        ndp[_i0].ni_cnd.cn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndp[_i0].ni_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndp[_i0].ni_cnd.cn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = lookup_validate_creation_path(ndp);
           printf("%d\n", benchRet); 
           free(ndp);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ndp0 = 100;
+          struct nameidata * ndp = (struct nameidata *) malloc(_len_ndp0*sizeof(struct nameidata));
+          for(int _i0 = 0; _i0 < _len_ndp0; _i0++) {
+              ndp[_i0].ni_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndp[_i0].ni_cnd.cn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = lookup_validate_creation_path(ndp);
+          printf("%d\n", benchRet); 
+          free(ndp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ndp0 = 1;
+          struct nameidata * ndp = (struct nameidata *) malloc(_len_ndp0*sizeof(struct nameidata));
+          for(int _i0 = 0; _i0 < _len_ndp0; _i0++) {
+              ndp[_i0].ni_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          ndp[_i0].ni_cnd.cn_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = lookup_validate_creation_path(ndp);
+          printf("%d\n", benchRet); 
+          free(ndp);
+        
+        break;
+    }
     default:
         usage();
         break;

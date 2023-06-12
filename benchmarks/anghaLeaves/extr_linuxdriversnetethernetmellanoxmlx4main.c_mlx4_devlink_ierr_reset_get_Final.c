@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static int mlx4_devlink_ierr_reset_get(struct devlink *dev
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +82,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int id = 100;
+        
           int _len_devlink0 = 1;
           struct devlink * devlink = (struct devlink *) malloc(_len_devlink0*sizeof(struct devlink));
           for(int _i0 = 0; _i0 < _len_devlink0; _i0++) {
-            devlink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              devlink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ctx0 = 1;
           struct devlink_param_gset_ctx * ctx = (struct devlink_param_gset_ctx *) malloc(_len_ctx0*sizeof(struct devlink_param_gset_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].val.vbool = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].val.vbool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = mlx4_devlink_ierr_reset_get(devlink,id,ctx);
+          printf("%d\n", benchRet); 
+          free(devlink);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int id = 255;
+        
+          int _len_devlink0 = 65025;
+          struct devlink * devlink = (struct devlink *) malloc(_len_devlink0*sizeof(struct devlink));
+          for(int _i0 = 0; _i0 < _len_devlink0; _i0++) {
+              devlink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 65025;
+          struct devlink_param_gset_ctx * ctx = (struct devlink_param_gset_ctx *) malloc(_len_ctx0*sizeof(struct devlink_param_gset_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].val.vbool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mlx4_devlink_ierr_reset_get(devlink,id,ctx);
+          printf("%d\n", benchRet); 
+          free(devlink);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int id = 10;
+        
+          int _len_devlink0 = 100;
+          struct devlink * devlink = (struct devlink *) malloc(_len_devlink0*sizeof(struct devlink));
+          for(int _i0 = 0; _i0 < _len_devlink0; _i0++) {
+              devlink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 100;
+          struct devlink_param_gset_ctx * ctx = (struct devlink_param_gset_ctx *) malloc(_len_ctx0*sizeof(struct devlink_param_gset_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].val.vbool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mlx4_devlink_ierr_reset_get(devlink,id,ctx);
+          printf("%d\n", benchRet); 
+          free(devlink);
+          free(ctx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_devlink0 = 1;
+          struct devlink * devlink = (struct devlink *) malloc(_len_devlink0*sizeof(struct devlink));
+          for(int _i0 = 0; _i0 < _len_devlink0; _i0++) {
+              devlink[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ctx0 = 1;
+          struct devlink_param_gset_ctx * ctx = (struct devlink_param_gset_ctx *) malloc(_len_ctx0*sizeof(struct devlink_param_gset_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].val.vbool = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = mlx4_devlink_ierr_reset_get(devlink,id,ctx);
           printf("%d\n", benchRet); 
           free(devlink);

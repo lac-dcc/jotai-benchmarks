@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static void init_priv1(struct spu_state *csa)
 	    CLASS2_ENABLE_SPU_DMA_TAG_GROUP_COMPLETE_INTR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,23 +103,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_csa0 = 1;
+          int _len_csa0 = 65025;
           struct spu_state * csa = (struct spu_state *) malloc(_len_csa0*sizeof(struct spu_state));
           for(int _i0 = 0; _i0 < _len_csa0; _i0++) {
-            csa[_i0].priv1.mfc_sr1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
-        csa[_i0].priv1.int_mask_class0_RW = ((-2 * (next_i()%2)) + 1) * next_i();
-        csa[_i0].priv1.int_mask_class1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
-        csa[_i0].priv1.int_mask_class2_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+              csa[_i0].priv1.mfc_sr1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class0_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class2_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           init_priv1(csa);
           free(csa);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_csa0 = 100;
+          struct spu_state * csa = (struct spu_state *) malloc(_len_csa0*sizeof(struct spu_state));
+          for(int _i0 = 0; _i0 < _len_csa0; _i0++) {
+              csa[_i0].priv1.mfc_sr1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class0_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class2_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          init_priv1(csa);
+          free(csa);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_csa0 = 1;
+          struct spu_state * csa = (struct spu_state *) malloc(_len_csa0*sizeof(struct spu_state));
+          for(int _i0 = 0; _i0 < _len_csa0; _i0++) {
+              csa[_i0].priv1.mfc_sr1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class0_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class1_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+          csa[_i0].priv1.int_mask_class2_RW = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          init_priv1(csa);
+          free(csa);
+        
+        break;
+    }
     default:
         usage();
         break;

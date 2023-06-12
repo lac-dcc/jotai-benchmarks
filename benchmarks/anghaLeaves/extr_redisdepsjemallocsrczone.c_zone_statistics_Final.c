@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ zone_statistics(malloc_zone_t *zone, malloc_statistics_t *stats) {
 	stats->size_allocated = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +81,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_zone0 = 65025;
+          int * zone = (int *) malloc(_len_zone0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_zone0; _i0++) {
+            zone[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stats0 = 65025;
+          struct TYPE_3__ * stats = (struct TYPE_3__ *) malloc(_len_stats0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].size_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].max_size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].blocks_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zone_statistics(zone,stats);
+          free(zone);
+          free(stats);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_zone0 = 100;
+          int * zone = (int *) malloc(_len_zone0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_zone0; _i0++) {
+            zone[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stats0 = 100;
+          struct TYPE_3__ * stats = (struct TYPE_3__ *) malloc(_len_stats0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+              stats[_i0].size_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].max_size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].blocks_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          zone_statistics(zone,stats);
+          free(zone);
+          free(stats);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_zone0 = 1;
           int * zone = (int *) malloc(_len_zone0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_zone0; _i0++) {
             zone[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_stats0 = 1;
           struct TYPE_3__ * stats = (struct TYPE_3__ *) malloc(_len_stats0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
-            stats[_i0].size_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].max_size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
-        stats[_i0].blocks_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+              stats[_i0].size_allocated = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].max_size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].size_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+          stats[_i0].blocks_in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           zone_statistics(zone,stats);
           free(zone);
           free(stats);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static void create_adc_command(unsigned int chan,
 		(*muxsg1) = (*muxsg1) | (1 << (chan - 8));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +83,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int chan = 100;
+        
           int _len_muxsg00 = 1;
           int * muxsg0 = (int *) malloc(_len_muxsg00*sizeof(int));
           for(int _i0 = 0; _i0 < _len_muxsg00; _i0++) {
             muxsg0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_muxsg10 = 1;
           int * muxsg1 = (int *) malloc(_len_muxsg10*sizeof(int));
           for(int _i0 = 0; _i0 < _len_muxsg10; _i0++) {
             muxsg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           create_adc_command(chan,muxsg0,muxsg1);
           free(muxsg0);
           free(muxsg1);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int chan = 255;
+        
+          int _len_muxsg00 = 65025;
+          int * muxsg0 = (int *) malloc(_len_muxsg00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_muxsg00; _i0++) {
+            muxsg0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_muxsg10 = 65025;
+          int * muxsg1 = (int *) malloc(_len_muxsg10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_muxsg10; _i0++) {
+            muxsg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          create_adc_command(chan,muxsg0,muxsg1);
+          free(muxsg0);
+          free(muxsg1);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int chan = 10;
+        
+          int _len_muxsg00 = 100;
+          int * muxsg0 = (int *) malloc(_len_muxsg00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_muxsg00; _i0++) {
+            muxsg0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_muxsg10 = 100;
+          int * muxsg1 = (int *) malloc(_len_muxsg10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_muxsg10; _i0++) {
+            muxsg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          create_adc_command(chan,muxsg0,muxsg1);
+          free(muxsg0);
+          free(muxsg1);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int chan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_muxsg00 = 1;
+          int * muxsg0 = (int *) malloc(_len_muxsg00*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_muxsg00; _i0++) {
+            muxsg0[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_muxsg10 = 1;
+          int * muxsg1 = (int *) malloc(_len_muxsg10*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_muxsg10; _i0++) {
+            muxsg1[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          create_adc_command(chan,muxsg0,muxsg1);
+          free(muxsg0);
+          free(muxsg1);
+        
+        break;
+    }
     default:
         usage();
         break;

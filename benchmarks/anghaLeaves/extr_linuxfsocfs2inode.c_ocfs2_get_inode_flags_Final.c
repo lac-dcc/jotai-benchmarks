@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ void ocfs2_get_inode_flags(struct ocfs2_inode_info *oi)
 		oi->ip_attr |= OCFS2_DIRSYNC_FL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,15 +99,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_oi0 = 65025;
+          struct ocfs2_inode_info * oi = (struct ocfs2_inode_info *) malloc(_len_oi0*sizeof(struct ocfs2_inode_info));
+          for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
+              oi[_i0].ip_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].vfs_inode.i_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ocfs2_get_inode_flags(oi);
+          free(oi);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_oi0 = 100;
+          struct ocfs2_inode_info * oi = (struct ocfs2_inode_info *) malloc(_len_oi0*sizeof(struct ocfs2_inode_info));
+          for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
+              oi[_i0].ip_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].vfs_inode.i_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ocfs2_get_inode_flags(oi);
+          free(oi);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int _len_oi0 = 1;
           struct ocfs2_inode_info * oi = (struct ocfs2_inode_info *) malloc(_len_oi0*sizeof(struct ocfs2_inode_info));
           for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
-            oi[_i0].ip_attr = ((-2 * (next_i()%2)) + 1) * next_i();
-        oi[_i0].vfs_inode.i_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              oi[_i0].ip_attr = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].vfs_inode.i_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ocfs2_get_inode_flags(oi);
           free(oi);
         

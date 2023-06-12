@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ virtio_transport_dgram_enqueue(struct vsock_sock *vsk,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,21 +86,28 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long dgram_len = 100;
+        
           int _len_vsk0 = 1;
           struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
           for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
-            vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_remote_addr0 = 1;
           struct sockaddr_vm * remote_addr = (struct sockaddr_vm *) malloc(_len_remote_addr0*sizeof(struct sockaddr_vm));
           for(int _i0 = 0; _i0 < _len_remote_addr0; _i0++) {
-            remote_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              remote_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_msg0 = 1;
           struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
-            msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = virtio_transport_dgram_enqueue(vsk,remote_addr,msg,dgram_len);
           printf("%d\n", benchRet); 
           free(vsk);
@@ -112,7 +116,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long dgram_len = 255;
+        
+          int _len_vsk0 = 65025;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remote_addr0 = 65025;
+          struct sockaddr_vm * remote_addr = (struct sockaddr_vm *) malloc(_len_remote_addr0*sizeof(struct sockaddr_vm));
+          for(int _i0 = 0; _i0 < _len_remote_addr0; _i0++) {
+              remote_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 65025;
+          struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = virtio_transport_dgram_enqueue(vsk,remote_addr,msg,dgram_len);
+          printf("%d\n", benchRet); 
+          free(vsk);
+          free(remote_addr);
+          free(msg);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long dgram_len = 10;
+        
+          int _len_vsk0 = 100;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remote_addr0 = 100;
+          struct sockaddr_vm * remote_addr = (struct sockaddr_vm *) malloc(_len_remote_addr0*sizeof(struct sockaddr_vm));
+          for(int _i0 = 0; _i0 < _len_remote_addr0; _i0++) {
+              remote_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 100;
+          struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = virtio_transport_dgram_enqueue(vsk,remote_addr,msg,dgram_len);
+          printf("%d\n", benchRet); 
+          free(vsk);
+          free(remote_addr);
+          free(msg);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long dgram_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vsk0 = 1;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remote_addr0 = 1;
+          struct sockaddr_vm * remote_addr = (struct sockaddr_vm *) malloc(_len_remote_addr0*sizeof(struct sockaddr_vm));
+          for(int _i0 = 0; _i0 < _len_remote_addr0; _i0++) {
+              remote_addr[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 1;
+          struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = virtio_transport_dgram_enqueue(vsk,remote_addr,msg,dgram_len);
+          printf("%d\n", benchRet); 
+          free(vsk);
+          free(remote_addr);
+          free(msg);
+        
+        break;
+    }
     default:
         usage();
         break;

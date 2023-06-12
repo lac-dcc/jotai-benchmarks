@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -130,12 +131,6 @@ __attribute__((used)) static FT_Encoding
     return FT_ENCODING_NONE;
   }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -152,7 +147,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int platform_id = 100;
+        
           int encoding_id = 100;
+        
           int benchRet = sfnt_find_encoding(platform_id,encoding_id);
           printf("%d\n", benchRet); 
         
@@ -162,7 +159,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int platform_id = 255;
+        
           int encoding_id = 255;
+        
           int benchRet = sfnt_find_encoding(platform_id,encoding_id);
           printf("%d\n", benchRet); 
         
@@ -172,13 +171,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int platform_id = 10;
+        
           int encoding_id = 10;
+        
           int benchRet = sfnt_find_encoding(platform_id,encoding_id);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int platform_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int encoding_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = sfnt_find_encoding(platform_id,encoding_id);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

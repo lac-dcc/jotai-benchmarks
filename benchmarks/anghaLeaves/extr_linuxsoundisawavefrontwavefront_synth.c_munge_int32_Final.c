@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ munge_int32 (unsigned int src,
 	return dst;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,23 +84,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int src = 10;
-          unsigned int dst_size = 10;
-          int _len_dst0 = 100;
+          unsigned int src = 255;
+        
+          unsigned int dst_size = 255;
+        
+          int _len_dst0 = 65025;
           unsigned char * dst = (unsigned char *) malloc(_len_dst0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned char * benchRet = munge_int32(src,dst,dst_size);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(dst);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int src = 10;
+        
+          unsigned int dst_size = 10;
+        
+          int _len_dst0 = 100;
+          unsigned char * dst = (unsigned char *) malloc(_len_dst0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned char * benchRet = munge_int32(src,dst,dst_size);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(dst);
+        
+        break;
+    }
     default:
         usage();
         break;

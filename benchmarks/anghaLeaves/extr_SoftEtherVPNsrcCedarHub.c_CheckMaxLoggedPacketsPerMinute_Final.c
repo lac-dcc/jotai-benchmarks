@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +96,6 @@ bool CheckMaxLoggedPacketsPerMinute(SESSION *s, UINT max_packets, UINT64 now)
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,27 +108,232 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long max_packets = 100;
+        
           long now = 100;
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].MaxLoggedPacketsPerMinuteStartTick = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].CurrentNumPackets = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].L3SwitchMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].LinkModeClient = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].LinkModeServer = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].BridgeMode = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].SecureNATMode = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].MaxLoggedPacketsPerMinuteStartTick = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].CurrentNumPackets = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].L3SwitchMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeClient = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeServer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].BridgeMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].SecureNATMode = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__Policy0 = 1;
           s[_i0].Policy = (struct TYPE_4__ *) malloc(_len_s__i0__Policy0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_s__i0__Policy0; _j0++) {
-            s[_i0].Policy->NoBroadcastLimiter = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].Policy->NoBroadcastLimiter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = CheckMaxLoggedPacketsPerMinute(s,max_packets,now);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].Policy);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long max_packets = 255;
+        
+          long now = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].MaxLoggedPacketsPerMinuteStartTick = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].CurrentNumPackets = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].L3SwitchMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeClient = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeServer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].BridgeMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].SecureNATMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__Policy0 = 1;
+          s[_i0].Policy = (struct TYPE_4__ *) malloc(_len_s__i0__Policy0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__Policy0; _j0++) {
+              s[_i0].Policy->NoBroadcastLimiter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = CheckMaxLoggedPacketsPerMinute(s,max_packets,now);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].Policy);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long max_packets = 10;
+        
+          long now = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].MaxLoggedPacketsPerMinuteStartTick = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].CurrentNumPackets = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].L3SwitchMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeClient = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeServer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].BridgeMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].SecureNATMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__Policy0 = 1;
+          s[_i0].Policy = (struct TYPE_4__ *) malloc(_len_s__i0__Policy0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__Policy0; _j0++) {
+              s[_i0].Policy->NoBroadcastLimiter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = CheckMaxLoggedPacketsPerMinute(s,max_packets,now);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].Policy);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long max_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long now = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].MaxLoggedPacketsPerMinuteStartTick = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].CurrentNumPackets = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].L3SwitchMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeClient = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].LinkModeServer = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].BridgeMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].SecureNATMode = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__Policy0 = 1;
+          s[_i0].Policy = (struct TYPE_4__ *) malloc(_len_s__i0__Policy0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_s__i0__Policy0; _j0++) {
+              s[_i0].Policy->NoBroadcastLimiter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = CheckMaxLoggedPacketsPerMinute(s,max_packets,now);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_s0; _aux++) {

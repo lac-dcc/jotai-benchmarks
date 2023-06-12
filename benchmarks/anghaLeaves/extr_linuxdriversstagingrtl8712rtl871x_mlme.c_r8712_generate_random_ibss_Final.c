@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ void r8712_generate_random_ibss(u8 *pibss)
 	pibss[5] = (u8)((curtime >> 16) & 0xff);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +82,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
+    {
+          int _len_pibss0 = 65025;
+          int * pibss = (int *) malloc(_len_pibss0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pibss0; _i0++) {
+            pibss[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          r8712_generate_random_ibss(pibss);
+          free(pibss);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
     {
           int _len_pibss0 = 100;
           int * pibss = (int *) malloc(_len_pibss0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pibss0; _i0++) {
             pibss[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           r8712_generate_random_ibss(pibss);
           free(pibss);
         
         break;
     }
-
     default:
         usage();
         break;

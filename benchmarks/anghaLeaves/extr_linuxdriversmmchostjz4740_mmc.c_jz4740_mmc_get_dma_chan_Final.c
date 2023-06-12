@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static inline struct dma_chan *jz4740_mmc_get_dma_chan(str
 	return (data->flags & MMC_DATA_READ) ? host->dma_rx : host->dma_tx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,28 +78,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_host0 = 65025;
+          struct jz4740_mmc_host * host = (struct jz4740_mmc_host *) malloc(_len_host0*sizeof(struct jz4740_mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              int _len_host__i0__dma_tx0 = 1;
+          host[_i0].dma_tx = (struct dma_chan *) malloc(_len_host__i0__dma_tx0*sizeof(struct dma_chan));
+          for(int _j0 = 0; _j0 < _len_host__i0__dma_tx0; _j0++) {
+              host[_i0].dma_tx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_host__i0__dma_rx0 = 1;
+          host[_i0].dma_rx = (struct dma_chan *) malloc(_len_host__i0__dma_rx0*sizeof(struct dma_chan));
+          for(int _j0 = 0; _j0 < _len_host__i0__dma_rx0; _j0++) {
+              host[_i0].dma_rx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_data0 = 65025;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct dma_chan * benchRet = jz4740_mmc_get_dma_chan(host,data);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].dma_tx);
+          }
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].dma_rx);
+          }
+          free(host);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_host0 = 100;
+          struct jz4740_mmc_host * host = (struct jz4740_mmc_host *) malloc(_len_host0*sizeof(struct jz4740_mmc_host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              int _len_host__i0__dma_tx0 = 1;
+          host[_i0].dma_tx = (struct dma_chan *) malloc(_len_host__i0__dma_tx0*sizeof(struct dma_chan));
+          for(int _j0 = 0; _j0 < _len_host__i0__dma_tx0; _j0++) {
+              host[_i0].dma_tx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_host__i0__dma_rx0 = 1;
+          host[_i0].dma_rx = (struct dma_chan *) malloc(_len_host__i0__dma_rx0*sizeof(struct dma_chan));
+          for(int _j0 = 0; _j0 < _len_host__i0__dma_rx0; _j0++) {
+              host[_i0].dma_rx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_data0 = 100;
+          struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct dma_chan * benchRet = jz4740_mmc_get_dma_chan(host,data);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].dma_tx);
+          }
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].dma_rx);
+          }
+          free(host);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_host0 = 1;
           struct jz4740_mmc_host * host = (struct jz4740_mmc_host *) malloc(_len_host0*sizeof(struct jz4740_mmc_host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
               int _len_host__i0__dma_tx0 = 1;
           host[_i0].dma_tx = (struct dma_chan *) malloc(_len_host__i0__dma_tx0*sizeof(struct dma_chan));
           for(int _j0 = 0; _j0 < _len_host__i0__dma_tx0; _j0++) {
-            host[_i0].dma_tx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].dma_tx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_host__i0__dma_rx0 = 1;
           host[_i0].dma_rx = (struct dma_chan *) malloc(_len_host__i0__dma_rx0*sizeof(struct dma_chan));
           for(int _j0 = 0; _j0 < _len_host__i0__dma_rx0; _j0++) {
-            host[_i0].dma_rx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].dma_rx->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_data0 = 1;
           struct mmc_data * data = (struct mmc_data *) malloc(_len_data0*sizeof(struct mmc_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct dma_chan * benchRet = jz4740_mmc_get_dma_chan(host,data);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_host0; _aux++) {

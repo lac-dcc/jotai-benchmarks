@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -160,12 +161,6 @@ snd_azf3328_mixer_ac97_map_reg_idx(unsigned short reg)
 	return reg_azf;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -182,6 +177,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short reg = 100;
+        
           unsigned short benchRet = snd_azf3328_mixer_ac97_map_reg_idx(reg);
           printf("%hu\n", benchRet); 
         
@@ -191,6 +187,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned short reg = 255;
+        
           unsigned short benchRet = snd_azf3328_mixer_ac97_map_reg_idx(reg);
           printf("%hu\n", benchRet); 
         
@@ -200,12 +197,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned short reg = 10;
+        
           unsigned short benchRet = snd_azf3328_mixer_ac97_map_reg_idx(reg);
           printf("%hu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned short reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short benchRet = snd_azf3328_mixer_ac97_map_reg_idx(reg);
+          printf("%hu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ DWORD bytes_to_samples(DWORD bytes, LPWAVEFORMATEX pwfx)
     return bytes / pwfx->nBlockAlign;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,30 +78,167 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int bytes = 100;
+        
           int _len_pwfx0 = 1;
           struct TYPE_3__ * pwfx = (struct TYPE_3__ *) malloc(_len_pwfx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pwfx0; _i0++) {
-            pwfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+              pwfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bytes_to_samples(bytes,pwfx);
           printf("%d\n", benchRet); 
           free(pwfx);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int bytes = 255;
+        
+          int _len_pwfx0 = 65025;
+          struct TYPE_3__ * pwfx = (struct TYPE_3__ *) malloc(_len_pwfx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pwfx0; _i0++) {
+              pwfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bytes_to_samples(bytes,pwfx);
+          printf("%d\n", benchRet); 
+          free(pwfx);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int bytes = 10;
+        
           int _len_pwfx0 = 100;
           struct TYPE_3__ * pwfx = (struct TYPE_3__ *) malloc(_len_pwfx0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pwfx0; _i0++) {
-            pwfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+              pwfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bytes_to_samples(bytes,pwfx);
+          printf("%d\n", benchRet); 
+          free(pwfx);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int bytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pwfx0 = 1;
+          struct TYPE_3__ * pwfx = (struct TYPE_3__ *) malloc(_len_pwfx0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pwfx0; _i0++) {
+              pwfx[_i0].nBlockAlign = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bytes_to_samples(bytes,pwfx);
           printf("%d\n", benchRet); 
           free(pwfx);

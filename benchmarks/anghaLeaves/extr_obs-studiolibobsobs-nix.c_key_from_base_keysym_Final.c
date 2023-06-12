@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static obs_key_t key_from_base_keysym(obs_hotkeys_platform
 	return OBS_KEY_NONE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long code = 100;
+        
           int _len_context0 = 1;
           struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
@@ -103,7 +101,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_context__i0__base_keysyms0; _j0++) {
             context[_i0].base_keysyms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = key_from_base_keysym(context,code);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_context0; _aux++) {
@@ -113,7 +113,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long code = 255;
+        
+          int _len_context0 = 65025;
+          struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__base_keysyms0 = 1;
+          context[_i0].base_keysyms = (long *) malloc(_len_context__i0__base_keysyms0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_context__i0__base_keysyms0; _j0++) {
+            context[_i0].base_keysyms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = key_from_base_keysym(context,code);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].base_keysyms);
+          }
+          free(context);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long code = 10;
+        
+          int _len_context0 = 100;
+          struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__base_keysyms0 = 1;
+          context[_i0].base_keysyms = (long *) malloc(_len_context__i0__base_keysyms0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_context__i0__base_keysyms0; _j0++) {
+            context[_i0].base_keysyms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = key_from_base_keysym(context,code);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].base_keysyms);
+          }
+          free(context);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_context0 = 1;
+          struct TYPE_3__ * context = (struct TYPE_3__ *) malloc(_len_context0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              int _len_context__i0__base_keysyms0 = 1;
+          context[_i0].base_keysyms = (long *) malloc(_len_context__i0__base_keysyms0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_context__i0__base_keysyms0; _j0++) {
+            context[_i0].base_keysyms[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = key_from_base_keysym(context,code);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_context0; _aux++) {
+          free(context[_aux].base_keysyms);
+          }
+          free(context);
+        
+        break;
+    }
     default:
         usage();
         break;

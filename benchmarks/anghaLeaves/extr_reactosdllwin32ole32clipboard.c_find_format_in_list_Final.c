@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static inline ole_priv_data_entry *find_format_in_list(ole
     return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,16 +85,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 3328
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 1284
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 1284
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 1284
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 1284
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 1283
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 1793
+          // ------------------------------- 
+
+          unsigned long num = 255;
+        
+          long cf = 255;
+        
+          int _len_entries0 = 65025;
+          struct TYPE_6__ * entries = (struct TYPE_6__ *) malloc(_len_entries0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_entries0; _i0++) {
+              entries[_i0].fmtetc.cfFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          struct TYPE_6__ * benchRet = find_format_in_list(entries,num,cf);
+          free(entries);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 143
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 59
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 59
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 59
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 59
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 58
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 78
+          // ------------------------------- 
+
           unsigned long num = 10;
+        
           long cf = 10;
+        
           int _len_entries0 = 100;
           struct TYPE_6__ * entries = (struct TYPE_6__ *) malloc(_len_entries0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_entries0; _i0++) {
-            entries[_i0].fmtetc.cfFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+              entries[_i0].fmtetc.cfFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct TYPE_6__ * benchRet = find_format_in_list(entries,num,cf);
+          free(entries);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long cf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_entries0 = 1;
+          struct TYPE_6__ * entries = (struct TYPE_6__ *) malloc(_len_entries0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_entries0; _i0++) {
+              entries[_i0].fmtetc.cfFormat = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct TYPE_6__ * benchRet = find_format_in_list(entries,num,cf);
           free(entries);
         

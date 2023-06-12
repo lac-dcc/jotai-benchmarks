@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ typedef  int /*<<< orphan*/  sei_message_t ;
 
 uint8_t* sei_message_data(sei_message_t* msg) { return ((uint8_t*)msg) + sizeof(struct _sei_message_t); }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -77,21 +72,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int _len_msg0 = 100;
+          int _len_msg0 = 65025;
           int * msg = (int *) malloc(_len_msg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
             msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int * benchRet = sei_message_data(msg);
           printf("%d\n", (*benchRet)); 
           free(msg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_msg0 = 100;
+          int * msg = (int *) malloc(_len_msg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+            msg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int * benchRet = sei_message_data(msg);
+          printf("%d\n", (*benchRet)); 
+          free(msg);
+        
+        break;
+    }
     default:
         usage();
         break;

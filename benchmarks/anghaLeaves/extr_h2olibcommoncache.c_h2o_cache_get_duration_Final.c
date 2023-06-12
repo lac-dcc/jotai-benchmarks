@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ uint64_t h2o_cache_get_duration(h2o_cache_t *cache)
     return cache->duration;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cache0 = 1;
+          int _len_cache0 = 65025;
           struct TYPE_3__ * cache = (struct TYPE_3__ *) malloc(_len_cache0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
-            cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = h2o_cache_get_duration(cache);
           printf("%d\n", benchRet); 
           free(cache);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_cache0 = 100;
           struct TYPE_3__ * cache = (struct TYPE_3__ *) malloc(_len_cache0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
-            cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = h2o_cache_get_duration(cache);
           printf("%d\n", benchRet); 
           free(cache);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cache0 = 1;
+          struct TYPE_3__ * cache = (struct TYPE_3__ *) malloc(_len_cache0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_cache0; _i0++) {
+              cache[_i0].duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = h2o_cache_get_duration(cache);
+          printf("%d\n", benchRet); 
+          free(cache);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -99,12 +102,6 @@ rga_get_addr_offset(struct rga_frame *frm, unsigned int x, unsigned int y,
 	return offsets;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,27 +114,237 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 168
+          // dynamic_instructions_O0 : 168
+          // ------------------------------- 
+          // static_instructions_O1 : 93
+          // dynamic_instructions_O1 : 93
+          // ------------------------------- 
+          // static_instructions_O2 : 93
+          // dynamic_instructions_O2 : 93
+          // ------------------------------- 
+          // static_instructions_O3 : 93
+          // dynamic_instructions_O3 : 93
+          // ------------------------------- 
+          // static_instructions_Ofast : 93
+          // dynamic_instructions_Ofast : 93
+          // ------------------------------- 
+          // static_instructions_Os : 93
+          // dynamic_instructions_Os : 93
+          // ------------------------------- 
+          // static_instructions_Oz : 93
+          // dynamic_instructions_Oz : 93
+          // ------------------------------- 
+
           unsigned int x = 100;
+        
           unsigned int y = 100;
+        
           unsigned int w = 100;
+        
           unsigned int h = 100;
+        
           int _len_frm0 = 1;
           struct rga_frame * frm = (struct rga_frame *) malloc(_len_frm0*sizeof(struct rga_frame));
           for(int _i0 = 0; _i0 < _len_frm0; _i0++) {
-            frm[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
-        frm[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        frm[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              frm[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_frm__i0__fmt0 = 1;
           frm[_i0].fmt = (struct TYPE_2__ *) malloc(_len_frm__i0__fmt0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_frm__i0__fmt0; _j0++) {
-            frm[_i0].fmt->x_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        frm[_i0].fmt->y_div = ((-2 * (next_i()%2)) + 1) * next_i();
-        frm[_i0].fmt->uv_factor = ((-2 * (next_i()%2)) + 1) * next_i();
+              frm[_i0].fmt->x_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->y_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->uv_factor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct rga_corners_addr_offset benchRet = rga_get_addr_offset(frm,x,y,w,h);
+          for(int _aux = 0; _aux < _len_frm0; _aux++) {
+          free(frm[_aux].fmt);
+          }
+          free(frm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 168
+          // dynamic_instructions_O0 : 168
+          // ------------------------------- 
+          // static_instructions_O1 : 93
+          // dynamic_instructions_O1 : 93
+          // ------------------------------- 
+          // static_instructions_O2 : 93
+          // dynamic_instructions_O2 : 93
+          // ------------------------------- 
+          // static_instructions_O3 : 93
+          // dynamic_instructions_O3 : 93
+          // ------------------------------- 
+          // static_instructions_Ofast : 93
+          // dynamic_instructions_Ofast : 93
+          // ------------------------------- 
+          // static_instructions_Os : 93
+          // dynamic_instructions_Os : 93
+          // ------------------------------- 
+          // static_instructions_Oz : 93
+          // dynamic_instructions_Oz : 93
+          // ------------------------------- 
+
+          unsigned int x = 255;
+        
+          unsigned int y = 255;
+        
+          unsigned int w = 255;
+        
+          unsigned int h = 255;
+        
+          int _len_frm0 = 65025;
+          struct rga_frame * frm = (struct rga_frame *) malloc(_len_frm0*sizeof(struct rga_frame));
+          for(int _i0 = 0; _i0 < _len_frm0; _i0++) {
+              frm[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_frm__i0__fmt0 = 1;
+          frm[_i0].fmt = (struct TYPE_2__ *) malloc(_len_frm__i0__fmt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_frm__i0__fmt0; _j0++) {
+              frm[_i0].fmt->x_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->y_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->uv_factor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct rga_corners_addr_offset benchRet = rga_get_addr_offset(frm,x,y,w,h);
+          for(int _aux = 0; _aux < _len_frm0; _aux++) {
+          free(frm[_aux].fmt);
+          }
+          free(frm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 168
+          // dynamic_instructions_O0 : 168
+          // ------------------------------- 
+          // static_instructions_O1 : 93
+          // dynamic_instructions_O1 : 93
+          // ------------------------------- 
+          // static_instructions_O2 : 93
+          // dynamic_instructions_O2 : 93
+          // ------------------------------- 
+          // static_instructions_O3 : 93
+          // dynamic_instructions_O3 : 93
+          // ------------------------------- 
+          // static_instructions_Ofast : 93
+          // dynamic_instructions_Ofast : 93
+          // ------------------------------- 
+          // static_instructions_Os : 93
+          // dynamic_instructions_Os : 93
+          // ------------------------------- 
+          // static_instructions_Oz : 93
+          // dynamic_instructions_Oz : 93
+          // ------------------------------- 
+
+          unsigned int x = 10;
+        
+          unsigned int y = 10;
+        
+          unsigned int w = 10;
+        
+          unsigned int h = 10;
+        
+          int _len_frm0 = 100;
+          struct rga_frame * frm = (struct rga_frame *) malloc(_len_frm0*sizeof(struct rga_frame));
+          for(int _i0 = 0; _i0 < _len_frm0; _i0++) {
+              frm[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_frm__i0__fmt0 = 1;
+          frm[_i0].fmt = (struct TYPE_2__ *) malloc(_len_frm__i0__fmt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_frm__i0__fmt0; _j0++) {
+              frm[_i0].fmt->x_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->y_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->uv_factor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct rga_corners_addr_offset benchRet = rga_get_addr_offset(frm,x,y,w,h);
+          for(int _aux = 0; _aux < _len_frm0; _aux++) {
+          free(frm[_aux].fmt);
+          }
+          free(frm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 168
+          // dynamic_instructions_O0 : 168
+          // ------------------------------- 
+          // static_instructions_O1 : 93
+          // dynamic_instructions_O1 : 93
+          // ------------------------------- 
+          // static_instructions_O2 : 93
+          // dynamic_instructions_O2 : 93
+          // ------------------------------- 
+          // static_instructions_O3 : 93
+          // dynamic_instructions_O3 : 93
+          // ------------------------------- 
+          // static_instructions_Ofast : 93
+          // dynamic_instructions_Ofast : 93
+          // ------------------------------- 
+          // static_instructions_Os : 93
+          // dynamic_instructions_Os : 93
+          // ------------------------------- 
+          // static_instructions_Oz : 93
+          // dynamic_instructions_Oz : 93
+          // ------------------------------- 
+
+          unsigned int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_frm0 = 1;
+          struct rga_frame * frm = (struct rga_frame *) malloc(_len_frm0*sizeof(struct rga_frame));
+          for(int _i0 = 0; _i0 < _len_frm0; _i0++) {
+              frm[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_frm__i0__fmt0 = 1;
+          frm[_i0].fmt = (struct TYPE_2__ *) malloc(_len_frm__i0__fmt0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_frm__i0__fmt0; _j0++) {
+              frm[_i0].fmt->x_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->y_div = ((-2 * (next_i()%2)) + 1) * next_i();
+          frm[_i0].fmt->uv_factor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct rga_corners_addr_offset benchRet = rga_get_addr_offset(frm,x,y,w,h);
           for(int _aux = 0; _aux < _len_frm0; _aux++) {
           free(frm[_aux].fmt);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static inline int dlm_lock_compatible(int existing, int re
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int existing = 100;
+        
           int request = 100;
+        
           int benchRet = dlm_lock_compatible(existing,request);
           printf("%d\n", benchRet); 
         
@@ -109,7 +106,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int existing = 255;
+        
           int request = 255;
+        
           int benchRet = dlm_lock_compatible(existing,request);
           printf("%d\n", benchRet); 
         
@@ -119,13 +118,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int existing = 10;
+        
           int request = 10;
+        
           int benchRet = dlm_lock_compatible(existing,request);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int existing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int request = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dlm_lock_compatible(existing,request);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

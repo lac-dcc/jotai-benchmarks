@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ void dl_zout_set_crc32_flag (dl_zout *f, int flag) {
   f->crc32_complement = 0xFFFFFFFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +77,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int flag = 100;
+        
           int _len_f0 = 1;
           struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
-            f[_i0].use_crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].crc32_complement = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].use_crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].crc32_complement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          dl_zout_set_crc32_flag(f,flag);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int flag = 255;
+        
+          int _len_f0 = 65025;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].use_crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].crc32_complement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dl_zout_set_crc32_flag(f,flag);
+          free(f);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int flag = 10;
+        
+          int _len_f0 = 100;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].use_crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].crc32_complement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          dl_zout_set_crc32_flag(f,flag);
+          free(f);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_f0 = 1;
+          struct TYPE_3__ * f = (struct TYPE_3__ *) malloc(_len_f0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              f[_i0].use_crc32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].crc32_complement = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           dl_zout_set_crc32_flag(f,flag);
           free(f);
         

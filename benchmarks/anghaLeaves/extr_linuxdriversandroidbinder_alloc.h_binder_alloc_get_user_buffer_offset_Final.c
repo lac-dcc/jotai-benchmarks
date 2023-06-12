@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +72,6 @@ binder_alloc_get_user_buffer_offset(struct binder_alloc *alloc)
 	return alloc->user_buffer_offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,28 +84,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_alloc0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_alloc0 = 65025;
           struct binder_alloc * alloc = (struct binder_alloc *) malloc(_len_alloc0*sizeof(struct binder_alloc));
           for(int _i0 = 0; _i0 < _len_alloc0; _i0++) {
-            alloc[_i0].user_buffer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              alloc[_i0].user_buffer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = binder_alloc_get_user_buffer_offset(alloc);
           printf("%d\n", benchRet); 
           free(alloc);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_alloc0 = 100;
           struct binder_alloc * alloc = (struct binder_alloc *) malloc(_len_alloc0*sizeof(struct binder_alloc));
           for(int _i0 = 0; _i0 < _len_alloc0; _i0++) {
-            alloc[_i0].user_buffer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              alloc[_i0].user_buffer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = binder_alloc_get_user_buffer_offset(alloc);
+          printf("%d\n", benchRet); 
+          free(alloc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_alloc0 = 1;
+          struct binder_alloc * alloc = (struct binder_alloc *) malloc(_len_alloc0*sizeof(struct binder_alloc));
+          for(int _i0 = 0; _i0 < _len_alloc0; _i0++) {
+              alloc[_i0].user_buffer_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = binder_alloc_get_user_buffer_offset(alloc);
           printf("%d\n", benchRet); 
           free(alloc);

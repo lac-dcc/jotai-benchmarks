@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static void lzo_copyback(lzo_stream* stream, UINT32 back, 
     } while (len > 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,18 +94,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long back = 100;
+        
           int len = 100;
+        
           int _len_stream0 = 1;
           struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
-        stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_stream__i0__out0 = 1;
           stream[_i0].out = (int *) malloc(_len_stream__i0__out0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_stream__i0__out0; _j0++) {
             stream[_i0].out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           lzo_copyback(stream,back,len);
           for(int _aux = 0; _aux < _len_stream0; _aux++) {
           free(stream[_aux].out);
@@ -119,7 +118,34 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long back = 10;
+        
+          int len = 10;
+        
+          int _len_stream0 = 100;
+          struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].outpos = ((-2 * (next_i()%2)) + 1) * next_i();
+          stream[_i0].outlen = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_stream__i0__out0 = 1;
+          stream[_i0].out = (int *) malloc(_len_stream__i0__out0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_stream__i0__out0; _j0++) {
+            stream[_i0].out[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          lzo_copyback(stream,back,len);
+          for(int _aux = 0; _aux < _len_stream0; _aux++) {
+          free(stream[_aux].out);
+          }
+          free(stream);
+        
+        break;
+    }
     default:
         usage();
         break;

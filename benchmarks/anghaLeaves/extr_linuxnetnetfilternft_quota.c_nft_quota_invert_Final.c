@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool nft_quota_invert(struct nft_quota *priv
 	return priv->flags & NFT_QUOTA_F_INV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          int _len_priv0 = 65025;
           struct nft_quota * priv = (struct nft_quota *) malloc(_len_priv0*sizeof(struct nft_quota));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nft_quota_invert(priv);
           printf("%d\n", benchRet); 
           free(priv);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_priv0 = 100;
           struct nft_quota * priv = (struct nft_quota *) malloc(_len_priv0*sizeof(struct nft_quota));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nft_quota_invert(priv);
           printf("%d\n", benchRet); 
           free(priv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_priv0 = 1;
+          struct nft_quota * priv = (struct nft_quota *) malloc(_len_priv0*sizeof(struct nft_quota));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nft_quota_invert(priv);
+          printf("%d\n", benchRet); 
+          free(priv);
+        
+        break;
+    }
     default:
         usage();
         break;

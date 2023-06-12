@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ ahd_get_sense_buf(struct ahd_softc *ahd, struct scb *scb)
 	return (scb->sense_data);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +77,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ahd0 = 65025;
+          struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
+          for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_scb0 = 65025;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__sense_data0 = 1;
+          scb[_i0].sense_data = (int *) malloc(_len_scb__i0__sense_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_scb__i0__sense_data0; _j0++) {
+            scb[_i0].sense_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = ahd_get_sense_buf(ahd,scb);
+          printf("%d\n", (*benchRet)); 
+          free(ahd);
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].sense_data);
+          }
+          free(scb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_ahd0 = 100;
+          struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
+          for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_scb0 = 100;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__sense_data0 = 1;
+          scb[_i0].sense_data = (int *) malloc(_len_scb__i0__sense_data0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_scb__i0__sense_data0; _j0++) {
+            scb[_i0].sense_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = ahd_get_sense_buf(ahd,scb);
+          printf("%d\n", (*benchRet)); 
+          free(ahd);
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].sense_data);
+          }
+          free(scb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_ahd0 = 1;
           struct ahd_softc * ahd = (struct ahd_softc *) malloc(_len_ahd0*sizeof(struct ahd_softc));
           for(int _i0 = 0; _i0 < _len_ahd0; _i0++) {
-            ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ahd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_scb0 = 1;
           struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
@@ -97,7 +228,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_scb__i0__sense_data0; _j0++) {
             scb[_i0].sense_data[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = ahd_get_sense_buf(ahd,scb);
           printf("%d\n", (*benchRet)); 
           free(ahd);

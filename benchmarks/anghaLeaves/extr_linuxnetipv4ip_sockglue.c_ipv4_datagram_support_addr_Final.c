@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline bool ipv4_datagram_support_addr(struct sock_
 	       serr->ee.ee_origin == SO_EE_ORIGIN_LOCAL || serr->port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +79,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_serr0 = 1;
+          int _len_serr0 = 65025;
           struct sock_exterr_skb * serr = (struct sock_exterr_skb *) malloc(_len_serr0*sizeof(struct sock_exterr_skb));
           for(int _i0 = 0; _i0 < _len_serr0; _i0++) {
-            serr[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
-        serr[_i0].ee.ee_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+              serr[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          serr[_i0].ee.ee_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = ipv4_datagram_support_addr(serr);
           printf("%d\n", benchRet); 
           free(serr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_serr0 = 100;
+          struct sock_exterr_skb * serr = (struct sock_exterr_skb *) malloc(_len_serr0*sizeof(struct sock_exterr_skb));
+          for(int _i0 = 0; _i0 < _len_serr0; _i0++) {
+              serr[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          serr[_i0].ee.ee_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipv4_datagram_support_addr(serr);
+          printf("%d\n", benchRet); 
+          free(serr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_serr0 = 1;
+          struct sock_exterr_skb * serr = (struct sock_exterr_skb *) malloc(_len_serr0*sizeof(struct sock_exterr_skb));
+          for(int _i0 = 0; _i0 < _len_serr0; _i0++) {
+              serr[_i0].port = ((-2 * (next_i()%2)) + 1) * next_i();
+          serr[_i0].ee.ee_origin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipv4_datagram_support_addr(serr);
+          printf("%d\n", benchRet); 
+          free(serr);
+        
+        break;
+    }
     default:
         usage();
         break;

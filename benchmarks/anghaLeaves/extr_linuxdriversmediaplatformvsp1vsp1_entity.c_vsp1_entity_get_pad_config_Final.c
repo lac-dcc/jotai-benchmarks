@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ vsp1_entity_get_pad_config(struct vsp1_entity *entity,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +87,169 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           enum v4l2_subdev_format_whence which = 0;
+        
+          int _len_entity0 = 65025;
+          struct vsp1_entity * entity = (struct vsp1_entity *) malloc(_len_entity0*sizeof(struct vsp1_entity));
+          for(int _i0 = 0; _i0 < _len_entity0; _i0++) {
+              int _len_entity__i0__config0 = 1;
+          entity[_i0].config = (struct v4l2_subdev_pad_config *) malloc(_len_entity__i0__config0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _j0 = 0; _j0 < _len_entity__i0__config0; _j0++) {
+              entity[_i0].config->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cfg0 = 65025;
+          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct v4l2_subdev_pad_config * benchRet = vsp1_entity_get_pad_config(entity,cfg,which);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_entity0; _aux++) {
+          free(entity[_aux].config);
+          }
+          free(entity);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          enum v4l2_subdev_format_whence which = 0;
+        
+          int _len_entity0 = 100;
+          struct vsp1_entity * entity = (struct vsp1_entity *) malloc(_len_entity0*sizeof(struct vsp1_entity));
+          for(int _i0 = 0; _i0 < _len_entity0; _i0++) {
+              int _len_entity__i0__config0 = 1;
+          entity[_i0].config = (struct v4l2_subdev_pad_config *) malloc(_len_entity__i0__config0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _j0 = 0; _j0 < _len_entity__i0__config0; _j0++) {
+              entity[_i0].config->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct v4l2_subdev_pad_config * benchRet = vsp1_entity_get_pad_config(entity,cfg,which);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_entity0; _aux++) {
+          free(entity[_aux].config);
+          }
+          free(entity);
+          free(cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          enum v4l2_subdev_format_whence which = 0;
+        
           int _len_entity0 = 1;
           struct vsp1_entity * entity = (struct vsp1_entity *) malloc(_len_entity0*sizeof(struct vsp1_entity));
           for(int _i0 = 0; _i0 < _len_entity0; _i0++) {
               int _len_entity__i0__config0 = 1;
           entity[_i0].config = (struct v4l2_subdev_pad_config *) malloc(_len_entity__i0__config0*sizeof(struct v4l2_subdev_pad_config));
           for(int _j0 = 0; _j0 < _len_entity__i0__config0; _j0++) {
-            entity[_i0].config->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              entity[_i0].config->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_cfg0 = 1;
           struct v4l2_subdev_pad_config * cfg = (struct v4l2_subdev_pad_config *) malloc(_len_cfg0*sizeof(struct v4l2_subdev_pad_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct v4l2_subdev_pad_config * benchRet = vsp1_entity_get_pad_config(entity,cfg,which);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_entity0; _aux++) {

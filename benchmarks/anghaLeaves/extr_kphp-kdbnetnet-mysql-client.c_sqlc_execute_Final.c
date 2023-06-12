@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ int sqlc_execute (struct connection *c, int op) {
   return SKIP_ALL_BYTES;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,11 +79,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int op = 100;
+        
           int _len_c0 = 1;
           struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = sqlc_execute(c,op);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int op = 255;
+        
+          int _len_c0 = 65025;
+          struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = sqlc_execute(c,op);
           printf("%d\n", benchRet); 
           free(c);
@@ -95,21 +112,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int op = 10;
+        
           int _len_c0 = 100;
           struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
           for(int _i0 = 0; _i0 < _len_c0; _i0++) {
-            c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = sqlc_execute(c,op);
           printf("%d\n", benchRet); 
           free(c);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int op = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_c0 = 1;
+          struct connection * c = (struct connection *) malloc(_len_c0*sizeof(struct connection));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              c[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = sqlc_execute(c,op);
+          printf("%d\n", benchRet); 
+          free(c);
+        
+        break;
+    }
     default:
         usage();
         break;

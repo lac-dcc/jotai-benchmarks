@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static uint16_t calc_suggested_tls_payload_size(h2o_socket
     return ps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long suggested_tls_record_size = 100;
+        
           int _len_sock0 = 1;
           struct TYPE_5__ * sock = (struct TYPE_5__ *) malloc(_len_sock0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
               int _len_sock__i0__ssl0 = 1;
           sock[_i0].ssl = (struct TYPE_4__ *) malloc(_len_sock__i0__ssl0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_sock__i0__ssl0; _j0++) {
-            sock[_i0].ssl->record_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+              sock[_i0].ssl->record_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          long benchRet = calc_suggested_tls_payload_size(sock,suggested_tls_record_size);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sock0; _aux++) {
+          free(sock[_aux].ssl);
+          }
+          free(sock);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long suggested_tls_record_size = 255;
+        
+          int _len_sock0 = 65025;
+          struct TYPE_5__ * sock = (struct TYPE_5__ *) malloc(_len_sock0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              int _len_sock__i0__ssl0 = 1;
+          sock[_i0].ssl = (struct TYPE_4__ *) malloc(_len_sock__i0__ssl0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sock__i0__ssl0; _j0++) {
+              sock[_i0].ssl->record_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = calc_suggested_tls_payload_size(sock,suggested_tls_record_size);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sock0; _aux++) {
+          free(sock[_aux].ssl);
+          }
+          free(sock);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long suggested_tls_record_size = 10;
+        
+          int _len_sock0 = 100;
+          struct TYPE_5__ * sock = (struct TYPE_5__ *) malloc(_len_sock0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              int _len_sock__i0__ssl0 = 1;
+          sock[_i0].ssl = (struct TYPE_4__ *) malloc(_len_sock__i0__ssl0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sock__i0__ssl0; _j0++) {
+              sock[_i0].ssl->record_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long benchRet = calc_suggested_tls_payload_size(sock,suggested_tls_record_size);
+          printf("%ld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sock0; _aux++) {
+          free(sock[_aux].ssl);
+          }
+          free(sock);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long suggested_tls_record_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sock0 = 1;
+          struct TYPE_5__ * sock = (struct TYPE_5__ *) malloc(_len_sock0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_sock0; _i0++) {
+              int _len_sock__i0__ssl0 = 1;
+          sock[_i0].ssl = (struct TYPE_4__ *) malloc(_len_sock__i0__ssl0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_sock__i0__ssl0; _j0++) {
+              sock[_i0].ssl->record_overhead = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           long benchRet = calc_suggested_tls_payload_size(sock,suggested_tls_record_size);
           printf("%ld\n", benchRet); 
           for(int _aux = 0; _aux < _len_sock0; _aux++) {

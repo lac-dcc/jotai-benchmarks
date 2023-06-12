@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ vm_get_x2apic_state(struct vm *vm, int vcpuid, enum x2apic_state *state)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,24 +86,223 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int vcpuid = 100;
+        
           int _len_vm0 = 1;
           struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
           for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
               int _len_vm__i0__vcpu0 = 1;
           vm[_i0].vcpu = (struct TYPE_2__ *) malloc(_len_vm__i0__vcpu0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_vm__i0__vcpu0; _j0++) {
-            vm[_i0].vcpu->x2apic_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              vm[_i0].vcpu->x2apic_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_state0 = 1;
           enum x2apic_state * state = (enum x2apic_state *) malloc(_len_state0*sizeof(enum x2apic_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = 0;
           }
+        
+          int benchRet = vm_get_x2apic_state(vm,vcpuid,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].vcpu);
+          }
+          free(vm);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int vcpuid = 255;
+        
+          int _len_vm0 = 65025;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              int _len_vm__i0__vcpu0 = 1;
+          vm[_i0].vcpu = (struct TYPE_2__ *) malloc(_len_vm__i0__vcpu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__vcpu0; _j0++) {
+              vm[_i0].vcpu->x2apic_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 65025;
+          enum x2apic_state * state = (enum x2apic_state *) malloc(_len_state0*sizeof(enum x2apic_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = 0;
+          }
+        
+          int benchRet = vm_get_x2apic_state(vm,vcpuid,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].vcpu);
+          }
+          free(vm);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int vcpuid = 10;
+        
+          int _len_vm0 = 100;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              int _len_vm__i0__vcpu0 = 1;
+          vm[_i0].vcpu = (struct TYPE_2__ *) malloc(_len_vm__i0__vcpu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__vcpu0; _j0++) {
+              vm[_i0].vcpu->x2apic_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 100;
+          enum x2apic_state * state = (enum x2apic_state *) malloc(_len_state0*sizeof(enum x2apic_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = 0;
+          }
+        
+          int benchRet = vm_get_x2apic_state(vm,vcpuid,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vm0; _aux++) {
+          free(vm[_aux].vcpu);
+          }
+          free(vm);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int vcpuid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vm0 = 1;
+          struct vm * vm = (struct vm *) malloc(_len_vm0*sizeof(struct vm));
+          for(int _i0 = 0; _i0 < _len_vm0; _i0++) {
+              int _len_vm__i0__vcpu0 = 1;
+          vm[_i0].vcpu = (struct TYPE_2__ *) malloc(_len_vm__i0__vcpu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_vm__i0__vcpu0; _j0++) {
+              vm[_i0].vcpu->x2apic_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 1;
+          enum x2apic_state * state = (enum x2apic_state *) malloc(_len_state0*sizeof(enum x2apic_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = 0;
+          }
+        
           int benchRet = vm_get_x2apic_state(vm,vcpuid,state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vm0; _aux++) {

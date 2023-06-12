@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int fusb300_ep_release(struct fusb300_ep *ep)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ep0 = 1;
+          int _len_ep0 = 65025;
           struct fusb300_ep * ep = (struct fusb300_ep *) malloc(_len_ep0*sizeof(struct fusb300_ep));
           for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
-            ep[_i0].wedged = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].stall = ((-2 * (next_i()%2)) + 1) * next_i();
-        ep[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+              ep[_i0].wedged = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stall = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = fusb300_ep_release(ep);
           printf("%d\n", benchRet); 
           free(ep);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ep0 = 100;
+          struct fusb300_ep * ep = (struct fusb300_ep *) malloc(_len_ep0*sizeof(struct fusb300_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].wedged = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stall = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fusb300_ep_release(ep);
+          printf("%d\n", benchRet); 
+          free(ep);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ep0 = 1;
+          struct fusb300_ep * ep = (struct fusb300_ep *) malloc(_len_ep0*sizeof(struct fusb300_ep));
+          for(int _i0 = 0; _i0 < _len_ep0; _i0++) {
+              ep[_i0].wedged = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].stall = ((-2 * (next_i()%2)) + 1) * next_i();
+          ep[_i0].epnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = fusb300_ep_release(ep);
+          printf("%d\n", benchRet); 
+          free(ep);
+        
+        break;
+    }
     default:
         usage();
         break;

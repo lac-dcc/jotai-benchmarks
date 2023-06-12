@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ void _r8712_sitesurvey_ctrl_handler(struct _adapter *adapter)
 		psitesurveyctrl->traffic_busy = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,19 +99,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_adapter0 = 65025;
+          struct _adapter * adapter = (struct _adapter *) malloc(_len_adapter0*sizeof(struct _adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].recvpriv.rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].xmitpriv.tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].registrypriv.busy_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].mlmepriv.sitesurveyctrl.last_tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mlmepriv.sitesurveyctrl.last_rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mlmepriv.sitesurveyctrl.traffic_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          _r8712_sitesurvey_ctrl_handler(adapter);
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_adapter0 = 100;
+          struct _adapter * adapter = (struct _adapter *) malloc(_len_adapter0*sizeof(struct _adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].recvpriv.rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].xmitpriv.tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].registrypriv.busy_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].mlmepriv.sitesurveyctrl.last_tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mlmepriv.sitesurveyctrl.last_rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mlmepriv.sitesurveyctrl.traffic_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          _r8712_sitesurvey_ctrl_handler(adapter);
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_adapter0 = 1;
           struct _adapter * adapter = (struct _adapter *) malloc(_len_adapter0*sizeof(struct _adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].recvpriv.rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].xmitpriv.tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].registrypriv.busy_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].mlmepriv.sitesurveyctrl.last_tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].mlmepriv.sitesurveyctrl.last_rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].mlmepriv.sitesurveyctrl.traffic_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].recvpriv.rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].xmitpriv.tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].registrypriv.busy_thresh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          adapter[_i0].mlmepriv.sitesurveyctrl.last_tx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mlmepriv.sitesurveyctrl.last_rx_pkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mlmepriv.sitesurveyctrl.traffic_busy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           _r8712_sitesurvey_ctrl_handler(adapter);
           free(adapter);
         

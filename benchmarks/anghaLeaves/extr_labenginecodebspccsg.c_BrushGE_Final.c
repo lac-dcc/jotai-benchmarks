@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ qboolean BrushGE (bspbrush_t *b1, bspbrush_t *b2)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,27 +107,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_b10 = 1;
+          int _len_b10 = 65025;
           struct TYPE_6__ * b1 = (struct TYPE_6__ *) malloc(_len_b10*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_b10; _i0++) {
               int _len_b1__i0__original0 = 1;
           b1[_i0].original = (struct TYPE_5__ *) malloc(_len_b1__i0__original0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_b1__i0__original0; _j0++) {
-            b1[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+              b1[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_b20 = 1;
+        
+          int _len_b20 = 65025;
           struct TYPE_6__ * b2 = (struct TYPE_6__ *) malloc(_len_b20*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_b20; _i0++) {
               int _len_b2__i0__original0 = 1;
           b2[_i0].original = (struct TYPE_5__ *) malloc(_len_b2__i0__original0*sizeof(struct TYPE_5__));
           for(int _j0 = 0; _j0 < _len_b2__i0__original0; _j0++) {
-            b2[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+              b2[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = BrushGE(b1,b2);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_b10; _aux++) {
@@ -145,7 +147,86 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_b10 = 100;
+          struct TYPE_6__ * b1 = (struct TYPE_6__ *) malloc(_len_b10*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b10; _i0++) {
+              int _len_b1__i0__original0 = 1;
+          b1[_i0].original = (struct TYPE_5__ *) malloc(_len_b1__i0__original0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_b1__i0__original0; _j0++) {
+              b1[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_b20 = 100;
+          struct TYPE_6__ * b2 = (struct TYPE_6__ *) malloc(_len_b20*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b20; _i0++) {
+              int _len_b2__i0__original0 = 1;
+          b2[_i0].original = (struct TYPE_5__ *) malloc(_len_b2__i0__original0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_b2__i0__original0; _j0++) {
+              b2[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = BrushGE(b1,b2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_b10; _aux++) {
+          free(b1[_aux].original);
+          }
+          free(b1);
+          for(int _aux = 0; _aux < _len_b20; _aux++) {
+          free(b2[_aux].original);
+          }
+          free(b2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_b10 = 1;
+          struct TYPE_6__ * b1 = (struct TYPE_6__ *) malloc(_len_b10*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b10; _i0++) {
+              int _len_b1__i0__original0 = 1;
+          b1[_i0].original = (struct TYPE_5__ *) malloc(_len_b1__i0__original0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_b1__i0__original0; _j0++) {
+              b1[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_b20 = 1;
+          struct TYPE_6__ * b2 = (struct TYPE_6__ *) malloc(_len_b20*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b20; _i0++) {
+              int _len_b2__i0__original0 = 1;
+          b2[_i0].original = (struct TYPE_5__ *) malloc(_len_b2__i0__original0*sizeof(struct TYPE_5__));
+          for(int _j0 = 0; _j0 < _len_b2__i0__original0; _j0++) {
+              b2[_i0].original->contents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = BrushGE(b1,b2);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_b10; _aux++) {
+          free(b1[_aux].original);
+          }
+          free(b1);
+          for(int _aux = 0; _aux < _len_b20; _aux++) {
+          free(b2[_aux].original);
+          }
+          free(b2);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int thumbs2_want_resize (int width, int height, str
   */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,20 +83,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int width = 100;
+        
           int height = 100;
+        
           int _len_u0 = 1;
           struct thumb2 * u = (struct thumb2 *) malloc(_len_u0*sizeof(struct thumb2));
           for(int _i0 = 0; _i0 < _len_u0; _i0++) {
-            u[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        u[_i0].max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+              u[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = thumbs2_want_resize(width,height,u);
           printf("%d\n", benchRet); 
           free(u);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int width = 255;
+        
+          int height = 255;
+        
+          int _len_u0 = 65025;
+          struct thumb2 * u = (struct thumb2 *) malloc(_len_u0*sizeof(struct thumb2));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = thumbs2_want_resize(width,height,u);
+          printf("%d\n", benchRet); 
+          free(u);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int width = 10;
+        
+          int height = 10;
+        
+          int _len_u0 = 100;
+          struct thumb2 * u = (struct thumb2 *) malloc(_len_u0*sizeof(struct thumb2));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = thumbs2_want_resize(width,height,u);
+          printf("%d\n", benchRet); 
+          free(u);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_u0 = 1;
+          struct thumb2 * u = (struct thumb2 *) malloc(_len_u0*sizeof(struct thumb2));
+          for(int _i0 = 0; _i0 < _len_u0; _i0++) {
+              u[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          u[_i0].max_height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = thumbs2_want_resize(width,height,u);
+          printf("%d\n", benchRet); 
+          free(u);
+        
+        break;
+    }
     default:
         usage();
         break;

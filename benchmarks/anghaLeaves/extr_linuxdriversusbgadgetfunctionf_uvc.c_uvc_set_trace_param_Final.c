@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void uvc_set_trace_param(unsigned int trace)
 	uvc_gadget_trace_param = trace;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int trace = 100;
+        
           uvc_set_trace_param(trace);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int trace = 255;
+        
           uvc_set_trace_param(trace);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int trace = 10;
+        
           uvc_set_trace_param(trace);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int trace = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          uvc_set_trace_param(trace);
+        
+        break;
+    }
     default:
         usage();
         break;

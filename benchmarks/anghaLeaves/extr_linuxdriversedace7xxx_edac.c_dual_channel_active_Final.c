@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int dual_channel_active(u32 drc, int dev_idx
 	return (dev_idx == E7501) ? ((drc >> 22) & 0x1) : 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int drc = 100;
+        
           int dev_idx = 100;
+        
           int benchRet = dual_channel_active(drc,dev_idx);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int drc = 255;
+        
           int dev_idx = 255;
+        
           int benchRet = dual_channel_active(drc,dev_idx);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int drc = 10;
+        
           int dev_idx = 10;
+        
           int benchRet = dual_channel_active(drc,dev_idx);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int drc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dev_idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dual_channel_active(drc,dev_idx);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

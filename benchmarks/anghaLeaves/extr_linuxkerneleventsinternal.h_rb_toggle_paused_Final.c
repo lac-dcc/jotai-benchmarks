@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline void rb_toggle_paused(struct ring_buffer *rb
 		rb->paused = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pause = 100;
+        
           int _len_rb0 = 1;
           struct ring_buffer * rb = (struct ring_buffer *) malloc(_len_rb0*sizeof(struct ring_buffer));
           for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
-            rb[_i0].paused = ((-2 * (next_i()%2)) + 1) * next_i();
-        rb[_i0].nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+              rb[_i0].paused = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rb_toggle_paused(rb,pause);
           free(rb);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int pause = 255;
+        
+          int _len_rb0 = 65025;
+          struct ring_buffer * rb = (struct ring_buffer *) malloc(_len_rb0*sizeof(struct ring_buffer));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].paused = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rb_toggle_paused(rb,pause);
+          free(rb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int pause = 10;
+        
+          int _len_rb0 = 100;
+          struct ring_buffer * rb = (struct ring_buffer *) malloc(_len_rb0*sizeof(struct ring_buffer));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].paused = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rb_toggle_paused(rb,pause);
+          free(rb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int pause = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rb0 = 1;
+          struct ring_buffer * rb = (struct ring_buffer *) malloc(_len_rb0*sizeof(struct ring_buffer));
+          for(int _i0 = 0; _i0 < _len_rb0; _i0++) {
+              rb[_i0].paused = ((-2 * (next_i()%2)) + 1) * next_i();
+          rb[_i0].nr_pages = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rb_toggle_paused(rb,pause);
+          free(rb);
+        
+        break;
+    }
     default:
         usage();
         break;

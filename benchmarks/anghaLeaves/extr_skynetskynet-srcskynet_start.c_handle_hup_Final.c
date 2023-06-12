@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ handle_hup(int signal) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signal = 100;
+        
           handle_hup(signal);
         
         break;
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signal = 255;
+        
           handle_hup(signal);
         
         break;
@@ -103,11 +100,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signal = 10;
+        
           handle_hup(signal);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signal = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          handle_hup(signal);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ grub_install_get_time_ms (get_time_ms_func_t func)
   get_time_ms_func = func;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int func = 100;
+        
           grub_install_get_time_ms(func);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int func = 255;
+        
           grub_install_get_time_ms(func);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int func = 10;
+        
           grub_install_get_time_ms(func);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int func = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          grub_install_get_time_ms(func);
+        
+        break;
+    }
     default:
         usage();
         break;

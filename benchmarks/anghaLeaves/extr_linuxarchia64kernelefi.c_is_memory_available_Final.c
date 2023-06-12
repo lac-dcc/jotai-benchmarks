@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ is_memory_available (efi_memory_desc_t *md)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,22 +94,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_md0 = 1;
+          int _len_md0 = 65025;
           struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
-            md[_i0].attribute = ((-2 * (next_i()%2)) + 1) * next_i();
-        md[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].attribute = ((-2 * (next_i()%2)) + 1) * next_i();
+          md[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_memory_available(md);
           printf("%d\n", benchRet); 
           free(md);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_md0 = 100;
+          struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].attribute = ((-2 * (next_i()%2)) + 1) * next_i();
+          md[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_memory_available(md);
+          printf("%d\n", benchRet); 
+          free(md);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_md0 = 1;
+          struct TYPE_3__ * md = (struct TYPE_3__ *) malloc(_len_md0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              md[_i0].attribute = ((-2 * (next_i()%2)) + 1) * next_i();
+          md[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_memory_available(md);
+          printf("%d\n", benchRet); 
+          free(md);
+        
+        break;
+    }
     default:
         usage();
         break;

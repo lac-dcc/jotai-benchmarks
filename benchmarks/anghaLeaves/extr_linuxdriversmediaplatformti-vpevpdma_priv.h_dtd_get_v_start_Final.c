@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int dtd_get_v_start(struct vpdma_dtd *dtd)
 	return dtd->start_h_v & DTD_V_START_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_dtd0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_dtd0 = 65025;
           struct vpdma_dtd * dtd = (struct vpdma_dtd *) malloc(_len_dtd0*sizeof(struct vpdma_dtd));
           for(int _i0 = 0; _i0 < _len_dtd0; _i0++) {
-            dtd[_i0].start_h_v = ((-2 * (next_i()%2)) + 1) * next_i();
+              dtd[_i0].start_h_v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dtd_get_v_start(dtd);
           printf("%d\n", benchRet); 
           free(dtd);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_dtd0 = 100;
           struct vpdma_dtd * dtd = (struct vpdma_dtd *) malloc(_len_dtd0*sizeof(struct vpdma_dtd));
           for(int _i0 = 0; _i0 < _len_dtd0; _i0++) {
-            dtd[_i0].start_h_v = ((-2 * (next_i()%2)) + 1) * next_i();
+              dtd[_i0].start_h_v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dtd_get_v_start(dtd);
+          printf("%d\n", benchRet); 
+          free(dtd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_dtd0 = 1;
+          struct vpdma_dtd * dtd = (struct vpdma_dtd *) malloc(_len_dtd0*sizeof(struct vpdma_dtd));
+          for(int _i0 = 0; _i0 < _len_dtd0; _i0++) {
+              dtd[_i0].start_h_v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dtd_get_v_start(dtd);
           printf("%d\n", benchRet); 
           free(dtd);

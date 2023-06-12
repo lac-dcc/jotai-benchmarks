@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline int mthca_max_inline_data(struct mthca_pd *p
 	return pd->ibpd.uobject ? max_data_size - MTHCA_INLINE_HEADER_SIZE : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int max_data_size = 100;
+        
           int _len_pd0 = 1;
           struct mthca_pd * pd = (struct mthca_pd *) malloc(_len_pd0*sizeof(struct mthca_pd));
           for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
-            pd[_i0].ibpd.uobject = ((-2 * (next_i()%2)) + 1) * next_i();
+              pd[_i0].ibpd.uobject = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = mthca_max_inline_data(pd,max_data_size);
+          printf("%d\n", benchRet); 
+          free(pd);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int max_data_size = 255;
+        
+          int _len_pd0 = 65025;
+          struct mthca_pd * pd = (struct mthca_pd *) malloc(_len_pd0*sizeof(struct mthca_pd));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].ibpd.uobject = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = mthca_max_inline_data(pd,max_data_size);
           printf("%d\n", benchRet); 
           free(pd);
@@ -99,21 +118,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int max_data_size = 10;
+        
           int _len_pd0 = 100;
           struct mthca_pd * pd = (struct mthca_pd *) malloc(_len_pd0*sizeof(struct mthca_pd));
           for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
-            pd[_i0].ibpd.uobject = ((-2 * (next_i()%2)) + 1) * next_i();
+              pd[_i0].ibpd.uobject = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = mthca_max_inline_data(pd,max_data_size);
           printf("%d\n", benchRet); 
           free(pd);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int max_data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pd0 = 1;
+          struct mthca_pd * pd = (struct mthca_pd *) malloc(_len_pd0*sizeof(struct mthca_pd));
+          for(int _i0 = 0; _i0 < _len_pd0; _i0++) {
+              pd[_i0].ibpd.uobject = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mthca_max_inline_data(pd,max_data_size);
+          printf("%d\n", benchRet); 
+          free(pd);
+        
+        break;
+    }
     default:
         usage();
         break;

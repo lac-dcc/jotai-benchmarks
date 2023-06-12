@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -105,12 +107,6 @@ ngx_http_tfs_set_custom_initial_parameters(ngx_http_tfs_t *t)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,26 +119,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_t0 = 65025;
+          struct TYPE_9__ * t = (struct TYPE_9__ *) malloc(_len_t0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].last_file_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_path_s = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_path_d = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.action.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].r_ctx.file_suffix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].file.left_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].file.file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].last_file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].last_file_path = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].file_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ngx_http_tfs_set_custom_initial_parameters(t);
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_t0 = 100;
+          struct TYPE_9__ * t = (struct TYPE_9__ *) malloc(_len_t0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].last_file_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_path_s = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_path_d = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.action.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].r_ctx.file_suffix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].file.left_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].file.file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].last_file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].last_file_path = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].file_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ngx_http_tfs_set_custom_initial_parameters(t);
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_t0 = 1;
           struct TYPE_9__ * t = (struct TYPE_9__ *) malloc(_len_t0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].last_file_pid = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.file_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.file_path_s = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.file_path_d = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.action.code = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].r_ctx.file_suffix = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].file.left_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].file.file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].last_file_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].last_file_path = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].file_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].last_file_pid = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_path_s = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.file_path_d = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].r_ctx.action.code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].r_ctx.file_suffix = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].file.left_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].file.file_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          t[_i0].last_file_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].last_file_path = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].file_name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ngx_http_tfs_set_custom_initial_parameters(t);
           free(t);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int cfg80211_wext_giwpower(struct net_device *dev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,33 +83,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dev0 = 65025;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__ieee80211_ptr0 = 1;
+          dev[_i0].ieee80211_ptr = (struct wireless_dev *) malloc(_len_dev__i0__ieee80211_ptr0*sizeof(struct wireless_dev));
+          for(int _j0 = 0; _j0 < _len_dev__i0__ieee80211_ptr0; _j0++) {
+              dev[_i0].ieee80211_ptr->ps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_info0 = 65025;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wrq0 = 65025;
+          struct iw_param * wrq = (struct iw_param *) malloc(_len_wrq0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_wrq0; _i0++) {
+              wrq[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 65025;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cfg80211_wext_giwpower(dev,info,wrq,extra);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].ieee80211_ptr);
+          }
+          free(dev);
+          free(info);
+          free(wrq);
+          free(extra);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dev0 = 100;
+          struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              int _len_dev__i0__ieee80211_ptr0 = 1;
+          dev[_i0].ieee80211_ptr = (struct wireless_dev *) malloc(_len_dev__i0__ieee80211_ptr0*sizeof(struct wireless_dev));
+          for(int _j0 = 0; _j0 < _len_dev__i0__ieee80211_ptr0; _j0++) {
+              dev[_i0].ieee80211_ptr->ps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_info0 = 100;
+          struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wrq0 = 100;
+          struct iw_param * wrq = (struct iw_param *) malloc(_len_wrq0*sizeof(struct iw_param));
+          for(int _i0 = 0; _i0 < _len_wrq0; _i0++) {
+              wrq[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_extra0 = 100;
+          char * extra = (char *) malloc(_len_extra0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
+            extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = cfg80211_wext_giwpower(dev,info,wrq,extra);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dev0; _aux++) {
+          free(dev[_aux].ieee80211_ptr);
+          }
+          free(dev);
+          free(info);
+          free(wrq);
+          free(extra);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_dev0 = 1;
           struct net_device * dev = (struct net_device *) malloc(_len_dev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
               int _len_dev__i0__ieee80211_ptr0 = 1;
           dev[_i0].ieee80211_ptr = (struct wireless_dev *) malloc(_len_dev__i0__ieee80211_ptr0*sizeof(struct wireless_dev));
           for(int _j0 = 0; _j0 < _len_dev__i0__ieee80211_ptr0; _j0++) {
-            dev[_i0].ieee80211_ptr->ps = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].ieee80211_ptr->ps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_info0 = 1;
           struct iw_request_info * info = (struct iw_request_info *) malloc(_len_info0*sizeof(struct iw_request_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_wrq0 = 1;
           struct iw_param * wrq = (struct iw_param *) malloc(_len_wrq0*sizeof(struct iw_param));
           for(int _i0 = 0; _i0 < _len_wrq0; _i0++) {
-            wrq[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              wrq[_i0].disabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_extra0 = 1;
           char * extra = (char *) malloc(_len_extra0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_extra0; _i0++) {
             extra[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = cfg80211_wext_giwpower(dev,info,wrq,extra);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dev0; _aux++) {

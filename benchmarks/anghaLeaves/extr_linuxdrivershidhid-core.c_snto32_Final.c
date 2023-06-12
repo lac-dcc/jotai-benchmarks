@@ -69,12 +69,6 @@ __attribute__((used)) static s32 snto32(__u32 value, unsigned n)
 	return value & (1 << (n - 1)) ? value | (~0U << n) : value;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,13 +85,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 10;
+        
           unsigned int n = 10;
+        
           int benchRet = snto32(value,n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ chunk_hooks_get_locked(arena_t *arena)
 	return (arena->chunk_hooks);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_arena0 = 1;
+          int _len_arena0 = 65025;
           struct TYPE_3__ * arena = (struct TYPE_3__ *) malloc(_len_arena0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
-            arena[_i0].chunk_hooks = ((-2 * (next_i()%2)) + 1) * next_i();
+              arena[_i0].chunk_hooks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = chunk_hooks_get_locked(arena);
           printf("%d\n", benchRet); 
           free(arena);
@@ -104,15 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_arena0 = 100;
           struct TYPE_3__ * arena = (struct TYPE_3__ *) malloc(_len_arena0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
-            arena[_i0].chunk_hooks = ((-2 * (next_i()%2)) + 1) * next_i();
+              arena[_i0].chunk_hooks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = chunk_hooks_get_locked(arena);
           printf("%d\n", benchRet); 
           free(arena);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_arena0 = 1;
+          struct TYPE_3__ * arena = (struct TYPE_3__ *) malloc(_len_arena0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
+              arena[_i0].chunk_hooks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chunk_hooks_get_locked(arena);
+          printf("%d\n", benchRet); 
+          free(arena);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static RPC_STATUS rpcrt4_ncalrpc_secure_packet(RpcConnecti
     return RPC_S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,38 +87,295 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           enum secure_packet_direction dir = 0;
+        
           unsigned int hdr_size = 100;
+        
           unsigned int stub_data_size = 100;
+        
           unsigned int auth_value_size = 100;
+        
           int _len_conn0 = 1;
           int * conn = (int *) malloc(_len_conn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
             conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_hdr0 = 1;
           int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
             hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_stub_data0 = 1;
           unsigned char * stub_data = (unsigned char *) malloc(_len_stub_data0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_stub_data0; _i0++) {
             stub_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_auth_hdr0 = 1;
           int * auth_hdr = (int *) malloc(_len_auth_hdr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_auth_hdr0; _i0++) {
             auth_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_auth_value0 = 1;
           unsigned char * auth_value = (unsigned char *) malloc(_len_auth_value0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_auth_value0; _i0++) {
             auth_value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = rpcrt4_ncalrpc_secure_packet(conn,dir,hdr,hdr_size,stub_data,stub_data_size,auth_hdr,auth_value,auth_value_size);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(hdr);
+          free(stub_data);
+          free(auth_hdr);
+          free(auth_value);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum secure_packet_direction dir = 0;
+        
+          unsigned int hdr_size = 255;
+        
+          unsigned int stub_data_size = 255;
+        
+          unsigned int auth_value_size = 255;
+        
+          int _len_conn0 = 65025;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 65025;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stub_data0 = 65025;
+          unsigned char * stub_data = (unsigned char *) malloc(_len_stub_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_stub_data0; _i0++) {
+            stub_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_auth_hdr0 = 65025;
+          int * auth_hdr = (int *) malloc(_len_auth_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_auth_hdr0; _i0++) {
+            auth_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_auth_value0 = 65025;
+          unsigned char * auth_value = (unsigned char *) malloc(_len_auth_value0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_auth_value0; _i0++) {
+            auth_value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rpcrt4_ncalrpc_secure_packet(conn,dir,hdr,hdr_size,stub_data,stub_data_size,auth_hdr,auth_value,auth_value_size);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(hdr);
+          free(stub_data);
+          free(auth_hdr);
+          free(auth_value);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum secure_packet_direction dir = 0;
+        
+          unsigned int hdr_size = 10;
+        
+          unsigned int stub_data_size = 10;
+        
+          unsigned int auth_value_size = 10;
+        
+          int _len_conn0 = 100;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 100;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stub_data0 = 100;
+          unsigned char * stub_data = (unsigned char *) malloc(_len_stub_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_stub_data0; _i0++) {
+            stub_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_auth_hdr0 = 100;
+          int * auth_hdr = (int *) malloc(_len_auth_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_auth_hdr0; _i0++) {
+            auth_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_auth_value0 = 100;
+          unsigned char * auth_value = (unsigned char *) malloc(_len_auth_value0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_auth_value0; _i0++) {
+            auth_value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rpcrt4_ncalrpc_secure_packet(conn,dir,hdr,hdr_size,stub_data,stub_data_size,auth_hdr,auth_value,auth_value_size);
+          printf("%d\n", benchRet); 
+          free(conn);
+          free(hdr);
+          free(stub_data);
+          free(auth_hdr);
+          free(auth_value);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          enum secure_packet_direction dir = 0;
+        
+          unsigned int hdr_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int stub_data_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int auth_value_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          int * conn = (int *) malloc(_len_conn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+            conn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_hdr0 = 1;
+          int * hdr = (int *) malloc(_len_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hdr0; _i0++) {
+            hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_stub_data0 = 1;
+          unsigned char * stub_data = (unsigned char *) malloc(_len_stub_data0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_stub_data0; _i0++) {
+            stub_data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_auth_hdr0 = 1;
+          int * auth_hdr = (int *) malloc(_len_auth_hdr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_auth_hdr0; _i0++) {
+            auth_hdr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_auth_value0 = 1;
+          unsigned char * auth_value = (unsigned char *) malloc(_len_auth_value0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_auth_value0; _i0++) {
+            auth_value[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = rpcrt4_ncalrpc_secure_packet(conn,dir,hdr,hdr_size,stub_data,stub_data_size,auth_hdr,auth_value,auth_value_size);
           printf("%d\n", benchRet); 
           free(conn);

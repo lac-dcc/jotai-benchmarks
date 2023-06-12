@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int omap_des_get_pdev(struct omap_des_dev *dd,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dd0 = 1;
+          int _len_dd0 = 65025;
           struct omap_des_dev * dd = (struct omap_des_dev *) malloc(_len_dd0*sizeof(struct omap_des_dev));
           for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
-            dd[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+              dd[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pdev0 = 1;
+        
+          int _len_pdev0 = 65025;
           struct platform_device * pdev = (struct platform_device *) malloc(_len_pdev0*sizeof(struct platform_device));
           for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
-            pdev[_i0].dev.platform_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev[_i0].dev.platform_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = omap_des_get_pdev(dd,pdev);
           printf("%d\n", benchRet); 
           free(dd);
@@ -105,7 +106,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dd0 = 100;
+          struct omap_des_dev * dd = (struct omap_des_dev *) malloc(_len_dd0*sizeof(struct omap_des_dev));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdev0 = 100;
+          struct platform_device * pdev = (struct platform_device *) malloc(_len_pdev0*sizeof(struct platform_device));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].dev.platform_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = omap_des_get_pdev(dd,pdev);
+          printf("%d\n", benchRet); 
+          free(dd);
+          free(pdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dd0 = 1;
+          struct omap_des_dev * dd = (struct omap_des_dev *) malloc(_len_dd0*sizeof(struct omap_des_dev));
+          for(int _i0 = 0; _i0 < _len_dd0; _i0++) {
+              dd[_i0].pdata = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pdev0 = 1;
+          struct platform_device * pdev = (struct platform_device *) malloc(_len_pdev0*sizeof(struct platform_device));
+          for(int _i0 = 0; _i0 < _len_pdev0; _i0++) {
+              pdev[_i0].dev.platform_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = omap_des_get_pdev(dd,pdev);
+          printf("%d\n", benchRet); 
+          free(dd);
+          free(pdev);
+        
+        break;
+    }
     default:
         usage();
         break;

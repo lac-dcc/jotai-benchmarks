@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline int nd_btt_probe(struct device *dev,
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ndns0 = 1;
+        
+          int _len_ndns0 = 65025;
           struct nd_namespace_common * ndns = (struct nd_namespace_common *) malloc(_len_ndns0*sizeof(struct nd_namespace_common));
           for(int _i0 = 0; _i0 < _len_ndns0; _i0++) {
-            ndns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ndns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nd_btt_probe(dev,ndns);
           printf("%d\n", benchRet); 
           free(dev);
@@ -101,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ndns0 = 100;
+          struct nd_namespace_common * ndns = (struct nd_namespace_common *) malloc(_len_ndns0*sizeof(struct nd_namespace_common));
+          for(int _i0 = 0; _i0 < _len_ndns0; _i0++) {
+              ndns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nd_btt_probe(dev,ndns);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ndns);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ndns0 = 1;
+          struct nd_namespace_common * ndns = (struct nd_namespace_common *) malloc(_len_ndns0*sizeof(struct nd_namespace_common));
+          for(int _i0 = 0; _i0 < _len_ndns0; _i0++) {
+              ndns[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nd_btt_probe(dev,ndns);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(ndns);
+        
+        break;
+    }
     default:
         usage();
         break;

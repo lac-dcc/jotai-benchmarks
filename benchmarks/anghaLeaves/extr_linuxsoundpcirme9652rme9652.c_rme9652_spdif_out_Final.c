@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int rme9652_spdif_out(struct snd_rme9652 *rme9652)
 	return (rme9652->control_register & RME9652_opt_out) ? 1 : 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rme96520 = 1;
+          int _len_rme96520 = 65025;
           struct snd_rme9652 * rme9652 = (struct snd_rme9652 *) malloc(_len_rme96520*sizeof(struct snd_rme9652));
           for(int _i0 = 0; _i0 < _len_rme96520; _i0++) {
-            rme9652[_i0].control_register = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme9652[_i0].control_register = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rme9652_spdif_out(rme9652);
           printf("%d\n", benchRet); 
           free(rme9652);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_rme96520 = 100;
           struct snd_rme9652 * rme9652 = (struct snd_rme9652 *) malloc(_len_rme96520*sizeof(struct snd_rme9652));
           for(int _i0 = 0; _i0 < _len_rme96520; _i0++) {
-            rme9652[_i0].control_register = ((-2 * (next_i()%2)) + 1) * next_i();
+              rme9652[_i0].control_register = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rme9652_spdif_out(rme9652);
           printf("%d\n", benchRet); 
           free(rme9652);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rme96520 = 1;
+          struct snd_rme9652 * rme9652 = (struct snd_rme9652 *) malloc(_len_rme96520*sizeof(struct snd_rme9652));
+          for(int _i0 = 0; _i0 < _len_rme96520; _i0++) {
+              rme9652[_i0].control_register = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rme9652_spdif_out(rme9652);
+          printf("%d\n", benchRet); 
+          free(rme9652);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -89,12 +91,6 @@ __attribute__((used)) static u32 tc_srcctrl(struct tc_data *tc)
 	return reg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,18 +103,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int _len_tc0 = 65025;
+          struct tc_data * tc = (struct tc_data *) malloc(_len_tc0*sizeof(struct tc_data));
+          for(int _i0 = 0; _i0 < _len_tc0; _i0++) {
+              tc[_i0].link.base.num_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.base.rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tc[_i0].link.spread = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.coding8b10b = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.scrambler_dis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = tc_srcctrl(tc);
+          printf("%d\n", benchRet); 
+          free(tc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int _len_tc0 = 100;
+          struct tc_data * tc = (struct tc_data *) malloc(_len_tc0*sizeof(struct tc_data));
+          for(int _i0 = 0; _i0 < _len_tc0; _i0++) {
+              tc[_i0].link.base.num_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.base.rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tc[_i0].link.spread = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.coding8b10b = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.scrambler_dis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = tc_srcctrl(tc);
+          printf("%d\n", benchRet); 
+          free(tc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 31
+          // dynamic_instructions_O1 : 31
+          // ------------------------------- 
+          // static_instructions_O2 : 31
+          // dynamic_instructions_O2 : 31
+          // ------------------------------- 
+          // static_instructions_O3 : 31
+          // dynamic_instructions_O3 : 31
+          // ------------------------------- 
+          // static_instructions_Ofast : 31
+          // dynamic_instructions_Ofast : 31
+          // ------------------------------- 
+          // static_instructions_Os : 31
+          // dynamic_instructions_Os : 31
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int _len_tc0 = 1;
           struct tc_data * tc = (struct tc_data *) malloc(_len_tc0*sizeof(struct tc_data));
           for(int _i0 = 0; _i0 < _len_tc0; _i0++) {
-            tc[_i0].link.base.num_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
-        tc[_i0].link.base.rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        tc[_i0].link.spread = ((-2 * (next_i()%2)) + 1) * next_i();
-        tc[_i0].link.coding8b10b = ((-2 * (next_i()%2)) + 1) * next_i();
-        tc[_i0].link.scrambler_dis = ((-2 * (next_i()%2)) + 1) * next_i();
+              tc[_i0].link.base.num_lanes = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.base.rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          tc[_i0].link.spread = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.coding8b10b = ((-2 * (next_i()%2)) + 1) * next_i();
+          tc[_i0].link.scrambler_dis = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = tc_srcctrl(tc);
           printf("%d\n", benchRet); 
           free(tc);

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -104,7 +104,6 @@ int mockfs_fsnode_adopt(mockfs_fsnode_t parent, mockfs_fsnode_t child)
 done:
 	return rvalue;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -180,7 +179,6 @@ void _delete_child(struct TYPE_4__ *aux_child[], int aux_child_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -193,13 +191,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ * aux_parent[1];
           struct TYPE_4__ * parent = _allocate_parent(1, aux_parent);
+        
           struct TYPE_4__ * aux_child[1];
           struct TYPE_4__ * child = _allocate_child(1, aux_child);
+        
           int benchRet = mockfs_fsnode_adopt(parent,child);
           printf("%d\n", benchRet); 
           _delete_parent(aux_parent, 1);
@@ -207,7 +207,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

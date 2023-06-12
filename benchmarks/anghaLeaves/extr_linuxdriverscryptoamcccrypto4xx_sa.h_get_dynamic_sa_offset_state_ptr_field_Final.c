@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ get_dynamic_sa_offset_state_ptr_field(struct dynamic_sa_ctl *cts)
 	return sizeof(struct dynamic_sa_ctl) + offset * 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,34 +97,99 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cts0 = 1;
+          int _len_cts0 = 65025;
           struct dynamic_sa_ctl * cts = (struct dynamic_sa_ctl *) malloc(_len_cts0*sizeof(struct dynamic_sa_ctl));
           for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
-            cts[_i0].sa_contents.bf.key_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.inner_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.outer_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.spi = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.seq_num0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.seq_num1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.seq_num_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.seq_num_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.seq_num_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.seq_num_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.iv0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.iv1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.iv2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        cts[_i0].sa_contents.bf.iv3 = ((-2 * (next_i()%2)) + 1) * next_i();
+              cts[_i0].sa_contents.bf.key_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.inner_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.outer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.spi = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = get_dynamic_sa_offset_state_ptr_field(cts);
           printf("%d\n", benchRet); 
           free(cts);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cts0 = 100;
+          struct dynamic_sa_ctl * cts = (struct dynamic_sa_ctl *) malloc(_len_cts0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+              cts[_i0].sa_contents.bf.key_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.inner_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.outer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.spi = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = get_dynamic_sa_offset_state_ptr_field(cts);
+          printf("%d\n", benchRet); 
+          free(cts);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cts0 = 1;
+          struct dynamic_sa_ctl * cts = (struct dynamic_sa_ctl *) malloc(_len_cts0*sizeof(struct dynamic_sa_ctl));
+          for(int _i0 = 0; _i0 < _len_cts0; _i0++) {
+              cts[_i0].sa_contents.bf.key_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.inner_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.outer_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.spi = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.seq_num_mask3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          cts[_i0].sa_contents.bf.iv3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = get_dynamic_sa_offset_state_ptr_field(cts);
+          printf("%d\n", benchRet); 
+          free(cts);
+        
+        break;
+    }
     default:
         usage();
         break;

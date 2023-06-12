@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ int klist_node_attached(struct klist_node *n)
 	return (n->n_klist != NULL);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,9 +74,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_n0 = 65025;
+          struct klist_node * n = (struct klist_node *) malloc(_len_n0*sizeof(struct klist_node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__n_klist0 = 1;
+          n[_i0].n_klist = (int *) malloc(_len_n__i0__n_klist0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_n__i0__n_klist0; _j0++) {
+            n[_i0].n_klist[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = klist_node_attached(n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].n_klist);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_n0 = 100;
+          struct klist_node * n = (struct klist_node *) malloc(_len_n0*sizeof(struct klist_node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__n_klist0 = 1;
+          n[_i0].n_klist = (int *) malloc(_len_n__i0__n_klist0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_n__i0__n_klist0; _j0++) {
+            n[_i0].n_klist[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = klist_node_attached(n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].n_klist);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_n0 = 1;
           struct klist_node * n = (struct klist_node *) malloc(_len_n0*sizeof(struct klist_node));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
@@ -89,7 +202,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_n__i0__n_klist0; _j0++) {
             n[_i0].n_klist[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = klist_node_attached(n);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_n0; _aux++) {

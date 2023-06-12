@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ xmlRegisterInputCallbacks(xmlInputMatchCallback matchFunc,
     return(xmlInputCallbackNr++);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,9 +98,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int matchFunc = 100;
+        
           int openFunc = 100;
+        
           int readFunc = 100;
+        
           int closeFunc = 100;
+        
           int benchRet = xmlRegisterInputCallbacks(matchFunc,openFunc,readFunc,closeFunc);
           printf("%d\n", benchRet); 
         
@@ -115,9 +114,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int matchFunc = 255;
+        
           int openFunc = 255;
+        
           int readFunc = 255;
+        
           int closeFunc = 255;
+        
           int benchRet = xmlRegisterInputCallbacks(matchFunc,openFunc,readFunc,closeFunc);
           printf("%d\n", benchRet); 
         
@@ -127,15 +130,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int matchFunc = 10;
+        
           int openFunc = 10;
+        
           int readFunc = 10;
+        
           int closeFunc = 10;
+        
           int benchRet = xmlRegisterInputCallbacks(matchFunc,openFunc,readFunc,closeFunc);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int matchFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int openFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int readFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int closeFunc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = xmlRegisterInputCallbacks(matchFunc,openFunc,readFunc,closeFunc);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ typedef int bool;
 
 void BMK_setNotificationLevel(unsigned level) { g_displayLevel=level; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,6 +76,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int level = 100;
+        
           BMK_setNotificationLevel(level);
         
         break;
@@ -89,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int level = 255;
+        
           BMK_setNotificationLevel(level);
         
         break;
@@ -97,11 +94,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int level = 10;
+        
           BMK_setNotificationLevel(level);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          BMK_setNotificationLevel(level);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ void configure_txpower_track_8822b(struct txpwrtrack_cfg *config)
 	config->get_delta_swing_table = get_delta_swing_table_8822b;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,22 +96,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_config0 = 65025;
+          struct txpwrtrack_cfg * config = (struct txpwrtrack_cfg *) malloc(_len_config0*sizeof(struct txpwrtrack_cfg));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].get_delta_swing_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].phy_lc_calibrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].do_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].odm_tx_pwr_track_set_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].thermal_reg_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].rf_path_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].average_thermal_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].threshold_dpk = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].threshold_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          configure_txpower_track_8822b(config);
+          free(config);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_config0 = 100;
+          struct txpwrtrack_cfg * config = (struct txpwrtrack_cfg *) malloc(_len_config0*sizeof(struct txpwrtrack_cfg));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+              config[_i0].get_delta_swing_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].phy_lc_calibrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].do_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].odm_tx_pwr_track_set_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].thermal_reg_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].rf_path_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].average_thermal_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].threshold_dpk = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].threshold_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          configure_txpower_track_8822b(config);
+          free(config);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 25
+          // dynamic_instructions_O1 : 25
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_config0 = 1;
           struct txpwrtrack_cfg * config = (struct txpwrtrack_cfg *) malloc(_len_config0*sizeof(struct txpwrtrack_cfg));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
-            config[_i0].get_delta_swing_table = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].phy_lc_calibrate = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].do_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].odm_tx_pwr_track_set_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].thermal_reg_addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].rf_path_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].average_thermal_num = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].threshold_dpk = ((-2 * (next_i()%2)) + 1) * next_i();
-        config[_i0].threshold_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+              config[_i0].get_delta_swing_table = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].phy_lc_calibrate = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].do_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].odm_tx_pwr_track_set_pwr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].thermal_reg_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].rf_path_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].average_thermal_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].threshold_dpk = ((-2 * (next_i()%2)) + 1) * next_i();
+          config[_i0].threshold_iqk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           configure_txpower_track_8822b(config);
           free(config);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ struct sway_output *output_from_wlr_output(struct wlr_output *output) {
 	return output->data;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,18 +74,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_output0 = 1;
+          int _len_output0 = 65025;
           struct wlr_output * output = (struct wlr_output *) malloc(_len_output0*sizeof(struct wlr_output));
           for(int _i0 = 0; _i0 < _len_output0; _i0++) {
               int _len_output__i0__data0 = 1;
           output[_i0].data = (struct sway_output *) malloc(_len_output__i0__data0*sizeof(struct sway_output));
           for(int _j0 = 0; _j0 < _len_output__i0__data0; _j0++) {
-            output[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              output[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct sway_output * benchRet = output_from_wlr_output(output);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_output0; _aux++) {
@@ -99,7 +98,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_output0 = 100;
+          struct wlr_output * output = (struct wlr_output *) malloc(_len_output0*sizeof(struct wlr_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              int _len_output__i0__data0 = 1;
+          output[_i0].data = (struct sway_output *) malloc(_len_output__i0__data0*sizeof(struct sway_output));
+          for(int _j0 = 0; _j0 < _len_output__i0__data0; _j0++) {
+              output[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct sway_output * benchRet = output_from_wlr_output(output);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_output0; _aux++) {
+          free(output[_aux].data);
+          }
+          free(output);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_output0 = 1;
+          struct wlr_output * output = (struct wlr_output *) malloc(_len_output0*sizeof(struct wlr_output));
+          for(int _i0 = 0; _i0 < _len_output0; _i0++) {
+              int _len_output__i0__data0 = 1;
+          output[_i0].data = (struct sway_output *) malloc(_len_output__i0__data0*sizeof(struct sway_output));
+          for(int _j0 = 0; _j0 < _len_output__i0__data0; _j0++) {
+              output[_i0].data->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct sway_output * benchRet = output_from_wlr_output(output);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_output0; _aux++) {
+          free(output[_aux].data);
+          }
+          free(output);
+        
+        break;
+    }
     default:
         usage();
         break;

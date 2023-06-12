@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int kvmppc_load_last_inst(struct kvm_vcpu *vcpu,
 	return EMULATE_AGAIN;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum instruction_fetch_type type = 0;
-          int _len_vcpu0 = 1;
+        
+          int _len_vcpu0 = 65025;
           struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
           for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
-            vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_instr0 = 1;
+        
+          int _len_instr0 = 65025;
           int * instr = (int *) malloc(_len_instr0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_instr0; _i0++) {
             instr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = kvmppc_load_last_inst(vcpu,type,instr);
           printf("%d\n", benchRet); 
           free(vcpu);
@@ -103,7 +103,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum instruction_fetch_type type = 0;
+        
+          int _len_vcpu0 = 100;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_instr0 = 100;
+          int * instr = (int *) malloc(_len_instr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_instr0; _i0++) {
+            instr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kvmppc_load_last_inst(vcpu,type,instr);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+          free(instr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum instruction_fetch_type type = 0;
+        
+          int _len_vcpu0 = 1;
+          struct kvm_vcpu * vcpu = (struct kvm_vcpu *) malloc(_len_vcpu0*sizeof(struct kvm_vcpu));
+          for(int _i0 = 0; _i0 < _len_vcpu0; _i0++) {
+              vcpu[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_instr0 = 1;
+          int * instr = (int *) malloc(_len_instr0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_instr0; _i0++) {
+            instr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = kvmppc_load_last_inst(vcpu,type,instr);
+          printf("%d\n", benchRet); 
+          free(vcpu);
+          free(instr);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static unsigned len_args(unsigned numargs, struct fuse_arg
 	return nbytes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +79,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned int numargs = 10;
-          int _len_args0 = 100;
+          unsigned int numargs = 255;
+        
+          int _len_args0 = 65025;
           struct fuse_arg * args = (struct fuse_arg *) malloc(_len_args0*sizeof(struct fuse_arg));
           for(int _i0 = 0; _i0 < _len_args0; _i0++) {
-            args[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              args[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = len_args(numargs,args);
           printf("%u\n", benchRet); 
           free(args);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned int numargs = 10;
+        
+          int _len_args0 = 100;
+          struct fuse_arg * args = (struct fuse_arg *) malloc(_len_args0*sizeof(struct fuse_arg));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+              args[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = len_args(numargs,args);
+          printf("%u\n", benchRet); 
+          free(args);
+        
+        break;
+    }
     default:
         usage();
         break;

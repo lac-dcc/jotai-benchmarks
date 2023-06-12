@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static void wl1251_tx_control(struct tx_double_buffer_desc
 		tx_hdr->control.qos = 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,24 +104,215 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int fc = 100;
+        
           int _len_tx_hdr0 = 1;
           struct tx_double_buffer_desc * tx_hdr = (struct tx_double_buffer_desc *) malloc(_len_tx_hdr0*sizeof(struct tx_double_buffer_desc));
           for(int _i0 = 0; _i0 < _len_tx_hdr0; _i0++) {
-            tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
-        tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_control0 = 1;
           struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
           for(int _i0 = 0; _i0 < _len_control0; _i0++) {
-            control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          wl1251_tx_control(tx_hdr,control,fc);
+          free(tx_hdr);
+          free(control);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int fc = 255;
+        
+          int _len_tx_hdr0 = 65025;
+          struct tx_double_buffer_desc * tx_hdr = (struct tx_double_buffer_desc *) malloc(_len_tx_hdr0*sizeof(struct tx_double_buffer_desc));
+          for(int _i0 = 0; _i0 < _len_tx_hdr0; _i0++) {
+              tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_control0 = 65025;
+          struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wl1251_tx_control(tx_hdr,control,fc);
+          free(tx_hdr);
+          free(control);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int fc = 10;
+        
+          int _len_tx_hdr0 = 100;
+          struct tx_double_buffer_desc * tx_hdr = (struct tx_double_buffer_desc *) malloc(_len_tx_hdr0*sizeof(struct tx_double_buffer_desc));
+          for(int _i0 = 0; _i0 < _len_tx_hdr0; _i0++) {
+              tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_control0 = 100;
+          struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wl1251_tx_control(tx_hdr,control,fc);
+          free(tx_hdr);
+          free(control);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int fc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tx_hdr0 = 1;
+          struct tx_double_buffer_desc * tx_hdr = (struct tx_double_buffer_desc *) malloc(_len_tx_hdr0*sizeof(struct tx_double_buffer_desc));
+          for(int _i0 = 0; _i0 < _len_tx_hdr0; _i0++) {
+              tx_hdr[_i0].control.rate_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.ack_policy = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.tx_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.qos = ((-2 * (next_i()%2)) + 1) * next_i();
+          tx_hdr[_i0].control.packet_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_control0 = 1;
+          struct ieee80211_tx_info * control = (struct ieee80211_tx_info *) malloc(_len_control0*sizeof(struct ieee80211_tx_info));
+          for(int _i0 = 0; _i0 < _len_control0; _i0++) {
+              control[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           wl1251_tx_control(tx_hdr,control,fc);
           free(tx_hdr);
           free(control);

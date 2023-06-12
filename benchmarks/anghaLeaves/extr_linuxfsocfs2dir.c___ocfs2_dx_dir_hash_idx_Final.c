@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline unsigned int __ocfs2_dx_dir_hash_idx(struct 
 	return minor_hash & osb->osb_dx_mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +81,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int minor_hash = 100;
+        
           int _len_osb0 = 1;
           struct ocfs2_super * osb = (struct ocfs2_super *) malloc(_len_osb0*sizeof(struct ocfs2_super));
           for(int _i0 = 0; _i0 < _len_osb0; _i0++) {
-            osb[_i0].osb_dx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              osb[_i0].osb_dx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned int benchRet = __ocfs2_dx_dir_hash_idx(osb,minor_hash);
+          printf("%u\n", benchRet); 
+          free(osb);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int minor_hash = 255;
+        
+          int _len_osb0 = 65025;
+          struct ocfs2_super * osb = (struct ocfs2_super *) malloc(_len_osb0*sizeof(struct ocfs2_super));
+          for(int _i0 = 0; _i0 < _len_osb0; _i0++) {
+              osb[_i0].osb_dx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned int benchRet = __ocfs2_dx_dir_hash_idx(osb,minor_hash);
           printf("%u\n", benchRet); 
           free(osb);
@@ -97,21 +114,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int minor_hash = 10;
+        
           int _len_osb0 = 100;
           struct ocfs2_super * osb = (struct ocfs2_super *) malloc(_len_osb0*sizeof(struct ocfs2_super));
           for(int _i0 = 0; _i0 < _len_osb0; _i0++) {
-            osb[_i0].osb_dx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              osb[_i0].osb_dx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = __ocfs2_dx_dir_hash_idx(osb,minor_hash);
           printf("%u\n", benchRet); 
           free(osb);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int minor_hash = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_osb0 = 1;
+          struct ocfs2_super * osb = (struct ocfs2_super *) malloc(_len_osb0*sizeof(struct ocfs2_super));
+          for(int _i0 = 0; _i0 < _len_osb0; _i0++) {
+              osb[_i0].osb_dx_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = __ocfs2_dx_dir_hash_idx(osb,minor_hash);
+          printf("%u\n", benchRet); 
+          free(osb);
+        
+        break;
+    }
     default:
         usage();
         break;

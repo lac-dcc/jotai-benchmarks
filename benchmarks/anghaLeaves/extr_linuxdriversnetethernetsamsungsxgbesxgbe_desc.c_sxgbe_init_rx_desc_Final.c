@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void sxgbe_init_rx_desc(struct sxgbe_rx_norm_desc *
 		p->rdes23.rx_rd_des23.int_on_com = disable_rx_ic;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +82,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int disable_rx_ic = 100;
+        
           int mode = 100;
+        
           int end = 100;
+        
           int _len_p0 = 1;
           struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
-            p[_i0].rdes23.rx_rd_des23.own_bit = ((-2 * (next_i()%2)) + 1) * next_i();
-        p[_i0].rdes23.rx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+              p[_i0].rdes23.rx_rd_des23.own_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].rdes23.rx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          sxgbe_init_rx_desc(p,disable_rx_ic,mode,end);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int disable_rx_ic = 255;
+        
+          int mode = 255;
+        
+          int end = 255;
+        
+          int _len_p0 = 65025;
+          struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].rdes23.rx_rd_des23.own_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].rdes23.rx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_init_rx_desc(p,disable_rx_ic,mode,end);
+          free(p);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int disable_rx_ic = 10;
+        
+          int mode = 10;
+        
+          int end = 10;
+        
+          int _len_p0 = 100;
+          struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].rdes23.rx_rd_des23.own_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].rdes23.rx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          sxgbe_init_rx_desc(p,disable_rx_ic,mode,end);
+          free(p);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int disable_rx_ic = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          struct sxgbe_rx_norm_desc * p = (struct sxgbe_rx_norm_desc *) malloc(_len_p0*sizeof(struct sxgbe_rx_norm_desc));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+              p[_i0].rdes23.rx_rd_des23.own_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+          p[_i0].rdes23.rx_rd_des23.int_on_com = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           sxgbe_init_rx_desc(p,disable_rx_ic,mode,end);
           free(p);
         

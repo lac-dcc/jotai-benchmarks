@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ winlink_cmp(struct winlink *wl1, struct winlink *wl2)
 	return (wl1->idx - wl2->idx);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_wl10 = 1;
+          int _len_wl10 = 65025;
           struct winlink * wl1 = (struct winlink *) malloc(_len_wl10*sizeof(struct winlink));
           for(int _i0 = 0; _i0 < _len_wl10; _i0++) {
-            wl1[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl1[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_wl20 = 1;
+        
+          int _len_wl20 = 65025;
           struct winlink * wl2 = (struct winlink *) malloc(_len_wl20*sizeof(struct winlink));
           for(int _i0 = 0; _i0 < _len_wl20; _i0++) {
-            wl2[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              wl2[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = winlink_cmp(wl1,wl2);
           printf("%d\n", benchRet); 
           free(wl1);
@@ -99,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_wl10 = 100;
+          struct winlink * wl1 = (struct winlink *) malloc(_len_wl10*sizeof(struct winlink));
+          for(int _i0 = 0; _i0 < _len_wl10; _i0++) {
+              wl1[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wl20 = 100;
+          struct winlink * wl2 = (struct winlink *) malloc(_len_wl20*sizeof(struct winlink));
+          for(int _i0 = 0; _i0 < _len_wl20; _i0++) {
+              wl2[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = winlink_cmp(wl1,wl2);
+          printf("%d\n", benchRet); 
+          free(wl1);
+          free(wl2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_wl10 = 1;
+          struct winlink * wl1 = (struct winlink *) malloc(_len_wl10*sizeof(struct winlink));
+          for(int _i0 = 0; _i0 < _len_wl10; _i0++) {
+              wl1[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_wl20 = 1;
+          struct winlink * wl2 = (struct winlink *) malloc(_len_wl20*sizeof(struct winlink));
+          for(int _i0 = 0; _i0 < _len_wl20; _i0++) {
+              wl2[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = winlink_cmp(wl1,wl2);
+          printf("%d\n", benchRet); 
+          free(wl1);
+          free(wl2);
+        
+        break;
+    }
     default:
         usage();
         break;

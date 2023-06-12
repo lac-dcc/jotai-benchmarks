@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +90,6 @@ __attribute__((used)) static int igb_available_rars(struct igb_adapter *adapter,
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,22 +102,216 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           long queue = 100;
+        
           int _len_adapter0 = 1;
           struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_adapter__i0__mac_table0 = 1;
           adapter[_i0].mac_table = (struct TYPE_3__ *) malloc(_len_adapter__i0__mac_table0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
-            adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].mac_table->queue = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        adapter[_i0].hw.mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].hw.mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = igb_available_rars(adapter,queue);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].mac_table);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long queue = 255;
+        
+          int _len_adapter0 = 65025;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__mac_table0 = 1;
+          adapter[_i0].mac_table = (struct TYPE_3__ *) malloc(_len_adapter__i0__mac_table0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          adapter[_i0].hw.mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = igb_available_rars(adapter,queue);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].mac_table);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long queue = 10;
+        
+          int _len_adapter0 = 100;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__mac_table0 = 1;
+          adapter[_i0].mac_table = (struct TYPE_3__ *) malloc(_len_adapter__i0__mac_table0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          adapter[_i0].hw.mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = igb_available_rars(adapter,queue);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].mac_table);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct igb_adapter * adapter = (struct igb_adapter *) malloc(_len_adapter0*sizeof(struct igb_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].vfs_allocated_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_adapter__i0__mac_table0 = 1;
+          adapter[_i0].mac_table = (struct TYPE_3__ *) malloc(_len_adapter__i0__mac_table0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__mac_table0; _j0++) {
+              adapter[_i0].mac_table->state = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].mac_table->queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          adapter[_i0].hw.mac.rar_entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = igb_available_rars(adapter,queue);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {

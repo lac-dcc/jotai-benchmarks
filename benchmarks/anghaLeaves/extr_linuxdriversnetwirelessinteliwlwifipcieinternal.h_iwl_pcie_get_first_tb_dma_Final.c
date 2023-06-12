@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ iwl_pcie_get_first_tb_dma(struct iwl_txq *txq, int idx)
 	       sizeof(struct iwl_pcie_first_tb_buf) * idx;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +83,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int idx = 100;
+        
           int _len_txq0 = 1;
           struct iwl_txq * txq = (struct iwl_txq *) malloc(_len_txq0*sizeof(struct iwl_txq));
           for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
-            txq[_i0].first_tb_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              txq[_i0].first_tb_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          long benchRet = iwl_pcie_get_first_tb_dma(txq,idx);
+          printf("%ld\n", benchRet); 
+          free(txq);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int idx = 255;
+        
+          int _len_txq0 = 65025;
+          struct iwl_txq * txq = (struct iwl_txq *) malloc(_len_txq0*sizeof(struct iwl_txq));
+          for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
+              txq[_i0].first_tb_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           long benchRet = iwl_pcie_get_first_tb_dma(txq,idx);
           printf("%ld\n", benchRet); 
           free(txq);
@@ -99,21 +116,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int idx = 10;
+        
           int _len_txq0 = 100;
           struct iwl_txq * txq = (struct iwl_txq *) malloc(_len_txq0*sizeof(struct iwl_txq));
           for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
-            txq[_i0].first_tb_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+              txq[_i0].first_tb_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = iwl_pcie_get_first_tb_dma(txq,idx);
           printf("%ld\n", benchRet); 
           free(txq);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_txq0 = 1;
+          struct iwl_txq * txq = (struct iwl_txq *) malloc(_len_txq0*sizeof(struct iwl_txq));
+          for(int _i0 = 0; _i0 < _len_txq0; _i0++) {
+              txq[_i0].first_tb_dma = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = iwl_pcie_get_first_tb_dma(txq,idx);
+          printf("%ld\n", benchRet); 
+          free(txq);
+        
+        break;
+    }
     default:
         usage();
         break;

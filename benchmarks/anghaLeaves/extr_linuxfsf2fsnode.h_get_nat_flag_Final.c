@@ -63,12 +63,6 @@ __attribute__((used)) static inline bool get_nat_flag(struct nat_entry *ne, unsi
 	return ne->ni.flag & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +75,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int type = 10;
+        
           int _len_ne0 = 100;
           struct nat_entry * ne = (struct nat_entry *) malloc(_len_ne0*sizeof(struct nat_entry));
           for(int _i0 = 0; _i0 < _len_ne0; _i0++) {
-            ne[_i0].ni.flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              ne[_i0].ni.flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = get_nat_flag(ne,type);
           printf("%d\n", benchRet); 
           free(ne);

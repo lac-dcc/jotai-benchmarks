@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static double compute_audio_drift(struct MPContext *mpctx,
     return (sum_x * sum_y - num * sum_xy) / (sum_x * sum_x - num * sum_xx);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,21 +96,25 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           double vsync = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_mpctx0 = 1;
+        
+          int _len_mpctx0 = 65025;
           struct MPContext * mpctx = (struct MPContext *) malloc(_len_mpctx0*sizeof(struct MPContext));
           for(int _i0 = 0; _i0 < _len_mpctx0; _i0++) {
-            mpctx[_i0].num_past_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+              mpctx[_i0].num_past_frames = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mpctx__i0__past_frames0 = 1;
           mpctx[_i0].past_frames = (struct frame_info *) malloc(_len_mpctx__i0__past_frames0*sizeof(struct frame_info));
           for(int _j0 = 0; _j0 < _len_mpctx__i0__past_frames0; _j0++) {
-            mpctx[_i0].past_frames->num_vsyncs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        mpctx[_i0].past_frames->av_diff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              mpctx[_i0].past_frames->num_vsyncs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          mpctx[_i0].past_frames->av_diff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           }
+        
           double benchRet = compute_audio_drift(mpctx,vsync);
           printf("%lf\n", benchRet); 
           for(int _aux = 0; _aux < _len_mpctx0; _aux++) {
@@ -124,7 +124,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          double vsync = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_mpctx0 = 100;
+          struct MPContext * mpctx = (struct MPContext *) malloc(_len_mpctx0*sizeof(struct MPContext));
+          for(int _i0 = 0; _i0 < _len_mpctx0; _i0++) {
+              mpctx[_i0].num_past_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mpctx__i0__past_frames0 = 1;
+          mpctx[_i0].past_frames = (struct frame_info *) malloc(_len_mpctx__i0__past_frames0*sizeof(struct frame_info));
+          for(int _j0 = 0; _j0 < _len_mpctx__i0__past_frames0; _j0++) {
+              mpctx[_i0].past_frames->num_vsyncs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          mpctx[_i0].past_frames->av_diff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          double benchRet = compute_audio_drift(mpctx,vsync);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mpctx0; _aux++) {
+          free(mpctx[_aux].past_frames);
+          }
+          free(mpctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          double vsync = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_mpctx0 = 1;
+          struct MPContext * mpctx = (struct MPContext *) malloc(_len_mpctx0*sizeof(struct MPContext));
+          for(int _i0 = 0; _i0 < _len_mpctx0; _i0++) {
+              mpctx[_i0].num_past_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mpctx__i0__past_frames0 = 1;
+          mpctx[_i0].past_frames = (struct frame_info *) malloc(_len_mpctx__i0__past_frames0*sizeof(struct frame_info));
+          for(int _j0 = 0; _j0 < _len_mpctx__i0__past_frames0; _j0++) {
+              mpctx[_i0].past_frames->num_vsyncs = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          mpctx[_i0].past_frames->av_diff = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          double benchRet = compute_audio_drift(mpctx,vsync);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mpctx0; _aux++) {
+          free(mpctx[_aux].past_frames);
+          }
+          free(mpctx);
+        
+        break;
+    }
     default:
         usage();
         break;

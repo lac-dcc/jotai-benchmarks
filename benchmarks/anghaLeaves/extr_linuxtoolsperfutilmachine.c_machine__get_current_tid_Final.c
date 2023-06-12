@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ pid_t machine__get_current_tid(struct machine *machine, int cpu)
 	return machine->current_tid[cpu];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cpu = 100;
+        
           int _len_machine0 = 1;
           struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
           for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
@@ -95,7 +93,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_machine__i0__current_tid0; _j0++) {
             machine[_i0].current_tid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = machine__get_current_tid(machine,cpu);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_machine0; _aux++) {
@@ -105,7 +105,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int cpu = 255;
+        
+          int _len_machine0 = 65025;
+          struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
+          for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
+              int _len_machine__i0__current_tid0 = 1;
+          machine[_i0].current_tid = (int *) malloc(_len_machine__i0__current_tid0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_machine__i0__current_tid0; _j0++) {
+            machine[_i0].current_tid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = machine__get_current_tid(machine,cpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_machine0; _aux++) {
+          free(machine[_aux].current_tid);
+          }
+          free(machine);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int cpu = 10;
+        
+          int _len_machine0 = 100;
+          struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
+          for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
+              int _len_machine__i0__current_tid0 = 1;
+          machine[_i0].current_tid = (int *) malloc(_len_machine__i0__current_tid0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_machine__i0__current_tid0; _j0++) {
+            machine[_i0].current_tid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = machine__get_current_tid(machine,cpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_machine0; _aux++) {
+          free(machine[_aux].current_tid);
+          }
+          free(machine);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int cpu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_machine0 = 1;
+          struct machine * machine = (struct machine *) malloc(_len_machine0*sizeof(struct machine));
+          for(int _i0 = 0; _i0 < _len_machine0; _i0++) {
+              int _len_machine__i0__current_tid0 = 1;
+          machine[_i0].current_tid = (int *) malloc(_len_machine__i0__current_tid0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_machine__i0__current_tid0; _j0++) {
+            machine[_i0].current_tid[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = machine__get_current_tid(machine,cpu);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_machine0; _aux++) {
+          free(machine[_aux].current_tid);
+          }
+          free(machine);
+        
+        break;
+    }
     default:
         usage();
         break;

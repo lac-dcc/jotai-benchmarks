@@ -66,12 +66,6 @@ __attribute__((used)) static u32 hgsmi_hash_end(u32 hash)
 	return hash;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hash = 100;
+        
           int benchRet = hgsmi_hash_end(hash);
           printf("%d\n", benchRet); 
         
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hash = 255;
+        
           int benchRet = hgsmi_hash_end(hash);
           printf("%d\n", benchRet); 
         
@@ -106,12 +102,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hash = 10;
+        
           int benchRet = hgsmi_hash_end(hash);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

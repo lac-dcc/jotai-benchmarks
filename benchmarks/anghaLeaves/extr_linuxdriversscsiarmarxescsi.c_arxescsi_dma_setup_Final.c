@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ arxescsi_dma_setup(struct Scsi_Host *host, struct scsi_pointer *SCp,
 	return fasdma_pseudo;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +84,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int direction = 100;
+        
           int min_type = 100;
+        
           int _len_host0 = 1;
           struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
-            host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_SCp0 = 1;
           struct scsi_pointer * SCp = (struct scsi_pointer *) malloc(_len_SCp0*sizeof(struct scsi_pointer));
           for(int _i0 = 0; _i0 < _len_SCp0; _i0++) {
-            SCp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              SCp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = arxescsi_dma_setup(host,SCp,direction,min_type);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(SCp);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int direction = 255;
+        
+          int min_type = 255;
+        
+          int _len_host0 = 65025;
+          struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_SCp0 = 65025;
+          struct scsi_pointer * SCp = (struct scsi_pointer *) malloc(_len_SCp0*sizeof(struct scsi_pointer));
+          for(int _i0 = 0; _i0 < _len_SCp0; _i0++) {
+              SCp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = arxescsi_dma_setup(host,SCp,direction,min_type);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(SCp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int direction = 10;
+        
+          int min_type = 10;
+        
+          int _len_host0 = 100;
+          struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_SCp0 = 100;
+          struct scsi_pointer * SCp = (struct scsi_pointer *) malloc(_len_SCp0*sizeof(struct scsi_pointer));
+          for(int _i0 = 0; _i0 < _len_SCp0; _i0++) {
+              SCp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = arxescsi_dma_setup(host,SCp,direction,min_type);
+          printf("%d\n", benchRet); 
+          free(host);
+          free(SCp);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int direction = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int min_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_host0 = 1;
+          struct Scsi_Host * host = (struct Scsi_Host *) malloc(_len_host0*sizeof(struct Scsi_Host));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              host[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_SCp0 = 1;
+          struct scsi_pointer * SCp = (struct scsi_pointer *) malloc(_len_SCp0*sizeof(struct scsi_pointer));
+          for(int _i0 = 0; _i0 < _len_SCp0; _i0++) {
+              SCp[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = arxescsi_dma_setup(host,SCp,direction,min_type);
           printf("%d\n", benchRet); 
           free(host);

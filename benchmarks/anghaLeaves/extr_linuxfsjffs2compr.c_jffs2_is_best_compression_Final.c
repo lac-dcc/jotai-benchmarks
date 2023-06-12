@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static int jffs2_is_best_compression(struct jffs2_compress
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,17 +104,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int size = 100;
+        
           int bestsize = 100;
+        
           int _len_this0 = 1;
           struct jffs2_compressor * this = (struct jffs2_compressor *) malloc(_len_this0*sizeof(struct jffs2_compressor));
           for(int _i0 = 0; _i0 < _len_this0; _i0++) {
-            this[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+              this[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_best0 = 1;
           struct jffs2_compressor * best = (struct jffs2_compressor *) malloc(_len_best0*sizeof(struct jffs2_compressor));
           for(int _i0 = 0; _i0 < _len_best0; _i0++) {
-            best[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+              best[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = jffs2_is_best_compression(this,best,size,bestsize);
           printf("%d\n", benchRet); 
           free(this);
@@ -125,7 +128,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int size = 255;
+        
+          int bestsize = 255;
+        
+          int _len_this0 = 65025;
+          struct jffs2_compressor * this = (struct jffs2_compressor *) malloc(_len_this0*sizeof(struct jffs2_compressor));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_best0 = 65025;
+          struct jffs2_compressor * best = (struct jffs2_compressor *) malloc(_len_best0*sizeof(struct jffs2_compressor));
+          for(int _i0 = 0; _i0 < _len_best0; _i0++) {
+              best[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jffs2_is_best_compression(this,best,size,bestsize);
+          printf("%d\n", benchRet); 
+          free(this);
+          free(best);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int size = 10;
+        
+          int bestsize = 10;
+        
+          int _len_this0 = 100;
+          struct jffs2_compressor * this = (struct jffs2_compressor *) malloc(_len_this0*sizeof(struct jffs2_compressor));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_best0 = 100;
+          struct jffs2_compressor * best = (struct jffs2_compressor *) malloc(_len_best0*sizeof(struct jffs2_compressor));
+          for(int _i0 = 0; _i0 < _len_best0; _i0++) {
+              best[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jffs2_is_best_compression(this,best,size,bestsize);
+          printf("%d\n", benchRet); 
+          free(this);
+          free(best);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bestsize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_this0 = 1;
+          struct jffs2_compressor * this = (struct jffs2_compressor *) malloc(_len_this0*sizeof(struct jffs2_compressor));
+          for(int _i0 = 0; _i0 < _len_this0; _i0++) {
+              this[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_best0 = 1;
+          struct jffs2_compressor * best = (struct jffs2_compressor *) malloc(_len_best0*sizeof(struct jffs2_compressor));
+          for(int _i0 = 0; _i0 < _len_best0; _i0++) {
+              best[_i0].compr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = jffs2_is_best_compression(this,best,size,bestsize);
+          printf("%d\n", benchRet); 
+          free(this);
+          free(best);
+        
+        break;
+    }
     default:
         usage();
         break;

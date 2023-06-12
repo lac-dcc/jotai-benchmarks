@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -120,12 +122,6 @@ __attribute__((used)) static void dvb_ca_en50221_thread_update_delay(struct dvb_
 	ca->delay = curdelay;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -138,23 +134,153 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ca0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_ca0 = 65025;
           struct dvb_ca_private * ca = (struct dvb_ca_private *) malloc(_len_ca0*sizeof(struct dvb_ca_private));
           for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
-            ca[_i0].slot_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].delay = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+              ca[_i0].slot_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ca__i0__slot_info0 = 1;
           ca[_i0].slot_info = (struct dvb_ca_slot *) malloc(_len_ca__i0__slot_info0*sizeof(struct dvb_ca_slot));
           for(int _j0 = 0; _j0 < _len_ca__i0__slot_info0; _j0++) {
-            ca[_i0].slot_info->slot_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        ca[_i0].slot_info->da_irq_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+              ca[_i0].slot_info->slot_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].slot_info->da_irq_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          dvb_ca_en50221_thread_update_delay(ca);
+          for(int _aux = 0; _aux < _len_ca0; _aux++) {
+          free(ca[_aux].slot_info);
+          }
+          free(ca);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_ca0 = 100;
+          struct dvb_ca_private * ca = (struct dvb_ca_private *) malloc(_len_ca0*sizeof(struct dvb_ca_private));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].slot_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ca__i0__slot_info0 = 1;
+          ca[_i0].slot_info = (struct dvb_ca_slot *) malloc(_len_ca__i0__slot_info0*sizeof(struct dvb_ca_slot));
+          for(int _j0 = 0; _j0 < _len_ca__i0__slot_info0; _j0++) {
+              ca[_i0].slot_info->slot_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].slot_info->da_irq_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          dvb_ca_en50221_thread_update_delay(ca);
+          for(int _aux = 0; _aux < _len_ca0; _aux++) {
+          free(ca[_aux].slot_info);
+          }
+          free(ca);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 17
+          // dynamic_instructions_Os : 17
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          int _len_ca0 = 1;
+          struct dvb_ca_private * ca = (struct dvb_ca_private *) malloc(_len_ca0*sizeof(struct dvb_ca_private));
+          for(int _i0 = 0; _i0 < _len_ca0; _i0++) {
+              ca[_i0].slot_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].delay = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].open = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ca__i0__slot_info0 = 1;
+          ca[_i0].slot_info = (struct dvb_ca_slot *) malloc(_len_ca__i0__slot_info0*sizeof(struct dvb_ca_slot));
+          for(int _j0 = 0; _j0 < _len_ca__i0__slot_info0; _j0++) {
+              ca[_i0].slot_info->slot_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          ca[_i0].slot_info->da_irq_supported = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           dvb_ca_en50221_thread_update_delay(ca);
           for(int _aux = 0; _aux < _len_ca0; _aux++) {
           free(ca[_aux].slot_info);

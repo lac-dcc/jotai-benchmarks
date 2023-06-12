@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void ffp_global_set_inject_callback(ijk_inject_callback cb)
     s_inject_callback = cb;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cb = 100;
+        
           ffp_global_set_inject_callback(cb);
         
         break;
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cb = 255;
+        
           ffp_global_set_inject_callback(cb);
         
         break;
@@ -101,11 +98,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cb = 10;
+        
           ffp_global_set_inject_callback(cb);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ffp_global_set_inject_callback(cb);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ ngx_http_tfs_wrap_raw_file_info(ngx_http_tfs_raw_file_info_t *file_info,
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,33 +90,182 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_file_info0 = 65025;
+          struct TYPE_6__ * file_info = (struct TYPE_6__ *) malloc(_len_file_info0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_file_info0; _i0++) {
+              file_info[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file_stat0 = 65025;
+          struct TYPE_5__ * file_stat = (struct TYPE_5__ *) malloc(_len_file_stat0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_file_stat0; _i0++) {
+              file_stat[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ngx_http_tfs_wrap_raw_file_info(file_info,file_stat);
+          free(file_info);
+          free(file_stat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_file_info0 = 100;
+          struct TYPE_6__ * file_info = (struct TYPE_6__ *) malloc(_len_file_info0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_file_info0; _i0++) {
+              file_info[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file_stat0 = 100;
+          struct TYPE_5__ * file_stat = (struct TYPE_5__ *) malloc(_len_file_stat0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_file_stat0; _i0++) {
+              file_stat[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ngx_http_tfs_wrap_raw_file_info(file_info,file_stat);
+          free(file_info);
+          free(file_stat);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 42
+          // dynamic_instructions_O0 : 42
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_file_info0 = 1;
           struct TYPE_6__ * file_info = (struct TYPE_6__ *) malloc(_len_file_info0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_file_info0; _i0++) {
-            file_info[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_info[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              file_info[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_info[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_file_stat0 = 1;
           struct TYPE_5__ * file_stat = (struct TYPE_5__ *) malloc(_len_file_stat0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_file_stat0; _i0++) {
-            file_stat[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        file_stat[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+              file_stat[_i0].crc = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].create_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].modify_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].u_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          file_stat[_i0].id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ngx_http_tfs_wrap_raw_file_info(file_info,file_stat);
           free(file_info);
           free(file_stat);

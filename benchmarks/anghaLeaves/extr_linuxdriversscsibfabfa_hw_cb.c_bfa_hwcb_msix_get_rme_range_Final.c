@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ bfa_hwcb_msix_get_rme_range(struct bfa_s *bfa, u32 *start, u32 *end)
 	*end = BFI_MSIX_RME_QMAX_CB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bfa0 = 1;
+          int _len_bfa0 = 65025;
           struct bfa_s * bfa = (struct bfa_s *) malloc(_len_bfa0*sizeof(struct bfa_s));
           for(int _i0 = 0; _i0 < _len_bfa0; _i0++) {
-            bfa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bfa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_start0 = 1;
+        
+          int _len_start0 = 65025;
           int * start = (int *) malloc(_len_start0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_start0; _i0++) {
             start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_end0 = 1;
+        
+          int _len_end0 = 65025;
           int * end = (int *) malloc(_len_end0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_end0; _i0++) {
             end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           bfa_hwcb_msix_get_rme_range(bfa,start,end);
           free(bfa);
           free(start);
@@ -108,7 +108,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_bfa0 = 100;
+          struct bfa_s * bfa = (struct bfa_s *) malloc(_len_bfa0*sizeof(struct bfa_s));
+          for(int _i0 = 0; _i0 < _len_bfa0; _i0++) {
+              bfa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_start0 = 100;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_end0 = 100;
+          int * end = (int *) malloc(_len_end0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bfa_hwcb_msix_get_rme_range(bfa,start,end);
+          free(bfa);
+          free(start);
+          free(end);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_bfa0 = 1;
+          struct bfa_s * bfa = (struct bfa_s *) malloc(_len_bfa0*sizeof(struct bfa_s));
+          for(int _i0 = 0; _i0 < _len_bfa0; _i0++) {
+              bfa[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_start0 = 1;
+          int * start = (int *) malloc(_len_start0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_start0; _i0++) {
+            start[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_end0 = 1;
+          int * end = (int *) malloc(_len_end0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          bfa_hwcb_msix_get_rme_range(bfa,start,end);
+          free(bfa);
+          free(start);
+          free(end);
+        
+        break;
+    }
     default:
         usage();
         break;

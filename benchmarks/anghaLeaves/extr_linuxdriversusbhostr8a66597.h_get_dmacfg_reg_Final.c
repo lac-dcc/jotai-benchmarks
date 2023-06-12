@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline unsigned long get_dmacfg_reg(int port)
 	return port == 0 ? DMA0CFG : DMA1CFG;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int port = 100;
+        
           unsigned long benchRet = get_dmacfg_reg(port);
           printf("%lu\n", benchRet); 
         
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int port = 255;
+        
           unsigned long benchRet = get_dmacfg_reg(port);
           printf("%lu\n", benchRet); 
         
@@ -103,12 +100,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int port = 10;
+        
           unsigned long benchRet = get_dmacfg_reg(port);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int port = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = get_dmacfg_reg(port);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

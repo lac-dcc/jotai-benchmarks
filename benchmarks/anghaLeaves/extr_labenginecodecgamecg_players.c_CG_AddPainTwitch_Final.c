@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static void CG_AddPainTwitch( centity_t *cent, vec3_t tors
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,27 +97,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cent0 = 1;
+          int _len_cent0 = 65025;
           struct TYPE_6__ * cent = (struct TYPE_6__ *) malloc(_len_cent0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_cent0; _i0++) {
-            cent[_i0].pe.painTime = ((-2 * (next_i()%2)) + 1) * next_i();
-        cent[_i0].pe.painDirection = ((-2 * (next_i()%2)) + 1) * next_i();
+              cent[_i0].pe.painTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          cent[_i0].pe.painDirection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_torsoAngles0 = 1;
+        
+          int _len_torsoAngles0 = 65025;
           int * torsoAngles = (int *) malloc(_len_torsoAngles0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_torsoAngles0; _i0++) {
             torsoAngles[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           CG_AddPainTwitch(cent,torsoAngles);
           free(cent);
           free(torsoAngles);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cent0 = 100;
+          struct TYPE_6__ * cent = (struct TYPE_6__ *) malloc(_len_cent0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_cent0; _i0++) {
+              cent[_i0].pe.painTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          cent[_i0].pe.painDirection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_torsoAngles0 = 100;
+          int * torsoAngles = (int *) malloc(_len_torsoAngles0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_torsoAngles0; _i0++) {
+            torsoAngles[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          CG_AddPainTwitch(cent,torsoAngles);
+          free(cent);
+          free(torsoAngles);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cent0 = 1;
+          struct TYPE_6__ * cent = (struct TYPE_6__ *) malloc(_len_cent0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_cent0; _i0++) {
+              cent[_i0].pe.painTime = ((-2 * (next_i()%2)) + 1) * next_i();
+          cent[_i0].pe.painDirection = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_torsoAngles0 = 1;
+          int * torsoAngles = (int *) malloc(_len_torsoAngles0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_torsoAngles0; _i0++) {
+            torsoAngles[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          CG_AddPainTwitch(cent,torsoAngles);
+          free(cent);
+          free(torsoAngles);
+        
+        break;
+    }
     default:
         usage();
         break;

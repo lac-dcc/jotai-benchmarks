@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -129,12 +131,6 @@ int FogForBounds( vec3_t mins, vec3_t maxs, float epsilon ){
 	return fogNum;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -147,20 +143,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           float epsilon = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_mins0 = 1;
+        
+          int _len_mins0 = 65025;
           float * mins = (float *) malloc(_len_mins0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_mins0; _i0++) {
             mins[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-          int _len_maxs0 = 1;
+        
+          int _len_maxs0 = 65025;
           float * maxs = (float *) malloc(_len_maxs0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_maxs0; _i0++) {
             maxs[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int benchRet = FogForBounds(mins,maxs,epsilon);
           printf("%d\n", benchRet); 
           free(mins);
@@ -168,7 +167,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          float epsilon = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_mins0 = 100;
+          float * mins = (float *) malloc(_len_mins0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_mins0; _i0++) {
+            mins[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_maxs0 = 100;
+          float * maxs = (float *) malloc(_len_maxs0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_maxs0; _i0++) {
+            maxs[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = FogForBounds(mins,maxs,epsilon);
+          printf("%d\n", benchRet); 
+          free(mins);
+          free(maxs);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          float epsilon = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_mins0 = 1;
+          float * mins = (float *) malloc(_len_mins0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_mins0; _i0++) {
+            mins[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_maxs0 = 1;
+          float * maxs = (float *) malloc(_len_maxs0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_maxs0; _i0++) {
+            maxs[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int benchRet = FogForBounds(mins,maxs,epsilon);
+          printf("%d\n", benchRet); 
+          free(mins);
+          free(maxs);
+        
+        break;
+    }
     default:
         usage();
         break;

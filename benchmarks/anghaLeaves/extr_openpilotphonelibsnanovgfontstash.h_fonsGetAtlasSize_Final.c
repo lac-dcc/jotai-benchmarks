@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ void fonsGetAtlasSize(FONScontext* stash, int* width, int* height)
 	*height = stash->params.height;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,25 +80,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_stash0 = 65025;
+          struct TYPE_5__ * stash = (struct TYPE_5__ *) malloc(_len_stash0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
+              stash[_i0].params.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          stash[_i0].params.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_width0 = 65025;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 65025;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fonsGetAtlasSize(stash,width,height);
+          free(stash);
+          free(width);
+          free(height);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_stash0 = 100;
+          struct TYPE_5__ * stash = (struct TYPE_5__ *) malloc(_len_stash0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
+              stash[_i0].params.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          stash[_i0].params.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_width0 = 100;
+          int * width = (int *) malloc(_len_width0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_width0; _i0++) {
+            width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_height0 = 100;
+          int * height = (int *) malloc(_len_height0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_height0; _i0++) {
+            height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          fonsGetAtlasSize(stash,width,height);
+          free(stash);
+          free(width);
+          free(height);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_stash0 = 1;
           struct TYPE_5__ * stash = (struct TYPE_5__ *) malloc(_len_stash0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_stash0; _i0++) {
-            stash[_i0].params.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        stash[_i0].params.height = ((-2 * (next_i()%2)) + 1) * next_i();
+              stash[_i0].params.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          stash[_i0].params.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_width0 = 1;
           int * width = (int *) malloc(_len_width0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_width0; _i0++) {
             width[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_height0 = 1;
           int * height = (int *) malloc(_len_height0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_height0; _i0++) {
             height[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           fonsGetAtlasSize(stash,width,height);
           free(stash);
           free(width);

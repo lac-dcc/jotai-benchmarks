@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ ifnet_get_low_power_mode(ifnet_t ifp, boolean_t *on)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,19 +86,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_ifp0 = 65025;
+          struct TYPE_3__ * ifp = (struct TYPE_3__ *) malloc(_len_ifp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_on0 = 65025;
+          int * on = (int *) malloc(_len_on0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_on0; _i0++) {
+            on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_low_power_mode(ifp,on);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(on);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_ifp0 = 100;
+          struct TYPE_3__ * ifp = (struct TYPE_3__ *) malloc(_len_ifp0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
+              ifp[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_on0 = 100;
+          int * on = (int *) malloc(_len_on0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_on0; _i0++) {
+            on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ifnet_get_low_power_mode(ifp,on);
+          printf("%d\n", benchRet); 
+          free(ifp);
+          free(on);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_ifp0 = 1;
           struct TYPE_3__ * ifp = (struct TYPE_3__ *) malloc(_len_ifp0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ifp0; _i0++) {
-            ifp[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+              ifp[_i0].if_xflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_on0 = 1;
           int * on = (int *) malloc(_len_on0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_on0; _i0++) {
             on[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ifnet_get_low_power_mode(ifp,on);
           printf("%d\n", benchRet); 
           free(ifp);

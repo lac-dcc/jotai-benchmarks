@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -66,12 +66,6 @@ __attribute__((used)) static U32 ZSTD_equivalentParams(ZSTD_parameters param1, Z
 	       (param1.cParams.strategy == param2.cParams.strategy) & ((param1.cParams.searchLength == 3) == (param2.cParams.searchLength == 3));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +78,46 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 36
+          // dynamic_instructions_O0 : 36
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           struct TYPE_6__ param1;
-        param1.cParams.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        param1.cParams.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        param1.cParams.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
-        param1.cParams.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          param1.cParams.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          param1.cParams.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          param1.cParams.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          param1.cParams.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           struct TYPE_6__ param2;
-        param2.cParams.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        param2.cParams.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
-        param2.cParams.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
-        param2.cParams.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+          param2.cParams.hashLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          param2.cParams.chainLog = ((-2 * (next_i()%2)) + 1) * next_i();
+          param2.cParams.strategy = ((-2 * (next_i()%2)) + 1) * next_i();
+          param2.cParams.searchLength = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           int benchRet = ZSTD_equivalentParams(param1,param2);
           printf("%d\n", benchRet); 
         

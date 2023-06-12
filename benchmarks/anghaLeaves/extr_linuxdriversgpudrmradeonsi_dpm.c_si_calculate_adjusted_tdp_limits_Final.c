@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +97,6 @@ __attribute__((used)) static int si_calculate_adjusted_tdp_limits(struct radeon_
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,24 +113,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int adjust_polarity = 100;
+        
           int tdp_adjustment = 100;
+        
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].pm.dpm.tdp_limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        rdev[_i0].pm.dpm.near_tdp_limit_adjusted = ((-2 * (next_i()%2)) + 1) * next_i();
-        rdev[_i0].pm.dpm.tdp_od_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].pm.dpm.tdp_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.near_tdp_limit_adjusted = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.tdp_od_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_tdp_limit0 = 1;
           int * tdp_limit = (int *) malloc(_len_tdp_limit0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tdp_limit0; _i0++) {
             tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_near_tdp_limit0 = 1;
           int * near_tdp_limit = (int *) malloc(_len_near_tdp_limit0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_near_tdp_limit0; _i0++) {
             near_tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = si_calculate_adjusted_tdp_limits(rdev,adjust_polarity,tdp_adjustment,tdp_limit,near_tdp_limit);
           printf("%d\n", benchRet); 
           free(rdev);
@@ -142,7 +147,120 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int adjust_polarity = 255;
+        
+          int tdp_adjustment = 255;
+        
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].pm.dpm.tdp_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.near_tdp_limit_adjusted = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.tdp_od_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_tdp_limit0 = 65025;
+          int * tdp_limit = (int *) malloc(_len_tdp_limit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tdp_limit0; _i0++) {
+            tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_near_tdp_limit0 = 65025;
+          int * near_tdp_limit = (int *) malloc(_len_near_tdp_limit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_near_tdp_limit0; _i0++) {
+            near_tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = si_calculate_adjusted_tdp_limits(rdev,adjust_polarity,tdp_adjustment,tdp_limit,near_tdp_limit);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          free(tdp_limit);
+          free(near_tdp_limit);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int adjust_polarity = 10;
+        
+          int tdp_adjustment = 10;
+        
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].pm.dpm.tdp_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.near_tdp_limit_adjusted = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.tdp_od_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_tdp_limit0 = 100;
+          int * tdp_limit = (int *) malloc(_len_tdp_limit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tdp_limit0; _i0++) {
+            tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_near_tdp_limit0 = 100;
+          int * near_tdp_limit = (int *) malloc(_len_near_tdp_limit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_near_tdp_limit0; _i0++) {
+            near_tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = si_calculate_adjusted_tdp_limits(rdev,adjust_polarity,tdp_adjustment,tdp_limit,near_tdp_limit);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          free(tdp_limit);
+          free(near_tdp_limit);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int adjust_polarity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int tdp_adjustment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].pm.dpm.tdp_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.near_tdp_limit_adjusted = ((-2 * (next_i()%2)) + 1) * next_i();
+          rdev[_i0].pm.dpm.tdp_od_limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_tdp_limit0 = 1;
+          int * tdp_limit = (int *) malloc(_len_tdp_limit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tdp_limit0; _i0++) {
+            tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_near_tdp_limit0 = 1;
+          int * near_tdp_limit = (int *) malloc(_len_near_tdp_limit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_near_tdp_limit0; _i0++) {
+            near_tdp_limit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = si_calculate_adjusted_tdp_limits(rdev,adjust_polarity,tdp_adjustment,tdp_limit,near_tdp_limit);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          free(tdp_limit);
+          free(near_tdp_limit);
+        
+        break;
+    }
     default:
         usage();
         break;

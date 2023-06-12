@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ bool si476x_core_is_powered_up(struct si476x_core *core)
 	return core->power_state == SI476X_POWER_UP_FULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_core0 = 1;
+          int _len_core0 = 65025;
           struct si476x_core * core = (struct si476x_core *) malloc(_len_core0*sizeof(struct si476x_core));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].power_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].power_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = si476x_core_is_powered_up(core);
           printf("%d\n", benchRet); 
           free(core);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_core0 = 100;
           struct si476x_core * core = (struct si476x_core *) malloc(_len_core0*sizeof(struct si476x_core));
           for(int _i0 = 0; _i0 < _len_core0; _i0++) {
-            core[_i0].power_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              core[_i0].power_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = si476x_core_is_powered_up(core);
           printf("%d\n", benchRet); 
           free(core);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_core0 = 1;
+          struct si476x_core * core = (struct si476x_core *) malloc(_len_core0*sizeof(struct si476x_core));
+          for(int _i0 = 0; _i0 < _len_core0; _i0++) {
+              core[_i0].power_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = si476x_core_is_powered_up(core);
+          printf("%d\n", benchRet); 
+          free(core);
+        
+        break;
+    }
     default:
         usage();
         break;

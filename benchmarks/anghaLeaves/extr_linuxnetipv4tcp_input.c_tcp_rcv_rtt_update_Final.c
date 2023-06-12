@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -91,12 +92,6 @@ __attribute__((used)) static void tcp_rcv_rtt_update(struct tcp_sock *tp, u32 sa
 	tp->rcv_rtt_est.rtt_us = new_sample;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,33 +108,62 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sample = 100;
+        
           int win_dep = 100;
+        
           int _len_tp0 = 1;
           struct tcp_sock * tp = (struct tcp_sock *) malloc(_len_tp0*sizeof(struct tcp_sock));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].rcv_rtt_est.rtt_us = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].rcv_rtt_est.rtt_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          tcp_rcv_rtt_update(tp,sample,win_dep);
+          free(tp);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int sample = 255;
+        
+          int win_dep = 255;
+        
+          int _len_tp0 = 65025;
+          struct tcp_sock * tp = (struct tcp_sock *) malloc(_len_tp0*sizeof(struct tcp_sock));
+          for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
+              tp[_i0].rcv_rtt_est.rtt_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           tcp_rcv_rtt_update(tp,sample,win_dep);
           free(tp);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int sample = 10;
+        
           int win_dep = 10;
+        
           int _len_tp0 = 100;
           struct tcp_sock * tp = (struct tcp_sock *) malloc(_len_tp0*sizeof(struct tcp_sock));
           for(int _i0 = 0; _i0 < _len_tp0; _i0++) {
-            tp[_i0].rcv_rtt_est.rtt_us = ((-2 * (next_i()%2)) + 1) * next_i();
+              tp[_i0].rcv_rtt_est.rtt_us = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           tcp_rcv_rtt_update(tp,sample,win_dep);
           free(tp);
         
         break;
     }
-
     default:
         usage();
         break;

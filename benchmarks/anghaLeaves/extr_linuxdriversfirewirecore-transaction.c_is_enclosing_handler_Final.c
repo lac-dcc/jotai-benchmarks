@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static bool is_enclosing_handler(struct fw_address_handler
 		offset + length <= handler->offset + handler->length;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,17 +77,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           unsigned long long offset = 100;
+        
           unsigned long length = 100;
+        
           int _len_handler0 = 1;
           struct fw_address_handler * handler = (struct fw_address_handler *) malloc(_len_handler0*sizeof(struct fw_address_handler));
           for(int _i0 = 0; _i0 < _len_handler0; _i0++) {
-            handler[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        handler[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              handler[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          handler[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = is_enclosing_handler(handler,offset,length);
+          printf("%d\n", benchRet); 
+          free(handler);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned long long offset = 255;
+        
+          unsigned long length = 255;
+        
+          int _len_handler0 = 65025;
+          struct fw_address_handler * handler = (struct fw_address_handler *) malloc(_len_handler0*sizeof(struct fw_address_handler));
+          for(int _i0 = 0; _i0 < _len_handler0; _i0++) {
+              handler[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          handler[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_enclosing_handler(handler,offset,length);
+          printf("%d\n", benchRet); 
+          free(handler);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          unsigned long long offset = 10;
+        
+          unsigned long length = 10;
+        
+          int _len_handler0 = 100;
+          struct fw_address_handler * handler = (struct fw_address_handler *) malloc(_len_handler0*sizeof(struct fw_address_handler));
+          for(int _i0 = 0; _i0 < _len_handler0; _i0++) {
+              handler[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          handler[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_enclosing_handler(handler,offset,length);
+          printf("%d\n", benchRet); 
+          free(handler);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_handler0 = 1;
+          struct fw_address_handler * handler = (struct fw_address_handler *) malloc(_len_handler0*sizeof(struct fw_address_handler));
+          for(int _i0 = 0; _i0 < _len_handler0; _i0++) {
+              handler[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          handler[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = is_enclosing_handler(handler,offset,length);
           printf("%d\n", benchRet); 
           free(handler);

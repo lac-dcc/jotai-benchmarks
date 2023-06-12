@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +89,6 @@ __attribute__((used)) static void ccu_nkm_find_best(unsigned long parent, unsign
 	nkm->m = best_m;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,24 +101,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 75
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 75
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 68
+          // dynamic_instructions_Os : 68
+          // ------------------------------- 
+          // static_instructions_Oz : 60
+          // dynamic_instructions_Oz : 66
+          // ------------------------------- 
+
           unsigned long parent = 100;
+        
           unsigned long rate = 100;
+        
           int _len_nkm0 = 1;
           struct _ccu_nkm * nkm = (struct _ccu_nkm *) malloc(_len_nkm0*sizeof(struct _ccu_nkm));
           for(int _i0 = 0; _i0 < _len_nkm0; _i0++) {
-            nkm[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].min_m = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].max_m = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
-        nkm[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+              nkm[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ccu_nkm_find_best(parent,rate,nkm);
+          free(nkm);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 75
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 75
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 68
+          // dynamic_instructions_Os : 68
+          // ------------------------------- 
+          // static_instructions_Oz : 60
+          // dynamic_instructions_Oz : 66
+          // ------------------------------- 
+
+          unsigned long parent = 255;
+        
+          unsigned long rate = 255;
+        
+          int _len_nkm0 = 65025;
+          struct _ccu_nkm * nkm = (struct _ccu_nkm *) malloc(_len_nkm0*sizeof(struct _ccu_nkm));
+          for(int _i0 = 0; _i0 < _len_nkm0; _i0++) {
+              nkm[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccu_nkm_find_best(parent,rate,nkm);
+          free(nkm);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 75
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 75
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 68
+          // dynamic_instructions_Os : 68
+          // ------------------------------- 
+          // static_instructions_Oz : 60
+          // dynamic_instructions_Oz : 66
+          // ------------------------------- 
+
+          unsigned long parent = 10;
+        
+          unsigned long rate = 10;
+        
+          int _len_nkm0 = 100;
+          struct _ccu_nkm * nkm = (struct _ccu_nkm *) malloc(_len_nkm0*sizeof(struct _ccu_nkm));
+          for(int _i0 = 0; _i0 < _len_nkm0; _i0++) {
+              nkm[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccu_nkm_find_best(parent,rate,nkm);
+          free(nkm);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 72
+          // dynamic_instructions_O0 : 84
+          // ------------------------------- 
+          // static_instructions_O1 : 76
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 76
+          // dynamic_instructions_O2 : 76
+          // ------------------------------- 
+          // static_instructions_O3 : 75
+          // dynamic_instructions_O3 : 75
+          // ------------------------------- 
+          // static_instructions_Ofast : 75
+          // dynamic_instructions_Ofast : 75
+          // ------------------------------- 
+          // static_instructions_Os : 68
+          // dynamic_instructions_Os : 68
+          // ------------------------------- 
+          // static_instructions_Oz : 60
+          // dynamic_instructions_Oz : 66
+          // ------------------------------- 
+
+          unsigned long parent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nkm0 = 1;
+          struct _ccu_nkm * nkm = (struct _ccu_nkm *) malloc(_len_nkm0*sizeof(struct _ccu_nkm));
+          for(int _i0 = 0; _i0 < _len_nkm0; _i0++) {
+              nkm[_i0].min_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].min_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].max_m = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].k = ((-2 * (next_i()%2)) + 1) * next_i();
+          nkm[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ccu_nkm_find_best(parent,rate,nkm);
           free(nkm);
         

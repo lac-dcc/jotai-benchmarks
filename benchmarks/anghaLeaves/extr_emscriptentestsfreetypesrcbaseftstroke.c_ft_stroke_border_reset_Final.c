@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ __attribute__((used)) static void
     border->valid      = FALSE;
   }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,22 +80,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_border0 = 1;
+          int _len_border0 = 65025;
           struct TYPE_3__ * border = (struct TYPE_3__ *) malloc(_len_border0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_border0; _i0++) {
-            border[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        border[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        border[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+              border[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          border[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          border[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ft_stroke_border_reset(border);
           free(border);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_border0 = 100;
+          struct TYPE_3__ * border = (struct TYPE_3__ *) malloc(_len_border0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_border0; _i0++) {
+              border[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          border[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          border[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ft_stroke_border_reset(border);
+          free(border);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_border0 = 1;
+          struct TYPE_3__ * border = (struct TYPE_3__ *) malloc(_len_border0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_border0; _i0++) {
+              border[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          border[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          border[_i0].num_points = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ft_stroke_border_reset(border);
+          free(border);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline struct device *ms_dev(struct rtsx_usb_ms *ho
 	return &(host->pdev->dev);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_host0 = 1;
+          int _len_host0 = 65025;
           struct rtsx_usb_ms * host = (struct rtsx_usb_ms *) malloc(_len_host0*sizeof(struct rtsx_usb_ms));
           for(int _i0 = 0; _i0 < _len_host0; _i0++) {
               int _len_host__i0__pdev0 = 1;
           host[_i0].pdev = (struct TYPE_2__ *) malloc(_len_host__i0__pdev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_host__i0__pdev0; _j0++) {
-            host[_i0].pdev->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              host[_i0].pdev->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct device * benchRet = ms_dev(host);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_host0; _aux++) {
@@ -102,7 +102,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_host0 = 100;
+          struct rtsx_usb_ms * host = (struct rtsx_usb_ms *) malloc(_len_host0*sizeof(struct rtsx_usb_ms));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              int _len_host__i0__pdev0 = 1;
+          host[_i0].pdev = (struct TYPE_2__ *) malloc(_len_host__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__pdev0; _j0++) {
+              host[_i0].pdev->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct device * benchRet = ms_dev(host);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].pdev);
+          }
+          free(host);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_host0 = 1;
+          struct rtsx_usb_ms * host = (struct rtsx_usb_ms *) malloc(_len_host0*sizeof(struct rtsx_usb_ms));
+          for(int _i0 = 0; _i0 < _len_host0; _i0++) {
+              int _len_host__i0__pdev0 = 1;
+          host[_i0].pdev = (struct TYPE_2__ *) malloc(_len_host__i0__pdev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_host__i0__pdev0; _j0++) {
+              host[_i0].pdev->dev.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct device * benchRet = ms_dev(host);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_host0; _aux++) {
+          free(host[_aux].pdev);
+          }
+          free(host);
+        
+        break;
+    }
     default:
         usage();
         break;

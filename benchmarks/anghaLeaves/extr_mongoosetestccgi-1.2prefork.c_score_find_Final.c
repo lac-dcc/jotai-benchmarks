@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ score_find(struct score_board *scb, pid_t pid) {
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pid = 100;
+        
           int _len_scb0 = 1;
           struct score_board * scb = (struct score_board *) malloc(_len_scb0*sizeof(struct score_board));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
-            scb[_i0].maxproc = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].maxproc = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_scb__i0__proc0 = 1;
           scb[_i0].proc = (struct TYPE_2__ *) malloc(_len_scb__i0__proc0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_scb__i0__proc0; _j0++) {
-            scb[_i0].proc->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].proc->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = score_find(scb,pid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_scb0; _aux++) {
@@ -110,7 +111,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long pid = 255;
+        
+          int _len_scb0 = 65025;
+          struct score_board * scb = (struct score_board *) malloc(_len_scb0*sizeof(struct score_board));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].maxproc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_scb__i0__proc0 = 1;
+          scb[_i0].proc = (struct TYPE_2__ *) malloc(_len_scb__i0__proc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__proc0; _j0++) {
+              scb[_i0].proc->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = score_find(scb,pid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].proc);
+          }
+          free(scb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long pid = 10;
+        
+          int _len_scb0 = 100;
+          struct score_board * scb = (struct score_board *) malloc(_len_scb0*sizeof(struct score_board));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].maxproc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_scb__i0__proc0 = 1;
+          scb[_i0].proc = (struct TYPE_2__ *) malloc(_len_scb__i0__proc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__proc0; _j0++) {
+              scb[_i0].proc->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = score_find(scb,pid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].proc);
+          }
+          free(scb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_scb0 = 1;
+          struct score_board * scb = (struct score_board *) malloc(_len_scb0*sizeof(struct score_board));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].maxproc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_scb__i0__proc0 = 1;
+          scb[_i0].proc = (struct TYPE_2__ *) malloc(_len_scb__i0__proc0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__proc0; _j0++) {
+              scb[_i0].proc->pid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = score_find(scb,pid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].proc);
+          }
+          free(scb);
+        
+        break;
+    }
     default:
         usage();
         break;

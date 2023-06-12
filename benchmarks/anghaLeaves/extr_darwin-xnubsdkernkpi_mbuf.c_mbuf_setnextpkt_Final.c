@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -62,7 +63,6 @@ mbuf_setnextpkt(mbuf_t mbuf, mbuf_t nextpkt)
 {
 	mbuf->m_nextpkt = nextpkt;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -114,7 +114,6 @@ void _delete_nextpkt(struct TYPE_4__ *aux_nextpkt[], int aux_nextpkt_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -127,20 +126,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_4__ * aux_mbuf[10000];
+          struct TYPE_4__ * mbuf = _allocate_mbuf(10000, aux_mbuf);
+        
+          struct TYPE_4__ * aux_nextpkt[10000];
+          struct TYPE_4__ * nextpkt = _allocate_nextpkt(10000, aux_nextpkt);
+        
+          mbuf_setnextpkt(mbuf,nextpkt);
+          _delete_mbuf(aux_mbuf, 10000);
+          _delete_nextpkt(aux_nextpkt, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_4__ * aux_mbuf[1];
           struct TYPE_4__ * mbuf = _allocate_mbuf(1, aux_mbuf);
+        
           struct TYPE_4__ * aux_nextpkt[1];
           struct TYPE_4__ * nextpkt = _allocate_nextpkt(1, aux_nextpkt);
+        
           mbuf_setnextpkt(mbuf,nextpkt);
           _delete_mbuf(aux_mbuf, 1);
           _delete_nextpkt(aux_nextpkt, 1);
         
         break;
     }
-
     default:
         usage();
         break;

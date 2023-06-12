@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline bool dwc2_frame_idx_num_gt(u16 fr_idx1, u16 
 	return diff && !sign;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fr_idx1 = 100;
+        
           int fr_idx2 = 100;
+        
           int benchRet = dwc2_frame_idx_num_gt(fr_idx1,fr_idx2);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fr_idx1 = 255;
+        
           int fr_idx2 = 255;
+        
           int benchRet = dwc2_frame_idx_num_gt(fr_idx1,fr_idx2);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fr_idx1 = 10;
+        
           int fr_idx2 = 10;
+        
           int benchRet = dwc2_frame_idx_num_gt(fr_idx1,fr_idx2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fr_idx1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fr_idx2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = dwc2_frame_idx_num_gt(fr_idx1,fr_idx2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

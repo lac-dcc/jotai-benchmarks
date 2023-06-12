@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ scif_init_window_iter(struct scif_window *window, struct scif_window_iter *iter)
 	iter->index = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,27 +77,78 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_window0 = 1;
+          int _len_window0 = 65025;
           struct scif_window * window = (struct scif_window *) malloc(_len_window0*sizeof(struct scif_window));
           for(int _i0 = 0; _i0 < _len_window0; _i0++) {
-            window[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              window[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_iter0 = 1;
+        
+          int _len_iter0 = 65025;
           struct scif_window_iter * iter = (struct scif_window_iter *) malloc(_len_iter0*sizeof(struct scif_window_iter));
           for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
-            iter[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
-        iter[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              iter[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           scif_init_window_iter(window,iter);
           free(window);
           free(iter);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_window0 = 100;
+          struct scif_window * window = (struct scif_window *) malloc(_len_window0*sizeof(struct scif_window));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_iter0 = 100;
+          struct scif_window_iter * iter = (struct scif_window_iter *) malloc(_len_iter0*sizeof(struct scif_window_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          scif_init_window_iter(window,iter);
+          free(window);
+          free(iter);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_window0 = 1;
+          struct scif_window * window = (struct scif_window *) malloc(_len_window0*sizeof(struct scif_window));
+          for(int _i0 = 0; _i0 < _len_window0; _i0++) {
+              window[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_iter0 = 1;
+          struct scif_window_iter * iter = (struct scif_window_iter *) malloc(_len_iter0*sizeof(struct scif_window_iter));
+          for(int _i0 = 0; _i0 < _len_iter0; _i0++) {
+              iter[_i0].index = ((-2 * (next_i()%2)) + 1) * next_i();
+          iter[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          scif_init_window_iter(window,iter);
+          free(window);
+          free(iter);
+        
+        break;
+    }
     default:
         usage();
         break;

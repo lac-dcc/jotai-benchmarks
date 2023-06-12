@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ DRV_HANDLE DRV_SPI0_Open ( const SYS_MODULE_INDEX index, const DRV_IO_INTENT int
     return (DRV_HANDLE)DRV_SPI_INDEX_0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int index = 100;
+        
           const int intent = 100;
+        
           int benchRet = DRV_SPI0_Open(index,intent);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int index = 255;
+        
           const int intent = 255;
+        
           int benchRet = DRV_SPI0_Open(index,intent);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int index = 10;
+        
           const int intent = 10;
+        
           int benchRet = DRV_SPI0_Open(index,intent);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int intent = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = DRV_SPI0_Open(index,intent);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -96,12 +96,6 @@ __attribute__((used)) static unsigned int __swapin_nr_pages(unsigned long prev_o
 	return pages;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,10 +112,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long prev_offset = 100;
+        
           unsigned long offset = 100;
+        
           int hits = 100;
+        
           int max_pages = 100;
+        
           int prev_win = 100;
+        
           unsigned int benchRet = __swapin_nr_pages(prev_offset,offset,hits,max_pages,prev_win);
           printf("%u\n", benchRet); 
         
@@ -131,10 +130,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long prev_offset = 255;
+        
           unsigned long offset = 255;
+        
           int hits = 255;
+        
           int max_pages = 255;
+        
           int prev_win = 255;
+        
           unsigned int benchRet = __swapin_nr_pages(prev_offset,offset,hits,max_pages,prev_win);
           printf("%u\n", benchRet); 
         
@@ -144,16 +148,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long prev_offset = 10;
+        
           unsigned long offset = 10;
+        
           int hits = 10;
+        
           int max_pages = 10;
+        
           int prev_win = 10;
+        
           unsigned int benchRet = __swapin_nr_pages(prev_offset,offset,hits,max_pages,prev_win);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

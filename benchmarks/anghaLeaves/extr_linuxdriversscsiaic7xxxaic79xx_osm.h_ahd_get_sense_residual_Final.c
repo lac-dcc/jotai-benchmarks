@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ u_long ahd_get_sense_residual(struct scb *scb)
 	return (scb->platform_data->sense_resid);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_scb0 = 1;
+          int _len_scb0 = 65025;
           struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
               int _len_scb__i0__platform_data0 = 1;
           scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
-            scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ahd_get_sense_residual(scb);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_scb0; _aux++) {
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_scb0 = 100;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__platform_data0 = 1;
+          scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ahd_get_sense_residual(scb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].platform_data);
+          }
+          free(scb);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_scb0 = 1;
+          struct scb * scb = (struct scb *) malloc(_len_scb0*sizeof(struct scb));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              int _len_scb__i0__platform_data0 = 1;
+          scb[_i0].platform_data = (struct TYPE_2__ *) malloc(_len_scb__i0__platform_data0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_scb__i0__platform_data0; _j0++) {
+              scb[_i0].platform_data->sense_resid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ahd_get_sense_residual(scb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_scb0; _aux++) {
+          free(scb[_aux].platform_data);
+          }
+          free(scb);
+        
+        break;
+    }
     default:
         usage();
         break;

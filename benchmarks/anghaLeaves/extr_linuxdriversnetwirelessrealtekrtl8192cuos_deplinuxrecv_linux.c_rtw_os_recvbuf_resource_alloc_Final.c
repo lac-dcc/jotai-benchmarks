@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -95,12 +97,6 @@ int rtw_os_recvbuf_resource_alloc(_adapter *padapter, struct recv_buf *precvbuf)
 	return res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -113,19 +109,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_padapter0 = 1;
+          int _len_padapter0 = 65025;
           int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
             padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_precvbuf0 = 1;
+        
+          int _len_precvbuf0 = 65025;
           struct recv_buf * precvbuf = (struct recv_buf *) malloc(_len_precvbuf0*sizeof(struct recv_buf));
           for(int _i0 = 0; _i0 < _len_precvbuf0; _i0++) {
-            precvbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              precvbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rtw_os_recvbuf_resource_alloc(padapter,precvbuf);
           printf("%d\n", benchRet); 
           free(padapter);
@@ -133,7 +132,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_padapter0 = 100;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_precvbuf0 = 100;
+          struct recv_buf * precvbuf = (struct recv_buf *) malloc(_len_precvbuf0*sizeof(struct recv_buf));
+          for(int _i0 = 0; _i0 < _len_precvbuf0; _i0++) {
+              precvbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_os_recvbuf_resource_alloc(padapter,precvbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(precvbuf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_padapter0 = 1;
+          int * padapter = (int *) malloc(_len_padapter0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_padapter0; _i0++) {
+            padapter[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_precvbuf0 = 1;
+          struct recv_buf * precvbuf = (struct recv_buf *) malloc(_len_precvbuf0*sizeof(struct recv_buf));
+          for(int _i0 = 0; _i0 < _len_precvbuf0; _i0++) {
+              precvbuf[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rtw_os_recvbuf_resource_alloc(padapter,precvbuf);
+          printf("%d\n", benchRet); 
+          free(padapter);
+          free(precvbuf);
+        
+        break;
+    }
     default:
         usage();
         break;

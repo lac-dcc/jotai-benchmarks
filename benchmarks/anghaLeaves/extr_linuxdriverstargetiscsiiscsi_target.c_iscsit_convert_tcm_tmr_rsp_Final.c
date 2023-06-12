@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +85,6 @@ __attribute__((used)) static u8 iscsit_convert_tcm_tmr_rsp(struct se_tmr_req *se
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,28 +97,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_se_tmr0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_se_tmr0 = 65025;
           struct se_tmr_req * se_tmr = (struct se_tmr_req *) malloc(_len_se_tmr0*sizeof(struct se_tmr_req));
           for(int _i0 = 0; _i0 < _len_se_tmr0; _i0++) {
-            se_tmr[_i0].response = ((-2 * (next_i()%2)) + 1) * next_i();
+              se_tmr[_i0].response = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iscsit_convert_tcm_tmr_rsp(se_tmr);
           printf("%d\n", benchRet); 
           free(se_tmr);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_se_tmr0 = 100;
           struct se_tmr_req * se_tmr = (struct se_tmr_req *) malloc(_len_se_tmr0*sizeof(struct se_tmr_req));
           for(int _i0 = 0; _i0 < _len_se_tmr0; _i0++) {
-            se_tmr[_i0].response = ((-2 * (next_i()%2)) + 1) * next_i();
+              se_tmr[_i0].response = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = iscsit_convert_tcm_tmr_rsp(se_tmr);
+          printf("%d\n", benchRet); 
+          free(se_tmr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_se_tmr0 = 1;
+          struct se_tmr_req * se_tmr = (struct se_tmr_req *) malloc(_len_se_tmr0*sizeof(struct se_tmr_req));
+          for(int _i0 = 0; _i0 < _len_se_tmr0; _i0++) {
+              se_tmr[_i0].response = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = iscsit_convert_tcm_tmr_rsp(se_tmr);
           printf("%d\n", benchRet); 
           free(se_tmr);

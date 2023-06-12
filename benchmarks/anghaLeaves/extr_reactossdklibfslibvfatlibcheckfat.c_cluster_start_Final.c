@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ off_t cluster_start(DOS_FS * fs, uint32_t cluster)
     return fs->data_start + ((off_t)cluster - 2) * (uint64_t)fs->cluster_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +84,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long cluster = 100;
+        
           int _len_fs0 = 1;
           struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
-            fs[_i0].data_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        fs[_i0].cluster_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fs[_i0].data_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].cluster_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cluster_start(fs,cluster);
           printf("%d\n", benchRet); 
           free(fs);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long cluster = 255;
+        
+          int _len_fs0 = 65025;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].data_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].cluster_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cluster_start(fs,cluster);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long cluster = 10;
+        
+          int _len_fs0 = 100;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].data_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].cluster_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cluster_start(fs,cluster);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long cluster = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fs0 = 1;
+          struct TYPE_3__ * fs = (struct TYPE_3__ *) malloc(_len_fs0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fs0; _i0++) {
+              fs[_i0].data_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          fs[_i0].cluster_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cluster_start(fs,cluster);
+          printf("%d\n", benchRet); 
+          free(fs);
+        
+        break;
+    }
     default:
         usage();
         break;

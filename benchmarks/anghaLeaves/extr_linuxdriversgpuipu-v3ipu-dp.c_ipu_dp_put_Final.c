@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void ipu_dp_put(struct ipu_dp *dp)
 	dp->in_use = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dp0 = 1;
+          int _len_dp0 = 65025;
           struct ipu_dp * dp = (struct ipu_dp *) malloc(_len_dp0*sizeof(struct ipu_dp));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipu_dp_put(dp);
           free(dp);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_dp0 = 100;
           struct ipu_dp * dp = (struct ipu_dp *) malloc(_len_dp0*sizeof(struct ipu_dp));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ipu_dp_put(dp);
           free(dp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dp0 = 1;
+          struct ipu_dp * dp = (struct ipu_dp *) malloc(_len_dp0*sizeof(struct ipu_dp));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].in_use = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ipu_dp_put(dp);
+          free(dp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static void init_arraycache(struct array_cache *ac, int li
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +80,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int limit = 100;
+        
           int batch = 100;
+        
           int _len_ac0 = 1;
           struct array_cache * ac = (struct array_cache *) malloc(_len_ac0*sizeof(struct array_cache));
           for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
-            ac[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].batchcount = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].touched = ((-2 * (next_i()%2)) + 1) * next_i();
-        ac[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+              ac[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].batchcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].touched = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          init_arraycache(ac,limit,batch);
+          free(ac);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int limit = 255;
+        
+          int batch = 255;
+        
+          int _len_ac0 = 65025;
+          struct array_cache * ac = (struct array_cache *) malloc(_len_ac0*sizeof(struct array_cache));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].batchcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].touched = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_arraycache(ac,limit,batch);
+          free(ac);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int limit = 10;
+        
+          int batch = 10;
+        
+          int _len_ac0 = 100;
+          struct array_cache * ac = (struct array_cache *) malloc(_len_ac0*sizeof(struct array_cache));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].batchcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].touched = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_arraycache(ac,limit,batch);
+          free(ac);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int batch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ac0 = 1;
+          struct array_cache * ac = (struct array_cache *) malloc(_len_ac0*sizeof(struct array_cache));
+          for(int _i0 = 0; _i0 < _len_ac0; _i0++) {
+              ac[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].batchcount = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].touched = ((-2 * (next_i()%2)) + 1) * next_i();
+          ac[_i0].avail = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           init_arraycache(ac,limit,batch);
           free(ac);
         

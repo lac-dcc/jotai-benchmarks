@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static bool vo_supports(struct mp_hwdec_ctx *ctx, int hw_f
     return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,17 +89,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hw_fmt = 100;
+        
           int sw_fmt = 100;
+        
           int _len_ctx0 = 1;
           struct mp_hwdec_ctx * ctx = (struct mp_hwdec_ctx *) malloc(_len_ctx0*sizeof(struct mp_hwdec_ctx));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
-            ctx[_i0].hw_imgfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].hw_imgfmt = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ctx__i0__supported_formats0 = 1;
           ctx[_i0].supported_formats = (int *) malloc(_len_ctx__i0__supported_formats0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ctx__i0__supported_formats0; _j0++) {
             ctx[_i0].supported_formats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = vo_supports(ctx,hw_fmt,sw_fmt);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
@@ -112,7 +113,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int hw_fmt = 255;
+        
+          int sw_fmt = 255;
+        
+          int _len_ctx0 = 65025;
+          struct mp_hwdec_ctx * ctx = (struct mp_hwdec_ctx *) malloc(_len_ctx0*sizeof(struct mp_hwdec_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].hw_imgfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__supported_formats0 = 1;
+          ctx[_i0].supported_formats = (int *) malloc(_len_ctx__i0__supported_formats0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__supported_formats0; _j0++) {
+            ctx[_i0].supported_formats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = vo_supports(ctx,hw_fmt,sw_fmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].supported_formats);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int hw_fmt = 10;
+        
+          int sw_fmt = 10;
+        
+          int _len_ctx0 = 100;
+          struct mp_hwdec_ctx * ctx = (struct mp_hwdec_ctx *) malloc(_len_ctx0*sizeof(struct mp_hwdec_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].hw_imgfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__supported_formats0 = 1;
+          ctx[_i0].supported_formats = (int *) malloc(_len_ctx__i0__supported_formats0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__supported_formats0; _j0++) {
+            ctx[_i0].supported_formats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = vo_supports(ctx,hw_fmt,sw_fmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].supported_formats);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int hw_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int sw_fmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct mp_hwdec_ctx * ctx = (struct mp_hwdec_ctx *) malloc(_len_ctx0*sizeof(struct mp_hwdec_ctx));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              ctx[_i0].hw_imgfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ctx__i0__supported_formats0 = 1;
+          ctx[_i0].supported_formats = (int *) malloc(_len_ctx__i0__supported_formats0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__supported_formats0; _j0++) {
+            ctx[_i0].supported_formats[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = vo_supports(ctx,hw_fmt,sw_fmt);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].supported_formats);
+          }
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

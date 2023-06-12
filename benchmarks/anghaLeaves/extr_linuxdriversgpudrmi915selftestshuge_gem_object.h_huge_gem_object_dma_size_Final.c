@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ huge_gem_object_dma_size(struct drm_i915_gem_object *obj)
 	return obj->base.size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_obj0 = 1;
+          int _len_obj0 = 65025;
           struct drm_i915_gem_object * obj = (struct drm_i915_gem_object *) malloc(_len_obj0*sizeof(struct drm_i915_gem_object));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
-            obj[_i0].base.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              obj[_i0].base.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = huge_gem_object_dma_size(obj);
           printf("%d\n", benchRet); 
           free(obj);
@@ -103,15 +101,34 @@ int main(int argc, char *argv[]) {
           int _len_obj0 = 100;
           struct drm_i915_gem_object * obj = (struct drm_i915_gem_object *) malloc(_len_obj0*sizeof(struct drm_i915_gem_object));
           for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
-            obj[_i0].base.size = ((-2 * (next_i()%2)) + 1) * next_i();
+              obj[_i0].base.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = huge_gem_object_dma_size(obj);
           printf("%d\n", benchRet); 
           free(obj);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_obj0 = 1;
+          struct drm_i915_gem_object * obj = (struct drm_i915_gem_object *) malloc(_len_obj0*sizeof(struct drm_i915_gem_object));
+          for(int _i0 = 0; _i0 < _len_obj0; _i0++) {
+              obj[_i0].base.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = huge_gem_object_dma_size(obj);
+          printf("%d\n", benchRet); 
+          free(obj);
+        
+        break;
+    }
     default:
         usage();
         break;

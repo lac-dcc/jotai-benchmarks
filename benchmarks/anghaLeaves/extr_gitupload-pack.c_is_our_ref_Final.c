@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static int is_our_ref(struct object *o)
 	return o->flags & ((allow_hidden_ref ? HIDDEN_REF : 0) | OUR_REF);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,14 +81,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_o0 = 1;
+          int _len_o0 = 65025;
           struct object * o = (struct object *) malloc(_len_o0*sizeof(struct object));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_our_ref(o);
           printf("%d\n", benchRet); 
           free(o);
@@ -106,15 +103,32 @@ int main(int argc, char *argv[]) {
           int _len_o0 = 100;
           struct object * o = (struct object *) malloc(_len_o0*sizeof(struct object));
           for(int _i0 = 0; _i0 < _len_o0; _i0++) {
-            o[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              o[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_our_ref(o);
           printf("%d\n", benchRet); 
           free(o);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_o0 = 1;
+          struct object * o = (struct object *) malloc(_len_o0*sizeof(struct object));
+          for(int _i0 = 0; _i0 < _len_o0; _i0++) {
+              o[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_our_ref(o);
+          printf("%d\n", benchRet); 
+          free(o);
+        
+        break;
+    }
     default:
         usage();
         break;

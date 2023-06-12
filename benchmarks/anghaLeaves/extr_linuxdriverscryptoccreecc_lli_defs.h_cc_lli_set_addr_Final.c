@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline void cc_lli_set_addr(u32 *lli_p, dma_addr_t 
 #endif /* CONFIG_ARCH_DMA_ADDR_T_64BIT */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,31 +86,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 100;
+        
           int _len_lli_p0 = 1;
           int * lli_p = (int *) malloc(_len_lli_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lli_p0; _i0++) {
             lli_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          cc_lli_set_addr(lli_p,addr);
+          free(lli_p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int addr = 255;
+        
+          int _len_lli_p0 = 65025;
+          int * lli_p = (int *) malloc(_len_lli_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lli_p0; _i0++) {
+            lli_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           cc_lli_set_addr(lli_p,addr);
           free(lli_p);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int addr = 10;
+        
           int _len_lli_p0 = 100;
           int * lli_p = (int *) malloc(_len_lli_p0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_lli_p0; _i0++) {
             lli_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           cc_lli_set_addr(lli_p,addr);
           free(lli_p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lli_p0 = 1;
+          int * lli_p = (int *) malloc(_len_lli_p0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_lli_p0; _i0++) {
+            lli_p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          cc_lli_set_addr(lli_p,addr);
+          free(lli_p);
+        
+        break;
+    }
     default:
         usage();
         break;

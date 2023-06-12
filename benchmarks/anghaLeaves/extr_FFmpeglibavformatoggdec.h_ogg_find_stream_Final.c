@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ ogg_find_stream (struct ogg * ogg, int serial)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,20 +84,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int serial = 100;
+        
           int _len_ogg0 = 1;
           struct ogg * ogg = (struct ogg *) malloc(_len_ogg0*sizeof(struct ogg));
           for(int _i0 = 0; _i0 < _len_ogg0; _i0++) {
-            ogg[_i0].nstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+              ogg[_i0].nstreams = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ogg__i0__streams0 = 1;
           ogg[_i0].streams = (struct TYPE_2__ *) malloc(_len_ogg__i0__streams0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ogg__i0__streams0; _j0++) {
-            ogg[_i0].streams->serial = ((-2 * (next_i()%2)) + 1) * next_i();
+              ogg[_i0].streams->serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ogg_find_stream(ogg,serial);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ogg0; _aux++) {
+          free(ogg[_aux].streams);
+          }
+          free(ogg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int serial = 255;
+        
+          int _len_ogg0 = 65025;
+          struct ogg * ogg = (struct ogg *) malloc(_len_ogg0*sizeof(struct ogg));
+          for(int _i0 = 0; _i0 < _len_ogg0; _i0++) {
+              ogg[_i0].nstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ogg__i0__streams0 = 1;
+          ogg[_i0].streams = (struct TYPE_2__ *) malloc(_len_ogg__i0__streams0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ogg__i0__streams0; _j0++) {
+              ogg[_i0].streams->serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ogg_find_stream(ogg,serial);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ogg0; _aux++) {
+          free(ogg[_aux].streams);
+          }
+          free(ogg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int serial = 10;
+        
+          int _len_ogg0 = 100;
+          struct ogg * ogg = (struct ogg *) malloc(_len_ogg0*sizeof(struct ogg));
+          for(int _i0 = 0; _i0 < _len_ogg0; _i0++) {
+              ogg[_i0].nstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ogg__i0__streams0 = 1;
+          ogg[_i0].streams = (struct TYPE_2__ *) malloc(_len_ogg__i0__streams0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ogg__i0__streams0; _j0++) {
+              ogg[_i0].streams->serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ogg_find_stream(ogg,serial);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ogg0; _aux++) {
+          free(ogg[_aux].streams);
+          }
+          free(ogg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ogg0 = 1;
+          struct ogg * ogg = (struct ogg *) malloc(_len_ogg0*sizeof(struct ogg));
+          for(int _i0 = 0; _i0 < _len_ogg0; _i0++) {
+              ogg[_i0].nstreams = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ogg__i0__streams0 = 1;
+          ogg[_i0].streams = (struct TYPE_2__ *) malloc(_len_ogg__i0__streams0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ogg__i0__streams0; _j0++) {
+              ogg[_i0].streams->serial = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ogg_find_stream(ogg,serial);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ogg0; _aux++) {

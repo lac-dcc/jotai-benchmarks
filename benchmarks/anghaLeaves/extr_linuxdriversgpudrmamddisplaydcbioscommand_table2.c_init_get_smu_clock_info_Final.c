@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static void init_get_smu_clock_info(struct bios_parser *bp
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          int _len_bp0 = 65025;
           struct bios_parser * bp = (struct bios_parser *) malloc(_len_bp0*sizeof(struct bios_parser));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].cmd_tbl.get_smu_clock_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].cmd_tbl.get_smu_clock_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           init_get_smu_clock_info(bp);
           free(bp);
         
@@ -103,14 +101,32 @@ int main(int argc, char *argv[]) {
           int _len_bp0 = 100;
           struct bios_parser * bp = (struct bios_parser *) malloc(_len_bp0*sizeof(struct bios_parser));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].cmd_tbl.get_smu_clock_info = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].cmd_tbl.get_smu_clock_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           init_get_smu_clock_info(bp);
           free(bp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bp0 = 1;
+          struct bios_parser * bp = (struct bios_parser *) malloc(_len_bp0*sizeof(struct bios_parser));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].cmd_tbl.get_smu_clock_info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          init_get_smu_clock_info(bp);
+          free(bp);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void ccid2_update_used_window(struct ccid2_hc_tx_so
 	hc->tx_expected_wnd = (3 * hc->tx_expected_wnd + new_wnd) / 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int new_wnd = 100;
+        
           int _len_hc0 = 1;
           struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
           for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
-            hc[_i0].tx_expected_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+              hc[_i0].tx_expected_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ccid2_update_used_window(hc,new_wnd);
           free(hc);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int new_wnd = 255;
+        
+          int _len_hc0 = 65025;
+          struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
+          for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
+              hc[_i0].tx_expected_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ccid2_update_used_window(hc,new_wnd);
+          free(hc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int new_wnd = 10;
+        
           int _len_hc0 = 100;
           struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
           for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
-            hc[_i0].tx_expected_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+              hc[_i0].tx_expected_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          ccid2_update_used_window(hc,new_wnd);
+          free(hc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int new_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hc0 = 1;
+          struct ccid2_hc_tx_sock * hc = (struct ccid2_hc_tx_sock *) malloc(_len_hc0*sizeof(struct ccid2_hc_tx_sock));
+          for(int _i0 = 0; _i0 < _len_hc0; _i0++) {
+              hc[_i0].tx_expected_wnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           ccid2_update_used_window(hc,new_wnd);
           free(hc);
         

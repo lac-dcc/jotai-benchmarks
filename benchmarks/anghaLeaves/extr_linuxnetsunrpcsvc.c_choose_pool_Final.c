@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ choose_pool(struct svc_serv *serv, struct svc_pool *pool, unsigned int *state)
 	return &serv->sv_pools[(*state)++ % serv->sv_nrpools];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,29 +79,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_serv0 = 1;
+          int _len_serv0 = 65025;
           struct svc_serv * serv = (struct svc_serv *) malloc(_len_serv0*sizeof(struct svc_serv));
           for(int _i0 = 0; _i0 < _len_serv0; _i0++) {
-            serv[_i0].sv_nrpools = ((-2 * (next_i()%2)) + 1) * next_i();
+              serv[_i0].sv_nrpools = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_serv__i0__sv_pools0 = 1;
           serv[_i0].sv_pools = (struct svc_pool *) malloc(_len_serv__i0__sv_pools0*sizeof(struct svc_pool));
           for(int _j0 = 0; _j0 < _len_serv__i0__sv_pools0; _j0++) {
-            serv[_i0].sv_pools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              serv[_i0].sv_pools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_pool0 = 1;
+        
+          int _len_pool0 = 65025;
           struct svc_pool * pool = (struct svc_pool *) malloc(_len_pool0*sizeof(struct svc_pool));
           for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
-            pool[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pool[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_state0 = 1;
+        
+          int _len_state0 = 65025;
           unsigned int * state = (unsigned int *) malloc(_len_state0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
             state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           struct svc_pool * benchRet = choose_pool(serv,pool,state);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_serv0; _aux++) {
@@ -117,7 +119,86 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_serv0 = 100;
+          struct svc_serv * serv = (struct svc_serv *) malloc(_len_serv0*sizeof(struct svc_serv));
+          for(int _i0 = 0; _i0 < _len_serv0; _i0++) {
+              serv[_i0].sv_nrpools = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_serv__i0__sv_pools0 = 1;
+          serv[_i0].sv_pools = (struct svc_pool *) malloc(_len_serv__i0__sv_pools0*sizeof(struct svc_pool));
+          for(int _j0 = 0; _j0 < _len_serv__i0__sv_pools0; _j0++) {
+              serv[_i0].sv_pools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_pool0 = 100;
+          struct svc_pool * pool = (struct svc_pool *) malloc(_len_pool0*sizeof(struct svc_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_state0 = 100;
+          unsigned int * state = (unsigned int *) malloc(_len_state0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          struct svc_pool * benchRet = choose_pool(serv,pool,state);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_serv0; _aux++) {
+          free(serv[_aux].sv_pools);
+          }
+          free(serv);
+          free(pool);
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_serv0 = 1;
+          struct svc_serv * serv = (struct svc_serv *) malloc(_len_serv0*sizeof(struct svc_serv));
+          for(int _i0 = 0; _i0 < _len_serv0; _i0++) {
+              serv[_i0].sv_nrpools = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_serv__i0__sv_pools0 = 1;
+          serv[_i0].sv_pools = (struct svc_pool *) malloc(_len_serv__i0__sv_pools0*sizeof(struct svc_pool));
+          for(int _j0 = 0; _j0 < _len_serv__i0__sv_pools0; _j0++) {
+              serv[_i0].sv_pools->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_pool0 = 1;
+          struct svc_pool * pool = (struct svc_pool *) malloc(_len_pool0*sizeof(struct svc_pool));
+          for(int _i0 = 0; _i0 < _len_pool0; _i0++) {
+              pool[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_state0 = 1;
+          unsigned int * state = (unsigned int *) malloc(_len_state0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+            state[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          struct svc_pool * benchRet = choose_pool(serv,pool,state);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_serv0; _aux++) {
+          free(serv[_aux].sv_pools);
+          }
+          free(serv);
+          free(pool);
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

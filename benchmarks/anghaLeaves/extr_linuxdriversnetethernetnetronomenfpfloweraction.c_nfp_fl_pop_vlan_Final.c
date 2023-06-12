@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static void nfp_fl_pop_vlan(struct nfp_fl_pop_vlan *pop_vl
 	pop_vlan->reserved = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,16 +82,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_pop_vlan0 = 65025;
+          struct nfp_fl_pop_vlan * pop_vlan = (struct nfp_fl_pop_vlan *) malloc(_len_pop_vlan0*sizeof(struct nfp_fl_pop_vlan));
+          for(int _i0 = 0; _i0 < _len_pop_vlan0; _i0++) {
+              pop_vlan[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          pop_vlan[_i0].head.len_lw = ((-2 * (next_i()%2)) + 1) * next_i();
+          pop_vlan[_i0].head.jump_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nfp_fl_pop_vlan(pop_vlan);
+          free(pop_vlan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_pop_vlan0 = 100;
+          struct nfp_fl_pop_vlan * pop_vlan = (struct nfp_fl_pop_vlan *) malloc(_len_pop_vlan0*sizeof(struct nfp_fl_pop_vlan));
+          for(int _i0 = 0; _i0 < _len_pop_vlan0; _i0++) {
+              pop_vlan[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          pop_vlan[_i0].head.len_lw = ((-2 * (next_i()%2)) + 1) * next_i();
+          pop_vlan[_i0].head.jump_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          nfp_fl_pop_vlan(pop_vlan);
+          free(pop_vlan);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_pop_vlan0 = 1;
           struct nfp_fl_pop_vlan * pop_vlan = (struct nfp_fl_pop_vlan *) malloc(_len_pop_vlan0*sizeof(struct nfp_fl_pop_vlan));
           for(int _i0 = 0; _i0 < _len_pop_vlan0; _i0++) {
-            pop_vlan[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
-        pop_vlan[_i0].head.len_lw = ((-2 * (next_i()%2)) + 1) * next_i();
-        pop_vlan[_i0].head.jump_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              pop_vlan[_i0].reserved = ((-2 * (next_i()%2)) + 1) * next_i();
+          pop_vlan[_i0].head.len_lw = ((-2 * (next_i()%2)) + 1) * next_i();
+          pop_vlan[_i0].head.jump_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           nfp_fl_pop_vlan(pop_vlan);
           free(pop_vlan);
         

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -91,12 +94,6 @@ void ff_fetch_timestamp(AVCodecParserContext *s, int off, int remove, int fuzzy)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,27 +106,53 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int off = 100;
+        
           int remove = 100;
+        
           int fuzzy = 100;
+        
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__cur_frame_offset0 = 1;
           s[_i0].cur_frame_offset = (long *) malloc(_len_s__i0__cur_frame_offset0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_offset0; _j0++) {
             s[_i0].cur_frame_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__cur_frame_end0 = 1;
           s[_i0].cur_frame_end = (long *) malloc(_len_s__i0__cur_frame_end0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_end0; _j0++) {
@@ -150,7 +173,282 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pos0; _j0++) {
             s[_i0].cur_frame_pos[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          ff_fetch_timestamp(s,off,remove,fuzzy);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_offset);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_end);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_dts);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_pts);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_pos);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int off = 255;
+        
+          int remove = 255;
+        
+          int fuzzy = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__cur_frame_offset0 = 1;
+          s[_i0].cur_frame_offset = (long *) malloc(_len_s__i0__cur_frame_offset0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_offset0; _j0++) {
+            s[_i0].cur_frame_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__cur_frame_end0 = 1;
+          s[_i0].cur_frame_end = (long *) malloc(_len_s__i0__cur_frame_end0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_end0; _j0++) {
+            s[_i0].cur_frame_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_dts0 = 1;
+          s[_i0].cur_frame_dts = (long *) malloc(_len_s__i0__cur_frame_dts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_dts0; _j0++) {
+            s[_i0].cur_frame_dts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_pts0 = 1;
+          s[_i0].cur_frame_pts = (long *) malloc(_len_s__i0__cur_frame_pts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pts0; _j0++) {
+            s[_i0].cur_frame_pts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_pos0 = 1;
+          s[_i0].cur_frame_pos = (int *) malloc(_len_s__i0__cur_frame_pos0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pos0; _j0++) {
+            s[_i0].cur_frame_pos[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ff_fetch_timestamp(s,off,remove,fuzzy);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_offset);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_end);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_dts);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_pts);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_pos);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int off = 10;
+        
+          int remove = 10;
+        
+          int fuzzy = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__cur_frame_offset0 = 1;
+          s[_i0].cur_frame_offset = (long *) malloc(_len_s__i0__cur_frame_offset0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_offset0; _j0++) {
+            s[_i0].cur_frame_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__cur_frame_end0 = 1;
+          s[_i0].cur_frame_end = (long *) malloc(_len_s__i0__cur_frame_end0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_end0; _j0++) {
+            s[_i0].cur_frame_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_dts0 = 1;
+          s[_i0].cur_frame_dts = (long *) malloc(_len_s__i0__cur_frame_dts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_dts0; _j0++) {
+            s[_i0].cur_frame_dts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_pts0 = 1;
+          s[_i0].cur_frame_pts = (long *) malloc(_len_s__i0__cur_frame_pts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pts0; _j0++) {
+            s[_i0].cur_frame_pts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_pos0 = 1;
+          s[_i0].cur_frame_pos = (int *) malloc(_len_s__i0__cur_frame_pos0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pos0; _j0++) {
+            s[_i0].cur_frame_pos[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          ff_fetch_timestamp(s,off,remove,fuzzy);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_offset);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_end);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_dts);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_pts);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].cur_frame_pos);
+          }
+          free(s);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int remove = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int fuzzy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].dts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].cur_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__cur_frame_offset0 = 1;
+          s[_i0].cur_frame_offset = (long *) malloc(_len_s__i0__cur_frame_offset0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_offset0; _j0++) {
+            s[_i0].cur_frame_offset[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].next_frame_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__cur_frame_end0 = 1;
+          s[_i0].cur_frame_end = (long *) malloc(_len_s__i0__cur_frame_end0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_end0; _j0++) {
+            s[_i0].cur_frame_end[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_dts0 = 1;
+          s[_i0].cur_frame_dts = (long *) malloc(_len_s__i0__cur_frame_dts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_dts0; _j0++) {
+            s[_i0].cur_frame_dts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_pts0 = 1;
+          s[_i0].cur_frame_pts = (long *) malloc(_len_s__i0__cur_frame_pts0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pts0; _j0++) {
+            s[_i0].cur_frame_pts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__cur_frame_pos0 = 1;
+          s[_i0].cur_frame_pos = (int *) malloc(_len_s__i0__cur_frame_pos0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__cur_frame_pos0; _j0++) {
+            s[_i0].cur_frame_pos[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           ff_fetch_timestamp(s,off,remove,fuzzy);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].cur_frame_offset);

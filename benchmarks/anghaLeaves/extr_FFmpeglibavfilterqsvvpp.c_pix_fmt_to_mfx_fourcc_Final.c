@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ __attribute__((used)) static int pix_fmt_to_mfx_fourcc(int format)
     return MFX_FOURCC_NV12;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int format = 100;
+        
           int benchRet = pix_fmt_to_mfx_fourcc(format);
           printf("%d\n", benchRet); 
         
@@ -111,6 +107,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int format = 255;
+        
           int benchRet = pix_fmt_to_mfx_fourcc(format);
           printf("%d\n", benchRet); 
         
@@ -120,12 +117,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int format = 10;
+        
           int benchRet = pix_fmt_to_mfx_fourcc(format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pix_fmt_to_mfx_fourcc(format);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

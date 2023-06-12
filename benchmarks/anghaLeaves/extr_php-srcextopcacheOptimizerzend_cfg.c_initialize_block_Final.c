@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void initialize_block(zend_basic_block *block) {
 	block->next_child = -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,30 +84,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_block0 = 1;
+          int _len_block0 = 65025;
           struct TYPE_3__ * block = (struct TYPE_3__ *) malloc(_len_block0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_block0; _i0++) {
-            block[_i0].predecessor_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].idom = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].loop_header = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].next_child = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].predecessors_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].successors_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].successors_storage = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].successors = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              block[_i0].predecessor_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].idom = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].loop_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].next_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].predecessors_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors_storage = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           initialize_block(block);
           free(block);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_block0 = 100;
+          struct TYPE_3__ * block = (struct TYPE_3__ *) malloc(_len_block0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].predecessor_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].idom = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].loop_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].next_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].predecessors_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors_storage = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          initialize_block(block);
+          free(block);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_block0 = 1;
+          struct TYPE_3__ * block = (struct TYPE_3__ *) malloc(_len_block0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].predecessor_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].idom = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].loop_header = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].level = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].next_child = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].predecessors_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors_storage = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].successors = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          initialize_block(block);
+          free(block);
+        
+        break;
+    }
     default:
         usage();
         break;

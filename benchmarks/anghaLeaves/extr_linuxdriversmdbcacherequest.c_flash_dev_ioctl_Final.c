@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int flash_dev_ioctl(struct bcache_device *d, fmode_
 	return -ENOTTY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,13 +82,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           unsigned int cmd = 100;
+        
           unsigned long arg = 100;
+        
           int _len_d0 = 1;
           struct bcache_device * d = (struct bcache_device *) malloc(_len_d0*sizeof(struct bcache_device));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = flash_dev_ioctl(d,mode,cmd,arg);
+          printf("%d\n", benchRet); 
+          free(d);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int mode = 255;
+        
+          unsigned int cmd = 255;
+        
+          unsigned long arg = 255;
+        
+          int _len_d0 = 65025;
+          struct bcache_device * d = (struct bcache_device *) malloc(_len_d0*sizeof(struct bcache_device));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = flash_dev_ioctl(d,mode,cmd,arg);
           printf("%d\n", benchRet); 
           free(d);
@@ -100,23 +123,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int mode = 10;
+        
           unsigned int cmd = 10;
+        
           unsigned long arg = 10;
+        
           int _len_d0 = 100;
           struct bcache_device * d = (struct bcache_device *) malloc(_len_d0*sizeof(struct bcache_device));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
-            d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = flash_dev_ioctl(d,mode,cmd,arg);
           printf("%d\n", benchRet); 
           free(d);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_d0 = 1;
+          struct bcache_device * d = (struct bcache_device *) malloc(_len_d0*sizeof(struct bcache_device));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              d[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = flash_dev_ioctl(d,mode,cmd,arg);
+          printf("%d\n", benchRet); 
+          free(d);
+        
+        break;
+    }
     default:
         usage();
         break;

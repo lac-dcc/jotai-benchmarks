@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static char *edit_with_commas(DWORD x, BOOL pad)
     return s + i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,31 +87,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 163
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 82
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 82
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 82
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 82
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 81
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
           int x = 100;
+        
           long pad = 100;
+        
           char * benchRet = edit_with_commas(x,pad);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 163
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 82
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 82
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 82
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 82
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 81
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
           int x = 255;
+        
           long pad = 255;
+        
           char * benchRet = edit_with_commas(x,pad);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 149
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 62
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 62
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 62
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 62
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 61
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 97
+          // ------------------------------- 
+
           int x = 10;
+        
           long pad = 10;
+        
+          char * benchRet = edit_with_commas(x,pad);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 163
+          // ------------------------------- 
+          // static_instructions_O1 : 42
+          // dynamic_instructions_O1 : 82
+          // ------------------------------- 
+          // static_instructions_O2 : 42
+          // dynamic_instructions_O2 : 82
+          // ------------------------------- 
+          // static_instructions_O3 : 42
+          // dynamic_instructions_O3 : 82
+          // ------------------------------- 
+          // static_instructions_Ofast : 42
+          // dynamic_instructions_Ofast : 82
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 81
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 106
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long pad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           char * benchRet = edit_with_commas(x,pad);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         

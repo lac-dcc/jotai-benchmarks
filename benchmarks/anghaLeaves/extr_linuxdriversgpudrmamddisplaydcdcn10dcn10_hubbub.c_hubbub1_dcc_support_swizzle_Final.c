@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -131,12 +133,6 @@ __attribute__((used)) static bool hubbub1_dcc_support_swizzle(
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -149,21 +145,48 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum swizzle_mode_values swizzle = 0;
+        
           unsigned int bytes_per_element = 100;
+        
           int _len_segment_order_horz0 = 1;
           enum segment_order * segment_order_horz = (enum segment_order *) malloc(_len_segment_order_horz0*sizeof(enum segment_order));
           for(int _i0 = 0; _i0 < _len_segment_order_horz0; _i0++) {
             segment_order_horz[_i0] = 0;
           }
+        
           int _len_segment_order_vert0 = 1;
           enum segment_order * segment_order_vert = (enum segment_order *) malloc(_len_segment_order_vert0*sizeof(enum segment_order));
           for(int _i0 = 0; _i0 < _len_segment_order_vert0; _i0++) {
             segment_order_vert[_i0] = 0;
           }
+        
           int benchRet = hubbub1_dcc_support_swizzle(swizzle,bytes_per_element,segment_order_horz,segment_order_vert);
           printf("%d\n", benchRet); 
           free(segment_order_horz);
@@ -171,21 +194,149 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           enum swizzle_mode_values swizzle = 0;
+        
+          unsigned int bytes_per_element = 255;
+        
+          int _len_segment_order_horz0 = 65025;
+          enum segment_order * segment_order_horz = (enum segment_order *) malloc(_len_segment_order_horz0*sizeof(enum segment_order));
+          for(int _i0 = 0; _i0 < _len_segment_order_horz0; _i0++) {
+            segment_order_horz[_i0] = 0;
+          }
+        
+          int _len_segment_order_vert0 = 65025;
+          enum segment_order * segment_order_vert = (enum segment_order *) malloc(_len_segment_order_vert0*sizeof(enum segment_order));
+          for(int _i0 = 0; _i0 < _len_segment_order_vert0; _i0++) {
+            segment_order_vert[_i0] = 0;
+          }
+        
+          int benchRet = hubbub1_dcc_support_swizzle(swizzle,bytes_per_element,segment_order_horz,segment_order_vert);
+          printf("%d\n", benchRet); 
+          free(segment_order_horz);
+          free(segment_order_vert);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum swizzle_mode_values swizzle = 0;
+        
           unsigned int bytes_per_element = 10;
+        
           int _len_segment_order_horz0 = 100;
           enum segment_order * segment_order_horz = (enum segment_order *) malloc(_len_segment_order_horz0*sizeof(enum segment_order));
           for(int _i0 = 0; _i0 < _len_segment_order_horz0; _i0++) {
             segment_order_horz[_i0] = 0;
           }
+        
           int _len_segment_order_vert0 = 100;
           enum segment_order * segment_order_vert = (enum segment_order *) malloc(_len_segment_order_vert0*sizeof(enum segment_order));
           for(int _i0 = 0; _i0 < _len_segment_order_vert0; _i0++) {
             segment_order_vert[_i0] = 0;
           }
+        
+          int benchRet = hubbub1_dcc_support_swizzle(swizzle,bytes_per_element,segment_order_horz,segment_order_vert);
+          printf("%d\n", benchRet); 
+          free(segment_order_horz);
+          free(segment_order_vert);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          enum swizzle_mode_values swizzle = 0;
+        
+          unsigned int bytes_per_element = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_segment_order_horz0 = 1;
+          enum segment_order * segment_order_horz = (enum segment_order *) malloc(_len_segment_order_horz0*sizeof(enum segment_order));
+          for(int _i0 = 0; _i0 < _len_segment_order_horz0; _i0++) {
+            segment_order_horz[_i0] = 0;
+          }
+        
+          int _len_segment_order_vert0 = 1;
+          enum segment_order * segment_order_vert = (enum segment_order *) malloc(_len_segment_order_vert0*sizeof(enum segment_order));
+          for(int _i0 = 0; _i0 < _len_segment_order_vert0; _i0++) {
+            segment_order_vert[_i0] = 0;
+          }
+        
           int benchRet = hubbub1_dcc_support_swizzle(swizzle,bytes_per_element,segment_order_horz,segment_order_vert);
           printf("%d\n", benchRet); 
           free(segment_order_horz);

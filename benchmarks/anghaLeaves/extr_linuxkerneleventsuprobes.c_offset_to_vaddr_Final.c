@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static unsigned long offset_to_vaddr(struct vm_area_struct
 	return vma->vm_start + offset - ((loff_t)vma->vm_pgoff << PAGE_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +81,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long offset = 100;
+        
           int _len_vma0 = 1;
           struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
           for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
-            vma[_i0].vm_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        vma[_i0].vm_pgoff = ((-2 * (next_i()%2)) + 1) * next_i();
+              vma[_i0].vm_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_pgoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = offset_to_vaddr(vma,offset);
           printf("%lu\n", benchRet); 
           free(vma);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long offset = 255;
+        
+          int _len_vma0 = 65025;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_pgoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = offset_to_vaddr(vma,offset);
+          printf("%lu\n", benchRet); 
+          free(vma);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long offset = 10;
+        
+          int _len_vma0 = 100;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_pgoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = offset_to_vaddr(vma,offset);
+          printf("%lu\n", benchRet); 
+          free(vma);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vma0 = 1;
+          struct vm_area_struct * vma = (struct vm_area_struct *) malloc(_len_vma0*sizeof(struct vm_area_struct));
+          for(int _i0 = 0; _i0 < _len_vma0; _i0++) {
+              vma[_i0].vm_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          vma[_i0].vm_pgoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = offset_to_vaddr(vma,offset);
+          printf("%lu\n", benchRet); 
+          free(vma);
+        
+        break;
+    }
     default:
         usage();
         break;

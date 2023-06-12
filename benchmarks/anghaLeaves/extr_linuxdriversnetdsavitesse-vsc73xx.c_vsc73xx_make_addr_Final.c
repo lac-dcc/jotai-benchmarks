@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static u8 vsc73xx_make_addr(u8 mode, u8 block, u8 subblock
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,8 +89,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           int block = 100;
+        
           int subblock = 100;
+        
           int benchRet = vsc73xx_make_addr(mode,block,subblock);
           printf("%d\n", benchRet); 
         
@@ -105,8 +103,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mode = 255;
+        
           int block = 255;
+        
           int subblock = 255;
+        
           int benchRet = vsc73xx_make_addr(mode,block,subblock);
           printf("%d\n", benchRet); 
         
@@ -116,14 +117,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mode = 10;
+        
           int block = 10;
+        
           int subblock = 10;
+        
           int benchRet = vsc73xx_make_addr(mode,block,subblock);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int block = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int subblock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = vsc73xx_make_addr(mode,block,subblock);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

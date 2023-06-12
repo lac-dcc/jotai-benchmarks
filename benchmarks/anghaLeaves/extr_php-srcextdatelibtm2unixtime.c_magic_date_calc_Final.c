@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static void magic_date_calc(timelib_time *time)
 	time->d = dd;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,22 +99,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_time0 = 1;
+          int _len_time0 = 65025;
           struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_time0; _i0++) {
-            time[_i0].d = ((-2 * (next_i()%2)) + 1) * next_i();
-        time[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
-        time[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+              time[_i0].d = ((-2 * (next_i()%2)) + 1) * next_i();
+          time[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          time[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           magic_date_calc(time);
           free(time);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_time0 = 100;
+          struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_time0; _i0++) {
+              time[_i0].d = ((-2 * (next_i()%2)) + 1) * next_i();
+          time[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          time[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          magic_date_calc(time);
+          free(time);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_time0 = 1;
+          struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_time0; _i0++) {
+              time[_i0].d = ((-2 * (next_i()%2)) + 1) * next_i();
+          time[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+          time[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          magic_date_calc(time);
+          free(time);
+        
+        break;
+    }
     default:
         usage();
         break;

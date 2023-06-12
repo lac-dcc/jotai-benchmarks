@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -79,12 +81,6 @@ nes_fill_init_cqp_wqe(struct nes_hw_cqp_wqe *cqp_wqe, struct nes_device *nesdev)
 	cqp_wqe->wqe_words[NES_CQP_STAG_WQE_PA_HIGH_IDX]       = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,10 +93,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cqp_wqe0 = 1;
+          int _len_cqp_wqe0 = 65025;
           struct nes_hw_cqp_wqe * cqp_wqe = (struct nes_hw_cqp_wqe *) malloc(_len_cqp_wqe0*sizeof(struct nes_hw_cqp_wqe));
           for(int _i0 = 0; _i0 < _len_cqp_wqe0; _i0++) {
               int _len_cqp_wqe__i0__wqe_words0 = 1;
@@ -108,12 +104,16 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_cqp_wqe__i0__wqe_words0; _j0++) {
             cqp_wqe[_i0].wqe_words[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
-          int _len_nesdev0 = 1;
+        
+          int _len_nesdev0 = 65025;
           struct nes_device * nesdev = (struct nes_device *) malloc(_len_nesdev0*sizeof(struct nes_device));
           for(int _i0 = 0; _i0 < _len_nesdev0; _i0++) {
-            nesdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              nesdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nes_fill_init_cqp_wqe(cqp_wqe,nesdev);
           for(int _aux = 0; _aux < _len_cqp_wqe0; _aux++) {
           free(cqp_wqe[_aux].wqe_words);
@@ -123,7 +123,66 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_cqp_wqe0 = 100;
+          struct nes_hw_cqp_wqe * cqp_wqe = (struct nes_hw_cqp_wqe *) malloc(_len_cqp_wqe0*sizeof(struct nes_hw_cqp_wqe));
+          for(int _i0 = 0; _i0 < _len_cqp_wqe0; _i0++) {
+              int _len_cqp_wqe__i0__wqe_words0 = 1;
+          cqp_wqe[_i0].wqe_words = (long *) malloc(_len_cqp_wqe__i0__wqe_words0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_cqp_wqe__i0__wqe_words0; _j0++) {
+            cqp_wqe[_i0].wqe_words[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_nesdev0 = 100;
+          struct nes_device * nesdev = (struct nes_device *) malloc(_len_nesdev0*sizeof(struct nes_device));
+          for(int _i0 = 0; _i0 < _len_nesdev0; _i0++) {
+              nesdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nes_fill_init_cqp_wqe(cqp_wqe,nesdev);
+          for(int _aux = 0; _aux < _len_cqp_wqe0; _aux++) {
+          free(cqp_wqe[_aux].wqe_words);
+          }
+          free(cqp_wqe);
+          free(nesdev);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_cqp_wqe0 = 1;
+          struct nes_hw_cqp_wqe * cqp_wqe = (struct nes_hw_cqp_wqe *) malloc(_len_cqp_wqe0*sizeof(struct nes_hw_cqp_wqe));
+          for(int _i0 = 0; _i0 < _len_cqp_wqe0; _i0++) {
+              int _len_cqp_wqe__i0__wqe_words0 = 1;
+          cqp_wqe[_i0].wqe_words = (long *) malloc(_len_cqp_wqe__i0__wqe_words0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_cqp_wqe__i0__wqe_words0; _j0++) {
+            cqp_wqe[_i0].wqe_words[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_nesdev0 = 1;
+          struct nes_device * nesdev = (struct nes_device *) malloc(_len_nesdev0*sizeof(struct nes_device));
+          for(int _i0 = 0; _i0 < _len_nesdev0; _i0++) {
+              nesdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nes_fill_init_cqp_wqe(cqp_wqe,nesdev);
+          for(int _aux = 0; _aux < _len_cqp_wqe0; _aux++) {
+          free(cqp_wqe[_aux].wqe_words);
+          }
+          free(cqp_wqe);
+          free(nesdev);
+        
+        break;
+    }
     default:
         usage();
         break;

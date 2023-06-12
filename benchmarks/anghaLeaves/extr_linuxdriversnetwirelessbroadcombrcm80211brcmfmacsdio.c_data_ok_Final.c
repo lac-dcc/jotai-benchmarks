@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool data_ok(struct brcmf_sdio *bus)
 	       ((u8)(bus->tx_max - bus->tx_seq) & 0x80) == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_bus0 = 1;
+          int _len_bus0 = 65025;
           struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].tx_seq = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].tx_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].tx_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].tx_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = data_ok(bus);
           printf("%d\n", benchRet); 
           free(bus);
@@ -102,16 +99,34 @@ int main(int argc, char *argv[]) {
           int _len_bus0 = 100;
           struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
           for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
-            bus[_i0].tx_seq = ((-2 * (next_i()%2)) + 1) * next_i();
-        bus[_i0].tx_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              bus[_i0].tx_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].tx_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = data_ok(bus);
           printf("%d\n", benchRet); 
           free(bus);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_bus0 = 1;
+          struct brcmf_sdio * bus = (struct brcmf_sdio *) malloc(_len_bus0*sizeof(struct brcmf_sdio));
+          for(int _i0 = 0; _i0 < _len_bus0; _i0++) {
+              bus[_i0].tx_seq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bus[_i0].tx_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = data_ok(bus);
+          printf("%d\n", benchRet); 
+          free(bus);
+        
+        break;
+    }
     default:
         usage();
         break;

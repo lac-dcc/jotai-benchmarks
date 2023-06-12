@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void res_free(struct cx231xx_fh *fh)
 		dev->vbi_stream_on = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,147 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_fh0 = 1;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_fh0 = 65025;
           struct cx231xx_fh * fh = (struct cx231xx_fh *) malloc(_len_fh0*sizeof(struct cx231xx_fh));
           for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
-            fh[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fh__i0__dev0 = 1;
           fh[_i0].dev = (struct cx231xx *) malloc(_len_fh__i0__dev0*sizeof(struct cx231xx));
           for(int _j0 = 0; _j0 < _len_fh__i0__dev0; _j0++) {
-            fh[_i0].dev->vbi_stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
-        fh[_i0].dev->stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              fh[_i0].dev->vbi_stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].dev->stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          res_free(fh);
+          for(int _aux = 0; _aux < _len_fh0; _aux++) {
+          free(fh[_aux].dev);
+          }
+          free(fh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_fh0 = 100;
+          struct cx231xx_fh * fh = (struct cx231xx_fh *) malloc(_len_fh0*sizeof(struct cx231xx_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fh__i0__dev0 = 1;
+          fh[_i0].dev = (struct cx231xx *) malloc(_len_fh__i0__dev0*sizeof(struct cx231xx));
+          for(int _j0 = 0; _j0 < _len_fh__i0__dev0; _j0++) {
+              fh[_i0].dev->vbi_stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].dev->stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          res_free(fh);
+          for(int _aux = 0; _aux < _len_fh0; _aux++) {
+          free(fh[_aux].dev);
+          }
+          free(fh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_fh0 = 1;
+          struct cx231xx_fh * fh = (struct cx231xx_fh *) malloc(_len_fh0*sizeof(struct cx231xx_fh));
+          for(int _i0 = 0; _i0 < _len_fh0; _i0++) {
+              fh[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fh__i0__dev0 = 1;
+          fh[_i0].dev = (struct cx231xx *) malloc(_len_fh__i0__dev0*sizeof(struct cx231xx));
+          for(int _j0 = 0; _j0 < _len_fh__i0__dev0; _j0++) {
+              fh[_i0].dev->vbi_stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+          fh[_i0].dev->stream_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           res_free(fh);
           for(int _aux = 0; _aux < _len_fh0; _aux++) {
           free(fh[_aux].dev);

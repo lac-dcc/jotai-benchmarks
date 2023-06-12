@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void labpc_set_ai_convert_period(struct comedi_cmd 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +89,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           enum scan_mode mode = 0;
+        
           unsigned int ns = 100;
+        
           int _len_cmd0 = 1;
           struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          labpc_set_ai_convert_period(cmd,mode,ns);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum scan_mode mode = 0;
+        
+          unsigned int ns = 255;
+        
+          int _len_cmd0 = 65025;
+          struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          labpc_set_ai_convert_period(cmd,mode,ns);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum scan_mode mode = 0;
+        
+          unsigned int ns = 10;
+        
+          int _len_cmd0 = 100;
+          struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          labpc_set_ai_convert_period(cmd,mode,ns);
+          free(cmd);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          enum scan_mode mode = 0;
+        
+          unsigned int ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cmd0 = 1;
+          struct comedi_cmd * cmd = (struct comedi_cmd *) malloc(_len_cmd0*sizeof(struct comedi_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].convert_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_src = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].scan_begin_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].convert_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           labpc_set_ai_convert_period(cmd,mode,ns);
           free(cmd);
         

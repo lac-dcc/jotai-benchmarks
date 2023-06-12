@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ get_load_flags(int hinting, int hintstyle, int base) {
     return flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,8 +86,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hinting = 100;
+        
           int hintstyle = 100;
+        
           int base = 100;
+        
           int benchRet = get_load_flags(hinting,hintstyle,base);
           printf("%d\n", benchRet); 
         
@@ -102,8 +100,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int hinting = 255;
+        
           int hintstyle = 255;
+        
           int base = 255;
+        
           int benchRet = get_load_flags(hinting,hintstyle,base);
           printf("%d\n", benchRet); 
         
@@ -113,14 +114,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int hinting = 10;
+        
           int hintstyle = 10;
+        
           int base = 10;
+        
           int benchRet = get_load_flags(hinting,hintstyle,base);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hinting = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int hintstyle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_load_flags(hinting,hintstyle,base);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

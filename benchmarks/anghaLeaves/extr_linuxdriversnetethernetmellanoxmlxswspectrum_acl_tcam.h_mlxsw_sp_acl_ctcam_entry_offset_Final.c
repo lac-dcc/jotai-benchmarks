@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ mlxsw_sp_acl_ctcam_entry_offset(struct mlxsw_sp_acl_ctcam_entry *centry)
 	return centry->parman_item.index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_centry0 = 1;
+          int _len_centry0 = 65025;
           struct mlxsw_sp_acl_ctcam_entry * centry = (struct mlxsw_sp_acl_ctcam_entry *) malloc(_len_centry0*sizeof(struct mlxsw_sp_acl_ctcam_entry));
           for(int _i0 = 0; _i0 < _len_centry0; _i0++) {
-            centry[_i0].parman_item.index = ((-2 * (next_i()%2)) + 1) * next_i();
+              centry[_i0].parman_item.index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = mlxsw_sp_acl_ctcam_entry_offset(centry);
           printf("%u\n", benchRet); 
           free(centry);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_centry0 = 100;
           struct mlxsw_sp_acl_ctcam_entry * centry = (struct mlxsw_sp_acl_ctcam_entry *) malloc(_len_centry0*sizeof(struct mlxsw_sp_acl_ctcam_entry));
           for(int _i0 = 0; _i0 < _len_centry0; _i0++) {
-            centry[_i0].parman_item.index = ((-2 * (next_i()%2)) + 1) * next_i();
+              centry[_i0].parman_item.index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           unsigned int benchRet = mlxsw_sp_acl_ctcam_entry_offset(centry);
           printf("%u\n", benchRet); 
           free(centry);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_centry0 = 1;
+          struct mlxsw_sp_acl_ctcam_entry * centry = (struct mlxsw_sp_acl_ctcam_entry *) malloc(_len_centry0*sizeof(struct mlxsw_sp_acl_ctcam_entry));
+          for(int _i0 = 0; _i0 < _len_centry0; _i0++) {
+              centry[_i0].parman_item.index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          unsigned int benchRet = mlxsw_sp_acl_ctcam_entry_offset(centry);
+          printf("%u\n", benchRet); 
+          free(centry);
+        
+        break;
+    }
     default:
         usage();
         break;

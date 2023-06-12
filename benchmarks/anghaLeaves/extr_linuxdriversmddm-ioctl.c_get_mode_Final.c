@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline fmode_t get_mode(struct dm_ioctl *param)
 	return mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,14 +83,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_param0 = 1;
+          int _len_param0 = 65025;
           struct dm_ioctl * param = (struct dm_ioctl *) malloc(_len_param0*sizeof(struct dm_ioctl));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_mode(param);
           printf("%d\n", benchRet); 
           free(param);
@@ -108,15 +105,32 @@ int main(int argc, char *argv[]) {
           int _len_param0 = 100;
           struct dm_ioctl * param = (struct dm_ioctl *) malloc(_len_param0*sizeof(struct dm_ioctl));
           for(int _i0 = 0; _i0 < _len_param0; _i0++) {
-            param[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              param[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_mode(param);
           printf("%d\n", benchRet); 
           free(param);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_param0 = 1;
+          struct dm_ioctl * param = (struct dm_ioctl *) malloc(_len_param0*sizeof(struct dm_ioctl));
+          for(int _i0 = 0; _i0 < _len_param0; _i0++) {
+              param[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_mode(param);
+          printf("%d\n", benchRet); 
+          free(param);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ unsigned int snd_pcm_rate_bit_to_rate(unsigned int rate_bit)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,6 +86,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rate_bit = 100;
+        
           unsigned int benchRet = snd_pcm_rate_bit_to_rate(rate_bit);
           printf("%u\n", benchRet); 
         
@@ -100,6 +96,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int rate_bit = 255;
+        
           unsigned int benchRet = snd_pcm_rate_bit_to_rate(rate_bit);
           printf("%u\n", benchRet); 
         
@@ -109,12 +106,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int rate_bit = 10;
+        
           unsigned int benchRet = snd_pcm_rate_bit_to_rate(rate_bit);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int rate_bit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = snd_pcm_rate_bit_to_rate(rate_bit);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

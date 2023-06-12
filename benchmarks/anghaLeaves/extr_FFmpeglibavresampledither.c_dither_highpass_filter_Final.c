@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void dither_highpass_filter(float *src, int len)
         src[i] = (-src[i] + 2 * src[i + 1] - src[i + 2]) * SQRT_1_6;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,54 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int len = 10;
-          int _len_src0 = 100;
+          int len = 255;
+        
+          int _len_src0 = 65025;
           float * src = (float *) malloc(_len_src0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           dither_highpass_filter(src,len);
           free(src);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int len = 10;
+        
+          int _len_src0 = 100;
+          float * src = (float *) malloc(_len_src0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          dither_highpass_filter(src,len);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_src0 = 1;
+          float * src = (float *) malloc(_len_src0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          dither_highpass_filter(src,len);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

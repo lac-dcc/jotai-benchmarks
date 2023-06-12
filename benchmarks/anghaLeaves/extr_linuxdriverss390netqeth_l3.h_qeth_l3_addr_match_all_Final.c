@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static inline bool qeth_l3_addr_match_all(struct qeth_ipad
 	return a1->u.a4.mask == a2->u.a4.mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,25 +98,35 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_a10 = 1;
+          int _len_a10 = 65025;
           struct qeth_ipaddr * a1 = (struct qeth_ipaddr *) malloc(_len_a10*sizeof(struct qeth_ipaddr));
           for(int _i0 = 0; _i0 < _len_a10; _i0++) {
-            a1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        a1[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
-        a1[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        a1[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              a1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a1[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          a1[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a1[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
-          int _len_a20 = 1;
+        
+          int _len_a20 = 65025;
           struct qeth_ipaddr * a2 = (struct qeth_ipaddr *) malloc(_len_a20*sizeof(struct qeth_ipaddr));
           for(int _i0 = 0; _i0 < _len_a20; _i0++) {
-            a2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        a2[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
-        a2[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        a2[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              a2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a2[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          a2[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a2[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = qeth_l3_addr_match_all(a1,a2);
           printf("%d\n", benchRet); 
           free(a1);
@@ -128,7 +134,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_a10 = 100;
+          struct qeth_ipaddr * a1 = (struct qeth_ipaddr *) malloc(_len_a10*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_a10; _i0++) {
+              a1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a1[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          a1[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a1[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_a20 = 100;
+          struct qeth_ipaddr * a2 = (struct qeth_ipaddr *) malloc(_len_a20*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_a20; _i0++) {
+              a2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a2[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          a2[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a2[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = qeth_l3_addr_match_all(a1,a2);
+          printf("%d\n", benchRet); 
+          free(a1);
+          free(a2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_a10 = 1;
+          struct qeth_ipaddr * a1 = (struct qeth_ipaddr *) malloc(_len_a10*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_a10; _i0++) {
+              a1[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a1[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          a1[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a1[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_a20 = 1;
+          struct qeth_ipaddr * a2 = (struct qeth_ipaddr *) malloc(_len_a20*sizeof(struct qeth_ipaddr));
+          for(int _i0 = 0; _i0 < _len_a20; _i0++) {
+              a2[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a2[_i0].proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          a2[_i0].u.a4.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          a2[_i0].u.a6.pfxlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = qeth_l3_addr_match_all(a1,a2);
+          printf("%d\n", benchRet); 
+          free(a1);
+          free(a2);
+        
+        break;
+    }
     default:
         usage();
         break;

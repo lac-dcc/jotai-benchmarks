@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -68,7 +68,6 @@ void add_child(struct node *parent, struct node *child)
 
 	*p = child;
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -140,7 +139,6 @@ void _delete_child(struct node *aux_child[], int aux_child_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -153,20 +151,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct node * aux_parent[1];
           struct node * parent = _allocate_parent(1, aux_parent);
+        
           struct node * aux_child[1];
           struct node * child = _allocate_child(1, aux_child);
+        
           add_child(parent,child);
           _delete_parent(aux_parent, 1);
           _delete_child(aux_child, 1);
         
         break;
     }
-
     default:
         usage();
         break;

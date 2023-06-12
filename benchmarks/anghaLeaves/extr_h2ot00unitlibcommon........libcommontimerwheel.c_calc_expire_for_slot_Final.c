@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +88,6 @@ __attribute__((used)) static void calc_expire_for_slot(size_t num_wheels, uint64
 #undef SPAN
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,26 +104,118 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long num_wheels = 100;
+        
           unsigned long last_run = 100;
+        
           unsigned long wheel = 100;
+        
           unsigned long slot = 100;
+        
           int _len_at_min0 = 1;
           unsigned long * at_min = (unsigned long *) malloc(_len_at_min0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_at_min0; _i0++) {
             at_min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_at_max0 = 1;
           unsigned long * at_max = (unsigned long *) malloc(_len_at_max0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_at_max0; _i0++) {
             at_max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           calc_expire_for_slot(num_wheels,last_run,wheel,slot,at_min,at_max);
           free(at_min);
           free(at_max);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long num_wheels = 255;
+        
+          unsigned long last_run = 255;
+        
+          unsigned long wheel = 255;
+        
+          unsigned long slot = 255;
+        
+          int _len_at_min0 = 65025;
+          unsigned long * at_min = (unsigned long *) malloc(_len_at_min0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_at_min0; _i0++) {
+            at_min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_at_max0 = 65025;
+          unsigned long * at_max = (unsigned long *) malloc(_len_at_max0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_at_max0; _i0++) {
+            at_max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_expire_for_slot(num_wheels,last_run,wheel,slot,at_min,at_max);
+          free(at_min);
+          free(at_max);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long num_wheels = 10;
+        
+          unsigned long last_run = 10;
+        
+          unsigned long wheel = 10;
+        
+          unsigned long slot = 10;
+        
+          int _len_at_min0 = 100;
+          unsigned long * at_min = (unsigned long *) malloc(_len_at_min0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_at_min0; _i0++) {
+            at_min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_at_max0 = 100;
+          unsigned long * at_max = (unsigned long *) malloc(_len_at_max0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_at_max0; _i0++) {
+            at_max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_expire_for_slot(num_wheels,last_run,wheel,slot,at_min,at_max);
+          free(at_min);
+          free(at_max);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long num_wheels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long last_run = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long wheel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long slot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_at_min0 = 1;
+          unsigned long * at_min = (unsigned long *) malloc(_len_at_min0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_at_min0; _i0++) {
+            at_min[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_at_max0 = 1;
+          unsigned long * at_max = (unsigned long *) malloc(_len_at_max0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_at_max0; _i0++) {
+            at_max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_expire_for_slot(num_wheels,last_run,wheel,slot,at_min,at_max);
+          free(at_min);
+          free(at_max);
+        
+        break;
+    }
     default:
         usage();
         break;

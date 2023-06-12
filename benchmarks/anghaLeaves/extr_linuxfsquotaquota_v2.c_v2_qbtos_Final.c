@@ -63,12 +63,6 @@ __attribute__((used)) static inline qsize_t v2_qbtos(qsize_t blocks)
 	return blocks << QUOTABLOCK_BITS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blocks = 100;
+        
           int benchRet = v2_qbtos(blocks);
           printf("%d\n", benchRet); 
         
@@ -94,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int blocks = 255;
+        
           int benchRet = v2_qbtos(blocks);
           printf("%d\n", benchRet); 
         
@@ -103,12 +99,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int blocks = 10;
+        
           int benchRet = v2_qbtos(blocks);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

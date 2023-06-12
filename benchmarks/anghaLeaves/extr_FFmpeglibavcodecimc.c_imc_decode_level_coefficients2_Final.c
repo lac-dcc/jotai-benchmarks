@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void imc_decode_level_coefficients2(IMCContext *q, 
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,34 +91,39 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          int _len_q0 = 65025;
           int * q = (int *) malloc(_len_q0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
             q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_levlCoeffBuf0 = 1;
+        
+          int _len_levlCoeffBuf0 = 65025;
           int * levlCoeffBuf = (int *) malloc(_len_levlCoeffBuf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_levlCoeffBuf0; _i0++) {
             levlCoeffBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_old_floor0 = 1;
+        
+          int _len_old_floor0 = 65025;
           float * old_floor = (float *) malloc(_len_old_floor0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_old_floor0; _i0++) {
             old_floor[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-          int _len_flcoeffs10 = 1;
+        
+          int _len_flcoeffs10 = 65025;
           float * flcoeffs1 = (float *) malloc(_len_flcoeffs10*sizeof(float));
           for(int _i0 = 0; _i0 < _len_flcoeffs10; _i0++) {
             flcoeffs1[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
-          int _len_flcoeffs20 = 1;
+        
+          int _len_flcoeffs20 = 65025;
           float * flcoeffs2 = (float *) malloc(_len_flcoeffs20*sizeof(float));
           for(int _i0 = 0; _i0 < _len_flcoeffs20; _i0++) {
             flcoeffs2[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           imc_decode_level_coefficients2(q,levlCoeffBuf,old_floor,flcoeffs1,flcoeffs2);
           free(q);
           free(levlCoeffBuf);
@@ -132,7 +133,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_q0 = 100;
+          int * q = (int *) malloc(_len_q0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+            q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_levlCoeffBuf0 = 100;
+          int * levlCoeffBuf = (int *) malloc(_len_levlCoeffBuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_levlCoeffBuf0; _i0++) {
+            levlCoeffBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_old_floor0 = 100;
+          float * old_floor = (float *) malloc(_len_old_floor0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_old_floor0; _i0++) {
+            old_floor[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_flcoeffs10 = 100;
+          float * flcoeffs1 = (float *) malloc(_len_flcoeffs10*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_flcoeffs10; _i0++) {
+            flcoeffs1[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_flcoeffs20 = 100;
+          float * flcoeffs2 = (float *) malloc(_len_flcoeffs20*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_flcoeffs20; _i0++) {
+            flcoeffs2[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          imc_decode_level_coefficients2(q,levlCoeffBuf,old_floor,flcoeffs1,flcoeffs2);
+          free(q);
+          free(levlCoeffBuf);
+          free(old_floor);
+          free(flcoeffs1);
+          free(flcoeffs2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_q0 = 1;
+          int * q = (int *) malloc(_len_q0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+            q[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_levlCoeffBuf0 = 1;
+          int * levlCoeffBuf = (int *) malloc(_len_levlCoeffBuf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_levlCoeffBuf0; _i0++) {
+            levlCoeffBuf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_old_floor0 = 1;
+          float * old_floor = (float *) malloc(_len_old_floor0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_old_floor0; _i0++) {
+            old_floor[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_flcoeffs10 = 1;
+          float * flcoeffs1 = (float *) malloc(_len_flcoeffs10*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_flcoeffs10; _i0++) {
+            flcoeffs1[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_flcoeffs20 = 1;
+          float * flcoeffs2 = (float *) malloc(_len_flcoeffs20*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_flcoeffs20; _i0++) {
+            flcoeffs2[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          imc_decode_level_coefficients2(q,levlCoeffBuf,old_floor,flcoeffs1,flcoeffs2);
+          free(q);
+          free(levlCoeffBuf);
+          free(old_floor);
+          free(flcoeffs1);
+          free(flcoeffs2);
+        
+        break;
+    }
     default:
         usage();
         break;

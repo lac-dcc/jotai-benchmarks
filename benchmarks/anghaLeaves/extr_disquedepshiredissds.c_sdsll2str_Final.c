@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ int sdsll2str(char *s, long long value) {
     return l;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,22 +98,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          long long value = 10;
-          int _len_s0 = 100;
+          long long value = 255;
+        
+          int _len_s0 = 65025;
           char * s = (char *) malloc(_len_s0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
             s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = sdsll2str(s,value);
           printf("%d\n", benchRet); 
           free(s);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          long long value = 10;
+        
+          int _len_s0 = 100;
+          char * s = (char *) malloc(_len_s0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+            s[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = sdsll2str(s,value);
+          printf("%d\n", benchRet); 
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

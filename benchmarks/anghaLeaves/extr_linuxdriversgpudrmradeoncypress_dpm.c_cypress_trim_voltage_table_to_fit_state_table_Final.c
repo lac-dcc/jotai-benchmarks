@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void cypress_trim_voltage_table_to_fit_state_table(
 	voltage_table->count = MAX_NO_VREG_STEPS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +87,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rdev0 = 1;
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rdev0 = 65025;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_voltage_table0 = 1;
+        
+          int _len_voltage_table0 = 65025;
           struct atom_voltage_table * voltage_table = (struct atom_voltage_table *) malloc(_len_voltage_table0*sizeof(struct atom_voltage_table));
           for(int _i0 = 0; _i0 < _len_voltage_table0; _i0++) {
-            voltage_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              voltage_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_voltage_table__i0__entries0 = 1;
           voltage_table[_i0].entries = (int *) malloc(_len_voltage_table__i0__entries0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_voltage_table__i0__entries0; _j0++) {
             voltage_table[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          cypress_trim_voltage_table_to_fit_state_table(rdev,voltage_table);
+          free(rdev);
+          for(int _aux = 0; _aux < _len_voltage_table0; _aux++) {
+          free(voltage_table[_aux].entries);
+          }
+          free(voltage_table);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_voltage_table0 = 100;
+          struct atom_voltage_table * voltage_table = (struct atom_voltage_table *) malloc(_len_voltage_table0*sizeof(struct atom_voltage_table));
+          for(int _i0 = 0; _i0 < _len_voltage_table0; _i0++) {
+              voltage_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_voltage_table__i0__entries0 = 1;
+          voltage_table[_i0].entries = (int *) malloc(_len_voltage_table__i0__entries0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_voltage_table__i0__entries0; _j0++) {
+            voltage_table[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          cypress_trim_voltage_table_to_fit_state_table(rdev,voltage_table);
+          free(rdev);
+          for(int _aux = 0; _aux < _len_voltage_table0; _aux++) {
+          free(voltage_table[_aux].entries);
+          }
+          free(voltage_table);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_voltage_table0 = 1;
+          struct atom_voltage_table * voltage_table = (struct atom_voltage_table *) malloc(_len_voltage_table0*sizeof(struct atom_voltage_table));
+          for(int _i0 = 0; _i0 < _len_voltage_table0; _i0++) {
+              voltage_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_voltage_table__i0__entries0 = 1;
+          voltage_table[_i0].entries = (int *) malloc(_len_voltage_table__i0__entries0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_voltage_table__i0__entries0; _j0++) {
+            voltage_table[_i0].entries[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           cypress_trim_voltage_table_to_fit_state_table(rdev,voltage_table);
           free(rdev);
           for(int _aux = 0; _aux < _len_voltage_table0; _aux++) {

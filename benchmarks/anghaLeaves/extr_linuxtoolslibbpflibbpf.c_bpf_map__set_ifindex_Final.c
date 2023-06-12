@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void bpf_map__set_ifindex(struct bpf_map *map, __u32 ifindex)
 	map->map_ifindex = ifindex;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int ifindex = 100;
+        
           int _len_map0 = 1;
           struct bpf_map * map = (struct bpf_map *) malloc(_len_map0*sizeof(struct bpf_map));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].map_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].map_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bpf_map__set_ifindex(map,ifindex);
           free(map);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int ifindex = 255;
+        
+          int _len_map0 = 65025;
+          struct bpf_map * map = (struct bpf_map *) malloc(_len_map0*sizeof(struct bpf_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].map_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bpf_map__set_ifindex(map,ifindex);
+          free(map);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int ifindex = 10;
+        
           int _len_map0 = 100;
           struct bpf_map * map = (struct bpf_map *) malloc(_len_map0*sizeof(struct bpf_map));
           for(int _i0 = 0; _i0 < _len_map0; _i0++) {
-            map[_i0].map_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+              map[_i0].map_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bpf_map__set_ifindex(map,ifindex);
+          free(map);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_map0 = 1;
+          struct bpf_map * map = (struct bpf_map *) malloc(_len_map0*sizeof(struct bpf_map));
+          for(int _i0 = 0; _i0 < _len_map0; _i0++) {
+              map[_i0].map_ifindex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bpf_map__set_ifindex(map,ifindex);
           free(map);
         

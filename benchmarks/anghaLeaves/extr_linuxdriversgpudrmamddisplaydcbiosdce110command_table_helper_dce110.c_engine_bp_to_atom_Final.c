@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -118,12 +119,6 @@ __attribute__((used)) static bool engine_bp_to_atom(enum engine_id id, uint32_t 
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -136,15 +131,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum engine_id id = 0;
-          int _len_atom_engine_id0 = 1;
+        
+          int _len_atom_engine_id0 = 65025;
           int * atom_engine_id = (int *) malloc(_len_atom_engine_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_atom_engine_id0; _i0++) {
             atom_engine_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = engine_bp_to_atom(id,atom_engine_id);
           printf("%d\n", benchRet); 
           free(atom_engine_id);
@@ -155,18 +152,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum engine_id id = 0;
+        
           int _len_atom_engine_id0 = 100;
           int * atom_engine_id = (int *) malloc(_len_atom_engine_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_atom_engine_id0; _i0++) {
             atom_engine_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = engine_bp_to_atom(id,atom_engine_id);
           printf("%d\n", benchRet); 
           free(atom_engine_id);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum engine_id id = 0;
+        
+          int _len_atom_engine_id0 = 1;
+          int * atom_engine_id = (int *) malloc(_len_atom_engine_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_atom_engine_id0; _i0++) {
+            atom_engine_id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = engine_bp_to_atom(id,atom_engine_id);
+          printf("%d\n", benchRet); 
+          free(atom_engine_id);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ alone_decoder_memconfig(lzma_coder *coder, uint64_t *memusage,
 	return LZMA_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,22 +97,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long new_memlimit = 100;
+        
           int _len_coder0 = 1;
           struct TYPE_3__ * coder = (struct TYPE_3__ *) malloc(_len_coder0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_coder0; _i0++) {
-            coder[_i0].memusage = ((-2 * (next_i()%2)) + 1) * next_i();
-        coder[_i0].memlimit = ((-2 * (next_i()%2)) + 1) * next_i();
+              coder[_i0].memusage = ((-2 * (next_i()%2)) + 1) * next_i();
+          coder[_i0].memlimit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_memusage0 = 1;
           long * memusage = (long *) malloc(_len_memusage0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_memusage0; _i0++) {
             memusage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_old_memlimit0 = 1;
           long * old_memlimit = (long *) malloc(_len_old_memlimit0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_old_memlimit0; _i0++) {
             old_memlimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = alone_decoder_memconfig(coder,memusage,old_memlimit,new_memlimit);
           printf("%d\n", benchRet); 
           free(coder);
@@ -124,7 +126,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long new_memlimit = 255;
+        
+          int _len_coder0 = 65025;
+          struct TYPE_3__ * coder = (struct TYPE_3__ *) malloc(_len_coder0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_coder0; _i0++) {
+              coder[_i0].memusage = ((-2 * (next_i()%2)) + 1) * next_i();
+          coder[_i0].memlimit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_memusage0 = 65025;
+          long * memusage = (long *) malloc(_len_memusage0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_memusage0; _i0++) {
+            memusage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_old_memlimit0 = 65025;
+          long * old_memlimit = (long *) malloc(_len_old_memlimit0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_old_memlimit0; _i0++) {
+            old_memlimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = alone_decoder_memconfig(coder,memusage,old_memlimit,new_memlimit);
+          printf("%d\n", benchRet); 
+          free(coder);
+          free(memusage);
+          free(old_memlimit);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long new_memlimit = 10;
+        
+          int _len_coder0 = 100;
+          struct TYPE_3__ * coder = (struct TYPE_3__ *) malloc(_len_coder0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_coder0; _i0++) {
+              coder[_i0].memusage = ((-2 * (next_i()%2)) + 1) * next_i();
+          coder[_i0].memlimit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_memusage0 = 100;
+          long * memusage = (long *) malloc(_len_memusage0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_memusage0; _i0++) {
+            memusage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_old_memlimit0 = 100;
+          long * old_memlimit = (long *) malloc(_len_old_memlimit0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_old_memlimit0; _i0++) {
+            old_memlimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = alone_decoder_memconfig(coder,memusage,old_memlimit,new_memlimit);
+          printf("%d\n", benchRet); 
+          free(coder);
+          free(memusage);
+          free(old_memlimit);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long new_memlimit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_coder0 = 1;
+          struct TYPE_3__ * coder = (struct TYPE_3__ *) malloc(_len_coder0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_coder0; _i0++) {
+              coder[_i0].memusage = ((-2 * (next_i()%2)) + 1) * next_i();
+          coder[_i0].memlimit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_memusage0 = 1;
+          long * memusage = (long *) malloc(_len_memusage0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_memusage0; _i0++) {
+            memusage[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_old_memlimit0 = 1;
+          long * old_memlimit = (long *) malloc(_len_old_memlimit0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_old_memlimit0; _i0++) {
+            old_memlimit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = alone_decoder_memconfig(coder,memusage,old_memlimit,new_memlimit);
+          printf("%d\n", benchRet); 
+          free(coder);
+          free(memusage);
+          free(old_memlimit);
+        
+        break;
+    }
     default:
         usage();
         break;

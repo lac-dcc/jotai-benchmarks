@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline u64 btrfs_sb_offset(int mirror)
 	return BTRFS_SUPER_INFO_OFFSET;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mirror = 100;
+        
           int benchRet = btrfs_sb_offset(mirror);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mirror = 255;
+        
           int benchRet = btrfs_sb_offset(mirror);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mirror = 10;
+        
           int benchRet = btrfs_sb_offset(mirror);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mirror = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = btrfs_sb_offset(mirror);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

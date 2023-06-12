@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ ch_checkrange(scsi_changer *ch, unsigned int type, unsigned int unit)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int type = 100;
+        
           unsigned int unit = 100;
+        
           int _len_ch0 = 1;
           struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
@@ -97,7 +96,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
             ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = ch_checkrange(ch,type,unit);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ch0; _aux++) {
@@ -107,7 +108,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int type = 255;
+        
+          unsigned int unit = 255;
+        
+          int _len_ch0 = 65025;
+          struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              int _len_ch__i0__counts0 = 1;
+          ch[_i0].counts = (unsigned int *) malloc(_len_ch__i0__counts0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
+            ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ch_checkrange(ch,type,unit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].counts);
+          }
+          free(ch);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int type = 10;
+        
+          unsigned int unit = 10;
+        
+          int _len_ch0 = 100;
+          struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              int _len_ch__i0__counts0 = 1;
+          ch[_i0].counts = (unsigned int *) malloc(_len_ch__i0__counts0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
+            ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ch_checkrange(ch,type,unit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].counts);
+          }
+          free(ch);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int unit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ch0 = 1;
+          struct TYPE_3__ * ch = (struct TYPE_3__ *) malloc(_len_ch0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              int _len_ch__i0__counts0 = 1;
+          ch[_i0].counts = (unsigned int *) malloc(_len_ch__i0__counts0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_ch__i0__counts0; _j0++) {
+            ch[_i0].counts[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = ch_checkrange(ch,type,unit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ch0; _aux++) {
+          free(ch[_aux].counts);
+          }
+          free(ch);
+        
+        break;
+    }
     default:
         usage();
         break;

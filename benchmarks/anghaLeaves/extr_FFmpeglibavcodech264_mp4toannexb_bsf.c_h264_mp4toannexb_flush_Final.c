@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void h264_mp4toannexb_flush(AVBSFContext *ctx)
     s->new_idr      = s->extradata_parsed;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,21 +83,24 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ctx0 = 1;
+          int _len_ctx0 = 65025;
           struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
               int _len_ctx__i0__priv_data0 = 1;
           ctx[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_ctx__i0__priv_data0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ctx__i0__priv_data0; _j0++) {
-            ctx[_i0].priv_data->extradata_parsed = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].priv_data->new_idr = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].priv_data->idr_pps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
-        ctx[_i0].priv_data->idr_sps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].priv_data->extradata_parsed = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->new_idr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->idr_pps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->idr_sps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           h264_mp4toannexb_flush(ctx);
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
           free(ctx[_aux].priv_data);
@@ -110,7 +109,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ctx0 = 100;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__priv_data0 = 1;
+          ctx[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_ctx__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__priv_data0; _j0++) {
+              ctx[_i0].priv_data->extradata_parsed = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->new_idr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->idr_pps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->idr_sps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          h264_mp4toannexb_flush(ctx);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].priv_data);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ctx0 = 1;
+          struct TYPE_5__ * ctx = (struct TYPE_5__ *) malloc(_len_ctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__priv_data0 = 1;
+          ctx[_i0].priv_data = (struct TYPE_4__ *) malloc(_len_ctx__i0__priv_data0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__priv_data0; _j0++) {
+              ctx[_i0].priv_data->extradata_parsed = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->new_idr = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->idr_pps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+          ctx[_i0].priv_data->idr_sps_seen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          h264_mp4toannexb_flush(ctx);
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].priv_data);
+          }
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

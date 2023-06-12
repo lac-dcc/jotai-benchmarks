@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ int xdl_num_out(char *out, long val) {
 	return str - out;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,15 +90,81 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 164
+          // ------------------------------- 
+          // static_instructions_O1 : 54
+          // dynamic_instructions_O1 : 101
+          // ------------------------------- 
+          // static_instructions_O2 : 46
+          // dynamic_instructions_O2 : 91
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 90
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 90
+          // ------------------------------- 
+          // static_instructions_Os : 43
+          // dynamic_instructions_Os : 88
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 72
+          // ------------------------------- 
+
+          long val = 255;
+        
+          int _len_out0 = 65025;
+          char * out = (char *) malloc(_len_out0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_out0; _i0++) {
+            out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = xdl_num_out(out,val);
+          printf("%d\n", benchRet); 
+          free(out);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 70
+          // dynamic_instructions_O0 : 122
+          // ------------------------------- 
+          // static_instructions_O1 : 54
+          // dynamic_instructions_O1 : 76
+          // ------------------------------- 
+          // static_instructions_O2 : 46
+          // dynamic_instructions_O2 : 67
+          // ------------------------------- 
+          // static_instructions_O3 : 45
+          // dynamic_instructions_O3 : 66
+          // ------------------------------- 
+          // static_instructions_Ofast : 45
+          // dynamic_instructions_Ofast : 66
+          // ------------------------------- 
+          // static_instructions_Os : 43
+          // dynamic_instructions_Os : 64
+          // ------------------------------- 
+          // static_instructions_Oz : 36
+          // dynamic_instructions_Oz : 56
+          // ------------------------------- 
+
           long val = 10;
+        
           int _len_out0 = 100;
           char * out = (char *) malloc(_len_out0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_out0; _i0++) {
             out[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = xdl_num_out(out,val);
           printf("%d\n", benchRet); 
           free(out);

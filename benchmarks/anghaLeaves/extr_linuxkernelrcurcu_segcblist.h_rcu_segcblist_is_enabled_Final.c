@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline bool rcu_segcblist_is_enabled(struct rcu_seg
 	return !!rsclp->tails[RCU_NEXT_TAIL];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,10 +75,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rsclp0 = 1;
+          int _len_rsclp0 = 65025;
           struct rcu_segcblist * rsclp = (struct rcu_segcblist *) malloc(_len_rsclp0*sizeof(struct rcu_segcblist));
           for(int _i0 = 0; _i0 < _len_rsclp0; _i0++) {
               int _len_rsclp__i0__tails0 = 1;
@@ -90,7 +86,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_rsclp__i0__tails0; _j0++) {
             rsclp[_i0].tails[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = rcu_segcblist_is_enabled(rsclp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rsclp0; _aux++) {
@@ -100,7 +98,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rsclp0 = 100;
+          struct rcu_segcblist * rsclp = (struct rcu_segcblist *) malloc(_len_rsclp0*sizeof(struct rcu_segcblist));
+          for(int _i0 = 0; _i0 < _len_rsclp0; _i0++) {
+              int _len_rsclp__i0__tails0 = 1;
+          rsclp[_i0].tails = (int *) malloc(_len_rsclp__i0__tails0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rsclp__i0__tails0; _j0++) {
+            rsclp[_i0].tails[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rcu_segcblist_is_enabled(rsclp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rsclp0; _aux++) {
+          free(rsclp[_aux].tails);
+          }
+          free(rsclp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rsclp0 = 1;
+          struct rcu_segcblist * rsclp = (struct rcu_segcblist *) malloc(_len_rsclp0*sizeof(struct rcu_segcblist));
+          for(int _i0 = 0; _i0 < _len_rsclp0; _i0++) {
+              int _len_rsclp__i0__tails0 = 1;
+          rsclp[_i0].tails = (int *) malloc(_len_rsclp__i0__tails0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_rsclp__i0__tails0; _j0++) {
+            rsclp[_i0].tails[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = rcu_segcblist_is_enabled(rsclp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rsclp0; _aux++) {
+          free(rsclp[_aux].tails);
+          }
+          free(rsclp);
+        
+        break;
+    }
     default:
         usage();
         break;

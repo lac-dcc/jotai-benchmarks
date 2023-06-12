@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ __attribute__((used)) static inline int vdc_version_supported(struct vdc_port *p
 	return port->vio.ver.major == major && port->vio.ver.minor >= minor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,17 +81,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long major = 100;
+        
           long minor = 100;
+        
           int _len_port0 = 1;
           struct vdc_port * port = (struct vdc_port *) malloc(_len_port0*sizeof(struct vdc_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].vio.ver.major = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].vio.ver.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].vio.ver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].vio.ver.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = vdc_version_supported(port,major,minor);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long major = 255;
+        
+          long minor = 255;
+        
+          int _len_port0 = 65025;
+          struct vdc_port * port = (struct vdc_port *) malloc(_len_port0*sizeof(struct vdc_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].vio.ver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].vio.ver.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = vdc_version_supported(port,major,minor);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long major = 10;
+        
+          long minor = 10;
+        
+          int _len_port0 = 100;
+          struct vdc_port * port = (struct vdc_port *) malloc(_len_port0*sizeof(struct vdc_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].vio.ver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].vio.ver.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = vdc_version_supported(port,major,minor);
+          printf("%d\n", benchRet); 
+          free(port);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct vdc_port * port = (struct vdc_port *) malloc(_len_port0*sizeof(struct vdc_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].vio.ver.major = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].vio.ver.minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = vdc_version_supported(port,major,minor);
           printf("%d\n", benchRet); 
           free(port);

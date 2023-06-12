@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -104,12 +105,6 @@ __attribute__((used)) static int fcc_to_r_cond(const int cond) {
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -126,6 +121,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int cond = 100;
+        
           int benchRet = fcc_to_r_cond(cond);
           printf("%d\n", benchRet); 
         
@@ -135,6 +131,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int cond = 255;
+        
           int benchRet = fcc_to_r_cond(cond);
           printf("%d\n", benchRet); 
         
@@ -144,12 +141,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int cond = 10;
+        
           int benchRet = fcc_to_r_cond(cond);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int cond = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = fcc_to_r_cond(cond);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

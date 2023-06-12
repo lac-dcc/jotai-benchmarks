@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static int stream_has_enough_packets(AVStream *st, int str
            queue->nb_packets > min_frames;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,18 +90,24 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int stream_id = 100;
+        
           int min_frames = 100;
+        
           int _len_st0 = 1;
           struct TYPE_6__ * st = (struct TYPE_6__ *) malloc(_len_st0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].disposition = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].disposition = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_queue0 = 1;
           struct TYPE_5__ * queue = (struct TYPE_5__ *) malloc(_len_queue0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
-            queue[_i0].nb_packets = ((-2 * (next_i()%2)) + 1) * next_i();
-        queue[_i0].abort_request = ((-2 * (next_i()%2)) + 1) * next_i();
+              queue[_i0].nb_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].abort_request = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = stream_has_enough_packets(st,stream_id,queue,min_frames);
           printf("%d\n", benchRet); 
           free(st);
@@ -112,7 +115,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int stream_id = 255;
+        
+          int min_frames = 255;
+        
+          int _len_st0 = 65025;
+          struct TYPE_6__ * st = (struct TYPE_6__ *) malloc(_len_st0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].disposition = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_queue0 = 65025;
+          struct TYPE_5__ * queue = (struct TYPE_5__ *) malloc(_len_queue0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].nb_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].abort_request = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stream_has_enough_packets(st,stream_id,queue,min_frames);
+          printf("%d\n", benchRet); 
+          free(st);
+          free(queue);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int stream_id = 10;
+        
+          int min_frames = 10;
+        
+          int _len_st0 = 100;
+          struct TYPE_6__ * st = (struct TYPE_6__ *) malloc(_len_st0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].disposition = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_queue0 = 100;
+          struct TYPE_5__ * queue = (struct TYPE_5__ *) malloc(_len_queue0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].nb_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].abort_request = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stream_has_enough_packets(st,stream_id,queue,min_frames);
+          printf("%d\n", benchRet); 
+          free(st);
+          free(queue);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int stream_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int min_frames = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct TYPE_6__ * st = (struct TYPE_6__ *) malloc(_len_st0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].disposition = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_queue0 = 1;
+          struct TYPE_5__ * queue = (struct TYPE_5__ *) malloc(_len_queue0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_queue0; _i0++) {
+              queue[_i0].nb_packets = ((-2 * (next_i()%2)) + 1) * next_i();
+          queue[_i0].abort_request = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = stream_has_enough_packets(st,stream_id,queue,min_frames);
+          printf("%d\n", benchRet); 
+          free(st);
+          free(queue);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static const struct rockchip_pll_rate_table *rockchip_get_
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,197 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned long rate = 100;
+        
           int _len_pll0 = 1;
           struct rockchip_clk_pll * pll = (struct rockchip_clk_pll *) malloc(_len_pll0*sizeof(struct rockchip_clk_pll));
           for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
-            pll[_i0].rate_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].rate_count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_pll__i0__rate_table0 = 1;
           pll[_i0].rate_table = (struct rockchip_pll_rate_table *) malloc(_len_pll__i0__rate_table0*sizeof(struct rockchip_pll_rate_table));
           for(int _j0 = 0; _j0 < _len_pll__i0__rate_table0; _j0++) {
-            pll[_i0].rate_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              pll[_i0].rate_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          const struct rockchip_pll_rate_table * benchRet = rockchip_get_pll_settings(pll,rate);
+          for(int _aux = 0; _aux < _len_pll0; _aux++) {
+          free(pll[_aux].rate_table);
+          }
+          free(pll);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long rate = 255;
+        
+          int _len_pll0 = 65025;
+          struct rockchip_clk_pll * pll = (struct rockchip_clk_pll *) malloc(_len_pll0*sizeof(struct rockchip_clk_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].rate_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pll__i0__rate_table0 = 1;
+          pll[_i0].rate_table = (struct rockchip_pll_rate_table *) malloc(_len_pll__i0__rate_table0*sizeof(struct rockchip_pll_rate_table));
+          for(int _j0 = 0; _j0 < _len_pll__i0__rate_table0; _j0++) {
+              pll[_i0].rate_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const struct rockchip_pll_rate_table * benchRet = rockchip_get_pll_settings(pll,rate);
+          for(int _aux = 0; _aux < _len_pll0; _aux++) {
+          free(pll[_aux].rate_table);
+          }
+          free(pll);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long rate = 10;
+        
+          int _len_pll0 = 100;
+          struct rockchip_clk_pll * pll = (struct rockchip_clk_pll *) malloc(_len_pll0*sizeof(struct rockchip_clk_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].rate_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pll__i0__rate_table0 = 1;
+          pll[_i0].rate_table = (struct rockchip_pll_rate_table *) malloc(_len_pll__i0__rate_table0*sizeof(struct rockchip_pll_rate_table));
+          for(int _j0 = 0; _j0 < _len_pll__i0__rate_table0; _j0++) {
+              pll[_i0].rate_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const struct rockchip_pll_rate_table * benchRet = rockchip_get_pll_settings(pll,rate);
+          for(int _aux = 0; _aux < _len_pll0; _aux++) {
+          free(pll[_aux].rate_table);
+          }
+          free(pll);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pll0 = 1;
+          struct rockchip_clk_pll * pll = (struct rockchip_clk_pll *) malloc(_len_pll0*sizeof(struct rockchip_clk_pll));
+          for(int _i0 = 0; _i0 < _len_pll0; _i0++) {
+              pll[_i0].rate_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_pll__i0__rate_table0 = 1;
+          pll[_i0].rate_table = (struct rockchip_pll_rate_table *) malloc(_len_pll__i0__rate_table0*sizeof(struct rockchip_pll_rate_table));
+          for(int _j0 = 0; _j0 < _len_pll__i0__rate_table0; _j0++) {
+              pll[_i0].rate_table->rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           const struct rockchip_pll_rate_table * benchRet = rockchip_get_pll_settings(pll,rate);
           for(int _aux = 0; _aux < _len_pll0; _aux++) {
           free(pll[_aux].rate_table);

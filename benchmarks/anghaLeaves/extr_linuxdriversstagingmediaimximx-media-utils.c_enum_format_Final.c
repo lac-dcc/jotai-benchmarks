@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -129,12 +132,6 @@ __attribute__((used)) static int enum_format(u32 *fourcc, u32 *code, u32 index,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -151,19 +148,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long index = 100;
+        
           enum codespace_sel cs_sel = 0;
+        
           int allow_non_mbus = 100;
+        
           int allow_bayer = 100;
+        
           int _len_fourcc0 = 1;
           unsigned long * fourcc = (unsigned long *) malloc(_len_fourcc0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_fourcc0; _i0++) {
             fourcc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_code0 = 1;
           unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_code0; _i0++) {
             code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = enum_format(fourcc,code,index,cs_sel,allow_non_mbus,allow_bayer);
           printf("%d\n", benchRet); 
           free(fourcc);
@@ -171,7 +174,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long index = 255;
+        
+          enum codespace_sel cs_sel = 0;
+        
+          int allow_non_mbus = 255;
+        
+          int allow_bayer = 255;
+        
+          int _len_fourcc0 = 65025;
+          unsigned long * fourcc = (unsigned long *) malloc(_len_fourcc0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_fourcc0; _i0++) {
+            fourcc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_code0 = 65025;
+          unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = enum_format(fourcc,code,index,cs_sel,allow_non_mbus,allow_bayer);
+          printf("%d\n", benchRet); 
+          free(fourcc);
+          free(code);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long index = 10;
+        
+          enum codespace_sel cs_sel = 0;
+        
+          int allow_non_mbus = 10;
+        
+          int allow_bayer = 10;
+        
+          int _len_fourcc0 = 100;
+          unsigned long * fourcc = (unsigned long *) malloc(_len_fourcc0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_fourcc0; _i0++) {
+            fourcc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_code0 = 100;
+          unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = enum_format(fourcc,code,index,cs_sel,allow_non_mbus,allow_bayer);
+          printf("%d\n", benchRet); 
+          free(fourcc);
+          free(code);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum codespace_sel cs_sel = 0;
+        
+          int allow_non_mbus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int allow_bayer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fourcc0 = 1;
+          unsigned long * fourcc = (unsigned long *) malloc(_len_fourcc0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_fourcc0; _i0++) {
+            fourcc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_code0 = 1;
+          unsigned long * code = (unsigned long *) malloc(_len_code0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_code0; _i0++) {
+            code[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = enum_format(fourcc,code,index,cs_sel,allow_non_mbus,allow_bayer);
+          printf("%d\n", benchRet); 
+          free(fourcc);
+          free(code);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned int flat_get_apic_id(unsigned long x)
 	return (x >> 24) & 0xFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long x = 100;
+        
           unsigned int benchRet = flat_get_apic_id(x);
           printf("%u\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long x = 255;
+        
           unsigned int benchRet = flat_get_apic_id(x);
           printf("%u\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long x = 10;
+        
           unsigned int benchRet = flat_get_apic_id(x);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = flat_get_apic_id(x);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

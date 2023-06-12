@@ -64,12 +64,6 @@ __attribute__((used)) static uint32 swap_endianess(uint32 n)
             ((n & 0xff000000UL) >> 24);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int n = 100;
+        
           int benchRet = swap_endianess(n);
           printf("%d\n", benchRet); 
         
@@ -95,12 +90,12 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int n = 10;
+        
           int benchRet = swap_endianess(n);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static u32 glk_plane_color_ctl_alpha(uint32_t pixel_format
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pixel_format = 100;
+        
           int benchRet = glk_plane_color_ctl_alpha(pixel_format);
           printf("%d\n", benchRet); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pixel_format = 255;
+        
           int benchRet = glk_plane_color_ctl_alpha(pixel_format);
           printf("%d\n", benchRet); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pixel_format = 10;
+        
           int benchRet = glk_plane_color_ctl_alpha(pixel_format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pixel_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = glk_plane_color_ctl_alpha(pixel_format);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

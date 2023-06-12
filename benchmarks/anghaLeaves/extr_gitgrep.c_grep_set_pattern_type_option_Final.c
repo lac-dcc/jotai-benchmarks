@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -112,12 +114,6 @@ __attribute__((used)) static void grep_set_pattern_type_option(enum grep_pattern
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -130,23 +126,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum grep_pattern_type pattern_type = 0;
-          int _len_opt0 = 1;
+        
+          int _len_opt0 = 65025;
           struct grep_opt * opt = (struct grep_opt *) malloc(_len_opt0*sizeof(struct grep_opt));
           for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
-            opt[_i0].extended_regexp_option = ((-2 * (next_i()%2)) + 1) * next_i();
-        opt[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
-        opt[_i0].pcre1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              opt[_i0].extended_regexp_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          opt[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          opt[_i0].pcre1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           grep_set_pattern_type_option(pattern_type,opt);
           free(opt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum grep_pattern_type pattern_type = 0;
+        
+          int _len_opt0 = 100;
+          struct grep_opt * opt = (struct grep_opt *) malloc(_len_opt0*sizeof(struct grep_opt));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].extended_regexp_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          opt[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          opt[_i0].pcre1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          grep_set_pattern_type_option(pattern_type,opt);
+          free(opt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum grep_pattern_type pattern_type = 0;
+        
+          int _len_opt0 = 1;
+          struct grep_opt * opt = (struct grep_opt *) malloc(_len_opt0*sizeof(struct grep_opt));
+          for(int _i0 = 0; _i0 < _len_opt0; _i0++) {
+              opt[_i0].extended_regexp_option = ((-2 * (next_i()%2)) + 1) * next_i();
+          opt[_i0].fixed = ((-2 * (next_i()%2)) + 1) * next_i();
+          opt[_i0].pcre1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          grep_set_pattern_type_option(pattern_type,opt);
+          free(opt);
+        
+        break;
+    }
     default:
         usage();
         break;

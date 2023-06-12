@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ grub_nilfs2_btree_get_root (struct grub_nilfs2_inode *inode)
   return (struct grub_nilfs2_btree_node *) &inode->i_bmap[0];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,10 +76,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_inode0 = 1;
+          int _len_inode0 = 65025;
           struct grub_nilfs2_inode * inode = (struct grub_nilfs2_inode *) malloc(_len_inode0*sizeof(struct grub_nilfs2_inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
               int _len_inode__i0__i_bmap0 = 1;
@@ -91,7 +87,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_inode__i0__i_bmap0; _j0++) {
             inode[_i0].i_bmap[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           struct grub_nilfs2_btree_node * benchRet = grub_nilfs2_btree_get_root(inode);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_inode0; _aux++) {
@@ -101,7 +99,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_inode0 = 100;
+          struct grub_nilfs2_inode * inode = (struct grub_nilfs2_inode *) malloc(_len_inode0*sizeof(struct grub_nilfs2_inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_bmap0 = 1;
+          inode[_i0].i_bmap = (int *) malloc(_len_inode__i0__i_bmap0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_bmap0; _j0++) {
+            inode[_i0].i_bmap[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          struct grub_nilfs2_btree_node * benchRet = grub_nilfs2_btree_get_root(inode);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_bmap);
+          }
+          free(inode);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_inode0 = 1;
+          struct grub_nilfs2_inode * inode = (struct grub_nilfs2_inode *) malloc(_len_inode0*sizeof(struct grub_nilfs2_inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              int _len_inode__i0__i_bmap0 = 1;
+          inode[_i0].i_bmap = (int *) malloc(_len_inode__i0__i_bmap0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_inode__i0__i_bmap0; _j0++) {
+            inode[_i0].i_bmap[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          struct grub_nilfs2_btree_node * benchRet = grub_nilfs2_btree_get_root(inode);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_inode0; _aux++) {
+          free(inode[_aux].i_bmap);
+          }
+          free(inode);
+        
+        break;
+    }
     default:
         usage();
         break;

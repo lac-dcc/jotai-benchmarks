@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ frag6_restore_context(struct mbuf *m)
 	return ((int)m->m_pkthdr.pkt_hdr);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct mbuf * m = (struct mbuf *) malloc(_len_m0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].m_pkthdr.pkt_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_pkthdr.pkt_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = frag6_restore_context(m);
           printf("%d\n", benchRet); 
           free(m);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_m0 = 100;
           struct mbuf * m = (struct mbuf *) malloc(_len_m0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].m_pkthdr.pkt_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_pkthdr.pkt_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = frag6_restore_context(m);
           printf("%d\n", benchRet); 
           free(m);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct mbuf * m = (struct mbuf *) malloc(_len_m0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_pkthdr.pkt_hdr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = frag6_restore_context(m);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

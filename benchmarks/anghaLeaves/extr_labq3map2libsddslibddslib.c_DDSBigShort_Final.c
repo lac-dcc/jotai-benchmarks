@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ short DDSBigShort( short src ){
 		   ( ( src & 0x00FF ) << 8 );
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           short src = 100;
+        
           short benchRet = DDSBigShort(src);
           printf("%hi\n", benchRet); 
         
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           short src = 255;
+        
           short benchRet = DDSBigShort(src);
           printf("%hi\n", benchRet); 
         
@@ -101,12 +98,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           short src = 10;
+        
           short benchRet = DDSBigShort(src);
           printf("%hi\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          short src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          short benchRet = DDSBigShort(src);
+          printf("%hi\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

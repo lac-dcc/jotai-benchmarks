@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static size_t omap_dma_sg_size(struct omap_sg *sg)
 	return sg->en * sg->fn;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sg0 = 1;
+          int _len_sg0 = 65025;
           struct omap_sg * sg = (struct omap_sg *) malloc(_len_sg0*sizeof(struct omap_sg));
           for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
-            sg[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
-        sg[_i0].fn = ((-2 * (next_i()%2)) + 1) * next_i();
+              sg[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].fn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = omap_dma_sg_size(sg);
           printf("%lu\n", benchRet); 
           free(sg);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sg0 = 100;
+          struct omap_sg * sg = (struct omap_sg *) malloc(_len_sg0*sizeof(struct omap_sg));
+          for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
+              sg[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].fn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = omap_dma_sg_size(sg);
+          printf("%lu\n", benchRet); 
+          free(sg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sg0 = 1;
+          struct omap_sg * sg = (struct omap_sg *) malloc(_len_sg0*sizeof(struct omap_sg));
+          for(int _i0 = 0; _i0 < _len_sg0; _i0++) {
+              sg[_i0].en = ((-2 * (next_i()%2)) + 1) * next_i();
+          sg[_i0].fn = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = omap_dma_sg_size(sg);
+          printf("%lu\n", benchRet); 
+          free(sg);
+        
+        break;
+    }
     default:
         usage();
         break;

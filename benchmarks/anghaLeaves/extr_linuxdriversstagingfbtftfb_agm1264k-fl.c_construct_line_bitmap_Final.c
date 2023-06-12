@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ construct_line_bitmap(struct fbtft_par *par, u8 *dest, signed short *src,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,27 +99,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int xs = 100;
+        
           int xe = 100;
+        
           int y = 100;
+        
           int _len_par0 = 1;
           struct fbtft_par * par = (struct fbtft_par *) malloc(_len_par0*sizeof(struct fbtft_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
               int _len_par__i0__info0 = 1;
           par[_i0].info = (struct TYPE_3__ *) malloc(_len_par__i0__info0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_par__i0__info0; _j0++) {
-            par[_i0].info->var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].info->var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_dest0 = 1;
           int * dest = (int *) malloc(_len_dest0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
             dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_src0 = 1;
           short * src = (short *) malloc(_len_src0*sizeof(short));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
             src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           construct_line_bitmap(par,dest,src,xs,xe,y);
           for(int _aux = 0; _aux < _len_par0; _aux++) {
           free(par[_aux].info);
@@ -133,7 +139,138 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int xs = 255;
+        
+          int xe = 255;
+        
+          int y = 255;
+        
+          int _len_par0 = 65025;
+          struct fbtft_par * par = (struct fbtft_par *) malloc(_len_par0*sizeof(struct fbtft_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              int _len_par__i0__info0 = 1;
+          par[_i0].info = (struct TYPE_3__ *) malloc(_len_par__i0__info0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_par__i0__info0; _j0++) {
+              par[_i0].info->var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_dest0 = 65025;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 65025;
+          short * src = (short *) malloc(_len_src0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          construct_line_bitmap(par,dest,src,xs,xe,y);
+          for(int _aux = 0; _aux < _len_par0; _aux++) {
+          free(par[_aux].info);
+          }
+          free(par);
+          free(dest);
+          free(src);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int xs = 10;
+        
+          int xe = 10;
+        
+          int y = 10;
+        
+          int _len_par0 = 100;
+          struct fbtft_par * par = (struct fbtft_par *) malloc(_len_par0*sizeof(struct fbtft_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              int _len_par__i0__info0 = 1;
+          par[_i0].info = (struct TYPE_3__ *) malloc(_len_par__i0__info0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_par__i0__info0; _j0++) {
+              par[_i0].info->var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_dest0 = 100;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 100;
+          short * src = (short *) malloc(_len_src0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          construct_line_bitmap(par,dest,src,xs,xe,y);
+          for(int _aux = 0; _aux < _len_par0; _aux++) {
+          free(par[_aux].info);
+          }
+          free(par);
+          free(dest);
+          free(src);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int xs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int xe = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_par0 = 1;
+          struct fbtft_par * par = (struct fbtft_par *) malloc(_len_par0*sizeof(struct fbtft_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              int _len_par__i0__info0 = 1;
+          par[_i0].info = (struct TYPE_3__ *) malloc(_len_par__i0__info0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_par__i0__info0; _j0++) {
+              par[_i0].info->var.xres = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_dest0 = 1;
+          int * dest = (int *) malloc(_len_dest0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_dest0; _i0++) {
+            dest[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_src0 = 1;
+          short * src = (short *) malloc(_len_src0*sizeof(short));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+            src[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          construct_line_bitmap(par,dest,src,xs,xe,y);
+          for(int _aux = 0; _aux < _len_par0; _aux++) {
+          free(par[_aux].info);
+          }
+          free(par);
+          free(dest);
+          free(src);
+        
+        break;
+    }
     default:
         usage();
         break;

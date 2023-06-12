@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t A6XX_CX_DBGC_CFG_DBGBUS_SEL_D_PING_
 	return ((val) << A6XX_CX_DBGC_CFG_DBGBUS_SEL_D_PING_INDEX__SHIFT) & A6XX_CX_DBGC_CFG_DBGBUS_SEL_D_PING_INDEX__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = A6XX_CX_DBGC_CFG_DBGBUS_SEL_D_PING_INDEX(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = A6XX_CX_DBGC_CFG_DBGBUS_SEL_D_PING_INDEX(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = A6XX_CX_DBGC_CFG_DBGBUS_SEL_D_PING_INDEX(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ dtrace_aggregate_sum(uint64_t *oval, uint64_t nval, uint64_t arg)
 	*oval += nval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,31 +77,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           long nval = 100;
+        
           long arg = 100;
+        
           int _len_oval0 = 1;
           long * oval = (long *) malloc(_len_oval0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
             oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           dtrace_aggregate_sum(oval,nval,arg);
           free(oval);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          long nval = 255;
+        
+          long arg = 255;
+        
+          int _len_oval0 = 65025;
+          long * oval = (long *) malloc(_len_oval0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
+            oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dtrace_aggregate_sum(oval,nval,arg);
+          free(oval);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           long nval = 10;
+        
           long arg = 10;
+        
           int _len_oval0 = 100;
           long * oval = (long *) malloc(_len_oval0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
             oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          dtrace_aggregate_sum(oval,nval,arg);
+          free(oval);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          long nval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oval0 = 1;
+          long * oval = (long *) malloc(_len_oval0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
+            oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           dtrace_aggregate_sum(oval,nval,arg);
           free(oval);
         

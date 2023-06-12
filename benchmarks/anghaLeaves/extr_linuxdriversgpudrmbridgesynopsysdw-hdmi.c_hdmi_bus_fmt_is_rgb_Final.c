@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ __attribute__((used)) static bool hdmi_bus_fmt_is_rgb(unsigned int bus_format)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int bus_format = 100;
+        
           int benchRet = hdmi_bus_fmt_is_rgb(bus_format);
           printf("%d\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int bus_format = 255;
+        
           int benchRet = hdmi_bus_fmt_is_rgb(bus_format);
           printf("%d\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int bus_format = 10;
+        
           int benchRet = hdmi_bus_fmt_is_rgb(bus_format);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int bus_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = hdmi_bus_fmt_is_rgb(bus_format);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

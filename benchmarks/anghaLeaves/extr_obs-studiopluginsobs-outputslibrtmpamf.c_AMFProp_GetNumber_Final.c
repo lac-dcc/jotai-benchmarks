@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ AMFProp_GetNumber(AMFObjectProperty *prop)
     return prop->p_vu.p_number;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_prop0 = 1;
+          int _len_prop0 = 65025;
           struct TYPE_5__ * prop = (struct TYPE_5__ *) malloc(_len_prop0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_prop0; _i0++) {
-            prop[_i0].p_vu.p_number = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              prop[_i0].p_vu.p_number = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
           }
+        
           double benchRet = AMFProp_GetNumber(prop);
           printf("%lf\n", benchRet); 
           free(prop);
@@ -104,15 +102,34 @@ int main(int argc, char *argv[]) {
           int _len_prop0 = 100;
           struct TYPE_5__ * prop = (struct TYPE_5__ *) malloc(_len_prop0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_prop0; _i0++) {
-            prop[_i0].p_vu.p_number = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              prop[_i0].p_vu.p_number = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
           }
+        
           double benchRet = AMFProp_GetNumber(prop);
           printf("%lf\n", benchRet); 
           free(prop);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_prop0 = 1;
+          struct TYPE_5__ * prop = (struct TYPE_5__ *) malloc(_len_prop0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_prop0; _i0++) {
+              prop[_i0].p_vu.p_number = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+        
+          }
+        
+          double benchRet = AMFProp_GetNumber(prop);
+          printf("%lf\n", benchRet); 
+          free(prop);
+        
+        break;
+    }
     default:
         usage();
         break;

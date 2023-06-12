@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -65,7 +66,6 @@ __attribute__((used)) static inline bool in_persistence(struct ip_vs_conn *cp)
 	return false;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct ip_vs_conn *_allocate_cp(int length, struct ip_vs_conn *aux_cp[]) {
@@ -95,7 +95,6 @@ void _delete_cp(struct ip_vs_conn *aux_cp[], int aux_cp_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,11 +107,71 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 120000
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 50005
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 50005
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 50005
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 50005
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 50004
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 50005
+          // ------------------------------- 
+
+          struct ip_vs_conn * aux_cp[10000];
+          struct ip_vs_conn * cp = _allocate_cp(10000, aux_cp);
+        
+          int benchRet = in_persistence(cp);
+          printf("%d\n", benchRet); 
+          _delete_cp(aux_cp, 10000);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           struct ip_vs_conn * aux_cp[1];
           struct ip_vs_conn * cp = _allocate_cp(1, aux_cp);
+        
           int benchRet = in_persistence(cp);
           printf("%d\n", benchRet); 
           _delete_cp(aux_cp, 1);

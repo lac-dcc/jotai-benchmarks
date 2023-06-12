@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ void layout_func(StbTexteditRow *row, STB_TEXTEDIT_STRING *str, int start_i)
    row->ymax =  0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,25 +86,215 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int start_i = 100;
+        
           int _len_row0 = 1;
           struct TYPE_5__ * row = (struct TYPE_5__ *) malloc(_len_row0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_row0; _i0++) {
-            row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
-        row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_str0 = 1;
           struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
-            str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
+              str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          layout_func(row,str,start_i);
+          free(row);
+          free(str);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int start_i = 255;
+        
+          int _len_row0 = 65025;
+          struct TYPE_5__ * row = (struct TYPE_5__ *) malloc(_len_row0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
+              row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_str0 = 65025;
+          struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+              str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          layout_func(row,str,start_i);
+          free(row);
+          free(str);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int start_i = 10;
+        
+          int _len_row0 = 100;
+          struct TYPE_5__ * row = (struct TYPE_5__ *) malloc(_len_row0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
+              row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_str0 = 100;
+          struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+              str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          layout_func(row,str,start_i);
+          free(row);
+          free(str);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int start_i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_row0 = 1;
+          struct TYPE_5__ * row = (struct TYPE_5__ *) malloc(_len_row0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
+              row[_i0].num_chars = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].baseline_y_delta = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          row[_i0].ymin = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].ymax = ((-2 * (next_i()%2)) + 1) * next_i();
+          row[_i0].x0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_str0 = 1;
+          struct TYPE_6__ * str = (struct TYPE_6__ *) malloc(_len_str0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+              str[_i0].stringlen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           layout_func(row,str,start_i);
           free(row);
           free(str);

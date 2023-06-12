@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ uint oid_null_function(struct oid_par_priv *poid_par_priv)
 	return RNDIS_STATUS_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_poid_par_priv0 = 1;
+          int _len_poid_par_priv0 = 65025;
           struct oid_par_priv * poid_par_priv = (struct oid_par_priv *) malloc(_len_poid_par_priv0*sizeof(struct oid_par_priv));
           for(int _i0 = 0; _i0 < _len_poid_par_priv0; _i0++) {
-            poid_par_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              poid_par_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = oid_null_function(poid_par_priv);
           printf("%d\n", benchRet); 
           free(poid_par_priv);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_poid_par_priv0 = 100;
           struct oid_par_priv * poid_par_priv = (struct oid_par_priv *) malloc(_len_poid_par_priv0*sizeof(struct oid_par_priv));
           for(int _i0 = 0; _i0 < _len_poid_par_priv0; _i0++) {
-            poid_par_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              poid_par_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = oid_null_function(poid_par_priv);
           printf("%d\n", benchRet); 
           free(poid_par_priv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_poid_par_priv0 = 1;
+          struct oid_par_priv * poid_par_priv = (struct oid_par_priv *) malloc(_len_poid_par_priv0*sizeof(struct oid_par_priv));
+          for(int _i0 = 0; _i0 < _len_poid_par_priv0; _i0++) {
+              poid_par_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = oid_null_function(poid_par_priv);
+          printf("%d\n", benchRet); 
+          free(poid_par_priv);
+        
+        break;
+    }
     default:
         usage();
         break;

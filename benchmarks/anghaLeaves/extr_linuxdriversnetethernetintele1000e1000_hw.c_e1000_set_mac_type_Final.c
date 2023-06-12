@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -215,12 +217,6 @@ s32 e1000_set_mac_type(struct e1000_hw *hw)
 	return E1000_SUCCESS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -233,19 +229,134 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_hw0 = 65025;
+          struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].asf_firmware_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bad_tx_carr_stats_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].has_smbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = e1000_set_mac_type(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_hw0 = 100;
+          struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].asf_firmware_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bad_tx_carr_stats_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].has_smbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = e1000_set_mac_type(hw);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_hw0 = 1;
           struct e1000_hw * hw = (struct e1000_hw *) malloc(_len_hw0*sizeof(struct e1000_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].mac_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].asf_firmware_present = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].bad_tx_carr_stats_fd = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].has_smbus = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].device_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].mac_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].asf_firmware_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].bad_tx_carr_stats_fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].has_smbus = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].revision_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = e1000_set_mac_type(hw);
           printf("%d\n", benchRet); 
           free(hw);

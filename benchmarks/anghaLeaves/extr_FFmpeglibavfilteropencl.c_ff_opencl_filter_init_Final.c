@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ int ff_opencl_filter_init(AVFilterContext *avctx)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +84,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_avctx0 = 1;
+          int _len_avctx0 = 65025;
           struct TYPE_5__ * avctx = (struct TYPE_5__ *) malloc(_len_avctx0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
               int _len_avctx__i0__priv0 = 1;
           avctx[_i0].priv = (struct TYPE_4__ *) malloc(_len_avctx__i0__priv0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_avctx__i0__priv0; _j0++) {
-            avctx[_i0].priv->output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+              avctx[_i0].priv->output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = ff_opencl_filter_init(avctx);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_avctx0; _aux++) {
@@ -109,7 +108,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_avctx0 = 100;
+          struct TYPE_5__ * avctx = (struct TYPE_5__ *) malloc(_len_avctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
+              int _len_avctx__i0__priv0 = 1;
+          avctx[_i0].priv = (struct TYPE_4__ *) malloc(_len_avctx__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_avctx__i0__priv0; _j0++) {
+              avctx[_i0].priv->output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ff_opencl_filter_init(avctx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_avctx0; _aux++) {
+          free(avctx[_aux].priv);
+          }
+          free(avctx);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_avctx0 = 1;
+          struct TYPE_5__ * avctx = (struct TYPE_5__ *) malloc(_len_avctx0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_avctx0; _i0++) {
+              int _len_avctx__i0__priv0 = 1;
+          avctx[_i0].priv = (struct TYPE_4__ *) malloc(_len_avctx__i0__priv0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_avctx__i0__priv0; _j0++) {
+              avctx[_i0].priv->output_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ff_opencl_filter_init(avctx);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_avctx0; _aux++) {
+          free(avctx[_aux].priv);
+          }
+          free(avctx);
+        
+        break;
+    }
     default:
         usage();
         break;

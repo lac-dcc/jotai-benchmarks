@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -97,12 +99,6 @@ void mlx5_odp_init_mr_cache_entry(struct mlx5_cache_ent *ent)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,23 +111,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ent0 = 1;
+          int _len_ent0 = 65025;
           struct mlx5_cache_ent * ent = (struct mlx5_cache_ent *) malloc(_len_ent0*sizeof(struct mlx5_cache_ent));
           for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
-            ent[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
-        ent[_i0].xlt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ent[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        ent[_i0].access_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        ent[_i0].page = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].xlt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].access_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].page = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ent__i0__dev0 = 1;
           ent[_i0].dev = (struct TYPE_4__ *) malloc(_len_ent__i0__dev0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ent__i0__dev0; _j0++) {
-            ent[_i0].dev->odp_caps.general_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+              ent[_i0].dev->odp_caps.general_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           mlx5_odp_init_mr_cache_entry(ent);
           for(int _aux = 0; _aux < _len_ent0; _aux++) {
           free(ent[_aux].dev);
@@ -140,7 +140,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ent0 = 100;
+          struct mlx5_cache_ent * ent = (struct mlx5_cache_ent *) malloc(_len_ent0*sizeof(struct mlx5_cache_ent));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].xlt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].access_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].page = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__dev0 = 1;
+          ent[_i0].dev = (struct TYPE_4__ *) malloc(_len_ent__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__dev0; _j0++) {
+              ent[_i0].dev->odp_caps.general_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          mlx5_odp_init_mr_cache_entry(ent);
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].dev);
+          }
+          free(ent);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ent0 = 1;
+          struct mlx5_cache_ent * ent = (struct mlx5_cache_ent *) malloc(_len_ent0*sizeof(struct mlx5_cache_ent));
+          for(int _i0 = 0; _i0 < _len_ent0; _i0++) {
+              ent[_i0].order = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].xlt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].access_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          ent[_i0].page = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ent__i0__dev0 = 1;
+          ent[_i0].dev = (struct TYPE_4__ *) malloc(_len_ent__i0__dev0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ent__i0__dev0; _j0++) {
+              ent[_i0].dev->odp_caps.general_caps = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          mlx5_odp_init_mr_cache_entry(ent);
+          for(int _aux = 0; _aux < _len_ent0; _aux++) {
+          free(ent[_aux].dev);
+          }
+          free(ent);
+        
+        break;
+    }
     default:
         usage();
         break;

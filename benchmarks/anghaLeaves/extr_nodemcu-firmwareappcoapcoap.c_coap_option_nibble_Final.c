@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ void coap_option_nibble(uint32_t value, uint8_t *nibble)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,31 +91,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 100;
+        
           int _len_nibble0 = 1;
           int * nibble = (int *) malloc(_len_nibble0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_nibble0; _i0++) {
             nibble[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          coap_option_nibble(value,nibble);
+          free(nibble);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int value = 255;
+        
+          int _len_nibble0 = 65025;
+          int * nibble = (int *) malloc(_len_nibble0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nibble0; _i0++) {
+            nibble[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           coap_option_nibble(value,nibble);
           free(nibble);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int value = 10;
+        
           int _len_nibble0 = 100;
           int * nibble = (int *) malloc(_len_nibble0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_nibble0; _i0++) {
             nibble[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           coap_option_nibble(value,nibble);
           free(nibble);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_nibble0 = 1;
+          int * nibble = (int *) malloc(_len_nibble0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_nibble0; _i0++) {
+            nibble[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          coap_option_nibble(value,nibble);
+          free(nibble);
+        
+        break;
+    }
     default:
         usage();
         break;

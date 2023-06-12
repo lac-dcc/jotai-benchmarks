@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void update_fb_info(struct vfio_device_gfx_plane_in
 	gvt_dmabuf->y_hot = fb_info->y_hot;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,37 +85,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_gvt_dmabuf0 = 65025;
+          struct vfio_device_gfx_plane_info * gvt_dmabuf = (struct vfio_device_gfx_plane_info *) malloc(_len_gvt_dmabuf0*sizeof(struct vfio_device_gfx_plane_info));
+          for(int _i0 = 0; _i0 < _len_gvt_dmabuf0; _i0++) {
+              gvt_dmabuf[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fb_info0 = 65025;
+          struct intel_vgpu_fb_info * fb_info = (struct intel_vgpu_fb_info *) malloc(_len_fb_info0*sizeof(struct intel_vgpu_fb_info));
+          for(int _i0 = 0; _i0 < _len_fb_info0; _i0++) {
+              fb_info[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_fb_info(gvt_dmabuf,fb_info);
+          free(gvt_dmabuf);
+          free(fb_info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_gvt_dmabuf0 = 100;
+          struct vfio_device_gfx_plane_info * gvt_dmabuf = (struct vfio_device_gfx_plane_info *) malloc(_len_gvt_dmabuf0*sizeof(struct vfio_device_gfx_plane_info));
+          for(int _i0 = 0; _i0 < _len_gvt_dmabuf0; _i0++) {
+              gvt_dmabuf[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fb_info0 = 100;
+          struct intel_vgpu_fb_info * fb_info = (struct intel_vgpu_fb_info *) malloc(_len_fb_info0*sizeof(struct intel_vgpu_fb_info));
+          for(int _i0 = 0; _i0 < _len_fb_info0; _i0++) {
+              fb_info[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_fb_info(gvt_dmabuf,fb_info);
+          free(gvt_dmabuf);
+          free(fb_info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_gvt_dmabuf0 = 1;
           struct vfio_device_gfx_plane_info * gvt_dmabuf = (struct vfio_device_gfx_plane_info *) malloc(_len_gvt_dmabuf0*sizeof(struct vfio_device_gfx_plane_info));
           for(int _i0 = 0; _i0 < _len_gvt_dmabuf0; _i0++) {
-            gvt_dmabuf[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
-        gvt_dmabuf[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+              gvt_dmabuf[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          gvt_dmabuf[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_fb_info0 = 1;
           struct intel_vgpu_fb_info * fb_info = (struct intel_vgpu_fb_info *) malloc(_len_fb_info0*sizeof(struct intel_vgpu_fb_info));
           for(int _i0 = 0; _i0 < _len_fb_info0; _i0++) {
-            fb_info[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
-        fb_info[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+              fb_info[_i0].y_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].x_hot = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].y_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].x_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].stride = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].drm_format_mod = ((-2 * (next_i()%2)) + 1) * next_i();
+          fb_info[_i0].drm_format = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_fb_info(gvt_dmabuf,fb_info);
           free(gvt_dmabuf);
           free(fb_info);

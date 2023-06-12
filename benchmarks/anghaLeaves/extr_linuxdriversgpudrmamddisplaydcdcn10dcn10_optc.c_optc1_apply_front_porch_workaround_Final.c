@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ __attribute__((used)) static void optc1_apply_front_porch_workaround(
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +85,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_optc0 = 65025;
+          struct timing_generator * optc = (struct timing_generator *) malloc(_len_optc0*sizeof(struct timing_generator));
+          for(int _i0 = 0; _i0 < _len_optc0; _i0++) {
+              optc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_timing0 = 65025;
+          struct dc_crtc_timing * timing = (struct dc_crtc_timing *) malloc(_len_timing0*sizeof(struct dc_crtc_timing));
+          for(int _i0 = 0; _i0 < _len_timing0; _i0++) {
+              timing[_i0].v_front_porch = ((-2 * (next_i()%2)) + 1) * next_i();
+          timing[_i0].flags.INTERLACE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          optc1_apply_front_porch_workaround(optc,timing);
+          free(optc);
+          free(timing);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_optc0 = 100;
+          struct timing_generator * optc = (struct timing_generator *) malloc(_len_optc0*sizeof(struct timing_generator));
+          for(int _i0 = 0; _i0 < _len_optc0; _i0++) {
+              optc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_timing0 = 100;
+          struct dc_crtc_timing * timing = (struct dc_crtc_timing *) malloc(_len_timing0*sizeof(struct dc_crtc_timing));
+          for(int _i0 = 0; _i0 < _len_timing0; _i0++) {
+              timing[_i0].v_front_porch = ((-2 * (next_i()%2)) + 1) * next_i();
+          timing[_i0].flags.INTERLACE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          optc1_apply_front_porch_workaround(optc,timing);
+          free(optc);
+          free(timing);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_optc0 = 1;
           struct timing_generator * optc = (struct timing_generator *) malloc(_len_optc0*sizeof(struct timing_generator));
           for(int _i0 = 0; _i0 < _len_optc0; _i0++) {
-            optc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              optc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_timing0 = 1;
           struct dc_crtc_timing * timing = (struct dc_crtc_timing *) malloc(_len_timing0*sizeof(struct dc_crtc_timing));
           for(int _i0 = 0; _i0 < _len_timing0; _i0++) {
-            timing[_i0].v_front_porch = ((-2 * (next_i()%2)) + 1) * next_i();
-        timing[_i0].flags.INTERLACE = ((-2 * (next_i()%2)) + 1) * next_i();
+              timing[_i0].v_front_porch = ((-2 * (next_i()%2)) + 1) * next_i();
+          timing[_i0].flags.INTERLACE = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           optc1_apply_front_porch_workaround(optc,timing);
           free(optc);
           free(timing);

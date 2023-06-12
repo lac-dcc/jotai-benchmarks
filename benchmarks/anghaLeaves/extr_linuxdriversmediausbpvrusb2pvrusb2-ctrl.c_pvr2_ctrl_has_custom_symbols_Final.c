@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ int pvr2_ctrl_has_custom_symbols(struct pvr2_ctrl *cptr)
 	return !0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cptr0 = 65025;
+          struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
+          for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
+              int _len_cptr__i0__info0 = 1;
+          cptr[_i0].info = (struct TYPE_2__ *) malloc(_len_cptr__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cptr__i0__info0; _j0++) {
+              cptr[_i0].info->sym_to_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].info->val_to_sym = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pvr2_ctrl_has_custom_symbols(cptr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cptr0; _aux++) {
+          free(cptr[_aux].info);
+          }
+          free(cptr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_cptr0 = 100;
+          struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
+          for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
+              int _len_cptr__i0__info0 = 1;
+          cptr[_i0].info = (struct TYPE_2__ *) malloc(_len_cptr__i0__info0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_cptr__i0__info0; _j0++) {
+              cptr[_i0].info->sym_to_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].info->val_to_sym = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = pvr2_ctrl_has_custom_symbols(cptr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cptr0; _aux++) {
+          free(cptr[_aux].info);
+          }
+          free(cptr);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_cptr0 = 1;
           struct pvr2_ctrl * cptr = (struct pvr2_ctrl *) malloc(_len_cptr0*sizeof(struct pvr2_ctrl));
           for(int _i0 = 0; _i0 < _len_cptr0; _i0++) {
               int _len_cptr__i0__info0 = 1;
           cptr[_i0].info = (struct TYPE_2__ *) malloc(_len_cptr__i0__info0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_cptr__i0__info0; _j0++) {
-            cptr[_i0].info->sym_to_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        cptr[_i0].info->val_to_sym = ((-2 * (next_i()%2)) + 1) * next_i();
+              cptr[_i0].info->sym_to_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          cptr[_i0].info->val_to_sym = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = pvr2_ctrl_has_custom_symbols(cptr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cptr0; _aux++) {

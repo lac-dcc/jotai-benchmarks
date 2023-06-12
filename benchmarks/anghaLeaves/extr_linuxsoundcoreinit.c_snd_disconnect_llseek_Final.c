@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static loff_t snd_disconnect_llseek(struct file *file, lof
 	return -ENODEV;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int orig = 100;
+        
           int _len_file0 = 1;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = snd_disconnect_llseek(file,offset,orig);
+          printf("%d\n", benchRet); 
+          free(file);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int orig = 255;
+        
+          int _len_file0 = 65025;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = snd_disconnect_llseek(file,offset,orig);
           printf("%d\n", benchRet); 
           free(file);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int offset = 10;
+        
           int orig = 10;
+        
           int _len_file0 = 100;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_disconnect_llseek(file,offset,orig);
           printf("%d\n", benchRet); 
           free(file);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int orig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_file0 = 1;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_disconnect_llseek(file,offset,orig);
+          printf("%d\n", benchRet); 
+          free(file);
+        
+        break;
+    }
     default:
         usage();
         break;

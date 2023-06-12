@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static void qed_pf_validate_tunn_mode(struct qed_tunn_upda
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,20 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_tun0 = 65025;
+          struct qed_tunn_update_type * tun = (struct qed_tunn_update_type *) malloc(_len_tun0*sizeof(struct qed_tunn_update_type));
+          for(int _i0 = 0; _i0 < _len_tun0; _i0++) {
+              tun[_i0].b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tun[_i0].b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rc0 = 65025;
+          int * rc = (int *) malloc(_len_rc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+            rc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_pf_validate_tunn_mode(tun,rc);
+          free(tun);
+          free(rc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_tun0 = 100;
+          struct qed_tunn_update_type * tun = (struct qed_tunn_update_type *) malloc(_len_tun0*sizeof(struct qed_tunn_update_type));
+          for(int _i0 = 0; _i0 < _len_tun0; _i0++) {
+              tun[_i0].b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tun[_i0].b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rc0 = 100;
+          int * rc = (int *) malloc(_len_rc0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
+            rc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_pf_validate_tunn_mode(tun,rc);
+          free(tun);
+          free(rc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_tun0 = 1;
           struct qed_tunn_update_type * tun = (struct qed_tunn_update_type *) malloc(_len_tun0*sizeof(struct qed_tunn_update_type));
           for(int _i0 = 0; _i0 < _len_tun0; _i0++) {
-            tun[_i0].b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        tun[_i0].b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              tun[_i0].b_update_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          tun[_i0].b_mode_enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rc0 = 1;
           int * rc = (int *) malloc(_len_rc0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_rc0; _i0++) {
             rc[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qed_pf_validate_tunn_mode(tun,rc);
           free(tun);
           free(rc);

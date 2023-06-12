@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ void bnxt_set_tpa_flags(struct bnxt *bp)
 		bp->flags |= BNXT_FLAG_GRO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,19 +88,141 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_bp0 = 1;
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_bp0 = 65025;
           struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_bp__i0__dev0 = 1;
           bp[_i0].dev = (struct TYPE_2__ *) malloc(_len_bp__i0__dev0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_bp__i0__dev0; _j0++) {
-            bp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          bnxt_set_tpa_flags(bp);
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].dev);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_bp0 = 100;
+          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bp__i0__dev0 = 1;
+          bp[_i0].dev = (struct TYPE_2__ *) malloc(_len_bp__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bp__i0__dev0; _j0++) {
+              bp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          bnxt_set_tpa_flags(bp);
+          for(int _aux = 0; _aux < _len_bp0; _aux++) {
+          free(bp[_aux].dev);
+          }
+          free(bp);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int _len_bp0 = 1;
+          struct bnxt * bp = (struct bnxt *) malloc(_len_bp0*sizeof(struct bnxt));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_bp__i0__dev0 = 1;
+          bp[_i0].dev = (struct TYPE_2__ *) malloc(_len_bp__i0__dev0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bp__i0__dev0; _j0++) {
+              bp[_i0].dev->features = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           bnxt_set_tpa_flags(bp);
           for(int _aux = 0; _aux < _len_bp0; _aux++) {
           free(bp[_aux].dev);

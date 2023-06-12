@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -115,12 +117,6 @@ __attribute__((used)) static u32 ethadv_to_hw_cfg(struct alx_hw *hw, u32 ethadv_
 	return cfg;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -137,11 +133,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ethadv_cfg = 100;
+        
           int _len_hw0 = 1;
           struct alx_hw * hw = (struct alx_hw *) malloc(_len_hw0*sizeof(struct alx_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ethadv_to_hw_cfg(hw,ethadv_cfg);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ethadv_cfg = 255;
+        
+          int _len_hw0 = 65025;
+          struct alx_hw * hw = (struct alx_hw *) malloc(_len_hw0*sizeof(struct alx_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ethadv_to_hw_cfg(hw,ethadv_cfg);
           printf("%d\n", benchRet); 
           free(hw);
@@ -149,21 +166,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ethadv_cfg = 10;
+        
           int _len_hw0 = 100;
           struct alx_hw * hw = (struct alx_hw *) malloc(_len_hw0*sizeof(struct alx_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ethadv_to_hw_cfg(hw,ethadv_cfg);
           printf("%d\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ethadv_cfg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct alx_hw * hw = (struct alx_hw *) malloc(_len_hw0*sizeof(struct alx_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ethadv_to_hw_cfg(hw,ethadv_cfg);
+          printf("%d\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

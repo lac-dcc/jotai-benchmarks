@@ -62,12 +62,6 @@ __attribute__((used)) static int diva_modem_event(diva_strace_context_t *pLib, i
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,18 +78,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int Channel = 10;
+        
           int _len_pLib0 = 100;
           struct TYPE_3__ * pLib = (struct TYPE_3__ *) malloc(_len_pLib0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pLib0; _i0++) {
-            pLib[_i0].pending_modem_status = ((-2 * (next_i()%2)) + 1) * next_i();
+              pLib[_i0].pending_modem_status = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = diva_modem_event(pLib,Channel);
           printf("%d\n", benchRet); 
           free(pLib);
         
         break;
     }
-
     default:
         usage();
         break;

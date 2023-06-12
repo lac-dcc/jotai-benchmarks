@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void blk_queue_update_dma_pad(struct request_queue *q, unsigned int mask)
 		q->dma_pad_mask = mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,29 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int mask = 100;
+        
           int _len_q0 = 1;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].dma_pad_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].dma_pad_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           blk_queue_update_dma_pad(q,mask);
           free(q);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int mask = 255;
+        
+          int _len_q0 = 65025;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].dma_pad_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          blk_queue_update_dma_pad(q,mask);
+          free(q);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int mask = 10;
+        
           int _len_q0 = 100;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].dma_pad_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].dma_pad_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          blk_queue_update_dma_pad(q,mask);
+          free(q);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].dma_pad_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           blk_queue_update_dma_pad(q,mask);
           free(q);
         

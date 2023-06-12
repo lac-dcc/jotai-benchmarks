@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int omap_dm_timer_get_irq(struct omap_dm_timer *timer)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_timer0 = 1;
+          int _len_timer0 = 65025;
           struct omap_dm_timer * timer = (struct omap_dm_timer *) malloc(_len_timer0*sizeof(struct omap_dm_timer));
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
-            timer[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = omap_dm_timer_get_irq(timer);
           printf("%d\n", benchRet); 
           free(timer);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_timer0 = 100;
           struct omap_dm_timer * timer = (struct omap_dm_timer *) malloc(_len_timer0*sizeof(struct omap_dm_timer));
           for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
-            timer[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              timer[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = omap_dm_timer_get_irq(timer);
           printf("%d\n", benchRet); 
           free(timer);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_timer0 = 1;
+          struct omap_dm_timer * timer = (struct omap_dm_timer *) malloc(_len_timer0*sizeof(struct omap_dm_timer));
+          for(int _i0 = 0; _i0 < _len_timer0; _i0++) {
+              timer[_i0].irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = omap_dm_timer_get_irq(timer);
+          printf("%d\n", benchRet); 
+          free(timer);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -110,12 +111,6 @@ GPIOGetIntNumber(unsigned long ulPort)
     return(ulInt);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -132,6 +127,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long ulPort = 100;
+        
           long benchRet = GPIOGetIntNumber(ulPort);
           printf("%ld\n", benchRet); 
         
@@ -141,6 +137,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long ulPort = 255;
+        
           long benchRet = GPIOGetIntNumber(ulPort);
           printf("%ld\n", benchRet); 
         
@@ -150,12 +147,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long ulPort = 10;
+        
           long benchRet = GPIOGetIntNumber(ulPort);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long ulPort = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = GPIOGetIntNumber(ulPort);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

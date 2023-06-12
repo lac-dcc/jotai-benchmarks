@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static long long stream_tell (stream_t *S) {
   return S->readto_off + S->F->offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_S0 = 1;
+          int _len_S0 = 65025;
           struct TYPE_5__ * S = (struct TYPE_5__ *) malloc(_len_S0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_S0; _i0++) {
-            S[_i0].readto_off = ((-2 * (next_i()%2)) + 1) * next_i();
+              S[_i0].readto_off = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_S__i0__F0 = 1;
           S[_i0].F = (struct TYPE_4__ *) malloc(_len_S__i0__F0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_S__i0__F0; _j0++) {
-            S[_i0].F->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              S[_i0].F->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           long long benchRet = stream_tell(S);
           printf("%lld\n", benchRet); 
           for(int _aux = 0; _aux < _len_S0; _aux++) {
@@ -103,7 +102,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_S0 = 100;
+          struct TYPE_5__ * S = (struct TYPE_5__ *) malloc(_len_S0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_S0; _i0++) {
+              S[_i0].readto_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_S__i0__F0 = 1;
+          S[_i0].F = (struct TYPE_4__ *) malloc(_len_S__i0__F0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_S__i0__F0; _j0++) {
+              S[_i0].F->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long long benchRet = stream_tell(S);
+          printf("%lld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_S0; _aux++) {
+          free(S[_aux].F);
+          }
+          free(S);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_S0 = 1;
+          struct TYPE_5__ * S = (struct TYPE_5__ *) malloc(_len_S0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_S0; _i0++) {
+              S[_i0].readto_off = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_S__i0__F0 = 1;
+          S[_i0].F = (struct TYPE_4__ *) malloc(_len_S__i0__F0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_S__i0__F0; _j0++) {
+              S[_i0].F->offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          long long benchRet = stream_tell(S);
+          printf("%lld\n", benchRet); 
+          for(int _aux = 0; _aux < _len_S0; _aux++) {
+          free(S[_aux].F);
+          }
+          free(S);
+        
+        break;
+    }
     default:
         usage();
         break;

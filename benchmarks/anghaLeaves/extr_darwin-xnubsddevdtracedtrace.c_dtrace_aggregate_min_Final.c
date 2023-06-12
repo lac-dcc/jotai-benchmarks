@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ dtrace_aggregate_min(uint64_t *oval, uint64_t nval, uint64_t arg)
 		*oval = nval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,33 +83,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long nval = 100;
+        
           long arg = 100;
+        
           int _len_oval0 = 1;
           long * oval = (long *) malloc(_len_oval0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
             oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          dtrace_aggregate_min(oval,nval,arg);
+          free(oval);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long nval = 255;
+        
+          long arg = 255;
+        
+          int _len_oval0 = 65025;
+          long * oval = (long *) malloc(_len_oval0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
+            oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           dtrace_aggregate_min(oval,nval,arg);
           free(oval);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long nval = 10;
+        
           long arg = 10;
+        
           int _len_oval0 = 100;
           long * oval = (long *) malloc(_len_oval0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
             oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           dtrace_aggregate_min(oval,nval,arg);
           free(oval);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long nval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oval0 = 1;
+          long * oval = (long *) malloc(_len_oval0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_oval0; _i0++) {
+            oval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          dtrace_aggregate_min(oval,nval,arg);
+          free(oval);
+        
+        break;
+    }
     default:
         usage();
         break;

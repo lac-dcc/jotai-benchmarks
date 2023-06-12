@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static struct writeset *next_writeset(struct era_metadata 
 		&md->writesets[1] : &md->writesets[0];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,23 +76,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_md0 = 65025;
+          struct era_metadata * md = (struct era_metadata *) malloc(_len_md0*sizeof(struct era_metadata));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              int _len_md__i0__writesets0 = 1;
+          md[_i0].writesets = (struct writeset *) malloc(_len_md__i0__writesets0*sizeof(struct writeset));
+          for(int _j0 = 0; _j0 < _len_md__i0__writesets0; _j0++) {
+              md[_i0].writesets->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_md__i0__current_writeset0 = 1;
+          md[_i0].current_writeset = (struct writeset *) malloc(_len_md__i0__current_writeset0*sizeof(struct writeset));
+          for(int _j0 = 0; _j0 < _len_md__i0__current_writeset0; _j0++) {
+              md[_i0].current_writeset->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct writeset * benchRet = next_writeset(md);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_md0; _aux++) {
+          free(md[_aux].writesets);
+          }
+          for(int _aux = 0; _aux < _len_md0; _aux++) {
+          free(md[_aux].current_writeset);
+          }
+          free(md);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_md0 = 100;
+          struct era_metadata * md = (struct era_metadata *) malloc(_len_md0*sizeof(struct era_metadata));
+          for(int _i0 = 0; _i0 < _len_md0; _i0++) {
+              int _len_md__i0__writesets0 = 1;
+          md[_i0].writesets = (struct writeset *) malloc(_len_md__i0__writesets0*sizeof(struct writeset));
+          for(int _j0 = 0; _j0 < _len_md__i0__writesets0; _j0++) {
+              md[_i0].writesets->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_md__i0__current_writeset0 = 1;
+          md[_i0].current_writeset = (struct writeset *) malloc(_len_md__i0__current_writeset0*sizeof(struct writeset));
+          for(int _j0 = 0; _j0 < _len_md__i0__current_writeset0; _j0++) {
+              md[_i0].current_writeset->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct writeset * benchRet = next_writeset(md);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_md0; _aux++) {
+          free(md[_aux].writesets);
+          }
+          for(int _aux = 0; _aux < _len_md0; _aux++) {
+          free(md[_aux].current_writeset);
+          }
+          free(md);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_md0 = 1;
           struct era_metadata * md = (struct era_metadata *) malloc(_len_md0*sizeof(struct era_metadata));
           for(int _i0 = 0; _i0 < _len_md0; _i0++) {
               int _len_md__i0__writesets0 = 1;
           md[_i0].writesets = (struct writeset *) malloc(_len_md__i0__writesets0*sizeof(struct writeset));
           for(int _j0 = 0; _j0 < _len_md__i0__writesets0; _j0++) {
-            md[_i0].writesets->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].writesets->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_md__i0__current_writeset0 = 1;
           md[_i0].current_writeset = (struct writeset *) malloc(_len_md__i0__current_writeset0*sizeof(struct writeset));
           for(int _j0 = 0; _j0 < _len_md__i0__current_writeset0; _j0++) {
-            md[_i0].current_writeset->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              md[_i0].current_writeset->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct writeset * benchRet = next_writeset(md);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_md0; _aux++) {

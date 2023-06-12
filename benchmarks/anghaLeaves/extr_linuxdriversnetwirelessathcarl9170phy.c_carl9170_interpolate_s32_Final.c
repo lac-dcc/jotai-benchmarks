@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ __attribute__((used)) static s32 carl9170_interpolate_s32(s32 x, s32 x1, s32 y1,
 	return y1 + (((y2 - y1) * (x - x1)) / (x2 - x1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,10 +93,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long x = 100;
+        
           long x1 = 100;
+        
           long y1 = 100;
+        
           long x2 = 100;
+        
           long y2 = 100;
+        
           long benchRet = carl9170_interpolate_s32(x,x1,y1,x2,y2);
           printf("%ld\n", benchRet); 
         
@@ -111,10 +111,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long x = 255;
+        
           long x1 = 255;
+        
           long y1 = 255;
+        
           long x2 = 255;
+        
           long y2 = 255;
+        
           long benchRet = carl9170_interpolate_s32(x,x1,y1,x2,y2);
           printf("%ld\n", benchRet); 
         
@@ -124,16 +129,38 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long x = 10;
+        
           long x1 = 10;
+        
           long y1 = 10;
+        
           long x2 = 10;
+        
           long y2 = 10;
+        
           long benchRet = carl9170_interpolate_s32(x,x1,y1,x2,y2);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long x1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long y1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long x2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long y2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = carl9170_interpolate_s32(x,x1,y1,x2,y2);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

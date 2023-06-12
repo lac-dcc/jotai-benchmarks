@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline void wmi_data_hdr_set_up(struct wmi_data_hdr
 	dhdr->info |= usr_pri << WMI_DATA_HDR_UP_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,29 +79,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int usr_pri = 100;
+        
           int _len_dhdr0 = 1;
           struct wmi_data_hdr * dhdr = (struct wmi_data_hdr *) malloc(_len_dhdr0*sizeof(struct wmi_data_hdr));
           for(int _i0 = 0; _i0 < _len_dhdr0; _i0++) {
-            dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+              dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           wmi_data_hdr_set_up(dhdr,usr_pri);
           free(dhdr);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int usr_pri = 255;
+        
+          int _len_dhdr0 = 65025;
+          struct wmi_data_hdr * dhdr = (struct wmi_data_hdr *) malloc(_len_dhdr0*sizeof(struct wmi_data_hdr));
+          for(int _i0 = 0; _i0 < _len_dhdr0; _i0++) {
+              dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          wmi_data_hdr_set_up(dhdr,usr_pri);
+          free(dhdr);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int usr_pri = 10;
+        
           int _len_dhdr0 = 100;
           struct wmi_data_hdr * dhdr = (struct wmi_data_hdr *) malloc(_len_dhdr0*sizeof(struct wmi_data_hdr));
           for(int _i0 = 0; _i0 < _len_dhdr0; _i0++) {
-            dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+              dhdr[_i0].info = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           wmi_data_hdr_set_up(dhdr,usr_pri);
           free(dhdr);
         

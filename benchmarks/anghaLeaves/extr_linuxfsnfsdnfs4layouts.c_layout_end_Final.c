@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ layout_end(struct nfsd4_layout_seg *seg)
 	return end >= seg->offset ? end : NFS4_MAX_UINT64;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +78,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_seg0 = 65025;
+          struct nfsd4_layout_seg * seg = (struct nfsd4_layout_seg *) malloc(_len_seg0*sizeof(struct nfsd4_layout_seg));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = layout_end(seg);
+          printf("%ld\n", benchRet); 
+          free(seg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_seg0 = 100;
+          struct nfsd4_layout_seg * seg = (struct nfsd4_layout_seg *) malloc(_len_seg0*sizeof(struct nfsd4_layout_seg));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = layout_end(seg);
+          printf("%ld\n", benchRet); 
+          free(seg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_seg0 = 1;
           struct nfsd4_layout_seg * seg = (struct nfsd4_layout_seg *) malloc(_len_seg0*sizeof(struct nfsd4_layout_seg));
           for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
-            seg[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        seg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              seg[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = layout_end(seg);
           printf("%ld\n", benchRet); 
           free(seg);

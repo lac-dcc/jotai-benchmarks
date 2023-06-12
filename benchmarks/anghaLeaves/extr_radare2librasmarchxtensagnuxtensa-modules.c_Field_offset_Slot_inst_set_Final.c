@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ Field_offset_Slot_inst_set (xtensa_insnbuf insn, uint32 val)
   insn[0] = (insn[0] & ~0xffffc0) | (tie_t << 6);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +82,50 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int _len_insn0 = 1;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          Field_offset_Slot_inst_set(insn,val);
+          free(insn);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int val = 255;
+        
+          int _len_insn0 = 65025;
+          int * insn = (int *) malloc(_len_insn0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+            insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           Field_offset_Slot_inst_set(insn,val);
           free(insn);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int val = 10;
+        
           int _len_insn0 = 100;
           int * insn = (int *) malloc(_len_insn0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
             insn[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           Field_offset_Slot_inst_set(insn,val);
           free(insn);
         
         break;
     }
-
     default:
         usage();
         break;

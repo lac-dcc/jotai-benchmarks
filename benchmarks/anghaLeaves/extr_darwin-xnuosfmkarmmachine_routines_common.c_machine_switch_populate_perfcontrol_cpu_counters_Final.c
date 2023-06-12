@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ machine_switch_populate_perfcontrol_cpu_counters(struct perfcontrol_cpu_counters
 #endif /* !MONOTONIC */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,15 +80,120 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cpu_counters0 = 65025;
+          struct perfcontrol_cpu_counters * cpu_counters = (struct perfcontrol_cpu_counters *) malloc(_len_cpu_counters0*sizeof(struct perfcontrol_cpu_counters));
+          for(int _i0 = 0; _i0 < _len_cpu_counters0; _i0++) {
+              cpu_counters[_i0].cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpu_counters[_i0].instructions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          machine_switch_populate_perfcontrol_cpu_counters(cpu_counters);
+          free(cpu_counters);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cpu_counters0 = 100;
+          struct perfcontrol_cpu_counters * cpu_counters = (struct perfcontrol_cpu_counters *) malloc(_len_cpu_counters0*sizeof(struct perfcontrol_cpu_counters));
+          for(int _i0 = 0; _i0 < _len_cpu_counters0; _i0++) {
+              cpu_counters[_i0].cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpu_counters[_i0].instructions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          machine_switch_populate_perfcontrol_cpu_counters(cpu_counters);
+          free(cpu_counters);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_cpu_counters0 = 1;
           struct perfcontrol_cpu_counters * cpu_counters = (struct perfcontrol_cpu_counters *) malloc(_len_cpu_counters0*sizeof(struct perfcontrol_cpu_counters));
           for(int _i0 = 0; _i0 < _len_cpu_counters0; _i0++) {
-            cpu_counters[_i0].cycles = ((-2 * (next_i()%2)) + 1) * next_i();
-        cpu_counters[_i0].instructions = ((-2 * (next_i()%2)) + 1) * next_i();
+              cpu_counters[_i0].cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+          cpu_counters[_i0].instructions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           machine_switch_populate_perfcontrol_cpu_counters(cpu_counters);
           free(cpu_counters);
         

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static void rsi_set_default_parameters(struct rsi_common *
 	common->dtim_cnt = RSI_DTIM_COUNT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,29 +96,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_common0 = 65025;
+          struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].iface_down = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].driver_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].ulp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].obm_ant_sel_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].dtim_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].beacon_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].wlan_rf_power_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].rf_power_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].lp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].fsm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].rts_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].channel_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rsi_set_default_parameters(common);
+          free(common);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
+          int _len_common0 = 100;
+          struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
+          for(int _i0 = 0; _i0 < _len_common0; _i0++) {
+              common[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].iface_down = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].driver_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].ulp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].obm_ant_sel_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].dtim_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].beacon_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].wlan_rf_power_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].rf_power_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].lp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].fsm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].rts_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].channel_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rsi_set_default_parameters(common);
+          free(common);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 27
+          // dynamic_instructions_O1 : 27
+          // ------------------------------- 
+          // static_instructions_O2 : 25
+          // dynamic_instructions_O2 : 25
+          // ------------------------------- 
+          // static_instructions_O3 : 25
+          // dynamic_instructions_O3 : 25
+          // ------------------------------- 
+          // static_instructions_Ofast : 25
+          // dynamic_instructions_Ofast : 25
+          // ------------------------------- 
+          // static_instructions_Os : 25
+          // dynamic_instructions_Os : 25
+          // ------------------------------- 
+          // static_instructions_Oz : 25
+          // dynamic_instructions_Oz : 25
+          // ------------------------------- 
+
           int _len_common0 = 1;
           struct rsi_common * common = (struct rsi_common *) malloc(_len_common0*sizeof(struct rsi_common));
           for(int _i0 = 0; _i0 < _len_common0; _i0++) {
-            common[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].iface_down = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].driver_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].ulp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].obm_ant_sel_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].dtim_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].beacon_interval = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].wlan_rf_power_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].rf_power_val = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].lp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].fsm_state = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].rts_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].channel_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        common[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+              common[_i0].channel = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].iface_down = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].driver_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].ulp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].obm_ant_sel_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].dtim_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].beacon_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].wlan_rf_power_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].rf_power_val = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].lp_ps_handshake_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].endpoint = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].fsm_state = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].rts_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].channel_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          common[_i0].band = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rsi_set_default_parameters(common);
           free(common);
         

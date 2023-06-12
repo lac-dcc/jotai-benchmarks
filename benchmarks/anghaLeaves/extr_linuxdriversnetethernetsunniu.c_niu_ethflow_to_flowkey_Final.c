@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ __attribute__((used)) static int niu_ethflow_to_flowkey(u64 ethflow, u64 *flow_k
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,11 +114,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ethflow = 100;
+        
           int _len_flow_key0 = 1;
           int * flow_key = (int *) malloc(_len_flow_key0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flow_key0; _i0++) {
             flow_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = niu_ethflow_to_flowkey(ethflow,flow_key);
+          printf("%d\n", benchRet); 
+          free(flow_key);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int ethflow = 255;
+        
+          int _len_flow_key0 = 65025;
+          int * flow_key = (int *) malloc(_len_flow_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flow_key0; _i0++) {
+            flow_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = niu_ethflow_to_flowkey(ethflow,flow_key);
           printf("%d\n", benchRet); 
           free(flow_key);
@@ -130,21 +145,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int ethflow = 10;
+        
           int _len_flow_key0 = 100;
           int * flow_key = (int *) malloc(_len_flow_key0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flow_key0; _i0++) {
             flow_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = niu_ethflow_to_flowkey(ethflow,flow_key);
           printf("%d\n", benchRet); 
           free(flow_key);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ethflow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_flow_key0 = 1;
+          int * flow_key = (int *) malloc(_len_flow_key0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flow_key0; _i0++) {
+            flow_key[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = niu_ethflow_to_flowkey(ethflow,flow_key);
+          printf("%d\n", benchRet); 
+          free(flow_key);
+        
+        break;
+    }
     default:
         usage();
         break;

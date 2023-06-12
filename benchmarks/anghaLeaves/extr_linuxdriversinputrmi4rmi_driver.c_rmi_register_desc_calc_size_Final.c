@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ size_t rmi_register_desc_calc_size(struct rmi_register_descriptor *rdesc)
 	return size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_rdesc0 = 1;
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rdesc0 = 65025;
           struct rmi_register_descriptor * rdesc = (struct rmi_register_descriptor *) malloc(_len_rdesc0*sizeof(struct rmi_register_descriptor));
           for(int _i0 = 0; _i0 < _len_rdesc0; _i0++) {
-            rdesc[_i0].num_registers = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdesc[_i0].num_registers = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_rdesc__i0__registers0 = 1;
           rdesc[_i0].registers = (struct rmi_register_desc_item *) malloc(_len_rdesc__i0__registers0*sizeof(struct rmi_register_desc_item));
           for(int _j0 = 0; _j0 < _len_rdesc__i0__registers0; _j0++) {
-            rdesc[_i0].registers->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdesc[_i0].registers->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          unsigned long benchRet = rmi_register_desc_calc_size(rdesc);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdesc0; _aux++) {
+          free(rdesc[_aux].registers);
+          }
+          free(rdesc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rdesc0 = 100;
+          struct rmi_register_descriptor * rdesc = (struct rmi_register_descriptor *) malloc(_len_rdesc0*sizeof(struct rmi_register_descriptor));
+          for(int _i0 = 0; _i0 < _len_rdesc0; _i0++) {
+              rdesc[_i0].num_registers = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rdesc__i0__registers0 = 1;
+          rdesc[_i0].registers = (struct rmi_register_desc_item *) malloc(_len_rdesc__i0__registers0*sizeof(struct rmi_register_desc_item));
+          for(int _j0 = 0; _j0 < _len_rdesc__i0__registers0; _j0++) {
+              rdesc[_i0].registers->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned long benchRet = rmi_register_desc_calc_size(rdesc);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdesc0; _aux++) {
+          free(rdesc[_aux].registers);
+          }
+          free(rdesc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rdesc0 = 1;
+          struct rmi_register_descriptor * rdesc = (struct rmi_register_descriptor *) malloc(_len_rdesc0*sizeof(struct rmi_register_descriptor));
+          for(int _i0 = 0; _i0 < _len_rdesc0; _i0++) {
+              rdesc[_i0].num_registers = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_rdesc__i0__registers0 = 1;
+          rdesc[_i0].registers = (struct rmi_register_desc_item *) malloc(_len_rdesc__i0__registers0*sizeof(struct rmi_register_desc_item));
+          for(int _j0 = 0; _j0 < _len_rdesc__i0__registers0; _j0++) {
+              rdesc[_i0].registers->reg_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           unsigned long benchRet = rmi_register_desc_calc_size(rdesc);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_rdesc0; _aux++) {

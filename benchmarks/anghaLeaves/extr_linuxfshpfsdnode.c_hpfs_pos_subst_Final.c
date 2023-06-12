@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static void hpfs_pos_subst(loff_t *p, loff_t f, loff_t t)
 	if (*p == f) *p = t;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,33 +79,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long f = 100;
+        
           long t = 100;
+        
           int _len_p0 = 1;
           long * p = (long *) malloc(_len_p0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          hpfs_pos_subst(p,f,t);
+          free(p);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long f = 255;
+        
+          long t = 255;
+        
+          int _len_p0 = 65025;
+          long * p = (long *) malloc(_len_p0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           hpfs_pos_subst(p,f,t);
           free(p);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long f = 10;
+        
           long t = 10;
+        
           int _len_p0 = 100;
           long * p = (long *) malloc(_len_p0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_p0; _i0++) {
             p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           hpfs_pos_subst(p,f,t);
           free(p);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long t = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p0 = 1;
+          long * p = (long *) malloc(_len_p0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_p0; _i0++) {
+            p[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          hpfs_pos_subst(p,f,t);
+          free(p);
+        
+        break;
+    }
     default:
         usage();
         break;

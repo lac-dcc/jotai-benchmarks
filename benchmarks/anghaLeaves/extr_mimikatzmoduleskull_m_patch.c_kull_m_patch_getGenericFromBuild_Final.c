@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ PKULL_M_PATCH_GENERIC kull_m_patch_getGenericFromBuild(PKULL_M_PATCH_GENERIC gen
 	return current;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +86,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 4858
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 1795
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 1795
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 1795
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 1795
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 1793
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 2048
+          // ------------------------------- 
+
+          unsigned long cbGenerics = 255;
+        
+          long BuildNumber = 255;
+        
+          int _len_generics0 = 65025;
+          struct TYPE_4__ * generics = (struct TYPE_4__ *) malloc(_len_generics0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_generics0; _i0++) {
+              generics[_i0].MinBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct TYPE_4__ * benchRet = kull_m_patch_getGenericFromBuild(generics,cbGenerics,BuildNumber);
+          printf("%ld\n", (*benchRet).MinBuildNumber);
+          free(generics);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 203
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 80
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 80
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 80
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 80
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 78
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 88
+          // ------------------------------- 
+
           unsigned long cbGenerics = 10;
+        
           long BuildNumber = 10;
+        
           int _len_generics0 = 100;
           struct TYPE_4__ * generics = (struct TYPE_4__ *) malloc(_len_generics0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_generics0; _i0++) {
-            generics[_i0].MinBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+              generics[_i0].MinBuildNumber = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct TYPE_4__ * benchRet = kull_m_patch_getGenericFromBuild(generics,cbGenerics,BuildNumber);
           printf("%ld\n", (*benchRet).MinBuildNumber);
           free(generics);

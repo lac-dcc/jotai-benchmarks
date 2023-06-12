@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static inline u8 si5351_msynth_params_address(int num)
 	return SI5351_CLK0_PARAMETERS + (SI5351_PARAMETERS_LENGTH * num);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,6 +84,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num = 100;
+        
           long benchRet = si5351_msynth_params_address(num);
           printf("%ld\n", benchRet); 
         
@@ -98,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int num = 255;
+        
           long benchRet = si5351_msynth_params_address(num);
           printf("%ld\n", benchRet); 
         
@@ -107,12 +104,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int num = 10;
+        
           long benchRet = si5351_msynth_params_address(num);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = si5351_msynth_params_address(num);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

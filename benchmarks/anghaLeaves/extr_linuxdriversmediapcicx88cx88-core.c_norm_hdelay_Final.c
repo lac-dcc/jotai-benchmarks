@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static inline unsigned int norm_hdelay(v4l2_std_id norm)
 	return (norm & (V4L2_STD_MN & ~V4L2_STD_PAL_Nc)) ? 135 : 186;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int norm = 100;
+        
           unsigned int benchRet = norm_hdelay(norm);
           printf("%u\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int norm = 255;
+        
           unsigned int benchRet = norm_hdelay(norm);
           printf("%u\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int norm = 10;
+        
           unsigned int benchRet = norm_hdelay(norm);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int norm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = norm_hdelay(norm);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

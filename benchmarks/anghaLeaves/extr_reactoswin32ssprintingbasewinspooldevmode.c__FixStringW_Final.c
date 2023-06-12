@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ _FixStringW(PWSTR String, DWORD cbString)
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,15 +88,80 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 644
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 324
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 324
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 324
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 324
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 323
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 324
+          // ------------------------------- 
+
+          int cbString = 255;
+        
+          int _len_String0 = 65025;
+          long * String = (long *) malloc(_len_String0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_String0; _i0++) {
+            String[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          _FixStringW(String,cbString);
+          free(String);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 34
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int cbString = 10;
+        
           int _len_String0 = 100;
           long * String = (long *) malloc(_len_String0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_String0; _i0++) {
             String[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           _FixStringW(String,cbString);
           free(String);
         

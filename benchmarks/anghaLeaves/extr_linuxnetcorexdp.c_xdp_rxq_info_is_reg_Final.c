@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ bool xdp_rxq_info_is_reg(struct xdp_rxq_info *xdp_rxq)
 	return (xdp_rxq->reg_state == REG_STATE_REGISTERED);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_xdp_rxq0 = 1;
+          int _len_xdp_rxq0 = 65025;
           struct xdp_rxq_info * xdp_rxq = (struct xdp_rxq_info *) malloc(_len_xdp_rxq0*sizeof(struct xdp_rxq_info));
           for(int _i0 = 0; _i0 < _len_xdp_rxq0; _i0++) {
-            xdp_rxq[_i0].reg_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              xdp_rxq[_i0].reg_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xdp_rxq_info_is_reg(xdp_rxq);
           printf("%d\n", benchRet); 
           free(xdp_rxq);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_xdp_rxq0 = 100;
           struct xdp_rxq_info * xdp_rxq = (struct xdp_rxq_info *) malloc(_len_xdp_rxq0*sizeof(struct xdp_rxq_info));
           for(int _i0 = 0; _i0 < _len_xdp_rxq0; _i0++) {
-            xdp_rxq[_i0].reg_state = ((-2 * (next_i()%2)) + 1) * next_i();
+              xdp_rxq[_i0].reg_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = xdp_rxq_info_is_reg(xdp_rxq);
           printf("%d\n", benchRet); 
           free(xdp_rxq);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_xdp_rxq0 = 1;
+          struct xdp_rxq_info * xdp_rxq = (struct xdp_rxq_info *) malloc(_len_xdp_rxq0*sizeof(struct xdp_rxq_info));
+          for(int _i0 = 0; _i0 < _len_xdp_rxq0; _i0++) {
+              xdp_rxq[_i0].reg_state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = xdp_rxq_info_is_reg(xdp_rxq);
+          printf("%d\n", benchRet); 
+          free(xdp_rxq);
+        
+        break;
+    }
     default:
         usage();
         break;

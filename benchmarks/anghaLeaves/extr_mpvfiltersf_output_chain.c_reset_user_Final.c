@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void reset_user(struct mp_filter *f)
     u->last_in_pts = u->last_out_pts = MP_NOPTS_VALUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,20 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_f0 = 1;
+          int _len_f0 = 65025;
           struct mp_filter * f = (struct mp_filter *) malloc(_len_f0*sizeof(struct mp_filter));
           for(int _i0 = 0; _i0 < _len_f0; _i0++) {
               int _len_f__i0__priv0 = 1;
           f[_i0].priv = (struct mp_user_filter *) malloc(_len_f__i0__priv0*sizeof(struct mp_user_filter));
           for(int _j0 = 0; _j0 < _len_f__i0__priv0; _j0++) {
-            f[_i0].priv->error_eof_sent = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].priv->last_out_pts = ((-2 * (next_i()%2)) + 1) * next_i();
-        f[_i0].priv->last_in_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+              f[_i0].priv->error_eof_sent = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].priv->last_out_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].priv->last_in_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           reset_user(f);
           for(int _aux = 0; _aux < _len_f0; _aux++) {
           free(f[_aux].priv);
@@ -105,7 +104,56 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_f0 = 100;
+          struct mp_filter * f = (struct mp_filter *) malloc(_len_f0*sizeof(struct mp_filter));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              int _len_f__i0__priv0 = 1;
+          f[_i0].priv = (struct mp_user_filter *) malloc(_len_f__i0__priv0*sizeof(struct mp_user_filter));
+          for(int _j0 = 0; _j0 < _len_f__i0__priv0; _j0++) {
+              f[_i0].priv->error_eof_sent = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].priv->last_out_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].priv->last_in_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_user(f);
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(f[_aux].priv);
+          }
+          free(f);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_f0 = 1;
+          struct mp_filter * f = (struct mp_filter *) malloc(_len_f0*sizeof(struct mp_filter));
+          for(int _i0 = 0; _i0 < _len_f0; _i0++) {
+              int _len_f__i0__priv0 = 1;
+          f[_i0].priv = (struct mp_user_filter *) malloc(_len_f__i0__priv0*sizeof(struct mp_user_filter));
+          for(int _j0 = 0; _j0 < _len_f__i0__priv0; _j0++) {
+              f[_i0].priv->error_eof_sent = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].priv->last_out_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+          f[_i0].priv->last_in_pts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_user(f);
+          for(int _aux = 0; _aux < _len_f0; _aux++) {
+          free(f[_aux].priv);
+          }
+          free(f);
+        
+        break;
+    }
     default:
         usage();
         break;

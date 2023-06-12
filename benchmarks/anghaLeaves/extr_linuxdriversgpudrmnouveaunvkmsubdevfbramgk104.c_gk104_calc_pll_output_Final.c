@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ gk104_calc_pll_output(int fN, int M, int N, int P, int clk)
 	return ((clk * N) + (((u16)(fN + 4096) * clk) >> 13)) / (M * P);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,10 +80,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int fN = 100;
+        
           int M = 100;
+        
           int N = 100;
+        
           int P = 100;
+        
           int clk = 100;
+        
           int benchRet = gk104_calc_pll_output(fN,M,N,P,clk);
           printf("%d\n", benchRet); 
         
@@ -98,10 +98,15 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int fN = 255;
+        
           int M = 255;
+        
           int N = 255;
+        
           int P = 255;
+        
           int clk = 255;
+        
           int benchRet = gk104_calc_pll_output(fN,M,N,P,clk);
           printf("%d\n", benchRet); 
         
@@ -111,16 +116,38 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int fN = 10;
+        
           int M = 10;
+        
           int N = 10;
+        
           int P = 10;
+        
           int clk = 10;
+        
           int benchRet = gk104_calc_pll_output(fN,M,N,P,clk);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int fN = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int M = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int P = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int clk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = gk104_calc_pll_output(fN,M,N,P,clk);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

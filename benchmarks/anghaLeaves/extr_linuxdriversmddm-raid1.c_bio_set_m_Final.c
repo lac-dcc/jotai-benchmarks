@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -61,7 +62,6 @@ __attribute__((used)) static void bio_set_m(struct bio *bio, struct mirror *m)
 	bio->bi_next = (struct bio *) m;
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct bio *_allocate_bio(int length, struct bio *aux_bio[]) {
@@ -89,7 +89,6 @@ void _delete_bio(struct bio *aux_bio[], int aux_bio_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,16 +101,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // linked
     case 0:
     {
-          struct bio * aux_bio[1];
-          struct bio * bio = _allocate_bio(1, aux_bio);
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          struct bio * aux_bio[10000];
+          struct bio * bio = _allocate_bio(10000, aux_bio);
+        
           int _len_m0 = 1;
           struct mirror * m = (struct mirror *) malloc(_len_m0*sizeof(struct mirror));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          bio_set_m(bio,m);
+          _delete_bio(aux_bio, 10000);
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          struct bio * aux_bio[1];
+          struct bio * bio = _allocate_bio(1, aux_bio);
+        
+          int _len_m0 = 1;
+          struct mirror * m = (struct mirror *) malloc(_len_m0*sizeof(struct mirror));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           bio_set_m(bio,m);
           _delete_bio(aux_bio, 1);
           free(m);

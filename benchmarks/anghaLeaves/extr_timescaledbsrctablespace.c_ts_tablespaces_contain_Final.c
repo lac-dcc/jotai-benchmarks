@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ ts_tablespaces_contain(Tablespaces *tspcs, Oid tspc_oid)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +87,200 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long tspc_oid = 100;
+        
           int _len_tspcs0 = 1;
           struct TYPE_5__ * tspcs = (struct TYPE_5__ *) malloc(_len_tspcs0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_tspcs0; _i0++) {
-            tspcs[_i0].num_tablespaces = ((-2 * (next_i()%2)) + 1) * next_i();
+              tspcs[_i0].num_tablespaces = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_tspcs__i0__tablespaces0 = 1;
           tspcs[_i0].tablespaces = (struct TYPE_4__ *) malloc(_len_tspcs__i0__tablespaces0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_tspcs__i0__tablespaces0; _j0++) {
-            tspcs[_i0].tablespaces->tablespace_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+              tspcs[_i0].tablespaces->tablespace_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ts_tablespaces_contain(tspcs,tspc_oid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tspcs0; _aux++) {
+          free(tspcs[_aux].tablespaces);
+          }
+          free(tspcs);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long tspc_oid = 255;
+        
+          int _len_tspcs0 = 65025;
+          struct TYPE_5__ * tspcs = (struct TYPE_5__ *) malloc(_len_tspcs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_tspcs0; _i0++) {
+              tspcs[_i0].num_tablespaces = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tspcs__i0__tablespaces0 = 1;
+          tspcs[_i0].tablespaces = (struct TYPE_4__ *) malloc(_len_tspcs__i0__tablespaces0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_tspcs__i0__tablespaces0; _j0++) {
+              tspcs[_i0].tablespaces->tablespace_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ts_tablespaces_contain(tspcs,tspc_oid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tspcs0; _aux++) {
+          free(tspcs[_aux].tablespaces);
+          }
+          free(tspcs);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long tspc_oid = 10;
+        
+          int _len_tspcs0 = 100;
+          struct TYPE_5__ * tspcs = (struct TYPE_5__ *) malloc(_len_tspcs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_tspcs0; _i0++) {
+              tspcs[_i0].num_tablespaces = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tspcs__i0__tablespaces0 = 1;
+          tspcs[_i0].tablespaces = (struct TYPE_4__ *) malloc(_len_tspcs__i0__tablespaces0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_tspcs__i0__tablespaces0; _j0++) {
+              tspcs[_i0].tablespaces->tablespace_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ts_tablespaces_contain(tspcs,tspc_oid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_tspcs0; _aux++) {
+          free(tspcs[_aux].tablespaces);
+          }
+          free(tspcs);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long tspc_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tspcs0 = 1;
+          struct TYPE_5__ * tspcs = (struct TYPE_5__ *) malloc(_len_tspcs0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_tspcs0; _i0++) {
+              tspcs[_i0].num_tablespaces = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_tspcs__i0__tablespaces0 = 1;
+          tspcs[_i0].tablespaces = (struct TYPE_4__ *) malloc(_len_tspcs__i0__tablespaces0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_tspcs__i0__tablespaces0; _j0++) {
+              tspcs[_i0].tablespaces->tablespace_oid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ts_tablespaces_contain(tspcs,tspc_oid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_tspcs0; _aux++) {

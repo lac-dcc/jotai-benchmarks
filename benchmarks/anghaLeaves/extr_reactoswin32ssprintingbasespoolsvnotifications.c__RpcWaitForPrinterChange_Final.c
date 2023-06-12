@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ _RpcWaitForPrinterChange(WINSPOOL_PRINTER_HANDLE hPrinter, DWORD Flags, DWORD* p
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,12 +84,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hPrinter = 100;
+        
           int Flags = 100;
+        
           int _len_pFlags0 = 1;
           int * pFlags = (int *) malloc(_len_pFlags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFlags0; _i0++) {
             pFlags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = _RpcWaitForPrinterChange(hPrinter,Flags,pFlags);
+          printf("%d\n", benchRet); 
+          free(pFlags);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int hPrinter = 255;
+        
+          int Flags = 255;
+        
+          int _len_pFlags0 = 65025;
+          int * pFlags = (int *) malloc(_len_pFlags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFlags0; _i0++) {
+            pFlags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = _RpcWaitForPrinterChange(hPrinter,Flags,pFlags);
           printf("%d\n", benchRet); 
           free(pFlags);
@@ -101,22 +119,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int hPrinter = 10;
+        
           int Flags = 10;
+        
           int _len_pFlags0 = 100;
           int * pFlags = (int *) malloc(_len_pFlags0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pFlags0; _i0++) {
             pFlags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcWaitForPrinterChange(hPrinter,Flags,pFlags);
           printf("%d\n", benchRet); 
           free(pFlags);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int Flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pFlags0 = 1;
+          int * pFlags = (int *) malloc(_len_pFlags0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pFlags0; _i0++) {
+            pFlags[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcWaitForPrinterChange(hPrinter,Flags,pFlags);
+          printf("%d\n", benchRet); 
+          free(pFlags);
+        
+        break;
+    }
     default:
         usage();
         break;

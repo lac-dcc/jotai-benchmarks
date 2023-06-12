@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool psc724_get_jack_detection(struct snd_ice1712 *
 	return spec->jack_detect;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ice0 = 1;
+          int _len_ice0 = 65025;
           struct snd_ice1712 * ice = (struct snd_ice1712 *) malloc(_len_ice0*sizeof(struct snd_ice1712));
           for(int _i0 = 0; _i0 < _len_ice0; _i0++) {
               int _len_ice__i0__spec0 = 1;
           ice[_i0].spec = (struct psc724_spec *) malloc(_len_ice__i0__spec0*sizeof(struct psc724_spec));
           for(int _j0 = 0; _j0 < _len_ice__i0__spec0; _j0++) {
-            ice[_i0].spec->jack_detect = ((-2 * (next_i()%2)) + 1) * next_i();
+              ice[_i0].spec->jack_detect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = psc724_get_jack_detection(ice);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ice0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ice0 = 100;
+          struct snd_ice1712 * ice = (struct snd_ice1712 *) malloc(_len_ice0*sizeof(struct snd_ice1712));
+          for(int _i0 = 0; _i0 < _len_ice0; _i0++) {
+              int _len_ice__i0__spec0 = 1;
+          ice[_i0].spec = (struct psc724_spec *) malloc(_len_ice__i0__spec0*sizeof(struct psc724_spec));
+          for(int _j0 = 0; _j0 < _len_ice__i0__spec0; _j0++) {
+              ice[_i0].spec->jack_detect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = psc724_get_jack_detection(ice);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ice0; _aux++) {
+          free(ice[_aux].spec);
+          }
+          free(ice);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ice0 = 1;
+          struct snd_ice1712 * ice = (struct snd_ice1712 *) malloc(_len_ice0*sizeof(struct snd_ice1712));
+          for(int _i0 = 0; _i0 < _len_ice0; _i0++) {
+              int _len_ice__i0__spec0 = 1;
+          ice[_i0].spec = (struct psc724_spec *) malloc(_len_ice__i0__spec0*sizeof(struct psc724_spec));
+          for(int _j0 = 0; _j0 < _len_ice__i0__spec0; _j0++) {
+              ice[_i0].spec->jack_detect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = psc724_get_jack_detection(ice);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ice0; _aux++) {
+          free(ice[_aux].spec);
+          }
+          free(ice);
+        
+        break;
+    }
     default:
         usage();
         break;

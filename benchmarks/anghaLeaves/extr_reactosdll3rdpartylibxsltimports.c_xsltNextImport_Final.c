@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -73,7 +73,6 @@ xsltNextImport(xsltStylesheetPtr cur) {
     return(cur);
 }
 
-
 // ------------------------------------------------------------------------- //
 
 struct TYPE_4__ *_allocate_cur(int length, struct TYPE_4__ *aux_cur[]) {
@@ -111,7 +110,6 @@ void _delete_cur(struct TYPE_4__ *aux_cur[], int aux_cur_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,17 +122,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_4__ * aux_cur[1];
           struct TYPE_4__ * cur = _allocate_cur(1, aux_cur);
+        
           struct TYPE_4__ * benchRet = xsltNextImport(cur);
           _delete_cur(aux_cur, 1);
         
         break;
     }
-
     default:
         usage();
         break;

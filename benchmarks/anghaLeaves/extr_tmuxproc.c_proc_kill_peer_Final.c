@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ proc_kill_peer(struct tmuxpeer *peer)
 	peer->flags |= PEER_BAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_peer0 = 1;
+          int _len_peer0 = 65025;
           struct tmuxpeer * peer = (struct tmuxpeer *) malloc(_len_peer0*sizeof(struct tmuxpeer));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-            peer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           proc_kill_peer(peer);
           free(peer);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_peer0 = 100;
           struct tmuxpeer * peer = (struct tmuxpeer *) malloc(_len_peer0*sizeof(struct tmuxpeer));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-            peer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           proc_kill_peer(peer);
           free(peer);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_peer0 = 1;
+          struct tmuxpeer * peer = (struct tmuxpeer *) malloc(_len_peer0*sizeof(struct tmuxpeer));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          proc_kill_peer(peer);
+          free(peer);
+        
+        break;
+    }
     default:
         usage();
         break;

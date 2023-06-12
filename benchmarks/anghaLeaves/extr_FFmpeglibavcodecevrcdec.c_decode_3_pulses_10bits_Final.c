@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static void decode_3_pulses_10bits(uint16_t fixed_index, f
     cod[pos] += sign;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +83,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int fixed_index = 10;
-          int _len_cod0 = 100;
+          int fixed_index = 255;
+        
+          int _len_cod0 = 65025;
           float * cod = (float *) malloc(_len_cod0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_cod0; _i0++) {
             cod[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           decode_3_pulses_10bits(fixed_index,cod);
           free(cod);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int fixed_index = 10;
+        
+          int _len_cod0 = 100;
+          float * cod = (float *) malloc(_len_cod0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_cod0; _i0++) {
+            cod[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          decode_3_pulses_10bits(fixed_index,cod);
+          free(cod);
+        
+        break;
+    }
     default:
         usage();
         break;

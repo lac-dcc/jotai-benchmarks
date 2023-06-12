@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void OPENSSL_LH_set_down_load(OPENSSL_LHASH *lh, unsigned long down_load)
     lh->down_load = down_load;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long down_load = 100;
+        
           int _len_lh0 = 1;
           struct TYPE_3__ * lh = (struct TYPE_3__ *) malloc(_len_lh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_lh0; _i0++) {
-            lh[_i0].down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+              lh[_i0].down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          OPENSSL_LH_set_down_load(lh,down_load);
+          free(lh);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long down_load = 255;
+        
+          int _len_lh0 = 65025;
+          struct TYPE_3__ * lh = (struct TYPE_3__ *) malloc(_len_lh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_lh0; _i0++) {
+              lh[_i0].down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           OPENSSL_LH_set_down_load(lh,down_load);
           free(lh);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long down_load = 10;
+        
           int _len_lh0 = 100;
           struct TYPE_3__ * lh = (struct TYPE_3__ *) malloc(_len_lh0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_lh0; _i0++) {
-            lh[_i0].down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+              lh[_i0].down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           OPENSSL_LH_set_down_load(lh,down_load);
           free(lh);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lh0 = 1;
+          struct TYPE_3__ * lh = (struct TYPE_3__ *) malloc(_len_lh0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_lh0; _i0++) {
+              lh[_i0].down_load = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          OPENSSL_LH_set_down_load(lh,down_load);
+          free(lh);
+        
+        break;
+    }
     default:
         usage();
         break;

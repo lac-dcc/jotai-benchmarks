@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void esp_set_all_config3(struct esp *esp, u8 val)
 		esp->target[i].esp_config3 = val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,15 +86,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int _len_esp0 = 1;
           struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
           for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
               int _len_esp__i0__target0 = 1;
           esp[_i0].target = (struct TYPE_2__ *) malloc(_len_esp__i0__target0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_esp__i0__target0; _j0++) {
-            esp[_i0].target->esp_config3 = ((-2 * (next_i()%2)) + 1) * next_i();
+              esp[_i0].target->esp_config3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           esp_set_all_config3(esp,val);
           for(int _aux = 0; _aux < _len_esp0; _aux++) {
           free(esp[_aux].target);
@@ -106,7 +107,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int val = 255;
+        
+          int _len_esp0 = 65025;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              int _len_esp__i0__target0 = 1;
+          esp[_i0].target = (struct TYPE_2__ *) malloc(_len_esp__i0__target0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_esp__i0__target0; _j0++) {
+              esp[_i0].target->esp_config3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          esp_set_all_config3(esp,val);
+          for(int _aux = 0; _aux < _len_esp0; _aux++) {
+          free(esp[_aux].target);
+          }
+          free(esp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int val = 10;
+        
+          int _len_esp0 = 100;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              int _len_esp__i0__target0 = 1;
+          esp[_i0].target = (struct TYPE_2__ *) malloc(_len_esp__i0__target0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_esp__i0__target0; _j0++) {
+              esp[_i0].target->esp_config3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          esp_set_all_config3(esp,val);
+          for(int _aux = 0; _aux < _len_esp0; _aux++) {
+          free(esp[_aux].target);
+          }
+          free(esp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_esp0 = 1;
+          struct esp * esp = (struct esp *) malloc(_len_esp0*sizeof(struct esp));
+          for(int _i0 = 0; _i0 < _len_esp0; _i0++) {
+              int _len_esp__i0__target0 = 1;
+          esp[_i0].target = (struct TYPE_2__ *) malloc(_len_esp__i0__target0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_esp__i0__target0; _j0++) {
+              esp[_i0].target->esp_config3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          esp_set_all_config3(esp,val);
+          for(int _aux = 0; _aux < _len_esp0; _aux++) {
+          free(esp[_aux].target);
+          }
+          free(esp);
+        
+        break;
+    }
     default:
         usage();
         break;

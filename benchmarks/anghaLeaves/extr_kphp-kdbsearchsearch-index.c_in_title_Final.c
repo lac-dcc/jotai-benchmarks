@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int in_title (pair_t *P) {
   return (P->freqs >= 0x10000);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_P0 = 1;
+          int _len_P0 = 65025;
           struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_P0; _i0++) {
-            P[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              P[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = in_title(P);
           printf("%d\n", benchRet); 
           free(P);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_P0 = 100;
           struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_P0; _i0++) {
-            P[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              P[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = in_title(P);
           printf("%d\n", benchRet); 
           free(P);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_P0 = 1;
+          struct TYPE_3__ * P = (struct TYPE_3__ *) malloc(_len_P0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_P0; _i0++) {
+              P[_i0].freqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = in_title(P);
+          printf("%d\n", benchRet); 
+          free(P);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void update_duplicate_context_after_me(MpegEncConte
 #undef COPY
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,41 +90,206 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dst0 = 65025;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_duplicate_context_after_me(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_dst0 = 100;
+          struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_duplicate_context_after_me(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_dst0 = 1;
           struct TYPE_4__ * dst = (struct TYPE_4__ *) malloc(_len_dst0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src0 = 1;
           struct TYPE_4__ * src = (struct TYPE_4__ *) malloc(_len_src0*sizeof(struct TYPE_4__));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].partitioned_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].progressive_frame = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].frame_pred_frame_dct = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].gop_picture_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].picture_in_gop_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].lambda2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].lambda = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].qscale = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].b_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].f_code = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].current_picture = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].pict_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_duplicate_context_after_me(dst,src);
           free(dst);
           free(src);

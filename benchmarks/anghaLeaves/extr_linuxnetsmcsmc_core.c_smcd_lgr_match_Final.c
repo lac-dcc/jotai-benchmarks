@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static bool smcd_lgr_match(struct smc_link_group *lgr,
 	return lgr->peer_gid == peer_gid && lgr->smcd == smcismdev;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long peer_gid = 100;
+        
           int _len_lgr0 = 1;
           struct smc_link_group * lgr = (struct smc_link_group *) malloc(_len_lgr0*sizeof(struct smc_link_group));
           for(int _i0 = 0; _i0 < _len_lgr0; _i0++) {
-            lgr[_i0].peer_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+              lgr[_i0].peer_gid = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_lgr__i0__smcd0 = 1;
           lgr[_i0].smcd = (struct smcd_dev *) malloc(_len_lgr__i0__smcd0*sizeof(struct smcd_dev));
           for(int _j0 = 0; _j0 < _len_lgr__i0__smcd0; _j0++) {
-            lgr[_i0].smcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lgr[_i0].smcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_smcismdev0 = 1;
           struct smcd_dev * smcismdev = (struct smcd_dev *) malloc(_len_smcismdev0*sizeof(struct smcd_dev));
           for(int _i0 = 0; _i0 < _len_smcismdev0; _i0++) {
-            smcismdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              smcismdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = smcd_lgr_match(lgr,smcismdev,peer_gid);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_lgr0; _aux++) {
@@ -110,7 +113,111 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long peer_gid = 255;
+        
+          int _len_lgr0 = 65025;
+          struct smc_link_group * lgr = (struct smc_link_group *) malloc(_len_lgr0*sizeof(struct smc_link_group));
+          for(int _i0 = 0; _i0 < _len_lgr0; _i0++) {
+              lgr[_i0].peer_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_lgr__i0__smcd0 = 1;
+          lgr[_i0].smcd = (struct smcd_dev *) malloc(_len_lgr__i0__smcd0*sizeof(struct smcd_dev));
+          for(int _j0 = 0; _j0 < _len_lgr__i0__smcd0; _j0++) {
+              lgr[_i0].smcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_smcismdev0 = 65025;
+          struct smcd_dev * smcismdev = (struct smcd_dev *) malloc(_len_smcismdev0*sizeof(struct smcd_dev));
+          for(int _i0 = 0; _i0 < _len_smcismdev0; _i0++) {
+              smcismdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = smcd_lgr_match(lgr,smcismdev,peer_gid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_lgr0; _aux++) {
+          free(lgr[_aux].smcd);
+          }
+          free(lgr);
+          free(smcismdev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long peer_gid = 10;
+        
+          int _len_lgr0 = 100;
+          struct smc_link_group * lgr = (struct smc_link_group *) malloc(_len_lgr0*sizeof(struct smc_link_group));
+          for(int _i0 = 0; _i0 < _len_lgr0; _i0++) {
+              lgr[_i0].peer_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_lgr__i0__smcd0 = 1;
+          lgr[_i0].smcd = (struct smcd_dev *) malloc(_len_lgr__i0__smcd0*sizeof(struct smcd_dev));
+          for(int _j0 = 0; _j0 < _len_lgr__i0__smcd0; _j0++) {
+              lgr[_i0].smcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_smcismdev0 = 100;
+          struct smcd_dev * smcismdev = (struct smcd_dev *) malloc(_len_smcismdev0*sizeof(struct smcd_dev));
+          for(int _i0 = 0; _i0 < _len_smcismdev0; _i0++) {
+              smcismdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = smcd_lgr_match(lgr,smcismdev,peer_gid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_lgr0; _aux++) {
+          free(lgr[_aux].smcd);
+          }
+          free(lgr);
+          free(smcismdev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long peer_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lgr0 = 1;
+          struct smc_link_group * lgr = (struct smc_link_group *) malloc(_len_lgr0*sizeof(struct smc_link_group));
+          for(int _i0 = 0; _i0 < _len_lgr0; _i0++) {
+              lgr[_i0].peer_gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_lgr__i0__smcd0 = 1;
+          lgr[_i0].smcd = (struct smcd_dev *) malloc(_len_lgr__i0__smcd0*sizeof(struct smcd_dev));
+          for(int _j0 = 0; _j0 < _len_lgr__i0__smcd0; _j0++) {
+              lgr[_i0].smcd->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_smcismdev0 = 1;
+          struct smcd_dev * smcismdev = (struct smcd_dev *) malloc(_len_smcismdev0*sizeof(struct smcd_dev));
+          for(int _i0 = 0; _i0 < _len_smcismdev0; _i0++) {
+              smcismdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = smcd_lgr_match(lgr,smcismdev,peer_gid);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_lgr0; _aux++) {
+          free(lgr[_aux].smcd);
+          }
+          free(lgr);
+          free(smcismdev);
+        
+        break;
+    }
     default:
         usage();
         break;

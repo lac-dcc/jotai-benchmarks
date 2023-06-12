@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ int cifs_remap(struct cifs_sb_info *cifs_sb)
 	return map_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,14 +88,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cifs_sb0 = 1;
+          int _len_cifs_sb0 = 65025;
           struct cifs_sb_info * cifs_sb = (struct cifs_sb_info *) malloc(_len_cifs_sb0*sizeof(struct cifs_sb_info));
           for(int _i0 = 0; _i0 < _len_cifs_sb0; _i0++) {
-            cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cifs_remap(cifs_sb);
           printf("%d\n", benchRet); 
           free(cifs_sb);
@@ -113,15 +110,32 @@ int main(int argc, char *argv[]) {
           int _len_cifs_sb0 = 100;
           struct cifs_sb_info * cifs_sb = (struct cifs_sb_info *) malloc(_len_cifs_sb0*sizeof(struct cifs_sb_info));
           for(int _i0 = 0; _i0 < _len_cifs_sb0; _i0++) {
-            cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cifs_remap(cifs_sb);
           printf("%d\n", benchRet); 
           free(cifs_sb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cifs_sb0 = 1;
+          struct cifs_sb_info * cifs_sb = (struct cifs_sb_info *) malloc(_len_cifs_sb0*sizeof(struct cifs_sb_info));
+          for(int _i0 = 0; _i0 < _len_cifs_sb0; _i0++) {
+              cifs_sb[_i0].mnt_cifs_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cifs_remap(cifs_sb);
+          printf("%d\n", benchRet); 
+          free(cifs_sb);
+        
+        break;
+    }
     default:
         usage();
         break;

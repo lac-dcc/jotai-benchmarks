@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int tda18271_setup_configuration(struct dvb_fronten
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,31 +91,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fe0 = 1;
+          int _len_fe0 = 65025;
           struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
           for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
               int _len_fe__i0__tuner_priv0 = 1;
           fe[_i0].tuner_priv = (struct tda18271_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tda18271_priv));
           for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
-            fe[_i0].tuner_priv->output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->config = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->role = ((-2 * (next_i()%2)) + 1) * next_i();
-        fe[_i0].tuner_priv->gate = ((-2 * (next_i()%2)) + 1) * next_i();
+              fe[_i0].tuner_priv->output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->config = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->role = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_cfg0 = 1;
+        
+          int _len_cfg0 = 65025;
           struct tda18271_config * cfg = (struct tda18271_config *) malloc(_len_cfg0*sizeof(struct tda18271_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-            cfg[_i0].output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].role = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfg[_i0].gate = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg[_i0].output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].role = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tda18271_setup_configuration(fe,cfg);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fe0; _aux++) {
@@ -130,7 +131,86 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fe0 = 100;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct tda18271_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tda18271_priv));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->config = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->role = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cfg0 = 100;
+          struct tda18271_config * cfg = (struct tda18271_config *) malloc(_len_cfg0*sizeof(struct tda18271_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].role = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tda18271_setup_configuration(fe,cfg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+          free(cfg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fe0 = 1;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct tda18271_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tda18271_priv));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->config = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->role = ((-2 * (next_i()%2)) + 1) * next_i();
+          fe[_i0].tuner_priv->gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_cfg0 = 1;
+          struct tda18271_config * cfg = (struct tda18271_config *) malloc(_len_cfg0*sizeof(struct tda18271_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+              cfg[_i0].output_opt = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].small_i2c = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].config = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].role = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfg[_i0].gate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tda18271_setup_configuration(fe,cfg);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+          free(cfg);
+        
+        break;
+    }
     default:
         usage();
         break;

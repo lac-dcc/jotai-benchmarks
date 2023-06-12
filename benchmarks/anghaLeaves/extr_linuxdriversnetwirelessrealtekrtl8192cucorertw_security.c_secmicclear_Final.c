@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ _func_enter_;
 _func_exit_;	
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +82,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_pmicdata0 = 65025;
+          struct mic_data * pmicdata = (struct mic_data *) malloc(_len_pmicdata0*sizeof(struct mic_data));
+          for(int _i0 = 0; _i0 < _len_pmicdata0; _i0++) {
+              pmicdata[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].nBytesInM = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].K1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].R = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].K0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].L = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          secmicclear(pmicdata);
+          free(pmicdata);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_pmicdata0 = 100;
+          struct mic_data * pmicdata = (struct mic_data *) malloc(_len_pmicdata0*sizeof(struct mic_data));
+          for(int _i0 = 0; _i0 < _len_pmicdata0; _i0++) {
+              pmicdata[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].nBytesInM = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].K1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].R = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].K0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].L = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          secmicclear(pmicdata);
+          free(pmicdata);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_pmicdata0 = 1;
           struct mic_data * pmicdata = (struct mic_data *) malloc(_len_pmicdata0*sizeof(struct mic_data));
           for(int _i0 = 0; _i0 < _len_pmicdata0; _i0++) {
-            pmicdata[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmicdata[_i0].nBytesInM = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmicdata[_i0].K1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmicdata[_i0].R = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmicdata[_i0].K0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pmicdata[_i0].L = ((-2 * (next_i()%2)) + 1) * next_i();
+              pmicdata[_i0].M = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].nBytesInM = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].K1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].R = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].K0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pmicdata[_i0].L = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           secmicclear(pmicdata);
           free(pmicdata);
         

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ __attribute__((used)) static void skip_signal(int signo)
 	child_pid = -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,6 +94,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int signo = 100;
+        
           skip_signal(signo);
         
         break;
@@ -107,6 +103,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int signo = 255;
+        
           skip_signal(signo);
         
         break;
@@ -115,11 +112,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int signo = 10;
+        
           skip_signal(signo);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int signo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          skip_signal(signo);
+        
+        break;
+    }
     default:
         usage();
         break;

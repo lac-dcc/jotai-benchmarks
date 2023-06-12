@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ parisc_agp_mask_memory(struct agp_bridge_data *bridge, dma_addr_t addr,
 	return SBA_PDIR_VALID_BIT | addr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,32 +79,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned long addr = 100;
+        
           int type = 100;
+        
           int _len_bridge0 = 1;
           struct agp_bridge_data * bridge = (struct agp_bridge_data *) malloc(_len_bridge0*sizeof(struct agp_bridge_data));
           for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
-            bridge[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bridge[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = parisc_agp_mask_memory(bridge,addr,type);
           printf("%lu\n", benchRet); 
           free(bridge);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long addr = 255;
+        
+          int type = 255;
+        
+          int _len_bridge0 = 65025;
+          struct agp_bridge_data * bridge = (struct agp_bridge_data *) malloc(_len_bridge0*sizeof(struct agp_bridge_data));
+          for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
+              bridge[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = parisc_agp_mask_memory(bridge,addr,type);
+          printf("%lu\n", benchRet); 
+          free(bridge);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned long addr = 10;
+        
           int type = 10;
+        
           int _len_bridge0 = 100;
           struct agp_bridge_data * bridge = (struct agp_bridge_data *) malloc(_len_bridge0*sizeof(struct agp_bridge_data));
           for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
-            bridge[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bridge[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = parisc_agp_mask_memory(bridge,addr,type);
+          printf("%lu\n", benchRet); 
+          free(bridge);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bridge0 = 1;
+          struct agp_bridge_data * bridge = (struct agp_bridge_data *) malloc(_len_bridge0*sizeof(struct agp_bridge_data));
+          for(int _i0 = 0; _i0 < _len_bridge0; _i0++) {
+              bridge[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = parisc_agp_mask_memory(bridge,addr,type);
           printf("%lu\n", benchRet); 
           free(bridge);

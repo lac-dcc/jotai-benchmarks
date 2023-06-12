@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static unsigned int mma8452_get_odr_index(struct mma8452_d
 			MMA8452_CTRL_DR_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_data0 = 1;
+          int _len_data0 = 65025;
           struct mma8452_data * data = (struct mma8452_data *) malloc(_len_data0*sizeof(struct mma8452_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = mma8452_get_odr_index(data);
           printf("%u\n", benchRet); 
           free(data);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_data0 = 100;
           struct mma8452_data * data = (struct mma8452_data *) malloc(_len_data0*sizeof(struct mma8452_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
-            data[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = mma8452_get_odr_index(data);
           printf("%u\n", benchRet); 
           free(data);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_data0 = 1;
+          struct mma8452_data * data = (struct mma8452_data *) malloc(_len_data0*sizeof(struct mma8452_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              data[_i0].ctrl_reg1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = mma8452_get_odr_index(data);
+          printf("%u\n", benchRet); 
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

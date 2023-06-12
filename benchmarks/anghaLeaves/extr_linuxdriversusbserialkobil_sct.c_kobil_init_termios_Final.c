@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ __attribute__((used)) static void kobil_init_termios(struct tty_struct *tty)
 	tty->termios.c_oflag &= ~ONLCR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,16 +90,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_tty0 = 65025;
+          struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              tty[_i0].termios.c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].termios.c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].termios.c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          kobil_init_termios(tty);
+          free(tty);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_tty0 = 100;
+          struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              tty[_i0].termios.c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].termios.c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].termios.c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          kobil_init_termios(tty);
+          free(tty);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_tty0 = 1;
           struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
           for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
-            tty[_i0].termios.c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].termios.c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].termios.c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+              tty[_i0].termios.c_iflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].termios.c_oflag = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].termios.c_lflag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           kobil_init_termios(tty);
           free(tty);
         

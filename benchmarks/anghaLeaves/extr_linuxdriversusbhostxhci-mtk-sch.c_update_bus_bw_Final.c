@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void update_bus_bw(struct mu3h_sch_bw_info *sch_bw,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +93,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bw_cost = 100;
+        
           int _len_sch_bw0 = 1;
           struct mu3h_sch_bw_info * sch_bw = (struct mu3h_sch_bw_info *) malloc(_len_sch_bw0*sizeof(struct mu3h_sch_bw_info));
           for(int _i0 = 0; _i0 < _len_sch_bw0; _i0++) {
@@ -104,14 +102,18 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_sch_bw__i0__bus_bw0; _j0++) {
             sch_bw[_i0].bus_bw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_sch_ep0 = 1;
           struct mu3h_sch_ep_info * sch_ep = (struct mu3h_sch_ep_info *) malloc(_len_sch_ep0*sizeof(struct mu3h_sch_ep_info));
           for(int _i0 = 0; _i0 < _len_sch_ep0; _i0++) {
-            sch_ep[_i0].esit = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch_ep[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch_ep[_i0].num_budget_microframes = ((-2 * (next_i()%2)) + 1) * next_i();
+              sch_ep[_i0].esit = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].num_budget_microframes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           update_bus_bw(sch_bw,sch_ep,bw_cost);
           for(int _aux = 0; _aux < _len_sch_bw0; _aux++) {
           free(sch_bw[_aux].bus_bw);
@@ -121,7 +123,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int bw_cost = 255;
+        
+          int _len_sch_bw0 = 65025;
+          struct mu3h_sch_bw_info * sch_bw = (struct mu3h_sch_bw_info *) malloc(_len_sch_bw0*sizeof(struct mu3h_sch_bw_info));
+          for(int _i0 = 0; _i0 < _len_sch_bw0; _i0++) {
+              int _len_sch_bw__i0__bus_bw0 = 1;
+          sch_bw[_i0].bus_bw = (int *) malloc(_len_sch_bw__i0__bus_bw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sch_bw__i0__bus_bw0; _j0++) {
+            sch_bw[_i0].bus_bw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_sch_ep0 = 65025;
+          struct mu3h_sch_ep_info * sch_ep = (struct mu3h_sch_ep_info *) malloc(_len_sch_ep0*sizeof(struct mu3h_sch_ep_info));
+          for(int _i0 = 0; _i0 < _len_sch_ep0; _i0++) {
+              sch_ep[_i0].esit = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].num_budget_microframes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_bus_bw(sch_bw,sch_ep,bw_cost);
+          for(int _aux = 0; _aux < _len_sch_bw0; _aux++) {
+          free(sch_bw[_aux].bus_bw);
+          }
+          free(sch_bw);
+          free(sch_ep);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int bw_cost = 10;
+        
+          int _len_sch_bw0 = 100;
+          struct mu3h_sch_bw_info * sch_bw = (struct mu3h_sch_bw_info *) malloc(_len_sch_bw0*sizeof(struct mu3h_sch_bw_info));
+          for(int _i0 = 0; _i0 < _len_sch_bw0; _i0++) {
+              int _len_sch_bw__i0__bus_bw0 = 1;
+          sch_bw[_i0].bus_bw = (int *) malloc(_len_sch_bw__i0__bus_bw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sch_bw__i0__bus_bw0; _j0++) {
+            sch_bw[_i0].bus_bw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_sch_ep0 = 100;
+          struct mu3h_sch_ep_info * sch_ep = (struct mu3h_sch_ep_info *) malloc(_len_sch_ep0*sizeof(struct mu3h_sch_ep_info));
+          for(int _i0 = 0; _i0 < _len_sch_ep0; _i0++) {
+              sch_ep[_i0].esit = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].num_budget_microframes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_bus_bw(sch_bw,sch_ep,bw_cost);
+          for(int _aux = 0; _aux < _len_sch_bw0; _aux++) {
+          free(sch_bw[_aux].bus_bw);
+          }
+          free(sch_bw);
+          free(sch_ep);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int bw_cost = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sch_bw0 = 1;
+          struct mu3h_sch_bw_info * sch_bw = (struct mu3h_sch_bw_info *) malloc(_len_sch_bw0*sizeof(struct mu3h_sch_bw_info));
+          for(int _i0 = 0; _i0 < _len_sch_bw0; _i0++) {
+              int _len_sch_bw__i0__bus_bw0 = 1;
+          sch_bw[_i0].bus_bw = (int *) malloc(_len_sch_bw__i0__bus_bw0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_sch_bw__i0__bus_bw0; _j0++) {
+            sch_bw[_i0].bus_bw[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_sch_ep0 = 1;
+          struct mu3h_sch_ep_info * sch_ep = (struct mu3h_sch_ep_info *) malloc(_len_sch_ep0*sizeof(struct mu3h_sch_ep_info));
+          for(int _i0 = 0; _i0 < _len_sch_ep0; _i0++) {
+              sch_ep[_i0].esit = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch_ep[_i0].num_budget_microframes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          update_bus_bw(sch_bw,sch_ep,bw_cost);
+          for(int _aux = 0; _aux < _len_sch_bw0; _aux++) {
+          free(sch_bw[_aux].bus_bw);
+          }
+          free(sch_bw);
+          free(sch_ep);
+        
+        break;
+    }
     default:
         usage();
         break;

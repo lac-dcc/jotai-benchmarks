@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ HRESULT assembly_get_runtime_version(ASSEMBLY *assembly, LPSTR *version)
     return S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,160 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_assembly0 = 65025;
+          struct TYPE_5__ * assembly = (struct TYPE_5__ *) malloc(_len_assembly0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_assembly0; _i0++) {
+              int _len_assembly__i0__metadatahdr0 = 1;
+          assembly[_i0].metadatahdr = (struct TYPE_4__ *) malloc(_len_assembly__i0__metadatahdr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_assembly__i0__metadatahdr0; _j0++) {
+              assembly[_i0].metadatahdr->Version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_version0 = 65025;
+          int * version = (int *) malloc(_len_version0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_version0; _i0++) {
+            version[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = assembly_get_runtime_version(assembly,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_assembly0; _aux++) {
+          free(assembly[_aux].metadatahdr);
+          }
+          free(assembly);
+          free(version);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_assembly0 = 100;
+          struct TYPE_5__ * assembly = (struct TYPE_5__ *) malloc(_len_assembly0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_assembly0; _i0++) {
+              int _len_assembly__i0__metadatahdr0 = 1;
+          assembly[_i0].metadatahdr = (struct TYPE_4__ *) malloc(_len_assembly__i0__metadatahdr0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_assembly__i0__metadatahdr0; _j0++) {
+              assembly[_i0].metadatahdr->Version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_version0 = 100;
+          int * version = (int *) malloc(_len_version0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_version0; _i0++) {
+            version[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = assembly_get_runtime_version(assembly,version);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_assembly0; _aux++) {
+          free(assembly[_aux].metadatahdr);
+          }
+          free(assembly);
+          free(version);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_assembly0 = 1;
           struct TYPE_5__ * assembly = (struct TYPE_5__ *) malloc(_len_assembly0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_assembly0; _i0++) {
               int _len_assembly__i0__metadatahdr0 = 1;
           assembly[_i0].metadatahdr = (struct TYPE_4__ *) malloc(_len_assembly__i0__metadatahdr0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_assembly__i0__metadatahdr0; _j0++) {
-            assembly[_i0].metadatahdr->Version = ((-2 * (next_i()%2)) + 1) * next_i();
+              assembly[_i0].metadatahdr->Version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_version0 = 1;
           int * version = (int *) malloc(_len_version0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_version0; _i0++) {
             version[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = assembly_get_runtime_version(assembly,version);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_assembly0; _aux++) {

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline bool is_better_rate(unsigned long req, unsig
 	return (req <= new && new < best) || (best < req && best < new);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long req = 100;
+        
           unsigned long best = 100;
+        
           unsigned long new = 100;
+        
           int benchRet = is_better_rate(req,best,new);
           printf("%d\n", benchRet); 
         
@@ -95,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long req = 255;
+        
           unsigned long best = 255;
+        
           unsigned long new = 255;
+        
           int benchRet = is_better_rate(req,best,new);
           printf("%d\n", benchRet); 
         
@@ -106,14 +107,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long req = 10;
+        
           unsigned long best = 10;
+        
           unsigned long new = 10;
+        
           int benchRet = is_better_rate(req,best,new);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long req = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long best = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long new = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = is_better_rate(req,best,new);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static int hisi_phase_regval_to_degrees(struct clk_hisi_ph
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +84,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long regval = 100;
+        
           int _len_phase0 = 1;
           struct clk_hisi_phase * phase = (struct clk_hisi_phase *) malloc(_len_phase0*sizeof(struct clk_hisi_phase));
           for(int _i0 = 0; _i0 < _len_phase0; _i0++) {
-            phase[_i0].phase_num = ((-2 * (next_i()%2)) + 1) * next_i();
+              phase[_i0].phase_num = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_phase__i0__phase_regvals0 = 1;
           phase[_i0].phase_regvals = (long *) malloc(_len_phase__i0__phase_regvals0*sizeof(long));
           for(int _j0 = 0; _j0 < _len_phase__i0__phase_regvals0; _j0++) {
@@ -105,7 +126,183 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_phase__i0__phase_degrees0; _j0++) {
             phase[_i0].phase_degrees[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = hisi_phase_regval_to_degrees(phase,regval);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_phase0; _aux++) {
+          free(phase[_aux].phase_regvals);
+          }
+          for(int _aux = 0; _aux < _len_phase0; _aux++) {
+          free(phase[_aux].phase_degrees);
+          }
+          free(phase);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long regval = 255;
+        
+          int _len_phase0 = 65025;
+          struct clk_hisi_phase * phase = (struct clk_hisi_phase *) malloc(_len_phase0*sizeof(struct clk_hisi_phase));
+          for(int _i0 = 0; _i0 < _len_phase0; _i0++) {
+              phase[_i0].phase_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_phase__i0__phase_regvals0 = 1;
+          phase[_i0].phase_regvals = (long *) malloc(_len_phase__i0__phase_regvals0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_phase__i0__phase_regvals0; _j0++) {
+            phase[_i0].phase_regvals[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_phase__i0__phase_degrees0 = 1;
+          phase[_i0].phase_degrees = (int *) malloc(_len_phase__i0__phase_degrees0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_phase__i0__phase_degrees0; _j0++) {
+            phase[_i0].phase_degrees[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hisi_phase_regval_to_degrees(phase,regval);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_phase0; _aux++) {
+          free(phase[_aux].phase_regvals);
+          }
+          for(int _aux = 0; _aux < _len_phase0; _aux++) {
+          free(phase[_aux].phase_degrees);
+          }
+          free(phase);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long regval = 10;
+        
+          int _len_phase0 = 100;
+          struct clk_hisi_phase * phase = (struct clk_hisi_phase *) malloc(_len_phase0*sizeof(struct clk_hisi_phase));
+          for(int _i0 = 0; _i0 < _len_phase0; _i0++) {
+              phase[_i0].phase_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_phase__i0__phase_regvals0 = 1;
+          phase[_i0].phase_regvals = (long *) malloc(_len_phase__i0__phase_regvals0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_phase__i0__phase_regvals0; _j0++) {
+            phase[_i0].phase_regvals[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_phase__i0__phase_degrees0 = 1;
+          phase[_i0].phase_degrees = (int *) malloc(_len_phase__i0__phase_degrees0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_phase__i0__phase_degrees0; _j0++) {
+            phase[_i0].phase_degrees[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = hisi_phase_regval_to_degrees(phase,regval);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_phase0; _aux++) {
+          free(phase[_aux].phase_regvals);
+          }
+          for(int _aux = 0; _aux < _len_phase0; _aux++) {
+          free(phase[_aux].phase_degrees);
+          }
+          free(phase);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long regval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phase0 = 1;
+          struct clk_hisi_phase * phase = (struct clk_hisi_phase *) malloc(_len_phase0*sizeof(struct clk_hisi_phase));
+          for(int _i0 = 0; _i0 < _len_phase0; _i0++) {
+              phase[_i0].phase_num = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_phase__i0__phase_regvals0 = 1;
+          phase[_i0].phase_regvals = (long *) malloc(_len_phase__i0__phase_regvals0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_phase__i0__phase_regvals0; _j0++) {
+            phase[_i0].phase_regvals[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_phase__i0__phase_degrees0 = 1;
+          phase[_i0].phase_degrees = (int *) malloc(_len_phase__i0__phase_degrees0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_phase__i0__phase_degrees0; _j0++) {
+            phase[_i0].phase_degrees[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = hisi_phase_regval_to_degrees(phase,regval);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_phase0; _aux++) {

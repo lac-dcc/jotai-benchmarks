@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static bool rv6xx_reached_stepping_target(struct radeon_de
 		(!increasing_vco && (cur->vco_frequency <= target->vco_frequency));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,25 +80,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int increasing_vco = 100;
+        
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_cur0 = 1;
           struct rv6xx_sclk_stepping * cur = (struct rv6xx_sclk_stepping *) malloc(_len_cur0*sizeof(struct rv6xx_sclk_stepping));
           for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
-            cur[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              cur[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_target0 = 1;
           struct rv6xx_sclk_stepping * target = (struct rv6xx_sclk_stepping *) malloc(_len_target0*sizeof(struct rv6xx_sclk_stepping));
           for(int _i0 = 0; _i0 < _len_target0; _i0++) {
-            target[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+              target[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = rv6xx_reached_stepping_target(rdev,cur,target,increasing_vco);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          free(cur);
+          free(target);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int increasing_vco = 255;
+        
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cur0 = 65025;
+          struct rv6xx_sclk_stepping * cur = (struct rv6xx_sclk_stepping *) malloc(_len_cur0*sizeof(struct rv6xx_sclk_stepping));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 65025;
+          struct rv6xx_sclk_stepping * target = (struct rv6xx_sclk_stepping *) malloc(_len_target0*sizeof(struct rv6xx_sclk_stepping));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rv6xx_reached_stepping_target(rdev,cur,target,increasing_vco);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          free(cur);
+          free(target);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int increasing_vco = 10;
+        
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cur0 = 100;
+          struct rv6xx_sclk_stepping * cur = (struct rv6xx_sclk_stepping *) malloc(_len_cur0*sizeof(struct rv6xx_sclk_stepping));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 100;
+          struct rv6xx_sclk_stepping * target = (struct rv6xx_sclk_stepping *) malloc(_len_target0*sizeof(struct rv6xx_sclk_stepping));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rv6xx_reached_stepping_target(rdev,cur,target,increasing_vco);
+          printf("%d\n", benchRet); 
+          free(rdev);
+          free(cur);
+          free(target);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int increasing_vco = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_cur0 = 1;
+          struct rv6xx_sclk_stepping * cur = (struct rv6xx_sclk_stepping *) malloc(_len_cur0*sizeof(struct rv6xx_sclk_stepping));
+          for(int _i0 = 0; _i0 < _len_cur0; _i0++) {
+              cur[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_target0 = 1;
+          struct rv6xx_sclk_stepping * target = (struct rv6xx_sclk_stepping *) malloc(_len_target0*sizeof(struct rv6xx_sclk_stepping));
+          for(int _i0 = 0; _i0 < _len_target0; _i0++) {
+              target[_i0].vco_frequency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = rv6xx_reached_stepping_target(rdev,cur,target,increasing_vco);
           printf("%d\n", benchRet); 
           free(rdev);

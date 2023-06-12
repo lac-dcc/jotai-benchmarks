@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -75,12 +75,6 @@ __attribute__((used)) static inline int hevc_level(enum v4l2_mpeg_video_hevc_lev
 	return t[lvl];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,16 +87,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum v4l2_mpeg_video_hevc_level lvl = 0;
+        
           int benchRet = hevc_level(lvl);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

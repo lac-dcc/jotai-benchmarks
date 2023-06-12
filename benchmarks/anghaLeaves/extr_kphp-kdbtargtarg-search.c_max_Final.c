@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -58,12 +59,6 @@ typedef int bool;
 
 __attribute__((used)) static inline int max (int x, int y) { return x > y ? x : y; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,7 +75,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int y = 100;
+        
           int benchRet = max(x,y);
           printf("%d\n", benchRet); 
         
@@ -90,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int y = 255;
+        
           int benchRet = max(x,y);
           printf("%d\n", benchRet); 
         
@@ -100,13 +99,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int y = 10;
+        
           int benchRet = max(x,y);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = max(x,y);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

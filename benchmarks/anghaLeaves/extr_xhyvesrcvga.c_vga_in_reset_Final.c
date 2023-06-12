@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ vga_in_reset(struct vga_softc *sc)
 	    ((sc->vga_crtc.crtc_mode_ctrl & CRTC_MC_TE) == 0));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +86,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sc0 = 1;
+          int _len_sc0 = 65025;
           struct vga_softc * sc = (struct vga_softc *) malloc(_len_sc0*sizeof(struct vga_softc));
           for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
-            sc[_i0].vga_crtc.crtc_mode_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].vga_seq.seq_clock_mode = ((-2 * (next_i()%2)) + 1) * next_i();
-        sc[_i0].vga_seq.seq_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+              sc[_i0].vga_crtc.crtc_mode_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sc[_i0].vga_seq.seq_clock_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].vga_seq.seq_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = vga_in_reset(sc);
           printf("%d\n", benchRet); 
           free(sc);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sc0 = 100;
+          struct vga_softc * sc = (struct vga_softc *) malloc(_len_sc0*sizeof(struct vga_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].vga_crtc.crtc_mode_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sc[_i0].vga_seq.seq_clock_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].vga_seq.seq_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vga_in_reset(sc);
+          printf("%d\n", benchRet); 
+          free(sc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sc0 = 1;
+          struct vga_softc * sc = (struct vga_softc *) malloc(_len_sc0*sizeof(struct vga_softc));
+          for(int _i0 = 0; _i0 < _len_sc0; _i0++) {
+              sc[_i0].vga_crtc.crtc_mode_ctrl = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          sc[_i0].vga_seq.seq_clock_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          sc[_i0].vga_seq.seq_reset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vga_in_reset(sc);
+          printf("%d\n", benchRet); 
+          free(sc);
+        
+        break;
+    }
     default:
         usage();
         break;

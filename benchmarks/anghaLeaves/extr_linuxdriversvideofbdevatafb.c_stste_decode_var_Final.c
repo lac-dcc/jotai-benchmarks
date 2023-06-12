@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -127,12 +129,6 @@ __attribute__((used)) static int stste_decode_var(struct fb_var_screeninfo *var,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -145,28 +141,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_var0 = 65025;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 65025;
+          struct atafb_par * par = (struct atafb_par *) malloc(_len_par0*sizeof(struct atafb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].next_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].screen_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].hw.st.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].hw.st.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = stste_decode_var(var,par);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(par);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_par0 = 100;
+          struct atafb_par * par = (struct atafb_par *) malloc(_len_par0*sizeof(struct atafb_par));
+          for(int _i0 = 0; _i0 < _len_par0; _i0++) {
+              par[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].next_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].screen_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].hw.st.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].hw.st.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = stste_decode_var(var,par);
+          printf("%d\n", benchRet); 
+          free(var);
+          free(par);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 26
+          // dynamic_instructions_Oz : 26
+          // ------------------------------- 
+
           int _len_var0 = 1;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].yoffset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_par0 = 1;
           struct atafb_par * par = (struct atafb_par *) malloc(_len_par0*sizeof(struct atafb_par));
           for(int _i0 = 0; _i0 < _len_par0; _i0++) {
-            par[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].next_line = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].screen_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].hw.st.sync = ((-2 * (next_i()%2)) + 1) * next_i();
-        par[_i0].hw.st.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              par[_i0].yres_virtual = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].next_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].screen_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].hw.st.sync = ((-2 * (next_i()%2)) + 1) * next_i();
+          par[_i0].hw.st.mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = stste_decode_var(var,par);
           printf("%d\n", benchRet); 
           free(var);

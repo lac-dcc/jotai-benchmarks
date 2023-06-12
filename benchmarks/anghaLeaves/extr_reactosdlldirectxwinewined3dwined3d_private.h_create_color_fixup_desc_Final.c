@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +73,6 @@ __attribute__((used)) static inline struct color_fixup_desc create_color_fixup_d
     return fixup;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +85,48 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int sign0 = 100;
+        
           enum fixup_channel_source src0 = 0;
+        
           int sign1 = 100;
+        
           enum fixup_channel_source src1 = 0;
+        
           int sign2 = 100;
+        
           enum fixup_channel_source src2 = 0;
+        
           int sign3 = 100;
+        
           enum fixup_channel_source src3 = 0;
+        
           struct color_fixup_desc benchRet = create_color_fixup_desc(sign0,src0,sign1,src1,sign2,src2,sign3,src3);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);
@@ -113,17 +139,49 @@ int main(int argc, char *argv[]) {
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int sign0 = 255;
+        
           enum fixup_channel_source src0 = 0;
+        
           int sign1 = 255;
+        
           enum fixup_channel_source src1 = 0;
+        
           int sign2 = 255;
+        
           enum fixup_channel_source src2 = 0;
+        
           int sign3 = 255;
+        
           enum fixup_channel_source src3 = 0;
+        
           struct color_fixup_desc benchRet = create_color_fixup_desc(sign0,src0,sign1,src1,sign2,src2,sign3,src3);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);
@@ -136,17 +194,104 @@ int main(int argc, char *argv[]) {
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int sign0 = 10;
+        
           enum fixup_channel_source src0 = 0;
+        
           int sign1 = 10;
+        
           enum fixup_channel_source src1 = 0;
+        
           int sign2 = 10;
+        
           enum fixup_channel_source src2 = 0;
+        
           int sign3 = 10;
+        
           enum fixup_channel_source src3 = 0;
+        
+          struct color_fixup_desc benchRet = create_color_fixup_desc(sign0,src0,sign1,src1,sign2,src2,sign3,src3);
+          printf("%d\n", benchRet.member_0);
+          printf("%d\n", benchRet.member_1);
+          printf("%d\n", benchRet.member_2);
+          printf("%d\n", benchRet.member_3);
+          printf("%d\n", benchRet.member_4);
+          printf("%d\n", benchRet.member_5);
+          printf("%d\n", benchRet.member_6);
+          printf("%d\n", benchRet.member_7);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int sign0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum fixup_channel_source src0 = 0;
+        
+          int sign1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum fixup_channel_source src1 = 0;
+        
+          int sign2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum fixup_channel_source src2 = 0;
+        
+          int sign3 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum fixup_channel_source src3 = 0;
+        
           struct color_fixup_desc benchRet = create_color_fixup_desc(sign0,src0,sign1,src1,sign2,src2,sign3,src3);
           printf("%d\n", benchRet.member_0);
           printf("%d\n", benchRet.member_1);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static int atedge(const int p, int size_row)
 	return !(p % size_row) || !((p + 2) % size_row);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const int p = 100;
+        
           int size_row = 100;
+        
           int benchRet = atedge(p,size_row);
           printf("%d\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const int p = 255;
+        
           int size_row = 255;
+        
           int benchRet = atedge(p,size_row);
           printf("%d\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const int p = 10;
+        
           int size_row = 10;
+        
           int benchRet = atedge(p,size_row);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const int p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size_row = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = atedge(p,size_row);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

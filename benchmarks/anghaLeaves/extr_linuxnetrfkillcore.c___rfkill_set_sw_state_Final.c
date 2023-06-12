@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void __rfkill_set_sw_state(struct rfkill *rfkill, b
 		rfkill->state &= ~bit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,31 +92,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int blocked = 100;
+        
           int _len_rfkill0 = 1;
           struct rfkill * rfkill = (struct rfkill *) malloc(_len_rfkill0*sizeof(struct rfkill));
           for(int _i0 = 0; _i0 < _len_rfkill0; _i0++) {
-            rfkill[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rfkill[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          __rfkill_set_sw_state(rfkill,blocked);
+          free(rfkill);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int blocked = 255;
+        
+          int _len_rfkill0 = 65025;
+          struct rfkill * rfkill = (struct rfkill *) malloc(_len_rfkill0*sizeof(struct rfkill));
+          for(int _i0 = 0; _i0 < _len_rfkill0; _i0++) {
+              rfkill[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           __rfkill_set_sw_state(rfkill,blocked);
           free(rfkill);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int blocked = 10;
+        
           int _len_rfkill0 = 100;
           struct rfkill * rfkill = (struct rfkill *) malloc(_len_rfkill0*sizeof(struct rfkill));
           for(int _i0 = 0; _i0 < _len_rfkill0; _i0++) {
-            rfkill[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              rfkill[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __rfkill_set_sw_state(rfkill,blocked);
           free(rfkill);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int blocked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rfkill0 = 1;
+          struct rfkill * rfkill = (struct rfkill *) malloc(_len_rfkill0*sizeof(struct rfkill));
+          for(int _i0 = 0; _i0 < _len_rfkill0; _i0++) {
+              rfkill[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __rfkill_set_sw_state(rfkill,blocked);
+          free(rfkill);
+        
+        break;
+    }
     default:
         usage();
         break;

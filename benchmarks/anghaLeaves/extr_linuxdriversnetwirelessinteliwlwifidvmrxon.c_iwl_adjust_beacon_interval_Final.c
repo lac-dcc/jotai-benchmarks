@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -93,12 +94,6 @@ __attribute__((used)) static u16 iwl_adjust_beacon_interval(u16 beacon_val, u16 
 	return new_val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -115,7 +110,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int beacon_val = 100;
+        
           int max_beacon_val = 100;
+        
           int benchRet = iwl_adjust_beacon_interval(beacon_val,max_beacon_val);
           printf("%d\n", benchRet); 
         
@@ -125,7 +122,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int beacon_val = 255;
+        
           int max_beacon_val = 255;
+        
           int benchRet = iwl_adjust_beacon_interval(beacon_val,max_beacon_val);
           printf("%d\n", benchRet); 
         
@@ -135,13 +134,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int beacon_val = 10;
+        
           int max_beacon_val = 10;
+        
           int benchRet = iwl_adjust_beacon_interval(beacon_val,max_beacon_val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int beacon_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max_beacon_val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = iwl_adjust_beacon_interval(beacon_val,max_beacon_val);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

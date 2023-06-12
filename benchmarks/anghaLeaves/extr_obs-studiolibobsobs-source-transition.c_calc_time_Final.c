@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static float calc_time(obs_source_t *transition, uint64_t 
 	return (float)((long double)ts / (long double)end);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long ts = 100;
+        
           int _len_transition0 = 1;
           struct TYPE_3__ * transition = (struct TYPE_3__ *) malloc(_len_transition0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_transition0; _i0++) {
-            transition[_i0].transition_start_time = ((-2 * (next_i()%2)) + 1) * next_i();
-        transition[_i0].transition_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+              transition[_i0].transition_start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          transition[_i0].transition_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           float benchRet = calc_time(transition,ts);
           printf("%f\n", benchRet); 
           free(transition);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long ts = 255;
+        
+          int _len_transition0 = 65025;
+          struct TYPE_3__ * transition = (struct TYPE_3__ *) malloc(_len_transition0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_transition0; _i0++) {
+              transition[_i0].transition_start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          transition[_i0].transition_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          float benchRet = calc_time(transition,ts);
+          printf("%f\n", benchRet); 
+          free(transition);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long ts = 10;
+        
+          int _len_transition0 = 100;
+          struct TYPE_3__ * transition = (struct TYPE_3__ *) malloc(_len_transition0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_transition0; _i0++) {
+              transition[_i0].transition_start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          transition[_i0].transition_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          float benchRet = calc_time(transition,ts);
+          printf("%f\n", benchRet); 
+          free(transition);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_transition0 = 1;
+          struct TYPE_3__ * transition = (struct TYPE_3__ *) malloc(_len_transition0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_transition0; _i0++) {
+              transition[_i0].transition_start_time = ((-2 * (next_i()%2)) + 1) * next_i();
+          transition[_i0].transition_duration = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          float benchRet = calc_time(transition,ts);
+          printf("%f\n", benchRet); 
+          free(transition);
+        
+        break;
+    }
     default:
         usage();
         break;

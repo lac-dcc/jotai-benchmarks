@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -94,12 +95,6 @@ nfs4_ace_vfsflags_to_nfsflags(uint32_t vfsflags)
 	return (nfsflags);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,6 +111,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int vfsflags = 100;
+        
           int benchRet = nfs4_ace_vfsflags_to_nfsflags(vfsflags);
           printf("%d\n", benchRet); 
         
@@ -125,6 +121,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int vfsflags = 255;
+        
           int benchRet = nfs4_ace_vfsflags_to_nfsflags(vfsflags);
           printf("%d\n", benchRet); 
         
@@ -134,12 +131,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int vfsflags = 10;
+        
           int benchRet = nfs4_ace_vfsflags_to_nfsflags(vfsflags);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int vfsflags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = nfs4_ace_vfsflags_to_nfsflags(vfsflags);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

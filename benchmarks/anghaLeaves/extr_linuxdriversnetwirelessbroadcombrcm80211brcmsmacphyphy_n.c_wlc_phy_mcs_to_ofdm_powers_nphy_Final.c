@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ wlc_phy_mcs_to_ofdm_powers_nphy(u8 *power, u8 rate_ofdm_start,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +82,88 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          unsigned long rate_ofdm_start = 255;
+        
+          unsigned long rate_ofdm_end = 255;
+        
+          unsigned long rate_mcs_start = 255;
+        
+          int _len_power0 = 65025;
+          unsigned long * power = (unsigned long *) malloc(_len_power0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_power0; _i0++) {
+            power[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          wlc_phy_mcs_to_ofdm_powers_nphy(power,rate_ofdm_start,rate_ofdm_end,rate_mcs_start);
+          free(power);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           unsigned long rate_ofdm_start = 10;
+        
           unsigned long rate_ofdm_end = 10;
+        
           unsigned long rate_mcs_start = 10;
+        
           int _len_power0 = 100;
           unsigned long * power = (unsigned long *) malloc(_len_power0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_power0; _i0++) {
             power[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           wlc_phy_mcs_to_ofdm_powers_nphy(power,rate_ofdm_start,rate_ofdm_end,rate_mcs_start);
           free(power);
         

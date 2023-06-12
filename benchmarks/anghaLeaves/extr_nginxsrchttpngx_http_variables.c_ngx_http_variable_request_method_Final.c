@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ ngx_http_variable_request_method(ngx_http_request_t *r,
     return NGX_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,25 +103,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long data = 100;
+        
           int _len_r0 = 1;
           struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
               int _len_r__i0__main0 = 1;
           r[_i0].main = (struct TYPE_8__ *) malloc(_len_r__i0__main0*sizeof(struct TYPE_8__));
           for(int _j0 = 0; _j0 < _len_r__i0__main0; _j0++) {
-            r[_i0].main->method_name.data = ((-2 * (next_i()%2)) + 1) * next_i();
-        r[_i0].main->method_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].main->method_name.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].main->method_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int _len_v0 = 1;
           struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ngx_http_variable_request_method(r,v,data);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_r0; _aux++) {
@@ -135,7 +139,126 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long data = 255;
+        
+          int _len_r0 = 65025;
+          struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              int _len_r__i0__main0 = 1;
+          r[_i0].main = (struct TYPE_8__ *) malloc(_len_r__i0__main0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_r__i0__main0; _j0++) {
+              r[_i0].main->method_name.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].main->method_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_v0 = 65025;
+          struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_variable_request_method(r,v,data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].main);
+          }
+          free(r);
+          free(v);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long data = 10;
+        
+          int _len_r0 = 100;
+          struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              int _len_r__i0__main0 = 1;
+          r[_i0].main = (struct TYPE_8__ *) malloc(_len_r__i0__main0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_r__i0__main0; _j0++) {
+              r[_i0].main->method_name.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].main->method_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_v0 = 100;
+          struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_variable_request_method(r,v,data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].main);
+          }
+          free(r);
+          free(v);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          struct TYPE_10__ * r = (struct TYPE_10__ *) malloc(_len_r0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              int _len_r__i0__main0 = 1;
+          r[_i0].main = (struct TYPE_8__ *) malloc(_len_r__i0__main0*sizeof(struct TYPE_8__));
+          for(int _j0 = 0; _j0 < _len_r__i0__main0; _j0++) {
+              r[_i0].main->method_name.data = ((-2 * (next_i()%2)) + 1) * next_i();
+          r[_i0].main->method_name.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_v0 = 1;
+          struct TYPE_9__ * v = (struct TYPE_9__ *) malloc(_len_v0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].not_found = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].data = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].no_cacheable = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ngx_http_variable_request_method(r,v,data);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_r0; _aux++) {
+          free(r[_aux].main);
+          }
+          free(r);
+          free(v);
+        
+        break;
+    }
     default:
         usage();
         break;

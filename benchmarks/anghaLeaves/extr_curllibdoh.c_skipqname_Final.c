@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static DOHcode skipqname(unsigned char *doh, size_t dohlen
   return DOH_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -104,16 +100,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long dohlen = 100;
+        
           int _len_doh0 = 1;
           unsigned char * doh = (unsigned char *) malloc(_len_doh0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_doh0; _i0++) {
             doh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_indexp0 = 1;
           unsigned int * indexp = (unsigned int *) malloc(_len_indexp0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_indexp0; _i0++) {
             indexp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = skipqname(doh,dohlen,indexp);
           printf("%d\n", benchRet); 
           free(doh);
@@ -121,7 +120,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long dohlen = 255;
+        
+          int _len_doh0 = 65025;
+          unsigned char * doh = (unsigned char *) malloc(_len_doh0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_doh0; _i0++) {
+            doh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_indexp0 = 65025;
+          unsigned int * indexp = (unsigned int *) malloc(_len_indexp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_indexp0; _i0++) {
+            indexp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = skipqname(doh,dohlen,indexp);
+          printf("%d\n", benchRet); 
+          free(doh);
+          free(indexp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long dohlen = 10;
+        
+          int _len_doh0 = 100;
+          unsigned char * doh = (unsigned char *) malloc(_len_doh0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_doh0; _i0++) {
+            doh[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_indexp0 = 100;
+          unsigned int * indexp = (unsigned int *) malloc(_len_indexp0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_indexp0; _i0++) {
+            indexp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = skipqname(doh,dohlen,indexp);
+          printf("%d\n", benchRet); 
+          free(doh);
+          free(indexp);
+        
+        break;
+    }
     default:
         usage();
         break;

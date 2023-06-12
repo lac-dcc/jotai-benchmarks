@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -76,12 +77,6 @@ amd_validate_add_page(unsigned long base, unsigned long size, unsigned int type)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long base = 100;
+        
           unsigned long size = 100;
+        
           unsigned int type = 100;
+        
           int benchRet = amd_validate_add_page(base,size,type);
           printf("%d\n", benchRet); 
         
@@ -109,8 +107,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long base = 255;
+        
           unsigned long size = 255;
+        
           unsigned int type = 255;
+        
           int benchRet = amd_validate_add_page(base,size,type);
           printf("%d\n", benchRet); 
         
@@ -120,14 +121,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long base = 10;
+        
           unsigned long size = 10;
+        
           unsigned int type = 10;
+        
           int benchRet = amd_validate_add_page(base,size,type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long base = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = amd_validate_add_page(base,size,type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ __attribute__((used)) static inline int ihe_sgn_ext (tree_t *T, iheap_en_t *A, l
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,25 +93,231 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           long long item_id = 100;
+        
           int _len_T0 = 1;
           struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_T0; _i0++) {
-            T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_T__i0__item0 = 1;
           T[_i0].item = (struct TYPE_6__ *) malloc(_len_T__i0__item0*sizeof(struct TYPE_6__));
           for(int _j0 = 0; _j0 < _len_T__i0__item0; _j0++) {
-            T[_i0].item->item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              T[_i0].item->item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_A0 = 1;
           struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_A0; _i0++) {
-            A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ihe_sgn_ext(T,A,item_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].item);
+          }
+          free(T);
+          free(A);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long long item_id = 255;
+        
+          int _len_T0 = 65025;
+          struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_T__i0__item0 = 1;
+          T[_i0].item = (struct TYPE_6__ *) malloc(_len_T__i0__item0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_T__i0__item0; _j0++) {
+              T[_i0].item->item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_A0 = 65025;
+          struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ihe_sgn_ext(T,A,item_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].item);
+          }
+          free(T);
+          free(A);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long long item_id = 10;
+        
+          int _len_T0 = 100;
+          struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_T__i0__item0 = 1;
+          T[_i0].item = (struct TYPE_6__ *) malloc(_len_T__i0__item0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_T__i0__item0; _j0++) {
+              T[_i0].item->item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_A0 = 100;
+          struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ihe_sgn_ext(T,A,item_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_T0; _aux++) {
+          free(T[_aux].item);
+          }
+          free(T);
+          free(A);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          long long item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_T0 = 1;
+          struct TYPE_7__ * T = (struct TYPE_7__ *) malloc(_len_T0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_T0; _i0++) {
+              T[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_T__i0__item0 = 1;
+          T[_i0].item = (struct TYPE_6__ *) malloc(_len_T__i0__item0*sizeof(struct TYPE_6__));
+          for(int _j0 = 0; _j0 < _len_T__i0__item0; _j0++) {
+              T[_i0].item->item_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_A0 = 1;
+          struct TYPE_8__ * A = (struct TYPE_8__ *) malloc(_len_A0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].word = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ihe_sgn_ext(T,A,item_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_T0; _aux++) {

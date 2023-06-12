@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ cfil_queue_len(struct cfil_queue *cfq)
 	return (cfq->q_end - cfq->q_start);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cfq0 = 65025;
+          struct cfil_queue * cfq = (struct cfil_queue *) malloc(_len_cfq0*sizeof(struct cfil_queue));
+          for(int _i0 = 0; _i0 < _len_cfq0; _i0++) {
+              cfq[_i0].q_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfq[_i0].q_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = cfil_queue_len(cfq);
+          printf("%ld\n", benchRet); 
+          free(cfq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_cfq0 = 100;
+          struct cfil_queue * cfq = (struct cfil_queue *) malloc(_len_cfq0*sizeof(struct cfil_queue));
+          for(int _i0 = 0; _i0 < _len_cfq0; _i0++) {
+              cfq[_i0].q_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfq[_i0].q_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = cfil_queue_len(cfq);
+          printf("%ld\n", benchRet); 
+          free(cfq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_cfq0 = 1;
           struct cfil_queue * cfq = (struct cfil_queue *) malloc(_len_cfq0*sizeof(struct cfil_queue));
           for(int _i0 = 0; _i0 < _len_cfq0; _i0++) {
-            cfq[_i0].q_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        cfq[_i0].q_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfq[_i0].q_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          cfq[_i0].q_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = cfil_queue_len(cfq);
           printf("%ld\n", benchRet); 
           free(cfq);

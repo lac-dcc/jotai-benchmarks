@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ iwl_mvm_te_scheduled(struct iwl_mvm_time_event_data *te_data)
 	return !!te_data->uid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_te_data0 = 1;
+          int _len_te_data0 = 65025;
           struct iwl_mvm_time_event_data * te_data = (struct iwl_mvm_time_event_data *) malloc(_len_te_data0*sizeof(struct iwl_mvm_time_event_data));
           for(int _i0 = 0; _i0 < _len_te_data0; _i0++) {
-            te_data[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+              te_data[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iwl_mvm_te_scheduled(te_data);
           printf("%d\n", benchRet); 
           free(te_data);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_te_data0 = 100;
           struct iwl_mvm_time_event_data * te_data = (struct iwl_mvm_time_event_data *) malloc(_len_te_data0*sizeof(struct iwl_mvm_time_event_data));
           for(int _i0 = 0; _i0 < _len_te_data0; _i0++) {
-            te_data[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+              te_data[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iwl_mvm_te_scheduled(te_data);
           printf("%d\n", benchRet); 
           free(te_data);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_te_data0 = 1;
+          struct iwl_mvm_time_event_data * te_data = (struct iwl_mvm_time_event_data *) malloc(_len_te_data0*sizeof(struct iwl_mvm_time_event_data));
+          for(int _i0 = 0; _i0 < _len_te_data0; _i0++) {
+              te_data[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iwl_mvm_te_scheduled(te_data);
+          printf("%d\n", benchRet); 
+          free(te_data);
+        
+        break;
+    }
     default:
         usage();
         break;

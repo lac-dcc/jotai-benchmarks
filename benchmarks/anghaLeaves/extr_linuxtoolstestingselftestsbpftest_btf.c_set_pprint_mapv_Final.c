@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void set_pprint_mapv(struct pprint_mapv *v, uint32_
 	v->aenum = i & 0x03;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,188 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int i = 100;
+        
           int _len_v0 = 1;
           struct pprint_mapv * v = (struct pprint_mapv *) malloc(_len_v0*sizeof(struct pprint_mapv));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].ui32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].si32 = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].unused_bits2a = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].bits28 = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].unused_bits2b = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].ui64 = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].aenum = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].ui32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].si32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].bits28 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2b = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].ui64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].aenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          set_pprint_mapv(v,i);
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int i = 255;
+        
+          int _len_v0 = 65025;
+          struct pprint_mapv * v = (struct pprint_mapv *) malloc(_len_v0*sizeof(struct pprint_mapv));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].ui32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].si32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].bits28 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2b = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].ui64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].aenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_pprint_mapv(v,i);
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int i = 10;
+        
+          int _len_v0 = 100;
+          struct pprint_mapv * v = (struct pprint_mapv *) malloc(_len_v0*sizeof(struct pprint_mapv));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].ui32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].si32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].bits28 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2b = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].ui64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].aenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          set_pprint_mapv(v,i);
+          free(v);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_v0 = 1;
+          struct pprint_mapv * v = (struct pprint_mapv *) malloc(_len_v0*sizeof(struct pprint_mapv));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].ui32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].si32 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2a = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].bits28 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].unused_bits2b = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].ui64 = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].aenum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           set_pprint_mapv(v,i);
           free(v);
         

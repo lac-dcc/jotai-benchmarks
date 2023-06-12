@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void rtw_init_hwxmits(struct hw_xmit *phwxmit, sint entry)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +82,123 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 3070
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 1284
+          // ------------------------------- 
+
+          long entry = 255;
+        
+          int _len_phwxmit0 = 65025;
+          struct hw_xmit * phwxmit = (struct hw_xmit *) malloc(_len_phwxmit0*sizeof(struct hw_xmit));
+          for(int _i0 = 0; _i0 < _len_phwxmit0; _i0++) {
+              phwxmit[_i0].accnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rtw_init_hwxmits(phwxmit,entry);
+          free(phwxmit);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 130
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 59
+          // ------------------------------- 
+
           long entry = 10;
+        
           int _len_phwxmit0 = 100;
           struct hw_xmit * phwxmit = (struct hw_xmit *) malloc(_len_phwxmit0*sizeof(struct hw_xmit));
           for(int _i0 = 0; _i0 < _len_phwxmit0; _i0++) {
-            phwxmit[_i0].accnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              phwxmit[_i0].accnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          rtw_init_hwxmits(phwxmit,entry);
+          free(phwxmit);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 3
+          // dynamic_instructions_O1 : 3
+          // ------------------------------- 
+          // static_instructions_O2 : 3
+          // dynamic_instructions_O2 : 3
+          // ------------------------------- 
+          // static_instructions_O3 : 3
+          // dynamic_instructions_O3 : 3
+          // ------------------------------- 
+          // static_instructions_Ofast : 3
+          // dynamic_instructions_Ofast : 3
+          // ------------------------------- 
+          // static_instructions_Os : 3
+          // dynamic_instructions_Os : 3
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          long entry = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phwxmit0 = 1;
+          struct hw_xmit * phwxmit = (struct hw_xmit *) malloc(_len_phwxmit0*sizeof(struct hw_xmit));
+          for(int _i0 = 0; _i0 < _len_phwxmit0; _i0++) {
+              phwxmit[_i0].accnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           rtw_init_hwxmits(phwxmit,entry);
           free(phwxmit);
         

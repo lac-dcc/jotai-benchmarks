@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned safe_mod(unsigned n, unsigned d)
 	return d ? n % d : 0u;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,7 +78,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int n = 100;
+        
           unsigned int d = 100;
+        
           unsigned int benchRet = safe_mod(n,d);
           printf("%u\n", benchRet); 
         
@@ -93,7 +90,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int n = 255;
+        
           unsigned int d = 255;
+        
           unsigned int benchRet = safe_mod(n,d);
           printf("%u\n", benchRet); 
         
@@ -103,13 +102,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int n = 10;
+        
           unsigned int d = 10;
+        
           unsigned int benchRet = safe_mod(n,d);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int d = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = safe_mod(n,d);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

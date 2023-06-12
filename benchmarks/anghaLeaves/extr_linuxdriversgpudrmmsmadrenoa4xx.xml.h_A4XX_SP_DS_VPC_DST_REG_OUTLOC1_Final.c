@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t A4XX_SP_DS_VPC_DST_REG_OUTLOC1(uint
 	return ((val) << A4XX_SP_DS_VPC_DST_REG_OUTLOC1__SHIFT) & A4XX_SP_DS_VPC_DST_REG_OUTLOC1__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = A4XX_SP_DS_VPC_DST_REG_OUTLOC1(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = A4XX_SP_DS_VPC_DST_REG_OUTLOC1(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = A4XX_SP_DS_VPC_DST_REG_OUTLOC1(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

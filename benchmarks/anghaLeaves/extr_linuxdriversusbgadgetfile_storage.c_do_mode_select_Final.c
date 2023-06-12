@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int do_mode_select(struct fsg_dev *fsg, struct fsg_
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_fsg0 = 65025;
+          struct fsg_dev * fsg = (struct fsg_dev *) malloc(_len_fsg0*sizeof(struct fsg_dev));
+          for(int _i0 = 0; _i0 < _len_fsg0; _i0++) {
+              int _len_fsg__i0__curlun0 = 1;
+          fsg[_i0].curlun = (struct fsg_lun *) malloc(_len_fsg__i0__curlun0*sizeof(struct fsg_lun));
+          for(int _j0 = 0; _j0 < _len_fsg__i0__curlun0; _j0++) {
+              fsg[_i0].curlun->sense_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_bh0 = 65025;
+          struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
+          for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
+              bh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = do_mode_select(fsg,bh);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fsg0; _aux++) {
+          free(fsg[_aux].curlun);
+          }
+          free(fsg);
+          free(bh);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_fsg0 = 100;
+          struct fsg_dev * fsg = (struct fsg_dev *) malloc(_len_fsg0*sizeof(struct fsg_dev));
+          for(int _i0 = 0; _i0 < _len_fsg0; _i0++) {
+              int _len_fsg__i0__curlun0 = 1;
+          fsg[_i0].curlun = (struct fsg_lun *) malloc(_len_fsg__i0__curlun0*sizeof(struct fsg_lun));
+          for(int _j0 = 0; _j0 < _len_fsg__i0__curlun0; _j0++) {
+              fsg[_i0].curlun->sense_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_bh0 = 100;
+          struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
+          for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
+              bh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = do_mode_select(fsg,bh);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fsg0; _aux++) {
+          free(fsg[_aux].curlun);
+          }
+          free(fsg);
+          free(bh);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_fsg0 = 1;
           struct fsg_dev * fsg = (struct fsg_dev *) malloc(_len_fsg0*sizeof(struct fsg_dev));
           for(int _i0 = 0; _i0 < _len_fsg0; _i0++) {
               int _len_fsg__i0__curlun0 = 1;
           fsg[_i0].curlun = (struct fsg_lun *) malloc(_len_fsg__i0__curlun0*sizeof(struct fsg_lun));
           for(int _j0 = 0; _j0 < _len_fsg__i0__curlun0; _j0++) {
-            fsg[_i0].curlun->sense_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsg[_i0].curlun->sense_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_bh0 = 1;
           struct fsg_buffhd * bh = (struct fsg_buffhd *) malloc(_len_bh0*sizeof(struct fsg_buffhd));
           for(int _i0 = 0; _i0 < _len_bh0; _i0++) {
-            bh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              bh[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = do_mode_select(fsg,bh);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fsg0; _aux++) {

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -97,12 +98,6 @@ __attribute__((used)) static int ccdc_set_pixel_format(u32 pixfmt)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,6 +114,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long pixfmt = 100;
+        
           int benchRet = ccdc_set_pixel_format(pixfmt);
           printf("%d\n", benchRet); 
         
@@ -128,6 +124,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long pixfmt = 255;
+        
           int benchRet = ccdc_set_pixel_format(pixfmt);
           printf("%d\n", benchRet); 
         
@@ -137,12 +134,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long pixfmt = 10;
+        
           int benchRet = ccdc_set_pixel_format(pixfmt);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long pixfmt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ccdc_set_pixel_format(pixfmt);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

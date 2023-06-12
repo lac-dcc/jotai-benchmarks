@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int btintel_set_event_mask(struct hci_dev *h
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int debug = 100;
+        
           int _len_hdev0 = 1;
           struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = btintel_set_event_mask(hdev,debug);
+          printf("%d\n", benchRet); 
+          free(hdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int debug = 255;
+        
+          int _len_hdev0 = 65025;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = btintel_set_event_mask(hdev,debug);
           printf("%d\n", benchRet); 
           free(hdev);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int debug = 10;
+        
           int _len_hdev0 = 100;
           struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = btintel_set_event_mask(hdev,debug);
           printf("%d\n", benchRet); 
           free(hdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int debug = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hdev0 = 1;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = btintel_set_event_mask(hdev,debug);
+          printf("%d\n", benchRet); 
+          free(hdev);
+        
+        break;
+    }
     default:
         usage();
         break;

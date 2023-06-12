@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void selinux_sk_getsecid(struct sock *sk, u32 *seci
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,23 +83,158 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_sk0 = 65025;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              int _len_sk__i0__sk_security0 = 1;
+          sk[_i0].sk_security = (struct sk_security_struct *) malloc(_len_sk__i0__sk_security0*sizeof(struct sk_security_struct));
+          for(int _j0 = 0; _j0 < _len_sk__i0__sk_security0; _j0++) {
+              sk[_i0].sk_security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_secid0 = 65025;
+          int * secid = (int *) malloc(_len_secid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_secid0; _i0++) {
+            secid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          selinux_sk_getsecid(sk,secid);
+          for(int _aux = 0; _aux < _len_sk0; _aux++) {
+          free(sk[_aux].sk_security);
+          }
+          free(sk);
+          free(secid);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_sk0 = 100;
+          struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
+          for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
+              int _len_sk__i0__sk_security0 = 1;
+          sk[_i0].sk_security = (struct sk_security_struct *) malloc(_len_sk__i0__sk_security0*sizeof(struct sk_security_struct));
+          for(int _j0 = 0; _j0 < _len_sk__i0__sk_security0; _j0++) {
+              sk[_i0].sk_security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_secid0 = 100;
+          int * secid = (int *) malloc(_len_secid0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_secid0; _i0++) {
+            secid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          selinux_sk_getsecid(sk,secid);
+          for(int _aux = 0; _aux < _len_sk0; _aux++) {
+          free(sk[_aux].sk_security);
+          }
+          free(sk);
+          free(secid);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_sk0 = 1;
           struct sock * sk = (struct sock *) malloc(_len_sk0*sizeof(struct sock));
           for(int _i0 = 0; _i0 < _len_sk0; _i0++) {
               int _len_sk__i0__sk_security0 = 1;
           sk[_i0].sk_security = (struct sk_security_struct *) malloc(_len_sk__i0__sk_security0*sizeof(struct sk_security_struct));
           for(int _j0 = 0; _j0 < _len_sk__i0__sk_security0; _j0++) {
-            sk[_i0].sk_security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+              sk[_i0].sk_security->sid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_secid0 = 1;
           int * secid = (int *) malloc(_len_secid0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_secid0; _i0++) {
             secid[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           selinux_sk_getsecid(sk,secid);
           for(int _aux = 0; _aux < _len_sk0; _aux++) {
           free(sk[_aux].sk_security);

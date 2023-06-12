@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int mvs_find_tag(struct mvs_info *mvi, struct sas_t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +83,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_mvi0 = 65025;
+          struct mvs_info * mvi = (struct mvs_info *) malloc(_len_mvi0*sizeof(struct mvs_info));
+          for(int _i0 = 0; _i0 < _len_mvi0; _i0++) {
+              mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_task0 = 65025;
+          struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__lldd_task0 = 1;
+          task[_i0].lldd_task = (struct mvs_slot_info *) malloc(_len_task__i0__lldd_task0*sizeof(struct mvs_slot_info));
+          for(int _j0 = 0; _j0 < _len_task__i0__lldd_task0; _j0++) {
+              task[_i0].lldd_task->slot_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tag0 = 65025;
+          int * tag = (int *) malloc(_len_tag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mvs_find_tag(mvi,task,tag);
+          printf("%d\n", benchRet); 
+          free(mvi);
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].lldd_task);
+          }
+          free(task);
+          free(tag);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_mvi0 = 100;
+          struct mvs_info * mvi = (struct mvs_info *) malloc(_len_mvi0*sizeof(struct mvs_info));
+          for(int _i0 = 0; _i0 < _len_mvi0; _i0++) {
+              mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_task0 = 100;
+          struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
+          for(int _i0 = 0; _i0 < _len_task0; _i0++) {
+              int _len_task__i0__lldd_task0 = 1;
+          task[_i0].lldd_task = (struct mvs_slot_info *) malloc(_len_task__i0__lldd_task0*sizeof(struct mvs_slot_info));
+          for(int _j0 = 0; _j0 < _len_task__i0__lldd_task0; _j0++) {
+              task[_i0].lldd_task->slot_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_tag0 = 100;
+          int * tag = (int *) malloc(_len_tag0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
+            tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mvs_find_tag(mvi,task,tag);
+          printf("%d\n", benchRet); 
+          free(mvi);
+          for(int _aux = 0; _aux < _len_task0; _aux++) {
+          free(task[_aux].lldd_task);
+          }
+          free(task);
+          free(tag);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_mvi0 = 1;
           struct mvs_info * mvi = (struct mvs_info *) malloc(_len_mvi0*sizeof(struct mvs_info));
           for(int _i0 = 0; _i0 < _len_mvi0; _i0++) {
-            mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_task0 = 1;
           struct sas_task * task = (struct sas_task *) malloc(_len_task0*sizeof(struct sas_task));
           for(int _i0 = 0; _i0 < _len_task0; _i0++) {
               int _len_task__i0__lldd_task0 = 1;
           task[_i0].lldd_task = (struct mvs_slot_info *) malloc(_len_task__i0__lldd_task0*sizeof(struct mvs_slot_info));
           for(int _j0 = 0; _j0 < _len_task__i0__lldd_task0; _j0++) {
-            task[_i0].lldd_task->slot_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+              task[_i0].lldd_task->slot_tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_tag0 = 1;
           int * tag = (int *) malloc(_len_tag0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_tag0; _i0++) {
             tag[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mvs_find_tag(mvi,task,tag);
           printf("%d\n", benchRet); 
           free(mvi);

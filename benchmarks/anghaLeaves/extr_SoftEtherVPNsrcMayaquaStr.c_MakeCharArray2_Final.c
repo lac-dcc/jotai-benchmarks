@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ void MakeCharArray2(char *str, char c, UINT count)
 	str[count] = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,22 +80,42 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          char c = 10;
-          unsigned long count = 10;
-          int _len_str0 = 100;
+          char c = 255;
+        
+          unsigned long count = 255;
+        
+          int _len_str0 = 65025;
           char * str = (char *) malloc(_len_str0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_str0; _i0++) {
             str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           MakeCharArray2(str,c,count);
           free(str);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          char c = 10;
+        
+          unsigned long count = 10;
+        
+          int _len_str0 = 100;
+          char * str = (char *) malloc(_len_str0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_str0; _i0++) {
+            str[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          MakeCharArray2(str,c,count);
+          free(str);
+        
+        break;
+    }
     default:
         usage();
         break;

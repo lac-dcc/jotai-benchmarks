@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ event_requires_mode_exclusion(struct perf_event_attr *attr)
 	       attr->exclude_kernel || attr->exclude_hv;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,24 +76,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_attr0 = 1;
+          int _len_attr0 = 65025;
           struct perf_event_attr * attr = (struct perf_event_attr *) malloc(_len_attr0*sizeof(struct perf_event_attr));
           for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
-            attr[_i0].exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
-        attr[_i0].exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+              attr[_i0].exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = event_requires_mode_exclusion(attr);
           printf("%d\n", benchRet); 
           free(attr);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_attr0 = 100;
+          struct perf_event_attr * attr = (struct perf_event_attr *) malloc(_len_attr0*sizeof(struct perf_event_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = event_requires_mode_exclusion(attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_attr0 = 1;
+          struct perf_event_attr * attr = (struct perf_event_attr *) malloc(_len_attr0*sizeof(struct perf_event_attr));
+          for(int _i0 = 0; _i0 < _len_attr0; _i0++) {
+              attr[_i0].exclude_hv = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_user = ((-2 * (next_i()%2)) + 1) * next_i();
+          attr[_i0].exclude_idle = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = event_requires_mode_exclusion(attr);
+          printf("%d\n", benchRet); 
+          free(attr);
+        
+        break;
+    }
     default:
         usage();
         break;

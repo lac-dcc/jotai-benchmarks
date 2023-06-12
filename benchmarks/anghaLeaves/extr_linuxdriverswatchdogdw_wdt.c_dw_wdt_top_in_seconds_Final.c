@@ -64,12 +64,6 @@ __attribute__((used)) static inline int dw_wdt_top_in_seconds(struct dw_wdt *dw_
 	return (1U << (16 + top)) / dw_wdt->rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,15 +76,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned int top = 10;
+        
           int _len_dw_wdt0 = 100;
           struct dw_wdt * dw_wdt = (struct dw_wdt *) malloc(_len_dw_wdt0*sizeof(struct dw_wdt));
           for(int _i0 = 0; _i0 < _len_dw_wdt0; _i0++) {
-            dw_wdt[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              dw_wdt[_i0].rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dw_wdt_top_in_seconds(dw_wdt,top);
           printf("%d\n", benchRet); 
           free(dw_wdt);

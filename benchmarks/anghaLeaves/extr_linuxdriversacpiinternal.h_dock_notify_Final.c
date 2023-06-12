@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ struct acpi_device {int dummy; } ;
 
 __attribute__((used)) static inline int dock_notify(struct acpi_device *adev, u32 event) { return -ENODEV; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,11 +78,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int event = 100;
+        
           int _len_adev0 = 1;
           struct acpi_device * adev = (struct acpi_device *) malloc(_len_adev0*sizeof(struct acpi_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dock_notify(adev,event);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int event = 255;
+        
+          int _len_adev0 = 65025;
+          struct acpi_device * adev = (struct acpi_device *) malloc(_len_adev0*sizeof(struct acpi_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dock_notify(adev,event);
           printf("%d\n", benchRet); 
           free(adev);
@@ -94,21 +111,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int event = 10;
+        
           int _len_adev0 = 100;
           struct acpi_device * adev = (struct acpi_device *) malloc(_len_adev0*sizeof(struct acpi_device));
           for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
-            adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dock_notify(adev,event);
           printf("%d\n", benchRet); 
           free(adev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adev0 = 1;
+          struct acpi_device * adev = (struct acpi_device *) malloc(_len_adev0*sizeof(struct acpi_device));
+          for(int _i0 = 0; _i0 < _len_adev0; _i0++) {
+              adev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dock_notify(adev,event);
+          printf("%d\n", benchRet); 
+          free(adev);
+        
+        break;
+    }
     default:
         usage();
         break;

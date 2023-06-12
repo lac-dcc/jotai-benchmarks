@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ u32 prandom_u32_state(struct rnd_state *state)
 	return (state->s1 ^ state->s2 ^ state->s3 ^ state->s4);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,24 +81,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_state0 = 1;
+          int _len_state0 = 65025;
           struct rnd_state * state = (struct rnd_state *) malloc(_len_state0*sizeof(struct rnd_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].s1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].s2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].s3 = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].s4 = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].s1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = prandom_u32_state(state);
           printf("%d\n", benchRet); 
           free(state);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_state0 = 100;
+          struct rnd_state * state = (struct rnd_state *) malloc(_len_state0*sizeof(struct rnd_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].s1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = prandom_u32_state(state);
+          printf("%d\n", benchRet); 
+          free(state);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_state0 = 1;
+          struct rnd_state * state = (struct rnd_state *) malloc(_len_state0*sizeof(struct rnd_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].s1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s3 = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].s4 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = prandom_u32_state(state);
+          printf("%d\n", benchRet); 
+          free(state);
+        
+        break;
+    }
     default:
         usage();
         break;

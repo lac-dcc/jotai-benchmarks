@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void qed_vf_get_num_mac_filters(struct qed_hwfn *p_hwfn, u8 *num_mac_filters)
 	*num_mac_filters = p_vf->acquire_resp.resc.num_mac_filters;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,23 +82,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 65025;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct qed_vf_iov *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct qed_vf_iov));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->acquire_resp.resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int _len_num_mac_filters0 = 65025;
+          int * num_mac_filters = (int *) malloc(_len_num_mac_filters0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num_mac_filters0; _i0++) {
+            num_mac_filters[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_vf_get_num_mac_filters(p_hwfn,num_mac_filters);
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+          free(num_mac_filters);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_p_hwfn0 = 100;
+          struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
+          for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
+              int _len_p_hwfn__i0__vf_iov_info0 = 1;
+          p_hwfn[_i0].vf_iov_info = (struct qed_vf_iov *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct qed_vf_iov));
+          for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
+              p_hwfn[_i0].vf_iov_info->acquire_resp.resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          }
+        
+          int _len_num_mac_filters0 = 100;
+          int * num_mac_filters = (int *) malloc(_len_num_mac_filters0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_num_mac_filters0; _i0++) {
+            num_mac_filters[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          qed_vf_get_num_mac_filters(p_hwfn,num_mac_filters);
+          for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
+          free(p_hwfn[_aux].vf_iov_info);
+          }
+          free(p_hwfn);
+          free(num_mac_filters);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_p_hwfn0 = 1;
           struct qed_hwfn * p_hwfn = (struct qed_hwfn *) malloc(_len_p_hwfn0*sizeof(struct qed_hwfn));
           for(int _i0 = 0; _i0 < _len_p_hwfn0; _i0++) {
               int _len_p_hwfn__i0__vf_iov_info0 = 1;
           p_hwfn[_i0].vf_iov_info = (struct qed_vf_iov *) malloc(_len_p_hwfn__i0__vf_iov_info0*sizeof(struct qed_vf_iov));
           for(int _j0 = 0; _j0 < _len_p_hwfn__i0__vf_iov_info0; _j0++) {
-            p_hwfn[_i0].vf_iov_info->acquire_resp.resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_hwfn[_i0].vf_iov_info->acquire_resp.resc.num_mac_filters = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           }
+        
           int _len_num_mac_filters0 = 1;
           int * num_mac_filters = (int *) malloc(_len_num_mac_filters0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_num_mac_filters0; _i0++) {
             num_mac_filters[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           qed_vf_get_num_mac_filters(p_hwfn,num_mac_filters);
           for(int _aux = 0; _aux < _len_p_hwfn0; _aux++) {
           free(p_hwfn[_aux].vf_iov_info);

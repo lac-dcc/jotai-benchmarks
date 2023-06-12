@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -64,12 +64,6 @@ __attribute__((used)) static inline BOOL is_same_fixup(struct color_fixup_desc f
             && f1.w_sign_fixup == f2.w_sign_fixup && f1.w_source == f2.w_source;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,27 +76,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 64
+          // dynamic_instructions_O0 : 64
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           struct color_fixup_desc f1;
-        f1.x_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.x_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.y_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.y_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.z_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.z_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.w_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f1.w_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.x_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.x_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.y_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.y_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.z_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.z_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.w_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f1.w_source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct color_fixup_desc f2;
-        f2.x_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.x_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.y_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.y_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.z_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.z_source = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.w_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
-        f2.w_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.x_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.x_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.y_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.y_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.z_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.z_source = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.w_sign_fixup = ((-2 * (next_i()%2)) + 1) * next_i();
+          f2.w_source = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_same_fixup(f1,f2);
           printf("%d\n", benchRet); 
         

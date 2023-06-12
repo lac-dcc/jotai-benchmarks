@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ get_free_scd(struct idt77252_dev *card, struct vc_map *vc)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_card0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_card0 = 65025;
           struct idt77252_dev * card = (struct idt77252_dev *) malloc(_len_card0*sizeof(struct idt77252_dev));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].scd_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        card[_i0].scd_base = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].scd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].scd_base = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_card__i0__scd2vc0 = 1;
           card[_i0].scd2vc = (struct vc_map **) malloc(_len_card__i0__scd2vc0*sizeof(struct vc_map *));
           for(int _j0 = 0; _j0 < _len_card__i0__scd2vc0; _j0++) {
             int _len_card__i0__scd2vc1 = 1;
             card[_i0].scd2vc[_j0] = (struct vc_map *) malloc(_len_card__i0__scd2vc1*sizeof(struct vc_map));
             for(int _j1 = 0; _j1 < _len_card__i0__scd2vc1; _j1++) {
-              card[_i0].scd2vc[_j0]->scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+                card[_i0].scd2vc[_j0]->scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int _len_vc0 = 65025;
+          struct vc_map * vc = (struct vc_map *) malloc(_len_vc0*sizeof(struct vc_map));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_free_scd(card,vc);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(*(card[_aux].scd2vc));
+        free(card[_aux].scd2vc);
+          }
+          free(card);
+          free(vc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_card0 = 100;
+          struct idt77252_dev * card = (struct idt77252_dev *) malloc(_len_card0*sizeof(struct idt77252_dev));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].scd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].scd_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_card__i0__scd2vc0 = 1;
+          card[_i0].scd2vc = (struct vc_map **) malloc(_len_card__i0__scd2vc0*sizeof(struct vc_map *));
+          for(int _j0 = 0; _j0 < _len_card__i0__scd2vc0; _j0++) {
+            int _len_card__i0__scd2vc1 = 1;
+            card[_i0].scd2vc[_j0] = (struct vc_map *) malloc(_len_card__i0__scd2vc1*sizeof(struct vc_map));
+            for(int _j1 = 0; _j1 < _len_card__i0__scd2vc1; _j1++) {
+                card[_i0].scd2vc[_j0]->scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_vc0 = 100;
+          struct vc_map * vc = (struct vc_map *) malloc(_len_vc0*sizeof(struct vc_map));
+          for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
+              vc[_i0].scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_free_scd(card,vc);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_card0; _aux++) {
+          free(*(card[_aux].scd2vc));
+        free(card[_aux].scd2vc);
+          }
+          free(card);
+          free(vc);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_card0 = 1;
+          struct idt77252_dev * card = (struct idt77252_dev *) malloc(_len_card0*sizeof(struct idt77252_dev));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].scd_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].scd_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_card__i0__scd2vc0 = 1;
+          card[_i0].scd2vc = (struct vc_map **) malloc(_len_card__i0__scd2vc0*sizeof(struct vc_map *));
+          for(int _j0 = 0; _j0 < _len_card__i0__scd2vc0; _j0++) {
+            int _len_card__i0__scd2vc1 = 1;
+            card[_i0].scd2vc[_j0] = (struct vc_map *) malloc(_len_card__i0__scd2vc1*sizeof(struct vc_map));
+            for(int _j1 = 0; _j1 < _len_card__i0__scd2vc1; _j1++) {
+                card[_i0].scd2vc[_j0]->scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int _len_vc0 = 1;
           struct vc_map * vc = (struct vc_map *) malloc(_len_vc0*sizeof(struct vc_map));
           for(int _i0 = 0; _i0 < _len_vc0; _i0++) {
-            vc[_i0].scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+              vc[_i0].scd_index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = get_free_scd(card,vc);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_card0; _aux++) {

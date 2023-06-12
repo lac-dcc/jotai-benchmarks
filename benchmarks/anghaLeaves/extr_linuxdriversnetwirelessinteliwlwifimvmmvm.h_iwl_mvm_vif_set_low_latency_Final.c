@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void iwl_mvm_vif_set_low_latency(struct iwl_mvm_vif *mvmvif, bool set,
 		mvmvif->low_latency &= ~cause;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,31 +81,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int set = 100;
+        
           enum iwl_mvm_low_latency_cause cause = 0;
+        
           int _len_mvmvif0 = 1;
           struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
           for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
-            mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           iwl_mvm_vif_set_low_latency(mvmvif,set,cause);
           free(mvmvif);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
-          int set = 10;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int set = 255;
+        
           enum iwl_mvm_low_latency_cause cause = 0;
+        
+          int _len_mvmvif0 = 65025;
+          struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
+          for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          iwl_mvm_vif_set_low_latency(mvmvif,set,cause);
+          free(mvmvif);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int set = 10;
+        
+          enum iwl_mvm_low_latency_cause cause = 0;
+        
           int _len_mvmvif0 = 100;
           struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
           for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
-            mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          iwl_mvm_vif_set_low_latency(mvmvif,set,cause);
+          free(mvmvif);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum iwl_mvm_low_latency_cause cause = 0;
+        
+          int _len_mvmvif0 = 1;
+          struct iwl_mvm_vif * mvmvif = (struct iwl_mvm_vif *) malloc(_len_mvmvif0*sizeof(struct iwl_mvm_vif));
+          for(int _i0 = 0; _i0 < _len_mvmvif0; _i0++) {
+              mvmvif[_i0].low_latency = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           iwl_mvm_vif_set_low_latency(mvmvif,set,cause);
           free(mvmvif);
         

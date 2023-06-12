@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void ossl_statem_set_in_init(SSL *s, int init)
     s->statem.in_init = init;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int init = 100;
+        
           int _len_s0 = 1;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].statem.in_init = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].statem.in_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          ossl_statem_set_in_init(s,init);
+          free(s);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int init = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].statem.in_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           ossl_statem_set_in_init(s,init);
           free(s);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int init = 10;
+        
           int _len_s0 = 100;
           struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].statem.in_init = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].statem.in_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ossl_statem_set_in_init(s,init);
           free(s);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_5__ * s = (struct TYPE_5__ *) malloc(_len_s0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].statem.in_init = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ossl_statem_set_in_init(s,init);
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

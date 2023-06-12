@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static void reset_index_position(int64_t metadata_head_siz
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,16 +88,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long metadata_head_size = 100;
+        
           int _len_st0 = 1;
           struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_st0; _i0++) {
-            st[_i0].nb_index_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].nb_index_entries = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_st__i0__index_entries0 = 1;
           st[_i0].index_entries = (struct TYPE_4__ *) malloc(_len_st__i0__index_entries0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_st__i0__index_entries0; _j0++) {
-            st[_i0].index_entries->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              st[_i0].index_entries->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           reset_index_position(metadata_head_size,st);
           for(int _aux = 0; _aux < _len_st0; _aux++) {
           free(st[_aux].index_entries);
@@ -109,7 +110,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long metadata_head_size = 255;
+        
+          int _len_st0 = 65025;
+          struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].nb_index_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__index_entries0 = 1;
+          st[_i0].index_entries = (struct TYPE_4__ *) malloc(_len_st__i0__index_entries0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_st__i0__index_entries0; _j0++) {
+              st[_i0].index_entries->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_index_position(metadata_head_size,st);
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].index_entries);
+          }
+          free(st);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long metadata_head_size = 10;
+        
+          int _len_st0 = 100;
+          struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].nb_index_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__index_entries0 = 1;
+          st[_i0].index_entries = (struct TYPE_4__ *) malloc(_len_st__i0__index_entries0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_st__i0__index_entries0; _j0++) {
+              st[_i0].index_entries->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_index_position(metadata_head_size,st);
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].index_entries);
+          }
+          free(st);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long metadata_head_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_st0 = 1;
+          struct TYPE_5__ * st = (struct TYPE_5__ *) malloc(_len_st0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_st0; _i0++) {
+              st[_i0].nb_index_entries = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_st__i0__index_entries0 = 1;
+          st[_i0].index_entries = (struct TYPE_4__ *) malloc(_len_st__i0__index_entries0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_st__i0__index_entries0; _j0++) {
+              st[_i0].index_entries->pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          reset_index_position(metadata_head_size,st);
+          for(int _aux = 0; _aux < _len_st0; _aux++) {
+          free(st[_aux].index_entries);
+          }
+          free(st);
+        
+        break;
+    }
     default:
         usage();
         break;

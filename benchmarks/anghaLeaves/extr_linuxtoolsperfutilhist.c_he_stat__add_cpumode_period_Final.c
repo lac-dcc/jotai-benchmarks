@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void he_stat__add_cpumode_period(struct he_stat *he
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +96,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           unsigned int cpumode = 100;
+        
           int period = 100;
+        
           int _len_he_stat0 = 1;
           struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
           for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
-            he_stat[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        he_stat[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
-        he_stat[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
-        he_stat[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+              he_stat[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          he_stat__add_cpumode_period(he_stat,cpumode,period);
+          free(he_stat);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int cpumode = 255;
+        
+          int period = 255;
+        
+          int _len_he_stat0 = 65025;
+          struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
+              he_stat[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          he_stat__add_cpumode_period(he_stat,cpumode,period);
+          free(he_stat);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int cpumode = 10;
+        
+          int period = 10;
+        
+          int _len_he_stat0 = 100;
+          struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
+              he_stat[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          he_stat__add_cpumode_period(he_stat,cpumode,period);
+          free(he_stat);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          unsigned int cpumode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int period = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_he_stat0 = 1;
+          struct he_stat * he_stat = (struct he_stat *) malloc(_len_he_stat0*sizeof(struct he_stat));
+          for(int _i0 = 0; _i0 < _len_he_stat0; _i0++) {
+              he_stat[_i0].period_guest_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_guest_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_us = ((-2 * (next_i()%2)) + 1) * next_i();
+          he_stat[_i0].period_sys = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           he_stat__add_cpumode_period(he_stat,cpumode,period);
           free(he_stat);
         

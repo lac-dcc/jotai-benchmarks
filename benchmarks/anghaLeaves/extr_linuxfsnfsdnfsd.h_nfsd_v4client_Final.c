@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline int nfsd_v4client(struct svc_rqst *rq)
 	return rq->rq_prog == NFS_PROGRAM && rq->rq_vers == 4;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,22 +75,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rq0 = 1;
+          int _len_rq0 = 65025;
           struct svc_rqst * rq = (struct svc_rqst *) malloc(_len_rq0*sizeof(struct svc_rqst));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].rq_prog = ((-2 * (next_i()%2)) + 1) * next_i();
-        rq[_i0].rq_vers = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].rq_prog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].rq_vers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nfsd_v4client(rq);
           printf("%d\n", benchRet); 
           free(rq);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rq0 = 100;
+          struct svc_rqst * rq = (struct svc_rqst *) malloc(_len_rq0*sizeof(struct svc_rqst));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].rq_prog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].rq_vers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfsd_v4client(rq);
+          printf("%d\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rq0 = 1;
+          struct svc_rqst * rq = (struct svc_rqst *) malloc(_len_rq0*sizeof(struct svc_rqst));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].rq_prog = ((-2 * (next_i()%2)) + 1) * next_i();
+          rq[_i0].rq_vers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfsd_v4client(rq);
+          printf("%d\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
     default:
         usage();
         break;

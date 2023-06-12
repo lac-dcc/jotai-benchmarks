@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ GENERAL_NAME *TS_TST_INFO_get_tsa(TS_TST_INFO *a)
     return a->tsa;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,10 +77,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_a0 = 1;
+          int _len_a0 = 65025;
           struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
               int _len_a__i0__tsa0 = 1;
@@ -92,7 +88,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_a__i0__tsa0; _j0++) {
             a[_i0].tsa[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int * benchRet = TS_TST_INFO_get_tsa(a);
           printf("%d\n", (*benchRet)); 
           for(int _aux = 0; _aux < _len_a0; _aux++) {
@@ -102,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_a0 = 100;
+          struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__tsa0 = 1;
+          a[_i0].tsa = (int *) malloc(_len_a__i0__tsa0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_a__i0__tsa0; _j0++) {
+            a[_i0].tsa[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = TS_TST_INFO_get_tsa(a);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].tsa);
+          }
+          free(a);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_a0 = 1;
+          struct TYPE_3__ * a = (struct TYPE_3__ *) malloc(_len_a0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              int _len_a__i0__tsa0 = 1;
+          a[_i0].tsa = (int *) malloc(_len_a__i0__tsa0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_a__i0__tsa0; _j0++) {
+            a[_i0].tsa[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int * benchRet = TS_TST_INFO_get_tsa(a);
+          printf("%d\n", (*benchRet)); 
+          for(int _aux = 0; _aux < _len_a0; _aux++) {
+          free(a[_aux].tsa);
+          }
+          free(a);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static int da9150_gpadc_read_offset(int channel, int *val)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,11 +93,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int channel = 100;
+        
           int _len_val0 = 1;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = da9150_gpadc_read_offset(channel,val);
+          printf("%d\n", benchRet); 
+          free(val);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int channel = 255;
+        
+          int _len_val0 = 65025;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = da9150_gpadc_read_offset(channel,val);
           printf("%d\n", benchRet); 
           free(val);
@@ -109,21 +124,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int channel = 10;
+        
           int _len_val0 = 100;
           int * val = (int *) malloc(_len_val0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_val0; _i0++) {
             val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = da9150_gpadc_read_offset(channel,val);
           printf("%d\n", benchRet); 
           free(val);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int channel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_val0 = 1;
+          int * val = (int *) malloc(_len_val0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_val0; _i0++) {
+            val[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = da9150_gpadc_read_offset(channel,val);
+          printf("%d\n", benchRet); 
+          free(val);
+        
+        break;
+    }
     default:
         usage();
         break;

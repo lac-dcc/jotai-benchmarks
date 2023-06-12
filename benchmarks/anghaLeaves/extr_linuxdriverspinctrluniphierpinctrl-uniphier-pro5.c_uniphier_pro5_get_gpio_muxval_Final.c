@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static int uniphier_pro5_get_gpio_muxval(unsigned int pin,
 	return 15;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int pin = 100;
+        
           unsigned int gpio_offset = 100;
+        
           int benchRet = uniphier_pro5_get_gpio_muxval(pin,gpio_offset);
           printf("%d\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int pin = 255;
+        
           unsigned int gpio_offset = 255;
+        
           int benchRet = uniphier_pro5_get_gpio_muxval(pin,gpio_offset);
           printf("%d\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int pin = 10;
+        
           unsigned int gpio_offset = 10;
+        
           int benchRet = uniphier_pro5_get_gpio_muxval(pin,gpio_offset);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int pin = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int gpio_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = uniphier_pro5_get_gpio_muxval(pin,gpio_offset);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ style_equal(struct style *sy1, struct style *sy2)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,25 +88,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_sy10 = 65025;
+          struct style * sy1 = (struct style *) malloc(_len_sy10*sizeof(struct style));
+          for(int _i0 = 0; _i0 < _len_sy10; _i0++) {
+              sy1[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sy20 = 65025;
+          struct style * sy2 = (struct style *) malloc(_len_sy20*sizeof(struct style));
+          for(int _i0 = 0; _i0 < _len_sy20; _i0++) {
+              sy2[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = style_equal(sy1,sy2);
+          printf("%d\n", benchRet); 
+          free(sy1);
+          free(sy2);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_sy10 = 100;
+          struct style * sy1 = (struct style *) malloc(_len_sy10*sizeof(struct style));
+          for(int _i0 = 0; _i0 < _len_sy10; _i0++) {
+              sy1[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_sy20 = 100;
+          struct style * sy2 = (struct style *) malloc(_len_sy20*sizeof(struct style));
+          for(int _i0 = 0; _i0 < _len_sy20; _i0++) {
+              sy2[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = style_equal(sy1,sy2);
+          printf("%d\n", benchRet); 
+          free(sy1);
+          free(sy2);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 37
+          // dynamic_instructions_O0 : 37
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_sy10 = 1;
           struct style * sy1 = (struct style *) malloc(_len_sy10*sizeof(struct style));
           for(int _i0 = 0; _i0 < _len_sy10; _i0++) {
-            sy1[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
-        sy1[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        sy1[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
-        sy1[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+              sy1[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy1[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_sy20 = 1;
           struct style * sy2 = (struct style *) malloc(_len_sy20*sizeof(struct style));
           for(int _i0 = 0; _i0 < _len_sy20; _i0++) {
-            sy2[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
-        sy2[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
-        sy2[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
-        sy2[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+              sy2[_i0].align = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.fg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.bg = ((-2 * (next_i()%2)) + 1) * next_i();
+          sy2[_i0].gc.attr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = style_equal(sy1,sy2);
           printf("%d\n", benchRet); 
           free(sy1);

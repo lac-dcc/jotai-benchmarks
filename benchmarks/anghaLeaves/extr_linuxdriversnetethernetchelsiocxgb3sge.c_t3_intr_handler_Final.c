@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ irq_handler_t t3_intr_handler(struct adapter *adap, int polling)
 	return t3_intr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,19 +97,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int polling = 100;
+        
           int _len_adap0 = 1;
           struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
           for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
-            adap[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        adap[_i0].params.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+              adap[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          adap[_i0].params.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = t3_intr_handler(adap,polling);
           printf("%d\n", benchRet); 
           free(adap);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int polling = 255;
+        
+          int _len_adap0 = 65025;
+          struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
+              adap[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          adap[_i0].params.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = t3_intr_handler(adap,polling);
+          printf("%d\n", benchRet); 
+          free(adap);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int polling = 10;
+        
+          int _len_adap0 = 100;
+          struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
+              adap[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          adap[_i0].params.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = t3_intr_handler(adap,polling);
+          printf("%d\n", benchRet); 
+          free(adap);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int polling = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adap0 = 1;
+          struct adapter * adap = (struct adapter *) malloc(_len_adap0*sizeof(struct adapter));
+          for(int _i0 = 0; _i0 < _len_adap0; _i0++) {
+              adap[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          adap[_i0].params.rev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = t3_intr_handler(adap,polling);
+          printf("%d\n", benchRet); 
+          free(adap);
+        
+        break;
+    }
     default:
         usage();
         break;

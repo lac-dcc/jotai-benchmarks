@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -100,12 +101,6 @@ __attribute__((used)) static int bnxt_re_handle_unaffi_async_event(struct creq_f
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -118,14 +113,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_unaffi_async0 = 1;
+          int _len_unaffi_async0 = 65025;
           struct creq_func_event * unaffi_async = (struct creq_func_event *) malloc(_len_unaffi_async0*sizeof(struct creq_func_event));
           for(int _i0 = 0; _i0 < _len_unaffi_async0; _i0++) {
-            unaffi_async[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+              unaffi_async[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnxt_re_handle_unaffi_async_event(unaffi_async);
           printf("%d\n", benchRet); 
           free(unaffi_async);
@@ -138,15 +135,32 @@ int main(int argc, char *argv[]) {
           int _len_unaffi_async0 = 100;
           struct creq_func_event * unaffi_async = (struct creq_func_event *) malloc(_len_unaffi_async0*sizeof(struct creq_func_event));
           for(int _i0 = 0; _i0 < _len_unaffi_async0; _i0++) {
-            unaffi_async[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+              unaffi_async[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bnxt_re_handle_unaffi_async_event(unaffi_async);
           printf("%d\n", benchRet); 
           free(unaffi_async);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_unaffi_async0 = 1;
+          struct creq_func_event * unaffi_async = (struct creq_func_event *) malloc(_len_unaffi_async0*sizeof(struct creq_func_event));
+          for(int _i0 = 0; _i0 < _len_unaffi_async0; _i0++) {
+              unaffi_async[_i0].event = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bnxt_re_handle_unaffi_async_event(unaffi_async);
+          printf("%d\n", benchRet); 
+          free(unaffi_async);
+        
+        break;
+    }
     default:
         usage();
         break;

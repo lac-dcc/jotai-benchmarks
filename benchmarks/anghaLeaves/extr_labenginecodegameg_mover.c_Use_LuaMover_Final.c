@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            linked\n\
+       1            empty\n\
 \n\
 ");
 
@@ -68,7 +69,6 @@ void Use_LuaMover( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 		ent->think = Think_LuaMover;
 	}
 }
-
 
 // ------------------------------------------------------------------------- //
 
@@ -161,7 +161,6 @@ void _delete_activator(struct TYPE_6__ *aux_activator[], int aux_activator_size)
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -174,15 +173,37 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // linked
     case 0:
+    {
+          struct TYPE_6__ * aux_ent[10000];
+          struct TYPE_6__ * ent = _allocate_ent(10000, aux_ent);
+        
+          struct TYPE_6__ * aux_other[10000];
+          struct TYPE_6__ * other = _allocate_other(10000, aux_other);
+        
+          struct TYPE_6__ * aux_activator[10000];
+          struct TYPE_6__ * activator = _allocate_activator(10000, aux_activator);
+        
+          Use_LuaMover(ent,other,activator);
+          _delete_ent(aux_ent, 10000);
+          _delete_other(aux_other, 10000);
+          _delete_activator(aux_activator, 10000);
+        
+        break;
+    }
+    // empty
+    case 1:
     {
           struct TYPE_6__ * aux_ent[1];
           struct TYPE_6__ * ent = _allocate_ent(1, aux_ent);
+        
           struct TYPE_6__ * aux_other[1];
           struct TYPE_6__ * other = _allocate_other(1, aux_other);
+        
           struct TYPE_6__ * aux_activator[1];
           struct TYPE_6__ * activator = _allocate_activator(1, aux_activator);
+        
           Use_LuaMover(ent,other,activator);
           _delete_ent(aux_ent, 1);
           _delete_other(aux_other, 1);
@@ -190,7 +211,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

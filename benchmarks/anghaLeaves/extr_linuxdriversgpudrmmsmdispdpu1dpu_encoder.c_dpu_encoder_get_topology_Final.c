@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static struct msm_display_topology dpu_encoder_get_topolog
 	return topology;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,9 +94,162 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_dpu_enc0 = 65025;
+          struct dpu_encoder_virt * dpu_enc = (struct dpu_encoder_virt *) malloc(_len_dpu_enc0*sizeof(struct dpu_encoder_virt));
+          for(int _i0 = 0; _i0 < _len_dpu_enc0; _i0++) {
+              int _len_dpu_enc__i0__phys_encs0 = 1;
+          dpu_enc[_i0].phys_encs = (long *) malloc(_len_dpu_enc__i0__phys_encs0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dpu_enc__i0__phys_encs0; _j0++) {
+            dpu_enc[_i0].phys_encs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_dpu_kms0 = 65025;
+          struct dpu_kms * dpu_kms = (struct dpu_kms *) malloc(_len_dpu_kms0*sizeof(struct dpu_kms));
+          for(int _i0 = 0; _i0 < _len_dpu_kms0; _i0++) {
+              dpu_kms[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 65025;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct msm_display_topology benchRet = dpu_encoder_get_topology(dpu_enc,dpu_kms,mode);
+          printf("%d\n", benchRet.num_lm);
+          printf("%d\n", benchRet.num_intf);
+          printf("%ld\n", benchRet.num_enc);
+          for(int _aux = 0; _aux < _len_dpu_enc0; _aux++) {
+          free(dpu_enc[_aux].phys_encs);
+          }
+          free(dpu_enc);
+          free(dpu_kms);
+          free(mode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_dpu_enc0 = 100;
+          struct dpu_encoder_virt * dpu_enc = (struct dpu_encoder_virt *) malloc(_len_dpu_enc0*sizeof(struct dpu_encoder_virt));
+          for(int _i0 = 0; _i0 < _len_dpu_enc0; _i0++) {
+              int _len_dpu_enc__i0__phys_encs0 = 1;
+          dpu_enc[_i0].phys_encs = (long *) malloc(_len_dpu_enc__i0__phys_encs0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_dpu_enc__i0__phys_encs0; _j0++) {
+            dpu_enc[_i0].phys_encs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_dpu_kms0 = 100;
+          struct dpu_kms * dpu_kms = (struct dpu_kms *) malloc(_len_dpu_kms0*sizeof(struct dpu_kms));
+          for(int _i0 = 0; _i0 < _len_dpu_kms0; _i0++) {
+              dpu_kms[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mode0 = 100;
+          struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
+          for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
+              mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct msm_display_topology benchRet = dpu_encoder_get_topology(dpu_enc,dpu_kms,mode);
+          printf("%d\n", benchRet.num_lm);
+          printf("%d\n", benchRet.num_intf);
+          printf("%ld\n", benchRet.num_enc);
+          for(int _aux = 0; _aux < _len_dpu_enc0; _aux++) {
+          free(dpu_enc[_aux].phys_encs);
+          }
+          free(dpu_enc);
+          free(dpu_kms);
+          free(mode);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_dpu_enc0 = 1;
           struct dpu_encoder_virt * dpu_enc = (struct dpu_encoder_virt *) malloc(_len_dpu_enc0*sizeof(struct dpu_encoder_virt));
           for(int _i0 = 0; _i0 < _len_dpu_enc0; _i0++) {
@@ -109,17 +258,23 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_dpu_enc__i0__phys_encs0; _j0++) {
             dpu_enc[_i0].phys_encs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_dpu_kms0 = 1;
           struct dpu_kms * dpu_kms = (struct dpu_kms *) malloc(_len_dpu_kms0*sizeof(struct dpu_kms));
           for(int _i0 = 0; _i0 < _len_dpu_kms0; _i0++) {
-            dpu_kms[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpu_kms[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_mode0 = 1;
           struct drm_display_mode * mode = (struct drm_display_mode *) malloc(_len_mode0*sizeof(struct drm_display_mode));
           for(int _i0 = 0; _i0 < _len_mode0; _i0++) {
-            mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+              mode[_i0].vdisplay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct msm_display_topology benchRet = dpu_encoder_get_topology(dpu_enc,dpu_kms,mode);
           printf("%d\n", benchRet.num_lm);
           printf("%d\n", benchRet.num_intf);

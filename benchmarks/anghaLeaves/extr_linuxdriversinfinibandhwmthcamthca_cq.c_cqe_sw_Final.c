@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline struct mthca_cqe *cqe_sw(struct mthca_cqe *c
 	return MTHCA_CQ_ENTRY_OWNER_HW & cqe->owner ? NULL : cqe;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cqe0 = 1;
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_cqe0 = 65025;
           struct mthca_cqe * cqe = (struct mthca_cqe *) malloc(_len_cqe0*sizeof(struct mthca_cqe));
           for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
-            cqe[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqe[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct mthca_cqe * benchRet = cqe_sw(cqe);
           printf("%d\n", (*benchRet).owner);
           free(cqe);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_cqe0 = 100;
           struct mthca_cqe * cqe = (struct mthca_cqe *) malloc(_len_cqe0*sizeof(struct mthca_cqe));
           for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
-            cqe[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              cqe[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          struct mthca_cqe * benchRet = cqe_sw(cqe);
+          printf("%d\n", (*benchRet).owner);
+          free(cqe);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_cqe0 = 1;
+          struct mthca_cqe * cqe = (struct mthca_cqe *) malloc(_len_cqe0*sizeof(struct mthca_cqe));
+          for(int _i0 = 0; _i0 < _len_cqe0; _i0++) {
+              cqe[_i0].owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           struct mthca_cqe * benchRet = cqe_sw(cqe);
           printf("%d\n", (*benchRet).owner);
           free(cqe);

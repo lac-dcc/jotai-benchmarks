@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static unsigned ea_valuelen(struct extended_attribute *ea)
 	return ea->valuelen_lo + 256 * ea->valuelen_hi;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,15 +74,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ea0 = 65025;
+          struct extended_attribute * ea = (struct extended_attribute *) malloc(_len_ea0*sizeof(struct extended_attribute));
+          for(int _i0 = 0; _i0 < _len_ea0; _i0++) {
+              ea[_i0].valuelen_lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].valuelen_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ea_valuelen(ea);
+          printf("%u\n", benchRet); 
+          free(ea);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ea0 = 100;
+          struct extended_attribute * ea = (struct extended_attribute *) malloc(_len_ea0*sizeof(struct extended_attribute));
+          for(int _i0 = 0; _i0 < _len_ea0; _i0++) {
+              ea[_i0].valuelen_lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].valuelen_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = ea_valuelen(ea);
+          printf("%u\n", benchRet); 
+          free(ea);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_ea0 = 1;
           struct extended_attribute * ea = (struct extended_attribute *) malloc(_len_ea0*sizeof(struct extended_attribute));
           for(int _i0 = 0; _i0 < _len_ea0; _i0++) {
-            ea[_i0].valuelen_lo = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].valuelen_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              ea[_i0].valuelen_lo = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].valuelen_hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = ea_valuelen(ea);
           printf("%u\n", benchRet); 
           free(ea);

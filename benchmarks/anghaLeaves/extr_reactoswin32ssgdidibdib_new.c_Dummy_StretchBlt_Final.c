@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ BOOLEAN Dummy_StretchBlt(SURFOBJ *DestSurf, SURFOBJ *SourceSurf,
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,60 +88,406 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int Rop = 100;
+        
           int _len_DestSurf0 = 1;
           int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
             DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_SourceSurf0 = 1;
           int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
             SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_PatternSurface0 = 1;
           int * PatternSurface = (int *) malloc(_len_PatternSurface0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_PatternSurface0; _i0++) {
             PatternSurface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_MaskSurf0 = 1;
           int * MaskSurf = (int *) malloc(_len_MaskSurf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_MaskSurf0; _i0++) {
             MaskSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_DestRect0 = 1;
           int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
             DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_SourceRect0 = 1;
           int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
             SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_MaskOrigin0 = 1;
           int * MaskOrigin = (int *) malloc(_len_MaskOrigin0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_MaskOrigin0; _i0++) {
             MaskOrigin[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_Brush0 = 1;
           int * Brush = (int *) malloc(_len_Brush0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_Brush0; _i0++) {
             Brush[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_BrushOrign0 = 1;
           int * BrushOrign = (int *) malloc(_len_BrushOrign0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_BrushOrign0; _i0++) {
             BrushOrign[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ColorTranslation0 = 1;
           int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
             ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = Dummy_StretchBlt(DestSurf,SourceSurf,PatternSurface,MaskSurf,DestRect,SourceRect,MaskOrigin,Brush,BrushOrign,ColorTranslation,Rop);
+          printf("%d\n", benchRet); 
+          free(DestSurf);
+          free(SourceSurf);
+          free(PatternSurface);
+          free(MaskSurf);
+          free(DestRect);
+          free(SourceRect);
+          free(MaskOrigin);
+          free(Brush);
+          free(BrushOrign);
+          free(ColorTranslation);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int Rop = 255;
+        
+          int _len_DestSurf0 = 65025;
+          int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
+            DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceSurf0 = 65025;
+          int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
+            SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_PatternSurface0 = 65025;
+          int * PatternSurface = (int *) malloc(_len_PatternSurface0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_PatternSurface0; _i0++) {
+            PatternSurface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_MaskSurf0 = 65025;
+          int * MaskSurf = (int *) malloc(_len_MaskSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MaskSurf0; _i0++) {
+            MaskSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 65025;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 65025;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_MaskOrigin0 = 65025;
+          int * MaskOrigin = (int *) malloc(_len_MaskOrigin0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MaskOrigin0; _i0++) {
+            MaskOrigin[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Brush0 = 65025;
+          int * Brush = (int *) malloc(_len_Brush0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Brush0; _i0++) {
+            Brush[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_BrushOrign0 = 65025;
+          int * BrushOrign = (int *) malloc(_len_BrushOrign0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BrushOrign0; _i0++) {
+            BrushOrign[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 65025;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Dummy_StretchBlt(DestSurf,SourceSurf,PatternSurface,MaskSurf,DestRect,SourceRect,MaskOrigin,Brush,BrushOrign,ColorTranslation,Rop);
+          printf("%d\n", benchRet); 
+          free(DestSurf);
+          free(SourceSurf);
+          free(PatternSurface);
+          free(MaskSurf);
+          free(DestRect);
+          free(SourceRect);
+          free(MaskOrigin);
+          free(Brush);
+          free(BrushOrign);
+          free(ColorTranslation);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int Rop = 10;
+        
+          int _len_DestSurf0 = 100;
+          int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
+            DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceSurf0 = 100;
+          int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
+            SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_PatternSurface0 = 100;
+          int * PatternSurface = (int *) malloc(_len_PatternSurface0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_PatternSurface0; _i0++) {
+            PatternSurface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_MaskSurf0 = 100;
+          int * MaskSurf = (int *) malloc(_len_MaskSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MaskSurf0; _i0++) {
+            MaskSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 100;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 100;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_MaskOrigin0 = 100;
+          int * MaskOrigin = (int *) malloc(_len_MaskOrigin0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MaskOrigin0; _i0++) {
+            MaskOrigin[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Brush0 = 100;
+          int * Brush = (int *) malloc(_len_Brush0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Brush0; _i0++) {
+            Brush[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_BrushOrign0 = 100;
+          int * BrushOrign = (int *) malloc(_len_BrushOrign0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BrushOrign0; _i0++) {
+            BrushOrign[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 100;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = Dummy_StretchBlt(DestSurf,SourceSurf,PatternSurface,MaskSurf,DestRect,SourceRect,MaskOrigin,Brush,BrushOrign,ColorTranslation,Rop);
+          printf("%d\n", benchRet); 
+          free(DestSurf);
+          free(SourceSurf);
+          free(PatternSurface);
+          free(MaskSurf);
+          free(DestRect);
+          free(SourceRect);
+          free(MaskOrigin);
+          free(Brush);
+          free(BrushOrign);
+          free(ColorTranslation);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int Rop = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_DestSurf0 = 1;
+          int * DestSurf = (int *) malloc(_len_DestSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestSurf0; _i0++) {
+            DestSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceSurf0 = 1;
+          int * SourceSurf = (int *) malloc(_len_SourceSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceSurf0; _i0++) {
+            SourceSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_PatternSurface0 = 1;
+          int * PatternSurface = (int *) malloc(_len_PatternSurface0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_PatternSurface0; _i0++) {
+            PatternSurface[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_MaskSurf0 = 1;
+          int * MaskSurf = (int *) malloc(_len_MaskSurf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MaskSurf0; _i0++) {
+            MaskSurf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_DestRect0 = 1;
+          int * DestRect = (int *) malloc(_len_DestRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_DestRect0; _i0++) {
+            DestRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_SourceRect0 = 1;
+          int * SourceRect = (int *) malloc(_len_SourceRect0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_SourceRect0; _i0++) {
+            SourceRect[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_MaskOrigin0 = 1;
+          int * MaskOrigin = (int *) malloc(_len_MaskOrigin0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_MaskOrigin0; _i0++) {
+            MaskOrigin[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_Brush0 = 1;
+          int * Brush = (int *) malloc(_len_Brush0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_Brush0; _i0++) {
+            Brush[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_BrushOrign0 = 1;
+          int * BrushOrign = (int *) malloc(_len_BrushOrign0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_BrushOrign0; _i0++) {
+            BrushOrign[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ColorTranslation0 = 1;
+          int * ColorTranslation = (int *) malloc(_len_ColorTranslation0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ColorTranslation0; _i0++) {
+            ColorTranslation[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = Dummy_StretchBlt(DestSurf,SourceSurf,PatternSurface,MaskSurf,DestRect,SourceRect,MaskOrigin,Brush,BrushOrign,ColorTranslation,Rop);
           printf("%d\n", benchRet); 
           free(DestSurf);

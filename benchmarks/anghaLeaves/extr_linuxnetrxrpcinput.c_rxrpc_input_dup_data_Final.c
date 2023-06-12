@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static void rxrpc_input_dup_data(struct rxrpc_call *call, 
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,21 +89,199 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int seq = 100;
+        
           long annotation = 100;
+        
           int _len_call0 = 1;
           struct rxrpc_call * call = (struct rxrpc_call *) malloc(_len_call0*sizeof(struct rxrpc_call));
           for(int _i0 = 0; _i0 < _len_call0; _i0++) {
-            call[_i0].nr_jumbo_bad = ((-2 * (next_i()%2)) + 1) * next_i();
+              call[_i0].nr_jumbo_bad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len__jumbo_bad0 = 1;
           int * _jumbo_bad = (int *) malloc(_len__jumbo_bad0*sizeof(int));
           for(int _i0 = 0; _i0 < _len__jumbo_bad0; _i0++) {
             _jumbo_bad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          rxrpc_input_dup_data(call,seq,annotation,_jumbo_bad);
+          free(call);
+          free(_jumbo_bad);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int seq = 255;
+        
+          long annotation = 255;
+        
+          int _len_call0 = 65025;
+          struct rxrpc_call * call = (struct rxrpc_call *) malloc(_len_call0*sizeof(struct rxrpc_call));
+          for(int _i0 = 0; _i0 < _len_call0; _i0++) {
+              call[_i0].nr_jumbo_bad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len__jumbo_bad0 = 65025;
+          int * _jumbo_bad = (int *) malloc(_len__jumbo_bad0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__jumbo_bad0; _i0++) {
+            _jumbo_bad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rxrpc_input_dup_data(call,seq,annotation,_jumbo_bad);
+          free(call);
+          free(_jumbo_bad);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int seq = 10;
+        
+          long annotation = 10;
+        
+          int _len_call0 = 100;
+          struct rxrpc_call * call = (struct rxrpc_call *) malloc(_len_call0*sizeof(struct rxrpc_call));
+          for(int _i0 = 0; _i0 < _len_call0; _i0++) {
+              call[_i0].nr_jumbo_bad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len__jumbo_bad0 = 100;
+          int * _jumbo_bad = (int *) malloc(_len__jumbo_bad0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__jumbo_bad0; _i0++) {
+            _jumbo_bad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rxrpc_input_dup_data(call,seq,annotation,_jumbo_bad);
+          free(call);
+          free(_jumbo_bad);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int seq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long annotation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_call0 = 1;
+          struct rxrpc_call * call = (struct rxrpc_call *) malloc(_len_call0*sizeof(struct rxrpc_call));
+          for(int _i0 = 0; _i0 < _len_call0; _i0++) {
+              call[_i0].nr_jumbo_bad = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len__jumbo_bad0 = 1;
+          int * _jumbo_bad = (int *) malloc(_len__jumbo_bad0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len__jumbo_bad0; _i0++) {
+            _jumbo_bad[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           rxrpc_input_dup_data(call,seq,annotation,_jumbo_bad);
           free(call);
           free(_jumbo_bad);

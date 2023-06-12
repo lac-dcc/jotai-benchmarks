@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static u32 rk_iova_page_offset(dma_addr_t iova)
 	return (u32)(iova & RK_IOVA_PAGE_MASK) >> RK_IOVA_PAGE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int iova = 100;
+        
           int benchRet = rk_iova_page_offset(iova);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int iova = 255;
+        
           int benchRet = rk_iova_page_offset(iova);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int iova = 10;
+        
           int benchRet = rk_iova_page_offset(iova);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rk_iova_page_offset(iova);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

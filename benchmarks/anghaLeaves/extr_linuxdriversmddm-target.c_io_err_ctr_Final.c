@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static int io_err_ctr(struct dm_target *tt, unsigned int a
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,15 +80,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned int argc = 100;
+        
           int _len_tt0 = 1;
           struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
           for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
-            tt[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+              tt[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_args0 = 1;
           char ** args = (char **) malloc(_len_args0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_args0; _i0++) {
@@ -101,11 +124,179 @@ int main(int argc, char *argv[]) {
               args[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int benchRet = io_err_ctr(tt,argc,args);
           printf("%d\n", benchRet); 
           free(tt);
           for(int i1 = 0; i1 < _len_args0; i1++) {
+              free(args[i1]);
+          }
+          free(args);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int argc = 255;
+        
+          int _len_tt0 = 65025;
+          struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
+              tt[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 65025;
+          char ** args = (char **) malloc(_len_args0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
             int _len_args1 = 1;
+            args[_i0] = (char *) malloc(_len_args1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_args1; _i1++) {
+              args[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = io_err_ctr(tt,argc,args);
+          printf("%d\n", benchRet); 
+          free(tt);
+          for(int i1 = 0; i1 < _len_args0; i1++) {
+              free(args[i1]);
+          }
+          free(args);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int argc = 10;
+        
+          int _len_tt0 = 100;
+          struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
+              tt[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 100;
+          char ** args = (char **) malloc(_len_args0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+            int _len_args1 = 1;
+            args[_i0] = (char *) malloc(_len_args1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_args1; _i1++) {
+              args[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = io_err_ctr(tt,argc,args);
+          printf("%d\n", benchRet); 
+          free(tt);
+          for(int i1 = 0; i1 < _len_args0; i1++) {
+              free(args[i1]);
+          }
+          free(args);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned int argc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tt0 = 1;
+          struct dm_target * tt = (struct dm_target *) malloc(_len_tt0*sizeof(struct dm_target));
+          for(int _i0 = 0; _i0 < _len_tt0; _i0++) {
+              tt[_i0].num_discard_bios = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_args0 = 1;
+          char ** args = (char **) malloc(_len_args0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_args0; _i0++) {
+            int _len_args1 = 1;
+            args[_i0] = (char *) malloc(_len_args1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_args1; _i1++) {
+              args[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int benchRet = io_err_ctr(tt,argc,args);
+          printf("%d\n", benchRet); 
+          free(tt);
+          for(int i1 = 0; i1 < _len_args0; i1++) {
               free(args[i1]);
           }
           free(args);

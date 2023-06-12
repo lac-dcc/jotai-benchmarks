@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline void W8(unsigned char* dst, short s)
     dst[0] = (unsigned char)((s + 32768) >> 8);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,31 +78,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           short s = 100;
+        
           int _len_dst0 = 1;
           unsigned char * dst = (unsigned char *) malloc(_len_dst0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          W8(dst,s);
+          free(dst);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          short s = 255;
+        
+          int _len_dst0 = 65025;
+          unsigned char * dst = (unsigned char *) malloc(_len_dst0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           W8(dst,s);
           free(dst);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           short s = 10;
+        
           int _len_dst0 = 100;
           unsigned char * dst = (unsigned char *) malloc(_len_dst0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           W8(dst,s);
           free(dst);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          short s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          unsigned char * dst = (unsigned char *) malloc(_len_dst0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          W8(dst,s);
+          free(dst);
+        
+        break;
+    }
     default:
         usage();
         break;

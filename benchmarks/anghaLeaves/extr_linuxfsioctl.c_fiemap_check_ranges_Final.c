@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static int fiemap_check_ranges(struct super_block *sb,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,21 +95,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           long start = 100;
+        
           long len = 100;
+        
           int _len_sb0 = 1;
           struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
           for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
-            sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_new_len0 = 1;
           long * new_len = (long *) malloc(_len_new_len0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_new_len0; _i0++) {
             new_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = fiemap_check_ranges(sb,start,len,new_len);
+          printf("%d\n", benchRet); 
+          free(sb);
+          free(new_len);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long start = 255;
+        
+          long len = 255;
+        
+          int _len_sb0 = 65025;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_new_len0 = 65025;
+          long * new_len = (long *) malloc(_len_new_len0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_new_len0; _i0++) {
+            new_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fiemap_check_ranges(sb,start,len,new_len);
+          printf("%d\n", benchRet); 
+          free(sb);
+          free(new_len);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long start = 10;
+        
+          long len = 10;
+        
+          int _len_sb0 = 100;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_new_len0 = 100;
+          long * new_len = (long *) malloc(_len_new_len0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_new_len0; _i0++) {
+            new_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = fiemap_check_ranges(sb,start,len,new_len);
+          printf("%d\n", benchRet); 
+          free(sb);
+          free(new_len);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          long start = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sb0 = 1;
+          struct super_block * sb = (struct super_block *) malloc(_len_sb0*sizeof(struct super_block));
+          for(int _i0 = 0; _i0 < _len_sb0; _i0++) {
+              sb[_i0].s_maxbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_new_len0 = 1;
+          long * new_len = (long *) malloc(_len_new_len0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_new_len0; _i0++) {
+            new_len[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = fiemap_check_ranges(sb,start,len,new_len);
           printf("%d\n", benchRet); 
           free(sb);

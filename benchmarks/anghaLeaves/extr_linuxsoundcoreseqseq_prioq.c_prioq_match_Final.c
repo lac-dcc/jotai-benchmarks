@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ __attribute__((used)) static inline int prioq_match(struct snd_seq_event_cell *c
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,21 +105,215 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int client = 100;
+        
           int timestamp = 100;
+        
           int _len_cell0 = 1;
           struct snd_seq_event_cell * cell = (struct snd_seq_event_cell *) malloc(_len_cell0*sizeof(struct snd_seq_event_cell));
           for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
-            cell[_i0].event.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].event.time.time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].event.time.time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].event.time.tick = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].event.dest.client = ((-2 * (next_i()%2)) + 1) * next_i();
-        cell[_i0].event.source.client = ((-2 * (next_i()%2)) + 1) * next_i();
+              cell[_i0].event.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.time.tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.dest.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.source.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
+          int benchRet = prioq_match(cell,client,timestamp);
+          printf("%d\n", benchRet); 
+          free(cell);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int client = 255;
+        
+          int timestamp = 255;
+        
+          int _len_cell0 = 65025;
+          struct snd_seq_event_cell * cell = (struct snd_seq_event_cell *) malloc(_len_cell0*sizeof(struct snd_seq_event_cell));
+          for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
+              cell[_i0].event.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.time.tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.dest.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.source.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = prioq_match(cell,client,timestamp);
+          printf("%d\n", benchRet); 
+          free(cell);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int client = 10;
+        
+          int timestamp = 10;
+        
+          int _len_cell0 = 100;
+          struct snd_seq_event_cell * cell = (struct snd_seq_event_cell *) malloc(_len_cell0*sizeof(struct snd_seq_event_cell));
+          for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
+              cell[_i0].event.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.time.tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.dest.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.source.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = prioq_match(cell,client,timestamp);
+          printf("%d\n", benchRet); 
+          free(cell);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cell0 = 1;
+          struct snd_seq_event_cell * cell = (struct snd_seq_event_cell *) malloc(_len_cell0*sizeof(struct snd_seq_event_cell));
+          for(int _i0 = 0; _i0 < _len_cell0; _i0++) {
+              cell[_i0].event.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+          cell[_i0].event.time.time.tv_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.time.tick = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.dest.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          cell[_i0].event.source.client = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
           int benchRet = prioq_match(cell,client,timestamp);
           printf("%d\n", benchRet); 
           free(cell);

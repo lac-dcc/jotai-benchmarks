@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static int vmw_cmd_invalid(struct vmw_private *dev_priv,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev_priv0 = 1;
+          int _len_dev_priv0 = 65025;
           struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
           for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
-            dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_sw_context0 = 1;
+        
+          int _len_sw_context0 = 65025;
           struct vmw_sw_context * sw_context = (struct vmw_sw_context *) malloc(_len_sw_context0*sizeof(struct vmw_sw_context));
           for(int _i0 = 0; _i0 < _len_sw_context0; _i0++) {
-            sw_context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sw_context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_header0 = 1;
+        
+          int _len_header0 = 65025;
           int * header = (int *) malloc(_len_header0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
             header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = vmw_cmd_invalid(dev_priv,sw_context,header);
           printf("%d\n", benchRet); 
           free(dev_priv);
@@ -109,7 +110,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev_priv0 = 100;
+          struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sw_context0 = 100;
+          struct vmw_sw_context * sw_context = (struct vmw_sw_context *) malloc(_len_sw_context0*sizeof(struct vmw_sw_context));
+          for(int _i0 = 0; _i0 < _len_sw_context0; _i0++) {
+              sw_context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_header0 = 100;
+          int * header = (int *) malloc(_len_header0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+            header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vmw_cmd_invalid(dev_priv,sw_context,header);
+          printf("%d\n", benchRet); 
+          free(dev_priv);
+          free(sw_context);
+          free(header);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev_priv0 = 1;
+          struct vmw_private * dev_priv = (struct vmw_private *) malloc(_len_dev_priv0*sizeof(struct vmw_private));
+          for(int _i0 = 0; _i0 < _len_dev_priv0; _i0++) {
+              dev_priv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_sw_context0 = 1;
+          struct vmw_sw_context * sw_context = (struct vmw_sw_context *) malloc(_len_sw_context0*sizeof(struct vmw_sw_context));
+          for(int _i0 = 0; _i0 < _len_sw_context0; _i0++) {
+              sw_context[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_header0 = 1;
+          int * header = (int *) malloc(_len_header0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+            header[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = vmw_cmd_invalid(dev_priv,sw_context,header);
+          printf("%d\n", benchRet); 
+          free(dev_priv);
+          free(sw_context);
+          free(header);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -92,12 +93,6 @@ __attribute__((used)) static int tag_to_vt(SHORT tag)
     return (tag > 0 && tag <= 13) ? tag2vt[tag] : VT_BLOB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,6 +109,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int tag = 100;
+        
           int benchRet = tag_to_vt(tag);
           printf("%d\n", benchRet); 
         
@@ -123,6 +119,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int tag = 255;
+        
           int benchRet = tag_to_vt(tag);
           printf("%d\n", benchRet); 
         
@@ -132,12 +129,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int tag = 10;
+        
           int benchRet = tag_to_vt(tag);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int tag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tag_to_vt(tag);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

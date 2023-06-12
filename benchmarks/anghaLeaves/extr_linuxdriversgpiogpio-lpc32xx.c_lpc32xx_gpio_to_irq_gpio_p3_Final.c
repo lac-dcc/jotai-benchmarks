@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static int lpc32xx_gpio_to_irq_gpio_p3(struct gpio_chip *c
 	return -ENXIO;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,11 +80,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 100;
+        
           int _len_chip0 = 1;
           struct gpio_chip * chip = (struct gpio_chip *) malloc(_len_chip0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = lpc32xx_gpio_to_irq_gpio_p3(chip,offset);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int offset = 255;
+        
+          int _len_chip0 = 65025;
+          struct gpio_chip * chip = (struct gpio_chip *) malloc(_len_chip0*sizeof(struct gpio_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = lpc32xx_gpio_to_irq_gpio_p3(chip,offset);
           printf("%d\n", benchRet); 
           free(chip);
@@ -96,21 +113,41 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int offset = 10;
+        
           int _len_chip0 = 100;
           struct gpio_chip * chip = (struct gpio_chip *) malloc(_len_chip0*sizeof(struct gpio_chip));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
-            chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lpc32xx_gpio_to_irq_gpio_p3(chip,offset);
           printf("%d\n", benchRet); 
           free(chip);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct gpio_chip * chip = (struct gpio_chip *) malloc(_len_chip0*sizeof(struct gpio_chip));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              chip[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lpc32xx_gpio_to_irq_gpio_p3(chip,offset);
+          printf("%d\n", benchRet); 
+          free(chip);
+        
+        break;
+    }
     default:
         usage();
         break;

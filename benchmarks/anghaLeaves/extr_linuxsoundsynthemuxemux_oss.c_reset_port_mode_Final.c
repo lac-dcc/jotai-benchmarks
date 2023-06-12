@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +81,6 @@ reset_port_mode(struct snd_emux_port *port, int midi_mode)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,22 +93,205 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int midi_mode = 100;
+        
           int _len_port0 = 1;
           struct snd_emux_port * port = (struct snd_emux_port *) malloc(_len_port0*sizeof(struct snd_emux_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].volume_atten = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].volume_atten = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_port__i0__oss_arg0 = 1;
           port[_i0].oss_arg = (struct TYPE_2__ *) malloc(_len_port__i0__oss_arg0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_port__i0__oss_arg0; _j0++) {
-            port[_i0].oss_arg->event_passing = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].oss_arg->event_passing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        port[_i0].drum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].drum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          reset_port_mode(port,midi_mode);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].oss_arg);
+          }
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int midi_mode = 255;
+        
+          int _len_port0 = 65025;
+          struct snd_emux_port * port = (struct snd_emux_port *) malloc(_len_port0*sizeof(struct snd_emux_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].volume_atten = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_port__i0__oss_arg0 = 1;
+          port[_i0].oss_arg = (struct TYPE_2__ *) malloc(_len_port__i0__oss_arg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_port__i0__oss_arg0; _j0++) {
+              port[_i0].oss_arg->event_passing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          port[_i0].drum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_port_mode(port,midi_mode);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].oss_arg);
+          }
+          free(port);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int midi_mode = 10;
+        
+          int _len_port0 = 100;
+          struct snd_emux_port * port = (struct snd_emux_port *) malloc(_len_port0*sizeof(struct snd_emux_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].volume_atten = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_port__i0__oss_arg0 = 1;
+          port[_i0].oss_arg = (struct TYPE_2__ *) malloc(_len_port__i0__oss_arg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_port__i0__oss_arg0; _j0++) {
+              port[_i0].oss_arg->event_passing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          port[_i0].drum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          reset_port_mode(port,midi_mode);
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].oss_arg);
+          }
+          free(port);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 17
+          // dynamic_instructions_O1 : 17
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int midi_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct snd_emux_port * port = (struct snd_emux_port *) malloc(_len_port0*sizeof(struct snd_emux_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].volume_atten = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_port__i0__oss_arg0 = 1;
+          port[_i0].oss_arg = (struct TYPE_2__ *) malloc(_len_port__i0__oss_arg0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_port__i0__oss_arg0; _j0++) {
+              port[_i0].oss_arg->event_passing = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          port[_i0].drum_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].port_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           reset_port_mode(port,midi_mode);
           for(int _aux = 0; _aux < _len_port0; _aux++) {
           free(port[_aux].oss_arg);

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ scmi_dev_match_id(struct scmi_device *scmi_dev, struct scmi_driver *scmi_drv)
 	return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,23 +86,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_scmi_dev0 = 65025;
+          struct scmi_device * scmi_dev = (struct scmi_device *) malloc(_len_scmi_dev0*sizeof(struct scmi_device));
+          for(int _i0 = 0; _i0 < _len_scmi_dev0; _i0++) {
+              scmi_dev[_i0].protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_scmi_drv0 = 65025;
+          struct scmi_driver * scmi_drv = (struct scmi_driver *) malloc(_len_scmi_drv0*sizeof(struct scmi_driver));
+          for(int _i0 = 0; _i0 < _len_scmi_drv0; _i0++) {
+              int _len_scmi_drv__i0__id_table0 = 1;
+          scmi_drv[_i0].id_table = (struct scmi_device_id *) malloc(_len_scmi_drv__i0__id_table0*sizeof(struct scmi_device_id));
+          for(int _j0 = 0; _j0 < _len_scmi_drv__i0__id_table0; _j0++) {
+              scmi_drv[_i0].id_table->protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const struct scmi_device_id * benchRet = scmi_dev_match_id(scmi_dev,scmi_drv);
+          free(scmi_dev);
+          for(int _aux = 0; _aux < _len_scmi_drv0; _aux++) {
+          free(scmi_drv[_aux].id_table);
+          }
+          free(scmi_drv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_scmi_dev0 = 100;
+          struct scmi_device * scmi_dev = (struct scmi_device *) malloc(_len_scmi_dev0*sizeof(struct scmi_device));
+          for(int _i0 = 0; _i0 < _len_scmi_dev0; _i0++) {
+              scmi_dev[_i0].protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_scmi_drv0 = 100;
+          struct scmi_driver * scmi_drv = (struct scmi_driver *) malloc(_len_scmi_drv0*sizeof(struct scmi_driver));
+          for(int _i0 = 0; _i0 < _len_scmi_drv0; _i0++) {
+              int _len_scmi_drv__i0__id_table0 = 1;
+          scmi_drv[_i0].id_table = (struct scmi_device_id *) malloc(_len_scmi_drv__i0__id_table0*sizeof(struct scmi_device_id));
+          for(int _j0 = 0; _j0 < _len_scmi_drv__i0__id_table0; _j0++) {
+              scmi_drv[_i0].id_table->protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          const struct scmi_device_id * benchRet = scmi_dev_match_id(scmi_dev,scmi_drv);
+          free(scmi_dev);
+          for(int _aux = 0; _aux < _len_scmi_drv0; _aux++) {
+          free(scmi_drv[_aux].id_table);
+          }
+          free(scmi_drv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_scmi_dev0 = 1;
           struct scmi_device * scmi_dev = (struct scmi_device *) malloc(_len_scmi_dev0*sizeof(struct scmi_device));
           for(int _i0 = 0; _i0 < _len_scmi_dev0; _i0++) {
-            scmi_dev[_i0].protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              scmi_dev[_i0].protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_scmi_drv0 = 1;
           struct scmi_driver * scmi_drv = (struct scmi_driver *) malloc(_len_scmi_drv0*sizeof(struct scmi_driver));
           for(int _i0 = 0; _i0 < _len_scmi_drv0; _i0++) {
               int _len_scmi_drv__i0__id_table0 = 1;
           scmi_drv[_i0].id_table = (struct scmi_device_id *) malloc(_len_scmi_drv__i0__id_table0*sizeof(struct scmi_device_id));
           for(int _j0 = 0; _j0 < _len_scmi_drv__i0__id_table0; _j0++) {
-            scmi_drv[_i0].id_table->protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              scmi_drv[_i0].id_table->protocol_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           const struct scmi_device_id * benchRet = scmi_dev_match_id(scmi_dev,scmi_drv);
           free(scmi_dev);
           for(int _aux = 0; _aux < _len_scmi_drv0; _aux++) {

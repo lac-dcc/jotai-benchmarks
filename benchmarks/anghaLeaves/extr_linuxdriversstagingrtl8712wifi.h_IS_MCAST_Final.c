@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int IS_MCAST(unsigned char *da)
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_da0 = 1;
+          int _len_da0 = 65025;
           unsigned char * da = (unsigned char *) malloc(_len_da0*sizeof(unsigned char));
           for(int _i0 = 0; _i0 < _len_da0; _i0++) {
             da[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = IS_MCAST(da);
           printf("%d\n", benchRet); 
           free(da);
@@ -103,13 +99,28 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_da0; _i0++) {
             da[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = IS_MCAST(da);
           printf("%d\n", benchRet); 
           free(da);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_da0 = 1;
+          unsigned char * da = (unsigned char *) malloc(_len_da0*sizeof(unsigned char));
+          for(int _i0 = 0; _i0 < _len_da0; _i0++) {
+            da[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = IS_MCAST(da);
+          printf("%d\n", benchRet); 
+          free(da);
+        
+        break;
+    }
     default:
         usage();
         break;

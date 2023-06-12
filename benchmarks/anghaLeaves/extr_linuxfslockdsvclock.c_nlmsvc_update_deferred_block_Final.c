@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ nlmsvc_update_deferred_block(struct nlm_block *block, int result)
 		block->b_flags |= B_TIMED_OUT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +82,168 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int result = 100;
+        
           int _len_block0 = 1;
           struct nlm_block * block = (struct nlm_block *) malloc(_len_block0*sizeof(struct nlm_block));
           for(int _i0 = 0; _i0 < _len_block0; _i0++) {
-            block[_i0].b_granted = ((-2 * (next_i()%2)) + 1) * next_i();
-        block[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              block[_i0].b_granted = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nlmsvc_update_deferred_block(block,result);
+          free(block);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int result = 255;
+        
+          int _len_block0 = 65025;
+          struct nlm_block * block = (struct nlm_block *) malloc(_len_block0*sizeof(struct nlm_block));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].b_granted = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nlmsvc_update_deferred_block(block,result);
+          free(block);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int result = 10;
+        
+          int _len_block0 = 100;
+          struct nlm_block * block = (struct nlm_block *) malloc(_len_block0*sizeof(struct nlm_block));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].b_granted = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nlmsvc_update_deferred_block(block,result);
+          free(block);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int result = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_block0 = 1;
+          struct nlm_block * block = (struct nlm_block *) malloc(_len_block0*sizeof(struct nlm_block));
+          for(int _i0 = 0; _i0 < _len_block0; _i0++) {
+              block[_i0].b_granted = ((-2 * (next_i()%2)) + 1) * next_i();
+          block[_i0].b_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nlmsvc_update_deferred_block(block,result);
           free(block);
         

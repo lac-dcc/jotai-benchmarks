@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static u8 ice_sched_get_qgrp_layer(struct ice_hw *hw)
 	return hw->num_tx_sched_layers - ICE_QGRP_LAYER_OFFSET;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].num_tx_sched_layers = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].num_tx_sched_layers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = ice_sched_get_qgrp_layer(hw);
           printf("%ld\n", benchRet); 
           free(hw);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_hw0 = 100;
           struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].num_tx_sched_layers = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].num_tx_sched_layers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = ice_sched_get_qgrp_layer(hw);
           printf("%ld\n", benchRet); 
           free(hw);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].num_tx_sched_layers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = ice_sched_get_qgrp_layer(hw);
+          printf("%ld\n", benchRet); 
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

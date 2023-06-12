@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ ts_plan_expand_hypertable_valid_hypertable(Hypertable *ht, Query *parse, Index r
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,26 +94,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int rti = 100;
+        
           int _len_ht0 = 1;
           int * ht = (int *) malloc(_len_ht0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
             ht[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_parse0 = 1;
           struct TYPE_6__ * parse = (struct TYPE_6__ *) malloc(_len_parse0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_parse0; _i0++) {
-            parse[_i0].rowMarks = ((-2 * (next_i()%2)) + 1) * next_i();
-        parse[_i0].resultRelation = ((-2 * (next_i()%2)) + 1) * next_i();
+              parse[_i0].rowMarks = ((-2 * (next_i()%2)) + 1) * next_i();
+          parse[_i0].resultRelation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rte0 = 1;
           struct TYPE_5__ * rte = (struct TYPE_5__ *) malloc(_len_rte0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
-            rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = ts_plan_expand_hypertable_valid_hypertable(ht,parse,rti,rte);
+          printf("%d\n", benchRet); 
+          free(ht);
+          free(parse);
+          free(rte);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int rti = 255;
+        
+          int _len_ht0 = 65025;
+          int * ht = (int *) malloc(_len_ht0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
+            ht[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_parse0 = 65025;
+          struct TYPE_6__ * parse = (struct TYPE_6__ *) malloc(_len_parse0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_parse0; _i0++) {
+              parse[_i0].rowMarks = ((-2 * (next_i()%2)) + 1) * next_i();
+          parse[_i0].resultRelation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rte0 = 65025;
+          struct TYPE_5__ * rte = (struct TYPE_5__ *) malloc(_len_rte0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ts_plan_expand_hypertable_valid_hypertable(ht,parse,rti,rte);
+          printf("%d\n", benchRet); 
+          free(ht);
+          free(parse);
+          free(rte);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int rti = 10;
+        
+          int _len_ht0 = 100;
+          int * ht = (int *) malloc(_len_ht0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
+            ht[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_parse0 = 100;
+          struct TYPE_6__ * parse = (struct TYPE_6__ *) malloc(_len_parse0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_parse0; _i0++) {
+              parse[_i0].rowMarks = ((-2 * (next_i()%2)) + 1) * next_i();
+          parse[_i0].resultRelation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rte0 = 100;
+          struct TYPE_5__ * rte = (struct TYPE_5__ *) malloc(_len_rte0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ts_plan_expand_hypertable_valid_hypertable(ht,parse,rti,rte);
+          printf("%d\n", benchRet); 
+          free(ht);
+          free(parse);
+          free(rte);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 20
+          // dynamic_instructions_O0 : 20
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int rti = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ht0 = 1;
+          int * ht = (int *) malloc(_len_ht0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ht0; _i0++) {
+            ht[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_parse0 = 1;
+          struct TYPE_6__ * parse = (struct TYPE_6__ *) malloc(_len_parse0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_parse0; _i0++) {
+              parse[_i0].rowMarks = ((-2 * (next_i()%2)) + 1) * next_i();
+          parse[_i0].resultRelation = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rte0 = 1;
+          struct TYPE_5__ * rte = (struct TYPE_5__ *) malloc(_len_rte0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_rte0; _i0++) {
+              rte[_i0].inh = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = ts_plan_expand_hypertable_valid_hypertable(ht,parse,rti,rte);
           printf("%d\n", benchRet); 
           free(ht);

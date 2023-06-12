@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ cifs_is_read_op(__u32 oplock)
 	return oplock == OPLOCK_READ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long oplock = 100;
+        
           int benchRet = cifs_is_read_op(oplock);
           printf("%d\n", benchRet); 
         
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long oplock = 255;
+        
           int benchRet = cifs_is_read_op(oplock);
           printf("%d\n", benchRet); 
         
@@ -104,12 +101,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long oplock = 10;
+        
           int benchRet = cifs_is_read_op(oplock);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long oplock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = cifs_is_read_op(oplock);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

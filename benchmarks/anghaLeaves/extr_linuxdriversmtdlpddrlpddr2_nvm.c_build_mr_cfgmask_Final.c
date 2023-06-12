@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline u_int build_mr_cfgmask(u_int bus_width)
 	return val;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int bus_width = 100;
+        
           int benchRet = build_mr_cfgmask(bus_width);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int bus_width = 255;
+        
           int benchRet = build_mr_cfgmask(bus_width);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int bus_width = 10;
+        
           int benchRet = build_mr_cfgmask(bus_width);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int bus_width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = build_mr_cfgmask(bus_width);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

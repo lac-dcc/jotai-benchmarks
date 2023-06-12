@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ size_t ijkmeta_get_children_count_l(IjkMediaMeta *meta)
     return meta->children_count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,22 +79,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_meta0 = 1;
+          int _len_meta0 = 65025;
           struct TYPE_3__ * meta = (struct TYPE_3__ *) malloc(_len_meta0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_meta0; _i0++) {
-            meta[_i0].children_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        meta[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+              meta[_i0].children_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          meta[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = ijkmeta_get_children_count_l(meta);
           printf("%lu\n", benchRet); 
           free(meta);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_meta0 = 100;
+          struct TYPE_3__ * meta = (struct TYPE_3__ *) malloc(_len_meta0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_meta0; _i0++) {
+              meta[_i0].children_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          meta[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ijkmeta_get_children_count_l(meta);
+          printf("%lu\n", benchRet); 
+          free(meta);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_meta0 = 1;
+          struct TYPE_3__ * meta = (struct TYPE_3__ *) malloc(_len_meta0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_meta0; _i0++) {
+              meta[_i0].children_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          meta[_i0].children = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = ijkmeta_get_children_count_l(meta);
+          printf("%lu\n", benchRet); 
+          free(meta);
+        
+        break;
+    }
     default:
         usage();
         break;

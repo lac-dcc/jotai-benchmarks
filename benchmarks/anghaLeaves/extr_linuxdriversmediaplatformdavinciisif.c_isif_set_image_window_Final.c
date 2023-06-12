@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ __attribute__((used)) static int isif_set_image_window(struct v4l2_rect *win)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,17 +97,128 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_win0 = 65025;
+          struct v4l2_rect * win = (struct v4l2_rect *) malloc(_len_win0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_win0; _i0++) {
+              win[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isif_set_image_window(win);
+          printf("%d\n", benchRet); 
+          free(win);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_win0 = 100;
+          struct v4l2_rect * win = (struct v4l2_rect *) malloc(_len_win0*sizeof(struct v4l2_rect));
+          for(int _i0 = 0; _i0 < _len_win0; _i0++) {
+              win[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isif_set_image_window(win);
+          printf("%d\n", benchRet); 
+          free(win);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_win0 = 1;
           struct v4l2_rect * win = (struct v4l2_rect *) malloc(_len_win0*sizeof(struct v4l2_rect));
           for(int _i0 = 0; _i0 < _len_win0; _i0++) {
-            win[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
-        win[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+              win[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          win[_i0].top = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isif_set_image_window(win);
           printf("%d\n", benchRet); 
           free(win);

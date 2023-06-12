@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static bool escape_null(unsigned char c, char **dst, char 
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char c = 100;
+        
           int _len_dst0 = 1;
           char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
@@ -103,15 +101,16 @@ int main(int argc, char *argv[]) {
               dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_end0 = 1;
           char * end = (char *) malloc(_len_end0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_end0; _i0++) {
             end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = escape_null(c,dst,end);
           printf("%d\n", benchRet); 
           for(int i1 = 0; i1 < _len_dst0; i1++) {
-            int _len_dst1 = 1;
               free(dst[i1]);
           }
           free(dst);
@@ -119,7 +118,99 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned char c = 255;
+        
+          int _len_dst0 = 65025;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_end0 = 65025;
+          char * end = (char *) malloc(_len_end0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = escape_null(c,dst,end);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+          free(end);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned char c = 10;
+        
+          int _len_dst0 = 100;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_end0 = 100;
+          char * end = (char *) malloc(_len_end0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = escape_null(c,dst,end);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+          free(end);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned char c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dst0 = 1;
+          char ** dst = (char **) malloc(_len_dst0*sizeof(char *));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            int _len_dst1 = 1;
+            dst[_i0] = (char *) malloc(_len_dst1*sizeof(char));
+            for(int _i1 = 0; _i1 < _len_dst1; _i1++) {
+              dst[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_end0 = 1;
+          char * end = (char *) malloc(_len_end0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_end0; _i0++) {
+            end[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = escape_null(c,dst,end);
+          printf("%d\n", benchRet); 
+          for(int i1 = 0; i1 < _len_dst0; i1++) {
+              free(dst[i1]);
+          }
+          free(dst);
+          free(end);
+        
+        break;
+    }
     default:
         usage();
         break;

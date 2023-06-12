@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -102,12 +104,6 @@ uint16_t TEXT_numToString(uint8_t *buf, int32_t value, int16_t bufSize, uint8_t 
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -124,15 +120,46 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int value = 100;
+        
           int bufSize = 100;
+        
           int minLen = 100;
+        
           int padChar = 100;
+        
           int padBeforeSign = 100;
+        
           int _len_buf0 = 1;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = TEXT_numToString(buf,value,bufSize,minLen,padChar,padBeforeSign);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int value = 255;
+        
+          int bufSize = 255;
+        
+          int minLen = 255;
+        
+          int padChar = 255;
+        
+          int padBeforeSign = 255;
+        
+          int _len_buf0 = 65025;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = TEXT_numToString(buf,value,bufSize,minLen,padChar,padBeforeSign);
           printf("%d\n", benchRet); 
           free(buf);
@@ -140,25 +167,55 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int value = 10;
+        
           int bufSize = 10;
+        
           int minLen = 10;
+        
           int padChar = 10;
+        
           int padBeforeSign = 10;
+        
           int _len_buf0 = 100;
           int * buf = (int *) malloc(_len_buf0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
             buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = TEXT_numToString(buf,value,bufSize,minLen,padChar,padBeforeSign);
           printf("%d\n", benchRet); 
           free(buf);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int bufSize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int minLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int padChar = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int padBeforeSign = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_buf0 = 1;
+          int * buf = (int *) malloc(_len_buf0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_buf0; _i0++) {
+            buf[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = TEXT_numToString(buf,value,bufSize,minLen,padChar,padBeforeSign);
+          printf("%d\n", benchRet); 
+          free(buf);
+        
+        break;
+    }
     default:
         usage();
         break;

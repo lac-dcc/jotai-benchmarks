@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -97,12 +99,6 @@ __attribute__((used)) static int vivid_fb_setcolreg(unsigned regno, unsigned red
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -119,10 +115,15 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int regno = 100;
+        
           unsigned int red = 100;
+        
           unsigned int green = 100;
+        
           unsigned int blue = 100;
+        
           unsigned int transp = 100;
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
@@ -131,10 +132,15 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_info__i0__pseudo_palette0; _j0++) {
             info[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].cmap.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].cmap.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = vivid_fb_setcolreg(regno,red,green,blue,transp,info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_info0; _aux++) {
@@ -144,7 +150,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int regno = 255;
+        
+          unsigned int red = 255;
+        
+          unsigned int green = 255;
+        
+          unsigned int blue = 255;
+        
+          unsigned int transp = 255;
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__pseudo_palette0 = 1;
+          info[_i0].pseudo_palette = (unsigned int *) malloc(_len_info__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_info__i0__pseudo_palette0; _j0++) {
+            info[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].cmap.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vivid_fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].pseudo_palette);
+          }
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          unsigned int regno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int red = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int green = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int blue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int transp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              int _len_info__i0__pseudo_palette0 = 1;
+          info[_i0].pseudo_palette = (unsigned int *) malloc(_len_info__i0__pseudo_palette0*sizeof(unsigned int));
+          for(int _j0 = 0; _j0 < _len_info__i0__pseudo_palette0; _j0++) {
+            info[_i0].pseudo_palette[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          info[_i0].var.bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].var.green.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          info[_i0].cmap.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vivid_fb_setcolreg(regno,red,green,blue,transp,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_info0; _aux++) {
+          free(info[_aux].pseudo_palette);
+          }
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

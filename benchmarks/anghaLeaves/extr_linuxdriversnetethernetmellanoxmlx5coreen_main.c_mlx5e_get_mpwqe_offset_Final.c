@@ -31,7 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static inline u64 mlx5e_get_mpwqe_offset(struct mlx5e_rq *
 	return (wqe_ix << MLX5E_LOG_ALIGNED_MPWQE_PPW) << PAGE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,11 +82,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int wqe_ix = 100;
+        
           int _len_rq0 = 1;
           struct mlx5e_rq * rq = (struct mlx5e_rq *) malloc(_len_rq0*sizeof(struct mlx5e_rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mlx5e_get_mpwqe_offset(rq,wqe_ix);
+          printf("%d\n", benchRet); 
+          free(rq);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int wqe_ix = 255;
+        
+          int _len_rq0 = 65025;
+          struct mlx5e_rq * rq = (struct mlx5e_rq *) malloc(_len_rq0*sizeof(struct mlx5e_rq));
+          for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mlx5e_get_mpwqe_offset(rq,wqe_ix);
           printf("%d\n", benchRet); 
           free(rq);
@@ -99,21 +115,23 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int wqe_ix = 10;
+        
           int _len_rq0 = 100;
           struct mlx5e_rq * rq = (struct mlx5e_rq *) malloc(_len_rq0*sizeof(struct mlx5e_rq));
           for(int _i0 = 0; _i0 < _len_rq0; _i0++) {
-            rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rq[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mlx5e_get_mpwqe_offset(rq,wqe_ix);
           printf("%d\n", benchRet); 
           free(rq);
         
         break;
     }
-
     default:
         usage();
         break;

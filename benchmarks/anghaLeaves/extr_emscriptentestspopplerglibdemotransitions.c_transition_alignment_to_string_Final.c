@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ transition_alignment_to_string (PopplerPageTransitionAlignment alignment)
 	return alignment == POPPLER_PAGE_TRANSITION_HORIZONTAL ? "Horizontal" : "Vertical";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long alignment = 100;
+        
           const char * benchRet = transition_alignment_to_string(alignment);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long alignment = 255;
+        
           const char * benchRet = transition_alignment_to_string(alignment);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long alignment = 10;
+        
           const char * benchRet = transition_alignment_to_string(alignment);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long alignment = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const char * benchRet = transition_alignment_to_string(alignment);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+        
+        break;
+    }
     default:
         usage();
         break;

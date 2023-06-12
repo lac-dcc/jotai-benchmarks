@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ bool tnum_is_aligned(struct tnum a, u64 size)
 	return !((a.value | a.mask) & (size - 1));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,9 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int size = 100;
+        
           struct tnum a;
-        a.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = tnum_is_aligned(a,size);
           printf("%d\n", benchRet); 
         
@@ -99,9 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int size = 255;
+        
           struct tnum a;
-        a.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = tnum_is_aligned(a,size);
           printf("%d\n", benchRet); 
         
@@ -111,15 +110,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int size = 10;
+        
           struct tnum a;
-        a.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = tnum_is_aligned(a,size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct tnum a;
+          a.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          a.mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = tnum_is_aligned(a,size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

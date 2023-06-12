@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline int ad_became_ancient (struct advert *A) {
   return !(A->flags & ADF_ON) && A->disabled_since <= log_last_ts - AD_ANCIENT_DELAY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,15 +76,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_A0 = 65025;
+          struct advert * A = (struct advert *) malloc(_len_A0*sizeof(struct advert));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].disabled_since = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ad_became_ancient(A);
+          printf("%d\n", benchRet); 
+          free(A);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int _len_A0 = 100;
+          struct advert * A = (struct advert *) malloc(_len_A0*sizeof(struct advert));
+          for(int _i0 = 0; _i0 < _len_A0; _i0++) {
+              A[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].disabled_since = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ad_became_ancient(A);
+          printf("%d\n", benchRet); 
+          free(A);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           int _len_A0 = 1;
           struct advert * A = (struct advert *) malloc(_len_A0*sizeof(struct advert));
           for(int _i0 = 0; _i0 < _len_A0; _i0++) {
-            A[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        A[_i0].disabled_since = ((-2 * (next_i()%2)) + 1) * next_i();
+              A[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          A[_i0].disabled_since = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ad_became_ancient(A);
           printf("%d\n", benchRet); 
           free(A);

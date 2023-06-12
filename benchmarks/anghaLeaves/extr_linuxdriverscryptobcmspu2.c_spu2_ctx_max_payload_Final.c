@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ u32 spu2_ctx_max_payload(enum spu_cipher_alg cipher_alg,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           enum spu_cipher_alg cipher_alg = 0;
+        
           enum spu_cipher_mode cipher_mode = 0;
+        
           unsigned int blocksize = 100;
+        
           unsigned int benchRet = spu2_ctx_max_payload(cipher_alg,cipher_mode,blocksize);
           printf("%u\n", benchRet); 
         
@@ -110,8 +108,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum spu_cipher_alg cipher_alg = 0;
+        
           enum spu_cipher_mode cipher_mode = 0;
+        
           unsigned int blocksize = 255;
+        
           unsigned int benchRet = spu2_ctx_max_payload(cipher_alg,cipher_mode,blocksize);
           printf("%u\n", benchRet); 
         
@@ -121,14 +122,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           enum spu_cipher_alg cipher_alg = 0;
+        
           enum spu_cipher_mode cipher_mode = 0;
+        
           unsigned int blocksize = 10;
+        
           unsigned int benchRet = spu2_ctx_max_payload(cipher_alg,cipher_mode,blocksize);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          enum spu_cipher_alg cipher_alg = 0;
+        
+          enum spu_cipher_mode cipher_mode = 0;
+        
+          unsigned int blocksize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = spu2_ctx_max_payload(cipher_alg,cipher_mode,blocksize);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

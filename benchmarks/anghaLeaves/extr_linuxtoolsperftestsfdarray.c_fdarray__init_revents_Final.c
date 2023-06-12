@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static void fdarray__init_revents(struct fdarray *fda, sho
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +88,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           short revents = 100;
+        
           int _len_fda0 = 1;
           struct fdarray * fda = (struct fdarray *) malloc(_len_fda0*sizeof(struct fdarray));
           for(int _i0 = 0; _i0 < _len_fda0; _i0++) {
-            fda[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
-        fda[_i0].nr_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              fda[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].nr_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_fda__i0__entries0 = 1;
           fda[_i0].entries = (struct TYPE_2__ *) malloc(_len_fda__i0__entries0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_fda__i0__entries0; _j0++) {
-            fda[_i0].entries->fd = ((-2 * (next_i()%2)) + 1) * next_i();
-        fda[_i0].entries->revents = ((-2 * (next_i()%2)) + 1) * next_i();
+              fda[_i0].entries->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].entries->revents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           fdarray__init_revents(fda,revents);
           for(int _aux = 0; _aux < _len_fda0; _aux++) {
           free(fda[_aux].entries);
@@ -111,7 +112,90 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          short revents = 255;
+        
+          int _len_fda0 = 65025;
+          struct fdarray * fda = (struct fdarray *) malloc(_len_fda0*sizeof(struct fdarray));
+          for(int _i0 = 0; _i0 < _len_fda0; _i0++) {
+              fda[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].nr_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fda__i0__entries0 = 1;
+          fda[_i0].entries = (struct TYPE_2__ *) malloc(_len_fda__i0__entries0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fda__i0__entries0; _j0++) {
+              fda[_i0].entries->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].entries->revents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          fdarray__init_revents(fda,revents);
+          for(int _aux = 0; _aux < _len_fda0; _aux++) {
+          free(fda[_aux].entries);
+          }
+          free(fda);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          short revents = 10;
+        
+          int _len_fda0 = 100;
+          struct fdarray * fda = (struct fdarray *) malloc(_len_fda0*sizeof(struct fdarray));
+          for(int _i0 = 0; _i0 < _len_fda0; _i0++) {
+              fda[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].nr_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fda__i0__entries0 = 1;
+          fda[_i0].entries = (struct TYPE_2__ *) malloc(_len_fda__i0__entries0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fda__i0__entries0; _j0++) {
+              fda[_i0].entries->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].entries->revents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          fdarray__init_revents(fda,revents);
+          for(int _aux = 0; _aux < _len_fda0; _aux++) {
+          free(fda[_aux].entries);
+          }
+          free(fda);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          short revents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fda0 = 1;
+          struct fdarray * fda = (struct fdarray *) malloc(_len_fda0*sizeof(struct fdarray));
+          for(int _i0 = 0; _i0 < _len_fda0; _i0++) {
+              fda[_i0].nr = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].nr_alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_fda__i0__entries0 = 1;
+          fda[_i0].entries = (struct TYPE_2__ *) malloc(_len_fda__i0__entries0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fda__i0__entries0; _j0++) {
+              fda[_i0].entries->fd = ((-2 * (next_i()%2)) + 1) * next_i();
+          fda[_i0].entries->revents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          fdarray__init_revents(fda,revents);
+          for(int _aux = 0; _aux < _len_fda0; _aux++) {
+          free(fda[_aux].entries);
+          }
+          free(fda);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void yyset_lloc (YYLTYPE *  yylloc_param , yyscan_t yyscanner)
     yylloc = yylloc_param;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,66 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long yyscanner = 100;
+        
           int _len_yylloc_param0 = 1;
           int * yylloc_param = (int *) malloc(_len_yylloc_param0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_yylloc_param0; _i0++) {
             yylloc_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          yyset_lloc(yylloc_param,yyscanner);
+          free(yylloc_param);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long yyscanner = 255;
+        
+          int _len_yylloc_param0 = 65025;
+          int * yylloc_param = (int *) malloc(_len_yylloc_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_yylloc_param0; _i0++) {
+            yylloc_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           yyset_lloc(yylloc_param,yyscanner);
           free(yylloc_param);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long yyscanner = 10;
+        
           int _len_yylloc_param0 = 100;
           int * yylloc_param = (int *) malloc(_len_yylloc_param0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_yylloc_param0; _i0++) {
             yylloc_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           yyset_lloc(yylloc_param,yyscanner);
           free(yylloc_param);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long yyscanner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_yylloc_param0 = 1;
+          int * yylloc_param = (int *) malloc(_len_yylloc_param0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_yylloc_param0; _i0++) {
+            yylloc_param[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          yyset_lloc(yylloc_param,yyscanner);
+          free(yylloc_param);
+        
+        break;
+    }
     default:
         usage();
         break;

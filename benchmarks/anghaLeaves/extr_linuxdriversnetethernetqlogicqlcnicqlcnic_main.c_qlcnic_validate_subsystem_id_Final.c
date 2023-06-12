@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static bool qlcnic_validate_subsystem_id(struct qlcnic_ada
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,21 +97,204 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int index = 100;
+        
           int _len_adapter0 = 1;
           struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
               int _len_adapter__i0__pdev0 = 1;
           adapter[_i0].pdev = (struct pci_dev *) malloc(_len_adapter__i0__pdev0*sizeof(struct pci_dev));
           for(int _j0 = 0; _j0 < _len_adapter__i0__pdev0; _j0++) {
-            adapter[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
-        adapter[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = qlcnic_validate_subsystem_id(adapter,index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].pdev);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int index = 255;
+        
+          int _len_adapter0 = 65025;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              int _len_adapter__i0__pdev0 = 1;
+          adapter[_i0].pdev = (struct pci_dev *) malloc(_len_adapter__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__pdev0; _j0++) {
+              adapter[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qlcnic_validate_subsystem_id(adapter,index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].pdev);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int index = 10;
+        
+          int _len_adapter0 = 100;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              int _len_adapter__i0__pdev0 = 1;
+          adapter[_i0].pdev = (struct pci_dev *) malloc(_len_adapter__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__pdev0; _j0++) {
+              adapter[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = qlcnic_validate_subsystem_id(adapter,index);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_adapter0; _aux++) {
+          free(adapter[_aux].pdev);
+          }
+          free(adapter);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_adapter0 = 1;
+          struct qlcnic_adapter * adapter = (struct qlcnic_adapter *) malloc(_len_adapter0*sizeof(struct qlcnic_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              int _len_adapter__i0__pdev0 = 1;
+          adapter[_i0].pdev = (struct pci_dev *) malloc(_len_adapter__i0__pdev0*sizeof(struct pci_dev));
+          for(int _j0 = 0; _j0 < _len_adapter__i0__pdev0; _j0++) {
+              adapter[_i0].pdev->subsystem_vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->device = ((-2 * (next_i()%2)) + 1) * next_i();
+          adapter[_i0].pdev->subsystem_device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = qlcnic_validate_subsystem_id(adapter,index);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_adapter0; _aux++) {

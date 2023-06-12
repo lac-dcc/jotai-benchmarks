@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ size_t get_current_batch(network *net)
     return batch_num;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,9 +77,130 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_net0 = 65025;
+          struct TYPE_3__ * net = (struct TYPE_3__ *) malloc(_len_net0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              int _len_net__i0__seen0 = 1;
+          net[_i0].seen = (unsigned long *) malloc(_len_net__i0__seen0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_net__i0__seen0; _j0++) {
+            net[_i0].seen[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].subdivisions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_current_batch(net);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_net0; _aux++) {
+          free(net[_aux].seen);
+          }
+          free(net);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int _len_net0 = 100;
+          struct TYPE_3__ * net = (struct TYPE_3__ *) malloc(_len_net0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              int _len_net__i0__seen0 = 1;
+          net[_i0].seen = (unsigned long *) malloc(_len_net__i0__seen0*sizeof(unsigned long));
+          for(int _j0 = 0; _j0 < _len_net__i0__seen0; _j0++) {
+            net[_i0].seen[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].subdivisions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = get_current_batch(net);
+          printf("%lu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_net0; _aux++) {
+          free(net[_aux].seen);
+          }
+          free(net);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int _len_net0 = 1;
           struct TYPE_3__ * net = (struct TYPE_3__ *) malloc(_len_net0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_net0; _i0++) {
@@ -92,9 +209,11 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_net__i0__seen0; _j0++) {
             net[_i0].seen[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
-        net[_i0].subdivisions = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].batch = ((-2 * (next_i()%2)) + 1) * next_i();
+          net[_i0].subdivisions = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = get_current_batch(net);
           printf("%lu\n", benchRet); 
           for(int _aux = 0; _aux < _len_net0; _aux++) {

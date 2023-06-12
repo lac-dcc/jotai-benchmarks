@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static bool vmw_view_id_ok(u32 user_key, enum vmw_view_typ
 		view_type < vmw_view_max);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,7 +83,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long user_key = 100;
+        
           enum vmw_view_type view_type = 0;
+        
           int benchRet = vmw_view_id_ok(user_key,view_type);
           printf("%d\n", benchRet); 
         
@@ -98,7 +95,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long user_key = 255;
+        
           enum vmw_view_type view_type = 0;
+        
           int benchRet = vmw_view_id_ok(user_key,view_type);
           printf("%d\n", benchRet); 
         
@@ -108,13 +107,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long user_key = 10;
+        
           enum vmw_view_type view_type = 0;
+        
           int benchRet = vmw_view_id_ok(user_key,view_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long user_key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum vmw_view_type view_type = 0;
+        
+          int benchRet = vmw_view_id_ok(user_key,view_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

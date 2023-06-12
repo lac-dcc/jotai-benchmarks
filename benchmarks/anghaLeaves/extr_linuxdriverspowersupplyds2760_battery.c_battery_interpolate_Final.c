@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int battery_interpolate(int array[], int temp)
 	return array[index] + (((array[index + 1] - array[index]) * dt) / 10);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,22 +83,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int temp = 10;
-          int _len_array0 = 100;
+          int temp = 255;
+        
+          int _len_array0 = 65025;
           int * array = (int *) malloc(_len_array0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_array0; _i0++) {
             array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = battery_interpolate(array,temp);
           printf("%d\n", benchRet); 
           free(array);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int temp = 10;
+        
+          int _len_array0 = 100;
+          int * array = (int *) malloc(_len_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = battery_interpolate(array,temp);
+          printf("%d\n", benchRet); 
+          free(array);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int temp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_array0 = 1;
+          int * array = (int *) malloc(_len_array0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_array0; _i0++) {
+            array[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = battery_interpolate(array,temp);
+          printf("%d\n", benchRet); 
+          free(array);
+        
+        break;
+    }
     default:
         usage();
         break;

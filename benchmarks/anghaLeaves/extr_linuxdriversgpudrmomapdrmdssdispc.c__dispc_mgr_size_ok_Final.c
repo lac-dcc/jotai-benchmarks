@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static bool _dispc_mgr_size_ok(struct dispc_device *dispc,
 		height <= dispc->feat->mgr_height_max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +84,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long width = 100;
+        
           long height = 100;
+        
           int _len_dispc0 = 1;
           struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
           for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
               int _len_dispc__i0__feat0 = 1;
           dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
-            dispc[_i0].feat->mgr_width_max = ((-2 * (next_i()%2)) + 1) * next_i();
-        dispc[_i0].feat->mgr_height_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              dispc[_i0].feat->mgr_width_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->mgr_height_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = _dispc_mgr_size_ok(dispc,width,height);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_dispc0; _aux++) {
@@ -107,7 +109,93 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long width = 255;
+        
+          long height = 255;
+        
+          int _len_dispc0 = 65025;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->mgr_width_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->mgr_height_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = _dispc_mgr_size_ok(dispc,width,height);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long width = 10;
+        
+          long height = 10;
+        
+          int _len_dispc0 = 100;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->mgr_width_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->mgr_height_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = _dispc_mgr_size_ok(dispc,width,height);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long width = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dispc0 = 1;
+          struct dispc_device * dispc = (struct dispc_device *) malloc(_len_dispc0*sizeof(struct dispc_device));
+          for(int _i0 = 0; _i0 < _len_dispc0; _i0++) {
+              int _len_dispc__i0__feat0 = 1;
+          dispc[_i0].feat = (struct TYPE_2__ *) malloc(_len_dispc__i0__feat0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dispc__i0__feat0; _j0++) {
+              dispc[_i0].feat->mgr_width_max = ((-2 * (next_i()%2)) + 1) * next_i();
+          dispc[_i0].feat->mgr_height_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = _dispc_mgr_size_ok(dispc,width,height);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_dispc0; _aux++) {
+          free(dispc[_aux].feat);
+          }
+          free(dispc);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static inline u32 bump_free_buff_ring(u32 *free_buff_ring,
 	return tmp_free_buff_ring;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,11 +96,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int limit = 100;
+        
           int _len_free_buff_ring0 = 1;
           int * free_buff_ring = (int *) malloc(_len_free_buff_ring0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_free_buff_ring0; _i0++) {
             free_buff_ring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = bump_free_buff_ring(free_buff_ring,limit);
+          printf("%d\n", benchRet); 
+          free(free_buff_ring);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int limit = 255;
+        
+          int _len_free_buff_ring0 = 65025;
+          int * free_buff_ring = (int *) malloc(_len_free_buff_ring0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_free_buff_ring0; _i0++) {
+            free_buff_ring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = bump_free_buff_ring(free_buff_ring,limit);
           printf("%d\n", benchRet); 
           free(free_buff_ring);
@@ -112,21 +127,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int limit = 10;
+        
           int _len_free_buff_ring0 = 100;
           int * free_buff_ring = (int *) malloc(_len_free_buff_ring0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_free_buff_ring0; _i0++) {
             free_buff_ring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bump_free_buff_ring(free_buff_ring,limit);
           printf("%d\n", benchRet); 
           free(free_buff_ring);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int limit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_free_buff_ring0 = 1;
+          int * free_buff_ring = (int *) malloc(_len_free_buff_ring0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_free_buff_ring0; _i0++) {
+            free_buff_ring[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = bump_free_buff_ring(free_buff_ring,limit);
+          printf("%d\n", benchRet); 
+          free(free_buff_ring);
+        
+        break;
+    }
     default:
         usage();
         break;

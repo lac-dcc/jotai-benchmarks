@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void reipl_block_ccw_init(struct ipl_parameter_bloc
 	ipb->hdr.pbt = DIAG308_IPL_TYPE_CCW;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,17 +83,129 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ipb0 = 65025;
+          struct ipl_parameter_block * ipb = (struct ipl_parameter_block *) malloc(_len_ipb0*sizeof(struct ipl_parameter_block));
+          for(int _i0 = 0; _i0 < _len_ipb0; _i0++) {
+              ipb[_i0].hdr.pbt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.blk0_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reipl_block_ccw_init(ipb);
+          free(ipb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_ipb0 = 100;
+          struct ipl_parameter_block * ipb = (struct ipl_parameter_block *) malloc(_len_ipb0*sizeof(struct ipl_parameter_block));
+          for(int _i0 = 0; _i0 < _len_ipb0; _i0++) {
+              ipb[_i0].hdr.pbt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.blk0_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          reipl_block_ccw_init(ipb);
+          free(ipb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_ipb0 = 1;
           struct ipl_parameter_block * ipb = (struct ipl_parameter_block *) malloc(_len_ipb0*sizeof(struct ipl_parameter_block));
           for(int _i0 = 0; _i0 < _len_ipb0; _i0++) {
-            ipb[_i0].hdr.pbt = ((-2 * (next_i()%2)) + 1) * next_i();
-        ipb[_i0].hdr.blk0_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        ipb[_i0].hdr.version = ((-2 * (next_i()%2)) + 1) * next_i();
-        ipb[_i0].hdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipb[_i0].hdr.pbt = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.blk0_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.version = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipb[_i0].hdr.len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           reipl_block_ccw_init(ipb);
           free(ipb);
         

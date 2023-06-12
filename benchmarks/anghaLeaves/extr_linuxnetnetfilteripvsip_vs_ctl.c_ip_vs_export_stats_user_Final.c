@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ ip_vs_export_stats_user(struct ip_vs_stats_user *dst, struct ip_vs_kstats *src)
 	dst->outbps = (u32)src->outbps;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_dst0 = 65025;
+          struct ip_vs_stats_user * dst = (struct ip_vs_stats_user *) malloc(_len_dst0*sizeof(struct ip_vs_stats_user));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct ip_vs_kstats * src = (struct ip_vs_kstats *) malloc(_len_src0*sizeof(struct ip_vs_kstats));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].cps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].conns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ip_vs_export_stats_user(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_dst0 = 100;
+          struct ip_vs_stats_user * dst = (struct ip_vs_stats_user *) malloc(_len_dst0*sizeof(struct ip_vs_stats_user));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_src0 = 100;
+          struct ip_vs_kstats * src = (struct ip_vs_kstats *) malloc(_len_src0*sizeof(struct ip_vs_kstats));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].cps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].conns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ip_vs_export_stats_user(dst,src);
+          free(dst);
+          free(src);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 46
+          // dynamic_instructions_O0 : 46
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_dst0 = 1;
           struct ip_vs_stats_user * dst = (struct ip_vs_stats_user *) malloc(_len_dst0*sizeof(struct ip_vs_stats_user));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+              dst[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          dst[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_src0 = 1;
           struct ip_vs_kstats * src = (struct ip_vs_kstats *) malloc(_len_src0*sizeof(struct ip_vs_kstats));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inbps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inpps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].cps = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
-        src[_i0].conns = ((-2 * (next_i()%2)) + 1) * next_i();
+              src[_i0].outbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inbps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inpps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].cps = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inbytes = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].outpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].inpkts = ((-2 * (next_i()%2)) + 1) * next_i();
+          src[_i0].conns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ip_vs_export_stats_user(dst,src);
           free(dst);
           free(src);

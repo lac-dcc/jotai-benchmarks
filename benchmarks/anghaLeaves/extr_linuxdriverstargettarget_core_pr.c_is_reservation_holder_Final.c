@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int is_reservation_holder(
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,19 +87,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pr_res_holder0 = 1;
+          int _len_pr_res_holder0 = 65025;
           struct t10_pr_registration * pr_res_holder = (struct t10_pr_registration *) malloc(_len_pr_res_holder0*sizeof(struct t10_pr_registration));
           for(int _i0 = 0; _i0 < _len_pr_res_holder0; _i0++) {
-            pr_res_holder[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pr_res_holder[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pr_reg0 = 1;
+        
+          int _len_pr_reg0 = 65025;
           struct t10_pr_registration * pr_reg = (struct t10_pr_registration *) malloc(_len_pr_reg0*sizeof(struct t10_pr_registration));
           for(int _i0 = 0; _i0 < _len_pr_reg0; _i0++) {
-            pr_reg[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pr_reg[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_reservation_holder(pr_res_holder,pr_reg);
           printf("%d\n", benchRet); 
           free(pr_res_holder);
@@ -111,7 +111,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pr_res_holder0 = 100;
+          struct t10_pr_registration * pr_res_holder = (struct t10_pr_registration *) malloc(_len_pr_res_holder0*sizeof(struct t10_pr_registration));
+          for(int _i0 = 0; _i0 < _len_pr_res_holder0; _i0++) {
+              pr_res_holder[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pr_reg0 = 100;
+          struct t10_pr_registration * pr_reg = (struct t10_pr_registration *) malloc(_len_pr_reg0*sizeof(struct t10_pr_registration));
+          for(int _i0 = 0; _i0 < _len_pr_reg0; _i0++) {
+              pr_reg[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_reservation_holder(pr_res_holder,pr_reg);
+          printf("%d\n", benchRet); 
+          free(pr_res_holder);
+          free(pr_reg);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pr_res_holder0 = 1;
+          struct t10_pr_registration * pr_res_holder = (struct t10_pr_registration *) malloc(_len_pr_res_holder0*sizeof(struct t10_pr_registration));
+          for(int _i0 = 0; _i0 < _len_pr_res_holder0; _i0++) {
+              pr_res_holder[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pr_reg0 = 1;
+          struct t10_pr_registration * pr_reg = (struct t10_pr_registration *) malloc(_len_pr_reg0*sizeof(struct t10_pr_registration));
+          for(int _i0 = 0; _i0 < _len_pr_reg0; _i0++) {
+              pr_reg[_i0].pr_res_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_reservation_holder(pr_res_holder,pr_reg);
+          printf("%d\n", benchRet); 
+          free(pr_res_holder);
+          free(pr_reg);
+        
+        break;
+    }
     default:
         usage();
         break;

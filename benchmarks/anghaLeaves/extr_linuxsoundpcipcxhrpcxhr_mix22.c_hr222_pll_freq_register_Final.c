@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +86,6 @@ __attribute__((used)) static int hr222_pll_freq_register(unsigned int freq,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,16 +102,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int freq = 100;
+        
           int _len_pllreg0 = 1;
           unsigned int * pllreg = (unsigned int *) malloc(_len_pllreg0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_pllreg0; _i0++) {
             pllreg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_realfreq0 = 1;
           unsigned int * realfreq = (unsigned int *) malloc(_len_realfreq0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_realfreq0; _i0++) {
             realfreq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = hr222_pll_freq_register(freq,pllreg,realfreq);
           printf("%d\n", benchRet); 
           free(pllreg);
@@ -122,7 +122,78 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int freq = 255;
+        
+          int _len_pllreg0 = 65025;
+          unsigned int * pllreg = (unsigned int *) malloc(_len_pllreg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_pllreg0; _i0++) {
+            pllreg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_realfreq0 = 65025;
+          unsigned int * realfreq = (unsigned int *) malloc(_len_realfreq0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_realfreq0; _i0++) {
+            realfreq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hr222_pll_freq_register(freq,pllreg,realfreq);
+          printf("%d\n", benchRet); 
+          free(pllreg);
+          free(realfreq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int freq = 10;
+        
+          int _len_pllreg0 = 100;
+          unsigned int * pllreg = (unsigned int *) malloc(_len_pllreg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_pllreg0; _i0++) {
+            pllreg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_realfreq0 = 100;
+          unsigned int * realfreq = (unsigned int *) malloc(_len_realfreq0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_realfreq0; _i0++) {
+            realfreq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hr222_pll_freq_register(freq,pllreg,realfreq);
+          printf("%d\n", benchRet); 
+          free(pllreg);
+          free(realfreq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int freq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pllreg0 = 1;
+          unsigned int * pllreg = (unsigned int *) malloc(_len_pllreg0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_pllreg0; _i0++) {
+            pllreg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_realfreq0 = 1;
+          unsigned int * realfreq = (unsigned int *) malloc(_len_realfreq0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_realfreq0; _i0++) {
+            realfreq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = hr222_pll_freq_register(freq,pllreg,realfreq);
+          printf("%d\n", benchRet); 
+          free(pllreg);
+          free(realfreq);
+        
+        break;
+    }
     default:
         usage();
         break;

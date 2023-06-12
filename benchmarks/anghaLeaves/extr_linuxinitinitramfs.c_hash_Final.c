@@ -63,12 +63,6 @@ __attribute__((used)) static inline int hash(int major, int minor, int ino)
 	return tmp & 31;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,8 +79,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int major = 100;
+        
           int minor = 100;
+        
           int ino = 100;
+        
           int benchRet = hash(major,minor,ino);
           printf("%d\n", benchRet); 
         
@@ -96,8 +93,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int major = 255;
+        
           int minor = 255;
+        
           int ino = 255;
+        
           int benchRet = hash(major,minor,ino);
           printf("%d\n", benchRet); 
         
@@ -107,14 +107,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int major = 10;
+        
           int minor = 10;
+        
           int ino = 10;
+        
           int benchRet = hash(major,minor,ino);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static bool iova_magazine_full(struct iova_magazine *mag)
 	return (mag && mag->size == IOVA_MAG_SIZE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mag0 = 1;
+          int _len_mag0 = 65025;
           struct iova_magazine * mag = (struct iova_magazine *) malloc(_len_mag0*sizeof(struct iova_magazine));
           for(int _i0 = 0; _i0 < _len_mag0; _i0++) {
-            mag[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              mag[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iova_magazine_full(mag);
           printf("%d\n", benchRet); 
           free(mag);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_mag0 = 100;
           struct iova_magazine * mag = (struct iova_magazine *) malloc(_len_mag0*sizeof(struct iova_magazine));
           for(int _i0 = 0; _i0 < _len_mag0; _i0++) {
-            mag[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              mag[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = iova_magazine_full(mag);
           printf("%d\n", benchRet); 
           free(mag);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mag0 = 1;
+          struct iova_magazine * mag = (struct iova_magazine *) malloc(_len_mag0*sizeof(struct iova_magazine));
+          for(int _i0 = 0; _i0 < _len_mag0; _i0++) {
+              mag[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = iova_magazine_full(mag);
+          printf("%d\n", benchRet); 
+          free(mag);
+        
+        break;
+    }
     default:
         usage();
         break;

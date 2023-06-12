@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -122,12 +124,6 @@ __attribute__((used)) static u32 ipw_get_max_rate(struct ipw_priv *priv)
 		return 54000000;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,20 +136,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_priv0 = 1;
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_priv0 = 65025;
           struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
           for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
-            priv[_i0].rates_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].rates_mask = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_priv__i0__ieee0 = 1;
           priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
-            priv[_i0].ieee->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              priv[_i0].ieee->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-        priv[_i0].assoc_request.ieee_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+          priv[_i0].assoc_request.ieee_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = ipw_get_max_rate(priv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ieee);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_priv0 = 100;
+          struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].rates_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__ieee0 = 1;
+          priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
+              priv[_i0].ieee->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          priv[_i0].assoc_request.ieee_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = ipw_get_max_rate(priv);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_priv0; _aux++) {
+          free(priv[_aux].ieee);
+          }
+          free(priv);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_priv0 = 1;
+          struct ipw_priv * priv = (struct ipw_priv *) malloc(_len_priv0*sizeof(struct ipw_priv));
+          for(int _i0 = 0; _i0 < _len_priv0; _i0++) {
+              priv[_i0].rates_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_priv__i0__ieee0 = 1;
+          priv[_i0].ieee = (struct TYPE_4__ *) malloc(_len_priv__i0__ieee0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_priv__i0__ieee0; _j0++) {
+              priv[_i0].ieee->mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          priv[_i0].assoc_request.ieee_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = ipw_get_max_rate(priv);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_priv0; _aux++) {

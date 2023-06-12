@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -85,12 +86,6 @@ __attribute__((used)) static unsigned int tw5864_md_metric_from_mvd(u32 mvd)
 	return mv_y + mv_x;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mvd = 100;
+        
           unsigned int benchRet = tw5864_md_metric_from_mvd(mvd);
           printf("%u\n", benchRet); 
         
@@ -116,6 +112,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mvd = 255;
+        
           unsigned int benchRet = tw5864_md_metric_from_mvd(mvd);
           printf("%u\n", benchRet); 
         
@@ -125,12 +122,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mvd = 10;
+        
           unsigned int benchRet = tw5864_md_metric_from_mvd(mvd);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mvd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = tw5864_md_metric_from_mvd(mvd);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

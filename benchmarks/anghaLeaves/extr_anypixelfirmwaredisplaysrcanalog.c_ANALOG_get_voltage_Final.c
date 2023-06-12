@@ -66,12 +66,6 @@ uint16_t ANALOG_get_voltage(int channel) {
         return 0xFFFF;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int channel = 100;
+        
           int benchRet = ANALOG_get_voltage(channel);
           printf("%d\n", benchRet); 
         
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int channel = 255;
+        
           int benchRet = ANALOG_get_voltage(channel);
           printf("%d\n", benchRet); 
         
@@ -106,12 +102,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int channel = 10;
+        
           int benchRet = ANALOG_get_voltage(channel);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

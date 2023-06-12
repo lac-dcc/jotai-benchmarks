@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +72,6 @@ __attribute__((used)) static inline u16 desc_abs_number(port_t *port, u16 desc, 
 	return port->chan * (rx_buffs + tx_buffs) + transmit * rx_buffs + desc;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +88,23 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int desc = 100;
+        
           int transmit = 100;
+        
           int _len_port0 = 1;
           struct TYPE_5__ * port = (struct TYPE_5__ *) malloc(_len_port0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].chan = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].chan = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_port__i0__card0 = 1;
           port[_i0].card = (struct TYPE_4__ *) malloc(_len_port__i0__card0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_port__i0__card0; _j0++) {
-            port[_i0].card->rx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
-        port[_i0].card->tx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].card->rx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].card->tx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = desc_abs_number(port,desc,transmit);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_port0; _aux++) {
@@ -112,7 +114,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int desc = 255;
+        
+          int transmit = 255;
+        
+          int _len_port0 = 65025;
+          struct TYPE_5__ * port = (struct TYPE_5__ *) malloc(_len_port0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_port__i0__card0 = 1;
+          port[_i0].card = (struct TYPE_4__ *) malloc(_len_port__i0__card0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__card0; _j0++) {
+              port[_i0].card->rx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].card->tx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = desc_abs_number(port,desc,transmit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].card);
+          }
+          free(port);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int desc = 10;
+        
+          int transmit = 10;
+        
+          int _len_port0 = 100;
+          struct TYPE_5__ * port = (struct TYPE_5__ *) malloc(_len_port0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_port__i0__card0 = 1;
+          port[_i0].card = (struct TYPE_4__ *) malloc(_len_port__i0__card0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__card0; _j0++) {
+              port[_i0].card->rx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].card->tx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = desc_abs_number(port,desc,transmit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].card);
+          }
+          free(port);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int desc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int transmit = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_port0 = 1;
+          struct TYPE_5__ * port = (struct TYPE_5__ *) malloc(_len_port0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].chan = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_port__i0__card0 = 1;
+          port[_i0].card = (struct TYPE_4__ *) malloc(_len_port__i0__card0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_port__i0__card0; _j0++) {
+              port[_i0].card->rx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+          port[_i0].card->tx_ring_buffers = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = desc_abs_number(port,desc,transmit);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_port0; _aux++) {
+          free(port[_aux].card);
+          }
+          free(port);
+        
+        break;
+    }
     default:
         usage();
         break;

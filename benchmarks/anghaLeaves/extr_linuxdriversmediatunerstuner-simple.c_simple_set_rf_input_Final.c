@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ __attribute__((used)) static void simple_set_rf_input(struct dvb_frontend *fe,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,25 +109,31 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int rf = 100;
+        
           int _len_fe0 = 1;
           struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
           for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
               int _len_fe__i0__tuner_priv0 = 1;
           fe[_i0].tuner_priv = (struct tuner_simple_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tuner_simple_priv));
           for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
-            fe[_i0].tuner_priv->type = ((-2 * (next_i()%2)) + 1) * next_i();
+              fe[_i0].tuner_priv->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_config0 = 1;
           int * config = (int *) malloc(_len_config0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_config0; _i0++) {
             config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_cb0 = 1;
           int * cb = (int *) malloc(_len_cb0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
             cb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           simple_set_rf_input(fe,config,cb,rf);
           for(int _aux = 0; _aux < _len_fe0; _aux++) {
           free(fe[_aux].tuner_priv);
@@ -141,7 +144,123 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int rf = 255;
+        
+          int _len_fe0 = 65025;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct tuner_simple_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tuner_simple_priv));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_config0 = 65025;
+          int * config = (int *) malloc(_len_config0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+            config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cb0 = 65025;
+          int * cb = (int *) malloc(_len_cb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
+            cb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          simple_set_rf_input(fe,config,cb,rf);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+          free(config);
+          free(cb);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int rf = 10;
+        
+          int _len_fe0 = 100;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct tuner_simple_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tuner_simple_priv));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_config0 = 100;
+          int * config = (int *) malloc(_len_config0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+            config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cb0 = 100;
+          int * cb = (int *) malloc(_len_cb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
+            cb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          simple_set_rf_input(fe,config,cb,rf);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+          free(config);
+          free(cb);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int rf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fe0 = 1;
+          struct dvb_frontend * fe = (struct dvb_frontend *) malloc(_len_fe0*sizeof(struct dvb_frontend));
+          for(int _i0 = 0; _i0 < _len_fe0; _i0++) {
+              int _len_fe__i0__tuner_priv0 = 1;
+          fe[_i0].tuner_priv = (struct tuner_simple_priv *) malloc(_len_fe__i0__tuner_priv0*sizeof(struct tuner_simple_priv));
+          for(int _j0 = 0; _j0 < _len_fe__i0__tuner_priv0; _j0++) {
+              fe[_i0].tuner_priv->type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_config0 = 1;
+          int * config = (int *) malloc(_len_config0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_config0; _i0++) {
+            config[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_cb0 = 1;
+          int * cb = (int *) malloc(_len_cb0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_cb0; _i0++) {
+            cb[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          simple_set_rf_input(fe,config,cb,rf);
+          for(int _aux = 0; _aux < _len_fe0; _aux++) {
+          free(fe[_aux].tuner_priv);
+          }
+          free(fe);
+          free(config);
+          free(cb);
+        
+        break;
+    }
     default:
         usage();
         break;

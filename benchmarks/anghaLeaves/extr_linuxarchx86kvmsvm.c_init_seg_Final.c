@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void init_seg(struct vmcb_seg *seg)
 	seg->base = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,17 +81,126 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_seg0 = 65025;
+          struct vmcb_seg * seg = (struct vmcb_seg *) malloc(_len_seg0*sizeof(struct vmcb_seg));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].attrib = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_seg(seg);
+          free(seg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_seg0 = 100;
+          struct vmcb_seg * seg = (struct vmcb_seg *) malloc(_len_seg0*sizeof(struct vmcb_seg));
+          for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
+              seg[_i0].attrib = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          init_seg(seg);
+          free(seg);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_seg0 = 1;
           struct vmcb_seg * seg = (struct vmcb_seg *) malloc(_len_seg0*sizeof(struct vmcb_seg));
           for(int _i0 = 0; _i0 < _len_seg0; _i0++) {
-            seg[_i0].attrib = ((-2 * (next_i()%2)) + 1) * next_i();
-        seg[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
-        seg[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
-        seg[_i0].selector = ((-2 * (next_i()%2)) + 1) * next_i();
+              seg[_i0].attrib = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].limit = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].base = ((-2 * (next_i()%2)) + 1) * next_i();
+          seg[_i0].selector = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           init_seg(seg);
           free(seg);
         

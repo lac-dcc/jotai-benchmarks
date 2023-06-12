@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -61,12 +61,6 @@ __attribute__((used)) static int is_prop_valint(enum power_supply_property psp)
 	return ((psp < POWER_SUPPLY_PROP_MODEL_NAME) ? 1 : 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +73,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           enum power_supply_property psp = 0;
+        
           int benchRet = is_prop_valint(psp);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

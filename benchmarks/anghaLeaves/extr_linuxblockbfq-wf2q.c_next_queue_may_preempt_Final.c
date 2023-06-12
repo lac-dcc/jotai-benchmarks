@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ bool next_queue_may_preempt(struct bfq_data *bfqd)
 	return sd->next_in_service != sd->in_service_entity;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_bfqd0 = 65025;
+          struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
+          for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
+              int _len_bfqd__i0__root_group0 = 1;
+          bfqd[_i0].root_group = (struct TYPE_2__ *) malloc(_len_bfqd__i0__root_group0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bfqd__i0__root_group0; _j0++) {
+              bfqd[_i0].root_group->sched_data.next_in_service = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqd[_i0].root_group->sched_data.in_service_entity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = next_queue_may_preempt(bfqd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bfqd0; _aux++) {
+          free(bfqd[_aux].root_group);
+          }
+          free(bfqd);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_bfqd0 = 100;
+          struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
+          for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
+              int _len_bfqd__i0__root_group0 = 1;
+          bfqd[_i0].root_group = (struct TYPE_2__ *) malloc(_len_bfqd__i0__root_group0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_bfqd__i0__root_group0; _j0++) {
+              bfqd[_i0].root_group->sched_data.next_in_service = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqd[_i0].root_group->sched_data.in_service_entity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int benchRet = next_queue_may_preempt(bfqd);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_bfqd0; _aux++) {
+          free(bfqd[_aux].root_group);
+          }
+          free(bfqd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_bfqd0 = 1;
           struct bfq_data * bfqd = (struct bfq_data *) malloc(_len_bfqd0*sizeof(struct bfq_data));
           for(int _i0 = 0; _i0 < _len_bfqd0; _i0++) {
               int _len_bfqd__i0__root_group0 = 1;
           bfqd[_i0].root_group = (struct TYPE_2__ *) malloc(_len_bfqd__i0__root_group0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_bfqd__i0__root_group0; _j0++) {
-            bfqd[_i0].root_group->sched_data.next_in_service = ((-2 * (next_i()%2)) + 1) * next_i();
-        bfqd[_i0].root_group->sched_data.in_service_entity = ((-2 * (next_i()%2)) + 1) * next_i();
+              bfqd[_i0].root_group->sched_data.next_in_service = ((-2 * (next_i()%2)) + 1) * next_i();
+          bfqd[_i0].root_group->sched_data.in_service_entity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           int benchRet = next_queue_may_preempt(bfqd);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_bfqd0; _aux++) {

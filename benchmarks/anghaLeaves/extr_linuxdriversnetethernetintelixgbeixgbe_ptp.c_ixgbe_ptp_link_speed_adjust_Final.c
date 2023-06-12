@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ __attribute__((used)) static void ixgbe_ptp_link_speed_adjust(struct ixgbe_adapt
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,24 +113,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          int _len_adapter0 = 65025;
           struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_shift0 = 1;
+        
+          int _len_shift0 = 65025;
           int * shift = (int *) malloc(_len_shift0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
             shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_incval0 = 1;
+        
+          int _len_incval0 = 65025;
           int * incval = (int *) malloc(_len_incval0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_incval0; _i0++) {
             incval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           ixgbe_ptp_link_speed_adjust(adapter,shift,incval);
           free(adapter);
           free(shift);
@@ -142,7 +142,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_adapter0 = 100;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_shift0 = 100;
+          int * shift = (int *) malloc(_len_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
+            shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_incval0 = 100;
+          int * incval = (int *) malloc(_len_incval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_incval0; _i0++) {
+            incval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ixgbe_ptp_link_speed_adjust(adapter,shift,incval);
+          free(adapter);
+          free(shift);
+          free(incval);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_adapter0 = 1;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].link_speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_shift0 = 1;
+          int * shift = (int *) malloc(_len_shift0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_shift0; _i0++) {
+            shift[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_incval0 = 1;
+          int * incval = (int *) malloc(_len_incval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_incval0; _i0++) {
+            incval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          ixgbe_ptp_link_speed_adjust(adapter,shift,incval);
+          free(adapter);
+          free(shift);
+          free(incval);
+        
+        break;
+    }
     default:
         usage();
         break;

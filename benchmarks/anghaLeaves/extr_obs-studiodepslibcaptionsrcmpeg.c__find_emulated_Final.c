@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static inline size_t _find_emulated(uint8_t* data, size_t 
     return size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,22 +91,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          unsigned long size = 10;
-          int _len_data0 = 100;
+          unsigned long size = 255;
+        
+          int _len_data0 = 65025;
           int * data = (int *) malloc(_len_data0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned long benchRet = _find_emulated(data,size);
           printf("%lu\n", benchRet); 
           free(data);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          unsigned long size = 10;
+        
+          int _len_data0 = 100;
+          int * data = (int *) malloc(_len_data0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          unsigned long benchRet = _find_emulated(data,size);
+          printf("%lu\n", benchRet); 
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

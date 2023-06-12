@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void kvm_clock_sync_scb(struct kvm_s390_sie_block *
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,17 +96,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long delta = 100;
+        
           int _len_scb0 = 1;
           struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
           for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
-            scb[_i0].ecd = ((-2 * (next_i()%2)) + 1) * next_i();
-        scb[_i0].epdx = ((-2 * (next_i()%2)) + 1) * next_i();
-        scb[_i0].epoch = ((-2 * (next_i()%2)) + 1) * next_i();
+              scb[_i0].ecd = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epoch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          kvm_clock_sync_scb(scb,delta);
+          free(scb);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long delta = 255;
+        
+          int _len_scb0 = 65025;
+          struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].ecd = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epoch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kvm_clock_sync_scb(scb,delta);
+          free(scb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 22
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long delta = 10;
+        
+          int _len_scb0 = 100;
+          struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].ecd = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epoch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          kvm_clock_sync_scb(scb,delta);
+          free(scb);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_scb0 = 1;
+          struct kvm_s390_sie_block * scb = (struct kvm_s390_sie_block *) malloc(_len_scb0*sizeof(struct kvm_s390_sie_block));
+          for(int _i0 = 0; _i0 < _len_scb0; _i0++) {
+              scb[_i0].ecd = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epdx = ((-2 * (next_i()%2)) + 1) * next_i();
+          scb[_i0].epoch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           kvm_clock_sync_scb(scb,delta);
           free(scb);
         

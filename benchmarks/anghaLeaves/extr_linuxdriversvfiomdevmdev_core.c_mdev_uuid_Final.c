@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ uuid_le mdev_uuid(struct mdev_device *mdev)
 	return mdev->uuid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_mdev0 = 1;
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_mdev0 = 65025;
           struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
           for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
-            mdev[_i0].uuid = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdev[_i0].uuid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mdev_uuid(mdev);
           printf("%d\n", benchRet); 
           free(mdev);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_mdev0 = 100;
           struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
           for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
-            mdev[_i0].uuid = ((-2 * (next_i()%2)) + 1) * next_i();
+              mdev[_i0].uuid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mdev_uuid(mdev);
+          printf("%d\n", benchRet); 
+          free(mdev);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_mdev0 = 1;
+          struct mdev_device * mdev = (struct mdev_device *) malloc(_len_mdev0*sizeof(struct mdev_device));
+          for(int _i0 = 0; _i0 < _len_mdev0; _i0++) {
+              mdev[_i0].uuid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mdev_uuid(mdev);
           printf("%d\n", benchRet); 
           free(mdev);

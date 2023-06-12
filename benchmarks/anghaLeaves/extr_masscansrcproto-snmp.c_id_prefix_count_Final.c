@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +75,6 @@ id_prefix_count(unsigned id)
     return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int id = 100;
+        
           unsigned int benchRet = id_prefix_count(id);
           printf("%u\n", benchRet); 
         
@@ -105,6 +101,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int id = 255;
+        
           unsigned int benchRet = id_prefix_count(id);
           printf("%u\n", benchRet); 
         
@@ -114,12 +111,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int id = 10;
+        
           unsigned int benchRet = id_prefix_count(id);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = id_prefix_count(id);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

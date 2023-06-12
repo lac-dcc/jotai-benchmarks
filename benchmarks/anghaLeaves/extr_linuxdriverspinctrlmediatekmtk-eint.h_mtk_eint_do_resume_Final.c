@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int mtk_eint_do_resume(struct mtk_eint *eint
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_eint0 = 1;
+          int _len_eint0 = 65025;
           struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
           for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
-            eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mtk_eint_do_resume(eint);
           printf("%d\n", benchRet); 
           free(eint);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_eint0 = 100;
           struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
           for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
-            eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mtk_eint_do_resume(eint);
           printf("%d\n", benchRet); 
           free(eint);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_eint0 = 1;
+          struct mtk_eint * eint = (struct mtk_eint *) malloc(_len_eint0*sizeof(struct mtk_eint));
+          for(int _i0 = 0; _i0 < _len_eint0; _i0++) {
+              eint[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mtk_eint_do_resume(eint);
+          printf("%d\n", benchRet); 
+          free(eint);
+        
+        break;
+    }
     default:
         usage();
         break;

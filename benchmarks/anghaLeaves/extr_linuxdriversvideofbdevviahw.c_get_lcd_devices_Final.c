@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -98,12 +99,6 @@ __attribute__((used)) static u32 get_lcd_devices(int output_interface)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -120,6 +115,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int output_interface = 100;
+        
           int benchRet = get_lcd_devices(output_interface);
           printf("%d\n", benchRet); 
         
@@ -129,6 +125,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int output_interface = 255;
+        
           int benchRet = get_lcd_devices(output_interface);
           printf("%d\n", benchRet); 
         
@@ -138,12 +135,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int output_interface = 10;
+        
           int benchRet = get_lcd_devices(output_interface);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int output_interface = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = get_lcd_devices(output_interface);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int is_imx1_fb(struct imxfb_info *fbi)
 	return fbi->devtype == IMX1_FB;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fbi0 = 1;
+          int _len_fbi0 = 65025;
           struct imxfb_info * fbi = (struct imxfb_info *) malloc(_len_fbi0*sizeof(struct imxfb_info));
           for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
-            fbi[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              fbi[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_imx1_fb(fbi);
           printf("%d\n", benchRet); 
           free(fbi);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_fbi0 = 100;
           struct imxfb_info * fbi = (struct imxfb_info *) malloc(_len_fbi0*sizeof(struct imxfb_info));
           for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
-            fbi[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+              fbi[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_imx1_fb(fbi);
           printf("%d\n", benchRet); 
           free(fbi);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fbi0 = 1;
+          struct imxfb_info * fbi = (struct imxfb_info *) malloc(_len_fbi0*sizeof(struct imxfb_info));
+          for(int _i0 = 0; _i0 < _len_fbi0; _i0++) {
+              fbi[_i0].devtype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_imx1_fb(fbi);
+          printf("%d\n", benchRet); 
+          free(fbi);
+        
+        break;
+    }
     default:
         usage();
         break;

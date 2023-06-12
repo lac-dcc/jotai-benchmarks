@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline void context_set_domain_id(struct context_en
 	context->hi |= (value & ((1 << 16) - 1)) << 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long value = 100;
+        
           int _len_context0 = 1;
           struct context_entry * context = (struct context_entry *) malloc(_len_context0*sizeof(struct context_entry));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
-            context[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              context[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          context_set_domain_id(context,value);
+          free(context);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long value = 255;
+        
+          int _len_context0 = 65025;
+          struct context_entry * context = (struct context_entry *) malloc(_len_context0*sizeof(struct context_entry));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              context[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           context_set_domain_id(context,value);
           free(context);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long value = 10;
+        
           int _len_context0 = 100;
           struct context_entry * context = (struct context_entry *) malloc(_len_context0*sizeof(struct context_entry));
           for(int _i0 = 0; _i0 < _len_context0; _i0++) {
-            context[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+              context[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           context_set_domain_id(context,value);
           free(context);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_context0 = 1;
+          struct context_entry * context = (struct context_entry *) malloc(_len_context0*sizeof(struct context_entry));
+          for(int _i0 = 0; _i0 < _len_context0; _i0++) {
+              context[_i0].hi = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          context_set_domain_id(context,value);
+          free(context);
+        
+        break;
+    }
     default:
         usage();
         break;

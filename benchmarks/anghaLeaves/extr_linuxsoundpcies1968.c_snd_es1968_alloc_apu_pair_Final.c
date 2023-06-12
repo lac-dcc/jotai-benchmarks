@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ __attribute__((used)) static int snd_es1968_alloc_apu_pair(struct es1968 *chip, 
 	return -EBUSY;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,10 +87,34 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int type = 100;
+        
           int _len_chip0 = 1;
           struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
           for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
@@ -102,7 +123,156 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_chip__i0__apu0; _j0++) {
             chip[_i0].apu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          int benchRet = snd_es1968_alloc_apu_pair(chip,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].apu);
+          }
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int type = 255;
+        
+          int _len_chip0 = 65025;
+          struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__apu0 = 1;
+          chip[_i0].apu = (int *) malloc(_len_chip__i0__apu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__apu0; _j0++) {
+            chip[_i0].apu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = snd_es1968_alloc_apu_pair(chip,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].apu);
+          }
+          free(chip);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int type = 10;
+        
+          int _len_chip0 = 100;
+          struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__apu0 = 1;
+          chip[_i0].apu = (int *) malloc(_len_chip__i0__apu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__apu0; _j0++) {
+            chip[_i0].apu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = snd_es1968_alloc_apu_pair(chip,type);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_chip0; _aux++) {
+          free(chip[_aux].apu);
+          }
+          free(chip);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chip0 = 1;
+          struct es1968 * chip = (struct es1968 *) malloc(_len_chip0*sizeof(struct es1968));
+          for(int _i0 = 0; _i0 < _len_chip0; _i0++) {
+              int _len_chip__i0__apu0 = 1;
+          chip[_i0].apu = (int *) malloc(_len_chip__i0__apu0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_chip__i0__apu0; _j0++) {
+            chip[_i0].apu[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           int benchRet = snd_es1968_alloc_apu_pair(chip,type);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_chip0; _aux++) {

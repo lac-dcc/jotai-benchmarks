@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ __attribute__((used)) static int ms_surface_dial_quirk(struct hid_input *hi, str
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,24 +101,207 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_hi0 = 65025;
+          struct hid_input * hi = (struct hid_input *) malloc(_len_hi0*sizeof(struct hid_input));
+          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
+              hi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_field0 = 65025;
+          struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_usage0 = 65025;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bit0 = 65025;
+          unsigned long ** bit = (unsigned long **) malloc(_len_bit0*sizeof(unsigned long *));
+          for(int _i0 = 0; _i0 < _len_bit0; _i0++) {
+            int _len_bit1 = 1;
+            bit[_i0] = (unsigned long *) malloc(_len_bit1*sizeof(unsigned long));
+            for(int _i1 = 0; _i1 < _len_bit1; _i1++) {
+              bit[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_max0 = 65025;
+          int * max = (int *) malloc(_len_max0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ms_surface_dial_quirk(hi,field,usage,bit,max);
+          printf("%d\n", benchRet); 
+          free(hi);
+          free(field);
+          free(usage);
+          for(int i1 = 0; i1 < _len_bit0; i1++) {
+              free(bit[i1]);
+          }
+          free(bit);
+          free(max);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_hi0 = 100;
+          struct hid_input * hi = (struct hid_input *) malloc(_len_hi0*sizeof(struct hid_input));
+          for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
+              hi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_field0 = 100;
+          struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
+          for(int _i0 = 0; _i0 < _len_field0; _i0++) {
+              field[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_usage0 = 100;
+          struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
+          for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
+              usage[_i0].hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_bit0 = 100;
+          unsigned long ** bit = (unsigned long **) malloc(_len_bit0*sizeof(unsigned long *));
+          for(int _i0 = 0; _i0 < _len_bit0; _i0++) {
+            int _len_bit1 = 1;
+            bit[_i0] = (unsigned long *) malloc(_len_bit1*sizeof(unsigned long));
+            for(int _i1 = 0; _i1 < _len_bit1; _i1++) {
+              bit[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+        
+          int _len_max0 = 100;
+          int * max = (int *) malloc(_len_max0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_max0; _i0++) {
+            max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ms_surface_dial_quirk(hi,field,usage,bit,max);
+          printf("%d\n", benchRet); 
+          free(hi);
+          free(field);
+          free(usage);
+          for(int i1 = 0; i1 < _len_bit0; i1++) {
+              free(bit[i1]);
+          }
+          free(bit);
+          free(max);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_hi0 = 1;
           struct hid_input * hi = (struct hid_input *) malloc(_len_hi0*sizeof(struct hid_input));
           for(int _i0 = 0; _i0 < _len_hi0; _i0++) {
-            hi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hi[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_field0 = 1;
           struct hid_field * field = (struct hid_field *) malloc(_len_field0*sizeof(struct hid_field));
           for(int _i0 = 0; _i0 < _len_field0; _i0++) {
-            field[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              field[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_usage0 = 1;
           struct hid_usage * usage = (struct hid_usage *) malloc(_len_usage0*sizeof(struct hid_usage));
           for(int _i0 = 0; _i0 < _len_usage0; _i0++) {
-            usage[_i0].hid = ((-2 * (next_i()%2)) + 1) * next_i();
+              usage[_i0].hid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_bit0 = 1;
           unsigned long ** bit = (unsigned long **) malloc(_len_bit0*sizeof(unsigned long *));
           for(int _i0 = 0; _i0 < _len_bit0; _i0++) {
@@ -132,18 +311,19 @@ int main(int argc, char *argv[]) {
               bit[_i0][_i1] = ((-2 * (next_i()%2)) + 1) * next_i();
             }
           }
+        
           int _len_max0 = 1;
           int * max = (int *) malloc(_len_max0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_max0; _i0++) {
             max[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ms_surface_dial_quirk(hi,field,usage,bit,max);
           printf("%d\n", benchRet); 
           free(hi);
           free(field);
           free(usage);
           for(int i1 = 0; i1 < _len_bit0; i1++) {
-            int _len_bit1 = 1;
               free(bit[i1]);
           }
           free(bit);

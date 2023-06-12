@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +83,6 @@ __attribute__((used)) static void mclms_predict(WmallDecodeCtx *s, int icoef, in
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,12 +99,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int icoef = 100;
+        
           int _len_s0 = 1;
           struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].mclms_order = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].mclms_recent = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].mclms_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].mclms_recent = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__mclms_coeffs0 = 1;
           s[_i0].mclms_coeffs = (int *) malloc(_len_s__i0__mclms_coeffs0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs0; _j0++) {
@@ -118,7 +116,7 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs_cur0; _j0++) {
             s[_i0].mclms_coeffs_cur[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        s[_i0].mclms_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].mclms_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_s__i0__channel_residues0 = 1;
           s[_i0].channel_residues = (long **) malloc(_len_s__i0__channel_residues0*sizeof(long *));
           for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
@@ -138,12 +136,15 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_s__i0__is_channel_coded0; _j0++) {
             s[_i0].is_channel_coded[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_pred0 = 1;
           int * pred = (int *) malloc(_len_pred0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pred0; _i0++) {
             pred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           mclms_predict(s,icoef,pred);
           for(int _aux = 0; _aux < _len_s0; _aux++) {
           free(s[_aux].mclms_coeffs);
@@ -166,7 +167,222 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int icoef = 255;
+        
+          int _len_s0 = 65025;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].mclms_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].mclms_recent = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__mclms_coeffs0 = 1;
+          s[_i0].mclms_coeffs = (int *) malloc(_len_s__i0__mclms_coeffs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs0; _j0++) {
+            s[_i0].mclms_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__mclms_coeffs_cur0 = 1;
+          s[_i0].mclms_coeffs_cur = (int *) malloc(_len_s__i0__mclms_coeffs_cur0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs_cur0; _j0++) {
+            s[_i0].mclms_coeffs_cur[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].mclms_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__channel_residues0 = 1;
+          s[_i0].channel_residues = (long **) malloc(_len_s__i0__channel_residues0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
+            int _len_s__i0__channel_residues1 = 1;
+            s[_i0].channel_residues[_j0] = (long *) malloc(_len_s__i0__channel_residues1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_s__i0__channel_residues1; _j1++) {
+              s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__mclms_prevvalues0 = 1;
+          s[_i0].mclms_prevvalues = (long *) malloc(_len_s__i0__mclms_prevvalues0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_prevvalues0; _j0++) {
+            s[_i0].mclms_prevvalues[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__is_channel_coded0 = 1;
+          s[_i0].is_channel_coded = (int *) malloc(_len_s__i0__is_channel_coded0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__is_channel_coded0; _j0++) {
+            s[_i0].is_channel_coded[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_pred0 = 65025;
+          int * pred = (int *) malloc(_len_pred0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pred0; _i0++) {
+            pred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mclms_predict(s,icoef,pred);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_coeffs_cur);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].channel_residues));
+        free(s[_aux].channel_residues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_prevvalues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].is_channel_coded);
+          }
+          free(s);
+          free(pred);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int icoef = 10;
+        
+          int _len_s0 = 100;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].mclms_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].mclms_recent = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__mclms_coeffs0 = 1;
+          s[_i0].mclms_coeffs = (int *) malloc(_len_s__i0__mclms_coeffs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs0; _j0++) {
+            s[_i0].mclms_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__mclms_coeffs_cur0 = 1;
+          s[_i0].mclms_coeffs_cur = (int *) malloc(_len_s__i0__mclms_coeffs_cur0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs_cur0; _j0++) {
+            s[_i0].mclms_coeffs_cur[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].mclms_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__channel_residues0 = 1;
+          s[_i0].channel_residues = (long **) malloc(_len_s__i0__channel_residues0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
+            int _len_s__i0__channel_residues1 = 1;
+            s[_i0].channel_residues[_j0] = (long *) malloc(_len_s__i0__channel_residues1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_s__i0__channel_residues1; _j1++) {
+              s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__mclms_prevvalues0 = 1;
+          s[_i0].mclms_prevvalues = (long *) malloc(_len_s__i0__mclms_prevvalues0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_prevvalues0; _j0++) {
+            s[_i0].mclms_prevvalues[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__is_channel_coded0 = 1;
+          s[_i0].is_channel_coded = (int *) malloc(_len_s__i0__is_channel_coded0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__is_channel_coded0; _j0++) {
+            s[_i0].is_channel_coded[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_pred0 = 100;
+          int * pred = (int *) malloc(_len_pred0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pred0; _i0++) {
+            pred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mclms_predict(s,icoef,pred);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_coeffs_cur);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].channel_residues));
+        free(s[_aux].channel_residues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_prevvalues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].is_channel_coded);
+          }
+          free(s);
+          free(pred);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int icoef = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct TYPE_3__ * s = (struct TYPE_3__ *) malloc(_len_s0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].mclms_order = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].num_channels = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].mclms_recent = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__mclms_coeffs0 = 1;
+          s[_i0].mclms_coeffs = (int *) malloc(_len_s__i0__mclms_coeffs0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs0; _j0++) {
+            s[_i0].mclms_coeffs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__mclms_coeffs_cur0 = 1;
+          s[_i0].mclms_coeffs_cur = (int *) malloc(_len_s__i0__mclms_coeffs_cur0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_coeffs_cur0; _j0++) {
+            s[_i0].mclms_coeffs_cur[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          s[_i0].mclms_scaling = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_s__i0__channel_residues0 = 1;
+          s[_i0].channel_residues = (long **) malloc(_len_s__i0__channel_residues0*sizeof(long *));
+          for(int _j0 = 0; _j0 < _len_s__i0__channel_residues0; _j0++) {
+            int _len_s__i0__channel_residues1 = 1;
+            s[_i0].channel_residues[_j0] = (long *) malloc(_len_s__i0__channel_residues1*sizeof(long));
+            for(int _j1 = 0; _j1 < _len_s__i0__channel_residues1; _j1++) {
+              s[_i0].channel_residues[_j0][_j1] = ((-2 * (next_i()%2)) + 1) * next_i();
+            }
+          }
+          int _len_s__i0__mclms_prevvalues0 = 1;
+          s[_i0].mclms_prevvalues = (long *) malloc(_len_s__i0__mclms_prevvalues0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_s__i0__mclms_prevvalues0; _j0++) {
+            s[_i0].mclms_prevvalues[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_s__i0__is_channel_coded0 = 1;
+          s[_i0].is_channel_coded = (int *) malloc(_len_s__i0__is_channel_coded0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_s__i0__is_channel_coded0; _j0++) {
+            s[_i0].is_channel_coded[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_pred0 = 1;
+          int * pred = (int *) malloc(_len_pred0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pred0; _i0++) {
+            pred[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          mclms_predict(s,icoef,pred);
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_coeffs);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_coeffs_cur);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(*(s[_aux].channel_residues));
+        free(s[_aux].channel_residues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].mclms_prevvalues);
+          }
+          for(int _aux = 0; _aux < _len_s0; _aux++) {
+          free(s[_aux].is_channel_coded);
+          }
+          free(s);
+          free(pred);
+        
+        break;
+    }
     default:
         usage();
         break;

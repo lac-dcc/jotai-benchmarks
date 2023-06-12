@@ -61,12 +61,6 @@ __attribute__((used)) static int aligned(int val)
     return ((val + 0x3F) >> 6) << 6;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +77,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = aligned(val);
           printf("%d\n", benchRet); 
         
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = aligned(val);
           printf("%d\n", benchRet); 
         
@@ -101,12 +97,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = aligned(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

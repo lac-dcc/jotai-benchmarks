@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int max310x_update_best_err(unsigned long f, long *
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long f = 100;
+        
           int _len_besterr0 = 1;
           long * besterr = (long *) malloc(_len_besterr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_besterr0; _i0++) {
             besterr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = max310x_update_best_err(f,besterr);
+          printf("%d\n", benchRet); 
+          free(besterr);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long f = 255;
+        
+          int _len_besterr0 = 65025;
+          long * besterr = (long *) malloc(_len_besterr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_besterr0; _i0++) {
+            besterr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = max310x_update_best_err(f,besterr);
           printf("%d\n", benchRet); 
           free(besterr);
@@ -102,21 +117,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long f = 10;
+        
           int _len_besterr0 = 100;
           long * besterr = (long *) malloc(_len_besterr0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_besterr0; _i0++) {
             besterr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = max310x_update_best_err(f,besterr);
           printf("%d\n", benchRet); 
           free(besterr);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_besterr0 = 1;
+          long * besterr = (long *) malloc(_len_besterr0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_besterr0; _i0++) {
+            besterr[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = max310x_update_best_err(f,besterr);
+          printf("%d\n", benchRet); 
+          free(besterr);
+        
+        break;
+    }
     default:
         usage();
         break;

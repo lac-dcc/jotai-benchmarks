@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int pqi_sas_phy_speed(struct sas_phy *phy,
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,142 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_phy0 = 65025;
+          struct sas_phy * phy = (struct sas_phy *) malloc(_len_phy0*sizeof(struct sas_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              phy[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rates0 = 65025;
+          struct sas_phy_linkrates * rates = (struct sas_phy_linkrates *) malloc(_len_rates0*sizeof(struct sas_phy_linkrates));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pqi_sas_phy_speed(phy,rates);
+          printf("%d\n", benchRet); 
+          free(phy);
+          free(rates);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_phy0 = 100;
+          struct sas_phy * phy = (struct sas_phy *) malloc(_len_phy0*sizeof(struct sas_phy));
+          for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
+              phy[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_rates0 = 100;
+          struct sas_phy_linkrates * rates = (struct sas_phy_linkrates *) malloc(_len_rates0*sizeof(struct sas_phy_linkrates));
+          for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
+              rates[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = pqi_sas_phy_speed(phy,rates);
+          printf("%d\n", benchRet); 
+          free(phy);
+          free(rates);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_phy0 = 1;
           struct sas_phy * phy = (struct sas_phy *) malloc(_len_phy0*sizeof(struct sas_phy));
           for(int _i0 = 0; _i0 < _len_phy0; _i0++) {
-            phy[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phy[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_rates0 = 1;
           struct sas_phy_linkrates * rates = (struct sas_phy_linkrates *) malloc(_len_rates0*sizeof(struct sas_phy_linkrates));
           for(int _i0 = 0; _i0 < _len_rates0; _i0++) {
-            rates[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rates[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = pqi_sas_phy_speed(phy,rates);
           printf("%d\n", benchRet); 
           free(phy);

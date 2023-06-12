@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ void obs_properties_set_flags(obs_properties_t *props, uint32_t flags)
 		props->flags = flags;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int flags = 100;
+        
           int _len_props0 = 1;
           struct TYPE_3__ * props = (struct TYPE_3__ *) malloc(_len_props0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_props0; _i0++) {
-            props[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              props[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          obs_properties_set_flags(props,flags);
+          free(props);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int flags = 255;
+        
+          int _len_props0 = 65025;
+          struct TYPE_3__ * props = (struct TYPE_3__ *) malloc(_len_props0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_props0; _i0++) {
+              props[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           obs_properties_set_flags(props,flags);
           free(props);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int flags = 10;
+        
           int _len_props0 = 100;
           struct TYPE_3__ * props = (struct TYPE_3__ *) malloc(_len_props0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_props0; _i0++) {
-            props[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              props[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           obs_properties_set_flags(props,flags);
           free(props);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_props0 = 1;
+          struct TYPE_3__ * props = (struct TYPE_3__ *) malloc(_len_props0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_props0; _i0++) {
+              props[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          obs_properties_set_flags(props,flags);
+          free(props);
+        
+        break;
+    }
     default:
         usage();
         break;

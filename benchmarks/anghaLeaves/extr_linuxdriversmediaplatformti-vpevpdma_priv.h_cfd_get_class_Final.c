@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline bool cfd_get_class(struct vpdma_cfd *cfd)
 	return (cfd->ctl_payload_len >> CFD_CLASS_SHFT) & CFD_CLASS_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cfd0 = 1;
+          int _len_cfd0 = 65025;
           struct vpdma_cfd * cfd = (struct vpdma_cfd *) malloc(_len_cfd0*sizeof(struct vpdma_cfd));
           for(int _i0 = 0; _i0 < _len_cfd0; _i0++) {
-            cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cfd_get_class(cfd);
           printf("%d\n", benchRet); 
           free(cfd);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_cfd0 = 100;
           struct vpdma_cfd * cfd = (struct vpdma_cfd *) malloc(_len_cfd0*sizeof(struct vpdma_cfd));
           for(int _i0 = 0; _i0 < _len_cfd0; _i0++) {
-            cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cfd_get_class(cfd);
           printf("%d\n", benchRet); 
           free(cfd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cfd0 = 1;
+          struct vpdma_cfd * cfd = (struct vpdma_cfd *) malloc(_len_cfd0*sizeof(struct vpdma_cfd));
+          for(int _i0 = 0; _i0 < _len_cfd0; _i0++) {
+              cfd[_i0].ctl_payload_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cfd_get_class(cfd);
+          printf("%d\n", benchRet); 
+          free(cfd);
+        
+        break;
+    }
     default:
         usage();
         break;

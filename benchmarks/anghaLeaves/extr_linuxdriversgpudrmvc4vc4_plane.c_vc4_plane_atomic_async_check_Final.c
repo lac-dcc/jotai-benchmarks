@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static int vc4_plane_atomic_async_check(struct drm_plane *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,29 +86,181 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_plane0 = 65025;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              int _len_plane__i0__state0 = 1;
+          plane[_i0].state = (struct TYPE_2__ *) malloc(_len_plane__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_plane__i0__state0; _j0++) {
+              plane[_i0].state->crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 65025;
+          struct drm_plane_state * state = (struct drm_plane_state *) malloc(_len_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vc4_plane_atomic_async_check(plane,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plane0; _aux++) {
+          free(plane[_aux].state);
+          }
+          free(plane);
+          free(state);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_plane0 = 100;
+          struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
+          for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
+              int _len_plane__i0__state0 = 1;
+          plane[_i0].state = (struct TYPE_2__ *) malloc(_len_plane__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_plane__i0__state0; _j0++) {
+              plane[_i0].state->crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_state0 = 100;
+          struct drm_plane_state * state = (struct drm_plane_state *) malloc(_len_state0*sizeof(struct drm_plane_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = vc4_plane_atomic_async_check(plane,state);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_plane0; _aux++) {
+          free(plane[_aux].state);
+          }
+          free(plane);
+          free(state);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_plane0 = 1;
           struct drm_plane * plane = (struct drm_plane *) malloc(_len_plane0*sizeof(struct drm_plane));
           for(int _i0 = 0; _i0 < _len_plane0; _i0++) {
               int _len_plane__i0__state0 = 1;
           plane[_i0].state = (struct TYPE_2__ *) malloc(_len_plane__i0__state0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_plane__i0__state0; _j0++) {
-            plane[_i0].state->crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane[_i0].state->crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane[_i0].state->src_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        plane[_i0].state->src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+              plane[_i0].state->crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          plane[_i0].state->src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_state0 = 1;
           struct drm_plane_state * state = (struct drm_plane_state *) malloc(_len_state0*sizeof(struct drm_plane_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
-        state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].crtc_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].crtc_h = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].src_w = ((-2 * (next_i()%2)) + 1) * next_i();
+          state[_i0].src_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = vc4_plane_atomic_async_check(plane,state);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_plane0; _aux++) {

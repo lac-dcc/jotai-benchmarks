@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static inline double annotation_data__percent(struct annot
 	return which < PERCENT_MAX ? data->percent[which] : -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int which = 100;
+        
           int _len_data0 = 1;
           struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
@@ -92,7 +90,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
             data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           }
+        
           double benchRet = annotation_data__percent(data,which);
           printf("%lf\n", benchRet); 
           for(int _aux = 0; _aux < _len_data0; _aux++) {
@@ -102,7 +102,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int which = 255;
+        
+          int _len_data0 = 65025;
+          struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__percent0 = 1;
+          data[_i0].percent = (double *) malloc(_len_data__i0__percent0*sizeof(double));
+          for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
+            data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          double benchRet = annotation_data__percent(data,which);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].percent);
+          }
+          free(data);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int which = 10;
+        
+          int _len_data0 = 100;
+          struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__percent0 = 1;
+          data[_i0].percent = (double *) malloc(_len_data__i0__percent0*sizeof(double));
+          for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
+            data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          double benchRet = annotation_data__percent(data,which);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].percent);
+          }
+          free(data);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int which = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_data0 = 1;
+          struct annotation_data * data = (struct annotation_data *) malloc(_len_data0*sizeof(struct annotation_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__percent0 = 1;
+          data[_i0].percent = (double *) malloc(_len_data__i0__percent0*sizeof(double));
+          for(int _j0 = 0; _j0 < _len_data__i0__percent0; _j0++) {
+            data[_i0].percent[_j0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          }
+        
+          double benchRet = annotation_data__percent(data,which);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].percent);
+          }
+          free(data);
+        
+        break;
+    }
     default:
         usage();
         break;

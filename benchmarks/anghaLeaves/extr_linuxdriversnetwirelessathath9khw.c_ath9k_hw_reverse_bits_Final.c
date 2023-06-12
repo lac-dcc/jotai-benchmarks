@@ -31,6 +31,7 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            big-arr-10x\n\
+       1            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ u32 ath9k_hw_reverse_bits(u32 val, u32 n)
 	return retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,11 +80,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 172
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 68
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 68
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 68
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 68
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 67
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 89
+          // ------------------------------- 
+
           int val = 10;
+        
           int n = 10;
+        
+          int benchRet = ath9k_hw_reverse_bits(val,n);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
+
+
+    // empty
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int n = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ath9k_hw_reverse_bits(val,n);
           printf("%d\n", benchRet); 
         

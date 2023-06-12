@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ SiS_GetModePtr(struct SiS_Private *SiS_Pr, unsigned short ModeNo, unsigned short
    return index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,17 +90,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned short ModeNo = 100;
+        
           unsigned short ModeIdIndex = 100;
+        
           int _len_SiS_Pr0 = 1;
           struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
           for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
-            SiS_Pr[_i0].SiS_ModeType = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_ModeType = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_SiS_Pr__i0__SiS_SModeIDTable0 = 1;
           SiS_Pr[_i0].SiS_SModeIDTable = (struct TYPE_2__ *) malloc(_len_SiS_Pr__i0__SiS_SModeIDTable0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_SModeIDTable0; _j0++) {
-            SiS_Pr[_i0].SiS_SModeIDTable->St_StTableIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_SModeIDTable->St_StTableIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           unsigned short benchRet = SiS_GetModePtr(SiS_Pr,ModeNo,ModeIdIndex);
           printf("%hu\n", benchRet); 
           for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
@@ -114,7 +115,64 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned short ModeNo = 255;
+        
+          unsigned short ModeIdIndex = 255;
+        
+          int _len_SiS_Pr0 = 65025;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              SiS_Pr[_i0].SiS_ModeType = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_SiS_Pr__i0__SiS_SModeIDTable0 = 1;
+          SiS_Pr[_i0].SiS_SModeIDTable = (struct TYPE_2__ *) malloc(_len_SiS_Pr__i0__SiS_SModeIDTable0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_SModeIDTable0; _j0++) {
+              SiS_Pr[_i0].SiS_SModeIDTable->St_StTableIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned short benchRet = SiS_GetModePtr(SiS_Pr,ModeNo,ModeIdIndex);
+          printf("%hu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].SiS_SModeIDTable);
+          }
+          free(SiS_Pr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          unsigned short ModeNo = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned short ModeIdIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_SiS_Pr0 = 1;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              SiS_Pr[_i0].SiS_ModeType = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_SiS_Pr__i0__SiS_SModeIDTable0 = 1;
+          SiS_Pr[_i0].SiS_SModeIDTable = (struct TYPE_2__ *) malloc(_len_SiS_Pr__i0__SiS_SModeIDTable0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_SModeIDTable0; _j0++) {
+              SiS_Pr[_i0].SiS_SModeIDTable->St_StTableIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          unsigned short benchRet = SiS_GetModePtr(SiS_Pr,ModeNo,ModeIdIndex);
+          printf("%hu\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].SiS_SModeIDTable);
+          }
+          free(SiS_Pr);
+        
+        break;
+    }
     default:
         usage();
         break;

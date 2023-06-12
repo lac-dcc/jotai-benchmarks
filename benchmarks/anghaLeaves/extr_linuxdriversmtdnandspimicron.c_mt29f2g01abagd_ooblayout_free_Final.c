@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static int mt29f2g01abagd_ooblayout_free(struct mtd_info *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,17 +89,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int section = 100;
+        
           int _len_mtd0 = 1;
           struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
           for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
-            mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_region0 = 1;
           struct mtd_oob_region * region = (struct mtd_oob_region *) malloc(_len_region0*sizeof(struct mtd_oob_region));
           for(int _i0 = 0; _i0 < _len_region0; _i0++) {
-            region[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              region[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mt29f2g01abagd_ooblayout_free(mtd,section,region);
           printf("%d\n", benchRet); 
           free(mtd);
@@ -110,7 +112,87 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int section = 255;
+        
+          int _len_mtd0 = 65025;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_region0 = 65025;
+          struct mtd_oob_region * region = (struct mtd_oob_region *) malloc(_len_region0*sizeof(struct mtd_oob_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mt29f2g01abagd_ooblayout_free(mtd,section,region);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(region);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int section = 10;
+        
+          int _len_mtd0 = 100;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_region0 = 100;
+          struct mtd_oob_region * region = (struct mtd_oob_region *) malloc(_len_region0*sizeof(struct mtd_oob_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mt29f2g01abagd_ooblayout_free(mtd,section,region);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(region);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int section = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mtd0 = 1;
+          struct mtd_info * mtd = (struct mtd_info *) malloc(_len_mtd0*sizeof(struct mtd_info));
+          for(int _i0 = 0; _i0 < _len_mtd0; _i0++) {
+              mtd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_region0 = 1;
+          struct mtd_oob_region * region = (struct mtd_oob_region *) malloc(_len_region0*sizeof(struct mtd_oob_region));
+          for(int _i0 = 0; _i0 < _len_region0; _i0++) {
+              region[_i0].offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          region[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mt29f2g01abagd_ooblayout_free(mtd,section,region);
+          printf("%d\n", benchRet); 
+          free(mtd);
+          free(region);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -59,12 +60,6 @@ typedef  int uint32_t ;
 
 __attribute__((used)) static inline uint32_t REG_MDP4_LUTN_LUT(uint32_t i0, uint32_t i1) { return 0x00094800 + 0x400*i0 + 0x4*i1; }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,7 +76,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i0 = 100;
+        
           int i1 = 100;
+        
           int benchRet = REG_MDP4_LUTN_LUT(i0,i1);
           printf("%d\n", benchRet); 
         
@@ -91,7 +88,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i0 = 255;
+        
           int i1 = 255;
+        
           int benchRet = REG_MDP4_LUTN_LUT(i0,i1);
           printf("%d\n", benchRet); 
         
@@ -101,13 +100,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i0 = 10;
+        
           int i1 = 10;
+        
           int benchRet = REG_MDP4_LUTN_LUT(i0,i1);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int i1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = REG_MDP4_LUTN_LUT(i0,i1);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

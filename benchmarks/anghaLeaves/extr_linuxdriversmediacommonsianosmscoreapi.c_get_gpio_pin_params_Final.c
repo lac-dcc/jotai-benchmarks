@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -105,12 +108,6 @@ __attribute__((used)) static int get_gpio_pin_params(u32 pin_num, u32 *p_transla
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -123,25 +120,217 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
           int pin_num = 100;
+        
           int _len_p_translatedpin_num0 = 1;
           int * p_translatedpin_num = (int *) malloc(_len_p_translatedpin_num0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_translatedpin_num0; _i0++) {
             p_translatedpin_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p_group_num0 = 1;
           int * p_group_num = (int *) malloc(_len_p_group_num0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_group_num0; _i0++) {
             p_group_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_p_group_cfg0 = 1;
           int * p_group_cfg = (int *) malloc(_len_p_group_cfg0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_p_group_cfg0; _i0++) {
             p_group_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = get_gpio_pin_params(pin_num,p_translatedpin_num,p_group_num,p_group_cfg);
+          printf("%d\n", benchRet); 
+          free(p_translatedpin_num);
+          free(p_group_num);
+          free(p_group_cfg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 30
+          // dynamic_instructions_O1 : 30
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 30
+          // dynamic_instructions_O3 : 30
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 31
+          // dynamic_instructions_Oz : 31
+          // ------------------------------- 
+
+          int pin_num = 255;
+        
+          int _len_p_translatedpin_num0 = 65025;
+          int * p_translatedpin_num = (int *) malloc(_len_p_translatedpin_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_translatedpin_num0; _i0++) {
+            p_translatedpin_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_group_num0 = 65025;
+          int * p_group_num = (int *) malloc(_len_p_group_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_group_num0; _i0++) {
+            p_group_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_group_cfg0 = 65025;
+          int * p_group_cfg = (int *) malloc(_len_p_group_cfg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_group_cfg0; _i0++) {
+            p_group_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_gpio_pin_params(pin_num,p_translatedpin_num,p_group_num,p_group_cfg);
+          printf("%d\n", benchRet); 
+          free(p_translatedpin_num);
+          free(p_group_num);
+          free(p_group_cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 16
+          // dynamic_instructions_O1 : 16
+          // ------------------------------- 
+          // static_instructions_O2 : 16
+          // dynamic_instructions_O2 : 16
+          // ------------------------------- 
+          // static_instructions_O3 : 16
+          // dynamic_instructions_O3 : 16
+          // ------------------------------- 
+          // static_instructions_Ofast : 16
+          // dynamic_instructions_Ofast : 16
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int pin_num = 10;
+        
+          int _len_p_translatedpin_num0 = 100;
+          int * p_translatedpin_num = (int *) malloc(_len_p_translatedpin_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_translatedpin_num0; _i0++) {
+            p_translatedpin_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_group_num0 = 100;
+          int * p_group_num = (int *) malloc(_len_p_group_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_group_num0; _i0++) {
+            p_group_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_group_cfg0 = 100;
+          int * p_group_cfg = (int *) malloc(_len_p_group_cfg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_group_cfg0; _i0++) {
+            p_group_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = get_gpio_pin_params(pin_num,p_translatedpin_num,p_group_num,p_group_cfg);
+          printf("%d\n", benchRet); 
+          free(p_translatedpin_num);
+          free(p_group_num);
+          free(p_group_cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          int pin_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_p_translatedpin_num0 = 1;
+          int * p_translatedpin_num = (int *) malloc(_len_p_translatedpin_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_translatedpin_num0; _i0++) {
+            p_translatedpin_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_group_num0 = 1;
+          int * p_group_num = (int *) malloc(_len_p_group_num0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_group_num0; _i0++) {
+            p_group_num[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_p_group_cfg0 = 1;
+          int * p_group_cfg = (int *) malloc(_len_p_group_cfg0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_p_group_cfg0; _i0++) {
+            p_group_cfg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = get_gpio_pin_params(pin_num,p_translatedpin_num,p_group_num,p_group_cfg);
           printf("%d\n", benchRet); 
           free(p_translatedpin_num);

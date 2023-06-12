@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int is_interactive(struct rebase_options *opts)
 		opts->type == REBASE_PRESERVE_MERGES;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_opts0 = 1;
+          int _len_opts0 = 65025;
           struct rebase_options * opts = (struct rebase_options *) malloc(_len_opts0*sizeof(struct rebase_options));
           for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
-            opts[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              opts[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_interactive(opts);
           printf("%d\n", benchRet); 
           free(opts);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_opts0 = 100;
           struct rebase_options * opts = (struct rebase_options *) malloc(_len_opts0*sizeof(struct rebase_options));
           for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
-            opts[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+              opts[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_interactive(opts);
           printf("%d\n", benchRet); 
           free(opts);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_opts0 = 1;
+          struct rebase_options * opts = (struct rebase_options *) malloc(_len_opts0*sizeof(struct rebase_options));
+          for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
+              opts[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_interactive(opts);
+          printf("%d\n", benchRet); 
+          free(opts);
+        
+        break;
+    }
     default:
         usage();
         break;

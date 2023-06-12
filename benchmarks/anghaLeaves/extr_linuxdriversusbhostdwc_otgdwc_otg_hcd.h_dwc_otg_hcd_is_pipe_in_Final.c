@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline uint8_t dwc_otg_hcd_is_pipe_in(struct dwc_ot
 	return (pipe->pipe_dir == UE_DIR_IN);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pipe0 = 1;
+          int _len_pipe0 = 65025;
           struct dwc_otg_hcd_pipe_info * pipe = (struct dwc_otg_hcd_pipe_info *) malloc(_len_pipe0*sizeof(struct dwc_otg_hcd_pipe_info));
           for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
-            pipe[_i0].pipe_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe[_i0].pipe_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc_otg_hcd_is_pipe_in(pipe);
           printf("%d\n", benchRet); 
           free(pipe);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_pipe0 = 100;
           struct dwc_otg_hcd_pipe_info * pipe = (struct dwc_otg_hcd_pipe_info *) malloc(_len_pipe0*sizeof(struct dwc_otg_hcd_pipe_info));
           for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
-            pipe[_i0].pipe_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+              pipe[_i0].pipe_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = dwc_otg_hcd_is_pipe_in(pipe);
           printf("%d\n", benchRet); 
           free(pipe);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_pipe0 = 1;
+          struct dwc_otg_hcd_pipe_info * pipe = (struct dwc_otg_hcd_pipe_info *) malloc(_len_pipe0*sizeof(struct dwc_otg_hcd_pipe_info));
+          for(int _i0 = 0; _i0 < _len_pipe0; _i0++) {
+              pipe[_i0].pipe_dir = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dwc_otg_hcd_is_pipe_in(pipe);
+          printf("%d\n", benchRet); 
+          free(pipe);
+        
+        break;
+    }
     default:
         usage();
         break;

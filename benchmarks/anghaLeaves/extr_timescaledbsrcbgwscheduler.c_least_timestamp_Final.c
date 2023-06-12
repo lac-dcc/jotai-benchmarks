@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ least_timestamp(TimestampTz left, TimestampTz right)
 	return (left < right ? left : right);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long left = 100;
+        
           long right = 100;
+        
           long benchRet = least_timestamp(left,right);
           printf("%ld\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long left = 255;
+        
           long right = 255;
+        
           long benchRet = least_timestamp(left,right);
           printf("%ld\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long left = 10;
+        
           long right = 10;
+        
           long benchRet = least_timestamp(left,right);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long left = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long right = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = least_timestamp(left,right);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

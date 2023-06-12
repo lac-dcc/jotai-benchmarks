@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int einj_check_trigger_header(struct acpi_einj_trig
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,23 +87,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_trigger_tab0 = 1;
+          int _len_trigger_tab0 = 65025;
           struct acpi_einj_trigger * trigger_tab = (struct acpi_einj_trigger *) malloc(_len_trigger_tab0*sizeof(struct acpi_einj_trigger));
           for(int _i0 = 0; _i0 < _len_trigger_tab0; _i0++) {
-            trigger_tab[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        trigger_tab[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        trigger_tab[_i0].entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+              trigger_tab[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          trigger_tab[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          trigger_tab[_i0].entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = einj_check_trigger_header(trigger_tab);
           printf("%d\n", benchRet); 
           free(trigger_tab);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_trigger_tab0 = 100;
+          struct acpi_einj_trigger * trigger_tab = (struct acpi_einj_trigger *) malloc(_len_trigger_tab0*sizeof(struct acpi_einj_trigger));
+          for(int _i0 = 0; _i0 < _len_trigger_tab0; _i0++) {
+              trigger_tab[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          trigger_tab[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          trigger_tab[_i0].entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = einj_check_trigger_header(trigger_tab);
+          printf("%d\n", benchRet); 
+          free(trigger_tab);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_trigger_tab0 = 1;
+          struct acpi_einj_trigger * trigger_tab = (struct acpi_einj_trigger *) malloc(_len_trigger_tab0*sizeof(struct acpi_einj_trigger));
+          for(int _i0 = 0; _i0 < _len_trigger_tab0; _i0++) {
+              trigger_tab[_i0].header_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          trigger_tab[_i0].table_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          trigger_tab[_i0].entry_count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = einj_check_trigger_header(trigger_tab);
+          printf("%d\n", benchRet); 
+          free(trigger_tab);
+        
+        break;
+    }
     default:
         usage();
         break;

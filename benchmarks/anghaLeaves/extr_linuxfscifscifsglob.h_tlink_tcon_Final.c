@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ tlink_tcon(struct tcon_link *tlink)
 	return tlink->tl_tcon;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_tlink0 = 65025;
+          struct tcon_link * tlink = (struct tcon_link *) malloc(_len_tlink0*sizeof(struct tcon_link));
+          for(int _i0 = 0; _i0 < _len_tlink0; _i0++) {
+              int _len_tlink__i0__tl_tcon0 = 1;
+          tlink[_i0].tl_tcon = (struct cifs_tcon *) malloc(_len_tlink__i0__tl_tcon0*sizeof(struct cifs_tcon));
+          for(int _j0 = 0; _j0 < _len_tlink__i0__tl_tcon0; _j0++) {
+              tlink[_i0].tl_tcon->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct cifs_tcon * benchRet = tlink_tcon(tlink);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_tlink0; _aux++) {
+          free(tlink[_aux].tl_tcon);
+          }
+          free(tlink);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_tlink0 = 100;
+          struct tcon_link * tlink = (struct tcon_link *) malloc(_len_tlink0*sizeof(struct tcon_link));
+          for(int _i0 = 0; _i0 < _len_tlink0; _i0++) {
+              int _len_tlink__i0__tl_tcon0 = 1;
+          tlink[_i0].tl_tcon = (struct cifs_tcon *) malloc(_len_tlink__i0__tl_tcon0*sizeof(struct cifs_tcon));
+          for(int _j0 = 0; _j0 < _len_tlink__i0__tl_tcon0; _j0++) {
+              tlink[_i0].tl_tcon->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct cifs_tcon * benchRet = tlink_tcon(tlink);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_tlink0; _aux++) {
+          free(tlink[_aux].tl_tcon);
+          }
+          free(tlink);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_tlink0 = 1;
           struct tcon_link * tlink = (struct tcon_link *) malloc(_len_tlink0*sizeof(struct tcon_link));
           for(int _i0 = 0; _i0 < _len_tlink0; _i0++) {
               int _len_tlink__i0__tl_tcon0 = 1;
           tlink[_i0].tl_tcon = (struct cifs_tcon *) malloc(_len_tlink__i0__tl_tcon0*sizeof(struct cifs_tcon));
           for(int _j0 = 0; _j0 < _len_tlink__i0__tl_tcon0; _j0++) {
-            tlink[_i0].tl_tcon->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              tlink[_i0].tl_tcon->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct cifs_tcon * benchRet = tlink_tcon(tlink);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_tlink0; _aux++) {

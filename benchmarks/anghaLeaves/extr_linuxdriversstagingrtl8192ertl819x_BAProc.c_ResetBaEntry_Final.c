@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ void ResetBaEntry(struct ba_record *pBA)
 	pBA->BaStartSeqCtrl.ShortData	= 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,24 +82,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pBA0 = 1;
+          int _len_pBA0 = 65025;
           struct ba_record * pBA = (struct ba_record *) malloc(_len_pBA0*sizeof(struct ba_record));
           for(int _i0 = 0; _i0 < _len_pBA0; _i0++) {
-            pBA[_i0].bValid = ((-2 * (next_i()%2)) + 1) * next_i();
-        pBA[_i0].BaStartSeqCtrl.ShortData = ((-2 * (next_i()%2)) + 1) * next_i();
-        pBA[_i0].DialogToken = ((-2 * (next_i()%2)) + 1) * next_i();
-        pBA[_i0].BaTimeoutValue = ((-2 * (next_i()%2)) + 1) * next_i();
-        pBA[_i0].BaParamSet.shortData = ((-2 * (next_i()%2)) + 1) * next_i();
+              pBA[_i0].bValid = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaStartSeqCtrl.ShortData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pBA[_i0].DialogToken = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaTimeoutValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaParamSet.shortData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           ResetBaEntry(pBA);
           free(pBA);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pBA0 = 100;
+          struct ba_record * pBA = (struct ba_record *) malloc(_len_pBA0*sizeof(struct ba_record));
+          for(int _i0 = 0; _i0 < _len_pBA0; _i0++) {
+              pBA[_i0].bValid = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaStartSeqCtrl.ShortData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pBA[_i0].DialogToken = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaTimeoutValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaParamSet.shortData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ResetBaEntry(pBA);
+          free(pBA);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pBA0 = 1;
+          struct ba_record * pBA = (struct ba_record *) malloc(_len_pBA0*sizeof(struct ba_record));
+          for(int _i0 = 0; _i0 < _len_pBA0; _i0++) {
+              pBA[_i0].bValid = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaStartSeqCtrl.ShortData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pBA[_i0].DialogToken = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaTimeoutValue = ((-2 * (next_i()%2)) + 1) * next_i();
+          pBA[_i0].BaParamSet.shortData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          ResetBaEntry(pBA);
+          free(pBA);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ int register_crypto_functions(const crypto_functions_t funcs)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,6 +85,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           const long funcs = 100;
+        
           int benchRet = register_crypto_functions(funcs);
           printf("%d\n", benchRet); 
         
@@ -99,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           const long funcs = 255;
+        
           int benchRet = register_crypto_functions(funcs);
           printf("%d\n", benchRet); 
         
@@ -108,12 +105,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           const long funcs = 10;
+        
           int benchRet = register_crypto_functions(funcs);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          const long funcs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = register_crypto_functions(funcs);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

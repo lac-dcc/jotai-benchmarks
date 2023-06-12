@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void lwDrawPixel(lwCanvas *canvas, int x, int y, int color) {
     canvas->pixels[x+y*canvas->width] = color;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +78,213 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int x = 100;
+        
           int y = 100;
+        
           int color = 100;
+        
           int _len_canvas0 = 1;
           struct TYPE_3__ * canvas = (struct TYPE_3__ *) malloc(_len_canvas0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_canvas0; _i0++) {
-            canvas[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
-        canvas[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+              canvas[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          canvas[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_canvas__i0__pixels0 = 1;
           canvas[_i0].pixels = (int *) malloc(_len_canvas__i0__pixels0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_canvas__i0__pixels0; _j0++) {
             canvas[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
+          lwDrawPixel(canvas,x,y,color);
+          for(int _aux = 0; _aux < _len_canvas0; _aux++) {
+          free(canvas[_aux].pixels);
+          }
+          free(canvas);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int x = 255;
+        
+          int y = 255;
+        
+          int color = 255;
+        
+          int _len_canvas0 = 65025;
+          struct TYPE_3__ * canvas = (struct TYPE_3__ *) malloc(_len_canvas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_canvas0; _i0++) {
+              canvas[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          canvas[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_canvas__i0__pixels0 = 1;
+          canvas[_i0].pixels = (int *) malloc(_len_canvas__i0__pixels0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_canvas__i0__pixels0; _j0++) {
+            canvas[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          lwDrawPixel(canvas,x,y,color);
+          for(int _aux = 0; _aux < _len_canvas0; _aux++) {
+          free(canvas[_aux].pixels);
+          }
+          free(canvas);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int x = 10;
+        
+          int y = 10;
+        
+          int color = 10;
+        
+          int _len_canvas0 = 100;
+          struct TYPE_3__ * canvas = (struct TYPE_3__ *) malloc(_len_canvas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_canvas0; _i0++) {
+              canvas[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          canvas[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_canvas__i0__pixels0 = 1;
+          canvas[_i0].pixels = (int *) malloc(_len_canvas__i0__pixels0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_canvas__i0__pixels0; _j0++) {
+            canvas[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          lwDrawPixel(canvas,x,y,color);
+          for(int _aux = 0; _aux < _len_canvas0; _aux++) {
+          free(canvas[_aux].pixels);
+          }
+          free(canvas);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int x = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int color = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_canvas0 = 1;
+          struct TYPE_3__ * canvas = (struct TYPE_3__ *) malloc(_len_canvas0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_canvas0; _i0++) {
+              canvas[_i0].width = ((-2 * (next_i()%2)) + 1) * next_i();
+          canvas[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_canvas__i0__pixels0 = 1;
+          canvas[_i0].pixels = (int *) malloc(_len_canvas__i0__pixels0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_canvas__i0__pixels0; _j0++) {
+            canvas[_i0].pixels[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
           lwDrawPixel(canvas,x,y,color);
           for(int _aux = 0; _aux < _len_canvas0; _aux++) {
           free(canvas[_aux].pixels);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ bool mlx5_rl_is_in_range(struct mlx5_core_dev *dev, u32 rate)
 	return (rate <= table->max_rate && rate >= table->min_rate);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,19 +85,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long rate = 100;
+        
           int _len_dev0 = 1;
           struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].priv.rl_table.max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].priv.rl_table.min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].priv.rl_table.max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].priv.rl_table.min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = mlx5_rl_is_in_range(dev,rate);
           printf("%d\n", benchRet); 
           free(dev);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long rate = 255;
+        
+          int _len_dev0 = 65025;
+          struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].priv.rl_table.max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].priv.rl_table.min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = mlx5_rl_is_in_range(dev,rate);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long rate = 10;
+        
+          int _len_dev0 = 100;
+          struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].priv.rl_table.max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].priv.rl_table.min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = mlx5_rl_is_in_range(dev,rate);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_dev0 = 1;
+          struct mlx5_core_dev * dev = (struct mlx5_core_dev *) malloc(_len_dev0*sizeof(struct mlx5_core_dev));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].priv.rl_table.max_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].priv.rl_table.min_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = mlx5_rl_is_in_range(dev,rate);
+          printf("%d\n", benchRet); 
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

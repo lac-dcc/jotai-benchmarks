@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -93,12 +95,6 @@ __attribute__((used)) static void i810_init_monspecs(struct fb_info *info)
 		info->monspecs.vfmin = vsync2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -111,23 +107,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          int _len_info0 = 65025;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].monspecs.vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].monspecs.vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].monspecs.hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].monspecs.hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].monspecs.vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           i810_init_monspecs(info);
           free(info);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].monspecs.vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          i810_init_monspecs(info);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_info0 = 1;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].monspecs.vfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.vfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.hfmin = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].monspecs.hfmax = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          i810_init_monspecs(info);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

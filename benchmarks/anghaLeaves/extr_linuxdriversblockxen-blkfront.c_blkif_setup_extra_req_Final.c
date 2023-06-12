@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static void blkif_setup_extra_req(struct blkif_request *fi
 	second->operation = first->operation;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,25 +95,170 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_first0 = 65025;
+          struct blkif_request * first = (struct blkif_request *) malloc(_len_first0*sizeof(struct blkif_request));
+          for(int _i0 = 0; _i0 < _len_first0; _i0++) {
+              first[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_second0 = 65025;
+          struct blkif_request * second = (struct blkif_request *) malloc(_len_second0*sizeof(struct blkif_request));
+          for(int _i0 = 0; _i0 < _len_second0; _i0++) {
+              second[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          blkif_setup_extra_req(first,second);
+          free(first);
+          free(second);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_first0 = 100;
+          struct blkif_request * first = (struct blkif_request *) malloc(_len_first0*sizeof(struct blkif_request));
+          for(int _i0 = 0; _i0 < _len_first0; _i0++) {
+              first[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int _len_second0 = 100;
+          struct blkif_request * second = (struct blkif_request *) malloc(_len_second0*sizeof(struct blkif_request));
+          for(int _i0 = 0; _i0 < _len_second0; _i0++) {
+              second[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          blkif_setup_extra_req(first,second);
+          free(first);
+          free(second);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_first0 = 1;
           struct blkif_request * first = (struct blkif_request *) malloc(_len_first0*sizeof(struct blkif_request));
           for(int _i0 = 0; _i0 < _len_first0; _i0++) {
-            first[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
-        first[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
-        first[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        first[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              first[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          first[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int _len_second0 = 1;
           struct blkif_request * second = (struct blkif_request *) malloc(_len_second0*sizeof(struct blkif_request));
           for(int _i0 = 0; _i0 < _len_second0; _i0++) {
-            second[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
-        second[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
-        second[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
-        second[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+              second[_i0].operation = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.nr_segments = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.handle = ((-2 * (next_i()%2)) + 1) * next_i();
+          second[_i0].u.rw.sector_number = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           blkif_setup_extra_req(first,second);
           free(first);
           free(second);

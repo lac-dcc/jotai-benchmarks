@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static inline void add_to_mask(struct posix_acl_state *sta
 	state->mask.allow |= astate->allow;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,19 +77,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_state0 = 65025;
+          struct posix_acl_state * state = (struct posix_acl_state *) malloc(_len_state0*sizeof(struct posix_acl_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].mask.allow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_astate0 = 65025;
+          struct posix_ace_state * astate = (struct posix_ace_state *) malloc(_len_astate0*sizeof(struct posix_ace_state));
+          for(int _i0 = 0; _i0 < _len_astate0; _i0++) {
+              astate[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          add_to_mask(state,astate);
+          free(state);
+          free(astate);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_state0 = 100;
+          struct posix_acl_state * state = (struct posix_acl_state *) malloc(_len_state0*sizeof(struct posix_acl_state));
+          for(int _i0 = 0; _i0 < _len_state0; _i0++) {
+              state[_i0].mask.allow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_astate0 = 100;
+          struct posix_ace_state * astate = (struct posix_ace_state *) malloc(_len_astate0*sizeof(struct posix_ace_state));
+          for(int _i0 = 0; _i0 < _len_astate0; _i0++) {
+              astate[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          add_to_mask(state,astate);
+          free(state);
+          free(astate);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_state0 = 1;
           struct posix_acl_state * state = (struct posix_acl_state *) malloc(_len_state0*sizeof(struct posix_acl_state));
           for(int _i0 = 0; _i0 < _len_state0; _i0++) {
-            state[_i0].mask.allow = ((-2 * (next_i()%2)) + 1) * next_i();
+              state[_i0].mask.allow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_astate0 = 1;
           struct posix_ace_state * astate = (struct posix_ace_state *) malloc(_len_astate0*sizeof(struct posix_ace_state));
           for(int _i0 = 0; _i0 < _len_astate0; _i0++) {
-            astate[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+              astate[_i0].allow = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           add_to_mask(state,astate);
           free(state);
           free(astate);

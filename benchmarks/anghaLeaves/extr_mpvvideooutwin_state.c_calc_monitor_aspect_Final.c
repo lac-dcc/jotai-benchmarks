@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static void calc_monitor_aspect(struct mp_vo_opts *opts, i
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,32 +85,257 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
           int scr_w = 100;
+        
           int scr_h = 100;
+        
           int _len_opts0 = 1;
           struct mp_vo_opts * opts = (struct mp_vo_opts *) malloc(_len_opts0*sizeof(struct mp_vo_opts));
           for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
-            opts[_i0].monitor_pixel_aspect = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        opts[_i0].force_monitor_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+              opts[_i0].monitor_pixel_aspect = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          opts[_i0].force_monitor_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_pixelaspect0 = 1;
           double * pixelaspect = (double *) malloc(_len_pixelaspect0*sizeof(double));
           for(int _i0 = 0; _i0 < _len_pixelaspect0; _i0++) {
             pixelaspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
           int _len_w0 = 1;
           int * w = (int *) malloc(_len_w0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_w0; _i0++) {
             w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_h0 = 1;
           int * h = (int *) malloc(_len_h0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
             h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          calc_monitor_aspect(opts,scr_w,scr_h,pixelaspect,w,h);
+          free(opts);
+          free(pixelaspect);
+          free(w);
+          free(h);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int scr_w = 255;
+        
+          int scr_h = 255;
+        
+          int _len_opts0 = 65025;
+          struct mp_vo_opts * opts = (struct mp_vo_opts *) malloc(_len_opts0*sizeof(struct mp_vo_opts));
+          for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
+              opts[_i0].monitor_pixel_aspect = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          opts[_i0].force_monitor_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pixelaspect0 = 65025;
+          double * pixelaspect = (double *) malloc(_len_pixelaspect0*sizeof(double));
+          for(int _i0 = 0; _i0 < _len_pixelaspect0; _i0++) {
+            pixelaspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_w0 = 65025;
+          int * w = (int *) malloc(_len_w0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h0 = 65025;
+          int * h = (int *) malloc(_len_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+            h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_monitor_aspect(opts,scr_w,scr_h,pixelaspect,w,h);
+          free(opts);
+          free(pixelaspect);
+          free(w);
+          free(h);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 30
+          // dynamic_instructions_O2 : 30
+          // ------------------------------- 
+          // static_instructions_O3 : 29
+          // dynamic_instructions_O3 : 29
+          // ------------------------------- 
+          // static_instructions_Ofast : 30
+          // dynamic_instructions_Ofast : 30
+          // ------------------------------- 
+          // static_instructions_Os : 30
+          // dynamic_instructions_Os : 30
+          // ------------------------------- 
+          // static_instructions_Oz : 29
+          // dynamic_instructions_Oz : 29
+          // ------------------------------- 
+
+          int scr_w = 10;
+        
+          int scr_h = 10;
+        
+          int _len_opts0 = 100;
+          struct mp_vo_opts * opts = (struct mp_vo_opts *) malloc(_len_opts0*sizeof(struct mp_vo_opts));
+          for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
+              opts[_i0].monitor_pixel_aspect = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          opts[_i0].force_monitor_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pixelaspect0 = 100;
+          double * pixelaspect = (double *) malloc(_len_pixelaspect0*sizeof(double));
+          for(int _i0 = 0; _i0 < _len_pixelaspect0; _i0++) {
+            pixelaspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_w0 = 100;
+          int * w = (int *) malloc(_len_w0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h0 = 100;
+          int * h = (int *) malloc(_len_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+            h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_monitor_aspect(opts,scr_w,scr_h,pixelaspect,w,h);
+          free(opts);
+          free(pixelaspect);
+          free(w);
+          free(h);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int scr_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int scr_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_opts0 = 1;
+          struct mp_vo_opts * opts = (struct mp_vo_opts *) malloc(_len_opts0*sizeof(struct mp_vo_opts));
+          for(int _i0 = 0; _i0 < _len_opts0; _i0++) {
+              opts[_i0].monitor_pixel_aspect = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          opts[_i0].force_monitor_aspect = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pixelaspect0 = 1;
+          double * pixelaspect = (double *) malloc(_len_pixelaspect0*sizeof(double));
+          for(int _i0 = 0; _i0 < _len_pixelaspect0; _i0++) {
+            pixelaspect[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          int _len_w0 = 1;
+          int * w = (int *) malloc(_len_w0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_w0; _i0++) {
+            w[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_h0 = 1;
+          int * h = (int *) malloc(_len_h0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+            h[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           calc_monitor_aspect(opts,scr_w,scr_h,pixelaspect,w,h);
           free(opts);
           free(pixelaspect);

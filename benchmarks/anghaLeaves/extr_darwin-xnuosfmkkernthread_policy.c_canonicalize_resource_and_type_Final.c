@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static void canonicalize_resource_and_type(user_addr_t *re
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,26 +92,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_resource0 = 1;
+          int _len_resource0 = 65025;
           int * resource = (int *) malloc(_len_resource0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_resource0; _i0++) {
             resource[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_resource_type0 = 1;
+        
+          int _len_resource_type0 = 65025;
           int * resource_type = (int *) malloc(_len_resource_type0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_resource_type0; _i0++) {
             resource_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           canonicalize_resource_and_type(resource,resource_type);
           free(resource);
           free(resource_type);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_resource0 = 100;
+          int * resource = (int *) malloc(_len_resource0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resource0; _i0++) {
+            resource[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resource_type0 = 100;
+          int * resource_type = (int *) malloc(_len_resource_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resource_type0; _i0++) {
+            resource_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          canonicalize_resource_and_type(resource,resource_type);
+          free(resource);
+          free(resource_type);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_resource0 = 1;
+          int * resource = (int *) malloc(_len_resource0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resource0; _i0++) {
+            resource[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_resource_type0 = 1;
+          int * resource_type = (int *) malloc(_len_resource_type0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_resource_type0; _i0++) {
+            resource_type[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          canonicalize_resource_and_type(resource,resource_type);
+          free(resource);
+          free(resource_type);
+        
+        break;
+    }
     default:
         usage();
         break;

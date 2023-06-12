@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static void intel_pt_calc_cbr(struct intel_pt_decoder *dec
 	decoder->cbr_cyc_to_tsc = decoder->max_non_turbo_ratio_fp / cbr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,24 +84,66 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_decoder0 = 1;
+          int _len_decoder0 = 65025;
           struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
           for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
-            decoder[_i0].cbr_payload = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].cbr = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].cbr_cyc_to_tsc = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].max_non_turbo_ratio_fp = ((-2 * (next_i()%2)) + 1) * next_i();
-        decoder[_i0].packet.payload = ((-2 * (next_i()%2)) + 1) * next_i();
+              decoder[_i0].cbr_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].cbr = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].cbr_cyc_to_tsc = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].max_non_turbo_ratio_fp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].packet.payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           intel_pt_calc_cbr(decoder);
           free(decoder);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_decoder0 = 100;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].cbr_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].cbr = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].cbr_cyc_to_tsc = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].max_non_turbo_ratio_fp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].packet.payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          intel_pt_calc_cbr(decoder);
+          free(decoder);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_decoder0 = 1;
+          struct intel_pt_decoder * decoder = (struct intel_pt_decoder *) malloc(_len_decoder0*sizeof(struct intel_pt_decoder));
+          for(int _i0 = 0; _i0 < _len_decoder0; _i0++) {
+              decoder[_i0].cbr_payload = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].cbr = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].cbr_cyc_to_tsc = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].max_non_turbo_ratio_fp = ((-2 * (next_i()%2)) + 1) * next_i();
+          decoder[_i0].packet.payload = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          intel_pt_calc_cbr(decoder);
+          free(decoder);
+        
+        break;
+    }
     default:
         usage();
         break;

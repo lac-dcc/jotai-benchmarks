@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +68,6 @@ DWORD getUDPStats(MIB_UDPSTATS *stats, DWORD family)
   return NO_ERROR;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,11 +84,30 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int family = 100;
+        
           int _len_stats0 = 1;
           int * stats = (int *) malloc(_len_stats0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
             stats[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = getUDPStats(stats,family);
+          printf("%d\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int family = 255;
+        
+          int _len_stats0 = 65025;
+          int * stats = (int *) malloc(_len_stats0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+            stats[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = getUDPStats(stats,family);
           printf("%d\n", benchRet); 
           free(stats);
@@ -100,21 +115,39 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int family = 10;
+        
           int _len_stats0 = 100;
           int * stats = (int *) malloc(_len_stats0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
             stats[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = getUDPStats(stats,family);
           printf("%d\n", benchRet); 
           free(stats);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int family = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stats0 = 1;
+          int * stats = (int *) malloc(_len_stats0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stats0; _i0++) {
+            stats[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = getUDPStats(stats,family);
+          printf("%d\n", benchRet); 
+          free(stats);
+        
+        break;
+    }
     default:
         usage();
         break;

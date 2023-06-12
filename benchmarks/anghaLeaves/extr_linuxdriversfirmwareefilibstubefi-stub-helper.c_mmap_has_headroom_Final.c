@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static inline bool mmap_has_headroom(unsigned long buff_si
 	return slack / desc_size >= EFI_MMAP_NR_SLACK_SLOTS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long buff_size = 100;
+        
           unsigned long map_size = 100;
+        
           unsigned long desc_size = 100;
+        
           int benchRet = mmap_has_headroom(buff_size,map_size,desc_size);
           printf("%d\n", benchRet); 
         
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long buff_size = 255;
+        
           unsigned long map_size = 255;
+        
           unsigned long desc_size = 255;
+        
           int benchRet = mmap_has_headroom(buff_size,map_size,desc_size);
           printf("%d\n", benchRet); 
         
@@ -110,14 +111,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long buff_size = 10;
+        
           unsigned long map_size = 10;
+        
           unsigned long desc_size = 10;
+        
           int benchRet = mmap_has_headroom(buff_size,map_size,desc_size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long buff_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long map_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long desc_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mmap_has_headroom(buff_size,map_size,desc_size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

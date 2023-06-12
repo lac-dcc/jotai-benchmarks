@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ int mem_check_range(struct rxe_mem *mem, u64 iova, size_t length)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,18 +94,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
           unsigned long iova = 100;
+        
           unsigned long length = 100;
+        
           int _len_mem0 = 1;
           struct rxe_mem * mem = (struct rxe_mem *) malloc(_len_mem0*sizeof(struct rxe_mem));
           for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
-            mem[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        mem[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
-        mem[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+              mem[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = mem_check_range(mem,iova,length);
+          printf("%d\n", benchRet); 
+          free(mem);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long iova = 255;
+        
+          unsigned long length = 255;
+        
+          int _len_mem0 = 65025;
+          struct rxe_mem * mem = (struct rxe_mem *) malloc(_len_mem0*sizeof(struct rxe_mem));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              mem[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mem_check_range(mem,iova,length);
+          printf("%d\n", benchRet); 
+          free(mem);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long iova = 10;
+        
+          unsigned long length = 10;
+        
+          int _len_mem0 = 100;
+          struct rxe_mem * mem = (struct rxe_mem *) malloc(_len_mem0*sizeof(struct rxe_mem));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              mem[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mem_check_range(mem,iova,length);
+          printf("%d\n", benchRet); 
+          free(mem);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 13
+          // dynamic_instructions_Oz : 13
+          // ------------------------------- 
+
+          unsigned long iova = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mem0 = 1;
+          struct rxe_mem * mem = (struct rxe_mem *) malloc(_len_mem0*sizeof(struct rxe_mem));
+          for(int _i0 = 0; _i0 < _len_mem0; _i0++) {
+              mem[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].iova = ((-2 * (next_i()%2)) + 1) * next_i();
+          mem[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = mem_check_range(mem,iova,length);
           printf("%d\n", benchRet); 
           free(mem);

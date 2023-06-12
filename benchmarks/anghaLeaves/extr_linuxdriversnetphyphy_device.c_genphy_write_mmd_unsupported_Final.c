@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ int genphy_write_mmd_unsupported(struct phy_device *phdev, int devnum,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,13 +82,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int devnum = 100;
+        
           int regnum = 100;
+        
           int val = 100;
+        
           int _len_phdev0 = 1;
           struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
-            phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = genphy_write_mmd_unsupported(phdev,devnum,regnum,val);
+          printf("%d\n", benchRet); 
+          free(phdev);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int devnum = 255;
+        
+          int regnum = 255;
+        
+          int val = 255;
+        
+          int _len_phdev0 = 65025;
+          struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = genphy_write_mmd_unsupported(phdev,devnum,regnum,val);
           printf("%d\n", benchRet); 
           free(phdev);
@@ -100,23 +123,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int devnum = 10;
+        
           int regnum = 10;
+        
           int val = 10;
+        
           int _len_phdev0 = 100;
           struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
-            phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = genphy_write_mmd_unsupported(phdev,devnum,regnum,val);
           printf("%d\n", benchRet); 
           free(phdev);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int devnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int regnum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_phdev0 = 1;
+          struct phy_device * phdev = (struct phy_device *) malloc(_len_phdev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phdev0; _i0++) {
+              phdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = genphy_write_mmd_unsupported(phdev,devnum,regnum,val);
+          printf("%d\n", benchRet); 
+          free(phdev);
+        
+        break;
+    }
     default:
         usage();
         break;

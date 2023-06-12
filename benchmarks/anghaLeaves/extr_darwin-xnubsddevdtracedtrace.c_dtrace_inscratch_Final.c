@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +75,6 @@ dtrace_inscratch(uintptr_t dest, size_t size, dtrace_mstate_t *mstate)
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,17 +87,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           unsigned long dest = 100;
+        
           unsigned long size = 100;
+        
           int _len_mstate0 = 1;
           struct TYPE_3__ * mstate = (struct TYPE_3__ *) malloc(_len_mstate0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_mstate0; _i0++) {
-            mstate[_i0].dtms_scratch_base = ((-2 * (next_i()%2)) + 1) * next_i();
-        mstate[_i0].dtms_scratch_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+              mstate[_i0].dtms_scratch_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          mstate[_i0].dtms_scratch_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dtrace_inscratch(dest,size,mstate);
+          printf("%d\n", benchRet); 
+          free(mstate);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long dest = 255;
+        
+          unsigned long size = 255;
+        
+          int _len_mstate0 = 65025;
+          struct TYPE_3__ * mstate = (struct TYPE_3__ *) malloc(_len_mstate0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mstate0; _i0++) {
+              mstate[_i0].dtms_scratch_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          mstate[_i0].dtms_scratch_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dtrace_inscratch(dest,size,mstate);
+          printf("%d\n", benchRet); 
+          free(mstate);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          unsigned long dest = 10;
+        
+          unsigned long size = 10;
+        
+          int _len_mstate0 = 100;
+          struct TYPE_3__ * mstate = (struct TYPE_3__ *) malloc(_len_mstate0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mstate0; _i0++) {
+              mstate[_i0].dtms_scratch_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          mstate[_i0].dtms_scratch_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dtrace_inscratch(dest,size,mstate);
+          printf("%d\n", benchRet); 
+          free(mstate);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long dest = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mstate0 = 1;
+          struct TYPE_3__ * mstate = (struct TYPE_3__ *) malloc(_len_mstate0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_mstate0; _i0++) {
+              mstate[_i0].dtms_scratch_base = ((-2 * (next_i()%2)) + 1) * next_i();
+          mstate[_i0].dtms_scratch_ptr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dtrace_inscratch(dest,size,mstate);
           printf("%d\n", benchRet); 
           free(mstate);

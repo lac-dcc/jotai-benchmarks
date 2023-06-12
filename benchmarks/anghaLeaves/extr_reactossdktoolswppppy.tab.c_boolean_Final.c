@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -81,12 +83,6 @@ __attribute__((used)) static int boolean(cval_t *v)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,20 +95,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_v0 = 65025;
+          struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sl = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = boolean(v);
+          printf("%d\n", benchRet); 
+          free(v);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_v0 = 100;
+          struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_v0; _i0++) {
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sl = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = boolean(v);
+          printf("%d\n", benchRet); 
+          free(v);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_v0 = 1;
           struct TYPE_5__ * v = (struct TYPE_5__ *) malloc(_len_v0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_v0; _i0++) {
-            v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.sl = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
-        v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+              v[_i0].type = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.si = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ui = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sl = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ul = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.ull = ((-2 * (next_i()%2)) + 1) * next_i();
+          v[_i0].val.sll = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = boolean(v);
           printf("%d\n", benchRet); 
           free(v);

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ __attribute__((used)) static void ci_reset_single_dpm_table(struct radeon_device
 		dpm_table->dpm_levels[i].enabled = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +90,27 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long count = 100;
+        
           int _len_rdev0 = 1;
           struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
-            rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dpm_table0 = 1;
           struct ci_single_dpm_table * dpm_table = (struct ci_single_dpm_table *) malloc(_len_dpm_table0*sizeof(struct ci_single_dpm_table));
           for(int _i0 = 0; _i0 < _len_dpm_table0; _i0++) {
-            dpm_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpm_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_dpm_table__i0__dpm_levels0 = 1;
           dpm_table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_dpm_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_dpm_table__i0__dpm_levels0; _j0++) {
-            dpm_table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+              dpm_table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ci_reset_single_dpm_table(rdev,dpm_table,count);
           free(rdev);
           for(int _aux = 0; _aux < _len_dpm_table0; _aux++) {
@@ -117,7 +120,108 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long count = 255;
+        
+          int _len_rdev0 = 65025;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dpm_table0 = 65025;
+          struct ci_single_dpm_table * dpm_table = (struct ci_single_dpm_table *) malloc(_len_dpm_table0*sizeof(struct ci_single_dpm_table));
+          for(int _i0 = 0; _i0 < _len_dpm_table0; _i0++) {
+              dpm_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dpm_table__i0__dpm_levels0 = 1;
+          dpm_table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_dpm_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dpm_table__i0__dpm_levels0; _j0++) {
+              dpm_table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ci_reset_single_dpm_table(rdev,dpm_table,count);
+          free(rdev);
+          for(int _aux = 0; _aux < _len_dpm_table0; _aux++) {
+          free(dpm_table[_aux].dpm_levels);
+          }
+          free(dpm_table);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long count = 10;
+        
+          int _len_rdev0 = 100;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dpm_table0 = 100;
+          struct ci_single_dpm_table * dpm_table = (struct ci_single_dpm_table *) malloc(_len_dpm_table0*sizeof(struct ci_single_dpm_table));
+          for(int _i0 = 0; _i0 < _len_dpm_table0; _i0++) {
+              dpm_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dpm_table__i0__dpm_levels0 = 1;
+          dpm_table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_dpm_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dpm_table__i0__dpm_levels0; _j0++) {
+              dpm_table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ci_reset_single_dpm_table(rdev,dpm_table,count);
+          free(rdev);
+          for(int _aux = 0; _aux < _len_dpm_table0; _aux++) {
+          free(dpm_table[_aux].dpm_levels);
+          }
+          free(dpm_table);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rdev0 = 1;
+          struct radeon_device * rdev = (struct radeon_device *) malloc(_len_rdev0*sizeof(struct radeon_device));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              rdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dpm_table0 = 1;
+          struct ci_single_dpm_table * dpm_table = (struct ci_single_dpm_table *) malloc(_len_dpm_table0*sizeof(struct ci_single_dpm_table));
+          for(int _i0 = 0; _i0 < _len_dpm_table0; _i0++) {
+              dpm_table[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_dpm_table__i0__dpm_levels0 = 1;
+          dpm_table[_i0].dpm_levels = (struct TYPE_2__ *) malloc(_len_dpm_table__i0__dpm_levels0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_dpm_table__i0__dpm_levels0; _j0++) {
+              dpm_table[_i0].dpm_levels->enabled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ci_reset_single_dpm_table(rdev,dpm_table,count);
+          free(rdev);
+          for(int _aux = 0; _aux < _len_dpm_table0; _aux++) {
+          free(dpm_table[_aux].dpm_levels);
+          }
+          free(dpm_table);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ ts_dimension_vec_find_slice_index(DimensionVec *vec, int32 dimension_slice_id)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,20 +93,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long dimension_slice_id = 100;
+        
           int _len_vec0 = 1;
           struct TYPE_7__ * vec = (struct TYPE_7__ *) malloc(_len_vec0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
-            vec[_i0].num_slices = ((-2 * (next_i()%2)) + 1) * next_i();
+              vec[_i0].num_slices = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_vec__i0__slices0 = 1;
           vec[_i0].slices = (struct TYPE_6__ **) malloc(_len_vec__i0__slices0*sizeof(struct TYPE_6__ *));
           for(int _j0 = 0; _j0 < _len_vec__i0__slices0; _j0++) {
             int _len_vec__i0__slices1 = 1;
             vec[_i0].slices[_j0] = (struct TYPE_6__ *) malloc(_len_vec__i0__slices1*sizeof(struct TYPE_6__));
             for(int _j1 = 0; _j1 < _len_vec__i0__slices1; _j1++) {
-              vec[_i0].slices[_j0]->fd.id = ((-2 * (next_i()%2)) + 1) * next_i();
+                vec[_i0].slices[_j0]->fd.id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
             }
           }
+        
           }
+        
           int benchRet = ts_dimension_vec_find_slice_index(vec,dimension_slice_id);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_vec0; _aux++) {
@@ -120,7 +122,105 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long dimension_slice_id = 255;
+        
+          int _len_vec0 = 65025;
+          struct TYPE_7__ * vec = (struct TYPE_7__ *) malloc(_len_vec0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+              vec[_i0].num_slices = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vec__i0__slices0 = 1;
+          vec[_i0].slices = (struct TYPE_6__ **) malloc(_len_vec__i0__slices0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_vec__i0__slices0; _j0++) {
+            int _len_vec__i0__slices1 = 1;
+            vec[_i0].slices[_j0] = (struct TYPE_6__ *) malloc(_len_vec__i0__slices1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_vec__i0__slices1; _j1++) {
+                vec[_i0].slices[_j0]->fd.id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ts_dimension_vec_find_slice_index(vec,dimension_slice_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vec0; _aux++) {
+          free(*(vec[_aux].slices));
+        free(vec[_aux].slices);
+          }
+          free(vec);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long dimension_slice_id = 10;
+        
+          int _len_vec0 = 100;
+          struct TYPE_7__ * vec = (struct TYPE_7__ *) malloc(_len_vec0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+              vec[_i0].num_slices = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vec__i0__slices0 = 1;
+          vec[_i0].slices = (struct TYPE_6__ **) malloc(_len_vec__i0__slices0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_vec__i0__slices0; _j0++) {
+            int _len_vec__i0__slices1 = 1;
+            vec[_i0].slices[_j0] = (struct TYPE_6__ *) malloc(_len_vec__i0__slices1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_vec__i0__slices1; _j1++) {
+                vec[_i0].slices[_j0]->fd.id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ts_dimension_vec_find_slice_index(vec,dimension_slice_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vec0; _aux++) {
+          free(*(vec[_aux].slices));
+        free(vec[_aux].slices);
+          }
+          free(vec);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long dimension_slice_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vec0 = 1;
+          struct TYPE_7__ * vec = (struct TYPE_7__ *) malloc(_len_vec0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+              vec[_i0].num_slices = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_vec__i0__slices0 = 1;
+          vec[_i0].slices = (struct TYPE_6__ **) malloc(_len_vec__i0__slices0*sizeof(struct TYPE_6__ *));
+          for(int _j0 = 0; _j0 < _len_vec__i0__slices0; _j0++) {
+            int _len_vec__i0__slices1 = 1;
+            vec[_i0].slices[_j0] = (struct TYPE_6__ *) malloc(_len_vec__i0__slices1*sizeof(struct TYPE_6__));
+            for(int _j1 = 0; _j1 < _len_vec__i0__slices1; _j1++) {
+                vec[_i0].slices[_j0]->fd.id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+            }
+          }
+        
+          }
+        
+          int benchRet = ts_dimension_vec_find_slice_index(vec,dimension_slice_id);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_vec0; _aux++) {
+          free(*(vec[_aux].slices));
+        free(vec[_aux].slices);
+          }
+          free(vec);
+        
+        break;
+    }
     default:
         usage();
         break;

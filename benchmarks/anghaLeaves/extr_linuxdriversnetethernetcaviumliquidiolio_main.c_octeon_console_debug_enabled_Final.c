@@ -61,12 +61,6 @@ __attribute__((used)) static int octeon_console_debug_enabled(u32 console)
 	return (console_bitmask >> (console)) & 0x1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,12 +77,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int console = 10;
+        
           int benchRet = octeon_console_debug_enabled(console);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

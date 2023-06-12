@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -71,12 +73,6 @@ mlxsw_sp_rif_subport_params_init(struct mlxsw_sp_rif_params *params,
 		params->system_port = mlxsw_sp_port->local_port;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,29 +85,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_params0 = 1;
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_params0 = 65025;
           struct mlxsw_sp_rif_params * params = (struct mlxsw_sp_rif_params *) malloc(_len_params0*sizeof(struct mlxsw_sp_rif_params));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].system_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].lag = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].system_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lag = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_mlxsw_sp_port_vlan0 = 1;
+        
+          int _len_mlxsw_sp_port_vlan0 = 65025;
           struct mlxsw_sp_port_vlan * mlxsw_sp_port_vlan = (struct mlxsw_sp_port_vlan *) malloc(_len_mlxsw_sp_port_vlan0*sizeof(struct mlxsw_sp_port_vlan));
           for(int _i0 = 0; _i0 < _len_mlxsw_sp_port_vlan0; _i0++) {
-            mlxsw_sp_port_vlan[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_sp_port_vlan[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0 = 1;
           mlxsw_sp_port_vlan[_i0].mlxsw_sp_port = (struct mlxsw_sp_port *) malloc(_len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0*sizeof(struct mlxsw_sp_port));
           for(int _j0 = 0; _j0 < _len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0; _j0++) {
-            mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->local_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lagged = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->local_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          mlxsw_sp_rif_subport_params_init(params,mlxsw_sp_port_vlan);
+          free(params);
+          for(int _aux = 0; _aux < _len_mlxsw_sp_port_vlan0; _aux++) {
+          free(mlxsw_sp_port_vlan[_aux].mlxsw_sp_port);
+          }
+          free(mlxsw_sp_port_vlan);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_params0 = 100;
+          struct mlxsw_sp_rif_params * params = (struct mlxsw_sp_rif_params *) malloc(_len_params0*sizeof(struct mlxsw_sp_rif_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].system_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lag = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mlxsw_sp_port_vlan0 = 100;
+          struct mlxsw_sp_port_vlan * mlxsw_sp_port_vlan = (struct mlxsw_sp_port_vlan *) malloc(_len_mlxsw_sp_port_vlan0*sizeof(struct mlxsw_sp_port_vlan));
+          for(int _i0 = 0; _i0 < _len_mlxsw_sp_port_vlan0; _i0++) {
+              mlxsw_sp_port_vlan[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0 = 1;
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port = (struct mlxsw_sp_port *) malloc(_len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0*sizeof(struct mlxsw_sp_port));
+          for(int _j0 = 0; _j0 < _len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0; _j0++) {
+              mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->local_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          mlxsw_sp_rif_subport_params_init(params,mlxsw_sp_port_vlan);
+          free(params);
+          for(int _aux = 0; _aux < _len_mlxsw_sp_port_vlan0; _aux++) {
+          free(mlxsw_sp_port_vlan[_aux].mlxsw_sp_port);
+          }
+          free(mlxsw_sp_port_vlan);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_params0 = 1;
+          struct mlxsw_sp_rif_params * params = (struct mlxsw_sp_rif_params *) malloc(_len_params0*sizeof(struct mlxsw_sp_rif_params));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].system_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].lag = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_mlxsw_sp_port_vlan0 = 1;
+          struct mlxsw_sp_port_vlan * mlxsw_sp_port_vlan = (struct mlxsw_sp_port_vlan *) malloc(_len_mlxsw_sp_port_vlan0*sizeof(struct mlxsw_sp_port_vlan));
+          for(int _i0 = 0; _i0 < _len_mlxsw_sp_port_vlan0; _i0++) {
+              mlxsw_sp_port_vlan[_i0].vid = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0 = 1;
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port = (struct mlxsw_sp_port *) malloc(_len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0*sizeof(struct mlxsw_sp_port));
+          for(int _j0 = 0; _j0 < _len_mlxsw_sp_port_vlan__i0__mlxsw_sp_port0; _j0++) {
+              mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->local_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lag_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_sp_port_vlan[_i0].mlxsw_sp_port->lagged = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           mlxsw_sp_rif_subport_params_init(params,mlxsw_sp_port_vlan);
           free(params);
           for(int _aux = 0; _aux < _len_mlxsw_sp_port_vlan0; _aux++) {

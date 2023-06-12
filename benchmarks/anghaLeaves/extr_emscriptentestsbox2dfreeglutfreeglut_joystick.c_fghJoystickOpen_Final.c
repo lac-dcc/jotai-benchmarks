@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -491,12 +493,6 @@ __attribute__((used)) static void fghJoystickOpen( SFG_Joystick* joy )
 #endif
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -509,8 +505,58 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_joy0 = 65025;
+          struct TYPE_3__ * joy = (struct TYPE_3__ *) malloc(_len_joy0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_joy0; _i0++) {
+              int _len_joy__i0__name0 = 1;
+          joy[_i0].name = (char *) malloc(_len_joy__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_joy__i0__name0; _j0++) {
+            joy[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          joy[_i0].num_buttons = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fghJoystickOpen(joy);
+          for(int _aux = 0; _aux < _len_joy0; _aux++) {
+          free(joy[_aux].name);
+          }
+          free(joy);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_joy0 = 100;
+          struct TYPE_3__ * joy = (struct TYPE_3__ *) malloc(_len_joy0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_joy0; _i0++) {
+              int _len_joy__i0__name0 = 1;
+          joy[_i0].name = (char *) malloc(_len_joy__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_joy__i0__name0; _j0++) {
+            joy[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          joy[_i0].num_buttons = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fghJoystickOpen(joy);
+          for(int _aux = 0; _aux < _len_joy0; _aux++) {
+          free(joy[_aux].name);
+          }
+          free(joy);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_joy0 = 1;
           struct TYPE_3__ * joy = (struct TYPE_3__ *) malloc(_len_joy0*sizeof(struct TYPE_3__));
@@ -520,10 +566,12 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_joy__i0__name0; _j0++) {
             joy[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        joy[_i0].num_buttons = ((-2 * (next_i()%2)) + 1) * next_i();
-        joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
-        joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].num_buttons = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].num_axes = ((-2 * (next_i()%2)) + 1) * next_i();
+          joy[_i0].error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fghJoystickOpen(joy);
           for(int _aux = 0; _aux < _len_joy0; _aux++) {
           free(joy[_aux].name);
@@ -532,7 +580,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

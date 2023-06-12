@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ bool batadv_is_cfg80211_hardif(struct batadv_hard_iface *hard_iface)
 	return !!(hard_iface->wifi_flags & allowed_flags);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,28 +82,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_hard_iface0 = 1;
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_hard_iface0 = 65025;
           struct batadv_hard_iface * hard_iface = (struct batadv_hard_iface *) malloc(_len_hard_iface0*sizeof(struct batadv_hard_iface));
           for(int _i0 = 0; _i0 < _len_hard_iface0; _i0++) {
-            hard_iface[_i0].wifi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              hard_iface[_i0].wifi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = batadv_is_cfg80211_hardif(hard_iface);
           printf("%d\n", benchRet); 
           free(hard_iface);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_hard_iface0 = 100;
           struct batadv_hard_iface * hard_iface = (struct batadv_hard_iface *) malloc(_len_hard_iface0*sizeof(struct batadv_hard_iface));
           for(int _i0 = 0; _i0 < _len_hard_iface0; _i0++) {
-            hard_iface[_i0].wifi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              hard_iface[_i0].wifi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = batadv_is_cfg80211_hardif(hard_iface);
+          printf("%d\n", benchRet); 
+          free(hard_iface);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_hard_iface0 = 1;
+          struct batadv_hard_iface * hard_iface = (struct batadv_hard_iface *) malloc(_len_hard_iface0*sizeof(struct batadv_hard_iface));
+          for(int _i0 = 0; _i0 < _len_hard_iface0; _i0++) {
+              hard_iface[_i0].wifi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = batadv_is_cfg80211_hardif(hard_iface);
           printf("%d\n", benchRet); 
           free(hard_iface);

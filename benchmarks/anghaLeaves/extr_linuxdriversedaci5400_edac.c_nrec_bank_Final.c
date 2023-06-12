@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int nrec_bank(struct i5400_error_info *info)
 	return ((info->nrecmema) >> 12) & 0x7;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,28 +74,119 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_info0 = 1;
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_info0 = 65025;
           struct i5400_error_info * info = (struct i5400_error_info *) malloc(_len_info0*sizeof(struct i5400_error_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].nrecmema = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].nrecmema = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = nrec_bank(info);
           printf("%d\n", benchRet); 
           free(info);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_info0 = 100;
           struct i5400_error_info * info = (struct i5400_error_info *) malloc(_len_info0*sizeof(struct i5400_error_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].nrecmema = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].nrecmema = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nrec_bank(info);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_info0 = 1;
+          struct i5400_error_info * info = (struct i5400_error_info *) malloc(_len_info0*sizeof(struct i5400_error_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].nrecmema = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nrec_bank(info);
           printf("%d\n", benchRet); 
           free(info);

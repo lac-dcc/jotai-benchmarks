@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static uint32_t get_sample_flags(MOVTrack *track, MOVIentr
            (MOV_FRAG_SAMPLE_FLAG_DEPENDS_YES | MOV_FRAG_SAMPLE_FLAG_IS_NON_SYNC);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_track0 = 65025;
+          int * track = (int *) malloc(_len_track0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_track0; _i0++) {
+            track[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_entry0 = 65025;
+          struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_sample_flags(track,entry);
+          printf("%d\n", benchRet); 
+          free(track);
+          free(entry);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_track0 = 100;
+          int * track = (int *) malloc(_len_track0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_track0; _i0++) {
+            track[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_entry0 = 100;
+          struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_sample_flags(track,entry);
+          printf("%d\n", benchRet); 
+          free(track);
+          free(entry);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
           int _len_track0 = 1;
           int * track = (int *) malloc(_len_track0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_track0; _i0++) {
             track[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_entry0 = 1;
           struct TYPE_3__ * entry = (struct TYPE_3__ *) malloc(_len_entry0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_entry0; _i0++) {
-            entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              entry[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_sample_flags(track,entry);
           printf("%d\n", benchRet); 
           free(track);

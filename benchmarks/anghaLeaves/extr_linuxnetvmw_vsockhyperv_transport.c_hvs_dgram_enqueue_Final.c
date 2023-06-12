@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static int hvs_dgram_enqueue(struct vsock_sock *vsk,
 	return -EOPNOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,25 +80,229 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           unsigned long dgram_len = 100;
+        
           int _len_vsk0 = 1;
           struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
           for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
-            vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_remote0 = 1;
           struct sockaddr_vm * remote = (struct sockaddr_vm *) malloc(_len_remote0*sizeof(struct sockaddr_vm));
           for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
-            remote[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              remote[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_msg0 = 1;
           struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
           for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
-            msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hvs_dgram_enqueue(vsk,remote,msg,dgram_len);
+          printf("%d\n", benchRet); 
+          free(vsk);
+          free(remote);
+          free(msg);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long dgram_len = 255;
+        
+          int _len_vsk0 = 65025;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remote0 = 65025;
+          struct sockaddr_vm * remote = (struct sockaddr_vm *) malloc(_len_remote0*sizeof(struct sockaddr_vm));
+          for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
+              remote[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 65025;
+          struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hvs_dgram_enqueue(vsk,remote,msg,dgram_len);
+          printf("%d\n", benchRet); 
+          free(vsk);
+          free(remote);
+          free(msg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long dgram_len = 10;
+        
+          int _len_vsk0 = 100;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remote0 = 100;
+          struct sockaddr_vm * remote = (struct sockaddr_vm *) malloc(_len_remote0*sizeof(struct sockaddr_vm));
+          for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
+              remote[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 100;
+          struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hvs_dgram_enqueue(vsk,remote,msg,dgram_len);
+          printf("%d\n", benchRet); 
+          free(vsk);
+          free(remote);
+          free(msg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          unsigned long dgram_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vsk0 = 1;
+          struct vsock_sock * vsk = (struct vsock_sock *) malloc(_len_vsk0*sizeof(struct vsock_sock));
+          for(int _i0 = 0; _i0 < _len_vsk0; _i0++) {
+              vsk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_remote0 = 1;
+          struct sockaddr_vm * remote = (struct sockaddr_vm *) malloc(_len_remote0*sizeof(struct sockaddr_vm));
+          for(int _i0 = 0; _i0 < _len_remote0; _i0++) {
+              remote[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_msg0 = 1;
+          struct msghdr * msg = (struct msghdr *) malloc(_len_msg0*sizeof(struct msghdr));
+          for(int _i0 = 0; _i0 < _len_msg0; _i0++) {
+              msg[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hvs_dgram_enqueue(vsk,remote,msg,dgram_len);
           printf("%d\n", benchRet); 
           free(vsk);

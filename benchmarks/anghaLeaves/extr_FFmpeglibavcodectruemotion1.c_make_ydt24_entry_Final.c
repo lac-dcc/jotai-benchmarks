@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static int make_ydt24_entry(int p1, int p2, int16_t *ydt)
     return (lo + (hi * (1 << 8)) + (hi * (1 << 16))) * 2;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,23 +77,44 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int p1 = 10;
-          int p2 = 10;
-          int _len_ydt0 = 100;
+          int p1 = 255;
+        
+          int p2 = 255;
+        
+          int _len_ydt0 = 65025;
           int * ydt = (int *) malloc(_len_ydt0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_ydt0; _i0++) {
             ydt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = make_ydt24_entry(p1,p2,ydt);
           printf("%d\n", benchRet); 
           free(ydt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int p1 = 10;
+        
+          int p2 = 10;
+        
+          int _len_ydt0 = 100;
+          int * ydt = (int *) malloc(_len_ydt0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_ydt0; _i0++) {
+            ydt[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = make_ydt24_entry(p1,p2,ydt);
+          printf("%d\n", benchRet); 
+          free(ydt);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int uwb_rsv_modify(struct uwb_rsv *rsv, int max_mas, int min_mas, int max_interv
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,34 +76,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int max_mas = 100;
+        
           int min_mas = 100;
+        
           int max_interval = 100;
+        
           int _len_rsv0 = 1;
           struct uwb_rsv * rsv = (struct uwb_rsv *) malloc(_len_rsv0*sizeof(struct uwb_rsv));
           for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
-            rsv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = uwb_rsv_modify(rsv,max_mas,min_mas,max_interval);
           printf("%d\n", benchRet); 
           free(rsv);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int max_mas = 255;
+        
+          int min_mas = 255;
+        
+          int max_interval = 255;
+        
+          int _len_rsv0 = 65025;
+          struct uwb_rsv * rsv = (struct uwb_rsv *) malloc(_len_rsv0*sizeof(struct uwb_rsv));
+          for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
+              rsv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = uwb_rsv_modify(rsv,max_mas,min_mas,max_interval);
+          printf("%d\n", benchRet); 
+          free(rsv);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int max_mas = 10;
+        
           int min_mas = 10;
+        
           int max_interval = 10;
+        
           int _len_rsv0 = 100;
           struct uwb_rsv * rsv = (struct uwb_rsv *) malloc(_len_rsv0*sizeof(struct uwb_rsv));
           for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
-            rsv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rsv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = uwb_rsv_modify(rsv,max_mas,min_mas,max_interval);
+          printf("%d\n", benchRet); 
+          free(rsv);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int max_mas = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int min_mas = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max_interval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rsv0 = 1;
+          struct uwb_rsv * rsv = (struct uwb_rsv *) malloc(_len_rsv0*sizeof(struct uwb_rsv));
+          for(int _i0 = 0; _i0 < _len_rsv0; _i0++) {
+              rsv[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = uwb_rsv_modify(rsv,max_mas,min_mas,max_interval);
           printf("%d\n", benchRet); 
           free(rsv);

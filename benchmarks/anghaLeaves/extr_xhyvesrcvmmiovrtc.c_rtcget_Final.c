@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +80,6 @@ rtcget(struct rtcdev *rtc, int val, int *retval)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,20 +92,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int val = 100;
+        
           int _len_rtc0 = 1;
           struct rtcdev * rtc = (struct rtcdev *) malloc(_len_rtc0*sizeof(struct rtcdev));
           for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
-            rtc[_i0].reg_b = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtc[_i0].reg_b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_retval0 = 1;
           int * retval = (int *) malloc(_len_retval0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
             retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = rtcget(rtc,val,retval);
+          printf("%d\n", benchRet); 
+          free(rtc);
+          free(retval);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int val = 255;
+        
+          int _len_rtc0 = 65025;
+          struct rtcdev * rtc = (struct rtcdev *) malloc(_len_rtc0*sizeof(struct rtcdev));
+          for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
+              rtc[_i0].reg_b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retval0 = 65025;
+          int * retval = (int *) malloc(_len_retval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
+            retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtcget(rtc,val,retval);
+          printf("%d\n", benchRet); 
+          free(rtc);
+          free(retval);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int val = 10;
+        
+          int _len_rtc0 = 100;
+          struct rtcdev * rtc = (struct rtcdev *) malloc(_len_rtc0*sizeof(struct rtcdev));
+          for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
+              rtc[_i0].reg_b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retval0 = 100;
+          int * retval = (int *) malloc(_len_retval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
+            retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = rtcget(rtc,val,retval);
+          printf("%d\n", benchRet); 
+          free(rtc);
+          free(retval);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_rtc0 = 1;
+          struct rtcdev * rtc = (struct rtcdev *) malloc(_len_rtc0*sizeof(struct rtcdev));
+          for(int _i0 = 0; _i0 < _len_rtc0; _i0++) {
+              rtc[_i0].reg_b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retval0 = 1;
+          int * retval = (int *) malloc(_len_retval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
+            retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = rtcget(rtc,val,retval);
           printf("%d\n", benchRet); 
           free(rtc);

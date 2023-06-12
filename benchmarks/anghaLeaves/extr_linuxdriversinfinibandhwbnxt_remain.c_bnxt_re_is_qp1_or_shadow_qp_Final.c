@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static bool bnxt_re_is_qp1_or_shadow_qp(struct bnxt_re_dev
 	return (qp->ib_qp.qp_type == IB_QPT_GSI) || (qp == rdev->qp1_sqp);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,23 +79,30 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rdev0 = 1;
+          int _len_rdev0 = 65025;
           struct bnxt_re_dev * rdev = (struct bnxt_re_dev *) malloc(_len_rdev0*sizeof(struct bnxt_re_dev));
           for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
               int _len_rdev__i0__qp1_sqp0 = 1;
           rdev[_i0].qp1_sqp = (struct bnxt_re_qp *) malloc(_len_rdev__i0__qp1_sqp0*sizeof(struct bnxt_re_qp));
           for(int _j0 = 0; _j0 < _len_rdev__i0__qp1_sqp0; _j0++) {
-            rdev[_i0].qp1_sqp->ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              rdev[_i0].qp1_sqp->ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
-          int _len_qp0 = 1;
+        
+          int _len_qp0 = 65025;
           struct bnxt_re_qp * qp = (struct bnxt_re_qp *) malloc(_len_qp0*sizeof(struct bnxt_re_qp));
           for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
-            qp[_i0].ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              qp[_i0].ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = bnxt_re_is_qp1_or_shadow_qp(rdev,qp);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_rdev0; _aux++) {
@@ -110,7 +113,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_rdev0 = 100;
+          struct bnxt_re_dev * rdev = (struct bnxt_re_dev *) malloc(_len_rdev0*sizeof(struct bnxt_re_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__qp1_sqp0 = 1;
+          rdev[_i0].qp1_sqp = (struct bnxt_re_qp *) malloc(_len_rdev__i0__qp1_sqp0*sizeof(struct bnxt_re_qp));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__qp1_sqp0; _j0++) {
+              rdev[_i0].qp1_sqp->ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_qp0 = 100;
+          struct bnxt_re_qp * qp = (struct bnxt_re_qp *) malloc(_len_qp0*sizeof(struct bnxt_re_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bnxt_re_is_qp1_or_shadow_qp(rdev,qp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(rdev[_aux].qp1_sqp);
+          }
+          free(rdev);
+          free(qp);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_rdev0 = 1;
+          struct bnxt_re_dev * rdev = (struct bnxt_re_dev *) malloc(_len_rdev0*sizeof(struct bnxt_re_dev));
+          for(int _i0 = 0; _i0 < _len_rdev0; _i0++) {
+              int _len_rdev__i0__qp1_sqp0 = 1;
+          rdev[_i0].qp1_sqp = (struct bnxt_re_qp *) malloc(_len_rdev__i0__qp1_sqp0*sizeof(struct bnxt_re_qp));
+          for(int _j0 = 0; _j0 < _len_rdev__i0__qp1_sqp0; _j0++) {
+              rdev[_i0].qp1_sqp->ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          int _len_qp0 = 1;
+          struct bnxt_re_qp * qp = (struct bnxt_re_qp *) malloc(_len_qp0*sizeof(struct bnxt_re_qp));
+          for(int _i0 = 0; _i0 < _len_qp0; _i0++) {
+              qp[_i0].ib_qp.qp_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = bnxt_re_is_qp1_or_shadow_qp(rdev,qp);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_rdev0; _aux++) {
+          free(rdev[_aux].qp1_sqp);
+          }
+          free(rdev);
+          free(qp);
+        
+        break;
+    }
     default:
         usage();
         break;

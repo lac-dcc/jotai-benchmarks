@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -60,12 +61,6 @@ int wrap(int i, int max) {
 	return ((i % max) + max) % max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,7 +77,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int i = 100;
+        
           int max = 100;
+        
           int benchRet = wrap(i,max);
           printf("%d\n", benchRet); 
         
@@ -92,7 +89,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int i = 255;
+        
           int max = 255;
+        
           int benchRet = wrap(i,max);
           printf("%d\n", benchRet); 
         
@@ -102,13 +101,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int i = 10;
+        
           int max = 10;
+        
           int benchRet = wrap(i,max);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = wrap(i,max);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

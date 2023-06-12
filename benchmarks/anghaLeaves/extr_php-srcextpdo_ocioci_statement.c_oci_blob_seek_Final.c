@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static int oci_blob_seek(php_stream *stream, zend_off_t of
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,17 +91,22 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long offset = 100;
+        
           int whence = 100;
+        
           int _len_stream0 = 1;
           struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
-            stream[_i0].abstract = ((-2 * (next_i()%2)) + 1) * next_i();
+              stream[_i0].abstract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_newoffset0 = 1;
           long * newoffset = (long *) malloc(_len_newoffset0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_newoffset0; _i0++) {
             newoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = oci_blob_seek(stream,offset,whence,newoffset);
           printf("%d\n", benchRet); 
           free(stream);
@@ -113,7 +114,60 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long offset = 255;
+        
+          int whence = 255;
+        
+          int _len_stream0 = 65025;
+          struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].abstract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_newoffset0 = 65025;
+          long * newoffset = (long *) malloc(_len_newoffset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_newoffset0; _i0++) {
+            newoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = oci_blob_seek(stream,offset,whence,newoffset);
+          printf("%d\n", benchRet); 
+          free(stream);
+          free(newoffset);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long offset = 10;
+        
+          int whence = 10;
+        
+          int _len_stream0 = 100;
+          struct TYPE_3__ * stream = (struct TYPE_3__ *) malloc(_len_stream0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+              stream[_i0].abstract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_newoffset0 = 100;
+          long * newoffset = (long *) malloc(_len_newoffset0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_newoffset0; _i0++) {
+            newoffset[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = oci_blob_seek(stream,offset,whence,newoffset);
+          printf("%d\n", benchRet); 
+          free(stream);
+          free(newoffset);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ flow_divert_tunnel_how_closed(struct flow_divert_pcb *fd_cb)
 	return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,14 +90,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fd_cb0 = 1;
+          int _len_fd_cb0 = 65025;
           struct flow_divert_pcb * fd_cb = (struct flow_divert_pcb *) malloc(_len_fd_cb0*sizeof(struct flow_divert_pcb));
           for(int _i0 = 0; _i0 < _len_fd_cb0; _i0++) {
-            fd_cb[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fd_cb[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = flow_divert_tunnel_how_closed(fd_cb);
           printf("%d\n", benchRet); 
           free(fd_cb);
@@ -115,15 +112,32 @@ int main(int argc, char *argv[]) {
           int _len_fd_cb0 = 100;
           struct flow_divert_pcb * fd_cb = (struct flow_divert_pcb *) malloc(_len_fd_cb0*sizeof(struct flow_divert_pcb));
           for(int _i0 = 0; _i0 < _len_fd_cb0; _i0++) {
-            fd_cb[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              fd_cb[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = flow_divert_tunnel_how_closed(fd_cb);
           printf("%d\n", benchRet); 
           free(fd_cb);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fd_cb0 = 1;
+          struct flow_divert_pcb * fd_cb = (struct flow_divert_pcb *) malloc(_len_fd_cb0*sizeof(struct flow_divert_pcb));
+          for(int _i0 = 0; _i0 < _len_fd_cb0; _i0++) {
+              fd_cb[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = flow_divert_tunnel_how_closed(fd_cb);
+          printf("%d\n", benchRet); 
+          free(fd_cb);
+        
+        break;
+    }
     default:
         usage();
         break;

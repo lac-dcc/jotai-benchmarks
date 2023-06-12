@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void pfwords_reset(pfwords *fw) {
     fw->len = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fw0 = 1;
+          int _len_fw0 = 65025;
           struct TYPE_3__ * fw = (struct TYPE_3__ *) malloc(_len_fw0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fw0; _i0++) {
-            fw[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pfwords_reset(fw);
           free(fw);
         
@@ -100,14 +97,30 @@ int main(int argc, char *argv[]) {
           int _len_fw0 = 100;
           struct TYPE_3__ * fw = (struct TYPE_3__ *) malloc(_len_fw0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_fw0; _i0++) {
-            fw[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           pfwords_reset(fw);
           free(fw);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_fw0 = 1;
+          struct TYPE_3__ * fw = (struct TYPE_3__ *) malloc(_len_fw0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_fw0; _i0++) {
+              fw[_i0].len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          pfwords_reset(fw);
+          free(fw);
+        
+        break;
+    }
     default:
         usage();
         break;

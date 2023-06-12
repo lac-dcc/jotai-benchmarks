@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ __attribute__((used)) static void idct6(int pre_mant[6])
     pre_mant[5] = even0 - odd0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,27 +101,114 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_pre_mant0 = 6;
+          // static_instructions_O0 : 85
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 44
+          // dynamic_instructions_O1 : 44
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 44
+          // dynamic_instructions_Os : 44
+          // ------------------------------- 
+          // static_instructions_Oz : 44
+          // dynamic_instructions_Oz : 44
+          // ------------------------------- 
+
+          int _len_pre_mant0 = 65025;
           int * pre_mant = (int *) malloc(_len_pre_mant0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pre_mant0; _i0++) {
             pre_mant[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           idct6(pre_mant);
           free(pre_mant);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 85
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 44
+          // dynamic_instructions_O1 : 44
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 44
+          // dynamic_instructions_Os : 44
+          // ------------------------------- 
+          // static_instructions_Oz : 44
+          // dynamic_instructions_Oz : 44
+          // ------------------------------- 
+
           int _len_pre_mant0 = 100;
           int * pre_mant = (int *) malloc(_len_pre_mant0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pre_mant0; _i0++) {
             pre_mant[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          idct6(pre_mant);
+          free(pre_mant);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 85
+          // dynamic_instructions_O0 : 85
+          // ------------------------------- 
+          // static_instructions_O1 : 44
+          // dynamic_instructions_O1 : 44
+          // ------------------------------- 
+          // static_instructions_O2 : 44
+          // dynamic_instructions_O2 : 44
+          // ------------------------------- 
+          // static_instructions_O3 : 44
+          // dynamic_instructions_O3 : 44
+          // ------------------------------- 
+          // static_instructions_Ofast : 44
+          // dynamic_instructions_Ofast : 44
+          // ------------------------------- 
+          // static_instructions_Os : 44
+          // dynamic_instructions_Os : 44
+          // ------------------------------- 
+          // static_instructions_Oz : 44
+          // dynamic_instructions_Oz : 44
+          // ------------------------------- 
+
+          int _len_pre_mant0 = 6;
+          int * pre_mant = (int *) malloc(_len_pre_mant0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pre_mant0; _i0++) {
+            pre_mant[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           idct6(pre_mant);
           free(pre_mant);
         

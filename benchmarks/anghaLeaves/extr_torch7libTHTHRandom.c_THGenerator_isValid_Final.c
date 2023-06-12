@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ int THGenerator_isValid(THGenerator *_generator)
   return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +81,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len__generator0 = 65025;
+          struct TYPE_3__ * _generator = (struct TYPE_3__ *) malloc(_len__generator0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len__generator0; _i0++) {
+              _generator[_i0].seeded = ((-2 * (next_i()%2)) + 1) * next_i();
+          _generator[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          _generator[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = THGenerator_isValid(_generator);
+          printf("%d\n", benchRet); 
+          free(_generator);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len__generator0 = 100;
+          struct TYPE_3__ * _generator = (struct TYPE_3__ *) malloc(_len__generator0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len__generator0; _i0++) {
+              _generator[_i0].seeded = ((-2 * (next_i()%2)) + 1) * next_i();
+          _generator[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          _generator[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = THGenerator_isValid(_generator);
+          printf("%d\n", benchRet); 
+          free(_generator);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len__generator0 = 1;
           struct TYPE_3__ * _generator = (struct TYPE_3__ *) malloc(_len__generator0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len__generator0; _i0++) {
-            _generator[_i0].seeded = ((-2 * (next_i()%2)) + 1) * next_i();
-        _generator[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
-        _generator[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+              _generator[_i0].seeded = ((-2 * (next_i()%2)) + 1) * next_i();
+          _generator[_i0].left = ((-2 * (next_i()%2)) + 1) * next_i();
+          _generator[_i0].next = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = THGenerator_isValid(_generator);
           printf("%d\n", benchRet); 
           free(_generator);

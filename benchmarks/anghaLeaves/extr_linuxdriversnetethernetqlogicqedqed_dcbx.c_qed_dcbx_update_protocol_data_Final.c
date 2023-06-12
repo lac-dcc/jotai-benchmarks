@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void qed_dcbx_update_protocol_data(struct protocol_
 	p_data->dcb_dont_add_vlan0 = p_src->arr[type].dont_add_vlan0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,30 +83,36 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum dcbx_protocol_type type = 0;
-          int _len_p_data0 = 1;
+        
+          int _len_p_data0 = 65025;
           struct protocol_dcb_data * p_data = (struct protocol_dcb_data *) malloc(_len_p_data0*sizeof(struct protocol_dcb_data));
           for(int _i0 = 0; _i0 < _len_p_data0; _i0++) {
-            p_data[_i0].dcb_dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_tc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_data[_i0].dcb_dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_p_src0 = 1;
+        
+          int _len_p_src0 = 65025;
           struct qed_dcbx_results * p_src = (struct qed_dcbx_results *) malloc(_len_p_src0*sizeof(struct qed_dcbx_results));
           for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
               int _len_p_src__i0__arr0 = 1;
           p_src[_i0].arr = (struct TYPE_2__ *) malloc(_len_p_src__i0__arr0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_p_src__i0__arr0; _j0++) {
-            p_src[_i0].arr->dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->tc = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->priority = ((-2 * (next_i()%2)) + 1) * next_i();
-        p_src[_i0].arr->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              p_src[_i0].arr->dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->tc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           qed_dcbx_update_protocol_data(p_data,p_src,type);
           free(p_data);
           for(int _aux = 0; _aux < _len_p_src0; _aux++) {
@@ -120,7 +122,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum dcbx_protocol_type type = 0;
+        
+          int _len_p_data0 = 100;
+          struct protocol_dcb_data * p_data = (struct protocol_dcb_data *) malloc(_len_p_data0*sizeof(struct protocol_dcb_data));
+          for(int _i0 = 0; _i0 < _len_p_data0; _i0++) {
+              p_data[_i0].dcb_dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_src0 = 100;
+          struct qed_dcbx_results * p_src = (struct qed_dcbx_results *) malloc(_len_p_src0*sizeof(struct qed_dcbx_results));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              int _len_p_src__i0__arr0 = 1;
+          p_src[_i0].arr = (struct TYPE_2__ *) malloc(_len_p_src__i0__arr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_src__i0__arr0; _j0++) {
+              p_src[_i0].arr->dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->tc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qed_dcbx_update_protocol_data(p_data,p_src,type);
+          free(p_data);
+          for(int _aux = 0; _aux < _len_p_src0; _aux++) {
+          free(p_src[_aux].arr);
+          }
+          free(p_src);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum dcbx_protocol_type type = 0;
+        
+          int _len_p_data0 = 1;
+          struct protocol_dcb_data * p_data = (struct protocol_dcb_data *) malloc(_len_p_data0*sizeof(struct protocol_dcb_data));
+          for(int _i0 = 0; _i0 < _len_p_data0; _i0++) {
+              p_data[_i0].dcb_dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_tc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_data[_i0].dcb_enable_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_p_src0 = 1;
+          struct qed_dcbx_results * p_src = (struct qed_dcbx_results *) malloc(_len_p_src0*sizeof(struct qed_dcbx_results));
+          for(int _i0 = 0; _i0 < _len_p_src0; _i0++) {
+              int _len_p_src__i0__arr0 = 1;
+          p_src[_i0].arr = (struct TYPE_2__ *) malloc(_len_p_src__i0__arr0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_p_src__i0__arr0; _j0++) {
+              p_src[_i0].arr->dont_add_vlan0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->tc = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->priority = ((-2 * (next_i()%2)) + 1) * next_i();
+          p_src[_i0].arr->enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          qed_dcbx_update_protocol_data(p_data,p_src,type);
+          free(p_data);
+          for(int _aux = 0; _aux < _len_p_src0; _aux++) {
+          free(p_src[_aux].arr);
+          }
+          free(p_src);
+        
+        break;
+    }
     default:
         usage();
         break;

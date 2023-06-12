@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ u32 fman_get_bmi_max_fifo_size(struct fman *fman)
 	return fman->state->bmi_max_fifo_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fman0 = 1;
+          int _len_fman0 = 65025;
           struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
           for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
               int _len_fman__i0__state0 = 1;
           fman[_i0].state = (struct TYPE_2__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
-            fman[_i0].state->bmi_max_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              fman[_i0].state->bmi_max_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = fman_get_bmi_max_fifo_size(fman);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_fman0; _aux++) {
@@ -102,7 +101,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fman0 = 100;
+          struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
+          for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
+              int _len_fman__i0__state0 = 1;
+          fman[_i0].state = (struct TYPE_2__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
+              fman[_i0].state->bmi_max_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = fman_get_bmi_max_fifo_size(fman);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fman0; _aux++) {
+          free(fman[_aux].state);
+          }
+          free(fman);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fman0 = 1;
+          struct fman * fman = (struct fman *) malloc(_len_fman0*sizeof(struct fman));
+          for(int _i0 = 0; _i0 < _len_fman0; _i0++) {
+              int _len_fman__i0__state0 = 1;
+          fman[_i0].state = (struct TYPE_2__ *) malloc(_len_fman__i0__state0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_fman__i0__state0; _j0++) {
+              fman[_i0].state->bmi_max_fifo_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = fman_get_bmi_max_fifo_size(fman);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_fman0; _aux++) {
+          free(fman[_aux].state);
+          }
+          free(fman);
+        
+        break;
+    }
     default:
         usage();
         break;

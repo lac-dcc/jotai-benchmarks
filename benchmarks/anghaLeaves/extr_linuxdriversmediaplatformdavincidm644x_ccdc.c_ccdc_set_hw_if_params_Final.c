@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ __attribute__((used)) static int ccdc_set_hw_if_params(struct vpfe_hw_if_param *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,16 +98,125 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_params0 = 65025;
+          struct vpfe_hw_if_param * params = (struct vpfe_hw_if_param *) malloc(_len_params0*sizeof(struct vpfe_hw_if_param));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].hdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].vdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ccdc_set_hw_if_params(params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_params0 = 100;
+          struct vpfe_hw_if_param * params = (struct vpfe_hw_if_param *) malloc(_len_params0*sizeof(struct vpfe_hw_if_param));
+          for(int _i0 = 0; _i0 < _len_params0; _i0++) {
+              params[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].hdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].vdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = ccdc_set_hw_if_params(params);
+          printf("%d\n", benchRet); 
+          free(params);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_params0 = 1;
           struct vpfe_hw_if_param * params = (struct vpfe_hw_if_param *) malloc(_len_params0*sizeof(struct vpfe_hw_if_param));
           for(int _i0 = 0; _i0 < _len_params0; _i0++) {
-            params[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].hdpol = ((-2 * (next_i()%2)) + 1) * next_i();
-        params[_i0].vdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+              params[_i0].if_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].hdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+          params[_i0].vdpol = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = ccdc_set_hw_if_params(params);
           printf("%d\n", benchRet); 
           free(params);

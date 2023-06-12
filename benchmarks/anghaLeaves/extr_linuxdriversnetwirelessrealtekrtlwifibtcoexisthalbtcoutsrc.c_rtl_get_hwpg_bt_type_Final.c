@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static u8 rtl_get_hwpg_bt_type(struct rtl_priv *rtlpriv)
 	return rtlpriv->btcoexist.btc_info.bt_type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_rtlpriv0 = 1;
+          int _len_rtlpriv0 = 65025;
           struct rtl_priv * rtlpriv = (struct rtl_priv *) malloc(_len_rtlpriv0*sizeof(struct rtl_priv));
           for(int _i0 = 0; _i0 < _len_rtlpriv0; _i0++) {
-            rtlpriv[_i0].btcoexist.btc_info.bt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtlpriv[_i0].btcoexist.btc_info.bt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = rtl_get_hwpg_bt_type(rtlpriv);
           printf("%d\n", benchRet); 
           free(rtlpriv);
@@ -104,15 +103,36 @@ int main(int argc, char *argv[]) {
           int _len_rtlpriv0 = 100;
           struct rtl_priv * rtlpriv = (struct rtl_priv *) malloc(_len_rtlpriv0*sizeof(struct rtl_priv));
           for(int _i0 = 0; _i0 < _len_rtlpriv0; _i0++) {
-            rtlpriv[_i0].btcoexist.btc_info.bt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              rtlpriv[_i0].btcoexist.btc_info.bt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = rtl_get_hwpg_bt_type(rtlpriv);
           printf("%d\n", benchRet); 
           free(rtlpriv);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_rtlpriv0 = 1;
+          struct rtl_priv * rtlpriv = (struct rtl_priv *) malloc(_len_rtlpriv0*sizeof(struct rtl_priv));
+          for(int _i0 = 0; _i0 < _len_rtlpriv0; _i0++) {
+              rtlpriv[_i0].btcoexist.btc_info.bt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = rtl_get_hwpg_bt_type(rtlpriv);
+          printf("%d\n", benchRet); 
+          free(rtlpriv);
+        
+        break;
+    }
     default:
         usage();
         break;

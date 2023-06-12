@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -122,12 +125,6 @@ __attribute__((used)) static bool dso__is_compatible_symtab_type(struct dso *dso
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -140,17 +137,179 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int kmod = 100;
+        
           enum dso_binary_type type = 0;
+        
           int _len_dso0 = 1;
           struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
           for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
-            dso[_i0].symtab_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        dso[_i0].kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+              dso[_i0].symtab_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dso[_i0].kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = dso__is_compatible_symtab_type(dso,kmod,type);
+          printf("%d\n", benchRet); 
+          free(dso);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int kmod = 255;
+        
+          enum dso_binary_type type = 0;
+        
+          int _len_dso0 = 65025;
+          struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
+          for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
+              dso[_i0].symtab_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dso[_i0].kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dso__is_compatible_symtab_type(dso,kmod,type);
+          printf("%d\n", benchRet); 
+          free(dso);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int kmod = 10;
+        
+          enum dso_binary_type type = 0;
+        
+          int _len_dso0 = 100;
+          struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
+          for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
+              dso[_i0].symtab_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dso[_i0].kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = dso__is_compatible_symtab_type(dso,kmod,type);
+          printf("%d\n", benchRet); 
+          free(dso);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int kmod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum dso_binary_type type = 0;
+        
+          int _len_dso0 = 1;
+          struct dso * dso = (struct dso *) malloc(_len_dso0*sizeof(struct dso));
+          for(int _i0 = 0; _i0 < _len_dso0; _i0++) {
+              dso[_i0].symtab_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          dso[_i0].kernel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = dso__is_compatible_symtab_type(dso,kmod,type);
           printf("%d\n", benchRet); 
           free(dso);

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static void vhost_net_tx_err(struct vhost_net *net)
 	++net->tx_zcopy_err;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_net0 = 1;
+          int _len_net0 = 65025;
           struct vhost_net * net = (struct vhost_net *) malloc(_len_net0*sizeof(struct vhost_net));
           for(int _i0 = 0; _i0 < _len_net0; _i0++) {
-            net[_i0].tx_zcopy_err = ((-2 * (next_i()%2)) + 1) * next_i();
+              net[_i0].tx_zcopy_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vhost_net_tx_err(net);
           free(net);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_net0 = 100;
           struct vhost_net * net = (struct vhost_net *) malloc(_len_net0*sizeof(struct vhost_net));
           for(int _i0 = 0; _i0 < _len_net0; _i0++) {
-            net[_i0].tx_zcopy_err = ((-2 * (next_i()%2)) + 1) * next_i();
+              net[_i0].tx_zcopy_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           vhost_net_tx_err(net);
           free(net);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_net0 = 1;
+          struct vhost_net * net = (struct vhost_net *) malloc(_len_net0*sizeof(struct vhost_net));
+          for(int _i0 = 0; _i0 < _len_net0; _i0++) {
+              net[_i0].tx_zcopy_err = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          vhost_net_tx_err(net);
+          free(net);
+        
+        break;
+    }
     default:
         usage();
         break;

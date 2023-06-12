@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static int init_message(mqtt_connection_t* connection)
   return MQTT_MAX_FIXED_HEADER_SIZE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_connection0 = 1;
+          int _len_connection0 = 65025;
           struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
-            connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+              connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = init_message(connection);
           printf("%d\n", benchRet); 
           free(connection);
@@ -105,15 +103,34 @@ int main(int argc, char *argv[]) {
           int _len_connection0 = 100;
           struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
-            connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+              connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = init_message(connection);
           printf("%d\n", benchRet); 
           free(connection);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_connection0 = 1;
+          struct TYPE_5__ * connection = (struct TYPE_5__ *) malloc(_len_connection0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_connection0; _i0++) {
+              connection[_i0].message.length = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = init_message(connection);
+          printf("%d\n", benchRet); 
+          free(connection);
+        
+        break;
+    }
     default:
         usage();
         break;

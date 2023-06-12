@@ -68,12 +68,6 @@ mtfsb0(int crbD)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,12 +84,12 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int crbD = 10;
+        
           int benchRet = mtfsb0(crbD);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

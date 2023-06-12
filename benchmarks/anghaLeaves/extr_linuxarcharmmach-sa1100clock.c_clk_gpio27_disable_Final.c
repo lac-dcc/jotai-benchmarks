@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static void clk_gpio27_disable(struct clk *clk)
 	GAFR &= ~GPIO_32_768kHz;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +80,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_clk0 = 1;
+          int _len_clk0 = 65025;
           struct clk * clk = (struct clk *) malloc(_len_clk0*sizeof(struct clk));
           for(int _i0 = 0; _i0 < _len_clk0; _i0++) {
-            clk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              clk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           clk_gpio27_disable(clk);
           free(clk);
         
@@ -104,14 +101,30 @@ int main(int argc, char *argv[]) {
           int _len_clk0 = 100;
           struct clk * clk = (struct clk *) malloc(_len_clk0*sizeof(struct clk));
           for(int _i0 = 0; _i0 < _len_clk0; _i0++) {
-            clk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              clk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           clk_gpio27_disable(clk);
           free(clk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_clk0 = 1;
+          struct clk * clk = (struct clk *) malloc(_len_clk0*sizeof(struct clk));
+          for(int _i0 = 0; _i0 < _len_clk0; _i0++) {
+              clk[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          clk_gpio27_disable(clk);
+          free(clk);
+        
+        break;
+    }
     default:
         usage();
         break;

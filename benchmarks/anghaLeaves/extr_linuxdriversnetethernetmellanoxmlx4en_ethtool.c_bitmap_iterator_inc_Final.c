@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int bitmap_iterator_inc(struct bitmap_iterat
 	return h->iterator++;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_h0 = 1;
+          int _len_h0 = 65025;
           struct bitmap_iterator * h = (struct bitmap_iterator *) malloc(_len_h0*sizeof(struct bitmap_iterator));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
-            h[_i0].iterator = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].iterator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bitmap_iterator_inc(h);
           printf("%d\n", benchRet); 
           free(h);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_h0 = 100;
           struct bitmap_iterator * h = (struct bitmap_iterator *) malloc(_len_h0*sizeof(struct bitmap_iterator));
           for(int _i0 = 0; _i0 < _len_h0; _i0++) {
-            h[_i0].iterator = ((-2 * (next_i()%2)) + 1) * next_i();
+              h[_i0].iterator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bitmap_iterator_inc(h);
           printf("%d\n", benchRet); 
           free(h);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_h0 = 1;
+          struct bitmap_iterator * h = (struct bitmap_iterator *) malloc(_len_h0*sizeof(struct bitmap_iterator));
+          for(int _i0 = 0; _i0 < _len_h0; _i0++) {
+              h[_i0].iterator = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bitmap_iterator_inc(h);
+          printf("%d\n", benchRet); 
+          free(h);
+        
+        break;
+    }
     default:
         usage();
         break;

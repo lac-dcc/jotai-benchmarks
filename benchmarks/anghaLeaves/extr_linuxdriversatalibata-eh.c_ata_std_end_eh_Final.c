@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ void ata_std_end_eh(struct ata_port *ap)
 	host->host_eh_scheduled = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,18 +77,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ap0 = 1;
+          int _len_ap0 = 65025;
           struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
               int _len_ap__i0__scsi_host0 = 1;
           ap[_i0].scsi_host = (struct Scsi_Host *) malloc(_len_ap__i0__scsi_host0*sizeof(struct Scsi_Host));
           for(int _j0 = 0; _j0 < _len_ap__i0__scsi_host0; _j0++) {
-            ap[_i0].scsi_host->host_eh_scheduled = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].scsi_host->host_eh_scheduled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           ata_std_end_eh(ap);
           for(int _aux = 0; _aux < _len_ap0; _aux++) {
           free(ap[_aux].scsi_host);
@@ -101,7 +100,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ap0 = 100;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__scsi_host0 = 1;
+          ap[_i0].scsi_host = (struct Scsi_Host *) malloc(_len_ap__i0__scsi_host0*sizeof(struct Scsi_Host));
+          for(int _j0 = 0; _j0 < _len_ap__i0__scsi_host0; _j0++) {
+              ap[_i0].scsi_host->host_eh_scheduled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ata_std_end_eh(ap);
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].scsi_host);
+          }
+          free(ap);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ap0 = 1;
+          struct ata_port * ap = (struct ata_port *) malloc(_len_ap0*sizeof(struct ata_port));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              int _len_ap__i0__scsi_host0 = 1;
+          ap[_i0].scsi_host = (struct Scsi_Host *) malloc(_len_ap__i0__scsi_host0*sizeof(struct Scsi_Host));
+          for(int _j0 = 0; _j0 < _len_ap__i0__scsi_host0; _j0++) {
+              ap[_i0].scsi_host->host_eh_scheduled = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          ata_std_end_eh(ap);
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].scsi_host);
+          }
+          free(ap);
+        
+        break;
+    }
     default:
         usage();
         break;

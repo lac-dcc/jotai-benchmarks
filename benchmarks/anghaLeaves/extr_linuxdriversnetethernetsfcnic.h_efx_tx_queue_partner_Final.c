@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static struct efx_tx_queue *efx_tx_queue_partner(struct ef
 		return tx_queue + EFX_TXQ_TYPE_OFFLOAD;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,14 +78,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_tx_queue0 = 1;
+          int _len_tx_queue0 = 65025;
           struct efx_tx_queue * tx_queue = (struct efx_tx_queue *) malloc(_len_tx_queue0*sizeof(struct efx_tx_queue));
           for(int _i0 = 0; _i0 < _len_tx_queue0; _i0++) {
-            tx_queue[_i0].queue = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_queue[_i0].queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct efx_tx_queue * benchRet = efx_tx_queue_partner(tx_queue);
           printf("%d\n", (*benchRet).queue);
           free(tx_queue);
@@ -103,15 +100,32 @@ int main(int argc, char *argv[]) {
           int _len_tx_queue0 = 100;
           struct efx_tx_queue * tx_queue = (struct efx_tx_queue *) malloc(_len_tx_queue0*sizeof(struct efx_tx_queue));
           for(int _i0 = 0; _i0 < _len_tx_queue0; _i0++) {
-            tx_queue[_i0].queue = ((-2 * (next_i()%2)) + 1) * next_i();
+              tx_queue[_i0].queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           struct efx_tx_queue * benchRet = efx_tx_queue_partner(tx_queue);
           printf("%d\n", (*benchRet).queue);
           free(tx_queue);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_tx_queue0 = 1;
+          struct efx_tx_queue * tx_queue = (struct efx_tx_queue *) malloc(_len_tx_queue0*sizeof(struct efx_tx_queue));
+          for(int _i0 = 0; _i0 < _len_tx_queue0; _i0++) {
+              tx_queue[_i0].queue = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          struct efx_tx_queue * benchRet = efx_tx_queue_partner(tx_queue);
+          printf("%d\n", (*benchRet).queue);
+          free(tx_queue);
+        
+        break;
+    }
     default:
         usage();
         break;

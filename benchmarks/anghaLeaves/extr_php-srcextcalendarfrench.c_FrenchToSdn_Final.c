@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +78,6 @@ zend_long FrenchToSdn(
 			+ FRENCH_SDN_OFFSET);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,8 +94,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int year = 100;
+        
           int month = 100;
+        
           int day = 100;
+        
           long benchRet = FrenchToSdn(year,month,day);
           printf("%ld\n", benchRet); 
         
@@ -110,8 +108,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int year = 255;
+        
           int month = 255;
+        
           int day = 255;
+        
           long benchRet = FrenchToSdn(year,month,day);
           printf("%ld\n", benchRet); 
         
@@ -121,14 +122,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int year = 10;
+        
           int month = 10;
+        
           int day = 10;
+        
           long benchRet = FrenchToSdn(year,month,day);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int year = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int month = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int day = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = FrenchToSdn(year,month,day);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

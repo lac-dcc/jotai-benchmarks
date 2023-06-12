@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int speed_max(struct mddev *mddev)
 		mddev->sync_speed_max : sysctl_speed_limit_max;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mddev0 = 1;
+          int _len_mddev0 = 65025;
           struct mddev * mddev = (struct mddev *) malloc(_len_mddev0*sizeof(struct mddev));
           for(int _i0 = 0; _i0 < _len_mddev0; _i0++) {
-            mddev[_i0].sync_speed_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              mddev[_i0].sync_speed_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = speed_max(mddev);
           printf("%d\n", benchRet); 
           free(mddev);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_mddev0 = 100;
           struct mddev * mddev = (struct mddev *) malloc(_len_mddev0*sizeof(struct mddev));
           for(int _i0 = 0; _i0 < _len_mddev0; _i0++) {
-            mddev[_i0].sync_speed_max = ((-2 * (next_i()%2)) + 1) * next_i();
+              mddev[_i0].sync_speed_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = speed_max(mddev);
           printf("%d\n", benchRet); 
           free(mddev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_mddev0 = 1;
+          struct mddev * mddev = (struct mddev *) malloc(_len_mddev0*sizeof(struct mddev));
+          for(int _i0 = 0; _i0 < _len_mddev0; _i0++) {
+              mddev[_i0].sync_speed_max = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = speed_max(mddev);
+          printf("%d\n", benchRet); 
+          free(mddev);
+        
+        break;
+    }
     default:
         usage();
         break;

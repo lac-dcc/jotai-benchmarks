@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int kvmppc_slb_sid_shift(struct kvmppc_slb *slbe)
 	return slbe->tb ? SID_SHIFT_1T : SID_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_slbe0 = 1;
+          int _len_slbe0 = 65025;
           struct kvmppc_slb * slbe = (struct kvmppc_slb *) malloc(_len_slbe0*sizeof(struct kvmppc_slb));
           for(int _i0 = 0; _i0 < _len_slbe0; _i0++) {
-            slbe[_i0].tb = ((-2 * (next_i()%2)) + 1) * next_i();
+              slbe[_i0].tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kvmppc_slb_sid_shift(slbe);
           printf("%d\n", benchRet); 
           free(slbe);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_slbe0 = 100;
           struct kvmppc_slb * slbe = (struct kvmppc_slb *) malloc(_len_slbe0*sizeof(struct kvmppc_slb));
           for(int _i0 = 0; _i0 < _len_slbe0; _i0++) {
-            slbe[_i0].tb = ((-2 * (next_i()%2)) + 1) * next_i();
+              slbe[_i0].tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = kvmppc_slb_sid_shift(slbe);
           printf("%d\n", benchRet); 
           free(slbe);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_slbe0 = 1;
+          struct kvmppc_slb * slbe = (struct kvmppc_slb *) malloc(_len_slbe0*sizeof(struct kvmppc_slb));
+          for(int _i0 = 0; _i0 < _len_slbe0; _i0++) {
+              slbe[_i0].tb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = kvmppc_slb_sid_shift(slbe);
+          printf("%d\n", benchRet); 
+          free(slbe);
+        
+        break;
+    }
     default:
         usage();
         break;

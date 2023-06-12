@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int wlcore_probe_of(struct device *dev, int *irq,
 	return -ENODATA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,24 +77,29 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dev0 = 1;
+          int _len_dev0 = 65025;
           struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_irq0 = 1;
+        
+          int _len_irq0 = 65025;
           int * irq = (int *) malloc(_len_irq0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_irq0; _i0++) {
             irq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-          int _len_pdev_data0 = 1;
+        
+          int _len_pdev_data0 = 65025;
           struct wlcore_platdev_data * pdev_data = (struct wlcore_platdev_data *) malloc(_len_pdev_data0*sizeof(struct wlcore_platdev_data));
           for(int _i0 = 0; _i0 < _len_pdev_data0; _i0++) {
-            pdev_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              pdev_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = wlcore_probe_of(dev,irq,pdev_data);
           printf("%d\n", benchRet); 
           free(dev);
@@ -107,7 +108,68 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_dev0 = 100;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq0 = 100;
+          int * irq = (int *) malloc(_len_irq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irq0; _i0++) {
+            irq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdev_data0 = 100;
+          struct wlcore_platdev_data * pdev_data = (struct wlcore_platdev_data *) malloc(_len_pdev_data0*sizeof(struct wlcore_platdev_data));
+          for(int _i0 = 0; _i0 < _len_pdev_data0; _i0++) {
+              pdev_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wlcore_probe_of(dev,irq,pdev_data);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(irq);
+          free(pdev_data);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_dev0 = 1;
+          struct device * dev = (struct device *) malloc(_len_dev0*sizeof(struct device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_irq0 = 1;
+          int * irq = (int *) malloc(_len_irq0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_irq0; _i0++) {
+            irq[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pdev_data0 = 1;
+          struct wlcore_platdev_data * pdev_data = (struct wlcore_platdev_data *) malloc(_len_pdev_data0*sizeof(struct wlcore_platdev_data));
+          for(int _i0 = 0; _i0 < _len_pdev_data0; _i0++) {
+              pdev_data[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = wlcore_probe_of(dev,irq,pdev_data);
+          printf("%d\n", benchRet); 
+          free(dev);
+          free(irq);
+          free(pdev_data);
+        
+        break;
+    }
     default:
         usage();
         break;

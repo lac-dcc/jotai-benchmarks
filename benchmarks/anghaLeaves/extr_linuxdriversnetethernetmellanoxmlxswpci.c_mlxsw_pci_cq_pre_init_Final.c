@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -73,12 +75,6 @@ __attribute__((used)) static void mlxsw_pci_cq_pre_init(struct mlxsw_pci *mlxsw_
 		q->u.cq.v = MLXSW_PCI_CQE_V1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,28 +87,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mlxsw_pci0 = 1;
+          int _len_mlxsw_pci0 = 65025;
           struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
           for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
-            mlxsw_pci[_i0].max_cqe_ver = ((-2 * (next_i()%2)) + 1) * next_i();
-        mlxsw_pci[_i0].num_sdq_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+              mlxsw_pci[_i0].max_cqe_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_pci[_i0].num_sdq_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_q0 = 1;
+        
+          int _len_q0 = 65025;
           struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
-        q[_i0].u.cq.v = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].u.cq.v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           mlxsw_pci_cq_pre_init(mlxsw_pci,q);
           free(mlxsw_pci);
           free(q);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mlxsw_pci0 = 100;
+          struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
+          for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
+              mlxsw_pci[_i0].max_cqe_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_pci[_i0].num_sdq_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_q0 = 100;
+          struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].u.cq.v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          mlxsw_pci_cq_pre_init(mlxsw_pci,q);
+          free(mlxsw_pci);
+          free(q);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mlxsw_pci0 = 1;
+          struct mlxsw_pci * mlxsw_pci = (struct mlxsw_pci *) malloc(_len_mlxsw_pci0*sizeof(struct mlxsw_pci));
+          for(int _i0 = 0; _i0 < _len_mlxsw_pci0; _i0++) {
+              mlxsw_pci[_i0].max_cqe_ver = ((-2 * (next_i()%2)) + 1) * next_i();
+          mlxsw_pci[_i0].num_sdq_cqs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_q0 = 1;
+          struct mlxsw_pci_queue * q = (struct mlxsw_pci_queue *) malloc(_len_q0*sizeof(struct mlxsw_pci_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].num = ((-2 * (next_i()%2)) + 1) * next_i();
+          q[_i0].u.cq.v = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          mlxsw_pci_cq_pre_init(mlxsw_pci,q);
+          free(mlxsw_pci);
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

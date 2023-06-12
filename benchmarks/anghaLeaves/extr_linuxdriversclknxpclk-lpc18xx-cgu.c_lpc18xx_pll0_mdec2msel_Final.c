@@ -72,12 +72,6 @@ __attribute__((used)) static u32 lpc18xx_pll0_mdec2msel(u32 x)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           int benchRet = lpc18xx_pll0_mdec2msel(x);
           printf("%d\n", benchRet); 
         
@@ -103,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           int benchRet = lpc18xx_pll0_mdec2msel(x);
           printf("%d\n", benchRet); 
         
@@ -112,12 +108,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           int benchRet = lpc18xx_pll0_mdec2msel(x);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ change_conf(struct TCP_Server_Info *server)
 	return server->credits + server->echo_credits + server->oplock_credits;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,18 +101,131 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_server0 = 65025;
+          struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].echo_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].oplock_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].echoes = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].oplocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = change_conf(server);
+          printf("%d\n", benchRet); 
+          free(server);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
+          int _len_server0 = 100;
+          struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
+          for(int _i0 = 0; _i0 < _len_server0; _i0++) {
+              server[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].echo_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].oplock_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].echoes = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].oplocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = change_conf(server);
+          printf("%d\n", benchRet); 
+          free(server);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 54
+          // dynamic_instructions_O0 : 54
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 24
+          // dynamic_instructions_O2 : 24
+          // ------------------------------- 
+          // static_instructions_O3 : 24
+          // dynamic_instructions_O3 : 24
+          // ------------------------------- 
+          // static_instructions_Ofast : 24
+          // dynamic_instructions_Ofast : 24
+          // ------------------------------- 
+          // static_instructions_Os : 24
+          // dynamic_instructions_Os : 24
+          // ------------------------------- 
+          // static_instructions_Oz : 24
+          // dynamic_instructions_Oz : 24
+          // ------------------------------- 
+
           int _len_server0 = 1;
           struct TCP_Server_Info * server = (struct TCP_Server_Info *) malloc(_len_server0*sizeof(struct TCP_Server_Info));
           for(int _i0 = 0; _i0 < _len_server0; _i0++) {
-            server[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].echo_credits = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].oplock_credits = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].echoes = ((-2 * (next_i()%2)) + 1) * next_i();
-        server[_i0].oplocks = ((-2 * (next_i()%2)) + 1) * next_i();
+              server[_i0].credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].echo_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].oplock_credits = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].echoes = ((-2 * (next_i()%2)) + 1) * next_i();
+          server[_i0].oplocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = change_conf(server);
           printf("%d\n", benchRet); 
           free(server);

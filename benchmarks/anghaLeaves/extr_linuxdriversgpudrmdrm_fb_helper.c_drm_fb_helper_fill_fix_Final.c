@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +82,6 @@ void drm_fb_helper_fill_fix(struct fb_info *info, uint32_t pitch,
 	info->fix.line_length = pitch;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,25 +94,212 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int pitch = 100;
+        
           int depth = 100;
+        
           int _len_info0 = 1;
           struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.ypanstep = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.accel = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.ywrapstep = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.type_aux = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.mmio_len = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.mmio_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].fix.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ypanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.accel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ywrapstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type_aux = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          drm_fb_helper_fill_fix(info,pitch,depth);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int pitch = 255;
+        
+          int depth = 255;
+        
+          int _len_info0 = 65025;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ypanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.accel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ywrapstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type_aux = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          drm_fb_helper_fill_fix(info,pitch,depth);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int pitch = 10;
+        
+          int depth = 10;
+        
+          int _len_info0 = 100;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ypanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.accel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ywrapstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type_aux = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          drm_fb_helper_fill_fix(info,pitch,depth);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int pitch = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int depth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct fb_info * info = (struct fb_info *) malloc(_len_info0*sizeof(struct fb_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].fix.xpanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ypanstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.line_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.accel = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.ywrapstep = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type_aux = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_len = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.mmio_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.visual = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].fix.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           drm_fb_helper_fill_fix(info,pitch,depth);
           free(info);
         

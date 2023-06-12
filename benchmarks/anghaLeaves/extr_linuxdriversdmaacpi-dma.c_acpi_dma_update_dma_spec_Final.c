@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ __attribute__((used)) static int acpi_dma_update_dma_spec(struct acpi_dma *adma,
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,22 +94,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_adma0 = 65025;
+          struct acpi_dma * adma = (struct acpi_dma *) malloc(_len_adma0*sizeof(struct acpi_dma));
+          for(int _i0 = 0; _i0 < _len_adma0; _i0++) {
+              adma[_i0].base_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          adma[_i0].end_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          adma[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_spec0 = 65025;
+          struct acpi_dma_spec * dma_spec = (struct acpi_dma_spec *) malloc(_len_dma_spec0*sizeof(struct acpi_dma_spec));
+          for(int _i0 = 0; _i0 < _len_dma_spec0; _i0++) {
+              dma_spec[_i0].slave_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_spec[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = acpi_dma_update_dma_spec(adma,dma_spec);
+          printf("%d\n", benchRet); 
+          free(adma);
+          free(dma_spec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_adma0 = 100;
+          struct acpi_dma * adma = (struct acpi_dma *) malloc(_len_adma0*sizeof(struct acpi_dma));
+          for(int _i0 = 0; _i0 < _len_adma0; _i0++) {
+              adma[_i0].base_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          adma[_i0].end_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          adma[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_dma_spec0 = 100;
+          struct acpi_dma_spec * dma_spec = (struct acpi_dma_spec *) malloc(_len_dma_spec0*sizeof(struct acpi_dma_spec));
+          for(int _i0 = 0; _i0 < _len_dma_spec0; _i0++) {
+              dma_spec[_i0].slave_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_spec[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = acpi_dma_update_dma_spec(adma,dma_spec);
+          printf("%d\n", benchRet); 
+          free(adma);
+          free(dma_spec);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_adma0 = 1;
           struct acpi_dma * adma = (struct acpi_dma *) malloc(_len_adma0*sizeof(struct acpi_dma));
           for(int _i0 = 0; _i0 < _len_adma0; _i0++) {
-            adma[_i0].base_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
-        adma[_i0].end_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
-        adma[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              adma[_i0].base_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          adma[_i0].end_request_line = ((-2 * (next_i()%2)) + 1) * next_i();
+          adma[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_dma_spec0 = 1;
           struct acpi_dma_spec * dma_spec = (struct acpi_dma_spec *) malloc(_len_dma_spec0*sizeof(struct acpi_dma_spec));
           for(int _i0 = 0; _i0 < _len_dma_spec0; _i0++) {
-            dma_spec[_i0].slave_id = ((-2 * (next_i()%2)) + 1) * next_i();
-        dma_spec[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              dma_spec[_i0].slave_id = ((-2 * (next_i()%2)) + 1) * next_i();
+          dma_spec[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = acpi_dma_update_dma_spec(adma,dma_spec);
           printf("%d\n", benchRet); 
           free(adma);

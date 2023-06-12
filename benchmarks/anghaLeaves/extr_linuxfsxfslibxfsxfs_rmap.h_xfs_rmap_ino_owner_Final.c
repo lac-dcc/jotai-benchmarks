@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ xfs_rmap_ino_owner(
 		oi->oi_flags |= XFS_OWNER_INFO_ATTR_FORK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,21 +92,94 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ino = 100;
+        
           int whichfork = 100;
+        
           int offset = 100;
+        
           int _len_oi0 = 1;
           struct xfs_owner_info * oi = (struct xfs_owner_info *) malloc(_len_oi0*sizeof(struct xfs_owner_info));
           for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
-            oi[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        oi[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        oi[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+              oi[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           xfs_rmap_ino_owner(oi,ino,whichfork,offset);
           free(oi);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int ino = 255;
+        
+          int whichfork = 255;
+        
+          int offset = 255;
+        
+          int _len_oi0 = 65025;
+          struct xfs_owner_info * oi = (struct xfs_owner_info *) malloc(_len_oi0*sizeof(struct xfs_owner_info));
+          for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
+              oi[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_rmap_ino_owner(oi,ino,whichfork,offset);
+          free(oi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int ino = 10;
+        
+          int whichfork = 10;
+        
+          int offset = 10;
+        
+          int _len_oi0 = 100;
+          struct xfs_owner_info * oi = (struct xfs_owner_info *) malloc(_len_oi0*sizeof(struct xfs_owner_info));
+          for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
+              oi[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_rmap_ino_owner(oi,ino,whichfork,offset);
+          free(oi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int ino = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int whichfork = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_oi0 = 1;
+          struct xfs_owner_info * oi = (struct xfs_owner_info *) malloc(_len_oi0*sizeof(struct xfs_owner_info));
+          for(int _i0 = 0; _i0 < _len_oi0; _i0++) {
+              oi[_i0].oi_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          oi[_i0].oi_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          xfs_rmap_ino_owner(oi,ino,whichfork,offset);
+          free(oi);
+        
+        break;
+    }
     default:
         usage();
         break;

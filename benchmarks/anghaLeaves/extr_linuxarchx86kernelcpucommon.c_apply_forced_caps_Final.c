@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void apply_forced_caps(struct cpuinfo_x86 *c)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,8 +83,52 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
+    {
+          int _len_c0 = 65025;
+          struct cpuinfo_x86 * c = (struct cpuinfo_x86 *) malloc(_len_c0*sizeof(struct cpuinfo_x86));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__x86_capability0 = 1;
+          c[_i0].x86_capability = (int *) malloc(_len_c__i0__x86_capability0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__x86_capability0; _j0++) {
+            c[_i0].x86_capability[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          apply_forced_caps(c);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].x86_capability);
+          }
+          free(c);
+        
+        break;
+    }
+    // big-arr-10x
+    case 1:
+    {
+          int _len_c0 = 100;
+          struct cpuinfo_x86 * c = (struct cpuinfo_x86 *) malloc(_len_c0*sizeof(struct cpuinfo_x86));
+          for(int _i0 = 0; _i0 < _len_c0; _i0++) {
+              int _len_c__i0__x86_capability0 = 1;
+          c[_i0].x86_capability = (int *) malloc(_len_c__i0__x86_capability0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_c__i0__x86_capability0; _j0++) {
+            c[_i0].x86_capability[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          apply_forced_caps(c);
+          for(int _aux = 0; _aux < _len_c0; _aux++) {
+          free(c[_aux].x86_capability);
+          }
+          free(c);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           int _len_c0 = 1;
           struct cpuinfo_x86 * c = (struct cpuinfo_x86 *) malloc(_len_c0*sizeof(struct cpuinfo_x86));
@@ -98,7 +138,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_c__i0__x86_capability0; _j0++) {
             c[_i0].x86_capability[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           apply_forced_caps(c);
           for(int _aux = 0; _aux < _len_c0; _aux++) {
           free(c[_aux].x86_capability);
@@ -107,7 +149,6 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -83,12 +85,6 @@ nfs_file_lock_conflict(struct nfs_file_lock *nflp1, struct nfs_file_lock *nflp2,
 	return (1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,32 +97,186 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_nflp10 = 65025;
+          struct nfs_file_lock * nflp1 = (struct nfs_file_lock *) malloc(_len_nflp10*sizeof(struct nfs_file_lock));
+          for(int _i0 = 0; _i0 < _len_nflp10; _i0++) {
+              nflp1[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nflp20 = 65025;
+          struct nfs_file_lock * nflp2 = (struct nfs_file_lock *) malloc(_len_nflp20*sizeof(struct nfs_file_lock));
+          for(int _i0 = 0; _i0 < _len_nflp20; _i0++) {
+              nflp2[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_willsplit0 = 65025;
+          int * willsplit = (int *) malloc(_len_willsplit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_willsplit0; _i0++) {
+            willsplit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nfs_file_lock_conflict(nflp1,nflp2,willsplit);
+          printf("%d\n", benchRet); 
+          free(nflp1);
+          free(nflp2);
+          free(willsplit);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
+          int _len_nflp10 = 100;
+          struct nfs_file_lock * nflp1 = (struct nfs_file_lock *) malloc(_len_nflp10*sizeof(struct nfs_file_lock));
+          for(int _i0 = 0; _i0 < _len_nflp10; _i0++) {
+              nflp1[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_nflp20 = 100;
+          struct nfs_file_lock * nflp2 = (struct nfs_file_lock *) malloc(_len_nflp20*sizeof(struct nfs_file_lock));
+          for(int _i0 = 0; _i0 < _len_nflp20; _i0++) {
+              nflp2[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_willsplit0 = 100;
+          int * willsplit = (int *) malloc(_len_willsplit0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_willsplit0; _i0++) {
+            willsplit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nfs_file_lock_conflict(nflp1,nflp2,willsplit);
+          printf("%d\n", benchRet); 
+          free(nflp1);
+          free(nflp2);
+          free(willsplit);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 23
+          // dynamic_instructions_O2 : 23
+          // ------------------------------- 
+          // static_instructions_O3 : 23
+          // dynamic_instructions_O3 : 23
+          // ------------------------------- 
+          // static_instructions_Ofast : 23
+          // dynamic_instructions_Ofast : 23
+          // ------------------------------- 
+          // static_instructions_Os : 23
+          // dynamic_instructions_Os : 23
+          // ------------------------------- 
+          // static_instructions_Oz : 23
+          // dynamic_instructions_Oz : 23
+          // ------------------------------- 
+
           int _len_nflp10 = 1;
           struct nfs_file_lock * nflp1 = (struct nfs_file_lock *) malloc(_len_nflp10*sizeof(struct nfs_file_lock));
           for(int _i0 = 0; _i0 < _len_nflp10; _i0++) {
-            nflp1[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp1[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp1[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp1[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp1[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              nflp1[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp1[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_nflp20 = 1;
           struct nfs_file_lock * nflp2 = (struct nfs_file_lock *) malloc(_len_nflp20*sizeof(struct nfs_file_lock));
           for(int _i0 = 0; _i0 < _len_nflp20; _i0++) {
-            nflp2[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp2[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp2[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp2[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
-        nflp2[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+              nflp2[_i0].nfl_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_owner = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_start = ((-2 * (next_i()%2)) + 1) * next_i();
+          nflp2[_i0].nfl_end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_willsplit0 = 1;
           int * willsplit = (int *) malloc(_len_willsplit0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_willsplit0; _i0++) {
             willsplit[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nfs_file_lock_conflict(nflp1,nflp2,willsplit);
           printf("%d\n", benchRet); 
           free(nflp1);

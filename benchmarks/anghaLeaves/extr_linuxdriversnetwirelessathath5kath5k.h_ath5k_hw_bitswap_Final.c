@@ -67,12 +67,6 @@ __attribute__((used)) static inline u32 ath5k_hw_bitswap(u32 val, unsigned int b
 	return retval;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,13 +83,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int val = 10;
+        
           unsigned int bits = 10;
+        
           unsigned int benchRet = ath5k_hw_bitswap(val,bits);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

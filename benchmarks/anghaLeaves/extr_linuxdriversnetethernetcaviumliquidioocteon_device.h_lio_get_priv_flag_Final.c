@@ -61,12 +61,6 @@ __attribute__((used)) static inline u32 lio_get_priv_flag(struct octeon_device *
 	return !!(octdev->priv_flags & (0x1 << flag));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +73,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // big-arr-10x
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int flag = 10;
+        
           int _len_octdev0 = 100;
           struct octeon_device * octdev = (struct octeon_device *) malloc(_len_octdev0*sizeof(struct octeon_device));
           for(int _i0 = 0; _i0 < _len_octdev0; _i0++) {
-            octdev[_i0].priv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              octdev[_i0].priv_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lio_get_priv_flag(octdev,flag);
           printf("%d\n", benchRet); 
           free(octdev);

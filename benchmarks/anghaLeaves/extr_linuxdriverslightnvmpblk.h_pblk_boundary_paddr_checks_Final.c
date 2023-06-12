@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static inline int pblk_boundary_paddr_checks(struct pblk *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,11 +86,34 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long paddr = 100;
+        
           int _len_pblk0 = 1;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
-            pblk[_i0].lm.sec_per_line = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].lm.sec_per_line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = pblk_boundary_paddr_checks(pblk,paddr);
+          printf("%d\n", benchRet); 
+          free(pblk);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          long paddr = 255;
+        
+          int _len_pblk0 = 65025;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].lm.sec_per_line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = pblk_boundary_paddr_checks(pblk,paddr);
           printf("%d\n", benchRet); 
           free(pblk);
@@ -102,21 +121,43 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           long paddr = 10;
+        
           int _len_pblk0 = 100;
           struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
           for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
-            pblk[_i0].lm.sec_per_line = ((-2 * (next_i()%2)) + 1) * next_i();
+              pblk[_i0].lm.sec_per_line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = pblk_boundary_paddr_checks(pblk,paddr);
           printf("%d\n", benchRet); 
           free(pblk);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long paddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pblk0 = 1;
+          struct pblk * pblk = (struct pblk *) malloc(_len_pblk0*sizeof(struct pblk));
+          for(int _i0 = 0; _i0 < _len_pblk0; _i0++) {
+              pblk[_i0].lm.sec_per_line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = pblk_boundary_paddr_checks(pblk,paddr);
+          printf("%d\n", benchRet); 
+          free(pblk);
+        
+        break;
+    }
     default:
         usage();
         break;

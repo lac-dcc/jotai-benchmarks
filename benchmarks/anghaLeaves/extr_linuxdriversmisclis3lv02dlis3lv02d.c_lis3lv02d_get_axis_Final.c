@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline int lis3lv02d_get_axis(s8 axis, int hw_value
 		return -hw_values[-axis - 1];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,22 +76,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int axis = 10;
-          int _len_hw_values0 = 100;
+          int axis = 255;
+        
+          int _len_hw_values0 = 65025;
           int * hw_values = (int *) malloc(_len_hw_values0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_hw_values0; _i0++) {
             hw_values[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = lis3lv02d_get_axis(axis,hw_values);
           printf("%d\n", benchRet); 
           free(hw_values);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int axis = 10;
+        
+          int _len_hw_values0 = 100;
+          int * hw_values = (int *) malloc(_len_hw_values0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_hw_values0; _i0++) {
+            hw_values[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = lis3lv02d_get_axis(axis,hw_values);
+          printf("%d\n", benchRet); 
+          free(hw_values);
+        
+        break;
+    }
     default:
         usage();
         break;

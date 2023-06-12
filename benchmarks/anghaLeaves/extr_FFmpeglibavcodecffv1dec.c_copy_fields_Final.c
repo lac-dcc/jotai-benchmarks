@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ __attribute__((used)) static void copy_fields(FFV1Context *fsdst, FFV1Context *f
     }
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,81 +99,87 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_fsdst0 = 1;
+          int _len_fsdst0 = 65025;
           struct TYPE_5__ * fsdst = (struct TYPE_5__ *) malloc(_len_fsdst0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fsdst0; _i0++) {
-            fsdst[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsdst[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsdst[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_fssrc0 = 1;
+        
+          int _len_fssrc0 = 65025;
           struct TYPE_5__ * fssrc = (struct TYPE_5__ *) malloc(_len_fssrc0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fssrc0; _i0++) {
-            fssrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fssrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              fssrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_fsrc0 = 1;
+        
+          int _len_fsrc0 = 65025;
           struct TYPE_5__ * fsrc = (struct TYPE_5__ *) malloc(_len_fsrc0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_fsrc0; _i0++) {
-            fsrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
-        fsrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+              fsrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           copy_fields(fsdst,fssrc,fsrc);
           free(fsdst);
           free(fssrc);
@@ -185,7 +187,182 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_fsdst0 = 100;
+          struct TYPE_5__ * fsdst = (struct TYPE_5__ *) malloc(_len_fsdst0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fsdst0; _i0++) {
+              fsdst[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fssrc0 = 100;
+          struct TYPE_5__ * fssrc = (struct TYPE_5__ *) malloc(_len_fssrc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fssrc0; _i0++) {
+              fssrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fsrc0 = 100;
+          struct TYPE_5__ * fsrc = (struct TYPE_5__ *) malloc(_len_fsrc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fsrc0; _i0++) {
+              fsrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_fields(fsdst,fssrc,fsrc);
+          free(fsdst);
+          free(fssrc);
+          free(fsrc);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_fsdst0 = 1;
+          struct TYPE_5__ * fsdst = (struct TYPE_5__ *) malloc(_len_fsdst0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fsdst0; _i0++) {
+              fsdst[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsdst[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fssrc0 = 1;
+          struct TYPE_5__ * fssrc = (struct TYPE_5__ *) malloc(_len_fssrc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fssrc0; _i0++) {
+              fssrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fssrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_fsrc0 = 1;
+          struct TYPE_5__ * fsrc = (struct TYPE_5__ *) malloc(_len_fsrc0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_fsrc0; _i0++) {
+              fsrc[_i0].version = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_height = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_width = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_y = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_x = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].packed_at_lsb = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].bits_per_raw_sample = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].key_frame_ok = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].slice_damaged = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].intra = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].ec = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].colorspace = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].ac = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].plane_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].transparency = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_v_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_h_shift = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].chroma_planes = ((-2 * (next_i()%2)) + 1) * next_i();
+          fsrc[_i0].micro_version = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          copy_fields(fsdst,fssrc,fsrc);
+          free(fsdst);
+          free(fssrc);
+          free(fsrc);
+        
+        break;
+    }
     default:
         usage();
         break;

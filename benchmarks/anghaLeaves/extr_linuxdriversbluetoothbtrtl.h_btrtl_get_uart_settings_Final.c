@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline int btrtl_get_uart_settings(struct hci_dev *
 	return -ENOENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,34 +81,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_hdev0 = 65025;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_btrtl_dev0 = 65025;
+          struct btrtl_device_info * btrtl_dev = (struct btrtl_device_info *) malloc(_len_btrtl_dev0*sizeof(struct btrtl_device_info));
+          for(int _i0 = 0; _i0 < _len_btrtl_dev0; _i0++) {
+              btrtl_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_controller_baudrate0 = 65025;
+          unsigned int * controller_baudrate = (unsigned int *) malloc(_len_controller_baudrate0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_controller_baudrate0; _i0++) {
+            controller_baudrate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_device_baudrate0 = 65025;
+          int * device_baudrate = (int *) malloc(_len_device_baudrate0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_device_baudrate0; _i0++) {
+            device_baudrate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_flow_control0 = 65025;
+          int * flow_control = (int *) malloc(_len_flow_control0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flow_control0; _i0++) {
+            flow_control[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = btrtl_get_uart_settings(hdev,btrtl_dev,controller_baudrate,device_baudrate,flow_control);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(btrtl_dev);
+          free(controller_baudrate);
+          free(device_baudrate);
+          free(flow_control);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_hdev0 = 100;
+          struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
+          for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_btrtl_dev0 = 100;
+          struct btrtl_device_info * btrtl_dev = (struct btrtl_device_info *) malloc(_len_btrtl_dev0*sizeof(struct btrtl_device_info));
+          for(int _i0 = 0; _i0 < _len_btrtl_dev0; _i0++) {
+              btrtl_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_controller_baudrate0 = 100;
+          unsigned int * controller_baudrate = (unsigned int *) malloc(_len_controller_baudrate0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_controller_baudrate0; _i0++) {
+            controller_baudrate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_device_baudrate0 = 100;
+          int * device_baudrate = (int *) malloc(_len_device_baudrate0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_device_baudrate0; _i0++) {
+            device_baudrate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_flow_control0 = 100;
+          int * flow_control = (int *) malloc(_len_flow_control0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_flow_control0; _i0++) {
+            flow_control[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = btrtl_get_uart_settings(hdev,btrtl_dev,controller_baudrate,device_baudrate,flow_control);
+          printf("%d\n", benchRet); 
+          free(hdev);
+          free(btrtl_dev);
+          free(controller_baudrate);
+          free(device_baudrate);
+          free(flow_control);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_hdev0 = 1;
           struct hci_dev * hdev = (struct hci_dev *) malloc(_len_hdev0*sizeof(struct hci_dev));
           for(int _i0 = 0; _i0 < _len_hdev0; _i0++) {
-            hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_btrtl_dev0 = 1;
           struct btrtl_device_info * btrtl_dev = (struct btrtl_device_info *) malloc(_len_btrtl_dev0*sizeof(struct btrtl_device_info));
           for(int _i0 = 0; _i0 < _len_btrtl_dev0; _i0++) {
-            btrtl_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              btrtl_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_controller_baudrate0 = 1;
           unsigned int * controller_baudrate = (unsigned int *) malloc(_len_controller_baudrate0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_controller_baudrate0; _i0++) {
             controller_baudrate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_device_baudrate0 = 1;
           int * device_baudrate = (int *) malloc(_len_device_baudrate0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_device_baudrate0; _i0++) {
             device_baudrate[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_flow_control0 = 1;
           int * flow_control = (int *) malloc(_len_flow_control0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_flow_control0; _i0++) {
             flow_control[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = btrtl_get_uart_settings(hdev,btrtl_dev,controller_baudrate,device_baudrate,flow_control);
           printf("%d\n", benchRet); 
           free(hdev);

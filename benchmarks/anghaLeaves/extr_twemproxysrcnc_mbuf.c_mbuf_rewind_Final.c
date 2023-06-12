@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ mbuf_rewind(struct mbuf *mbuf)
     mbuf->last = mbuf->start;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,22 +76,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mbuf0 = 1;
+          int _len_mbuf0 = 65025;
           struct mbuf * mbuf = (struct mbuf *) malloc(_len_mbuf0*sizeof(struct mbuf));
           for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
-            mbuf[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        mbuf[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
-        mbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              mbuf[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mbuf_rewind(mbuf);
           free(mbuf);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mbuf0 = 100;
+          struct mbuf * mbuf = (struct mbuf *) malloc(_len_mbuf0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mbuf_rewind(mbuf);
+          free(mbuf);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mbuf0 = 1;
+          struct mbuf * mbuf = (struct mbuf *) malloc(_len_mbuf0*sizeof(struct mbuf));
+          for(int _i0 = 0; _i0 < _len_mbuf0; _i0++) {
+              mbuf[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          mbuf[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mbuf_rewind(mbuf);
+          free(mbuf);
+        
+        break;
+    }
     default:
         usage();
         break;

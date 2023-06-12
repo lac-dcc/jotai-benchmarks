@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static inline void mic_dma_prep_status_desc(struct mic_dma
 	desc->qw1 = qw1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,18 +88,184 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           unsigned long long data = 100;
+        
           unsigned long long dst_phys = 100;
+        
           int generate_intr = 100;
+        
           int _len_desc0 = 1;
           struct mic_dma_desc * desc = (struct mic_dma_desc *) malloc(_len_desc0*sizeof(struct mic_dma_desc));
           for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
-            desc[_i0].qw0 = ((-2 * (next_i()%2)) + 1) * next_i();
-        desc[_i0].qw1 = ((-2 * (next_i()%2)) + 1) * next_i();
+              desc[_i0].qw0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].qw1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          mic_dma_prep_status_desc(desc,data,dst_phys,generate_intr);
+          free(desc);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long long data = 255;
+        
+          unsigned long long dst_phys = 255;
+        
+          int generate_intr = 255;
+        
+          int _len_desc0 = 65025;
+          struct mic_dma_desc * desc = (struct mic_dma_desc *) malloc(_len_desc0*sizeof(struct mic_dma_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].qw0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].qw1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mic_dma_prep_status_desc(desc,data,dst_phys,generate_intr);
+          free(desc);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long long data = 10;
+        
+          unsigned long long dst_phys = 10;
+        
+          int generate_intr = 10;
+        
+          int _len_desc0 = 100;
+          struct mic_dma_desc * desc = (struct mic_dma_desc *) malloc(_len_desc0*sizeof(struct mic_dma_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].qw0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].qw1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mic_dma_prep_status_desc(desc,data,dst_phys,generate_intr);
+          free(desc);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          unsigned long long data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long long dst_phys = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int generate_intr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_desc0 = 1;
+          struct mic_dma_desc * desc = (struct mic_dma_desc *) malloc(_len_desc0*sizeof(struct mic_dma_desc));
+          for(int _i0 = 0; _i0 < _len_desc0; _i0++) {
+              desc[_i0].qw0 = ((-2 * (next_i()%2)) + 1) * next_i();
+          desc[_i0].qw1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           mic_dma_prep_status_desc(desc,data,dst_phys,generate_intr);
           free(desc);
         

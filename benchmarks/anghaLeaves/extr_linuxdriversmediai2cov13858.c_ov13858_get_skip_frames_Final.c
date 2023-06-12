@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ __attribute__((used)) static int ov13858_get_skip_frames(struct v4l2_subdev *sd,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,22 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sd0 = 1;
+          int _len_sd0 = 65025;
           struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
           for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
-            sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_frames0 = 1;
+        
+          int _len_frames0 = 65025;
           int * frames = (int *) malloc(_len_frames0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
             frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = ov13858_get_skip_frames(sd,frames);
           printf("%d\n", benchRet); 
           free(sd);
@@ -102,7 +101,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_sd0 = 100;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frames0 = 100;
+          int * frames = (int *) malloc(_len_frames0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
+            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ov13858_get_skip_frames(sd,frames);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(frames);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_sd0 = 1;
+          struct v4l2_subdev * sd = (struct v4l2_subdev *) malloc(_len_sd0*sizeof(struct v4l2_subdev));
+          for(int _i0 = 0; _i0 < _len_sd0; _i0++) {
+              sd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_frames0 = 1;
+          int * frames = (int *) malloc(_len_frames0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_frames0; _i0++) {
+            frames[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = ov13858_get_skip_frames(sd,frames);
+          printf("%d\n", benchRet); 
+          free(sd);
+          free(frames);
+        
+        break;
+    }
     default:
         usage();
         break;

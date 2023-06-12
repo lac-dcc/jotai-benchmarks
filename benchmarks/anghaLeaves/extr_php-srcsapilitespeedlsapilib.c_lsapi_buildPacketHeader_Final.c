@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +73,6 @@ __attribute__((used)) static inline void lsapi_buildPacketHeader( struct lsapi_p
     pHeader->m_packetLen.m_iLen = len;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,20 +85,192 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           char type = 100;
+        
           int len = 100;
+        
           int _len_pHeader0 = 1;
           struct lsapi_packet_header * pHeader = (struct lsapi_packet_header *) malloc(_len_pHeader0*sizeof(struct lsapi_packet_header));
           for(int _i0 = 0; _i0 < _len_pHeader0; _i0++) {
-            pHeader[_i0].m_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        pHeader[_i0].m_packetLen.m_iLen = ((-2 * (next_i()%2)) + 1) * next_i();
-        pHeader[_i0].m_flag = ((-2 * (next_i()%2)) + 1) * next_i();
-        pHeader[_i0].m_versionB1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        pHeader[_i0].m_versionB0 = ((-2 * (next_i()%2)) + 1) * next_i();
+              pHeader[_i0].m_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_packetLen.m_iLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pHeader[_i0].m_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          lsapi_buildPacketHeader(pHeader,type,len);
+          free(pHeader);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          char type = 255;
+        
+          int len = 255;
+        
+          int _len_pHeader0 = 65025;
+          struct lsapi_packet_header * pHeader = (struct lsapi_packet_header *) malloc(_len_pHeader0*sizeof(struct lsapi_packet_header));
+          for(int _i0 = 0; _i0 < _len_pHeader0; _i0++) {
+              pHeader[_i0].m_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_packetLen.m_iLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pHeader[_i0].m_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lsapi_buildPacketHeader(pHeader,type,len);
+          free(pHeader);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          char type = 10;
+        
+          int len = 10;
+        
+          int _len_pHeader0 = 100;
+          struct lsapi_packet_header * pHeader = (struct lsapi_packet_header *) malloc(_len_pHeader0*sizeof(struct lsapi_packet_header));
+          for(int _i0 = 0; _i0 < _len_pHeader0; _i0++) {
+              pHeader[_i0].m_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_packetLen.m_iLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pHeader[_i0].m_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lsapi_buildPacketHeader(pHeader,type,len);
+          free(pHeader);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          char type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pHeader0 = 1;
+          struct lsapi_packet_header * pHeader = (struct lsapi_packet_header *) malloc(_len_pHeader0*sizeof(struct lsapi_packet_header));
+          for(int _i0 = 0; _i0 < _len_pHeader0; _i0++) {
+              pHeader[_i0].m_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_packetLen.m_iLen = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pHeader[_i0].m_flag = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          pHeader[_i0].m_versionB0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           lsapi_buildPacketHeader(pHeader,type,len);
           free(pHeader);
         

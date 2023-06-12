@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t AXXX_SCRATCH_UMSK_UMSK(uint32_t val
 	return ((val) << AXXX_SCRATCH_UMSK_UMSK__SHIFT) & AXXX_SCRATCH_UMSK_UMSK__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = AXXX_SCRATCH_UMSK_UMSK(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = AXXX_SCRATCH_UMSK_UMSK(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = AXXX_SCRATCH_UMSK_UMSK(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

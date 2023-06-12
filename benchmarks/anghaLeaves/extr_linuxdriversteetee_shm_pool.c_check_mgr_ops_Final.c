@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static bool check_mgr_ops(struct tee_shm_pool_mgr *mgr)
 		mgr->ops->destroy_poolmgr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,20 +77,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mgr0 = 1;
+          int _len_mgr0 = 65025;
           struct tee_shm_pool_mgr * mgr = (struct tee_shm_pool_mgr *) malloc(_len_mgr0*sizeof(struct tee_shm_pool_mgr));
           for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
               int _len_mgr__i0__ops0 = 1;
           mgr[_i0].ops = (struct TYPE_2__ *) malloc(_len_mgr__i0__ops0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_mgr__i0__ops0; _j0++) {
-            mgr[_i0].ops->destroy_poolmgr = ((-2 * (next_i()%2)) + 1) * next_i();
-        mgr[_i0].ops->free = ((-2 * (next_i()%2)) + 1) * next_i();
-        mgr[_i0].ops->alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+              mgr[_i0].ops->destroy_poolmgr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mgr[_i0].ops->free = ((-2 * (next_i()%2)) + 1) * next_i();
+          mgr[_i0].ops->alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = check_mgr_ops(mgr);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mgr0; _aux++) {
@@ -104,7 +103,58 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mgr0 = 100;
+          struct tee_shm_pool_mgr * mgr = (struct tee_shm_pool_mgr *) malloc(_len_mgr0*sizeof(struct tee_shm_pool_mgr));
+          for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
+              int _len_mgr__i0__ops0 = 1;
+          mgr[_i0].ops = (struct TYPE_2__ *) malloc(_len_mgr__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mgr__i0__ops0; _j0++) {
+              mgr[_i0].ops->destroy_poolmgr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mgr[_i0].ops->free = ((-2 * (next_i()%2)) + 1) * next_i();
+          mgr[_i0].ops->alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = check_mgr_ops(mgr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mgr0; _aux++) {
+          free(mgr[_aux].ops);
+          }
+          free(mgr);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mgr0 = 1;
+          struct tee_shm_pool_mgr * mgr = (struct tee_shm_pool_mgr *) malloc(_len_mgr0*sizeof(struct tee_shm_pool_mgr));
+          for(int _i0 = 0; _i0 < _len_mgr0; _i0++) {
+              int _len_mgr__i0__ops0 = 1;
+          mgr[_i0].ops = (struct TYPE_2__ *) malloc(_len_mgr__i0__ops0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_mgr__i0__ops0; _j0++) {
+              mgr[_i0].ops->destroy_poolmgr = ((-2 * (next_i()%2)) + 1) * next_i();
+          mgr[_i0].ops->free = ((-2 * (next_i()%2)) + 1) * next_i();
+          mgr[_i0].ops->alloc = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = check_mgr_ops(mgr);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mgr0; _aux++) {
+          free(mgr[_aux].ops);
+          }
+          free(mgr);
+        
+        break;
+    }
     default:
         usage();
         break;

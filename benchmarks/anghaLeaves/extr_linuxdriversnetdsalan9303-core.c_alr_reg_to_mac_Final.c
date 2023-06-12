@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void alr_reg_to_mac(u32 dat0, u32 dat1, u8 mac[6])
 	mac[5] = (dat1 >>  8) & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,33 +85,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dat0 = 100;
+        
           int dat1 = 100;
+        
           int _len_mac0 = 6;
           int * mac = (int *) malloc(_len_mac0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
             mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          alr_reg_to_mac(dat0,dat1,mac);
+          free(mac);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int dat0 = 255;
+        
+          int dat1 = 255;
+        
+          int _len_mac0 = 65025;
+          int * mac = (int *) malloc(_len_mac0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+            mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           alr_reg_to_mac(dat0,dat1,mac);
           free(mac);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int dat0 = 10;
+        
           int dat1 = 10;
+        
           int _len_mac0 = 100;
           int * mac = (int *) malloc(_len_mac0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
             mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           alr_reg_to_mac(dat0,dat1,mac);
           free(mac);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int dat0 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dat1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_mac0 = 6;
+          int * mac = (int *) malloc(_len_mac0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_mac0; _i0++) {
+            mac[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          alr_reg_to_mac(dat0,dat1,mac);
+          free(mac);
+        
+        break;
+    }
     default:
         usage();
         break;

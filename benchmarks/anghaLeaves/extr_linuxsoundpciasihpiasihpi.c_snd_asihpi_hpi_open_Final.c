@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int snd_asihpi_hpi_open(struct snd_hwdep *hw, struc
 
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,19 +81,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct snd_hwdep * hw = (struct snd_hwdep *) malloc(_len_hw0*sizeof(struct snd_hwdep));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_file0 = 1;
+        
+          int _len_file0 = 65025;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = snd_asihpi_hpi_open(hw,file);
           printf("%d\n", benchRet); 
           free(hw);
@@ -105,7 +105,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct snd_hwdep * hw = (struct snd_hwdep *) malloc(_len_hw0*sizeof(struct snd_hwdep));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file0 = 100;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_asihpi_hpi_open(hw,file);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(file);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct snd_hwdep * hw = (struct snd_hwdep *) malloc(_len_hw0*sizeof(struct snd_hwdep));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file0 = 1;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = snd_asihpi_hpi_open(hw,file);
+          printf("%d\n", benchRet); 
+          free(hw);
+          free(file);
+        
+        break;
+    }
     default:
         usage();
         break;

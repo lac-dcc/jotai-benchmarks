@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static char *emit_digits(char *dst, int n, size_t cnt)
     return dst + cnt;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,16 +80,85 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 4857
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 3321
+          // ------------------------------- 
+          // static_instructions_O2 : 53
+          // dynamic_instructions_O2 : 3959
+          // ------------------------------- 
+          // static_instructions_O3 : 53
+          // dynamic_instructions_O3 : 3959
+          // ------------------------------- 
+          // static_instructions_Ofast : 53
+          // dynamic_instructions_Ofast : 3959
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 3320
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 1539
+          // ------------------------------- 
+
+          int n = 255;
+        
+          unsigned long cnt = 255;
+        
+          int _len_dst0 = 65025;
+          char * dst = (char *) malloc(_len_dst0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+            dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          char * benchRet = emit_digits(dst,n,cnt);
+          printf("%c\n", ((*benchRet) %26) + 'a'); 
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 202
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 136
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 165
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 165
+          // ------------------------------- 
+          // static_instructions_Ofast : 41
+          // dynamic_instructions_Ofast : 165
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 135
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 69
+          // ------------------------------- 
+
           int n = 10;
+        
           unsigned long cnt = 10;
+        
           int _len_dst0 = 100;
           char * dst = (char *) malloc(_len_dst0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
             dst[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           char * benchRet = emit_digits(dst,n,cnt);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
           free(dst);

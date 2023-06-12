@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -87,12 +88,6 @@ __attribute__((used)) static u32 pl08x_select_bus(bool ftdmac020, u8 src, u8 dst
 	return cctl;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -109,8 +104,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ftdmac020 = 100;
+        
           int src = 100;
+        
           int dst = 100;
+        
           int benchRet = pl08x_select_bus(ftdmac020,src,dst);
           printf("%d\n", benchRet); 
         
@@ -120,8 +118,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ftdmac020 = 255;
+        
           int src = 255;
+        
           int dst = 255;
+        
           int benchRet = pl08x_select_bus(ftdmac020,src,dst);
           printf("%d\n", benchRet); 
         
@@ -131,14 +132,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ftdmac020 = 10;
+        
           int src = 10;
+        
           int dst = 10;
+        
           int benchRet = pl08x_select_bus(ftdmac020,src,dst);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ftdmac020 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = pl08x_select_bus(ftdmac020,src,dst);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

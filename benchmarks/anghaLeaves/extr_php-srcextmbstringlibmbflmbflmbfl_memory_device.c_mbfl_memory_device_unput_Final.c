@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ mbfl_memory_device_unput(mbfl_memory_device *device)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,14 +79,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_device0 = 1;
+          int _len_device0 = 65025;
           struct TYPE_3__ * device = (struct TYPE_3__ *) malloc(_len_device0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mbfl_memory_device_unput(device);
           free(device);
         
@@ -103,14 +100,30 @@ int main(int argc, char *argv[]) {
           int _len_device0 = 100;
           struct TYPE_3__ * device = (struct TYPE_3__ *) malloc(_len_device0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_device0; _i0++) {
-            device[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+              device[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           mbfl_memory_device_unput(device);
           free(device);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_device0 = 1;
+          struct TYPE_3__ * device = (struct TYPE_3__ *) malloc(_len_device0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_device0; _i0++) {
+              device[_i0].pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          mbfl_memory_device_unput(device);
+          free(device);
+        
+        break;
+    }
     default:
         usage();
         break;

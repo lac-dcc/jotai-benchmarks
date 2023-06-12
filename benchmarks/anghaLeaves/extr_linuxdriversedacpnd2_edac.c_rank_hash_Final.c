@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static int rank_hash(u64 pmiaddr)
 	return ((pmiaddr >> 16) ^ (pmiaddr >> 10)) & 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pmiaddr = 100;
+        
           int benchRet = rank_hash(pmiaddr);
           printf("%d\n", benchRet); 
         
@@ -93,6 +89,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pmiaddr = 255;
+        
           int benchRet = rank_hash(pmiaddr);
           printf("%d\n", benchRet); 
         
@@ -102,12 +99,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pmiaddr = 10;
+        
           int benchRet = rank_hash(pmiaddr);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pmiaddr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rank_hash(pmiaddr);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

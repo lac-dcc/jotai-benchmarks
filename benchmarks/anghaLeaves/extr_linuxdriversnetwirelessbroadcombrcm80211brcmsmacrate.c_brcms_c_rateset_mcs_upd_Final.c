@@ -31,6 +31,8 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void brcms_c_rateset_mcs_upd(struct brcms_c_rateset *rs, u8 txstreams)
 		rs->mcs[i] = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int txstreams = 100;
+        
           int _len_rs0 = 1;
           struct brcms_c_rateset * rs = (struct brcms_c_rateset *) malloc(_len_rs0*sizeof(struct brcms_c_rateset));
           for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
@@ -94,7 +91,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_rs__i0__mcs0; _j0++) {
             rs[_i0].mcs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           brcms_c_rateset_mcs_upd(rs,txstreams);
           for(int _aux = 0; _aux < _len_rs0; _aux++) {
           free(rs[_aux].mcs);
@@ -103,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int txstreams = 255;
+        
+          int _len_rs0 = 65025;
+          struct brcms_c_rateset * rs = (struct brcms_c_rateset *) malloc(_len_rs0*sizeof(struct brcms_c_rateset));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              int _len_rs__i0__mcs0 = 1;
+          rs[_i0].mcs = (long *) malloc(_len_rs__i0__mcs0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_rs__i0__mcs0; _j0++) {
+            rs[_i0].mcs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          brcms_c_rateset_mcs_upd(rs,txstreams);
+          for(int _aux = 0; _aux < _len_rs0; _aux++) {
+          free(rs[_aux].mcs);
+          }
+          free(rs);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int txstreams = 10;
+        
+          int _len_rs0 = 100;
+          struct brcms_c_rateset * rs = (struct brcms_c_rateset *) malloc(_len_rs0*sizeof(struct brcms_c_rateset));
+          for(int _i0 = 0; _i0 < _len_rs0; _i0++) {
+              int _len_rs__i0__mcs0 = 1;
+          rs[_i0].mcs = (long *) malloc(_len_rs__i0__mcs0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_rs__i0__mcs0; _j0++) {
+            rs[_i0].mcs[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          brcms_c_rateset_mcs_upd(rs,txstreams);
+          for(int _aux = 0; _aux < _len_rs0; _aux++) {
+          free(rs[_aux].mcs);
+          }
+          free(rs);
+        
+        break;
+    }
     default:
         usage();
         break;

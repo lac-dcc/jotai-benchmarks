@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static u32 btt_meta_size(struct btt *btt)
 	return btt->lbasize - btt->sector_size;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,15 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_btt0 = 65025;
+          struct btt * btt = (struct btt *) malloc(_len_btt0*sizeof(struct btt));
+          for(int _i0 = 0; _i0 < _len_btt0; _i0++) {
+              btt[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          btt[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = btt_meta_size(btt);
+          printf("%ld\n", benchRet); 
+          free(btt);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_btt0 = 100;
+          struct btt * btt = (struct btt *) malloc(_len_btt0*sizeof(struct btt));
+          for(int _i0 = 0; _i0 < _len_btt0; _i0++) {
+              btt[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          btt[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          long benchRet = btt_meta_size(btt);
+          printf("%ld\n", benchRet); 
+          free(btt);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_btt0 = 1;
           struct btt * btt = (struct btt *) malloc(_len_btt0*sizeof(struct btt));
           for(int _i0 = 0; _i0 < _len_btt0; _i0++) {
-            btt[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
-        btt[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+              btt[_i0].sector_size = ((-2 * (next_i()%2)) + 1) * next_i();
+          btt[_i0].lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           long benchRet = btt_meta_size(btt);
           printf("%ld\n", benchRet); 
           free(btt);

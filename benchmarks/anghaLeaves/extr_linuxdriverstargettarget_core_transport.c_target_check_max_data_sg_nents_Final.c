@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -115,12 +118,6 @@ target_check_max_data_sg_nents(struct se_cmd *cmd, struct se_device *dev,
 	return TCM_NO_SENSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -137,25 +134,32 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int size = 100;
+        
           int _len_cmd0 = 1;
           struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
           for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
-            cmd[_i0].data_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].residual_count = ((-2 * (next_i()%2)) + 1) * next_i();
-        cmd[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].data_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].residual_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_cmd__i0__se_tfo0 = 1;
           cmd[_i0].se_tfo = (struct TYPE_3__ *) malloc(_len_cmd__i0__se_tfo0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_cmd__i0__se_tfo0; _j0++) {
-            cmd[_i0].se_tfo->max_data_sg_nents = ((-2 * (next_i()%2)) + 1) * next_i();
+              cmd[_i0].se_tfo->max_data_sg_nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int _len_dev0 = 1;
           struct se_device * dev = (struct se_device *) malloc(_len_dev0*sizeof(struct se_device));
           for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
-            dev[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        dev[_i0].dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+              dev[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = target_check_max_data_sg_nents(cmd,dev,size);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_cmd0; _aux++) {
@@ -166,7 +170,126 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int size = 255;
+        
+          int _len_cmd0 = 65025;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].data_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].residual_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmd__i0__se_tfo0 = 1;
+          cmd[_i0].se_tfo = (struct TYPE_3__ *) malloc(_len_cmd__i0__se_tfo0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_tfo0; _j0++) {
+              cmd[_i0].se_tfo->max_data_sg_nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev0 = 65025;
+          struct se_device * dev = (struct se_device *) malloc(_len_dev0*sizeof(struct se_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = target_check_max_data_sg_nents(cmd,dev,size);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_tfo);
+          }
+          free(cmd);
+          free(dev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int size = 10;
+        
+          int _len_cmd0 = 100;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].data_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].residual_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmd__i0__se_tfo0 = 1;
+          cmd[_i0].se_tfo = (struct TYPE_3__ *) malloc(_len_cmd__i0__se_tfo0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_tfo0; _j0++) {
+              cmd[_i0].se_tfo->max_data_sg_nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev0 = 100;
+          struct se_device * dev = (struct se_device *) malloc(_len_dev0*sizeof(struct se_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = target_check_max_data_sg_nents(cmd,dev,size);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_tfo);
+          }
+          free(cmd);
+          free(dev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_cmd0 = 1;
+          struct se_cmd * cmd = (struct se_cmd *) malloc(_len_cmd0*sizeof(struct se_cmd));
+          for(int _i0 = 0; _i0 < _len_cmd0; _i0++) {
+              cmd[_i0].data_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].se_cmd_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].residual_count = ((-2 * (next_i()%2)) + 1) * next_i();
+          cmd[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_cmd__i0__se_tfo0 = 1;
+          cmd[_i0].se_tfo = (struct TYPE_3__ *) malloc(_len_cmd__i0__se_tfo0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_cmd__i0__se_tfo0; _j0++) {
+              cmd[_i0].se_tfo->max_data_sg_nents = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_dev0 = 1;
+          struct se_device * dev = (struct se_device *) malloc(_len_dev0*sizeof(struct se_device));
+          for(int _i0 = 0; _i0 < _len_dev0; _i0++) {
+              dev[_i0].prot_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          dev[_i0].dev_attrib.block_size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = target_check_max_data_sg_nents(cmd,dev,size);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_cmd0; _aux++) {
+          free(cmd[_aux].se_tfo);
+          }
+          free(cmd);
+          free(dev);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ void unregister_pppox_proto(int proto_num)
 		pppox_protos[proto_num] = NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int proto_num = 100;
+        
           unregister_pppox_proto(proto_num);
         
         break;
@@ -94,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int proto_num = 255;
+        
           unregister_pppox_proto(proto_num);
         
         break;
@@ -102,11 +99,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int proto_num = 10;
+        
           unregister_pppox_proto(proto_num);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int proto_num = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unregister_pppox_proto(proto_num);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static int attrHasPos(struct attr *a, size_t pos)
 	return pos < a->end;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +77,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           unsigned long pos = 100;
+        
           int _len_a0 = 1;
           struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = attrHasPos(a,pos);
+          printf("%d\n", benchRet); 
+          free(a);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long pos = 255;
+        
+          int _len_a0 = 65025;
+          struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = attrHasPos(a,pos);
+          printf("%d\n", benchRet); 
+          free(a);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          unsigned long pos = 10;
+        
+          int _len_a0 = 100;
+          struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = attrHasPos(a,pos);
+          printf("%d\n", benchRet); 
+          free(a);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          unsigned long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_a0 = 1;
+          struct attr * a = (struct attr *) malloc(_len_a0*sizeof(struct attr));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].start = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].end = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = attrHasPos(a,pos);
           printf("%d\n", benchRet); 
           free(a);

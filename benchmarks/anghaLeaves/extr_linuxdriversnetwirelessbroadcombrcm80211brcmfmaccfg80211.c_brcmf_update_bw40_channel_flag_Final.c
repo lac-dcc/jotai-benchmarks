@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -82,12 +84,6 @@ __attribute__((used)) static void brcmf_update_bw40_channel_flag(struct ieee8021
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,19 +96,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_channel0 = 65025;
+          struct ieee80211_channel * channel = (struct ieee80211_channel *) malloc(_len_channel0*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ch0 = 65025;
+          struct brcmu_chan * ch = (struct brcmu_chan *) malloc(_len_ch0*sizeof(struct brcmu_chan));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].sb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          brcmf_update_bw40_channel_flag(channel,ch);
+          free(channel);
+          free(ch);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_channel0 = 100;
+          struct ieee80211_channel * channel = (struct ieee80211_channel *) malloc(_len_channel0*sizeof(struct ieee80211_channel));
+          for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
+              channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ch0 = 100;
+          struct brcmu_chan * ch = (struct brcmu_chan *) malloc(_len_ch0*sizeof(struct brcmu_chan));
+          for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
+              ch[_i0].sb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          brcmf_update_bw40_channel_flag(channel,ch);
+          free(channel);
+          free(ch);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 27
+          // dynamic_instructions_O0 : 27
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           int _len_channel0 = 1;
           struct ieee80211_channel * channel = (struct ieee80211_channel *) malloc(_len_channel0*sizeof(struct ieee80211_channel));
           for(int _i0 = 0; _i0 < _len_channel0; _i0++) {
-            channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              channel[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_ch0 = 1;
           struct brcmu_chan * ch = (struct brcmu_chan *) malloc(_len_ch0*sizeof(struct brcmu_chan));
           for(int _i0 = 0; _i0 < _len_ch0; _i0++) {
-            ch[_i0].sb = ((-2 * (next_i()%2)) + 1) * next_i();
+              ch[_i0].sb = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           brcmf_update_bw40_channel_flag(channel,ch);
           free(channel);
           free(ch);

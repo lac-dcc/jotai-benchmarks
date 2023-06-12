@@ -77,12 +77,6 @@ __attribute__((used)) static u32 __extract(u8 *report, unsigned offset, int n)
 	return value & mask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +93,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int offset = 10;
+        
           int n = 10;
+        
           int _len_report0 = 100;
           long * report = (long *) malloc(_len_report0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_report0; _i0++) {
             report[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           unsigned int benchRet = __extract(report,offset,n);
           printf("%u\n", benchRet); 
           free(report);
         
         break;
     }
-
     default:
         usage();
         break;

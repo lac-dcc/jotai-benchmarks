@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static int enic_get_ts_info(struct net_device *netdev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +83,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_netdev0 = 1;
+          int _len_netdev0 = 65025;
           struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
           for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
-            netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_info0 = 1;
+        
+          int _len_info0 = 65025;
           struct ethtool_ts_info * info = (struct ethtool_ts_info *) malloc(_len_info0*sizeof(struct ethtool_ts_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = enic_get_ts_info(netdev,info);
           printf("%d\n", benchRet); 
           free(netdev);
@@ -107,7 +107,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_netdev0 = 100;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 100;
+          struct ethtool_ts_info * info = (struct ethtool_ts_info *) malloc(_len_info0*sizeof(struct ethtool_ts_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = enic_get_ts_info(netdev,info);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(info);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_netdev0 = 1;
+          struct net_device * netdev = (struct net_device *) malloc(_len_netdev0*sizeof(struct net_device));
+          for(int _i0 = 0; _i0 < _len_netdev0; _i0++) {
+              netdev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_info0 = 1;
+          struct ethtool_ts_info * info = (struct ethtool_ts_info *) malloc(_len_info0*sizeof(struct ethtool_ts_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].so_timestamping = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = enic_get_ts_info(netdev,info);
+          printf("%d\n", benchRet); 
+          free(netdev);
+          free(info);
+        
+        break;
+    }
     default:
         usage();
         break;

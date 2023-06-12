@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ __attribute__((used)) static inline unsigned radeon_mem_type_to_domain(u32 mem_t
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mem_type = 100;
+        
           unsigned int benchRet = radeon_mem_type_to_domain(mem_type);
           printf("%u\n", benchRet); 
         
@@ -109,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mem_type = 255;
+        
           unsigned int benchRet = radeon_mem_type_to_domain(mem_type);
           printf("%u\n", benchRet); 
         
@@ -118,12 +115,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mem_type = 10;
+        
           unsigned int benchRet = radeon_mem_type_to_domain(mem_type);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mem_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = radeon_mem_type_to_domain(mem_type);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

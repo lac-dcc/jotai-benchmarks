@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline int queue_congestion_on_threshold(struct req
 	return q->nr_congestion_on;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_q0 = 1;
+          int _len_q0 = 65025;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].nr_congestion_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].nr_congestion_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = queue_congestion_on_threshold(q);
           printf("%d\n", benchRet); 
           free(q);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_q0 = 100;
           struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].nr_congestion_on = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].nr_congestion_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = queue_congestion_on_threshold(q);
           printf("%d\n", benchRet); 
           free(q);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_q0 = 1;
+          struct request_queue * q = (struct request_queue *) malloc(_len_q0*sizeof(struct request_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].nr_congestion_on = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = queue_congestion_on_threshold(q);
+          printf("%d\n", benchRet); 
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

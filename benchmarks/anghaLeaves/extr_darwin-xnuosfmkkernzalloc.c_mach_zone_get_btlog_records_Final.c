@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -141,12 +144,6 @@ mach_zone_get_btlog_records(
 #endif /* DEBUG || DEVELOPMENT */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -163,17 +160,21 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int host = 100;
+        
           int name = 100;
+        
           int _len_recsp0 = 1;
           int * recsp = (int *) malloc(_len_recsp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_recsp0; _i0++) {
             recsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_recsCntp0 = 1;
           int * recsCntp = (int *) malloc(_len_recsCntp0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_recsCntp0; _i0++) {
             recsCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mach_zone_get_btlog_records(host,name,recsp,recsCntp);
           printf("%d\n", benchRet); 
           free(recsp);
@@ -181,7 +182,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int host = 255;
+        
+          int name = 255;
+        
+          int _len_recsp0 = 65025;
+          int * recsp = (int *) malloc(_len_recsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_recsp0; _i0++) {
+            recsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_recsCntp0 = 65025;
+          int * recsCntp = (int *) malloc(_len_recsCntp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_recsCntp0; _i0++) {
+            recsCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mach_zone_get_btlog_records(host,name,recsp,recsCntp);
+          printf("%d\n", benchRet); 
+          free(recsp);
+          free(recsCntp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int host = 10;
+        
+          int name = 10;
+        
+          int _len_recsp0 = 100;
+          int * recsp = (int *) malloc(_len_recsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_recsp0; _i0++) {
+            recsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_recsCntp0 = 100;
+          int * recsCntp = (int *) malloc(_len_recsCntp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_recsCntp0; _i0++) {
+            recsCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mach_zone_get_btlog_records(host,name,recsp,recsCntp);
+          printf("%d\n", benchRet); 
+          free(recsp);
+          free(recsCntp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int host = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_recsp0 = 1;
+          int * recsp = (int *) malloc(_len_recsp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_recsp0; _i0++) {
+            recsp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_recsCntp0 = 1;
+          int * recsCntp = (int *) malloc(_len_recsCntp0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_recsCntp0; _i0++) {
+            recsCntp[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mach_zone_get_btlog_records(host,name,recsp,recsCntp);
+          printf("%d\n", benchRet); 
+          free(recsp);
+          free(recsCntp);
+        
+        break;
+    }
     default:
         usage();
         break;

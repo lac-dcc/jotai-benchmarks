@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static void lsapi_siguser1( int sig )
     g_running = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +79,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sig = 100;
+        
           lsapi_siguser1(sig);
         
         break;
@@ -92,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sig = 255;
+        
           lsapi_siguser1(sig);
         
         break;
@@ -100,11 +97,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sig = 10;
+        
           lsapi_siguser1(sig);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          lsapi_siguser1(sig);
+        
+        break;
+    }
     default:
         usage();
         break;

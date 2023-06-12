@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int rmi_driver_set_input_params(struct rmi_device *
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,21 +84,151 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rmi_dev0 = 65025;
+          struct rmi_device * rmi_dev = (struct rmi_device *) malloc(_len_rmi_dev0*sizeof(struct rmi_device));
+          for(int _i0 = 0; _i0 < _len_rmi_dev0; _i0++) {
+              rmi_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_input0 = 65025;
+          struct input_dev * input = (struct input_dev *) malloc(_len_input0*sizeof(struct input_dev));
+          for(int _i0 = 0; _i0 < _len_input0; _i0++) {
+              input[_i0].id.bustype = ((-2 * (next_i()%2)) + 1) * next_i();
+          input[_i0].id.vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          input[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rmi_driver_set_input_params(rmi_dev,input);
+          printf("%d\n", benchRet); 
+          free(rmi_dev);
+          free(input);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_rmi_dev0 = 100;
+          struct rmi_device * rmi_dev = (struct rmi_device *) malloc(_len_rmi_dev0*sizeof(struct rmi_device));
+          for(int _i0 = 0; _i0 < _len_rmi_dev0; _i0++) {
+              rmi_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_input0 = 100;
+          struct input_dev * input = (struct input_dev *) malloc(_len_input0*sizeof(struct input_dev));
+          for(int _i0 = 0; _i0 < _len_input0; _i0++) {
+              input[_i0].id.bustype = ((-2 * (next_i()%2)) + 1) * next_i();
+          input[_i0].id.vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          input[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = rmi_driver_set_input_params(rmi_dev,input);
+          printf("%d\n", benchRet); 
+          free(rmi_dev);
+          free(input);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_rmi_dev0 = 1;
           struct rmi_device * rmi_dev = (struct rmi_device *) malloc(_len_rmi_dev0*sizeof(struct rmi_device));
           for(int _i0 = 0; _i0 < _len_rmi_dev0; _i0++) {
-            rmi_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              rmi_dev[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_input0 = 1;
           struct input_dev * input = (struct input_dev *) malloc(_len_input0*sizeof(struct input_dev));
           for(int _i0 = 0; _i0 < _len_input0; _i0++) {
-            input[_i0].id.bustype = ((-2 * (next_i()%2)) + 1) * next_i();
-        input[_i0].id.vendor = ((-2 * (next_i()%2)) + 1) * next_i();
-        input[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+              input[_i0].id.bustype = ((-2 * (next_i()%2)) + 1) * next_i();
+          input[_i0].id.vendor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          input[_i0].name = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = rmi_driver_set_input_params(rmi_dev,input);
           printf("%d\n", benchRet); 
           free(rmi_dev);

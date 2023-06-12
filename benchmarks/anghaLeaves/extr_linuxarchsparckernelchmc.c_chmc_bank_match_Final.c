@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -90,12 +93,6 @@ __attribute__((used)) static int chmc_bank_match(struct chmc_bank_info *bp, unsi
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -112,22 +109,90 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long phys_addr = 100;
+        
           int _len_bp0 = 1;
           struct chmc_bank_info * bp = (struct chmc_bank_info *) malloc(_len_bp0*sizeof(struct chmc_bank_info));
           for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
-            bp[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].um = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].uk = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].lm = ((-2 * (next_i()%2)) + 1) * next_i();
-        bp[_i0].lk = ((-2 * (next_i()%2)) + 1) * next_i();
+              bp[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].um = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].uk = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lm = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = chmc_bank_match(bp,phys_addr);
           printf("%d\n", benchRet); 
           free(bp);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long phys_addr = 255;
+        
+          int _len_bp0 = 65025;
+          struct chmc_bank_info * bp = (struct chmc_bank_info *) malloc(_len_bp0*sizeof(struct chmc_bank_info));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].um = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].uk = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lm = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chmc_bank_match(bp,phys_addr);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long phys_addr = 10;
+        
+          int _len_bp0 = 100;
+          struct chmc_bank_info * bp = (struct chmc_bank_info *) malloc(_len_bp0*sizeof(struct chmc_bank_info));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].um = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].uk = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lm = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chmc_bank_match(bp,phys_addr);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long phys_addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bp0 = 1;
+          struct chmc_bank_info * bp = (struct chmc_bank_info *) malloc(_len_bp0*sizeof(struct chmc_bank_info));
+          for(int _i0 = 0; _i0 < _len_bp0; _i0++) {
+              bp[_i0].valid = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].um = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].uk = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lm = ((-2 * (next_i()%2)) + 1) * next_i();
+          bp[_i0].lk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = chmc_bank_match(bp,phys_addr);
+          printf("%d\n", benchRet); 
+          free(bp);
+        
+        break;
+    }
     default:
         usage();
         break;

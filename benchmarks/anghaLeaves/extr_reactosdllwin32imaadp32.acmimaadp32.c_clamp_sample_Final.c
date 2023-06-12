@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void clamp_sample(int* sample)
     if (*sample >  32767) *sample =  32767;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,15 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_sample0 = 1;
+          int _len_sample0 = 65025;
           int * sample = (int *) malloc(_len_sample0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
             sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           clamp_sample(sample);
           free(sample);
         
@@ -100,12 +96,26 @@ int main(int argc, char *argv[]) {
           for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
             sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           clamp_sample(sample);
           free(sample);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_sample0 = 1;
+          int * sample = (int *) malloc(_len_sample0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_sample0; _i0++) {
+            sample[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          clamp_sample(sample);
+          free(sample);
+        
+        break;
+    }
     default:
         usage();
         break;

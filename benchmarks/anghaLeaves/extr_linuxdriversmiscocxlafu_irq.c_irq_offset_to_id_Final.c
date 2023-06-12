@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ __attribute__((used)) static int irq_offset_to_id(struct ocxl_context *ctx, u64 
 	return (offset - ctx->afu->irq_base_offset) >> PAGE_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,15 +83,19 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int offset = 100;
+        
           int _len_ctx0 = 1;
           struct ocxl_context * ctx = (struct ocxl_context *) malloc(_len_ctx0*sizeof(struct ocxl_context));
           for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
               int _len_ctx__i0__afu0 = 1;
           ctx[_i0].afu = (struct TYPE_2__ *) malloc(_len_ctx__i0__afu0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ctx__i0__afu0; _j0++) {
-            ctx[_i0].afu->irq_base_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              ctx[_i0].afu->irq_base_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = irq_offset_to_id(ctx,offset);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ctx0; _aux++) {
@@ -104,7 +105,84 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int offset = 255;
+        
+          int _len_ctx0 = 65025;
+          struct ocxl_context * ctx = (struct ocxl_context *) malloc(_len_ctx0*sizeof(struct ocxl_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__afu0 = 1;
+          ctx[_i0].afu = (struct TYPE_2__ *) malloc(_len_ctx__i0__afu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__afu0; _j0++) {
+              ctx[_i0].afu->irq_base_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = irq_offset_to_id(ctx,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].afu);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int offset = 10;
+        
+          int _len_ctx0 = 100;
+          struct ocxl_context * ctx = (struct ocxl_context *) malloc(_len_ctx0*sizeof(struct ocxl_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__afu0 = 1;
+          ctx[_i0].afu = (struct TYPE_2__ *) malloc(_len_ctx__i0__afu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__afu0; _j0++) {
+              ctx[_i0].afu->irq_base_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = irq_offset_to_id(ctx,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].afu);
+          }
+          free(ctx);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ctx0 = 1;
+          struct ocxl_context * ctx = (struct ocxl_context *) malloc(_len_ctx0*sizeof(struct ocxl_context));
+          for(int _i0 = 0; _i0 < _len_ctx0; _i0++) {
+              int _len_ctx__i0__afu0 = 1;
+          ctx[_i0].afu = (struct TYPE_2__ *) malloc(_len_ctx__i0__afu0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ctx__i0__afu0; _j0++) {
+              ctx[_i0].afu->irq_base_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = irq_offset_to_id(ctx,offset);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ctx0; _aux++) {
+          free(ctx[_aux].afu);
+          }
+          free(ctx);
+        
+        break;
+    }
     default:
         usage();
         break;

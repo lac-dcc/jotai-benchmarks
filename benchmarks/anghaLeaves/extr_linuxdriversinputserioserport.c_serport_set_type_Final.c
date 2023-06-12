@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ __attribute__((used)) static void serport_set_type(struct tty_struct *tty, unsig
 	serport->id.extra = (type & 0x00ff0000) >> 16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,205 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           unsigned long type = 100;
+        
           int _len_tty0 = 1;
           struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
           for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
               int _len_tty__i0__disc_data0 = 1;
           tty[_i0].disc_data = (struct serport *) malloc(_len_tty__i0__disc_data0*sizeof(struct serport));
           for(int _j0 = 0; _j0 < _len_tty__i0__disc_data0; _j0++) {
-            tty[_i0].disc_data->id.proto = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].disc_data->id.id = ((-2 * (next_i()%2)) + 1) * next_i();
-        tty[_i0].disc_data->id.extra = ((-2 * (next_i()%2)) + 1) * next_i();
+              tty[_i0].disc_data->id.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          serport_set_type(tty,type);
+          for(int _aux = 0; _aux < _len_tty0; _aux++) {
+          free(tty[_aux].disc_data);
+          }
+          free(tty);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long type = 255;
+        
+          int _len_tty0 = 65025;
+          struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              int _len_tty__i0__disc_data0 = 1;
+          tty[_i0].disc_data = (struct serport *) malloc(_len_tty__i0__disc_data0*sizeof(struct serport));
+          for(int _j0 = 0; _j0 < _len_tty__i0__disc_data0; _j0++) {
+              tty[_i0].disc_data->id.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          serport_set_type(tty,type);
+          for(int _aux = 0; _aux < _len_tty0; _aux++) {
+          free(tty[_aux].disc_data);
+          }
+          free(tty);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long type = 10;
+        
+          int _len_tty0 = 100;
+          struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              int _len_tty__i0__disc_data0 = 1;
+          tty[_i0].disc_data = (struct serport *) malloc(_len_tty__i0__disc_data0*sizeof(struct serport));
+          for(int _j0 = 0; _j0 < _len_tty__i0__disc_data0; _j0++) {
+              tty[_i0].disc_data->id.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          serport_set_type(tty,type);
+          for(int _aux = 0; _aux < _len_tty0; _aux++) {
+          free(tty[_aux].disc_data);
+          }
+          free(tty);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 23
+          // dynamic_instructions_O0 : 23
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          unsigned long type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_tty0 = 1;
+          struct tty_struct * tty = (struct tty_struct *) malloc(_len_tty0*sizeof(struct tty_struct));
+          for(int _i0 = 0; _i0 < _len_tty0; _i0++) {
+              int _len_tty__i0__disc_data0 = 1;
+          tty[_i0].disc_data = (struct serport *) malloc(_len_tty__i0__disc_data0*sizeof(struct serport));
+          for(int _j0 = 0; _j0 < _len_tty__i0__disc_data0; _j0++) {
+              tty[_i0].disc_data->id.proto = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.id = ((-2 * (next_i()%2)) + 1) * next_i();
+          tty[_i0].disc_data->id.extra = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           serport_set_type(tty,type);
           for(int _aux = 0; _aux < _len_tty0; _aux++) {
           free(tty[_aux].disc_data);

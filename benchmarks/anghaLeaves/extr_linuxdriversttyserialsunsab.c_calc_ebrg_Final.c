@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static void calc_ebrg(int baud, int *n_ret, int *m_ret)
 	*m_ret = m;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,20 +104,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
           int baud = 100;
+        
           int _len_n_ret0 = 1;
           int * n_ret = (int *) malloc(_len_n_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_n_ret0; _i0++) {
             n_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_m_ret0 = 1;
           int * m_ret = (int *) malloc(_len_m_ret0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_m_ret0; _i0++) {
             m_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          calc_ebrg(baud,n_ret,m_ret);
+          free(n_ret);
+          free(m_ret);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int baud = 255;
+        
+          int _len_n_ret0 = 65025;
+          int * n_ret = (int *) malloc(_len_n_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_n_ret0; _i0++) {
+            n_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m_ret0 = 65025;
+          int * m_ret = (int *) malloc(_len_m_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m_ret0; _i0++) {
+            m_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_ebrg(baud,n_ret,m_ret);
+          free(n_ret);
+          free(m_ret);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int baud = 10;
+        
+          int _len_n_ret0 = 100;
+          int * n_ret = (int *) malloc(_len_n_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_n_ret0; _i0++) {
+            n_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m_ret0 = 100;
+          int * m_ret = (int *) malloc(_len_m_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m_ret0; _i0++) {
+            m_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          calc_ebrg(baud,n_ret,m_ret);
+          free(n_ret);
+          free(m_ret);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 36
+          // dynamic_instructions_O1 : 36
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 33
+          // dynamic_instructions_Oz : 33
+          // ------------------------------- 
+
+          int baud = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_n_ret0 = 1;
+          int * n_ret = (int *) malloc(_len_n_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_n_ret0; _i0++) {
+            n_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_m_ret0 = 1;
+          int * m_ret = (int *) malloc(_len_m_ret0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_m_ret0; _i0++) {
+            m_ret[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           calc_ebrg(baud,n_ret,m_ret);
           free(n_ret);
           free(m_ret);

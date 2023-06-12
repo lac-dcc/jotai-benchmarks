@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +80,6 @@ __attribute__((used)) static int bpf_adj_delta_to_off(struct bpf_insn *insn, u32
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,36 +92,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           long pos = 100;
+        
           long delta = 100;
+        
           long curr = 100;
+        
           const int probe_pass = 100;
+        
           int _len_insn0 = 1;
           struct bpf_insn * insn = (struct bpf_insn *) malloc(_len_insn0*sizeof(struct bpf_insn));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
-            insn[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+              insn[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bpf_adj_delta_to_off(insn,pos,delta,curr,probe_pass);
           printf("%d\n", benchRet); 
           free(insn);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long pos = 255;
+        
+          long delta = 255;
+        
+          long curr = 255;
+        
+          const int probe_pass = 255;
+        
+          int _len_insn0 = 65025;
+          struct bpf_insn * insn = (struct bpf_insn *) malloc(_len_insn0*sizeof(struct bpf_insn));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+              insn[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bpf_adj_delta_to_off(insn,pos,delta,curr,probe_pass);
+          printf("%d\n", benchRet); 
+          free(insn);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 33
+          // dynamic_instructions_O0 : 33
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           long pos = 10;
+        
           long delta = 10;
+        
           long curr = 10;
+        
           const int probe_pass = 10;
+        
           int _len_insn0 = 100;
           struct bpf_insn * insn = (struct bpf_insn *) malloc(_len_insn0*sizeof(struct bpf_insn));
           for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
-            insn[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+              insn[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = bpf_adj_delta_to_off(insn,pos,delta,curr,probe_pass);
+          printf("%d\n", benchRet); 
+          free(insn);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          long pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long delta = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long curr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          const int probe_pass = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_insn0 = 1;
+          struct bpf_insn * insn = (struct bpf_insn *) malloc(_len_insn0*sizeof(struct bpf_insn));
+          for(int _i0 = 0; _i0 < _len_insn0; _i0++) {
+              insn[_i0].off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = bpf_adj_delta_to_off(insn,pos,delta,curr,probe_pass);
           printf("%d\n", benchRet); 
           free(insn);

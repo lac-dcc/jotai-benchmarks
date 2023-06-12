@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +78,6 @@ continued_right(struct graph_row *row, int pos, int commit_pos)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,21 +90,208 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int pos = 100;
+        
           int commit_pos = 100;
+        
           int _len_row0 = 1;
           struct graph_row * row = (struct graph_row *) malloc(_len_row0*sizeof(struct graph_row));
           for(int _i0 = 0; _i0 < _len_row0; _i0++) {
-            row[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+              row[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_row__i0__columns0 = 1;
           row[_i0].columns = (struct TYPE_2__ *) malloc(_len_row__i0__columns0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_row__i0__columns0; _j0++) {
-            row[_i0].columns->id = ((-2 * (next_i()%2)) + 1) * next_i();
+              row[_i0].columns->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = continued_right(row,pos,commit_pos);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_row0; _aux++) {
+          free(row[_aux].columns);
+          }
+          free(row);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int pos = 255;
+        
+          int commit_pos = 255;
+        
+          int _len_row0 = 65025;
+          struct graph_row * row = (struct graph_row *) malloc(_len_row0*sizeof(struct graph_row));
+          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
+              row[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_row__i0__columns0 = 1;
+          row[_i0].columns = (struct TYPE_2__ *) malloc(_len_row__i0__columns0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_row__i0__columns0; _j0++) {
+              row[_i0].columns->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = continued_right(row,pos,commit_pos);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_row0; _aux++) {
+          free(row[_aux].columns);
+          }
+          free(row);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int pos = 10;
+        
+          int commit_pos = 10;
+        
+          int _len_row0 = 100;
+          struct graph_row * row = (struct graph_row *) malloc(_len_row0*sizeof(struct graph_row));
+          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
+              row[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_row__i0__columns0 = 1;
+          row[_i0].columns = (struct TYPE_2__ *) malloc(_len_row__i0__columns0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_row__i0__columns0; _j0++) {
+              row[_i0].columns->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = continued_right(row,pos,commit_pos);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_row0; _aux++) {
+          free(row[_aux].columns);
+          }
+          free(row);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int commit_pos = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_row0 = 1;
+          struct graph_row * row = (struct graph_row *) malloc(_len_row0*sizeof(struct graph_row));
+          for(int _i0 = 0; _i0 < _len_row0; _i0++) {
+              row[_i0].size = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_row__i0__columns0 = 1;
+          row[_i0].columns = (struct TYPE_2__ *) malloc(_len_row__i0__columns0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_row__i0__columns0; _j0++) {
+              row[_i0].columns->id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = continued_right(row,pos,commit_pos);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_row0; _aux++) {

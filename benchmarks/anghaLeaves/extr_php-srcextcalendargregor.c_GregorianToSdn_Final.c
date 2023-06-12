@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -106,12 +107,6 @@ zend_long GregorianToSdn(
 			- GREGOR_SDN_OFFSET);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -128,8 +123,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int inputYear = 100;
+        
           int inputMonth = 100;
+        
           int inputDay = 100;
+        
           int benchRet = GregorianToSdn(inputYear,inputMonth,inputDay);
           printf("%d\n", benchRet); 
         
@@ -139,8 +137,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int inputYear = 255;
+        
           int inputMonth = 255;
+        
           int inputDay = 255;
+        
           int benchRet = GregorianToSdn(inputYear,inputMonth,inputDay);
           printf("%d\n", benchRet); 
         
@@ -150,14 +151,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int inputYear = 10;
+        
           int inputMonth = 10;
+        
           int inputDay = 10;
+        
           int benchRet = GregorianToSdn(inputYear,inputMonth,inputDay);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int inputYear = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int inputMonth = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int inputDay = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = GregorianToSdn(inputYear,inputMonth,inputDay);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

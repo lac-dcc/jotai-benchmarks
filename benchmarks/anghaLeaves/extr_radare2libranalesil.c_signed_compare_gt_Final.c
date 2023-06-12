@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -79,12 +80,6 @@ __attribute__((used)) static int signed_compare_gt(ut64 a, ut64 b, ut64 size) {
 	return result;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -101,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a = 100;
+        
           int b = 100;
+        
           int size = 100;
+        
           int benchRet = signed_compare_gt(a,b,size);
           printf("%d\n", benchRet); 
         
@@ -112,8 +110,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int a = 255;
+        
           int b = 255;
+        
           int size = 255;
+        
           int benchRet = signed_compare_gt(a,b,size);
           printf("%d\n", benchRet); 
         
@@ -123,14 +124,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int a = 10;
+        
           int b = 10;
+        
           int size = 10;
+        
           int benchRet = signed_compare_gt(a,b,size);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = signed_compare_gt(a,b,size);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

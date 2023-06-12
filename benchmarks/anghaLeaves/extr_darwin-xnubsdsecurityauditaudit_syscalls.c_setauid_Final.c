@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +69,6 @@ setauid(proc_t p, struct setauid_args *uap, int32_t *retval)
 	return (ENOSYS);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,20 +81,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int p = 100;
+        
           int _len_uap0 = 1;
           struct setauid_args * uap = (struct setauid_args *) malloc(_len_uap0*sizeof(struct setauid_args));
           for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
-            uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_retval0 = 1;
           int * retval = (int *) malloc(_len_retval0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
             retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = setauid(p,uap,retval);
+          printf("%d\n", benchRet); 
+          free(uap);
+          free(retval);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int p = 255;
+        
+          int _len_uap0 = 65025;
+          struct setauid_args * uap = (struct setauid_args *) malloc(_len_uap0*sizeof(struct setauid_args));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retval0 = 65025;
+          int * retval = (int *) malloc(_len_retval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
+            retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = setauid(p,uap,retval);
+          printf("%d\n", benchRet); 
+          free(uap);
+          free(retval);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int p = 10;
+        
+          int _len_uap0 = 100;
+          struct setauid_args * uap = (struct setauid_args *) malloc(_len_uap0*sizeof(struct setauid_args));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retval0 = 100;
+          int * retval = (int *) malloc(_len_retval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
+            retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = setauid(p,uap,retval);
+          printf("%d\n", benchRet); 
+          free(uap);
+          free(retval);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int p = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_uap0 = 1;
+          struct setauid_args * uap = (struct setauid_args *) malloc(_len_uap0*sizeof(struct setauid_args));
+          for(int _i0 = 0; _i0 < _len_uap0; _i0++) {
+              uap[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_retval0 = 1;
+          int * retval = (int *) malloc(_len_retval0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_retval0; _i0++) {
+            retval[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = setauid(p,uap,retval);
           printf("%d\n", benchRet); 
           free(uap);

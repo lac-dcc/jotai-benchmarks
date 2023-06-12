@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ rmi_get_platform_data(struct rmi_device *d)
 	return &d->xport->pdata;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,143 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_d0 = 65025;
+          struct rmi_device * d = (struct rmi_device *) malloc(_len_d0*sizeof(struct rmi_device));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              int _len_d__i0__xport0 = 1;
+          d[_i0].xport = (struct TYPE_2__ *) malloc(_len_d__i0__xport0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_d__i0__xport0; _j0++) {
+              d[_i0].xport->pdata.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct rmi_device_platform_data * benchRet = rmi_get_platform_data(d);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(d[_aux].xport);
+          }
+          free(d);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_d0 = 100;
+          struct rmi_device * d = (struct rmi_device *) malloc(_len_d0*sizeof(struct rmi_device));
+          for(int _i0 = 0; _i0 < _len_d0; _i0++) {
+              int _len_d__i0__xport0 = 1;
+          d[_i0].xport = (struct TYPE_2__ *) malloc(_len_d__i0__xport0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_d__i0__xport0; _j0++) {
+              d[_i0].xport->pdata.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          struct rmi_device_platform_data * benchRet = rmi_get_platform_data(d);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_d0; _aux++) {
+          free(d[_aux].xport);
+          }
+          free(d);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 7
+          // dynamic_instructions_O0 : 7
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_d0 = 1;
           struct rmi_device * d = (struct rmi_device *) malloc(_len_d0*sizeof(struct rmi_device));
           for(int _i0 = 0; _i0 < _len_d0; _i0++) {
               int _len_d__i0__xport0 = 1;
           d[_i0].xport = (struct TYPE_2__ *) malloc(_len_d__i0__xport0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_d__i0__xport0; _j0++) {
-            d[_i0].xport->pdata.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              d[_i0].xport->pdata.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
           struct rmi_device_platform_data * benchRet = rmi_get_platform_data(d);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_d0; _aux++) {

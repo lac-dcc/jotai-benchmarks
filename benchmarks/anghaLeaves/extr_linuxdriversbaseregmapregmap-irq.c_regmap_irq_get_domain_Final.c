@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ struct irq_domain *regmap_irq_get_domain(struct regmap_irq_chip_data *data)
 		return NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,18 +78,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_data0 = 65025;
+          struct regmap_irq_chip_data * data = (struct regmap_irq_chip_data *) malloc(_len_data0*sizeof(struct regmap_irq_chip_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__domain0 = 1;
+          data[_i0].domain = (struct irq_domain *) malloc(_len_data__i0__domain0*sizeof(struct irq_domain));
+          for(int _j0 = 0; _j0 < _len_data__i0__domain0; _j0++) {
+              data[_i0].domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct irq_domain * benchRet = regmap_irq_get_domain(data);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].domain);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_data0 = 100;
+          struct regmap_irq_chip_data * data = (struct regmap_irq_chip_data *) malloc(_len_data0*sizeof(struct regmap_irq_chip_data));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+              int _len_data__i0__domain0 = 1;
+          data[_i0].domain = (struct irq_domain *) malloc(_len_data__i0__domain0*sizeof(struct irq_domain));
+          for(int _j0 = 0; _j0 < _len_data__i0__domain0; _j0++) {
+              data[_i0].domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct irq_domain * benchRet = regmap_irq_get_domain(data);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_data0; _aux++) {
+          free(data[_aux].domain);
+          }
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_data0 = 1;
           struct regmap_irq_chip_data * data = (struct regmap_irq_chip_data *) malloc(_len_data0*sizeof(struct regmap_irq_chip_data));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
               int _len_data__i0__domain0 = 1;
           data[_i0].domain = (struct irq_domain *) malloc(_len_data__i0__domain0*sizeof(struct irq_domain));
           for(int _j0 = 0; _j0 < _len_data__i0__domain0; _j0++) {
-            data[_i0].domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              data[_i0].domain->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct irq_domain * benchRet = regmap_irq_get_domain(data);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_data0; _aux++) {

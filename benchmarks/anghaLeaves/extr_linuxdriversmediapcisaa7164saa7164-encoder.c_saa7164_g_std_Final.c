@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ int saa7164_g_std(struct saa7164_port *port, v4l2_std_id *id)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,139 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_port0 = 65025;
+          struct saa7164_port * port = (struct saa7164_port *) malloc(_len_port0*sizeof(struct saa7164_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_id0 = 65025;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = saa7164_g_std(port,id);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(id);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_port0 = 100;
+          struct saa7164_port * port = (struct saa7164_port *) malloc(_len_port0*sizeof(struct saa7164_port));
+          for(int _i0 = 0; _i0 < _len_port0; _i0++) {
+              port[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_id0 = 100;
+          int * id = (int *) malloc(_len_id0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_id0; _i0++) {
+            id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = saa7164_g_std(port,id);
+          printf("%d\n", benchRet); 
+          free(port);
+          free(id);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int _len_port0 = 1;
           struct saa7164_port * port = (struct saa7164_port *) malloc(_len_port0*sizeof(struct saa7164_port));
           for(int _i0 = 0; _i0 < _len_port0; _i0++) {
-            port[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+              port[_i0].std = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_id0 = 1;
           int * id = (int *) malloc(_len_id0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_id0; _i0++) {
             id[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = saa7164_g_std(port,id);
           printf("%d\n", benchRet); 
           free(port);

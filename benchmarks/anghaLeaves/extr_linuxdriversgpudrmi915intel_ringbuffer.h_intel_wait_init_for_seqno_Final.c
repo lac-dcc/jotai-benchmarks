@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static inline void intel_wait_init_for_seqno(struct intel_
 	wait->seqno = seqno;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,18 +82,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int seqno = 100;
+        
           int _len_wait0 = 1;
           struct intel_wait * wait = (struct intel_wait *) malloc(_len_wait0*sizeof(struct intel_wait));
           for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
-            wait[_i0].seqno = ((-2 * (next_i()%2)) + 1) * next_i();
-        wait[_i0].tsk = ((-2 * (next_i()%2)) + 1) * next_i();
+              wait[_i0].seqno = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].tsk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           intel_wait_init_for_seqno(wait,seqno);
           free(wait);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int seqno = 255;
+        
+          int _len_wait0 = 65025;
+          struct intel_wait * wait = (struct intel_wait *) malloc(_len_wait0*sizeof(struct intel_wait));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+              wait[_i0].seqno = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].tsk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_wait_init_for_seqno(wait,seqno);
+          free(wait);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int seqno = 10;
+        
+          int _len_wait0 = 100;
+          struct intel_wait * wait = (struct intel_wait *) malloc(_len_wait0*sizeof(struct intel_wait));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+              wait[_i0].seqno = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].tsk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_wait_init_for_seqno(wait,seqno);
+          free(wait);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int seqno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_wait0 = 1;
+          struct intel_wait * wait = (struct intel_wait *) malloc(_len_wait0*sizeof(struct intel_wait));
+          for(int _i0 = 0; _i0 < _len_wait0; _i0++) {
+              wait[_i0].seqno = ((-2 * (next_i()%2)) + 1) * next_i();
+          wait[_i0].tsk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          intel_wait_init_for_seqno(wait,seqno);
+          free(wait);
+        
+        break;
+    }
     default:
         usage();
         break;

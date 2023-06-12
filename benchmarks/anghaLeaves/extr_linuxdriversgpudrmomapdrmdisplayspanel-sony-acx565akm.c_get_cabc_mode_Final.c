@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static unsigned int get_cabc_mode(struct panel_drv_data *d
 	return ddata->cabc_mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ddata0 = 1;
+          int _len_ddata0 = 65025;
           struct panel_drv_data * ddata = (struct panel_drv_data *) malloc(_len_ddata0*sizeof(struct panel_drv_data));
           for(int _i0 = 0; _i0 < _len_ddata0; _i0++) {
-            ddata[_i0].cabc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ddata[_i0].cabc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = get_cabc_mode(ddata);
           printf("%u\n", benchRet); 
           free(ddata);
@@ -99,15 +96,32 @@ int main(int argc, char *argv[]) {
           int _len_ddata0 = 100;
           struct panel_drv_data * ddata = (struct panel_drv_data *) malloc(_len_ddata0*sizeof(struct panel_drv_data));
           for(int _i0 = 0; _i0 < _len_ddata0; _i0++) {
-            ddata[_i0].cabc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              ddata[_i0].cabc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned int benchRet = get_cabc_mode(ddata);
           printf("%u\n", benchRet); 
           free(ddata);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_ddata0 = 1;
+          struct panel_drv_data * ddata = (struct panel_drv_data *) malloc(_len_ddata0*sizeof(struct panel_drv_data));
+          for(int _i0 = 0; _i0 < _len_ddata0; _i0++) {
+              ddata[_i0].cabc_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned int benchRet = get_cabc_mode(ddata);
+          printf("%u\n", benchRet); 
+          free(ddata);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static int php_stream_memory_cast(php_stream *stream, int 
 	return FAILURE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,26 +80,102 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int castas = 100;
+        
           int _len_stream0 = 1;
           int * stream = (int *) malloc(_len_stream0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
             stream[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ret0 = 1;
           void ** ret = (void **) malloc(_len_ret0*sizeof(void *));
           for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
           }
+        
           int benchRet = php_stream_memory_cast(stream,castas,ret);
           printf("%d\n", benchRet); 
           free(stream);
           for(int i1 = 0; i1 < _len_ret0; i1++) {
-            int _len_ret1 = 1;
               }
           free(ret);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int castas = 255;
+        
+          int _len_stream0 = 65025;
+          int * stream = (int *) malloc(_len_stream0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+            stream[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 65025;
+          void ** ret = (void **) malloc(_len_ret0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+          }
+        
+          int benchRet = php_stream_memory_cast(stream,castas,ret);
+          printf("%d\n", benchRet); 
+          free(stream);
+          for(int i1 = 0; i1 < _len_ret0; i1++) {
+              }
+          free(ret);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int castas = 10;
+        
+          int _len_stream0 = 100;
+          int * stream = (int *) malloc(_len_stream0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+            stream[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 100;
+          void ** ret = (void **) malloc(_len_ret0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+          }
+        
+          int benchRet = php_stream_memory_cast(stream,castas,ret);
+          printf("%d\n", benchRet); 
+          free(stream);
+          for(int i1 = 0; i1 < _len_ret0; i1++) {
+              }
+          free(ret);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int castas = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_stream0 = 1;
+          int * stream = (int *) malloc(_len_stream0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_stream0; _i0++) {
+            stream[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ret0 = 1;
+          void ** ret = (void **) malloc(_len_ret0*sizeof(void *));
+          for(int _i0 = 0; _i0 < _len_ret0; _i0++) {
+          }
+        
+          int benchRet = php_stream_memory_cast(stream,castas,ret);
+          printf("%d\n", benchRet); 
+          free(stream);
+          for(int i1 = 0; i1 < _len_ret0; i1++) {
+              }
+          free(ret);
+        
+        break;
+    }
     default:
         usage();
         break;

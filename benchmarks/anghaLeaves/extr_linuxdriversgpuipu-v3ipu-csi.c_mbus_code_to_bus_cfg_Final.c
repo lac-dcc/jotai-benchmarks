@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -219,12 +221,6 @@ __attribute__((used)) static int mbus_code_to_bus_cfg(struct ipu_csi_bus_config 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -237,30 +233,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int mbus_code = 100;
+        
           enum v4l2_mbus_type mbus_type = 0;
+        
           int _len_cfg0 = 1;
           struct ipu_csi_bus_config * cfg = (struct ipu_csi_bus_config *) malloc(_len_cfg0*sizeof(struct ipu_csi_bus_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-              }
+            
+          }
+        
           int benchRet = mbus_code_to_bus_cfg(cfg,mbus_code,mbus_type);
           printf("%d\n", benchRet); 
           free(cfg);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
-          int mbus_code = 10;
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mbus_code = 255;
+        
           enum v4l2_mbus_type mbus_type = 0;
+        
+          int _len_cfg0 = 65025;
+          struct ipu_csi_bus_config * cfg = (struct ipu_csi_bus_config *) malloc(_len_cfg0*sizeof(struct ipu_csi_bus_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+            
+          }
+        
+          int benchRet = mbus_code_to_bus_cfg(cfg,mbus_code,mbus_type);
+          printf("%d\n", benchRet); 
+          free(cfg);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mbus_code = 10;
+        
+          enum v4l2_mbus_type mbus_type = 0;
+        
           int _len_cfg0 = 100;
           struct ipu_csi_bus_config * cfg = (struct ipu_csi_bus_config *) malloc(_len_cfg0*sizeof(struct ipu_csi_bus_config));
           for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
-              }
+            
+          }
+        
+          int benchRet = mbus_code_to_bus_cfg(cfg,mbus_code,mbus_type);
+          printf("%d\n", benchRet); 
+          free(cfg);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 9
+          // dynamic_instructions_O1 : 9
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int mbus_code = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          enum v4l2_mbus_type mbus_type = 0;
+        
+          int _len_cfg0 = 1;
+          struct ipu_csi_bus_config * cfg = (struct ipu_csi_bus_config *) malloc(_len_cfg0*sizeof(struct ipu_csi_bus_config));
+          for(int _i0 = 0; _i0 < _len_cfg0; _i0++) {
+            
+          }
+        
           int benchRet = mbus_code_to_bus_cfg(cfg,mbus_code,mbus_type);
           printf("%d\n", benchRet); 
           free(cfg);

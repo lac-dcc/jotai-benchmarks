@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ void fill_cpu(int N, float ALPHA, float *X, int INCX)
     for(i = 0; i < N; ++i) X[i*INCX] = ALPHA;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,17 +74,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+
+    // big-arr
     case 0:
     {
-          int N = 10;
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 3327
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 1031
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 505
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 505
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 505
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 1029
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 1541
+          // ------------------------------- 
+
+          int N = 255;
+        
           float ALPHA = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int INCX = 255;
+        
+          int _len_X0 = 65025;
+          float * X = (float *) malloc(_len_X0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+            X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
+          fill_cpu(N,ALPHA,X,INCX);
+          free(X);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 22
+          // dynamic_instructions_O0 : 142
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 51
+          // ------------------------------- 
+          // static_instructions_O2 : 61
+          // dynamic_instructions_O2 : 73
+          // ------------------------------- 
+          // static_instructions_O3 : 61
+          // dynamic_instructions_O3 : 73
+          // ------------------------------- 
+          // static_instructions_Ofast : 61
+          // dynamic_instructions_Ofast : 73
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 49
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 71
+          // ------------------------------- 
+
+          int N = 10;
+        
+          float ALPHA = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int INCX = 10;
+        
           int _len_X0 = 100;
           float * X = (float *) malloc(_len_X0*sizeof(float));
           for(int _i0 = 0; _i0 < _len_X0; _i0++) {
             X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           }
+        
+          fill_cpu(N,ALPHA,X,INCX);
+          free(X);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int N = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          float ALPHA = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int INCX = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_X0 = 1;
+          float * X = (float *) malloc(_len_X0*sizeof(float));
+          for(int _i0 = 0; _i0 < _len_X0; _i0++) {
+            X[_i0] = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          }
+        
           fill_cpu(N,ALPHA,X,INCX);
           free(X);
         

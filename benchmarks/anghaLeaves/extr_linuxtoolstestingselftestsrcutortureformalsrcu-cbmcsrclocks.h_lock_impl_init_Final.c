@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ __attribute__((used)) static inline void lock_impl_init(struct lock_impl *lock)
 	lock->locked = false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,14 +74,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_lock0 = 1;
+          int _len_lock0 = 65025;
           struct lock_impl * lock = (struct lock_impl *) malloc(_len_lock0*sizeof(struct lock_impl));
           for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
-            lock[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+              lock[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           lock_impl_init(lock);
           free(lock);
         
@@ -98,14 +95,30 @@ int main(int argc, char *argv[]) {
           int _len_lock0 = 100;
           struct lock_impl * lock = (struct lock_impl *) malloc(_len_lock0*sizeof(struct lock_impl));
           for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
-            lock[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+              lock[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           lock_impl_init(lock);
           free(lock);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_lock0 = 1;
+          struct lock_impl * lock = (struct lock_impl *) malloc(_len_lock0*sizeof(struct lock_impl));
+          for(int _i0 = 0; _i0 < _len_lock0; _i0++) {
+              lock[_i0].locked = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          lock_impl_init(lock);
+          free(lock);
+        
+        break;
+    }
     default:
         usage();
         break;

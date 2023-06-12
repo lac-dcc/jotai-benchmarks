@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ fdesc_pathconf(struct vnop_pathconf_args *ap)
 	/* NOTREACHED */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,19 +110,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ap0 = 1;
+          int _len_ap0 = 65025;
           struct vnop_pathconf_args * ap = (struct vnop_pathconf_args *) malloc(_len_ap0*sizeof(struct vnop_pathconf_args));
           for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
-            ap[_i0].a_name = ((-2 * (next_i()%2)) + 1) * next_i();
+              ap[_i0].a_name = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ap__i0__a_retval0 = 1;
           ap[_i0].a_retval = (int *) malloc(_len_ap__i0__a_retval0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_ap__i0__a_retval0; _j0++) {
             ap[_i0].a_retval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = fdesc_pathconf(ap);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ap0; _aux++) {
@@ -136,7 +134,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ap0 = 100;
+          struct vnop_pathconf_args * ap = (struct vnop_pathconf_args *) malloc(_len_ap0*sizeof(struct vnop_pathconf_args));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].a_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ap__i0__a_retval0 = 1;
+          ap[_i0].a_retval = (int *) malloc(_len_ap__i0__a_retval0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ap__i0__a_retval0; _j0++) {
+            ap[_i0].a_retval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = fdesc_pathconf(ap);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].a_retval);
+          }
+          free(ap);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ap0 = 1;
+          struct vnop_pathconf_args * ap = (struct vnop_pathconf_args *) malloc(_len_ap0*sizeof(struct vnop_pathconf_args));
+          for(int _i0 = 0; _i0 < _len_ap0; _i0++) {
+              ap[_i0].a_name = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ap__i0__a_retval0 = 1;
+          ap[_i0].a_retval = (int *) malloc(_len_ap__i0__a_retval0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_ap__i0__a_retval0; _j0++) {
+            ap[_i0].a_retval[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = fdesc_pathconf(ap);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ap0; _aux++) {
+          free(ap[_aux].a_retval);
+          }
+          free(ap);
+        
+        break;
+    }
     default:
         usage();
         break;

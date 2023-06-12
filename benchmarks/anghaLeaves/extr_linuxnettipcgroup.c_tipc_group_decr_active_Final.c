@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void tipc_group_decr_active(struct tipc_group *grp,
 		grp->active_cnt--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +81,75 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_grp0 = 1;
+          int _len_grp0 = 65025;
           struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
           for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
-            grp[_i0].active_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              grp[_i0].active_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_m0 = 1;
+        
+          int _len_m0 = 65025;
           struct tipc_member * m = (struct tipc_member *) malloc(_len_m0*sizeof(struct tipc_member));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           tipc_group_decr_active(grp,m);
           free(grp);
           free(m);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_grp0 = 100;
+          struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].active_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 100;
+          struct tipc_member * m = (struct tipc_member *) malloc(_len_m0*sizeof(struct tipc_member));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tipc_group_decr_active(grp,m);
+          free(grp);
+          free(m);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_grp0 = 1;
+          struct tipc_group * grp = (struct tipc_group *) malloc(_len_grp0*sizeof(struct tipc_group));
+          for(int _i0 = 0; _i0 < _len_grp0; _i0++) {
+              grp[_i0].active_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_m0 = 1;
+          struct tipc_member * m = (struct tipc_member *) malloc(_len_m0*sizeof(struct tipc_member));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          tipc_group_decr_active(grp,m);
+          free(grp);
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

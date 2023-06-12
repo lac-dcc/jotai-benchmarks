@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ int drm_panel_attach(struct drm_panel *panel, struct drm_connector *connector)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,24 +82,166 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_panel0 = 1;
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_panel0 = 65025;
           struct drm_panel * panel = (struct drm_panel *) malloc(_len_panel0*sizeof(struct drm_panel));
           for(int _i0 = 0; _i0 < _len_panel0; _i0++) {
-            panel[_i0].drm = ((-2 * (next_i()%2)) + 1) * next_i();
+              panel[_i0].drm = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_panel__i0__connector0 = 1;
           panel[_i0].connector = (struct drm_connector *) malloc(_len_panel__i0__connector0*sizeof(struct drm_connector));
           for(int _j0 = 0; _j0 < _len_panel__i0__connector0; _j0++) {
-            panel[_i0].connector->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              panel[_i0].connector->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int _len_connector0 = 65025;
+          struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
+          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
+              connector[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_panel_attach(panel,connector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_panel0; _aux++) {
+          free(panel[_aux].connector);
+          }
+          free(panel);
+          free(connector);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_panel0 = 100;
+          struct drm_panel * panel = (struct drm_panel *) malloc(_len_panel0*sizeof(struct drm_panel));
+          for(int _i0 = 0; _i0 < _len_panel0; _i0++) {
+              panel[_i0].drm = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_panel__i0__connector0 = 1;
+          panel[_i0].connector = (struct drm_connector *) malloc(_len_panel__i0__connector0*sizeof(struct drm_connector));
+          for(int _j0 = 0; _j0 < _len_panel__i0__connector0; _j0++) {
+              panel[_i0].connector->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_connector0 = 100;
+          struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
+          for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
+              connector[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = drm_panel_attach(panel,connector);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_panel0; _aux++) {
+          free(panel[_aux].connector);
+          }
+          free(panel);
+          free(connector);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 14
+          // dynamic_instructions_O0 : 14
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 9
+          // dynamic_instructions_Oz : 9
+          // ------------------------------- 
+
+          int _len_panel0 = 1;
+          struct drm_panel * panel = (struct drm_panel *) malloc(_len_panel0*sizeof(struct drm_panel));
+          for(int _i0 = 0; _i0 < _len_panel0; _i0++) {
+              panel[_i0].drm = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_panel__i0__connector0 = 1;
+          panel[_i0].connector = (struct drm_connector *) malloc(_len_panel__i0__connector0*sizeof(struct drm_connector));
+          for(int _j0 = 0; _j0 < _len_panel__i0__connector0; _j0++) {
+              panel[_i0].connector->dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int _len_connector0 = 1;
           struct drm_connector * connector = (struct drm_connector *) malloc(_len_connector0*sizeof(struct drm_connector));
           for(int _i0 = 0; _i0 < _len_connector0; _i0++) {
-            connector[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+              connector[_i0].dev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = drm_panel_attach(panel,connector);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_panel0; _aux++) {

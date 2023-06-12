@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ mbuf_set_timestamp(mbuf_t m, u_int64_t ts, boolean_t valid)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,18 +97,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           long ts = 100;
+        
           long valid = 100;
+        
           int _len_m0 = 1;
           struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.pkt_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = mbuf_set_timestamp(m,ts,valid);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long ts = 255;
+        
+          long valid = 255;
+        
+          int _len_m0 = 65025;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mbuf_set_timestamp(m,ts,valid);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long ts = 10;
+        
+          long valid = 10;
+        
+          int _len_m0 = 100;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = mbuf_set_timestamp(m,ts,valid);
+          printf("%d\n", benchRet); 
+          free(m);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 10
+          // dynamic_instructions_Ofast : 10
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          long ts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long valid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_m0 = 1;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_timestamp = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = mbuf_set_timestamp(m,ts,valid);
           printf("%d\n", benchRet); 
           free(m);

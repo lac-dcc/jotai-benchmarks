@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void peer_set_state(struct fwtty_peer *peer,
 	peer->state = new;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int new = 100;
+        
           int _len_peer0 = 1;
           struct fwtty_peer * peer = (struct fwtty_peer *) malloc(_len_peer0*sizeof(struct fwtty_peer));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-            peer[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          peer_set_state(peer,new);
+          free(peer);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int new = 255;
+        
+          int _len_peer0 = 65025;
+          struct fwtty_peer * peer = (struct fwtty_peer *) malloc(_len_peer0*sizeof(struct fwtty_peer));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           peer_set_state(peer,new);
           free(peer);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int new = 10;
+        
           int _len_peer0 = 100;
           struct fwtty_peer * peer = (struct fwtty_peer *) malloc(_len_peer0*sizeof(struct fwtty_peer));
           for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
-            peer[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+              peer[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           peer_set_state(peer,new);
           free(peer);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int new = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_peer0 = 1;
+          struct fwtty_peer * peer = (struct fwtty_peer *) malloc(_len_peer0*sizeof(struct fwtty_peer));
+          for(int _i0 = 0; _i0 < _len_peer0; _i0++) {
+              peer[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          peer_set_state(peer,new);
+          free(peer);
+        
+        break;
+    }
     default:
         usage();
         break;

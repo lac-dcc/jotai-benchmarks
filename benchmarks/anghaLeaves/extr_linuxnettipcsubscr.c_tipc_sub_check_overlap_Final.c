@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ int tipc_sub_check_overlap(struct tipc_name_seq *seq, u32 found_lower,
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,20 +87,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long found_lower = 100;
+        
           long found_upper = 100;
+        
           int _len_seq0 = 1;
           struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
           for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
-            seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
-        seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+              seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = tipc_sub_check_overlap(seq,found_lower,found_upper);
           printf("%d\n", benchRet); 
           free(seq);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          long found_lower = 255;
+        
+          long found_upper = 255;
+        
+          int _len_seq0 = 65025;
+          struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
+          for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
+              seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tipc_sub_check_overlap(seq,found_lower,found_upper);
+          printf("%d\n", benchRet); 
+          free(seq);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          long found_lower = 10;
+        
+          long found_upper = 10;
+        
+          int _len_seq0 = 100;
+          struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
+          for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
+              seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tipc_sub_check_overlap(seq,found_lower,found_upper);
+          printf("%d\n", benchRet); 
+          free(seq);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          long found_lower = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long found_upper = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_seq0 = 1;
+          struct tipc_name_seq * seq = (struct tipc_name_seq *) malloc(_len_seq0*sizeof(struct tipc_name_seq));
+          for(int _i0 = 0; _i0 < _len_seq0; _i0++) {
+              seq[_i0].lower = ((-2 * (next_i()%2)) + 1) * next_i();
+          seq[_i0].upper = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = tipc_sub_check_overlap(seq,found_lower,found_upper);
+          printf("%d\n", benchRet); 
+          free(seq);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static bool hunk_ends_at_or_before_line(git_blame_hunk *hu
 	return line >= (hunk->final_start_line_number + hunk->lines_in_hunk - 1);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,16 +77,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           unsigned long line = 100;
+        
           int _len_hunk0 = 1;
           struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
-            hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
-        hunk[_i0].lines_in_hunk = ((-2 * (next_i()%2)) + 1) * next_i();
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          hunk[_i0].lines_in_hunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = hunk_ends_at_or_before_line(hunk,line);
+          printf("%d\n", benchRet); 
+          free(hunk);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long line = 255;
+        
+          int _len_hunk0 = 65025;
+          struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          hunk[_i0].lines_in_hunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hunk_ends_at_or_before_line(hunk,line);
+          printf("%d\n", benchRet); 
+          free(hunk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long line = 10;
+        
+          int _len_hunk0 = 100;
+          struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          hunk[_i0].lines_in_hunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = hunk_ends_at_or_before_line(hunk,line);
+          printf("%d\n", benchRet); 
+          free(hunk);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 17
+          // dynamic_instructions_O0 : 17
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 12
+          // dynamic_instructions_O3 : 12
+          // ------------------------------- 
+          // static_instructions_Ofast : 12
+          // dynamic_instructions_Ofast : 12
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          unsigned long line = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hunk0 = 1;
+          struct TYPE_3__ * hunk = (struct TYPE_3__ *) malloc(_len_hunk0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_hunk0; _i0++) {
+              hunk[_i0].final_start_line_number = ((-2 * (next_i()%2)) + 1) * next_i();
+          hunk[_i0].lines_in_hunk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = hunk_ends_at_or_before_line(hunk,line);
           printf("%d\n", benchRet); 
           free(hunk);

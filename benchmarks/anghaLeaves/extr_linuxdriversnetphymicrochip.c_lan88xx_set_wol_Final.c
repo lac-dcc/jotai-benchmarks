@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static int lan88xx_set_wol(struct phy_device *phydev,
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,28 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_phydev0 = 1;
+          int _len_phydev0 = 65025;
           struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
           for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
               int _len_phydev__i0__priv0 = 1;
           phydev[_i0].priv = (struct lan88xx_priv *) malloc(_len_phydev__i0__priv0*sizeof(struct lan88xx_priv));
           for(int _j0 = 0; _j0 < _len_phydev__i0__priv0; _j0++) {
-            phydev[_i0].priv->wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+              phydev[_i0].priv->wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
-          int _len_wol0 = 1;
+        
+          int _len_wol0 = 65025;
           struct ethtool_wolinfo * wol = (struct ethtool_wolinfo *) malloc(_len_wol0*sizeof(struct ethtool_wolinfo));
           for(int _i0 = 0; _i0 < _len_wol0; _i0++) {
-            wol[_i0].wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+              wol[_i0].wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = lan88xx_set_wol(phydev,wol);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_phydev0; _aux++) {
@@ -112,7 +113,70 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_phydev0 = 100;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              int _len_phydev__i0__priv0 = 1;
+          phydev[_i0].priv = (struct lan88xx_priv *) malloc(_len_phydev__i0__priv0*sizeof(struct lan88xx_priv));
+          for(int _j0 = 0; _j0 < _len_phydev__i0__priv0; _j0++) {
+              phydev[_i0].priv->wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_wol0 = 100;
+          struct ethtool_wolinfo * wol = (struct ethtool_wolinfo *) malloc(_len_wol0*sizeof(struct ethtool_wolinfo));
+          for(int _i0 = 0; _i0 < _len_wol0; _i0++) {
+              wol[_i0].wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lan88xx_set_wol(phydev,wol);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_phydev0; _aux++) {
+          free(phydev[_aux].priv);
+          }
+          free(phydev);
+          free(wol);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_phydev0 = 1;
+          struct phy_device * phydev = (struct phy_device *) malloc(_len_phydev0*sizeof(struct phy_device));
+          for(int _i0 = 0; _i0 < _len_phydev0; _i0++) {
+              int _len_phydev__i0__priv0 = 1;
+          phydev[_i0].priv = (struct lan88xx_priv *) malloc(_len_phydev__i0__priv0*sizeof(struct lan88xx_priv));
+          for(int _j0 = 0; _j0 < _len_phydev__i0__priv0; _j0++) {
+              phydev[_i0].priv->wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_wol0 = 1;
+          struct ethtool_wolinfo * wol = (struct ethtool_wolinfo *) malloc(_len_wol0*sizeof(struct ethtool_wolinfo));
+          for(int _i0 = 0; _i0 < _len_wol0; _i0++) {
+              wol[_i0].wolopts = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = lan88xx_set_wol(phydev,wol);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_phydev0; _aux++) {
+          free(phydev[_aux].priv);
+          }
+          free(phydev);
+          free(wol);
+        
+        break;
+    }
     default:
         usage();
         break;

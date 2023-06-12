@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -84,12 +87,6 @@ decode_sve_aimm (aarch64_opnd_info *info, int64_t value)
   return TRUE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,19 +99,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int value = 100;
+        
           int _len_info0 = 1;
           struct TYPE_7__ * info = (struct TYPE_7__ *) malloc(_len_info0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].shifter.amount = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].shifter.operator_present = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].shifter.amount_present = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].shifter.kind = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].shifter.amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.operator_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.amount_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = decode_sve_aimm(info,value);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int value = 255;
+        
+          int _len_info0 = 65025;
+          struct TYPE_7__ * info = (struct TYPE_7__ *) malloc(_len_info0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].shifter.amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.operator_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.amount_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = decode_sve_aimm(info,value);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int value = 10;
+        
+          int _len_info0 = 100;
+          struct TYPE_7__ * info = (struct TYPE_7__ *) malloc(_len_info0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].shifter.amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.operator_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.amount_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = decode_sve_aimm(info,value);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 40
+          // dynamic_instructions_O0 : 40
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct TYPE_7__ * info = (struct TYPE_7__ *) malloc(_len_info0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].imm.value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          info[_i0].shifter.amount = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.operator_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.amount_present = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].shifter.kind = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = decode_sve_aimm(info,value);
           printf("%d\n", benchRet); 
           free(info);

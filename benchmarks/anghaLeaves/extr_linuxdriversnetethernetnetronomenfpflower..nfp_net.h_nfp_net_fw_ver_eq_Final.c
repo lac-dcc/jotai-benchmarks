@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static inline bool nfp_net_fw_ver_eq(struct nfp_net_fw_ver
 	       fw_ver->minor == minor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,21 +80,203 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           long resv = 100;
+        
           long class = 100;
+        
           long major = 100;
+        
           long minor = 100;
+        
           int _len_fw_ver0 = 1;
           struct nfp_net_fw_version * fw_ver = (struct nfp_net_fw_version *) malloc(_len_fw_ver0*sizeof(struct nfp_net_fw_version));
           for(int _i0 = 0; _i0 < _len_fw_ver0; _i0++) {
-            fw_ver[_i0].resv = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_ver[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_ver[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
-        fw_ver[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+              fw_ver[_i0].resv = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = nfp_net_fw_ver_eq(fw_ver,resv,class,major,minor);
+          printf("%d\n", benchRet); 
+          free(fw_ver);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long resv = 255;
+        
+          long class = 255;
+        
+          long major = 255;
+        
+          long minor = 255;
+        
+          int _len_fw_ver0 = 65025;
+          struct nfp_net_fw_version * fw_ver = (struct nfp_net_fw_version *) malloc(_len_fw_ver0*sizeof(struct nfp_net_fw_version));
+          for(int _i0 = 0; _i0 < _len_fw_ver0; _i0++) {
+              fw_ver[_i0].resv = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_net_fw_ver_eq(fw_ver,resv,class,major,minor);
+          printf("%d\n", benchRet); 
+          free(fw_ver);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          long resv = 10;
+        
+          long class = 10;
+        
+          long major = 10;
+        
+          long minor = 10;
+        
+          int _len_fw_ver0 = 100;
+          struct nfp_net_fw_version * fw_ver = (struct nfp_net_fw_version *) malloc(_len_fw_ver0*sizeof(struct nfp_net_fw_version));
+          for(int _i0 = 0; _i0 < _len_fw_ver0; _i0++) {
+              fw_ver[_i0].resv = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = nfp_net_fw_ver_eq(fw_ver,resv,class,major,minor);
+          printf("%d\n", benchRet); 
+          free(fw_ver);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 35
+          // dynamic_instructions_O0 : 35
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          long resv = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long class = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long major = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_fw_ver0 = 1;
+          struct nfp_net_fw_version * fw_ver = (struct nfp_net_fw_version *) malloc(_len_fw_ver0*sizeof(struct nfp_net_fw_version));
+          for(int _i0 = 0; _i0 < _len_fw_ver0; _i0++) {
+              fw_ver[_i0].resv = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].class = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].major = ((-2 * (next_i()%2)) + 1) * next_i();
+          fw_ver[_i0].minor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = nfp_net_fw_ver_eq(fw_ver,resv,class,major,minor);
           printf("%d\n", benchRet); 
           free(fw_ver);

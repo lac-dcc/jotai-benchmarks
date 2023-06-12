@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static inline int d_pitch(struct fb_var_screeninfo *var)
 	return var->xres * var->bits_per_pixel / 8;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,22 +74,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_var0 = 1;
+          int _len_var0 = 65025;
           struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
           for(int _i0 = 0; _i0 < _len_var0; _i0++) {
-            var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
-        var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+              var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = d_pitch(var);
           printf("%d\n", benchRet); 
           free(var);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_var0 = 100;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = d_pitch(var);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_var0 = 1;
+          struct fb_var_screeninfo * var = (struct fb_var_screeninfo *) malloc(_len_var0*sizeof(struct fb_var_screeninfo));
+          for(int _i0 = 0; _i0 < _len_var0; _i0++) {
+              var[_i0].xres = ((-2 * (next_i()%2)) + 1) * next_i();
+          var[_i0].bits_per_pixel = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = d_pitch(var);
+          printf("%d\n", benchRet); 
+          free(var);
+        
+        break;
+    }
     default:
         usage();
         break;

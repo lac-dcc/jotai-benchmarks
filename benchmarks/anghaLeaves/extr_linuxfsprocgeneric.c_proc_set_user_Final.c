@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ void proc_set_user(struct proc_dir_entry *de, kuid_t uid, kgid_t gid)
 	de->gid = gid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,17 +78,176 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int uid = 100;
+        
           int gid = 100;
+        
           int _len_de0 = 1;
           struct proc_dir_entry * de = (struct proc_dir_entry *) malloc(_len_de0*sizeof(struct proc_dir_entry));
           for(int _i0 = 0; _i0 < _len_de0; _i0++) {
-            de[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
-        de[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+              de[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          de[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          proc_set_user(de,uid,gid);
+          free(de);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int uid = 255;
+        
+          int gid = 255;
+        
+          int _len_de0 = 65025;
+          struct proc_dir_entry * de = (struct proc_dir_entry *) malloc(_len_de0*sizeof(struct proc_dir_entry));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              de[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          de[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          proc_set_user(de,uid,gid);
+          free(de);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int uid = 10;
+        
+          int gid = 10;
+        
+          int _len_de0 = 100;
+          struct proc_dir_entry * de = (struct proc_dir_entry *) malloc(_len_de0*sizeof(struct proc_dir_entry));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              de[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          de[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          proc_set_user(de,uid,gid);
+          free(de);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int gid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_de0 = 1;
+          struct proc_dir_entry * de = (struct proc_dir_entry *) malloc(_len_de0*sizeof(struct proc_dir_entry));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              de[_i0].gid = ((-2 * (next_i()%2)) + 1) * next_i();
+          de[_i0].uid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           proc_set_user(de,uid,gid);
           free(de);
         

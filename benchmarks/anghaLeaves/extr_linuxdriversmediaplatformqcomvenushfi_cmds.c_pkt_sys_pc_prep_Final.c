@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void pkt_sys_pc_prep(struct hfi_sys_pc_prep_pkt *pkt)
 	pkt->hdr.pkt_type = HFI_CMD_SYS_PC_PREP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_pkt0 = 1;
+          int _len_pkt0 = 65025;
           struct hfi_sys_pc_prep_pkt * pkt = (struct hfi_sys_pc_prep_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_pc_prep_pkt));
           for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
-            pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
-        pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           pkt_sys_pc_prep(pkt);
           free(pkt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_pkt0 = 100;
+          struct hfi_sys_pc_prep_pkt * pkt = (struct hfi_sys_pc_prep_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_pc_prep_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          pkt_sys_pc_prep(pkt);
+          free(pkt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_pkt0 = 1;
+          struct hfi_sys_pc_prep_pkt * pkt = (struct hfi_sys_pc_prep_pkt *) malloc(_len_pkt0*sizeof(struct hfi_sys_pc_prep_pkt));
+          for(int _i0 = 0; _i0 < _len_pkt0; _i0++) {
+              pkt[_i0].hdr.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          pkt[_i0].hdr.pkt_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          pkt_sys_pc_prep(pkt);
+          free(pkt);
+        
+        break;
+    }
     default:
         usage();
         break;

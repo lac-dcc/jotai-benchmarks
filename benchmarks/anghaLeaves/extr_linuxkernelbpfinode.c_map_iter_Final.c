@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static struct map_iter *map_iter(struct seq_file *m)
 	return m->private;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_m0 = 1;
+          int _len_m0 = 65025;
           struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
               int _len_m__i0__private0 = 1;
           m[_i0].private = (struct map_iter *) malloc(_len_m__i0__private0*sizeof(struct map_iter));
           for(int _j0 = 0; _j0 < _len_m__i0__private0; _j0++) {
-            m[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct map_iter * benchRet = map_iter(m);
           printf("%d\n", (*benchRet).dummy);
           for(int _aux = 0; _aux < _len_m0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_m0 = 100;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              int _len_m__i0__private0 = 1;
+          m[_i0].private = (struct map_iter *) malloc(_len_m__i0__private0*sizeof(struct map_iter));
+          for(int _j0 = 0; _j0 < _len_m__i0__private0; _j0++) {
+              m[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct map_iter * benchRet = map_iter(m);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].private);
+          }
+          free(m);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_m0 = 1;
+          struct seq_file * m = (struct seq_file *) malloc(_len_m0*sizeof(struct seq_file));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              int _len_m__i0__private0 = 1;
+          m[_i0].private = (struct map_iter *) malloc(_len_m__i0__private0*sizeof(struct map_iter));
+          for(int _j0 = 0; _j0 < _len_m__i0__private0; _j0++) {
+              m[_i0].private->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct map_iter * benchRet = map_iter(m);
+          printf("%d\n", (*benchRet).dummy);
+          for(int _aux = 0; _aux < _len_m0; _aux++) {
+          free(m[_aux].private);
+          }
+          free(m);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ __attribute__((used)) static u32 am33xx_cm_xlate_clkctrl(u8 part, u16 inst, u16 
 	return cm_base.pa + inst + offset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,8 +84,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int part = 100;
+        
           long inst = 100;
+        
           long offset = 100;
+        
           long benchRet = am33xx_cm_xlate_clkctrl(part,inst,offset);
           printf("%ld\n", benchRet); 
         
@@ -100,8 +98,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int part = 255;
+        
           long inst = 255;
+        
           long offset = 255;
+        
           long benchRet = am33xx_cm_xlate_clkctrl(part,inst,offset);
           printf("%ld\n", benchRet); 
         
@@ -111,14 +112,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int part = 10;
+        
           long inst = 10;
+        
           long offset = 10;
+        
           long benchRet = am33xx_cm_xlate_clkctrl(part,inst,offset);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int part = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long inst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = am33xx_cm_xlate_clkctrl(part,inst,offset);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

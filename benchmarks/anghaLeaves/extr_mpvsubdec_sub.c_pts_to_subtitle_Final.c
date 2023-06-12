@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static double pts_to_subtitle(struct dec_sub *sub, double 
     return pts;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,20 +81,149 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_sub0 = 1;
+        
+          int _len_sub0 = 65025;
           struct dec_sub * sub = (struct dec_sub *) malloc(_len_sub0*sizeof(struct dec_sub));
           for(int _i0 = 0; _i0 < _len_sub0; _i0++) {
-            sub[_i0].sub_speed = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              sub[_i0].sub_speed = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
           int _len_sub__i0__opts0 = 1;
           sub[_i0].opts = (struct mp_subtitle_opts *) malloc(_len_sub__i0__opts0*sizeof(struct mp_subtitle_opts));
           for(int _j0 = 0; _j0 < _len_sub__i0__opts0; _j0++) {
-            sub[_i0].opts->sub_delay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              sub[_i0].opts->sub_delay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           }
+        
+          double benchRet = pts_to_subtitle(sub,pts);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sub0; _aux++) {
+          free(sub[_aux].opts);
+          }
+          free(sub);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_sub0 = 100;
+          struct dec_sub * sub = (struct dec_sub *) malloc(_len_sub0*sizeof(struct dec_sub));
+          for(int _i0 = 0; _i0 < _len_sub0; _i0++) {
+              sub[_i0].sub_speed = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          int _len_sub__i0__opts0 = 1;
+          sub[_i0].opts = (struct mp_subtitle_opts *) malloc(_len_sub__i0__opts0*sizeof(struct mp_subtitle_opts));
+          for(int _j0 = 0; _j0 < _len_sub__i0__opts0; _j0++) {
+              sub[_i0].opts->sub_delay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          double benchRet = pts_to_subtitle(sub,pts);
+          printf("%lf\n", benchRet); 
+          for(int _aux = 0; _aux < _len_sub0; _aux++) {
+          free(sub[_aux].opts);
+          }
+          free(sub);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 10
+          // dynamic_instructions_O1 : 10
+          // ------------------------------- 
+          // static_instructions_O2 : 10
+          // dynamic_instructions_O2 : 10
+          // ------------------------------- 
+          // static_instructions_O3 : 10
+          // dynamic_instructions_O3 : 10
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 10
+          // dynamic_instructions_Os : 10
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          double pts = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_sub0 = 1;
+          struct dec_sub * sub = (struct dec_sub *) malloc(_len_sub0*sizeof(struct dec_sub));
+          for(int _i0 = 0; _i0 < _len_sub0; _i0++) {
+              sub[_i0].sub_speed = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          int _len_sub__i0__opts0 = 1;
+          sub[_i0].opts = (struct mp_subtitle_opts *) malloc(_len_sub__i0__opts0*sizeof(struct mp_subtitle_opts));
+          for(int _j0 = 0; _j0 < _len_sub__i0__opts0; _j0++) {
+              sub[_i0].opts->sub_delay = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
           double benchRet = pts_to_subtitle(sub,pts);
           printf("%lf\n", benchRet); 
           for(int _aux = 0; _aux < _len_sub0; _aux++) {

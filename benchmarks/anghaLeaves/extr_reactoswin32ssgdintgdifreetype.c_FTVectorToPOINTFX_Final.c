@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static __inline void FTVectorToPOINTFX(FT_Vector *vec, POI
     pt->y.fract |= ((pt->y.fract >> 6) | (pt->y.fract >> 12));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,30 +88,93 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vec0 = 1;
+          int _len_vec0 = 65025;
           struct TYPE_10__ * vec = (struct TYPE_10__ *) malloc(_len_vec0*sizeof(struct TYPE_10__));
           for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
-            vec[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
-        vec[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+              vec[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          vec[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_pt0 = 1;
+        
+          int _len_pt0 = 65025;
           struct TYPE_9__ * pt = (struct TYPE_9__ *) malloc(_len_pt0*sizeof(struct TYPE_9__));
           for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
-            pt[_i0].y.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        pt[_i0].y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
-        pt[_i0].x.value = ((-2 * (next_i()%2)) + 1) * next_i();
-        pt[_i0].x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+              pt[_i0].y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          pt[_i0].y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pt[_i0].x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          pt[_i0].x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           FTVectorToPOINTFX(vec,pt);
           free(vec);
           free(pt);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vec0 = 100;
+          struct TYPE_10__ * vec = (struct TYPE_10__ *) malloc(_len_vec0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+              vec[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          vec[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pt0 = 100;
+          struct TYPE_9__ * pt = (struct TYPE_9__ *) malloc(_len_pt0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
+              pt[_i0].y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          pt[_i0].y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pt[_i0].x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          pt[_i0].x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          FTVectorToPOINTFX(vec,pt);
+          free(vec);
+          free(pt);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vec0 = 1;
+          struct TYPE_10__ * vec = (struct TYPE_10__ *) malloc(_len_vec0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_vec0; _i0++) {
+              vec[_i0].x = ((-2 * (next_i()%2)) + 1) * next_i();
+          vec[_i0].y = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_pt0 = 1;
+          struct TYPE_9__ * pt = (struct TYPE_9__ *) malloc(_len_pt0*sizeof(struct TYPE_9__));
+          for(int _i0 = 0; _i0 < _len_pt0; _i0++) {
+              pt[_i0].y.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          pt[_i0].y.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          pt[_i0].x.value = ((-2 * (next_i()%2)) + 1) * next_i();
+          pt[_i0].x.fract = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          FTVectorToPOINTFX(vec,pt);
+          free(vec);
+          free(pt);
+        
+        break;
+    }
     default:
         usage();
         break;

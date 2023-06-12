@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ cifs_set_cifscreds(struct smb_vol *vol __attribute__((unused)),
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vol0 = 1;
+          int _len_vol0 = 65025;
           struct smb_vol * vol = (struct smb_vol *) malloc(_len_vol0*sizeof(struct smb_vol));
           for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
-            vol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              vol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_ses0 = 1;
+        
+          int _len_ses0 = 65025;
           struct cifs_ses * ses = (struct cifs_ses *) malloc(_len_ses0*sizeof(struct cifs_ses));
           for(int _i0 = 0; _i0 < _len_ses0; _i0++) {
-            ses[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              ses[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cifs_set_cifscreds(vol,ses);
           printf("%d\n", benchRet); 
           free(vol);
@@ -102,7 +102,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_vol0 = 100;
+          struct smb_vol * vol = (struct smb_vol *) malloc(_len_vol0*sizeof(struct smb_vol));
+          for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
+              vol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ses0 = 100;
+          struct cifs_ses * ses = (struct cifs_ses *) malloc(_len_ses0*sizeof(struct cifs_ses));
+          for(int _i0 = 0; _i0 < _len_ses0; _i0++) {
+              ses[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cifs_set_cifscreds(vol,ses);
+          printf("%d\n", benchRet); 
+          free(vol);
+          free(ses);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_vol0 = 1;
+          struct smb_vol * vol = (struct smb_vol *) malloc(_len_vol0*sizeof(struct smb_vol));
+          for(int _i0 = 0; _i0 < _len_vol0; _i0++) {
+              vol[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_ses0 = 1;
+          struct cifs_ses * ses = (struct cifs_ses *) malloc(_len_ses0*sizeof(struct cifs_ses));
+          for(int _i0 = 0; _i0 < _len_ses0; _i0++) {
+              ses[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cifs_set_cifscreds(vol,ses);
+          printf("%d\n", benchRet); 
+          free(vol);
+          free(ses);
+        
+        break;
+    }
     default:
         usage();
         break;

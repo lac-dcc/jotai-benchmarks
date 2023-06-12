@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -74,12 +77,6 @@ __attribute__((used)) static unsigned long spu_next_offset(struct spu_queue *q, 
 	return off;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -96,18 +93,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long off = 100;
+        
           int _len_q0 = 1;
           struct spu_queue * q = (struct spu_queue *) malloc(_len_q0*sizeof(struct spu_queue));
           for(int _i0 = 0; _i0 < _len_q0; _i0++) {
-            q[_i0].q_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              q[_i0].q_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = spu_next_offset(q,off);
           printf("%lu\n", benchRet); 
           free(q);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned long off = 255;
+        
+          int _len_q0 = 65025;
+          struct spu_queue * q = (struct spu_queue *) malloc(_len_q0*sizeof(struct spu_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].q_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = spu_next_offset(q,off);
+          printf("%lu\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned long off = 10;
+        
+          int _len_q0 = 100;
+          struct spu_queue * q = (struct spu_queue *) malloc(_len_q0*sizeof(struct spu_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].q_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = spu_next_offset(q,off);
+          printf("%lu\n", benchRet); 
+          free(q);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned long off = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_q0 = 1;
+          struct spu_queue * q = (struct spu_queue *) malloc(_len_q0*sizeof(struct spu_queue));
+          for(int _i0 = 0; _i0 < _len_q0; _i0++) {
+              q[_i0].q_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = spu_next_offset(q,off);
+          printf("%lu\n", benchRet); 
+          free(q);
+        
+        break;
+    }
     default:
         usage();
         break;

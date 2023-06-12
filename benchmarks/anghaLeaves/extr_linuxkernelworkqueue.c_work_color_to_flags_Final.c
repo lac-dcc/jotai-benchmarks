@@ -62,12 +62,6 @@ __attribute__((used)) static unsigned int work_color_to_flags(int color)
 	return color << WORK_STRUCT_COLOR_SHIFT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int color = 100;
+        
           unsigned int benchRet = work_color_to_flags(color);
           printf("%u\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int color = 255;
+        
           unsigned int benchRet = work_color_to_flags(color);
           printf("%u\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int color = 10;
+        
           unsigned int benchRet = work_color_to_flags(color);
           printf("%u\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

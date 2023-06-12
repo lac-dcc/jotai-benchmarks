@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ bool seatop_allows_set_cursor(struct sway_seat *seat) {
 	return seat->seatop_impl->allow_set_cursor;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,18 +75,21 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_seat0 = 1;
+          int _len_seat0 = 65025;
           struct sway_seat * seat = (struct sway_seat *) malloc(_len_seat0*sizeof(struct sway_seat));
           for(int _i0 = 0; _i0 < _len_seat0; _i0++) {
               int _len_seat__i0__seatop_impl0 = 1;
           seat[_i0].seatop_impl = (struct TYPE_2__ *) malloc(_len_seat__i0__seatop_impl0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_seat__i0__seatop_impl0; _j0++) {
-            seat[_i0].seatop_impl->allow_set_cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+              seat[_i0].seatop_impl->allow_set_cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = seatop_allows_set_cursor(seat);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_seat0; _aux++) {
@@ -100,7 +99,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_seat0 = 100;
+          struct sway_seat * seat = (struct sway_seat *) malloc(_len_seat0*sizeof(struct sway_seat));
+          for(int _i0 = 0; _i0 < _len_seat0; _i0++) {
+              int _len_seat__i0__seatop_impl0 = 1;
+          seat[_i0].seatop_impl = (struct TYPE_2__ *) malloc(_len_seat__i0__seatop_impl0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_seat__i0__seatop_impl0; _j0++) {
+              seat[_i0].seatop_impl->allow_set_cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = seatop_allows_set_cursor(seat);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_seat0; _aux++) {
+          free(seat[_aux].seatop_impl);
+          }
+          free(seat);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_seat0 = 1;
+          struct sway_seat * seat = (struct sway_seat *) malloc(_len_seat0*sizeof(struct sway_seat));
+          for(int _i0 = 0; _i0 < _len_seat0; _i0++) {
+              int _len_seat__i0__seatop_impl0 = 1;
+          seat[_i0].seatop_impl = (struct TYPE_2__ *) malloc(_len_seat__i0__seatop_impl0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_seat__i0__seatop_impl0; _j0++) {
+              seat[_i0].seatop_impl->allow_set_cursor = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = seatop_allows_set_cursor(seat);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_seat0; _aux++) {
+          free(seat[_aux].seatop_impl);
+          }
+          free(seat);
+        
+        break;
+    }
     default:
         usage();
         break;

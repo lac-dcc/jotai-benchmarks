@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static bool vmw_shader_id_ok(u32 user_key, SVGA3dShaderTyp
 	return user_key <= ((1 << 20) - 1) && (unsigned) shader_type < 16;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,7 +80,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int user_key = 100;
+        
           long shader_type = 100;
+        
           int benchRet = vmw_shader_id_ok(user_key,shader_type);
           printf("%d\n", benchRet); 
         
@@ -95,7 +92,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int user_key = 255;
+        
           long shader_type = 255;
+        
           int benchRet = vmw_shader_id_ok(user_key,shader_type);
           printf("%d\n", benchRet); 
         
@@ -105,13 +104,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int user_key = 10;
+        
           long shader_type = 10;
+        
           int benchRet = vmw_shader_id_ok(user_key,shader_type);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int user_key = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long shader_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = vmw_shader_id_ok(user_key,shader_type);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

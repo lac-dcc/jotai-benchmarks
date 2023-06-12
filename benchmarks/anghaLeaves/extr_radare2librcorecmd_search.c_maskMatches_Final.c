@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -66,12 +67,6 @@ __attribute__((used)) static bool maskMatches(int perm, int mask, bool only) {
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,8 +83,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int perm = 100;
+        
           int mask = 100;
+        
           int only = 100;
+        
           int benchRet = maskMatches(perm,mask,only);
           printf("%d\n", benchRet); 
         
@@ -99,8 +97,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int perm = 255;
+        
           int mask = 255;
+        
           int only = 255;
+        
           int benchRet = maskMatches(perm,mask,only);
           printf("%d\n", benchRet); 
         
@@ -110,14 +111,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int perm = 10;
+        
           int mask = 10;
+        
           int only = 10;
+        
           int benchRet = maskMatches(perm,mask,only);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int perm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int mask = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int only = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = maskMatches(perm,mask,only);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

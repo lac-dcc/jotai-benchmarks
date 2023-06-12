@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ goto_view_line(struct view *view, unsigned long offset, unsigned long lineno)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,19 +96,191 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
           unsigned long offset = 100;
+        
           unsigned long lineno = 100;
+        
           int _len_view0 = 1;
           struct view * view = (struct view *) malloc(_len_view0*sizeof(struct view));
           for(int _i0 = 0; _i0 < _len_view0; _i0++) {
-            view[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
-        view[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
-        view[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        view[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+              view[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = goto_view_line(view,offset,lineno);
+          printf("%d\n", benchRet); 
+          free(view);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned long offset = 255;
+        
+          unsigned long lineno = 255;
+        
+          int _len_view0 = 65025;
+          struct view * view = (struct view *) malloc(_len_view0*sizeof(struct view));
+          for(int _i0 = 0; _i0 < _len_view0; _i0++) {
+              view[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = goto_view_line(view,offset,lineno);
+          printf("%d\n", benchRet); 
+          free(view);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 32
+          // dynamic_instructions_O0 : 32
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned long offset = 10;
+        
+          unsigned long lineno = 10;
+        
+          int _len_view0 = 100;
+          struct view * view = (struct view *) malloc(_len_view0*sizeof(struct view));
+          for(int _i0 = 0; _i0 < _len_view0; _i0++) {
+              view[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = goto_view_line(view,offset,lineno);
+          printf("%d\n", benchRet); 
+          free(view);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 49
+          // dynamic_instructions_O0 : 49
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 27
+          // dynamic_instructions_O2 : 27
+          // ------------------------------- 
+          // static_instructions_O3 : 27
+          // dynamic_instructions_O3 : 27
+          // ------------------------------- 
+          // static_instructions_Ofast : 27
+          // dynamic_instructions_Ofast : 27
+          // ------------------------------- 
+          // static_instructions_Os : 27
+          // dynamic_instructions_Os : 27
+          // ------------------------------- 
+          // static_instructions_Oz : 27
+          // dynamic_instructions_Oz : 27
+          // ------------------------------- 
+
+          unsigned long offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_view0 = 1;
+          struct view * view = (struct view *) malloc(_len_view0*sizeof(struct view));
+          for(int _i0 = 0; _i0 < _len_view0; _i0++) {
+              view[_i0].lines = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].height = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          view[_i0].pos.lineno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = goto_view_line(view,offset,lineno);
           printf("%d\n", benchRet); 
           free(view);

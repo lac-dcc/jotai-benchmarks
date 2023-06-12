@@ -62,12 +62,6 @@ __attribute__((used)) static inline u32 i915_pde_index(u64 addr, u32 shift)
 	return (addr >> shift) & I915_PDE_MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,13 +78,14 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int addr = 10;
+        
           int shift = 10;
+        
           int benchRet = i915_pde_index(addr,shift);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +65,6 @@ __attribute__((used)) static void stats_init(struct stats *s, unsigned nr_levels
 	s->misses = 0u;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,19 +81,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int nr_levels = 100;
+        
           int _len_s0 = 1;
           struct stats * s = (struct stats *) malloc(_len_s0*sizeof(struct stats));
           for(int _i0 = 0; _i0 < _len_s0; _i0++) {
-            s[_i0].hit_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].hits = ((-2 * (next_i()%2)) + 1) * next_i();
-        s[_i0].misses = ((-2 * (next_i()%2)) + 1) * next_i();
+              s[_i0].hit_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].hits = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].misses = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           stats_init(s,nr_levels);
           free(s);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          unsigned int nr_levels = 255;
+        
+          int _len_s0 = 65025;
+          struct stats * s = (struct stats *) malloc(_len_s0*sizeof(struct stats));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].hit_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].hits = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].misses = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stats_init(s,nr_levels);
+          free(s);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          unsigned int nr_levels = 10;
+        
+          int _len_s0 = 100;
+          struct stats * s = (struct stats *) malloc(_len_s0*sizeof(struct stats));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].hit_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].hits = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].misses = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stats_init(s,nr_levels);
+          free(s);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          unsigned int nr_levels = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_s0 = 1;
+          struct stats * s = (struct stats *) malloc(_len_s0*sizeof(struct stats));
+          for(int _i0 = 0; _i0 < _len_s0; _i0++) {
+              s[_i0].hit_threshold = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].hits = ((-2 * (next_i()%2)) + 1) * next_i();
+          s[_i0].misses = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          stats_init(s,nr_levels);
+          free(s);
+        
+        break;
+    }
     default:
         usage();
         break;

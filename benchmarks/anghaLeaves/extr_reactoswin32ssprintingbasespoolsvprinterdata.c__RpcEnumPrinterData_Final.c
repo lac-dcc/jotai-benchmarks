@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -67,12 +70,6 @@ _RpcEnumPrinterData(WINSPOOL_PRINTER_HANDLE hPrinter, DWORD dwIndex, WCHAR* pVal
     return ERROR_INVALID_FUNCTION;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,34 +86,43 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hPrinter = 100;
+        
           int dwIndex = 100;
+        
           int cbValueName = 100;
+        
           int cbData = 100;
+        
           int _len_pValueName0 = 1;
           int * pValueName = (int *) malloc(_len_pValueName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pValueName0; _i0++) {
             pValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pcbValueName0 = 1;
           int * pcbValueName = (int *) malloc(_len_pcbValueName0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pcbValueName0; _i0++) {
             pcbValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pType0 = 1;
           int * pType = (int *) malloc(_len_pType0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pType0; _i0++) {
             pType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pData0 = 1;
           int * pData = (int *) malloc(_len_pData0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pData0; _i0++) {
             pData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_pcbData0 = 1;
           int * pcbData = (int *) malloc(_len_pcbData0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_pcbData0; _i0++) {
             pcbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = _RpcEnumPrinterData(hPrinter,dwIndex,pValueName,cbValueName,pcbValueName,pType,pData,cbData,pcbData);
           printf("%d\n", benchRet); 
           free(pValueName);
@@ -127,7 +133,159 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int hPrinter = 255;
+        
+          int dwIndex = 255;
+        
+          int cbValueName = 255;
+        
+          int cbData = 255;
+        
+          int _len_pValueName0 = 65025;
+          int * pValueName = (int *) malloc(_len_pValueName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pValueName0; _i0++) {
+            pValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbValueName0 = 65025;
+          int * pcbValueName = (int *) malloc(_len_pcbValueName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbValueName0; _i0++) {
+            pcbValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pType0 = 65025;
+          int * pType = (int *) malloc(_len_pType0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pType0; _i0++) {
+            pType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pData0 = 65025;
+          int * pData = (int *) malloc(_len_pData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pData0; _i0++) {
+            pData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbData0 = 65025;
+          int * pcbData = (int *) malloc(_len_pcbData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbData0; _i0++) {
+            pcbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcEnumPrinterData(hPrinter,dwIndex,pValueName,cbValueName,pcbValueName,pType,pData,cbData,pcbData);
+          printf("%d\n", benchRet); 
+          free(pValueName);
+          free(pcbValueName);
+          free(pType);
+          free(pData);
+          free(pcbData);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int hPrinter = 10;
+        
+          int dwIndex = 10;
+        
+          int cbValueName = 10;
+        
+          int cbData = 10;
+        
+          int _len_pValueName0 = 100;
+          int * pValueName = (int *) malloc(_len_pValueName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pValueName0; _i0++) {
+            pValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbValueName0 = 100;
+          int * pcbValueName = (int *) malloc(_len_pcbValueName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbValueName0; _i0++) {
+            pcbValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pType0 = 100;
+          int * pType = (int *) malloc(_len_pType0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pType0; _i0++) {
+            pType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pData0 = 100;
+          int * pData = (int *) malloc(_len_pData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pData0; _i0++) {
+            pData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbData0 = 100;
+          int * pcbData = (int *) malloc(_len_pcbData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbData0; _i0++) {
+            pcbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcEnumPrinterData(hPrinter,dwIndex,pValueName,cbValueName,pcbValueName,pType,pData,cbData,pcbData);
+          printf("%d\n", benchRet); 
+          free(pValueName);
+          free(pcbValueName);
+          free(pType);
+          free(pData);
+          free(pcbData);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int hPrinter = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int dwIndex = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cbValueName = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cbData = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pValueName0 = 1;
+          int * pValueName = (int *) malloc(_len_pValueName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pValueName0; _i0++) {
+            pValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbValueName0 = 1;
+          int * pcbValueName = (int *) malloc(_len_pcbValueName0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbValueName0; _i0++) {
+            pcbValueName[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pType0 = 1;
+          int * pType = (int *) malloc(_len_pType0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pType0; _i0++) {
+            pType[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pData0 = 1;
+          int * pData = (int *) malloc(_len_pData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pData0; _i0++) {
+            pData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_pcbData0 = 1;
+          int * pcbData = (int *) malloc(_len_pcbData0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_pcbData0; _i0++) {
+            pcbData[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = _RpcEnumPrinterData(hPrinter,dwIndex,pValueName,cbValueName,pcbValueName,pType,pData,cbData,pcbData);
+          printf("%d\n", benchRet); 
+          free(pValueName);
+          free(pcbValueName);
+          free(pType);
+          free(pData);
+          free(pcbData);
+        
+        break;
+    }
     default:
         usage();
         break;

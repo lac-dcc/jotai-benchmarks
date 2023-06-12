@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static void storeLastErrno(unixFile *pFile, int error){
   pFile->lastErrno = error;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,31 +80,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int error = 100;
+        
           int _len_pFile0 = 1;
           struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
-            pFile[_i0].lastErrno = ((-2 * (next_i()%2)) + 1) * next_i();
+              pFile[_i0].lastErrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          storeLastErrno(pFile,error);
+          free(pFile);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int error = 255;
+        
+          int _len_pFile0 = 65025;
+          struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
+              pFile[_i0].lastErrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           storeLastErrno(pFile,error);
           free(pFile);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int error = 10;
+        
           int _len_pFile0 = 100;
           struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
-            pFile[_i0].lastErrno = ((-2 * (next_i()%2)) + 1) * next_i();
+              pFile[_i0].lastErrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           storeLastErrno(pFile,error);
           free(pFile);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int error = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pFile0 = 1;
+          struct TYPE_3__ * pFile = (struct TYPE_3__ *) malloc(_len_pFile0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pFile0; _i0++) {
+              pFile[_i0].lastErrno = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          storeLastErrno(pFile,error);
+          free(pFile);
+        
+        break;
+    }
     default:
         usage();
         break;

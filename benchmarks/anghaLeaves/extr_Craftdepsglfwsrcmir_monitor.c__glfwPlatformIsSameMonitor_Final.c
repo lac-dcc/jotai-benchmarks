@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ GLboolean _glfwPlatformIsSameMonitor(_GLFWmonitor* first, _GLFWmonitor* second)
     return first->mir.output_id == second->mir.output_id;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,148 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_first0 = 65025;
+          struct TYPE_6__ * first = (struct TYPE_6__ *) malloc(_len_first0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_first0; _i0++) {
+              first[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_second0 = 65025;
+          struct TYPE_6__ * second = (struct TYPE_6__ *) malloc(_len_second0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_second0; _i0++) {
+              second[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = _glfwPlatformIsSameMonitor(first,second);
+          printf("%d\n", benchRet); 
+          free(first);
+          free(second);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_first0 = 100;
+          struct TYPE_6__ * first = (struct TYPE_6__ *) malloc(_len_first0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_first0; _i0++) {
+              first[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_second0 = 100;
+          struct TYPE_6__ * second = (struct TYPE_6__ *) malloc(_len_second0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_second0; _i0++) {
+              second[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = _glfwPlatformIsSameMonitor(first,second);
+          printf("%d\n", benchRet); 
+          free(first);
+          free(second);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_first0 = 1;
           struct TYPE_6__ * first = (struct TYPE_6__ *) malloc(_len_first0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_first0; _i0++) {
-            first[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              first[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_second0 = 1;
           struct TYPE_6__ * second = (struct TYPE_6__ *) malloc(_len_second0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_second0; _i0++) {
-            second[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+              second[_i0].mir.output_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = _glfwPlatformIsSameMonitor(first,second);
           printf("%d\n", benchRet); 
           free(first);

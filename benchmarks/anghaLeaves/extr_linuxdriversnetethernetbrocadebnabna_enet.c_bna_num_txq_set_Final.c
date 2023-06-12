@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ bna_num_txq_set(struct bna *bna, int num_txq)
 	return BNA_CB_FAIL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,19 +92,86 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num_txq = 100;
+        
           int _len_bna0 = 1;
           struct bna * bna = (struct bna *) malloc(_len_bna0*sizeof(struct bna));
           for(int _i0 = 0; _i0 < _len_bna0; _i0++) {
-            bna[_i0].ioceth.attr.num_txq = ((-2 * (next_i()%2)) + 1) * next_i();
-        bna[_i0].ioceth.attr.fw_query_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+              bna[_i0].ioceth.attr.num_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bna[_i0].ioceth.attr.fw_query_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = bna_num_txq_set(bna,num_txq);
           printf("%d\n", benchRet); 
           free(bna);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int num_txq = 255;
+        
+          int _len_bna0 = 65025;
+          struct bna * bna = (struct bna *) malloc(_len_bna0*sizeof(struct bna));
+          for(int _i0 = 0; _i0 < _len_bna0; _i0++) {
+              bna[_i0].ioceth.attr.num_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bna[_i0].ioceth.attr.fw_query_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = bna_num_txq_set(bna,num_txq);
+          printf("%d\n", benchRet); 
+          free(bna);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int num_txq = 10;
+        
+          int _len_bna0 = 100;
+          struct bna * bna = (struct bna *) malloc(_len_bna0*sizeof(struct bna));
+          for(int _i0 = 0; _i0 < _len_bna0; _i0++) {
+              bna[_i0].ioceth.attr.num_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bna[_i0].ioceth.attr.fw_query_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = bna_num_txq_set(bna,num_txq);
+          printf("%d\n", benchRet); 
+          free(bna);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int num_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_bna0 = 1;
+          struct bna * bna = (struct bna *) malloc(_len_bna0*sizeof(struct bna));
+          for(int _i0 = 0; _i0 < _len_bna0; _i0++) {
+              bna[_i0].ioceth.attr.num_txq = ((-2 * (next_i()%2)) + 1) * next_i();
+          bna[_i0].ioceth.attr.fw_query_complete = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = bna_num_txq_set(bna,num_txq);
+          printf("%d\n", benchRet); 
+          free(bna);
+        
+        break;
+    }
     default:
         usage();
         break;

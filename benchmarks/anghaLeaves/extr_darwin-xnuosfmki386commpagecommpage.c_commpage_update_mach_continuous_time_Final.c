@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -78,12 +79,6 @@ commpage_update_mach_continuous_time(uint64_t sleeptime)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,6 +95,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int sleeptime = 100;
+        
           commpage_update_mach_continuous_time(sleeptime);
         
         break;
@@ -108,6 +104,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int sleeptime = 255;
+        
           commpage_update_mach_continuous_time(sleeptime);
         
         break;
@@ -116,11 +113,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int sleeptime = 10;
+        
           commpage_update_mach_continuous_time(sleeptime);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int sleeptime = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          commpage_update_mach_continuous_time(sleeptime);
+        
+        break;
+    }
     default:
         usage();
         break;

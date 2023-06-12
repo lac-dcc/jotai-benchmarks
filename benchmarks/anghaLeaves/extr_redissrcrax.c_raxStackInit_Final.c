@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static inline void raxStackInit(raxStack *ts) {
     ts->oom = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,24 +79,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ts0 = 1;
+          int _len_ts0 = 65025;
           struct TYPE_3__ * ts = (struct TYPE_3__ *) malloc(_len_ts0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
-            ts[_i0].oom = ((-2 * (next_i()%2)) + 1) * next_i();
-        ts[_i0].maxitems = ((-2 * (next_i()%2)) + 1) * next_i();
-        ts[_i0].items = ((-2 * (next_i()%2)) + 1) * next_i();
-        ts[_i0].static_items = ((-2 * (next_i()%2)) + 1) * next_i();
-        ts[_i0].stack = ((-2 * (next_i()%2)) + 1) * next_i();
+              ts[_i0].oom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].maxitems = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].items = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].static_items = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].stack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           raxStackInit(ts);
           free(ts);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ts0 = 100;
+          struct TYPE_3__ * ts = (struct TYPE_3__ *) malloc(_len_ts0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
+              ts[_i0].oom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].maxitems = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].items = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].static_items = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].stack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          raxStackInit(ts);
+          free(ts);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ts0 = 1;
+          struct TYPE_3__ * ts = (struct TYPE_3__ *) malloc(_len_ts0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ts0; _i0++) {
+              ts[_i0].oom = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].maxitems = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].items = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].static_items = ((-2 * (next_i()%2)) + 1) * next_i();
+          ts[_i0].stack = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          raxStackInit(ts);
+          free(ts);
+        
+        break;
+    }
     default:
         usage();
         break;

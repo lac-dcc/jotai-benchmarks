@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static unsigned int rga_get_scaling(unsigned int src, unsi
 	return (src > dst) ? ((dst << 16) / src) : ((src << 16) / dst);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,7 +86,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int src = 100;
+        
           unsigned int dst = 100;
+        
           unsigned int benchRet = rga_get_scaling(src,dst);
           printf("%u\n", benchRet); 
         
@@ -101,7 +98,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int src = 255;
+        
           unsigned int dst = 255;
+        
           unsigned int benchRet = rga_get_scaling(src,dst);
           printf("%u\n", benchRet); 
         
@@ -111,13 +110,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int src = 10;
+        
           unsigned int dst = 10;
+        
           unsigned int benchRet = rga_get_scaling(src,dst);
           printf("%u\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int src = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int dst = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int benchRet = rga_get_scaling(src,dst);
+          printf("%u\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

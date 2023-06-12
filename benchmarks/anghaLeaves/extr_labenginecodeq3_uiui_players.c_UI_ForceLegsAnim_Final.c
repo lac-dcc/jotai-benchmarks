@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static void UI_ForceLegsAnim( playerInfo_t *pi, int anim )
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,18 +87,74 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int anim = 100;
+        
           int _len_pi0 = 1;
           struct TYPE_3__ * pi = (struct TYPE_3__ *) malloc(_len_pi0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
-            pi[_i0].legsAnim = ((-2 * (next_i()%2)) + 1) * next_i();
-        pi[_i0].legsAnimationTimer = ((-2 * (next_i()%2)) + 1) * next_i();
+              pi[_i0].legsAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].legsAnimationTimer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           UI_ForceLegsAnim(pi,anim);
           free(pi);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int anim = 255;
+        
+          int _len_pi0 = 65025;
+          struct TYPE_3__ * pi = (struct TYPE_3__ *) malloc(_len_pi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].legsAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].legsAnimationTimer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          UI_ForceLegsAnim(pi,anim);
+          free(pi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int anim = 10;
+        
+          int _len_pi0 = 100;
+          struct TYPE_3__ * pi = (struct TYPE_3__ *) malloc(_len_pi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].legsAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].legsAnimationTimer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          UI_ForceLegsAnim(pi,anim);
+          free(pi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int anim = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pi0 = 1;
+          struct TYPE_3__ * pi = (struct TYPE_3__ *) malloc(_len_pi0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_pi0; _i0++) {
+              pi[_i0].legsAnim = ((-2 * (next_i()%2)) + 1) * next_i();
+          pi[_i0].legsAnimationTimer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          UI_ForceLegsAnim(pi,anim);
+          free(pi);
+        
+        break;
+    }
     default:
         usage();
         break;

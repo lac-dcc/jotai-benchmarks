@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -85,12 +87,6 @@ void AddTournamentQueue(gclient_t *client)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,22 +99,63 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_client0 = 1;
+          int _len_client0 = 65025;
           struct TYPE_8__ * client = (struct TYPE_8__ *) malloc(_len_client0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_client0; _i0++) {
-            client[_i0].sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
-        client[_i0].sess.spectatorNum = ((-2 * (next_i()%2)) + 1) * next_i();
-        client[_i0].pers.connected = ((-2 * (next_i()%2)) + 1) * next_i();
+              client[_i0].sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+          client[_i0].sess.spectatorNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          client[_i0].pers.connected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           AddTournamentQueue(client);
           free(client);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_client0 = 100;
+          struct TYPE_8__ * client = (struct TYPE_8__ *) malloc(_len_client0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_client0; _i0++) {
+              client[_i0].sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+          client[_i0].sess.spectatorNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          client[_i0].pers.connected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          AddTournamentQueue(client);
+          free(client);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_client0 = 1;
+          struct TYPE_8__ * client = (struct TYPE_8__ *) malloc(_len_client0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_client0; _i0++) {
+              client[_i0].sess.sessionTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+          client[_i0].sess.spectatorNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          client[_i0].pers.connected = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          AddTournamentQueue(client);
+          free(client);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -62,12 +62,6 @@ __attribute__((used)) inline static int ccv_rect_is_zero(ccv_rect_t rect)
 	return rect.x == 0 && rect.y == 0 && rect.width == 0 && rect.height == 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +74,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           struct TYPE_3__ rect;
-        rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
-        rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
-        rect.width = ((-2 * (next_i()%2)) + 1) * next_i();
-        rect.height = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect.x = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect.y = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect.width = ((-2 * (next_i()%2)) + 1) * next_i();
+          rect.height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = ccv_rect_is_zero(rect);
           printf("%d\n", benchRet); 
         

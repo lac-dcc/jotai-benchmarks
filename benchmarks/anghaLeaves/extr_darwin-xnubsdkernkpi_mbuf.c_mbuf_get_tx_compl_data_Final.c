@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -80,12 +82,6 @@ mbuf_get_tx_compl_data(mbuf_t m, uintptr_t *arg, uintptr_t *data)
 	return (0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -98,27 +94,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_m0 = 65025;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_tx_compl_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_tx_compl_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_arg0 = 65025;
+          unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data0 = 65025;
+          unsigned long * data = (unsigned long *) malloc(_len_data0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mbuf_get_tx_compl_data(m,arg,data);
+          printf("%d\n", benchRet); 
+          free(m);
+          free(arg);
+          free(data);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_m0 = 100;
+          struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
+          for(int _i0 = 0; _i0 < _len_m0; _i0++) {
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_tx_compl_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_tx_compl_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_arg0 = 100;
+          unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
+            arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_data0 = 100;
+          unsigned long * data = (unsigned long *) malloc(_len_data0*sizeof(unsigned long));
+          for(int _i0 = 0; _i0 < _len_data0; _i0++) {
+            data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = mbuf_get_tx_compl_data(m,arg,data);
+          printf("%d\n", benchRet); 
+          free(m);
+          free(arg);
+          free(data);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_m0 = 1;
           struct TYPE_5__ * m = (struct TYPE_5__ *) malloc(_len_m0*sizeof(struct TYPE_5__));
           for(int _i0 = 0; _i0 < _len_m0; _i0++) {
-            m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.drv_tx_compl_arg = ((-2 * (next_i()%2)) + 1) * next_i();
-        m[_i0].m_pkthdr.drv_tx_compl_data = ((-2 * (next_i()%2)) + 1) * next_i();
+              m[_i0].m_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.pkt_flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_tx_compl_arg = ((-2 * (next_i()%2)) + 1) * next_i();
+          m[_i0].m_pkthdr.drv_tx_compl_data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_arg0 = 1;
           unsigned long * arg = (unsigned long *) malloc(_len_arg0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_arg0; _i0++) {
             arg[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_data0 = 1;
           unsigned long * data = (unsigned long *) malloc(_len_data0*sizeof(unsigned long));
           for(int _i0 = 0; _i0 < _len_data0; _i0++) {
             data[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = mbuf_get_tx_compl_data(m,arg,data);
           printf("%d\n", benchRet); 
           free(m);

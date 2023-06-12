@@ -94,12 +94,6 @@ __attribute__((used)) static int enh_desc_coe_rdes0(int ipc_err, int type, int p
 	return ret;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -116,8 +110,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ipc_err = 100;
+        
           int type = 100;
+        
           int payload_err = 100;
+        
           int benchRet = enh_desc_coe_rdes0(ipc_err,type,payload_err);
           printf("%d\n", benchRet); 
         
@@ -127,8 +124,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ipc_err = 255;
+        
           int type = 255;
+        
           int payload_err = 255;
+        
           int benchRet = enh_desc_coe_rdes0(ipc_err,type,payload_err);
           printf("%d\n", benchRet); 
         
@@ -138,14 +138,16 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ipc_err = 10;
+        
           int type = 10;
+        
           int payload_err = 10;
+        
           int benchRet = enh_desc_coe_rdes0(ipc_err,type,payload_err);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

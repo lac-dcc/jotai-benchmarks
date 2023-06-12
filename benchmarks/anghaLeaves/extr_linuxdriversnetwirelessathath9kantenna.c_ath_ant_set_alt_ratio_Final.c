@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -126,12 +128,6 @@ __attribute__((used)) static void ath_ant_set_alt_ratio(struct ath_ant_comb *ant
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -144,26 +140,161 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_antcomb0 = 65025;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].rssi_second = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_third = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].first_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].second_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].main_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].second_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].first_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conf0 = 65025;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath_ant_set_alt_ratio(antcomb,conf);
+          free(antcomb);
+          free(conf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
+          int _len_antcomb0 = 100;
+          struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
+          for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
+              antcomb[_i0].rssi_second = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_third = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].first_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].second_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].main_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].second_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].first_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_conf0 = 100;
+          struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
+          for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          ath_ant_set_alt_ratio(antcomb,conf);
+          free(antcomb);
+          free(conf);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 31
+          // dynamic_instructions_O0 : 31
+          // ------------------------------- 
+          // static_instructions_O1 : 21
+          // dynamic_instructions_O1 : 21
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 20
+          // dynamic_instructions_O3 : 20
+          // ------------------------------- 
+          // static_instructions_Ofast : 20
+          // dynamic_instructions_Ofast : 20
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 22
+          // dynamic_instructions_Oz : 22
+          // ------------------------------- 
+
           int _len_antcomb0 = 1;
           struct ath_ant_comb * antcomb = (struct ath_ant_comb *) malloc(_len_antcomb0*sizeof(struct ath_ant_comb));
           for(int _i0 = 0; _i0 < _len_antcomb0; _i0++) {
-            antcomb[_i0].rssi_second = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].rssi_third = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].first_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].second_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].main_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].second_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
-        antcomb[_i0].first_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+              antcomb[_i0].rssi_second = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].rssi_third = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].first_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].second_quick_scan_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].main_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].second_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+          antcomb[_i0].first_ratio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_conf0 = 1;
           struct ath_hw_antcomb_conf * conf = (struct ath_hw_antcomb_conf *) malloc(_len_conf0*sizeof(struct ath_hw_antcomb_conf));
           for(int _i0 = 0; _i0 < _len_conf0; _i0++) {
-            conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
-        conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+              conf[_i0].main_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+          conf[_i0].alt_lna_conf = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           ath_ant_set_alt_ratio(antcomb,conf);
           free(antcomb);
           free(conf);

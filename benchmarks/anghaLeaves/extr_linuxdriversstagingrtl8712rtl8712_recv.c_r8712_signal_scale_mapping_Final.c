@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -80,12 +81,6 @@ s32 r8712_signal_scale_mapping(s32 cur_sig)
 	return ret_sig;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cur_sig = 100;
+        
           int benchRet = r8712_signal_scale_mapping(cur_sig);
           printf("%d\n", benchRet); 
         
@@ -111,6 +107,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int cur_sig = 255;
+        
           int benchRet = r8712_signal_scale_mapping(cur_sig);
           printf("%d\n", benchRet); 
         
@@ -120,12 +117,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int cur_sig = 10;
+        
           int benchRet = r8712_signal_scale_mapping(cur_sig);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cur_sig = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = r8712_signal_scale_mapping(cur_sig);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

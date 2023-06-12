@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +76,6 @@ __attribute__((used)) static void rv6xx_calculate_t(u32 l_f, u32 h_f, int h,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,24 +88,219 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
           long l_f = 100;
+        
           long h_f = 100;
+        
           int h = 100;
+        
           int d_l = 100;
+        
           int d_r = 100;
+        
           int _len_l0 = 1;
           int * l = (int *) malloc(_len_l0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_l0; _i0++) {
             l[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_r0 = 1;
           int * r = (int *) malloc(_len_r0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
             r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          rv6xx_calculate_t(l_f,h_f,h,d_l,d_r,l,r);
+          free(l);
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          long l_f = 255;
+        
+          long h_f = 255;
+        
+          int h = 255;
+        
+          int d_l = 255;
+        
+          int d_r = 255;
+        
+          int _len_l0 = 65025;
+          int * l = (int *) malloc(_len_l0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+            l[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_r0 = 65025;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rv6xx_calculate_t(l_f,h_f,h,d_l,d_r,l,r);
+          free(l);
+          free(r);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          long l_f = 10;
+        
+          long h_f = 10;
+        
+          int h = 10;
+        
+          int d_l = 10;
+        
+          int d_r = 10;
+        
+          int _len_l0 = 100;
+          int * l = (int *) malloc(_len_l0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+            l[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_r0 = 100;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          rv6xx_calculate_t(l_f,h_f,h,d_l,d_r,l,r);
+          free(l);
+          free(r);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 48
+          // dynamic_instructions_O0 : 48
+          // ------------------------------- 
+          // static_instructions_O1 : 32
+          // dynamic_instructions_O1 : 32
+          // ------------------------------- 
+          // static_instructions_O2 : 32
+          // dynamic_instructions_O2 : 32
+          // ------------------------------- 
+          // static_instructions_O3 : 32
+          // dynamic_instructions_O3 : 32
+          // ------------------------------- 
+          // static_instructions_Ofast : 32
+          // dynamic_instructions_Ofast : 32
+          // ------------------------------- 
+          // static_instructions_Os : 32
+          // dynamic_instructions_Os : 32
+          // ------------------------------- 
+          // static_instructions_Oz : 32
+          // dynamic_instructions_Oz : 32
+          // ------------------------------- 
+
+          long l_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long h_f = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int d_l = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int d_r = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_l0 = 1;
+          int * l = (int *) malloc(_len_l0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_l0; _i0++) {
+            l[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_r0 = 1;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           rv6xx_calculate_t(l_f,h_f,h,d_l,d_r,l,r);
           free(l);
           free(r);

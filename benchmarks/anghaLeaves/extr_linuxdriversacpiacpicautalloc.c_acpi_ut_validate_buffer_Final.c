@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -87,12 +89,6 @@ acpi_status acpi_ut_validate_buffer(struct acpi_buffer *buffer)
 	return (AE_OK);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,15 +101,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_buffer0 = 65025;
+          struct acpi_buffer * buffer = (struct acpi_buffer *) malloc(_len_buffer0*sizeof(struct acpi_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = acpi_ut_validate_buffer(buffer);
+          printf("%d\n", benchRet); 
+          free(buffer);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
+          int _len_buffer0 = 100;
+          struct acpi_buffer * buffer = (struct acpi_buffer *) malloc(_len_buffer0*sizeof(struct acpi_buffer));
+          for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
+              buffer[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = acpi_ut_validate_buffer(buffer);
+          printf("%d\n", benchRet); 
+          free(buffer);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 25
+          // dynamic_instructions_O0 : 25
+          // ------------------------------- 
+          // static_instructions_O1 : 20
+          // dynamic_instructions_O1 : 20
+          // ------------------------------- 
+          // static_instructions_O2 : 20
+          // dynamic_instructions_O2 : 20
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 20
+          // dynamic_instructions_Os : 20
+          // ------------------------------- 
+          // static_instructions_Oz : 20
+          // dynamic_instructions_Oz : 20
+          // ------------------------------- 
+
           int _len_buffer0 = 1;
           struct acpi_buffer * buffer = (struct acpi_buffer *) malloc(_len_buffer0*sizeof(struct acpi_buffer));
           for(int _i0 = 0; _i0 < _len_buffer0; _i0++) {
-            buffer[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
-        buffer[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+              buffer[_i0].length = ((-2 * (next_i()%2)) + 1) * next_i();
+          buffer[_i0].pointer = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = acpi_ut_validate_buffer(buffer);
           printf("%d\n", benchRet); 
           free(buffer);

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -83,12 +84,6 @@ unsigned long acpi_dev_irq_flags(u8 triggering, u8 polarity, u8 shareable)
 	return flags | IORESOURCE_IRQ;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -105,8 +100,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long triggering = 100;
+        
           long polarity = 100;
+        
           long shareable = 100;
+        
           unsigned long benchRet = acpi_dev_irq_flags(triggering,polarity,shareable);
           printf("%lu\n", benchRet); 
         
@@ -116,8 +114,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long triggering = 255;
+        
           long polarity = 255;
+        
           long shareable = 255;
+        
           unsigned long benchRet = acpi_dev_irq_flags(triggering,polarity,shareable);
           printf("%lu\n", benchRet); 
         
@@ -127,14 +128,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long triggering = 10;
+        
           long polarity = 10;
+        
           long shareable = 10;
+        
           unsigned long benchRet = acpi_dev_irq_flags(triggering,polarity,shareable);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long triggering = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long polarity = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long shareable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = acpi_dev_irq_flags(triggering,polarity,shareable);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

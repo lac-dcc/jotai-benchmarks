@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ __attribute__((used)) static void psb_intel_clock(int refclk, struct gma_clock_t
 	clock->dot = clock->vco / clock->p;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +78,196 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
           int refclk = 100;
+        
           int _len_clock0 = 1;
           struct gma_clock_t * clock = (struct gma_clock_t *) malloc(_len_clock0*sizeof(struct gma_clock_t));
           for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
-            clock[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].p1 = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].p2 = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].vco = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
-        clock[_i0].dot = ((-2 * (next_i()%2)) + 1) * next_i();
+              clock[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].vco = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].dot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          psb_intel_clock(refclk,clock);
+          free(clock);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int refclk = 255;
+        
+          int _len_clock0 = 65025;
+          struct gma_clock_t * clock = (struct gma_clock_t *) malloc(_len_clock0*sizeof(struct gma_clock_t));
+          for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
+              clock[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].vco = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].dot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          psb_intel_clock(refclk,clock);
+          free(clock);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int refclk = 10;
+        
+          int _len_clock0 = 100;
+          struct gma_clock_t * clock = (struct gma_clock_t *) malloc(_len_clock0*sizeof(struct gma_clock_t));
+          for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
+              clock[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].vco = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].dot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          psb_intel_clock(refclk,clock);
+          free(clock);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 41
+          // dynamic_instructions_O0 : 41
+          // ------------------------------- 
+          // static_instructions_O1 : 22
+          // dynamic_instructions_O1 : 22
+          // ------------------------------- 
+          // static_instructions_O2 : 22
+          // dynamic_instructions_O2 : 22
+          // ------------------------------- 
+          // static_instructions_O3 : 22
+          // dynamic_instructions_O3 : 22
+          // ------------------------------- 
+          // static_instructions_Ofast : 22
+          // dynamic_instructions_Ofast : 22
+          // ------------------------------- 
+          // static_instructions_Os : 22
+          // dynamic_instructions_Os : 22
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int refclk = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_clock0 = 1;
+          struct gma_clock_t * clock = (struct gma_clock_t *) malloc(_len_clock0*sizeof(struct gma_clock_t));
+          for(int _i0 = 0; _i0 < _len_clock0; _i0++) {
+              clock[_i0].m = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].m2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p1 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].p2 = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].vco = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].n = ((-2 * (next_i()%2)) + 1) * next_i();
+          clock[_i0].dot = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           psb_intel_clock(refclk,clock);
           free(clock);
         

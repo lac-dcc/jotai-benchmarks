@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ minstrel_ht_txstat_valid(struct minstrel_priv *mp, struct ieee80211_tx_rate *rat
 	       rate->idx == mp->cck_rates[3];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,9 +91,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mp0 = 65025;
+          struct minstrel_priv * mp = (struct minstrel_priv *) malloc(_len_mp0*sizeof(struct minstrel_priv));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              int _len_mp__i0__cck_rates0 = 1;
+          mp[_i0].cck_rates = (long *) malloc(_len_mp__i0__cck_rates0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_mp__i0__cck_rates0; _j0++) {
+            mp[_i0].cck_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_rate0 = 65025;
+          struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
+          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
+              rate[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rate[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = minstrel_ht_txstat_valid(mp,rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mp0; _aux++) {
+          free(mp[_aux].cck_rates);
+          }
+          free(mp);
+          free(rate);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_mp0 = 100;
+          struct minstrel_priv * mp = (struct minstrel_priv *) malloc(_len_mp0*sizeof(struct minstrel_priv));
+          for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
+              int _len_mp__i0__cck_rates0 = 1;
+          mp[_i0].cck_rates = (long *) malloc(_len_mp__i0__cck_rates0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_mp__i0__cck_rates0; _j0++) {
+            mp[_i0].cck_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_rate0 = 100;
+          struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
+          for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
+              rate[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rate[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = minstrel_ht_txstat_valid(mp,rate);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mp0; _aux++) {
+          free(mp[_aux].cck_rates);
+          }
+          free(mp);
+          free(rate);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_mp0 = 1;
           struct minstrel_priv * mp = (struct minstrel_priv *) malloc(_len_mp0*sizeof(struct minstrel_priv));
           for(int _i0 = 0; _i0 < _len_mp0; _i0++) {
@@ -106,14 +239,18 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_mp__i0__cck_rates0; _j0++) {
             mp[_i0].cck_rates[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_rate0 = 1;
           struct ieee80211_tx_rate * rate = (struct ieee80211_tx_rate *) malloc(_len_rate0*sizeof(struct ieee80211_tx_rate));
           for(int _i0 = 0; _i0 < _len_rate0; _i0++) {
-            rate[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
-        rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        rate[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+              rate[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+          rate[_i0].flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          rate[_i0].count = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = minstrel_ht_txstat_valid(mp,rate);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mp0; _aux++) {

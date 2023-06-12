@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +62,6 @@ void out_buf_set_mode (int mode) {
   out_buf_mode = mode;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mode = 100;
+        
           out_buf_set_mode(mode);
         
         break;
@@ -91,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mode = 255;
+        
           out_buf_set_mode(mode);
         
         break;
@@ -99,11 +96,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mode = 10;
+        
           out_buf_set_mode(mode);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          out_buf_set_mode(mode);
+        
+        break;
+    }
     default:
         usage();
         break;

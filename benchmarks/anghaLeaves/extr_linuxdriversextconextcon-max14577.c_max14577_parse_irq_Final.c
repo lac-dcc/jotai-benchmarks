@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +91,6 @@ __attribute__((used)) static int max14577_parse_irq(struct max14577_muic_info *i
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,16 +103,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int irq_type = 100;
+        
           int _len_info0 = 1;
           struct max14577_muic_info * info = (struct max14577_muic_info *) malloc(_len_info0*sizeof(struct max14577_muic_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].irq_adc = ((-2 * (next_i()%2)) + 1) * next_i();
-        info[_i0].irq_chg = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].irq_adc = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_chg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = max14577_parse_irq(info,irq_type);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int irq_type = 255;
+        
+          int _len_info0 = 65025;
+          struct max14577_muic_info * info = (struct max14577_muic_info *) malloc(_len_info0*sizeof(struct max14577_muic_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].irq_adc = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_chg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = max14577_parse_irq(info,irq_type);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int irq_type = 10;
+        
+          int _len_info0 = 100;
+          struct max14577_muic_info * info = (struct max14577_muic_info *) malloc(_len_info0*sizeof(struct max14577_muic_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].irq_adc = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_chg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = max14577_parse_irq(info,irq_type);
+          printf("%d\n", benchRet); 
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int irq_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_info0 = 1;
+          struct max14577_muic_info * info = (struct max14577_muic_info *) malloc(_len_info0*sizeof(struct max14577_muic_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].irq_adc = ((-2 * (next_i()%2)) + 1) * next_i();
+          info[_i0].irq_chg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = max14577_parse_irq(info,irq_type);
           printf("%d\n", benchRet); 
           free(info);

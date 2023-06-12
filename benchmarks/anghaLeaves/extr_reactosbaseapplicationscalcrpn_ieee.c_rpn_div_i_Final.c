@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +71,6 @@ __attribute__((used)) static void rpn_div_i(calc_number_t *r, calc_number_t *a, 
         r->i = a->i / b->i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,24 +83,163 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_r0 = 65025;
+          struct TYPE_6__ * r = (struct TYPE_6__ *) malloc(_len_r0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a0 = 65025;
+          struct TYPE_6__ * a = (struct TYPE_6__ *) malloc(_len_a0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 65025;
+          struct TYPE_6__ * b = (struct TYPE_6__ *) malloc(_len_b0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rpn_div_i(r,a,b);
+          free(r);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_r0 = 100;
+          struct TYPE_6__ * r = (struct TYPE_6__ *) malloc(_len_r0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+              r[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_a0 = 100;
+          struct TYPE_6__ * a = (struct TYPE_6__ *) malloc(_len_a0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct TYPE_6__ * b = (struct TYPE_6__ *) malloc(_len_b0*sizeof(struct TYPE_6__));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          rpn_div_i(r,a,b);
+          free(r);
+          free(a);
+          free(b);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 18
+          // dynamic_instructions_O0 : 18
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 12
+          // dynamic_instructions_Os : 12
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           int _len_r0 = 1;
           struct TYPE_6__ * r = (struct TYPE_6__ *) malloc(_len_r0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
-            r[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+              r[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_a0 = 1;
           struct TYPE_6__ * a = (struct TYPE_6__ *) malloc(_len_a0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_b0 = 1;
           struct TYPE_6__ * b = (struct TYPE_6__ *) malloc(_len_b0*sizeof(struct TYPE_6__));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           rpn_div_i(r,a,b);
           free(r);
           free(a);

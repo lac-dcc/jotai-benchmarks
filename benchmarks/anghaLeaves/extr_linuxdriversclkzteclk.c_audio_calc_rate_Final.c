@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -72,12 +74,6 @@ __attribute__((used)) static unsigned long audio_calc_rate(struct clk_zx_audio_d
 	return rate;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,34 +86,183 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int reg_frac = 100;
+        
           int reg_int = 100;
+        
           unsigned long parent_rate = 100;
+        
           int _len_audio_div0 = 1;
           struct clk_zx_audio_divider * audio_div = (struct clk_zx_audio_divider *) malloc(_len_audio_div0*sizeof(struct clk_zx_audio_divider));
           for(int _i0 = 0; _i0 < _len_audio_div0; _i0++) {
-            audio_div[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              audio_div[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = audio_calc_rate(audio_div,reg_frac,reg_int,parent_rate);
           printf("%lu\n", benchRet); 
           free(audio_div);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int reg_frac = 255;
+        
+          int reg_int = 255;
+        
+          unsigned long parent_rate = 255;
+        
+          int _len_audio_div0 = 65025;
+          struct clk_zx_audio_divider * audio_div = (struct clk_zx_audio_divider *) malloc(_len_audio_div0*sizeof(struct clk_zx_audio_divider));
+          for(int _i0 = 0; _i0 < _len_audio_div0; _i0++) {
+              audio_div[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = audio_calc_rate(audio_div,reg_frac,reg_int,parent_rate);
+          printf("%lu\n", benchRet); 
+          free(audio_div);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
           int reg_frac = 10;
+        
           int reg_int = 10;
+        
           unsigned long parent_rate = 10;
+        
           int _len_audio_div0 = 100;
           struct clk_zx_audio_divider * audio_div = (struct clk_zx_audio_divider *) malloc(_len_audio_div0*sizeof(struct clk_zx_audio_divider));
           for(int _i0 = 0; _i0 < _len_audio_div0; _i0++) {
-            audio_div[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              audio_div[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = audio_calc_rate(audio_div,reg_frac,reg_int,parent_rate);
+          printf("%lu\n", benchRet); 
+          free(audio_div);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 30
+          // dynamic_instructions_O0 : 30
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 17
+          // dynamic_instructions_O2 : 17
+          // ------------------------------- 
+          // static_instructions_O3 : 17
+          // dynamic_instructions_O3 : 17
+          // ------------------------------- 
+          // static_instructions_Ofast : 17
+          // dynamic_instructions_Ofast : 17
+          // ------------------------------- 
+          // static_instructions_Os : 16
+          // dynamic_instructions_Os : 16
+          // ------------------------------- 
+          // static_instructions_Oz : 16
+          // dynamic_instructions_Oz : 16
+          // ------------------------------- 
+
+          int reg_frac = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int reg_int = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long parent_rate = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_audio_div0 = 1;
+          struct clk_zx_audio_divider * audio_div = (struct clk_zx_audio_divider *) malloc(_len_audio_div0*sizeof(struct clk_zx_audio_divider));
+          for(int _i0 = 0; _i0 < _len_audio_div0; _i0++) {
+              audio_div[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = audio_calc_rate(audio_div,reg_frac,reg_int,parent_rate);
           printf("%lu\n", benchRet); 
           free(audio_div);

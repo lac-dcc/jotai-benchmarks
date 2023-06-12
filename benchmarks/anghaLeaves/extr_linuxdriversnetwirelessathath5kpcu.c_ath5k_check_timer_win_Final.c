@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ ath5k_check_timer_win(int a, int b, int window, int intval)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,9 +90,13 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int a = 100;
+        
           int b = 100;
+        
           int window = 100;
+        
           int intval = 100;
+        
           int benchRet = ath5k_check_timer_win(a,b,window,intval);
           printf("%d\n", benchRet); 
         
@@ -107,9 +106,13 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int a = 255;
+        
           int b = 255;
+        
           int window = 255;
+        
           int intval = 255;
+        
           int benchRet = ath5k_check_timer_win(a,b,window,intval);
           printf("%d\n", benchRet); 
         
@@ -119,15 +122,34 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int a = 10;
+        
           int b = 10;
+        
           int window = 10;
+        
           int intval = 10;
+        
           int benchRet = ath5k_check_timer_win(a,b,window,intval);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int a = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int b = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int window = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int intval = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = ath5k_check_timer_win(a,b,window,intval);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

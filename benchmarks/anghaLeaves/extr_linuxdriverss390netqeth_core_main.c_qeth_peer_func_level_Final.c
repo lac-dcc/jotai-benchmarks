@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ __attribute__((used)) static int qeth_peer_func_level(int level)
 	return level;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int level = 100;
+        
           int benchRet = qeth_peer_func_level(level);
           printf("%d\n", benchRet); 
         
@@ -96,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int level = 255;
+        
           int benchRet = qeth_peer_func_level(level);
           printf("%d\n", benchRet); 
         
@@ -105,12 +102,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int level = 10;
+        
           int benchRet = qeth_peer_func_level(level);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = qeth_peer_func_level(level);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

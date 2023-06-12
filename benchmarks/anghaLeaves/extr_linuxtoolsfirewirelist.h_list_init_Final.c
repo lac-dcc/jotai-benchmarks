@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            dlinked\n\
+       1            bintree\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,8 +64,50 @@ list_init(struct list *list)
 	list->prev = list;
 }
 
-
 // ------------------------------------------------------------------------- //
+
+struct list *_allocate_Dlinked_list(int length, struct list *aux_dlinked_list[] ) {
+  struct list *walker = (struct list *)malloc(sizeof(struct list));
+
+  aux_dlinked_list[0] = walker;
+  walker->prev = NULL;
+  walker->next = NULL;
+
+  struct list *head = walker;
+  for(int i = 1; i < length; i++) {
+    walker->next = (struct list *)malloc(sizeof(struct list));
+    walker->next->prev = walker;
+    walker = walker->next;
+    aux_dlinked_list[i] = walker;
+    if (i == (length - 1)) 
+      walker->next = NULL;  }
+
+  return head;
+}
+
+void _delete_Dlinked_list(struct list *aux_dlinked_list[], int aux_dlinked_list_size) {
+  for(int i = 0; i < aux_dlinked_list_size; i++) 
+    if(aux_dlinked_list[i])
+      free(aux_dlinked_list[i]);
+}
+
+struct list *_allocateBinTree_list(int length, struct list *aux_tree_list[], int *counter_list) {
+  if(length == 0)
+    return NULL;
+  struct list *walker = (struct list *)malloc(sizeof(struct list));
+
+  aux_tree_list[*counter_list] = walker;
+  (*counter_list)++;
+  walker->prev = _allocateBinTree_list(length - 1, aux_tree_list, counter_list);
+  walker->next = _allocateBinTree_list(length - 1, aux_tree_list, counter_list);
+  return walker;
+}
+
+void _deleteBinTree_list(struct list *aux_tree_list[]) {
+  for(int i = 0; i < 1023; i++) 
+    if(aux_tree_list[i])
+      free(aux_tree_list[i]);
+}
 
 struct list *_allocate_list(int length, struct list *aux_list[]) {
   struct list *walker = (struct list *)malloc(sizeof(struct list));
@@ -95,7 +139,6 @@ void _delete_list(struct list *aux_list[], int aux_list_size) {
 
 
 
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,17 +151,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // dlinked
     case 0:
+    {
+          struct list * aux_dlinked_list[10000];
+          struct list * list = _allocate_Dlinked_list(10000, aux_dlinked_list);
+        
+          list_init(list);
+          _delete_Dlinked_list(aux_dlinked_list, 10000);
+        
+        break;
+    }
+    // bintree
+    case 1:
+    {
+          int counter_list= 0;
+          struct list *  aux_tree_list[1023];
+          struct list * list = _allocateBinTree_list(10, aux_tree_list, &counter_list);
+        
+          list_init(list);
+          _deleteBinTree_list(aux_tree_list);
+        
+        break;
+    }
+    // empty
+    case 2:
     {
           struct list * aux_list[1];
           struct list * list = _allocate_list(1, aux_list);
+        
           list_init(list);
           _delete_list(aux_list, 1);
         
         break;
     }
-
     default:
         usage();
         break;

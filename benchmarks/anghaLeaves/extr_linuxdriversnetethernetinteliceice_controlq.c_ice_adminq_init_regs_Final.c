@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -99,12 +101,6 @@ __attribute__((used)) static void ice_adminq_init_regs(struct ice_hw *hw)
 	cq->rq.head_mask = PF_FW_ARQH_ARQH_M;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -117,35 +113,105 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_hw0 = 1;
+          int _len_hw0 = 65025;
           struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
-            hw[_i0].adminq.rq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.len = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.len = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
-        hw[_i0].adminq.sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+              hw[_i0].adminq.rq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].adminq.sq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           ice_adminq_init_regs(hw);
           free(hw);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_hw0 = 100;
+          struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].adminq.rq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].adminq.sq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          ice_adminq_init_regs(hw);
+          free(hw);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_hw0 = 1;
+          struct ice_hw * hw = (struct ice_hw *) malloc(_len_hw0*sizeof(struct ice_hw));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              hw[_i0].adminq.rq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.rq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          hw[_i0].adminq.sq.head_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len_ena_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len_mask = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.bal = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.bah = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.tail = ((-2 * (next_i()%2)) + 1) * next_i();
+          hw[_i0].adminq.sq.head = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          ice_adminq_init_regs(hw);
+          free(hw);
+        
+        break;
+    }
     default:
         usage();
         break;

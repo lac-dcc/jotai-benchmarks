@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ __attribute__((used)) static int ixgbe_rss_indir_tbl_max(struct ixgbe_adapter *a
 		return 64;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,14 +82,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_adapter0 = 1;
+          int _len_adapter0 = 65025;
           struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = ixgbe_rss_indir_tbl_max(adapter);
           printf("%d\n", benchRet); 
           free(adapter);
@@ -107,15 +106,36 @@ int main(int argc, char *argv[]) {
           int _len_adapter0 = 100;
           struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
           for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
-            adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+              adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
           }
+        
           int benchRet = ixgbe_rss_indir_tbl_max(adapter);
           printf("%d\n", benchRet); 
           free(adapter);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_adapter0 = 1;
+          struct ixgbe_adapter * adapter = (struct ixgbe_adapter *) malloc(_len_adapter0*sizeof(struct ixgbe_adapter));
+          for(int _i0 = 0; _i0 < _len_adapter0; _i0++) {
+              adapter[_i0].hw.mac.type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+        
+          }
+        
+          int benchRet = ixgbe_rss_indir_tbl_max(adapter);
+          printf("%d\n", benchRet); 
+          free(adapter);
+        
+        break;
+    }
     default:
         usage();
         break;

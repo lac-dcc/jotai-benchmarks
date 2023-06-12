@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -88,12 +90,6 @@ int isofs_name_translate(struct iso_directory_record *de, char *new, struct inod
 	return i;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -106,9 +102,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_de0 = 65025;
+          struct iso_directory_record * de = (struct iso_directory_record *) malloc(_len_de0*sizeof(struct iso_directory_record));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              int _len_de__i0__name0 = 1;
+          de[_i0].name = (char *) malloc(_len_de__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_de__i0__name0; _j0++) {
+            de[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_de__i0__name_len0 = 1;
+          de[_i0].name_len = (int *) malloc(_len_de__i0__name_len0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_de__i0__name_len0; _j0++) {
+            de[_i0].name_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_new0 = 65025;
+          char * new = (char *) malloc(_len_new0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+            new[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_inode0 = 65025;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isofs_name_translate(de,new,inode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name);
+          }
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name_len);
+          }
+          free(de);
+          free(new);
+          free(inode);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
+          int _len_de0 = 100;
+          struct iso_directory_record * de = (struct iso_directory_record *) malloc(_len_de0*sizeof(struct iso_directory_record));
+          for(int _i0 = 0; _i0 < _len_de0; _i0++) {
+              int _len_de__i0__name0 = 1;
+          de[_i0].name = (char *) malloc(_len_de__i0__name0*sizeof(char));
+          for(int _j0 = 0; _j0 < _len_de__i0__name0; _j0++) {
+            de[_i0].name[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          int _len_de__i0__name_len0 = 1;
+          de[_i0].name_len = (int *) malloc(_len_de__i0__name_len0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_de__i0__name_len0; _j0++) {
+            de[_i0].name_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int _len_new0 = 100;
+          char * new = (char *) malloc(_len_new0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_new0; _i0++) {
+            new[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_inode0 = 100;
+          struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
+          for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = isofs_name_translate(de,new,inode);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name);
+          }
+          for(int _aux = 0; _aux < _len_de0; _aux++) {
+          free(de[_aux].name_len);
+          }
+          free(de);
+          free(new);
+          free(inode);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 19
+          // dynamic_instructions_O0 : 19
+          // ------------------------------- 
+          // static_instructions_O1 : 12
+          // dynamic_instructions_O1 : 12
+          // ------------------------------- 
+          // static_instructions_O2 : 12
+          // dynamic_instructions_O2 : 12
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 17
+          // dynamic_instructions_Oz : 17
+          // ------------------------------- 
+
           int _len_de0 = 1;
           struct iso_directory_record * de = (struct iso_directory_record *) malloc(_len_de0*sizeof(struct iso_directory_record));
           for(int _i0 = 0; _i0 < _len_de0; _i0++) {
@@ -122,17 +281,22 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_de__i0__name_len0; _j0++) {
             de[_i0].name_len[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int _len_new0 = 1;
           char * new = (char *) malloc(_len_new0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_new0; _i0++) {
             new[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_inode0 = 1;
           struct inode * inode = (struct inode *) malloc(_len_inode0*sizeof(struct inode));
           for(int _i0 = 0; _i0 < _len_inode0; _i0++) {
-            inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              inode[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = isofs_name_translate(de,new,inode);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_de0; _aux++) {

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ __attribute__((used)) static inline int bcma_gpio_init(struct bcma_drv_cc *cc)
 	return -ENOTSUPP;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cc0 = 1;
+          int _len_cc0 = 65025;
           struct bcma_drv_cc * cc = (struct bcma_drv_cc *) malloc(_len_cc0*sizeof(struct bcma_drv_cc));
           for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
-            cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bcma_gpio_init(cc);
           printf("%d\n", benchRet); 
           free(cc);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_cc0 = 100;
           struct bcma_drv_cc * cc = (struct bcma_drv_cc *) malloc(_len_cc0*sizeof(struct bcma_drv_cc));
           for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
-            cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = bcma_gpio_init(cc);
           printf("%d\n", benchRet); 
           free(cc);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cc0 = 1;
+          struct bcma_drv_cc * cc = (struct bcma_drv_cc *) malloc(_len_cc0*sizeof(struct bcma_drv_cc));
+          for(int _i0 = 0; _i0 < _len_cc0; _i0++) {
+              cc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = bcma_gpio_init(cc);
+          printf("%d\n", benchRet); 
+          free(cc);
+        
+        break;
+    }
     default:
         usage();
         break;

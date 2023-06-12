@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static inline void __psmouse_set_state(struct psmouse *psm
 	psmouse->last = jiffies;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,25 +81,72 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum psmouse_state new_state = 0;
-          int _len_psmouse0 = 1;
+        
+          int _len_psmouse0 = 65025;
           struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
           for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
-            psmouse[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
-        psmouse[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
-        psmouse[_i0].ps2dev.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        psmouse[_i0].out_of_sync_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
-        psmouse[_i0].pktcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+              psmouse[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].ps2dev.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psmouse[_i0].out_of_sync_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].pktcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           __psmouse_set_state(psmouse,new_state);
           free(psmouse);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          enum psmouse_state new_state = 0;
+        
+          int _len_psmouse0 = 100;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              psmouse[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].ps2dev.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psmouse[_i0].out_of_sync_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].pktcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __psmouse_set_state(psmouse,new_state);
+          free(psmouse);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          enum psmouse_state new_state = 0;
+        
+          int _len_psmouse0 = 1;
+          struct psmouse * psmouse = (struct psmouse *) malloc(_len_psmouse0*sizeof(struct psmouse));
+          for(int _i0 = 0; _i0 < _len_psmouse0; _i0++) {
+              psmouse[_i0].state = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].last = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].ps2dev.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          psmouse[_i0].out_of_sync_cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+          psmouse[_i0].pktcnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          __psmouse_set_state(psmouse,new_state);
+          free(psmouse);
+        
+        break;
+    }
     default:
         usage();
         break;

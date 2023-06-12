@@ -30,7 +30,8 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            big-arr-10x\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static void nvec_event_mask(char *ev, u32 mask)
 	ev[6] = mask >> 8  & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,21 +76,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // big-arr-10x
+    // big-arr
     case 0:
     {
-          int mask = 10;
-          int _len_ev0 = 100;
+          int mask = 255;
+        
+          int _len_ev0 = 65025;
           char * ev = (char *) malloc(_len_ev0*sizeof(char));
           for(int _i0 = 0; _i0 < _len_ev0; _i0++) {
             ev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           nvec_event_mask(ev,mask);
           free(ev);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int mask = 10;
+        
+          int _len_ev0 = 100;
+          char * ev = (char *) malloc(_len_ev0*sizeof(char));
+          for(int _i0 = 0; _i0 < _len_ev0; _i0++) {
+            ev[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          nvec_event_mask(ev,mask);
+          free(ev);
+        
+        break;
+    }
     default:
         usage();
         break;

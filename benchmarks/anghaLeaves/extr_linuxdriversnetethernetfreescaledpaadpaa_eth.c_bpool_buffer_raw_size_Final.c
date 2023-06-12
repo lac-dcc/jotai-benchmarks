@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +69,6 @@ __attribute__((used)) static inline size_t bpool_buffer_raw_size(u8 index, u8 cn
 	return res;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,7 +85,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int index = 100;
+        
           int cnt = 100;
+        
           unsigned long benchRet = bpool_buffer_raw_size(index,cnt);
           printf("%lu\n", benchRet); 
         
@@ -100,7 +97,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int index = 255;
+        
           int cnt = 255;
+        
           unsigned long benchRet = bpool_buffer_raw_size(index,cnt);
           printf("%lu\n", benchRet); 
         
@@ -110,13 +109,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int index = 10;
+        
           int cnt = 10;
+        
           unsigned long benchRet = bpool_buffer_raw_size(index,cnt);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int index = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int cnt = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = bpool_buffer_raw_size(index,cnt);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

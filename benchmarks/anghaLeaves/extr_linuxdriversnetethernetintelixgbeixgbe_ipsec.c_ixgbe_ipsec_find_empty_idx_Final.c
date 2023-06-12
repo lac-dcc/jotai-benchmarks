@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -89,12 +92,6 @@ __attribute__((used)) static int ixgbe_ipsec_find_empty_idx(struct ixgbe_ipsec *
 	return -ENOSPC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -107,26 +104,237 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int rxtable = 100;
+        
           int _len_ipsec0 = 1;
           struct ixgbe_ipsec * ipsec = (struct ixgbe_ipsec *) malloc(_len_ipsec0*sizeof(struct ixgbe_ipsec));
           for(int _i0 = 0; _i0 < _len_ipsec0; _i0++) {
-            ipsec[_i0].num_rx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
-        ipsec[_i0].num_tx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipsec[_i0].num_rx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipsec[_i0].num_tx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ipsec__i0__tx_tbl0 = 1;
           ipsec[_i0].tx_tbl = (struct TYPE_4__ *) malloc(_len_ipsec__i0__tx_tbl0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ipsec__i0__tx_tbl0; _j0++) {
-            ipsec[_i0].tx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipsec[_i0].tx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_ipsec__i0__rx_tbl0 = 1;
           ipsec[_i0].rx_tbl = (struct TYPE_3__ *) malloc(_len_ipsec__i0__rx_tbl0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_ipsec__i0__rx_tbl0; _j0++) {
-            ipsec[_i0].rx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+              ipsec[_i0].rx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int benchRet = ixgbe_ipsec_find_empty_idx(ipsec,rxtable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ipsec0; _aux++) {
+          free(ipsec[_aux].tx_tbl);
+          }
+          for(int _aux = 0; _aux < _len_ipsec0; _aux++) {
+          free(ipsec[_aux].rx_tbl);
+          }
+          free(ipsec);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int rxtable = 255;
+        
+          int _len_ipsec0 = 65025;
+          struct ixgbe_ipsec * ipsec = (struct ixgbe_ipsec *) malloc(_len_ipsec0*sizeof(struct ixgbe_ipsec));
+          for(int _i0 = 0; _i0 < _len_ipsec0; _i0++) {
+              ipsec[_i0].num_rx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipsec[_i0].num_tx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ipsec__i0__tx_tbl0 = 1;
+          ipsec[_i0].tx_tbl = (struct TYPE_4__ *) malloc(_len_ipsec__i0__tx_tbl0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ipsec__i0__tx_tbl0; _j0++) {
+              ipsec[_i0].tx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ipsec__i0__rx_tbl0 = 1;
+          ipsec[_i0].rx_tbl = (struct TYPE_3__ *) malloc(_len_ipsec__i0__rx_tbl0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_ipsec__i0__rx_tbl0; _j0++) {
+              ipsec[_i0].rx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ixgbe_ipsec_find_empty_idx(ipsec,rxtable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ipsec0; _aux++) {
+          free(ipsec[_aux].tx_tbl);
+          }
+          for(int _aux = 0; _aux < _len_ipsec0; _aux++) {
+          free(ipsec[_aux].rx_tbl);
+          }
+          free(ipsec);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int rxtable = 10;
+        
+          int _len_ipsec0 = 100;
+          struct ixgbe_ipsec * ipsec = (struct ixgbe_ipsec *) malloc(_len_ipsec0*sizeof(struct ixgbe_ipsec));
+          for(int _i0 = 0; _i0 < _len_ipsec0; _i0++) {
+              ipsec[_i0].num_rx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipsec[_i0].num_tx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ipsec__i0__tx_tbl0 = 1;
+          ipsec[_i0].tx_tbl = (struct TYPE_4__ *) malloc(_len_ipsec__i0__tx_tbl0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ipsec__i0__tx_tbl0; _j0++) {
+              ipsec[_i0].tx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ipsec__i0__rx_tbl0 = 1;
+          ipsec[_i0].rx_tbl = (struct TYPE_3__ *) malloc(_len_ipsec__i0__rx_tbl0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_ipsec__i0__rx_tbl0; _j0++) {
+              ipsec[_i0].rx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = ixgbe_ipsec_find_empty_idx(ipsec,rxtable);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ipsec0; _aux++) {
+          free(ipsec[_aux].tx_tbl);
+          }
+          for(int _aux = 0; _aux < _len_ipsec0; _aux++) {
+          free(ipsec[_aux].rx_tbl);
+          }
+          free(ipsec);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 21
+          // dynamic_instructions_O0 : 21
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int rxtable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ipsec0 = 1;
+          struct ixgbe_ipsec * ipsec = (struct ixgbe_ipsec *) malloc(_len_ipsec0*sizeof(struct ixgbe_ipsec));
+          for(int _i0 = 0; _i0 < _len_ipsec0; _i0++) {
+              ipsec[_i0].num_rx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          ipsec[_i0].num_tx_sa = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ipsec__i0__tx_tbl0 = 1;
+          ipsec[_i0].tx_tbl = (struct TYPE_4__ *) malloc(_len_ipsec__i0__tx_tbl0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ipsec__i0__tx_tbl0; _j0++) {
+              ipsec[_i0].tx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_ipsec__i0__rx_tbl0 = 1;
+          ipsec[_i0].rx_tbl = (struct TYPE_3__ *) malloc(_len_ipsec__i0__rx_tbl0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_ipsec__i0__rx_tbl0; _j0++) {
+              ipsec[_i0].rx_tbl->used = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int benchRet = ixgbe_ipsec_find_empty_idx(ipsec,rxtable);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ipsec0; _aux++) {

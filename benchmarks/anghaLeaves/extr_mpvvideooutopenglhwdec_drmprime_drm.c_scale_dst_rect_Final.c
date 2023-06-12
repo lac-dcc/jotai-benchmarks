@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +84,6 @@ __attribute__((used)) static void scale_dst_rect(struct ra_hwdec *hw, int source
     dst->y1 += offset_y;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,37 +96,291 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
           int source_w = 100;
+        
           int source_h = 100;
+        
           int _len_hw0 = 1;
           struct ra_hwdec * hw = (struct ra_hwdec *) malloc(_len_hw0*sizeof(struct ra_hwdec));
           for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
               int _len_hw__i0__priv0 = 1;
           hw[_i0].priv = (struct priv *) malloc(_len_hw__i0__priv0*sizeof(struct priv));
           for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
-            hw[_i0].priv->display_w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        hw[_i0].priv->display_h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              hw[_i0].priv->display_w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          hw[_i0].priv->display_h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           }
+        
           int _len_src0 = 1;
           struct mp_rect * src = (struct mp_rect *) malloc(_len_src0*sizeof(struct mp_rect));
           for(int _i0 = 0; _i0 < _len_src0; _i0++) {
-            src[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        src[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        src[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        src[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              src[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
           int _len_dst0 = 1;
           struct mp_rect * dst = (struct mp_rect *) malloc(_len_dst0*sizeof(struct mp_rect));
           for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
-            dst[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        dst[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        dst[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        dst[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+              dst[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           }
+        
+          scale_dst_rect(hw,source_w,source_h,src,dst);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+          free(src);
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int source_w = 255;
+        
+          int source_h = 255;
+        
+          int _len_hw0 = 65025;
+          struct ra_hwdec * hw = (struct ra_hwdec *) malloc(_len_hw0*sizeof(struct ra_hwdec));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct priv *) malloc(_len_hw__i0__priv0*sizeof(struct priv));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->display_w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          hw[_i0].priv->display_h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          int _len_src0 = 65025;
+          struct mp_rect * src = (struct mp_rect *) malloc(_len_src0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          int _len_dst0 = 65025;
+          struct mp_rect * dst = (struct mp_rect *) malloc(_len_dst0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          scale_dst_rect(hw,source_w,source_h,src,dst);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+          free(src);
+          free(dst);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int source_w = 10;
+        
+          int source_h = 10;
+        
+          int _len_hw0 = 100;
+          struct ra_hwdec * hw = (struct ra_hwdec *) malloc(_len_hw0*sizeof(struct ra_hwdec));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct priv *) malloc(_len_hw__i0__priv0*sizeof(struct priv));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->display_w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          hw[_i0].priv->display_h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          int _len_src0 = 100;
+          struct mp_rect * src = (struct mp_rect *) malloc(_len_src0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          int _len_dst0 = 100;
+          struct mp_rect * dst = (struct mp_rect *) malloc(_len_dst0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          scale_dst_rect(hw,source_w,source_h,src,dst);
+          for(int _aux = 0; _aux < _len_hw0; _aux++) {
+          free(hw[_aux].priv);
+          }
+          free(hw);
+          free(src);
+          free(dst);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 87
+          // dynamic_instructions_O0 : 87
+          // ------------------------------- 
+          // static_instructions_O1 : 48
+          // dynamic_instructions_O1 : 48
+          // ------------------------------- 
+          // static_instructions_O2 : 41
+          // dynamic_instructions_O2 : 41
+          // ------------------------------- 
+          // static_instructions_O3 : 41
+          // dynamic_instructions_O3 : 41
+          // ------------------------------- 
+          // static_instructions_Ofast : 37
+          // dynamic_instructions_Ofast : 37
+          // ------------------------------- 
+          // static_instructions_Os : 41
+          // dynamic_instructions_Os : 41
+          // ------------------------------- 
+          // static_instructions_Oz : 41
+          // dynamic_instructions_Oz : 41
+          // ------------------------------- 
+
+          int source_w = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int source_h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_hw0 = 1;
+          struct ra_hwdec * hw = (struct ra_hwdec *) malloc(_len_hw0*sizeof(struct ra_hwdec));
+          for(int _i0 = 0; _i0 < _len_hw0; _i0++) {
+              int _len_hw__i0__priv0 = 1;
+          hw[_i0].priv = (struct priv *) malloc(_len_hw__i0__priv0*sizeof(struct priv));
+          for(int _j0 = 0; _j0 < _len_hw__i0__priv0; _j0++) {
+              hw[_i0].priv->display_w = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          hw[_i0].priv->display_h = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          }
+        
+          int _len_src0 = 1;
+          struct mp_rect * src = (struct mp_rect *) malloc(_len_src0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_src0; _i0++) {
+              src[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          src[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
+          int _len_dst0 = 1;
+          struct mp_rect * dst = (struct mp_rect *) malloc(_len_dst0*sizeof(struct mp_rect));
+          for(int _i0 = 0; _i0 < _len_dst0; _i0++) {
+              dst[_i0].x0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].x1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y0 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          dst[_i0].y1 = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          }
+        
           scale_dst_rect(hw,source_w,source_h,src,dst);
           for(int _aux = 0; _aux < _len_hw0; _aux++) {
           free(hw[_aux].priv);

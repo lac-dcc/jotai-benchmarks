@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -111,12 +113,6 @@ __attribute__((used)) static void Init_EA_Export( ea_export_t *ea ) {
 	ea->EA_ResetInput = EA_ResetInput;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -129,37 +125,186 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
+          int _len_ea0 = 65025;
+          struct TYPE_3__ * ea = (struct TYPE_3__ *) malloc(_len_ea0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ea0; _i0++) {
+              ea[_i0].EA_ResetInput = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_EndRegular = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_GetInput = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_View = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Move = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_DelayedJump = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Jump = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_SelectWeapon = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveRight = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveBack = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveDown = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveUp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Crouch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Respawn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Use = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Attack = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Talk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Gesture = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_SayTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Say = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          Init_EA_Export(ea);
+          free(ea);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
+          int _len_ea0 = 100;
+          struct TYPE_3__ * ea = (struct TYPE_3__ *) malloc(_len_ea0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_ea0; _i0++) {
+              ea[_i0].EA_ResetInput = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_EndRegular = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_GetInput = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_View = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Move = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_DelayedJump = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Jump = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_SelectWeapon = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveRight = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveBack = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveDown = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveUp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Crouch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Respawn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Use = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Attack = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Talk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Gesture = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_SayTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Say = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          Init_EA_Export(ea);
+          free(ea);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 77
+          // dynamic_instructions_O0 : 77
+          // ------------------------------- 
+          // static_instructions_O1 : 52
+          // dynamic_instructions_O1 : 52
+          // ------------------------------- 
+          // static_instructions_O2 : 52
+          // dynamic_instructions_O2 : 52
+          // ------------------------------- 
+          // static_instructions_O3 : 52
+          // dynamic_instructions_O3 : 52
+          // ------------------------------- 
+          // static_instructions_Ofast : 52
+          // dynamic_instructions_Ofast : 52
+          // ------------------------------- 
+          // static_instructions_Os : 52
+          // dynamic_instructions_Os : 52
+          // ------------------------------- 
+          // static_instructions_Oz : 52
+          // dynamic_instructions_Oz : 52
+          // ------------------------------- 
+
           int _len_ea0 = 1;
           struct TYPE_3__ * ea = (struct TYPE_3__ *) malloc(_len_ea0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_ea0; _i0++) {
-            ea[_i0].EA_ResetInput = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_EndRegular = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_GetInput = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_View = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Move = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_DelayedJump = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Jump = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_SelectWeapon = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_MoveRight = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_MoveLeft = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_MoveBack = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_MoveForward = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_MoveDown = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_MoveUp = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Crouch = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Respawn = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Use = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Attack = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Talk = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Gesture = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Action = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_SayTeam = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Say = ((-2 * (next_i()%2)) + 1) * next_i();
-        ea[_i0].EA_Command = ((-2 * (next_i()%2)) + 1) * next_i();
+              ea[_i0].EA_ResetInput = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_EndRegular = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_GetInput = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_View = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Move = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_DelayedJump = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Jump = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_SelectWeapon = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveRight = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveLeft = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveBack = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveForward = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveDown = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_MoveUp = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Crouch = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Respawn = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Use = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Attack = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Talk = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Gesture = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Action = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_SayTeam = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Say = ((-2 * (next_i()%2)) + 1) * next_i();
+          ea[_i0].EA_Command = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           Init_EA_Export(ea);
           free(ea);
         

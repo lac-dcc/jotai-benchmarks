@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -60,12 +62,6 @@ __attribute__((used)) static bool mlxsw_core_port_check(struct mlxsw_core_port *
 	return mlxsw_core_port->port_driver_priv != NULL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -78,10 +74,10 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_mlxsw_core_port0 = 1;
+          int _len_mlxsw_core_port0 = 65025;
           struct mlxsw_core_port * mlxsw_core_port = (struct mlxsw_core_port *) malloc(_len_mlxsw_core_port0*sizeof(struct mlxsw_core_port));
           for(int _i0 = 0; _i0 < _len_mlxsw_core_port0; _i0++) {
               int _len_mlxsw_core_port__i0__port_driver_priv0 = 1;
@@ -89,7 +85,9 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_mlxsw_core_port__i0__port_driver_priv0; _j0++) {
             mlxsw_core_port[_i0].port_driver_priv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           }
+        
           int benchRet = mlxsw_core_port_check(mlxsw_core_port);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_mlxsw_core_port0; _aux++) {
@@ -99,7 +97,52 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_mlxsw_core_port0 = 100;
+          struct mlxsw_core_port * mlxsw_core_port = (struct mlxsw_core_port *) malloc(_len_mlxsw_core_port0*sizeof(struct mlxsw_core_port));
+          for(int _i0 = 0; _i0 < _len_mlxsw_core_port0; _i0++) {
+              int _len_mlxsw_core_port__i0__port_driver_priv0 = 1;
+          mlxsw_core_port[_i0].port_driver_priv = (int *) malloc(_len_mlxsw_core_port__i0__port_driver_priv0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mlxsw_core_port__i0__port_driver_priv0; _j0++) {
+            mlxsw_core_port[_i0].port_driver_priv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = mlxsw_core_port_check(mlxsw_core_port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlxsw_core_port0; _aux++) {
+          free(mlxsw_core_port[_aux].port_driver_priv);
+          }
+          free(mlxsw_core_port);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_mlxsw_core_port0 = 1;
+          struct mlxsw_core_port * mlxsw_core_port = (struct mlxsw_core_port *) malloc(_len_mlxsw_core_port0*sizeof(struct mlxsw_core_port));
+          for(int _i0 = 0; _i0 < _len_mlxsw_core_port0; _i0++) {
+              int _len_mlxsw_core_port__i0__port_driver_priv0 = 1;
+          mlxsw_core_port[_i0].port_driver_priv = (int *) malloc(_len_mlxsw_core_port__i0__port_driver_priv0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_mlxsw_core_port__i0__port_driver_priv0; _j0++) {
+            mlxsw_core_port[_i0].port_driver_priv[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          }
+        
+          int benchRet = mlxsw_core_port_check(mlxsw_core_port);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_mlxsw_core_port0; _aux++) {
+          free(mlxsw_core_port[_aux].port_driver_priv);
+          }
+          free(mlxsw_core_port);
+        
+        break;
+    }
     default:
         usage();
         break;

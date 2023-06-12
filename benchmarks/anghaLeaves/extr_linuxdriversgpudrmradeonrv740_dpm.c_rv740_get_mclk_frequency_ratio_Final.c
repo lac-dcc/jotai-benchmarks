@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ u8 rv740_get_mclk_frequency_ratio(u32 memory_clock)
 	return mc_para_index;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,6 +87,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int memory_clock = 100;
+        
           int benchRet = rv740_get_mclk_frequency_ratio(memory_clock);
           printf("%d\n", benchRet); 
         
@@ -101,6 +97,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int memory_clock = 255;
+        
           int benchRet = rv740_get_mclk_frequency_ratio(memory_clock);
           printf("%d\n", benchRet); 
         
@@ -110,12 +107,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int memory_clock = 10;
+        
           int benchRet = rv740_get_mclk_frequency_ratio(memory_clock);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int memory_clock = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = rv740_get_mclk_frequency_ratio(memory_clock);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

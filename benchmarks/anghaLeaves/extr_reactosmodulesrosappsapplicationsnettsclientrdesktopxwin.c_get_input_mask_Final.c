@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -84,12 +86,6 @@ get_input_mask(RDPCLIENT * This, long *input_mask)
 		*input_mask |= LeaveWindowMask;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -102,22 +98,146 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_This0 = 65025;
+          struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].grab_keyboard = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].fullscreen = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].ownbackstore = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].sendmotion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_input_mask0 = 65025;
+          long * input_mask = (long *) malloc(_len_input_mask0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_input_mask0; _i0++) {
+            input_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_input_mask(This,input_mask);
+          free(This);
+          free(input_mask);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
+          int _len_This0 = 100;
+          struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].grab_keyboard = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].fullscreen = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].ownbackstore = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].sendmotion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_input_mask0 = 100;
+          long * input_mask = (long *) malloc(_len_input_mask0*sizeof(long));
+          for(int _i0 = 0; _i0 < _len_input_mask0; _i0++) {
+            input_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          get_input_mask(This,input_mask);
+          free(This);
+          free(input_mask);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 43
+          // dynamic_instructions_O0 : 43
+          // ------------------------------- 
+          // static_instructions_O1 : 28
+          // dynamic_instructions_O1 : 28
+          // ------------------------------- 
+          // static_instructions_O2 : 28
+          // dynamic_instructions_O2 : 28
+          // ------------------------------- 
+          // static_instructions_O3 : 28
+          // dynamic_instructions_O3 : 28
+          // ------------------------------- 
+          // static_instructions_Ofast : 28
+          // dynamic_instructions_Ofast : 28
+          // ------------------------------- 
+          // static_instructions_Os : 28
+          // dynamic_instructions_Os : 28
+          // ------------------------------- 
+          // static_instructions_Oz : 28
+          // dynamic_instructions_Oz : 28
+          // ------------------------------- 
+
           int _len_This0 = 1;
           struct TYPE_3__ * This = (struct TYPE_3__ *) malloc(_len_This0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_This0; _i0++) {
-            This[_i0].grab_keyboard = ((-2 * (next_i()%2)) + 1) * next_i();
-        This[_i0].fullscreen = ((-2 * (next_i()%2)) + 1) * next_i();
-        This[_i0].ownbackstore = ((-2 * (next_i()%2)) + 1) * next_i();
-        This[_i0].sendmotion = ((-2 * (next_i()%2)) + 1) * next_i();
+              This[_i0].grab_keyboard = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].fullscreen = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].ownbackstore = ((-2 * (next_i()%2)) + 1) * next_i();
+          This[_i0].sendmotion = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_input_mask0 = 1;
           long * input_mask = (long *) malloc(_len_input_mask0*sizeof(long));
           for(int _i0 = 0; _i0 < _len_input_mask0; _i0++) {
             input_mask[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           get_input_mask(This,input_mask);
           free(This);
           free(input_mask);

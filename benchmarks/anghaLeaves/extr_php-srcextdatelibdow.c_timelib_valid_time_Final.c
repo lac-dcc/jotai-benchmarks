@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ int timelib_valid_time(timelib_sll h, timelib_sll i, timelib_sll s)
 	return 1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,8 +82,11 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int h = 100;
+        
           int i = 100;
+        
           int s = 100;
+        
           int benchRet = timelib_valid_time(h,i,s);
           printf("%d\n", benchRet); 
         
@@ -98,8 +96,11 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int h = 255;
+        
           int i = 255;
+        
           int s = 255;
+        
           int benchRet = timelib_valid_time(h,i,s);
           printf("%d\n", benchRet); 
         
@@ -109,14 +110,30 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int h = 10;
+        
           int i = 10;
+        
           int s = 10;
+        
           int benchRet = timelib_valid_time(h,i,s);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int h = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int i = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int s = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = timelib_valid_time(h,i,s);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

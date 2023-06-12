@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -64,12 +64,6 @@ __attribute__((used)) static inline bool is_fixed16_zero(uint_fixed_16_16_t val)
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,17 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           struct TYPE_3__ val;
-        val.val = ((-2 * (next_i()%2)) + 1) * next_i();
+          val.val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = is_fixed16_zero(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

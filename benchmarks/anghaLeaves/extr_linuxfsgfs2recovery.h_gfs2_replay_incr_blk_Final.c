@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -61,12 +63,6 @@ __attribute__((used)) static inline void gfs2_replay_incr_blk(struct gfs2_jdesc 
 	        *blk = 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,19 +75,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_jd0 = 65025;
+          struct gfs2_jdesc * jd = (struct gfs2_jdesc *) malloc(_len_jd0*sizeof(struct gfs2_jdesc));
+          for(int _i0 = 0; _i0 < _len_jd0; _i0++) {
+              jd[_i0].jd_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blk0 = 65025;
+          unsigned int * blk = (unsigned int *) malloc(_len_blk0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
+            blk[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          gfs2_replay_incr_blk(jd,blk);
+          free(jd);
+          free(blk);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
+          int _len_jd0 = 100;
+          struct gfs2_jdesc * jd = (struct gfs2_jdesc *) malloc(_len_jd0*sizeof(struct gfs2_jdesc));
+          for(int _i0 = 0; _i0 < _len_jd0; _i0++) {
+              jd[_i0].jd_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blk0 = 100;
+          unsigned int * blk = (unsigned int *) malloc(_len_blk0*sizeof(unsigned int));
+          for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
+            blk[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          gfs2_replay_incr_blk(jd,blk);
+          free(jd);
+          free(blk);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 11
+          // dynamic_instructions_O1 : 11
+          // ------------------------------- 
+          // static_instructions_O2 : 11
+          // dynamic_instructions_O2 : 11
+          // ------------------------------- 
+          // static_instructions_O3 : 11
+          // dynamic_instructions_O3 : 11
+          // ------------------------------- 
+          // static_instructions_Ofast : 11
+          // dynamic_instructions_Ofast : 11
+          // ------------------------------- 
+          // static_instructions_Os : 11
+          // dynamic_instructions_Os : 11
+          // ------------------------------- 
+          // static_instructions_Oz : 11
+          // dynamic_instructions_Oz : 11
+          // ------------------------------- 
+
           int _len_jd0 = 1;
           struct gfs2_jdesc * jd = (struct gfs2_jdesc *) malloc(_len_jd0*sizeof(struct gfs2_jdesc));
           for(int _i0 = 0; _i0 < _len_jd0; _i0++) {
-            jd[_i0].jd_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+              jd[_i0].jd_blocks = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_blk0 = 1;
           unsigned int * blk = (unsigned int *) malloc(_len_blk0*sizeof(unsigned int));
           for(int _i0 = 0; _i0 < _len_blk0; _i0++) {
             blk[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           gfs2_replay_incr_blk(jd,blk);
           free(jd);
           free(blk);

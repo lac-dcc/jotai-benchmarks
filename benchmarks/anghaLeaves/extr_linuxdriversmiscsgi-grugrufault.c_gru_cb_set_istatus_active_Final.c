@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static void gru_cb_set_istatus_active(struct gru_instructi
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cbk0 = 1;
+          int _len_cbk0 = 65025;
           struct gru_instruction_bits * cbk = (struct gru_instruction_bits *) malloc(_len_cbk0*sizeof(struct gru_instruction_bits));
           for(int _i0 = 0; _i0 < _len_cbk0; _i0++) {
-            cbk[_i0].istatus = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbk[_i0].istatus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gru_cb_set_istatus_active(cbk);
           free(cbk);
         
@@ -101,14 +98,30 @@ int main(int argc, char *argv[]) {
           int _len_cbk0 = 100;
           struct gru_instruction_bits * cbk = (struct gru_instruction_bits *) malloc(_len_cbk0*sizeof(struct gru_instruction_bits));
           for(int _i0 = 0; _i0 < _len_cbk0; _i0++) {
-            cbk[_i0].istatus = ((-2 * (next_i()%2)) + 1) * next_i();
+              cbk[_i0].istatus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           gru_cb_set_istatus_active(cbk);
           free(cbk);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cbk0 = 1;
+          struct gru_instruction_bits * cbk = (struct gru_instruction_bits *) malloc(_len_cbk0*sizeof(struct gru_instruction_bits));
+          for(int _i0 = 0; _i0 < _len_cbk0; _i0++) {
+              cbk[_i0].istatus = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          gru_cb_set_istatus_active(cbk);
+          free(cbk);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static bool i40e_match_fdir_filter(struct i40e_fdir_filter
 	return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,29 +84,33 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_a0 = 1;
+          int _len_a0 = 65025;
           struct i40e_fdir_filter * a = (struct i40e_fdir_filter *) malloc(_len_a0*sizeof(struct i40e_fdir_filter));
           for(int _i0 = 0; _i0 < _len_a0; _i0++) {
-            a[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        a[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              a[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
-          int _len_b0 = 1;
+        
+          int _len_b0 = 65025;
           struct i40e_fdir_filter * b = (struct i40e_fdir_filter *) malloc(_len_b0*sizeof(struct i40e_fdir_filter));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
-            b[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
-        b[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+              b[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = i40e_match_fdir_filter(a,b);
           printf("%d\n", benchRet); 
           free(a);
@@ -118,7 +118,74 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_a0 = 100;
+          struct i40e_fdir_filter * a = (struct i40e_fdir_filter *) malloc(_len_a0*sizeof(struct i40e_fdir_filter));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 100;
+          struct i40e_fdir_filter * b = (struct i40e_fdir_filter *) malloc(_len_b0*sizeof(struct i40e_fdir_filter));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = i40e_match_fdir_filter(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_a0 = 1;
+          struct i40e_fdir_filter * a = (struct i40e_fdir_filter *) malloc(_len_a0*sizeof(struct i40e_fdir_filter));
+          for(int _i0 = 0; _i0 < _len_a0; _i0++) {
+              a[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          a[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_b0 = 1;
+          struct i40e_fdir_filter * b = (struct i40e_fdir_filter *) malloc(_len_b0*sizeof(struct i40e_fdir_filter));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+              b[_i0].dst_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].src_ip = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].dst_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].src_port = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].flow_type = ((-2 * (next_i()%2)) + 1) * next_i();
+          b[_i0].ip4_proto = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = i40e_match_fdir_filter(a,b);
+          printf("%d\n", benchRet); 
+          free(a);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

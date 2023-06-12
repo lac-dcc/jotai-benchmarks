@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int jzfb_get_controller_bpp(struct jzfb *jzfb)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,18 +84,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_jzfb0 = 65025;
+          struct jzfb * jzfb = (struct jzfb *) malloc(_len_jzfb0*sizeof(struct jzfb));
+          for(int _i0 = 0; _i0 < _len_jzfb0; _i0++) {
+              int _len_jzfb__i0__pdata0 = 1;
+          jzfb[_i0].pdata = (struct TYPE_2__ *) malloc(_len_jzfb__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_jzfb__i0__pdata0; _j0++) {
+              jzfb[_i0].pdata->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = jzfb_get_controller_bpp(jzfb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_jzfb0; _aux++) {
+          free(jzfb[_aux].pdata);
+          }
+          free(jzfb);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
+          int _len_jzfb0 = 100;
+          struct jzfb * jzfb = (struct jzfb *) malloc(_len_jzfb0*sizeof(struct jzfb));
+          for(int _i0 = 0; _i0 < _len_jzfb0; _i0++) {
+              int _len_jzfb__i0__pdata0 = 1;
+          jzfb[_i0].pdata = (struct TYPE_2__ *) malloc(_len_jzfb__i0__pdata0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_jzfb__i0__pdata0; _j0++) {
+              jzfb[_i0].pdata->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = jzfb_get_controller_bpp(jzfb);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_jzfb0; _aux++) {
+          free(jzfb[_aux].pdata);
+          }
+          free(jzfb);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 24
+          // dynamic_instructions_O0 : 24
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 14
+          // dynamic_instructions_Os : 14
+          // ------------------------------- 
+          // static_instructions_Oz : 14
+          // dynamic_instructions_Oz : 14
+          // ------------------------------- 
+
           int _len_jzfb0 = 1;
           struct jzfb * jzfb = (struct jzfb *) malloc(_len_jzfb0*sizeof(struct jzfb));
           for(int _i0 = 0; _i0 < _len_jzfb0; _i0++) {
               int _len_jzfb__i0__pdata0 = 1;
           jzfb[_i0].pdata = (struct TYPE_2__ *) malloc(_len_jzfb__i0__pdata0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_jzfb__i0__pdata0; _j0++) {
-            jzfb[_i0].pdata->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+              jzfb[_i0].pdata->bpp = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = jzfb_get_controller_bpp(jzfb);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_jzfb0; _aux++) {

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ int bstrchr(struct bstr str, int c)
     return -1;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,51 +78,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int c = 100;
+        
           struct bstr str;
-        str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_str_start0 = 1;
           str.start = (int *) malloc(_len_str_start0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
             str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bstrchr(str,c);
           printf("%d\n", benchRet); 
           free(str.start);
         
         break;
     }
+
+
     // big-arr
     case 1:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int c = 255;
+        
           struct bstr str;
-        str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_str_start0 = 1;
           str.start = (int *) malloc(_len_str_start0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
             str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = bstrchr(str,c);
           printf("%d\n", benchRet); 
           free(str.start);
         
         break;
     }
+
+
     // big-arr-10x
     case 2:
     {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           int c = 10;
+        
           struct bstr str;
-        str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_str_start0 = 1;
           str.start = (int *) malloc(_len_str_start0*sizeof(int));
           for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
             str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
+          int benchRet = bstrchr(str,c);
+          printf("%d\n", benchRet); 
+          free(str.start);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 13
+          // dynamic_instructions_O0 : 13
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          struct bstr str;
+          str.len = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_str_start0 = 1;
+          str.start = (int *) malloc(_len_str_start0*sizeof(int));
+          for(int _j0 = 0; _j0 < _len_str_start0; _j0++) {
+            str.start[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
           int benchRet = bstrchr(str,c);
           printf("%d\n", benchRet); 
           free(str.start);

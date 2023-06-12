@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ aoecmd_wreset(struct aoetgt *t)
 	t->next_cwnd = t->nframes;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,60 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_t0 = 1;
+          int _len_t0 = 65025;
           struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           aoecmd_wreset(t);
           free(t);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_t0 = 100;
+          struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          aoecmd_wreset(t);
+          free(t);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_t0 = 1;
+          struct aoetgt * t = (struct aoetgt *) malloc(_len_t0*sizeof(struct aoetgt));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].maxout = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].ssthresh = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].nframes = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].next_cwnd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          aoecmd_wreset(t);
+          free(t);
+        
+        break;
+    }
     default:
         usage();
         break;

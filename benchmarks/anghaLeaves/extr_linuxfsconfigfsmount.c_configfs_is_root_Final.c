@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ int configfs_is_root(struct config_item *item)
 	return item == &configfs_root_group.cg_item;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_item0 = 1;
+          int _len_item0 = 65025;
           struct config_item * item = (struct config_item *) malloc(_len_item0*sizeof(struct config_item));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = configfs_is_root(item);
           printf("%d\n", benchRet); 
           free(item);
@@ -102,15 +99,32 @@ int main(int argc, char *argv[]) {
           int _len_item0 = 100;
           struct config_item * item = (struct config_item *) malloc(_len_item0*sizeof(struct config_item));
           for(int _i0 = 0; _i0 < _len_item0; _i0++) {
-            item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = configfs_is_root(item);
           printf("%d\n", benchRet); 
           free(item);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_item0 = 1;
+          struct config_item * item = (struct config_item *) malloc(_len_item0*sizeof(struct config_item));
+          for(int _i0 = 0; _i0 < _len_item0; _i0++) {
+              item[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = configfs_is_root(item);
+          printf("%d\n", benchRet); 
+          free(item);
+        
+        break;
+    }
     default:
         usage();
         break;

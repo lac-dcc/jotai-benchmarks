@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static void qeth_init_func_level(struct qeth_card *card)
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,21 +91,57 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_card0 = 1;
+          int _len_card0 = 65025;
           struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
           for(int _i0 = 0; _i0 < _len_card0; _i0++) {
-            card[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
-        card[_i0].info.func_level = ((-2 * (next_i()%2)) + 1) * next_i();
+              card[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].info.func_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           qeth_init_func_level(card);
           free(card);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_card0 = 100;
+          struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].info.func_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qeth_init_func_level(card);
+          free(card);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_card0 = 1;
+          struct qeth_card * card = (struct qeth_card *) malloc(_len_card0*sizeof(struct qeth_card));
+          for(int _i0 = 0; _i0 < _len_card0; _i0++) {
+              card[_i0].info.type = ((-2 * (next_i()%2)) + 1) * next_i();
+          card[_i0].info.func_level = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          qeth_init_func_level(card);
+          free(card);
+        
+        break;
+    }
     default:
         usage();
         break;

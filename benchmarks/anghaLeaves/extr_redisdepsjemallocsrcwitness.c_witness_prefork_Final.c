@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +68,6 @@ witness_prefork(witness_tsd_t *witness_tsd) {
 	witness_tsd->forking = true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,27 +80,117 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_witness_tsd0 = 1;
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_witness_tsd0 = 65025;
           struct TYPE_3__ * witness_tsd = (struct TYPE_3__ *) malloc(_len_witness_tsd0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_witness_tsd0; _i0++) {
-            witness_tsd[_i0].forking = ((-2 * (next_i()%2)) + 1) * next_i();
+              witness_tsd[_i0].forking = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           witness_prefork(witness_tsd);
           free(witness_tsd);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_witness_tsd0 = 100;
           struct TYPE_3__ * witness_tsd = (struct TYPE_3__ *) malloc(_len_witness_tsd0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_witness_tsd0; _i0++) {
-            witness_tsd[_i0].forking = ((-2 * (next_i()%2)) + 1) * next_i();
+              witness_tsd[_i0].forking = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          witness_prefork(witness_tsd);
+          free(witness_tsd);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 8
+          // dynamic_instructions_O0 : 8
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_witness_tsd0 = 1;
+          struct TYPE_3__ * witness_tsd = (struct TYPE_3__ *) malloc(_len_witness_tsd0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_witness_tsd0; _i0++) {
+              witness_tsd[_i0].forking = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           witness_prefork(witness_tsd);
           free(witness_tsd);
         

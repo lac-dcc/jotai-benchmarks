@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ void csc_set_coeff_bypass(struct csc_data *csc, u32 *csc_reg5)
 	*csc_reg5 |= CSC_BYPASS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,19 +76,137 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_csc0 = 65025;
+          struct csc_data * csc = (struct csc_data *) malloc(_len_csc0*sizeof(struct csc_data));
+          for(int _i0 = 0; _i0 < _len_csc0; _i0++) {
+              csc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_csc_reg50 = 65025;
+          int * csc_reg5 = (int *) malloc(_len_csc_reg50*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_csc_reg50; _i0++) {
+            csc_reg5[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          csc_set_coeff_bypass(csc,csc_reg5);
+          free(csc);
+          free(csc_reg5);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
+          int _len_csc0 = 100;
+          struct csc_data * csc = (struct csc_data *) malloc(_len_csc0*sizeof(struct csc_data));
+          for(int _i0 = 0; _i0 < _len_csc0; _i0++) {
+              csc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_csc_reg50 = 100;
+          int * csc_reg5 = (int *) malloc(_len_csc_reg50*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_csc_reg50; _i0++) {
+            csc_reg5[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          csc_set_coeff_bypass(csc,csc_reg5);
+          free(csc);
+          free(csc_reg5);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 6
+          // dynamic_instructions_O2 : 6
+          // ------------------------------- 
+          // static_instructions_O3 : 6
+          // dynamic_instructions_O3 : 6
+          // ------------------------------- 
+          // static_instructions_Ofast : 6
+          // dynamic_instructions_Ofast : 6
+          // ------------------------------- 
+          // static_instructions_Os : 6
+          // dynamic_instructions_Os : 6
+          // ------------------------------- 
+          // static_instructions_Oz : 6
+          // dynamic_instructions_Oz : 6
+          // ------------------------------- 
+
           int _len_csc0 = 1;
           struct csc_data * csc = (struct csc_data *) malloc(_len_csc0*sizeof(struct csc_data));
           for(int _i0 = 0; _i0 < _len_csc0; _i0++) {
-            csc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              csc[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_csc_reg50 = 1;
           int * csc_reg5 = (int *) malloc(_len_csc_reg50*sizeof(int));
           for(int _i0 = 0; _i0 < _len_csc_reg50; _i0++) {
             csc_reg5[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           csc_set_coeff_bypass(csc,csc_reg5);
           free(csc);
           free(csc_reg5);

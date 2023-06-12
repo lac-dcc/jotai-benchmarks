@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static inline bool r_itv_include(RInterval itv, RInterval 
 	return itv.addr <= x.addr && (!end || (x.addr + x.size && x.addr + x.size <= end));
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +75,40 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 38
+          // dynamic_instructions_O0 : 38
+          // ------------------------------- 
+          // static_instructions_O1 : 14
+          // dynamic_instructions_O1 : 14
+          // ------------------------------- 
+          // static_instructions_O2 : 14
+          // dynamic_instructions_O2 : 14
+          // ------------------------------- 
+          // static_instructions_O3 : 14
+          // dynamic_instructions_O3 : 14
+          // ------------------------------- 
+          // static_instructions_Ofast : 14
+          // dynamic_instructions_Ofast : 14
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           struct TYPE_4__ itv;
-        itv.addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        itv.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          itv.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           struct TYPE_4__ x;
-        x.addr = ((-2 * (next_i()%2)) + 1) * next_i();
-        x.size = ((-2 * (next_i()%2)) + 1) * next_i();
+          x.addr = ((-2 * (next_i()%2)) + 1) * next_i();
+          x.size = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = r_itv_include(itv,x);
           printf("%d\n", benchRet); 
         

@@ -30,8 +30,10 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
-       1            linked\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            linked\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +77,6 @@ __attribute__((used)) static struct dvb_demux_feed *dvb_dmx_feed_alloc(struct dv
 	return &demux->feed[i];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,19 +89,45 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_demux0 = 1;
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_demux0 = 65025;
           struct dvb_demux * demux = (struct dvb_demux *) malloc(_len_demux0*sizeof(struct dvb_demux));
           for(int _i0 = 0; _i0 < _len_demux0; _i0++) {
-            demux[_i0].feednum = ((-2 * (next_i()%2)) + 1) * next_i();
+              demux[_i0].feednum = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_demux__i0__feed0 = 1;
           demux[_i0].feed = (struct dvb_demux_feed *) malloc(_len_demux__i0__feed0*sizeof(struct dvb_demux_feed));
           for(int _j0 = 0; _j0 < _len_demux__i0__feed0; _j0++) {
-            demux[_i0].feed->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              demux[_i0].feed->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           struct dvb_demux_feed * benchRet = dvb_dmx_feed_alloc(demux);
           printf("%ld\n", (*benchRet).state);
           for(int _aux = 0; _aux < _len_demux0; _aux++) {
@@ -115,19 +137,144 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-    // linked
+
+
+    // big-arr-10x
     case 1:
     {
-          int _len_demux0 = 1;
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_demux0 = 100;
           struct dvb_demux * demux = (struct dvb_demux *) malloc(_len_demux0*sizeof(struct dvb_demux));
           for(int _i0 = 0; _i0 < _len_demux0; _i0++) {
-            demux[_i0].feednum = ((-2 * (next_i()%2)) + 1) * next_i();
+              demux[_i0].feednum = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_demux__i0__feed0 = 1;
           demux[_i0].feed = (struct dvb_demux_feed *) malloc(_len_demux__i0__feed0*sizeof(struct dvb_demux_feed));
           for(int _j0 = 0; _j0 < _len_demux__i0__feed0; _j0++) {
-            demux[_i0].feed->state = ((-2 * (next_i()%2)) + 1) * next_i();
+              demux[_i0].feed->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          struct dvb_demux_feed * benchRet = dvb_dmx_feed_alloc(demux);
+          printf("%ld\n", (*benchRet).state);
+          for(int _aux = 0; _aux < _len_demux0; _aux++) {
+          free(demux[_aux].feed);
+          }
+          free(demux);
+        
+        break;
+    }
+
+
+    // linked
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_demux0 = 1;
+          struct dvb_demux * demux = (struct dvb_demux *) malloc(_len_demux0*sizeof(struct dvb_demux));
+          for(int _i0 = 0; _i0 < _len_demux0; _i0++) {
+              demux[_i0].feednum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_demux__i0__feed0 = 1;
+          demux[_i0].feed = (struct dvb_demux_feed *) malloc(_len_demux__i0__feed0*sizeof(struct dvb_demux_feed));
+          for(int _j0 = 0; _j0 < _len_demux__i0__feed0; _j0++) {
+              demux[_i0].feed->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          struct dvb_demux_feed * benchRet = dvb_dmx_feed_alloc(demux);
+          printf("%ld\n", (*benchRet).state);
+          for(int _aux = 0; _aux < _len_demux0; _aux++) {
+          free(demux[_aux].feed);
+          }
+          free(demux);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
+          int _len_demux0 = 1;
+          struct dvb_demux * demux = (struct dvb_demux *) malloc(_len_demux0*sizeof(struct dvb_demux));
+          for(int _i0 = 0; _i0 < _len_demux0; _i0++) {
+              demux[_i0].feednum = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_demux__i0__feed0 = 1;
+          demux[_i0].feed = (struct dvb_demux_feed *) malloc(_len_demux__i0__feed0*sizeof(struct dvb_demux_feed));
+          for(int _j0 = 0; _j0 < _len_demux__i0__feed0; _j0++) {
+              demux[_i0].feed->state = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           struct dvb_demux_feed * benchRet = dvb_dmx_feed_alloc(demux);
           printf("%ld\n", (*benchRet).state);
           for(int _aux = 0; _aux < _len_demux0; _aux++) {

@@ -64,12 +64,6 @@ __attribute__((used)) static inline uint32_t DSI_28nm_PHY_PLL_SDM_CFG0_BYP_DIV(u
 	return ((val) << DSI_28nm_PHY_PLL_SDM_CFG0_BYP_DIV__SHIFT) & DSI_28nm_PHY_PLL_SDM_CFG0_BYP_DIV__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,6 +80,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int val = 100;
+        
           int benchRet = DSI_28nm_PHY_PLL_SDM_CFG0_BYP_DIV(val);
           printf("%d\n", benchRet); 
         
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int val = 255;
+        
           int benchRet = DSI_28nm_PHY_PLL_SDM_CFG0_BYP_DIV(val);
           printf("%d\n", benchRet); 
         
@@ -104,12 +100,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int val = 10;
+        
           int benchRet = DSI_28nm_PHY_PLL_SDM_CFG0_BYP_DIV(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

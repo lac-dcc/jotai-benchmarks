@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -88,12 +89,6 @@ __attribute__((used)) static int mtu_to_enum(u32 mtu)
 	return enum_mtu;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -110,6 +105,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int mtu = 100;
+        
           int benchRet = mtu_to_enum(mtu);
           printf("%d\n", benchRet); 
         
@@ -119,6 +115,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int mtu = 255;
+        
           int benchRet = mtu_to_enum(mtu);
           printf("%d\n", benchRet); 
         
@@ -128,12 +125,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int mtu = 10;
+        
           int benchRet = mtu_to_enum(mtu);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int mtu = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = mtu_to_enum(mtu);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

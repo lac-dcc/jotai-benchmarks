@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static inline void cpu_key_k_offset_dec(struct cpu_key *ke
 	key->on_disk_key.k_offset--;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_key0 = 1;
+          int _len_key0 = 65025;
           struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cpu_key_k_offset_dec(key);
           free(key);
         
@@ -100,14 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_key0 = 100;
           struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
           for(int _i0 = 0; _i0 < _len_key0; _i0++) {
-            key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cpu_key_k_offset_dec(key);
           free(key);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_key0 = 1;
+          struct cpu_key * key = (struct cpu_key *) malloc(_len_key0*sizeof(struct cpu_key));
+          for(int _i0 = 0; _i0 < _len_key0; _i0++) {
+              key[_i0].on_disk_key.k_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cpu_key_k_offset_dec(key);
+          free(key);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +65,6 @@ __attribute__((used)) static bool brcmf_is_ibssmode(struct brcmf_cfg80211_vif *v
 	return vif->wdev.iftype == NL80211_IFTYPE_ADHOC;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,14 +77,17 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_vif0 = 1;
+          int _len_vif0 = 65025;
           struct brcmf_cfg80211_vif * vif = (struct brcmf_cfg80211_vif *) malloc(_len_vif0*sizeof(struct brcmf_cfg80211_vif));
           for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
-            vif[_i0].wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+              vif[_i0].wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = brcmf_is_ibssmode(vif);
           printf("%d\n", benchRet); 
           free(vif);
@@ -102,15 +100,34 @@ int main(int argc, char *argv[]) {
           int _len_vif0 = 100;
           struct brcmf_cfg80211_vif * vif = (struct brcmf_cfg80211_vif *) malloc(_len_vif0*sizeof(struct brcmf_cfg80211_vif));
           for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
-            vif[_i0].wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+              vif[_i0].wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = brcmf_is_ibssmode(vif);
           printf("%d\n", benchRet); 
           free(vif);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_vif0 = 1;
+          struct brcmf_cfg80211_vif * vif = (struct brcmf_cfg80211_vif *) malloc(_len_vif0*sizeof(struct brcmf_cfg80211_vif));
+          for(int _i0 = 0; _i0 < _len_vif0; _i0++) {
+              vif[_i0].wdev.iftype = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = brcmf_is_ibssmode(vif);
+          printf("%d\n", benchRet); 
+          free(vif);
+        
+        break;
+    }
     default:
         usage();
         break;

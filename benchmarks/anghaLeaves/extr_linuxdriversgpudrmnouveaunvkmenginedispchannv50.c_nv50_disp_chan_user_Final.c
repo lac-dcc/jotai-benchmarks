@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ nv50_disp_chan_user(struct nv50_disp_chan *chan, u64 *psize)
 	return 0x640000 + (chan->chid.user * 0x1000);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,19 +79,23 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_chan0 = 1;
+          int _len_chan0 = 65025;
           struct nv50_disp_chan * chan = (struct nv50_disp_chan *) malloc(_len_chan0*sizeof(struct nv50_disp_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].chid.user = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].chid.user = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_psize0 = 1;
+        
+          int _len_psize0 = 65025;
           int * psize = (int *) malloc(_len_psize0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_psize0; _i0++) {
             psize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = nv50_disp_chan_user(chan,psize);
           printf("%d\n", benchRet); 
           free(chan);
@@ -103,7 +103,54 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_chan0 = 100;
+          struct nv50_disp_chan * chan = (struct nv50_disp_chan *) malloc(_len_chan0*sizeof(struct nv50_disp_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].chid.user = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_psize0 = 100;
+          int * psize = (int *) malloc(_len_psize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_psize0; _i0++) {
+            psize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nv50_disp_chan_user(chan,psize);
+          printf("%d\n", benchRet); 
+          free(chan);
+          free(psize);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_chan0 = 1;
+          struct nv50_disp_chan * chan = (struct nv50_disp_chan *) malloc(_len_chan0*sizeof(struct nv50_disp_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].chid.user = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_psize0 = 1;
+          int * psize = (int *) malloc(_len_psize0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_psize0; _i0++) {
+            psize[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = nv50_disp_chan_user(chan,psize);
+          printf("%d\n", benchRet); 
+          free(chan);
+          free(psize);
+        
+        break;
+    }
     default:
         usage();
         break;

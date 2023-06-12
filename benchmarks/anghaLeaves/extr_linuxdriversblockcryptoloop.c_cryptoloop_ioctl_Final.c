@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ cryptoloop_ioctl(struct loop_device *lo, int cmd, unsigned long arg)
 	return -EINVAL;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,12 +81,36 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int cmd = 100;
+        
           unsigned long arg = 100;
+        
           int _len_lo0 = 1;
           struct loop_device * lo = (struct loop_device *) malloc(_len_lo0*sizeof(struct loop_device));
           for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
-            lo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = cryptoloop_ioctl(lo,cmd,arg);
+          printf("%d\n", benchRet); 
+          free(lo);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int cmd = 255;
+        
+          unsigned long arg = 255;
+        
+          int _len_lo0 = 65025;
+          struct loop_device * lo = (struct loop_device *) malloc(_len_lo0*sizeof(struct loop_device));
+          for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
+              lo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = cryptoloop_ioctl(lo,cmd,arg);
           printf("%d\n", benchRet); 
           free(lo);
@@ -98,22 +118,45 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int cmd = 10;
+        
           unsigned long arg = 10;
+        
           int _len_lo0 = 100;
           struct loop_device * lo = (struct loop_device *) malloc(_len_lo0*sizeof(struct loop_device));
           for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
-            lo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              lo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = cryptoloop_ioctl(lo,cmd,arg);
           printf("%d\n", benchRet); 
           free(lo);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int cmd = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long arg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_lo0 = 1;
+          struct loop_device * lo = (struct loop_device *) malloc(_len_lo0*sizeof(struct loop_device));
+          for(int _i0 = 0; _i0 < _len_lo0; _i0++) {
+              lo[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = cryptoloop_ioctl(lo,cmd,arg);
+          printf("%d\n", benchRet); 
+          free(lo);
+        
+        break;
+    }
     default:
         usage();
         break;

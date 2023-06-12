@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -64,12 +67,6 @@ u32 vnic_dev_intr_coal_timer_hw_to_usec(struct vnic_dev *vdev, u32 hw_cycles)
 		vdev->intr_coal_timer_info.mul;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,19 +83,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int hw_cycles = 100;
+        
           int _len_vdev0 = 1;
           struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
           for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
-            vdev[_i0].intr_coal_timer_info.div = ((-2 * (next_i()%2)) + 1) * next_i();
-        vdev[_i0].intr_coal_timer_info.mul = ((-2 * (next_i()%2)) + 1) * next_i();
+              vdev[_i0].intr_coal_timer_info.div = ((-2 * (next_i()%2)) + 1) * next_i();
+          vdev[_i0].intr_coal_timer_info.mul = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = vnic_dev_intr_coal_timer_hw_to_usec(vdev,hw_cycles);
           printf("%d\n", benchRet); 
           free(vdev);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int hw_cycles = 255;
+        
+          int _len_vdev0 = 65025;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].intr_coal_timer_info.div = ((-2 * (next_i()%2)) + 1) * next_i();
+          vdev[_i0].intr_coal_timer_info.mul = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vnic_dev_intr_coal_timer_hw_to_usec(vdev,hw_cycles);
+          printf("%d\n", benchRet); 
+          free(vdev);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int hw_cycles = 10;
+        
+          int _len_vdev0 = 100;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].intr_coal_timer_info.div = ((-2 * (next_i()%2)) + 1) * next_i();
+          vdev[_i0].intr_coal_timer_info.mul = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vnic_dev_intr_coal_timer_hw_to_usec(vdev,hw_cycles);
+          printf("%d\n", benchRet); 
+          free(vdev);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int hw_cycles = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vdev0 = 1;
+          struct vnic_dev * vdev = (struct vnic_dev *) malloc(_len_vdev0*sizeof(struct vnic_dev));
+          for(int _i0 = 0; _i0 < _len_vdev0; _i0++) {
+              vdev[_i0].intr_coal_timer_info.div = ((-2 * (next_i()%2)) + 1) * next_i();
+          vdev[_i0].intr_coal_timer_info.mul = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = vnic_dev_intr_coal_timer_hw_to_usec(vdev,hw_cycles);
+          printf("%d\n", benchRet); 
+          free(vdev);
+        
+        break;
+    }
     default:
         usage();
         break;

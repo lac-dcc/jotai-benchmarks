@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -75,12 +76,6 @@ DWORD get_Cookie_magic(DWORD id)
     return cookies[index].magic;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -97,6 +92,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long id = 100;
+        
           unsigned long benchRet = get_Cookie_magic(id);
           printf("%lu\n", benchRet); 
         
@@ -106,6 +102,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned long id = 255;
+        
           unsigned long benchRet = get_Cookie_magic(id);
           printf("%lu\n", benchRet); 
         
@@ -115,12 +112,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned long id = 10;
+        
           unsigned long benchRet = get_Cookie_magic(id);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long benchRet = get_Cookie_magic(id);
+          printf("%lu\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

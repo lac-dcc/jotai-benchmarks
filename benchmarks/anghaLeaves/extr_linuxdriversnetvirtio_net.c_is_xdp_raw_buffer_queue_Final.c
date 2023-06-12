@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +68,6 @@ __attribute__((used)) static bool is_xdp_raw_buffer_queue(struct virtnet_info *v
 		return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,19 +84,78 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int q = 100;
+        
           int _len_vi0 = 1;
           struct virtnet_info * vi = (struct virtnet_info *) malloc(_len_vi0*sizeof(struct virtnet_info));
           for(int _i0 = 0; _i0 < _len_vi0; _i0++) {
-            vi[_i0].curr_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
-        vi[_i0].xdp_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+              vi[_i0].curr_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vi[_i0].xdp_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = is_xdp_raw_buffer_queue(vi,q);
           printf("%d\n", benchRet); 
           free(vi);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int q = 255;
+        
+          int _len_vi0 = 65025;
+          struct virtnet_info * vi = (struct virtnet_info *) malloc(_len_vi0*sizeof(struct virtnet_info));
+          for(int _i0 = 0; _i0 < _len_vi0; _i0++) {
+              vi[_i0].curr_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vi[_i0].xdp_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_xdp_raw_buffer_queue(vi,q);
+          printf("%d\n", benchRet); 
+          free(vi);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int q = 10;
+        
+          int _len_vi0 = 100;
+          struct virtnet_info * vi = (struct virtnet_info *) malloc(_len_vi0*sizeof(struct virtnet_info));
+          for(int _i0 = 0; _i0 < _len_vi0; _i0++) {
+              vi[_i0].curr_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vi[_i0].xdp_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_xdp_raw_buffer_queue(vi,q);
+          printf("%d\n", benchRet); 
+          free(vi);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int q = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_vi0 = 1;
+          struct virtnet_info * vi = (struct virtnet_info *) malloc(_len_vi0*sizeof(struct virtnet_info));
+          for(int _i0 = 0; _i0 < _len_vi0; _i0++) {
+              vi[_i0].curr_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+          vi[_i0].xdp_queue_pairs = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = is_xdp_raw_buffer_queue(vi,q);
+          printf("%d\n", benchRet); 
+          free(vi);
+        
+        break;
+    }
     default:
         usage();
         break;

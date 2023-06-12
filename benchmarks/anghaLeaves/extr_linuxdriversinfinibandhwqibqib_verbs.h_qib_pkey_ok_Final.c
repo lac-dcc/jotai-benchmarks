@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -70,12 +71,6 @@ __attribute__((used)) static inline int qib_pkey_ok(u16 pkey1, u16 pkey2)
 	return p1 && p1 == p2 && ((__s16)pkey1 < 0 || (__s16)pkey2 < 0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int pkey1 = 100;
+        
           int pkey2 = 100;
+        
           int benchRet = qib_pkey_ok(pkey1,pkey2);
           printf("%d\n", benchRet); 
         
@@ -102,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int pkey1 = 255;
+        
           int pkey2 = 255;
+        
           int benchRet = qib_pkey_ok(pkey1,pkey2);
           printf("%d\n", benchRet); 
         
@@ -112,13 +111,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int pkey1 = 10;
+        
           int pkey2 = 10;
+        
           int benchRet = qib_pkey_ok(pkey1,pkey2);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int pkey1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pkey2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = qib_pkey_ok(pkey1,pkey2);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

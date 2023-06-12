@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ void qlcnic_sriov_del_vlan_id(struct qlcnic_sriov *sriov,
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,15 +86,41 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
           long vlan_id = 100;
+        
           int _len_sriov0 = 1;
           struct qlcnic_sriov * sriov = (struct qlcnic_sriov *) malloc(_len_sriov0*sizeof(struct qlcnic_sriov));
           for(int _i0 = 0; _i0 < _len_sriov0; _i0++) {
-            sriov[_i0].num_allowed_vlans = ((-2 * (next_i()%2)) + 1) * next_i();
+              sriov[_i0].num_allowed_vlans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_vf0 = 1;
           struct qlcnic_vf_info * vf = (struct qlcnic_vf_info *) malloc(_len_vf0*sizeof(struct qlcnic_vf_info));
           for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
@@ -106,8 +129,181 @@ int main(int argc, char *argv[]) {
           for(int _j0 = 0; _j0 < _len_vf__i0__sriov_vlans0; _j0++) {
             vf[_i0].sriov_vlans[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
-        vf[_i0].num_vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+          vf[_i0].num_vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          qlcnic_sriov_del_vlan_id(sriov,vf,vlan_id);
+          free(sriov);
+          for(int _aux = 0; _aux < _len_vf0; _aux++) {
+          free(vf[_aux].sriov_vlans);
+          }
+          free(vf);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long vlan_id = 255;
+        
+          int _len_sriov0 = 65025;
+          struct qlcnic_sriov * sriov = (struct qlcnic_sriov *) malloc(_len_sriov0*sizeof(struct qlcnic_sriov));
+          for(int _i0 = 0; _i0 < _len_sriov0; _i0++) {
+              sriov[_i0].num_allowed_vlans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vf0 = 65025;
+          struct qlcnic_vf_info * vf = (struct qlcnic_vf_info *) malloc(_len_vf0*sizeof(struct qlcnic_vf_info));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              int _len_vf__i0__sriov_vlans0 = 1;
+          vf[_i0].sriov_vlans = (long *) malloc(_len_vf__i0__sriov_vlans0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_vf__i0__sriov_vlans0; _j0++) {
+            vf[_i0].sriov_vlans[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          vf[_i0].num_vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qlcnic_sriov_del_vlan_id(sriov,vf,vlan_id);
+          free(sriov);
+          for(int _aux = 0; _aux < _len_vf0; _aux++) {
+          free(vf[_aux].sriov_vlans);
+          }
+          free(vf);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long vlan_id = 10;
+        
+          int _len_sriov0 = 100;
+          struct qlcnic_sriov * sriov = (struct qlcnic_sriov *) malloc(_len_sriov0*sizeof(struct qlcnic_sriov));
+          for(int _i0 = 0; _i0 < _len_sriov0; _i0++) {
+              sriov[_i0].num_allowed_vlans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vf0 = 100;
+          struct qlcnic_vf_info * vf = (struct qlcnic_vf_info *) malloc(_len_vf0*sizeof(struct qlcnic_vf_info));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              int _len_vf__i0__sriov_vlans0 = 1;
+          vf[_i0].sriov_vlans = (long *) malloc(_len_vf__i0__sriov_vlans0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_vf__i0__sriov_vlans0; _j0++) {
+            vf[_i0].sriov_vlans[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          vf[_i0].num_vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qlcnic_sriov_del_vlan_id(sriov,vf,vlan_id);
+          free(sriov);
+          for(int _aux = 0; _aux < _len_vf0; _aux++) {
+          free(vf[_aux].sriov_vlans);
+          }
+          free(vf);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 6
+          // dynamic_instructions_O1 : 6
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 10
+          // dynamic_instructions_Oz : 10
+          // ------------------------------- 
+
+          long vlan_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_sriov0 = 1;
+          struct qlcnic_sriov * sriov = (struct qlcnic_sriov *) malloc(_len_sriov0*sizeof(struct qlcnic_sriov));
+          for(int _i0 = 0; _i0 < _len_sriov0; _i0++) {
+              sriov[_i0].num_allowed_vlans = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_vf0 = 1;
+          struct qlcnic_vf_info * vf = (struct qlcnic_vf_info *) malloc(_len_vf0*sizeof(struct qlcnic_vf_info));
+          for(int _i0 = 0; _i0 < _len_vf0; _i0++) {
+              int _len_vf__i0__sriov_vlans0 = 1;
+          vf[_i0].sriov_vlans = (long *) malloc(_len_vf__i0__sriov_vlans0*sizeof(long));
+          for(int _j0 = 0; _j0 < _len_vf__i0__sriov_vlans0; _j0++) {
+            vf[_i0].sriov_vlans[_j0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+          vf[_i0].num_vlan = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           qlcnic_sriov_del_vlan_id(sriov,vf,vlan_id);
           free(sriov);
           for(int _aux = 0; _aux < _len_vf0; _aux++) {

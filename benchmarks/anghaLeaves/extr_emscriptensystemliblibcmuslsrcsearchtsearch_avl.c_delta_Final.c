@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ __attribute__((used)) static int delta(struct node *n) {
 	return (n->left ? n->left->height:0) - (n->right ? n->right->height:0);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,23 +77,164 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_n0 = 65025;
+          struct node * n = (struct node *) malloc(_len_n0*sizeof(struct node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__right0 = 1;
+          n[_i0].right = (struct TYPE_4__ *) malloc(_len_n__i0__right0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_n__i0__right0; _j0++) {
+              n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_n__i0__left0 = 1;
+          n[_i0].left = (struct TYPE_3__ *) malloc(_len_n__i0__left0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_n__i0__left0; _j0++) {
+              n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = delta(n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].right);
+          }
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].left);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_n0 = 100;
+          struct node * n = (struct node *) malloc(_len_n0*sizeof(struct node));
+          for(int _i0 = 0; _i0 < _len_n0; _i0++) {
+              int _len_n__i0__right0 = 1;
+          n[_i0].right = (struct TYPE_4__ *) malloc(_len_n__i0__right0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_n__i0__right0; _j0++) {
+              n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_n__i0__left0 = 1;
+          n[_i0].left = (struct TYPE_3__ *) malloc(_len_n__i0__left0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_n__i0__left0; _j0++) {
+              n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = delta(n);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].right);
+          }
+          for(int _aux = 0; _aux < _len_n0; _aux++) {
+          free(n[_aux].left);
+          }
+          free(n);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 26
+          // dynamic_instructions_O0 : 26
+          // ------------------------------- 
+          // static_instructions_O1 : 15
+          // dynamic_instructions_O1 : 15
+          // ------------------------------- 
+          // static_instructions_O2 : 15
+          // dynamic_instructions_O2 : 15
+          // ------------------------------- 
+          // static_instructions_O3 : 15
+          // dynamic_instructions_O3 : 15
+          // ------------------------------- 
+          // static_instructions_Ofast : 15
+          // dynamic_instructions_Ofast : 15
+          // ------------------------------- 
+          // static_instructions_Os : 15
+          // dynamic_instructions_Os : 15
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
           int _len_n0 = 1;
           struct node * n = (struct node *) malloc(_len_n0*sizeof(struct node));
           for(int _i0 = 0; _i0 < _len_n0; _i0++) {
               int _len_n__i0__right0 = 1;
           n[_i0].right = (struct TYPE_4__ *) malloc(_len_n__i0__right0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_n__i0__right0; _j0++) {
-            n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].right->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_n__i0__left0 = 1;
           n[_i0].left = (struct TYPE_3__ *) malloc(_len_n__i0__left0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_n__i0__left0; _j0++) {
-            n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+              n[_i0].left->height = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = delta(n);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_n0; _aux++) {

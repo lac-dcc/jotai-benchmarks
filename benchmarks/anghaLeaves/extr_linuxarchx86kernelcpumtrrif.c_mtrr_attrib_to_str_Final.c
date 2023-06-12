@@ -62,12 +62,6 @@ const char *mtrr_attrib_to_str(int x)
 	return (x <= 6) ? mtrr_strings[x] : "?";
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int x = 100;
+        
           const char * benchRet = mtrr_attrib_to_str(x);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int x = 255;
+        
           const char * benchRet = mtrr_attrib_to_str(x);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int x = 10;
+        
           const char * benchRet = mtrr_attrib_to_str(x);
           printf("%c\n", ((*benchRet) %26) + 'a'); 
         
         break;
     }
-
     default:
         usage();
         break;

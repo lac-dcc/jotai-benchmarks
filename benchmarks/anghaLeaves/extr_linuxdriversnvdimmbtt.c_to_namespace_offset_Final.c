@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -61,12 +64,6 @@ __attribute__((used)) static u64 to_namespace_offset(struct arena_info *arena, u
 	return arena->dataoff + ((u64)lba * arena->internal_lbasize);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -79,16 +76,171 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int lba = 100;
+        
           int _len_arena0 = 1;
           struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
           for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
-            arena[_i0].dataoff = ((-2 * (next_i()%2)) + 1) * next_i();
-        arena[_i0].internal_lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+              arena[_i0].dataoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          arena[_i0].internal_lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = to_namespace_offset(arena,lba);
+          printf("%d\n", benchRet); 
+          free(arena);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int lba = 255;
+        
+          int _len_arena0 = 65025;
+          struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
+          for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
+              arena[_i0].dataoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          arena[_i0].internal_lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = to_namespace_offset(arena,lba);
+          printf("%d\n", benchRet); 
+          free(arena);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int lba = 10;
+        
+          int _len_arena0 = 100;
+          struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
+          for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
+              arena[_i0].dataoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          arena[_i0].internal_lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = to_namespace_offset(arena,lba);
+          printf("%d\n", benchRet); 
+          free(arena);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int lba = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_arena0 = 1;
+          struct arena_info * arena = (struct arena_info *) malloc(_len_arena0*sizeof(struct arena_info));
+          for(int _i0 = 0; _i0 < _len_arena0; _i0++) {
+              arena[_i0].dataoff = ((-2 * (next_i()%2)) + 1) * next_i();
+          arena[_i0].internal_lbasize = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = to_namespace_offset(arena,lba);
           printf("%d\n", benchRet); 
           free(arena);

@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -63,12 +63,6 @@ __attribute__((used)) static inline uint32_t A3XX_GRAS_SU_POLY_OFFSET_OFFSET(flo
 	return ((((int32_t)(val * 64.0))) << A3XX_GRAS_SU_POLY_OFFSET_OFFSET__SHIFT) & A3XX_GRAS_SU_POLY_OFFSET_OFFSET__MASK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,16 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // empty
     case 0:
     {
           float val = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
           int benchRet = A3XX_GRAS_SU_POLY_OFFSET_OFFSET(val);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

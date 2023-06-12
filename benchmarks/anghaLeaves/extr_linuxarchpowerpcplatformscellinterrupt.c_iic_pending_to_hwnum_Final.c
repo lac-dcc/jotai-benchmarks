@@ -30,7 +30,7 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            empty\n\
 \n\
 ");
 
@@ -72,12 +72,6 @@ __attribute__((used)) static irq_hw_number_t iic_pending_to_hwnum(struct cbe_iic
 		return (node << IIC_IRQ_NODE_SHIFT) | (class << 4) | unit;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,14 +84,38 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // empty
     case 0:
     {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 19
+          // dynamic_instructions_O1 : 19
+          // ------------------------------- 
+          // static_instructions_O2 : 19
+          // dynamic_instructions_O2 : 19
+          // ------------------------------- 
+          // static_instructions_O3 : 19
+          // dynamic_instructions_O3 : 19
+          // ------------------------------- 
+          // static_instructions_Ofast : 19
+          // dynamic_instructions_Ofast : 19
+          // ------------------------------- 
+          // static_instructions_Os : 19
+          // dynamic_instructions_Os : 19
+          // ------------------------------- 
+          // static_instructions_Oz : 19
+          // dynamic_instructions_Oz : 19
+          // ------------------------------- 
+
           struct cbe_iic_pending_bits bits;
-        bits.source = ((-2 * (next_i()%2)) + 1) * next_i();
-        bits.class = ((-2 * (next_i()%2)) + 1) * next_i();
-        bits.flags = ((-2 * (next_i()%2)) + 1) * next_i();
-        bits.prio = ((-2 * (next_i()%2)) + 1) * next_i();
+          bits.source = ((-2 * (next_i()%2)) + 1) * next_i();
+          bits.class = ((-2 * (next_i()%2)) + 1) * next_i();
+          bits.flags = ((-2 * (next_i()%2)) + 1) * next_i();
+          bits.prio = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           int benchRet = iic_pending_to_hwnum(bits);
           printf("%d\n", benchRet); 
         

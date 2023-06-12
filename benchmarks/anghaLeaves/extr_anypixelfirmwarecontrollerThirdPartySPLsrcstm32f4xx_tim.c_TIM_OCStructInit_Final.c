@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -76,12 +78,6 @@ void TIM_OCStructInit(TIM_OCInitTypeDef* TIM_OCInitStruct)
   TIM_OCInitStruct->TIM_OCNIdleState = TIM_OCNIdleState_Reset;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -94,19 +90,132 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_TIM_OCInitStruct0 = 65025;
+          struct TYPE_3__ * TIM_OCInitStruct = (struct TYPE_3__ *) malloc(_len_TIM_OCInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM_OCInitStruct0; _i0++) {
+              TIM_OCInitStruct[_i0].TIM_Pulse = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCNIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OutputNState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OutputState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          TIM_OCStructInit(TIM_OCInitStruct);
+          free(TIM_OCInitStruct);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_TIM_OCInitStruct0 = 100;
+          struct TYPE_3__ * TIM_OCInitStruct = (struct TYPE_3__ *) malloc(_len_TIM_OCInitStruct0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_TIM_OCInitStruct0; _i0++) {
+              TIM_OCInitStruct[_i0].TIM_Pulse = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCNIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OutputNState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OutputState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          TIM_OCStructInit(TIM_OCInitStruct);
+          free(TIM_OCInitStruct);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 28
+          // dynamic_instructions_O0 : 28
+          // ------------------------------- 
+          // static_instructions_O1 : 18
+          // dynamic_instructions_O1 : 18
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_TIM_OCInitStruct0 = 1;
           struct TYPE_3__ * TIM_OCInitStruct = (struct TYPE_3__ *) malloc(_len_TIM_OCInitStruct0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_TIM_OCInitStruct0; _i0++) {
-            TIM_OCInitStruct[_i0].TIM_Pulse = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_OCInitStruct[_i0].TIM_OCNIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_OCInitStruct[_i0].TIM_OCIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_OCInitStruct[_i0].TIM_OutputNState = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_OCInitStruct[_i0].TIM_OutputState = ((-2 * (next_i()%2)) + 1) * next_i();
-        TIM_OCInitStruct[_i0].TIM_OCMode = ((-2 * (next_i()%2)) + 1) * next_i();
+              TIM_OCInitStruct[_i0].TIM_Pulse = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCNIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCIdleState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OutputNState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OutputState = ((-2 * (next_i()%2)) + 1) * next_i();
+          TIM_OCInitStruct[_i0].TIM_OCMode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           TIM_OCStructInit(TIM_OCInitStruct);
           free(TIM_OCInitStruct);
         

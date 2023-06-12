@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ __attribute__((used)) static void fsl_chan_toggle_ext_pause(struct fsldma_chan *
 		chan->feature &= ~FSL_DMA_CHAN_PAUSE_EXT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,31 +83,70 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int enable = 100;
+        
           int _len_chan0 = 1;
           struct fsldma_chan * chan = (struct fsldma_chan *) malloc(_len_chan0*sizeof(struct fsldma_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          fsl_chan_toggle_ext_pause(chan,enable);
+          free(chan);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          int enable = 255;
+        
+          int _len_chan0 = 65025;
+          struct fsldma_chan * chan = (struct fsldma_chan *) malloc(_len_chan0*sizeof(struct fsldma_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           fsl_chan_toggle_ext_pause(chan,enable);
           free(chan);
         
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           int enable = 10;
+        
           int _len_chan0 = 100;
           struct fsldma_chan * chan = (struct fsldma_chan *) malloc(_len_chan0*sizeof(struct fsldma_chan));
           for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
-            chan[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+              chan[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           fsl_chan_toggle_ext_pause(chan,enable);
           free(chan);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_chan0 = 1;
+          struct fsldma_chan * chan = (struct fsldma_chan *) malloc(_len_chan0*sizeof(struct fsldma_chan));
+          for(int _i0 = 0; _i0 < _len_chan0; _i0++) {
+              chan[_i0].feature = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          fsl_chan_toggle_ext_pause(chan,enable);
+          free(chan);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -68,12 +70,6 @@ __attribute__((used)) static int get_info_index(struct gcov_node *node, struct g
 	return -ENOENT;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -86,28 +82,180 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_node0 = 1;
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_node0 = 65025;
           struct gcov_node * node = (struct gcov_node *) malloc(_len_node0*sizeof(struct gcov_node));
           for(int _i0 = 0; _i0 < _len_node0; _i0++) {
-            node[_i0].num_loaded = ((-2 * (next_i()%2)) + 1) * next_i();
+              node[_i0].num_loaded = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_node__i0__loaded_info0 = 1;
           node[_i0].loaded_info = (struct gcov_info **) malloc(_len_node__i0__loaded_info0*sizeof(struct gcov_info *));
           for(int _j0 = 0; _j0 < _len_node__i0__loaded_info0; _j0++) {
             int _len_node__i0__loaded_info1 = 1;
             node[_i0].loaded_info[_j0] = (struct gcov_info *) malloc(_len_node__i0__loaded_info1*sizeof(struct gcov_info));
             for(int _j1 = 0; _j1 < _len_node__i0__loaded_info1; _j1++) {
-              node[_i0].loaded_info[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+                node[_i0].loaded_info[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
             }
           }
+        
           }
+        
+          int _len_info0 = 65025;
+          struct gcov_info * info = (struct gcov_info *) malloc(_len_info0*sizeof(struct gcov_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_info_index(node,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_node0; _aux++) {
+          free(*(node[_aux].loaded_info));
+        free(node[_aux].loaded_info);
+          }
+          free(node);
+          free(info);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_node0 = 100;
+          struct gcov_node * node = (struct gcov_node *) malloc(_len_node0*sizeof(struct gcov_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].num_loaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_node__i0__loaded_info0 = 1;
+          node[_i0].loaded_info = (struct gcov_info **) malloc(_len_node__i0__loaded_info0*sizeof(struct gcov_info *));
+          for(int _j0 = 0; _j0 < _len_node__i0__loaded_info0; _j0++) {
+            int _len_node__i0__loaded_info1 = 1;
+            node[_i0].loaded_info[_j0] = (struct gcov_info *) malloc(_len_node__i0__loaded_info1*sizeof(struct gcov_info));
+            for(int _j1 = 0; _j1 < _len_node__i0__loaded_info1; _j1++) {
+                node[_i0].loaded_info[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
+          int _len_info0 = 100;
+          struct gcov_info * info = (struct gcov_info *) malloc(_len_info0*sizeof(struct gcov_info));
+          for(int _i0 = 0; _i0 < _len_info0; _i0++) {
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = get_info_index(node,info);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_node0; _aux++) {
+          free(*(node[_aux].loaded_info));
+        free(node[_aux].loaded_info);
+          }
+          free(node);
+          free(info);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 15
+          // dynamic_instructions_O0 : 15
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 9
+          // dynamic_instructions_O2 : 9
+          // ------------------------------- 
+          // static_instructions_O3 : 9
+          // dynamic_instructions_O3 : 9
+          // ------------------------------- 
+          // static_instructions_Ofast : 9
+          // dynamic_instructions_Ofast : 9
+          // ------------------------------- 
+          // static_instructions_Os : 9
+          // dynamic_instructions_Os : 9
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          int _len_node0 = 1;
+          struct gcov_node * node = (struct gcov_node *) malloc(_len_node0*sizeof(struct gcov_node));
+          for(int _i0 = 0; _i0 < _len_node0; _i0++) {
+              node[_i0].num_loaded = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_node__i0__loaded_info0 = 1;
+          node[_i0].loaded_info = (struct gcov_info **) malloc(_len_node__i0__loaded_info0*sizeof(struct gcov_info *));
+          for(int _j0 = 0; _j0 < _len_node__i0__loaded_info0; _j0++) {
+            int _len_node__i0__loaded_info1 = 1;
+            node[_i0].loaded_info[_j0] = (struct gcov_info *) malloc(_len_node__i0__loaded_info1*sizeof(struct gcov_info));
+            for(int _j1 = 0; _j1 < _len_node__i0__loaded_info1; _j1++) {
+                node[_i0].loaded_info[_j0]->dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+            }
+          }
+        
+          }
+        
           int _len_info0 = 1;
           struct gcov_info * info = (struct gcov_info *) malloc(_len_info0*sizeof(struct gcov_info));
           for(int _i0 = 0; _i0 < _len_info0; _i0++) {
-            info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              info[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = get_info_index(node,info);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_node0; _aux++) {

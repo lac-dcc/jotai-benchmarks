@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ void qed_init_iro_array(struct qed_dev *cdev)
 	cdev->iro_arr = iro_arr;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_cdev0 = 1;
+          int _len_cdev0 = 65025;
           struct qed_dev * cdev = (struct qed_dev *) malloc(_len_cdev0*sizeof(struct qed_dev));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].iro_arr = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].iro_arr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qed_init_iro_array(cdev);
           free(cdev);
         
@@ -99,14 +96,30 @@ int main(int argc, char *argv[]) {
           int _len_cdev0 = 100;
           struct qed_dev * cdev = (struct qed_dev *) malloc(_len_cdev0*sizeof(struct qed_dev));
           for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
-            cdev[_i0].iro_arr = ((-2 * (next_i()%2)) + 1) * next_i();
+              cdev[_i0].iro_arr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           qed_init_iro_array(cdev);
           free(cdev);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_cdev0 = 1;
+          struct qed_dev * cdev = (struct qed_dev *) malloc(_len_cdev0*sizeof(struct qed_dev));
+          for(int _i0 = 0; _i0 < _len_cdev0; _i0++) {
+              cdev[_i0].iro_arr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          qed_init_iro_array(cdev);
+          free(cdev);
+        
+        break;
+    }
     default:
         usage();
         break;

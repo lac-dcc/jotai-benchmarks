@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +64,6 @@ __attribute__((used)) static inline bool is_ev1938(struct ensoniq *ensoniq)
 	return ensoniq->pci->device == 0x8938;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,18 +76,140 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ensoniq0 = 65025;
+          struct ensoniq * ensoniq = (struct ensoniq *) malloc(_len_ensoniq0*sizeof(struct ensoniq));
+          for(int _i0 = 0; _i0 < _len_ensoniq0; _i0++) {
+              int _len_ensoniq__i0__pci0 = 1;
+          ensoniq[_i0].pci = (struct TYPE_2__ *) malloc(_len_ensoniq__i0__pci0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ensoniq__i0__pci0; _j0++) {
+              ensoniq[_i0].pci->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_ev1938(ensoniq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ensoniq0; _aux++) {
+          free(ensoniq[_aux].pci);
+          }
+          free(ensoniq);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
+          int _len_ensoniq0 = 100;
+          struct ensoniq * ensoniq = (struct ensoniq *) malloc(_len_ensoniq0*sizeof(struct ensoniq));
+          for(int _i0 = 0; _i0 < _len_ensoniq0; _i0++) {
+              int _len_ensoniq__i0__pci0 = 1;
+          ensoniq[_i0].pci = (struct TYPE_2__ *) malloc(_len_ensoniq__i0__pci0*sizeof(struct TYPE_2__));
+          for(int _j0 = 0; _j0 < _len_ensoniq__i0__pci0; _j0++) {
+              ensoniq[_i0].pci->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int benchRet = is_ev1938(ensoniq);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_ensoniq0; _aux++) {
+          free(ensoniq[_aux].pci);
+          }
+          free(ensoniq);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 11
+          // dynamic_instructions_O0 : 11
+          // ------------------------------- 
+          // static_instructions_O1 : 8
+          // dynamic_instructions_O1 : 8
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 8
+          // dynamic_instructions_Oz : 8
+          // ------------------------------- 
+
           int _len_ensoniq0 = 1;
           struct ensoniq * ensoniq = (struct ensoniq *) malloc(_len_ensoniq0*sizeof(struct ensoniq));
           for(int _i0 = 0; _i0 < _len_ensoniq0; _i0++) {
               int _len_ensoniq__i0__pci0 = 1;
           ensoniq[_i0].pci = (struct TYPE_2__ *) malloc(_len_ensoniq__i0__pci0*sizeof(struct TYPE_2__));
           for(int _j0 = 0; _j0 < _len_ensoniq__i0__pci0; _j0++) {
-            ensoniq[_i0].pci->device = ((-2 * (next_i()%2)) + 1) * next_i();
+              ensoniq[_i0].pci->device = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
           int benchRet = is_ev1938(ensoniq);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_ensoniq0; _aux++) {

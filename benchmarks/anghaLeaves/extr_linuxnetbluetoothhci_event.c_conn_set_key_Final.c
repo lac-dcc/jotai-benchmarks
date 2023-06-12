@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -100,12 +103,6 @@ __attribute__((used)) static void conn_set_key(struct hci_conn *conn, u8 key_typ
 	}
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -122,19 +119,82 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int key_type = 100;
+        
           int pin_len = 100;
+        
           int _len_conn0 = 1;
           struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
           for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
-            conn[_i0].pin_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        conn[_i0].key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              conn[_i0].pin_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           conn_set_key(conn,key_type,pin_len);
           free(conn);
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int key_type = 255;
+        
+          int pin_len = 255;
+        
+          int _len_conn0 = 65025;
+          struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].pin_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          conn_set_key(conn,key_type,pin_len);
+          free(conn);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int key_type = 10;
+        
+          int pin_len = 10;
+        
+          int _len_conn0 = 100;
+          struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].pin_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          conn_set_key(conn,key_type,pin_len);
+          free(conn);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int pin_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_conn0 = 1;
+          struct hci_conn * conn = (struct hci_conn *) malloc(_len_conn0*sizeof(struct hci_conn));
+          for(int _i0 = 0; _i0 < _len_conn0; _i0++) {
+              conn[_i0].pin_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          conn[_i0].key_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          conn_set_key(conn,key_type,pin_len);
+          free(conn);
+        
+        break;
+    }
     default:
         usage();
         break;

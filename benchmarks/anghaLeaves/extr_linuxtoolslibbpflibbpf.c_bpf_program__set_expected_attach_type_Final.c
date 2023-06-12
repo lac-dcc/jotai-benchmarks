@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ void bpf_program__set_expected_attach_type(struct bpf_program *prog,
 	prog->expected_attach_type = type;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,15 +76,18 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           enum bpf_attach_type type = 0;
-          int _len_prog0 = 1;
+        
+          int _len_prog0 = 65025;
           struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
           for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
-            prog[_i0].expected_attach_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              prog[_i0].expected_attach_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bpf_program__set_expected_attach_type(prog,type);
           free(prog);
         
@@ -99,17 +97,36 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           enum bpf_attach_type type = 0;
+        
           int _len_prog0 = 100;
           struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
           for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
-            prog[_i0].expected_attach_type = ((-2 * (next_i()%2)) + 1) * next_i();
+              prog[_i0].expected_attach_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           bpf_program__set_expected_attach_type(prog,type);
           free(prog);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          enum bpf_attach_type type = 0;
+        
+          int _len_prog0 = 1;
+          struct bpf_program * prog = (struct bpf_program *) malloc(_len_prog0*sizeof(struct bpf_program));
+          for(int _i0 = 0; _i0 < _len_prog0; _i0++) {
+              prog[_i0].expected_attach_type = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          bpf_program__set_expected_attach_type(prog,type);
+          free(prog);
+        
+        break;
+    }
     default:
         usage();
         break;

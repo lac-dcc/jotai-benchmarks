@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -74,12 +76,6 @@ __attribute__((used)) static void cio_apply_config(struct subchannel *sch, struc
 		schib->mba = sch->config.mba;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -92,35 +88,194 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_sch0 = 65025;
+          struct subchannel * sch = (struct subchannel *) malloc(_len_sch0*sizeof(struct subchannel));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.csense = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mp = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mme = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.ena = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.isc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_schib0 = 65025;
+          struct schib * schib = (struct schib *) malloc(_len_schib0*sizeof(struct schib));
+          for(int _i0 = 0; _i0 < _len_schib0; _i0++) {
+              schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.csense = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mp = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mme = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.ena = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.isc = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cio_apply_config(sch,schib);
+          free(sch);
+          free(schib);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
+          int _len_sch0 = 100;
+          struct subchannel * sch = (struct subchannel *) malloc(_len_sch0*sizeof(struct subchannel));
+          for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
+              sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.csense = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mp = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mme = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.ena = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.isc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_schib0 = 100;
+          struct schib * schib = (struct schib *) malloc(_len_schib0*sizeof(struct schib));
+          for(int _i0 = 0; _i0 < _len_schib0; _i0++) {
+              schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.csense = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mp = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mme = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.ena = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.isc = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          cio_apply_config(sch,schib);
+          free(sch);
+          free(schib);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 45
+          // dynamic_instructions_O0 : 45
+          // ------------------------------- 
+          // static_instructions_O1 : 24
+          // dynamic_instructions_O1 : 24
+          // ------------------------------- 
+          // static_instructions_O2 : 18
+          // dynamic_instructions_O2 : 18
+          // ------------------------------- 
+          // static_instructions_O3 : 18
+          // dynamic_instructions_O3 : 18
+          // ------------------------------- 
+          // static_instructions_Ofast : 18
+          // dynamic_instructions_Ofast : 18
+          // ------------------------------- 
+          // static_instructions_Os : 18
+          // dynamic_instructions_Os : 18
+          // ------------------------------- 
+          // static_instructions_Oz : 18
+          // dynamic_instructions_Oz : 18
+          // ------------------------------- 
+
           int _len_sch0 = 1;
           struct subchannel * sch = (struct subchannel *) malloc(_len_sch0*sizeof(struct subchannel));
           for(int _i0 = 0; _i0 < _len_sch0; _i0++) {
-            sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.csense = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mp = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mme = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.ena = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.isc = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        sch[_i0].config.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+              sch[_i0].config.mba = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.csense = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mp = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mme = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.ena = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.isc = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          sch[_i0].config.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int _len_schib0 = 1;
           struct schib * schib = (struct schib *) malloc(_len_schib0*sizeof(struct schib));
           for(int _i0 = 0; _i0 < _len_schib0; _i0++) {
-            schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.csense = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mp = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mme = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.ena = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.isc = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
-        schib[_i0].pmcw.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+              schib[_i0].mba = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mbfc = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.csense = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mp = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mme = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.ena = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.isc = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.mbi = ((-2 * (next_i()%2)) + 1) * next_i();
+          schib[_i0].pmcw.intparm = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           cio_apply_config(sch,schib);
           free(sch);
           free(schib);

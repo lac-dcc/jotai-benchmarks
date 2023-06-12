@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ ws_set_config_strict (int strict)
   wsconfig.strict = strict;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +82,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int strict = 100;
+        
           ws_set_config_strict(strict);
         
         break;
@@ -95,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int strict = 255;
+        
           ws_set_config_strict(strict);
         
         break;
@@ -103,11 +100,20 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int strict = 10;
+        
           ws_set_config_strict(strict);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int strict = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          ws_set_config_strict(strict);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +65,6 @@ unsigned long arch_get_unmapped_area(struct file *file, unsigned long addr,
 	return -ENOMEM;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,14 +81,44 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned long addr = 100;
+        
           unsigned long len = 100;
+        
           unsigned long pgoff = 100;
+        
           unsigned long flags = 100;
+        
           int _len_file0 = 1;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          unsigned long benchRet = arch_get_unmapped_area(file,addr,len,pgoff,flags);
+          printf("%lu\n", benchRet); 
+          free(file);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned long addr = 255;
+        
+          unsigned long len = 255;
+        
+          unsigned long pgoff = 255;
+        
+          unsigned long flags = 255;
+        
+          int _len_file0 = 65025;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           unsigned long benchRet = arch_get_unmapped_area(file,addr,len,pgoff,flags);
           printf("%lu\n", benchRet); 
           free(file);
@@ -100,24 +126,53 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned long addr = 10;
+        
           unsigned long len = 10;
+        
           unsigned long pgoff = 10;
+        
           unsigned long flags = 10;
+        
           int _len_file0 = 100;
           struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           unsigned long benchRet = arch_get_unmapped_area(file,addr,len,pgoff,flags);
           printf("%lu\n", benchRet); 
           free(file);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned long addr = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long pgoff = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned long flags = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_file0 = 1;
+          struct file * file = (struct file *) malloc(_len_file0*sizeof(struct file));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          unsigned long benchRet = arch_get_unmapped_area(file,addr,len,pgoff,flags);
+          printf("%lu\n", benchRet); 
+          free(file);
+        
+        break;
+    }
     default:
         usage();
         break;

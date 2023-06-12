@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -63,12 +64,6 @@ __attribute__((used)) static int whc_get_frame_number(struct usb_hcd *usb_hcd)
 	return -ENOSYS;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -81,14 +76,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_usb_hcd0 = 1;
+          int _len_usb_hcd0 = 65025;
           struct usb_hcd * usb_hcd = (struct usb_hcd *) malloc(_len_usb_hcd0*sizeof(struct usb_hcd));
           for(int _i0 = 0; _i0 < _len_usb_hcd0; _i0++) {
-            usb_hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              usb_hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = whc_get_frame_number(usb_hcd);
           printf("%d\n", benchRet); 
           free(usb_hcd);
@@ -101,15 +98,32 @@ int main(int argc, char *argv[]) {
           int _len_usb_hcd0 = 100;
           struct usb_hcd * usb_hcd = (struct usb_hcd *) malloc(_len_usb_hcd0*sizeof(struct usb_hcd));
           for(int _i0 = 0; _i0 < _len_usb_hcd0; _i0++) {
-            usb_hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              usb_hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = whc_get_frame_number(usb_hcd);
           printf("%d\n", benchRet); 
           free(usb_hcd);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_usb_hcd0 = 1;
+          struct usb_hcd * usb_hcd = (struct usb_hcd *) malloc(_len_usb_hcd0*sizeof(struct usb_hcd));
+          for(int _i0 = 0; _i0 < _len_usb_hcd0; _i0++) {
+              usb_hcd[_i0].dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = whc_get_frame_number(usb_hcd);
+          printf("%d\n", benchRet); 
+          free(usb_hcd);
+        
+        break;
+    }
     default:
         usage();
         break;

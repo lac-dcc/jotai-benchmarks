@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -73,12 +74,6 @@ __attribute__((used)) static u32 mlxsw_sp_to_ptys_speed(u32 speed)
 	return ptys_proto;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -95,6 +90,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long speed = 100;
+        
           long benchRet = mlxsw_sp_to_ptys_speed(speed);
           printf("%ld\n", benchRet); 
         
@@ -104,6 +100,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long speed = 255;
+        
           long benchRet = mlxsw_sp_to_ptys_speed(speed);
           printf("%ld\n", benchRet); 
         
@@ -113,12 +110,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long speed = 10;
+        
           long benchRet = mlxsw_sp_to_ptys_speed(speed);
           printf("%ld\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long speed = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long benchRet = mlxsw_sp_to_ptys_speed(speed);
+          printf("%ld\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

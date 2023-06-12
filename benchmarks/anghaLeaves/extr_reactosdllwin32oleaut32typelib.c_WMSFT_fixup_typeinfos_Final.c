@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -82,12 +85,6 @@ __attribute__((used)) static HRESULT WMSFT_fixup_typeinfos(ITypeLibImpl *This, W
     return S_OK;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -100,20 +97,202 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
           long file_len = 100;
+        
           int _len_This0 = 1;
           struct TYPE_10__ * This = (struct TYPE_10__ *) malloc(_len_This0*sizeof(struct TYPE_10__));
           for(int _i0 = 0; _i0 < _len_This0; _i0++) {
-            This[_i0].TypeInfoCount = ((-2 * (next_i()%2)) + 1) * next_i();
+              This[_i0].TypeInfoCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_file0 = 1;
           struct TYPE_8__ * file = (struct TYPE_8__ *) malloc(_len_file0*sizeof(struct TYPE_8__));
           for(int _i0 = 0; _i0 < _len_file0; _i0++) {
-            file[_i0].typeinfo_seg.data = ((-2 * (next_i()%2)) + 1) * next_i();
+              file[_i0].typeinfo_seg.data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          int benchRet = WMSFT_fixup_typeinfos(This,file,file_len);
+          printf("%d\n", benchRet); 
+          free(This);
+          free(file);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long file_len = 255;
+        
+          int _len_This0 = 65025;
+          struct TYPE_10__ * This = (struct TYPE_10__ *) malloc(_len_This0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].TypeInfoCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file0 = 65025;
+          struct TYPE_8__ * file = (struct TYPE_8__ *) malloc(_len_file0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].typeinfo_seg.data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = WMSFT_fixup_typeinfos(This,file,file_len);
+          printf("%d\n", benchRet); 
+          free(This);
+          free(file);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long file_len = 10;
+        
+          int _len_This0 = 100;
+          struct TYPE_10__ * This = (struct TYPE_10__ *) malloc(_len_This0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].TypeInfoCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file0 = 100;
+          struct TYPE_8__ * file = (struct TYPE_8__ *) malloc(_len_file0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].typeinfo_seg.data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = WMSFT_fixup_typeinfos(This,file,file_len);
+          printf("%d\n", benchRet); 
+          free(This);
+          free(file);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 16
+          // dynamic_instructions_O0 : 16
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 8
+          // dynamic_instructions_O2 : 8
+          // ------------------------------- 
+          // static_instructions_O3 : 8
+          // dynamic_instructions_O3 : 8
+          // ------------------------------- 
+          // static_instructions_Ofast : 8
+          // dynamic_instructions_Ofast : 8
+          // ------------------------------- 
+          // static_instructions_Os : 8
+          // dynamic_instructions_Os : 8
+          // ------------------------------- 
+          // static_instructions_Oz : 12
+          // dynamic_instructions_Oz : 12
+          // ------------------------------- 
+
+          long file_len = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_This0 = 1;
+          struct TYPE_10__ * This = (struct TYPE_10__ *) malloc(_len_This0*sizeof(struct TYPE_10__));
+          for(int _i0 = 0; _i0 < _len_This0; _i0++) {
+              This[_i0].TypeInfoCount = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_file0 = 1;
+          struct TYPE_8__ * file = (struct TYPE_8__ *) malloc(_len_file0*sizeof(struct TYPE_8__));
+          for(int _i0 = 0; _i0 < _len_file0; _i0++) {
+              file[_i0].typeinfo_seg.data = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           int benchRet = WMSFT_fixup_typeinfos(This,file,file_len);
           printf("%d\n", benchRet); 
           free(This);

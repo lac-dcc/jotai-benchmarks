@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +66,6 @@ difftime(
     return (double)(time1 - time2);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,7 +82,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           long time1 = 100;
+        
           long time2 = 100;
+        
           double benchRet = difftime(time1,time2);
           printf("%lf\n", benchRet); 
         
@@ -97,7 +94,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           long time1 = 255;
+        
           long time2 = 255;
+        
           double benchRet = difftime(time1,time2);
           printf("%lf\n", benchRet); 
         
@@ -107,13 +106,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           long time1 = 10;
+        
           long time2 = 10;
+        
           double benchRet = difftime(time1,time2);
           printf("%lf\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          long time1 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long time2 = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          double benchRet = difftime(time1,time2);
+          printf("%lf\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

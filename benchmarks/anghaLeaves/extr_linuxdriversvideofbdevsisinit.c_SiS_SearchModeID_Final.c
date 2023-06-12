@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -96,12 +98,6 @@ SiS_SearchModeID(struct SiS_Private *SiS_Pr, unsigned short *ModeNo,
    return true;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -114,34 +110,207 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_SiS_Pr0 = 1;
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_SiS_Pr0 = 65025;
           struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
           for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
-            SiS_Pr[_i0].SiS_VGAINFO = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_VGAINFO = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_SiS_Pr__i0__SiS_EModeIDTable0 = 1;
           SiS_Pr[_i0].SiS_EModeIDTable = (struct TYPE_4__ *) malloc(_len_SiS_Pr__i0__SiS_EModeIDTable0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_EModeIDTable0; _j0++) {
-            SiS_Pr[_i0].SiS_EModeIDTable->Ext_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_EModeIDTable->Ext_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
           int _len_SiS_Pr__i0__SiS_SModeIDTable0 = 1;
           SiS_Pr[_i0].SiS_SModeIDTable = (struct TYPE_3__ *) malloc(_len_SiS_Pr__i0__SiS_SModeIDTable0*sizeof(struct TYPE_3__));
           for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_SModeIDTable0; _j0++) {
-            SiS_Pr[_i0].SiS_SModeIDTable->St_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+              SiS_Pr[_i0].SiS_SModeIDTable->St_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int _len_ModeNo0 = 65025;
+          unsigned short * ModeNo = (unsigned short *) malloc(_len_ModeNo0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_ModeNo0; _i0++) {
+            ModeNo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ModeIdIndex0 = 65025;
+          unsigned short * ModeIdIndex = (unsigned short *) malloc(_len_ModeIdIndex0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_ModeIdIndex0; _i0++) {
+            ModeIdIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = SiS_SearchModeID(SiS_Pr,ModeNo,ModeIdIndex);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].SiS_EModeIDTable);
+          }
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].SiS_SModeIDTable);
+          }
+          free(SiS_Pr);
+          free(ModeNo);
+          free(ModeIdIndex);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_SiS_Pr0 = 100;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              SiS_Pr[_i0].SiS_VGAINFO = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_SiS_Pr__i0__SiS_EModeIDTable0 = 1;
+          SiS_Pr[_i0].SiS_EModeIDTable = (struct TYPE_4__ *) malloc(_len_SiS_Pr__i0__SiS_EModeIDTable0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_EModeIDTable0; _j0++) {
+              SiS_Pr[_i0].SiS_EModeIDTable->Ext_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_SiS_Pr__i0__SiS_SModeIDTable0 = 1;
+          SiS_Pr[_i0].SiS_SModeIDTable = (struct TYPE_3__ *) malloc(_len_SiS_Pr__i0__SiS_SModeIDTable0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_SModeIDTable0; _j0++) {
+              SiS_Pr[_i0].SiS_SModeIDTable->St_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_ModeNo0 = 100;
+          unsigned short * ModeNo = (unsigned short *) malloc(_len_ModeNo0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_ModeNo0; _i0++) {
+            ModeNo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_ModeIdIndex0 = 100;
+          unsigned short * ModeIdIndex = (unsigned short *) malloc(_len_ModeIdIndex0*sizeof(unsigned short));
+          for(int _i0 = 0; _i0 < _len_ModeIdIndex0; _i0++) {
+            ModeIdIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = SiS_SearchModeID(SiS_Pr,ModeNo,ModeIdIndex);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].SiS_EModeIDTable);
+          }
+          for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {
+          free(SiS_Pr[_aux].SiS_SModeIDTable);
+          }
+          free(SiS_Pr);
+          free(ModeNo);
+          free(ModeIdIndex);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 29
+          // dynamic_instructions_O0 : 29
+          // ------------------------------- 
+          // static_instructions_O1 : 13
+          // dynamic_instructions_O1 : 13
+          // ------------------------------- 
+          // static_instructions_O2 : 13
+          // dynamic_instructions_O2 : 13
+          // ------------------------------- 
+          // static_instructions_O3 : 13
+          // dynamic_instructions_O3 : 13
+          // ------------------------------- 
+          // static_instructions_Ofast : 13
+          // dynamic_instructions_Ofast : 13
+          // ------------------------------- 
+          // static_instructions_Os : 13
+          // dynamic_instructions_Os : 13
+          // ------------------------------- 
+          // static_instructions_Oz : 15
+          // dynamic_instructions_Oz : 15
+          // ------------------------------- 
+
+          int _len_SiS_Pr0 = 1;
+          struct SiS_Private * SiS_Pr = (struct SiS_Private *) malloc(_len_SiS_Pr0*sizeof(struct SiS_Private));
+          for(int _i0 = 0; _i0 < _len_SiS_Pr0; _i0++) {
+              SiS_Pr[_i0].SiS_VGAINFO = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_SiS_Pr__i0__SiS_EModeIDTable0 = 1;
+          SiS_Pr[_i0].SiS_EModeIDTable = (struct TYPE_4__ *) malloc(_len_SiS_Pr__i0__SiS_EModeIDTable0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_EModeIDTable0; _j0++) {
+              SiS_Pr[_i0].SiS_EModeIDTable->Ext_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+          int _len_SiS_Pr__i0__SiS_SModeIDTable0 = 1;
+          SiS_Pr[_i0].SiS_SModeIDTable = (struct TYPE_3__ *) malloc(_len_SiS_Pr__i0__SiS_SModeIDTable0*sizeof(struct TYPE_3__));
+          for(int _j0 = 0; _j0 < _len_SiS_Pr__i0__SiS_SModeIDTable0; _j0++) {
+              SiS_Pr[_i0].SiS_SModeIDTable->St_ModeID = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int _len_ModeNo0 = 1;
           unsigned short * ModeNo = (unsigned short *) malloc(_len_ModeNo0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_ModeNo0; _i0++) {
             ModeNo[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_ModeIdIndex0 = 1;
           unsigned short * ModeIdIndex = (unsigned short *) malloc(_len_ModeIdIndex0*sizeof(unsigned short));
           for(int _i0 = 0; _i0 < _len_ModeIdIndex0; _i0++) {
             ModeIdIndex[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = SiS_SearchModeID(SiS_Pr,ModeNo,ModeIdIndex);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_SiS_Pr0; _aux++) {

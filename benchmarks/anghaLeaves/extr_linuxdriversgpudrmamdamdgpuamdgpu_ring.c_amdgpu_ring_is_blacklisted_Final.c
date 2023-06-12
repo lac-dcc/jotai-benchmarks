@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -68,12 +71,6 @@ __attribute__((used)) static bool amdgpu_ring_is_blacklisted(struct amdgpu_ring 
 	return false;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -90,16 +87,20 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int num_blacklist = 100;
+        
           int _len_ring0 = 1;
           struct amdgpu_ring * ring = (struct amdgpu_ring *) malloc(_len_ring0*sizeof(struct amdgpu_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int _len_blacklist0 = 1;
           int * blacklist = (int *) malloc(_len_blacklist0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_blacklist0; _i0++) {
             blacklist[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int benchRet = amdgpu_ring_is_blacklisted(ring,blacklist,num_blacklist);
           printf("%d\n", benchRet); 
           free(ring);
@@ -107,7 +108,81 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int num_blacklist = 255;
+        
+          int _len_ring0 = 65025;
+          struct amdgpu_ring * ring = (struct amdgpu_ring *) malloc(_len_ring0*sizeof(struct amdgpu_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blacklist0 = 65025;
+          int * blacklist = (int *) malloc(_len_blacklist0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blacklist0; _i0++) {
+            blacklist[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = amdgpu_ring_is_blacklisted(ring,blacklist,num_blacklist);
+          printf("%d\n", benchRet); 
+          free(ring);
+          free(blacklist);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int num_blacklist = 10;
+        
+          int _len_ring0 = 100;
+          struct amdgpu_ring * ring = (struct amdgpu_ring *) malloc(_len_ring0*sizeof(struct amdgpu_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blacklist0 = 100;
+          int * blacklist = (int *) malloc(_len_blacklist0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blacklist0; _i0++) {
+            blacklist[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = amdgpu_ring_is_blacklisted(ring,blacklist,num_blacklist);
+          printf("%d\n", benchRet); 
+          free(ring);
+          free(blacklist);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int num_blacklist = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_ring0 = 1;
+          struct amdgpu_ring * ring = (struct amdgpu_ring *) malloc(_len_ring0*sizeof(struct amdgpu_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].idx = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int _len_blacklist0 = 1;
+          int * blacklist = (int *) malloc(_len_blacklist0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_blacklist0; _i0++) {
+            blacklist[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int benchRet = amdgpu_ring_is_blacklisted(ring,blacklist,num_blacklist);
+          printf("%d\n", benchRet); 
+          free(ring);
+          free(blacklist);
+        
+        break;
+    }
     default:
         usage();
         break;

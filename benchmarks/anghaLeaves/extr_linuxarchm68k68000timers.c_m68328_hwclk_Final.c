@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -71,12 +74,6 @@ int m68328_hwclk(int set, struct rtc_time *t)
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -89,20 +86,187 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
           int set = 100;
+        
           int _len_t0 = 1;
           struct rtc_time * t = (struct rtc_time *) malloc(_len_t0*sizeof(struct rtc_time));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = m68328_hwclk(set,t);
+          printf("%d\n", benchRet); 
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr
+    case 1:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int set = 255;
+        
+          int _len_t0 = 65025;
+          struct rtc_time * t = (struct rtc_time *) malloc(_len_t0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = m68328_hwclk(set,t);
+          printf("%d\n", benchRet); 
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int set = 10;
+        
+          int _len_t0 = 100;
+          struct rtc_time * t = (struct rtc_time *) malloc(_len_t0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = m68328_hwclk(set,t);
+          printf("%d\n", benchRet); 
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 9
+          // dynamic_instructions_O0 : 9
+          // ------------------------------- 
+          // static_instructions_O1 : 4
+          // dynamic_instructions_O1 : 4
+          // ------------------------------- 
+          // static_instructions_O2 : 4
+          // dynamic_instructions_O2 : 4
+          // ------------------------------- 
+          // static_instructions_O3 : 4
+          // dynamic_instructions_O3 : 4
+          // ------------------------------- 
+          // static_instructions_Ofast : 4
+          // dynamic_instructions_Ofast : 4
+          // ------------------------------- 
+          // static_instructions_Os : 4
+          // dynamic_instructions_Os : 4
+          // ------------------------------- 
+          // static_instructions_Oz : 4
+          // dynamic_instructions_Oz : 4
+          // ------------------------------- 
+
+          int set = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_t0 = 1;
+          struct rtc_time * t = (struct rtc_time *) malloc(_len_t0*sizeof(struct rtc_time));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].tm_year = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mday = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_hour = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_min = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_sec = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].tm_mon = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = m68328_hwclk(set,t);
           printf("%d\n", benchRet); 
           free(t);

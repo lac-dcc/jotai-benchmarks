@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int analogix_dp_psr_enabled(struct analogix_dp_device *dp)
 	return dp->psr_enable;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_dp0 = 1;
+          int _len_dp0 = 65025;
           struct analogix_dp_device * dp = (struct analogix_dp_device *) malloc(_len_dp0*sizeof(struct analogix_dp_device));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].psr_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].psr_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = analogix_dp_psr_enabled(dp);
           printf("%d\n", benchRet); 
           free(dp);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_dp0 = 100;
           struct analogix_dp_device * dp = (struct analogix_dp_device *) malloc(_len_dp0*sizeof(struct analogix_dp_device));
           for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
-            dp[_i0].psr_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+              dp[_i0].psr_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = analogix_dp_psr_enabled(dp);
           printf("%d\n", benchRet); 
           free(dp);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_dp0 = 1;
+          struct analogix_dp_device * dp = (struct analogix_dp_device *) malloc(_len_dp0*sizeof(struct analogix_dp_device));
+          for(int _i0 = 0; _i0 < _len_dp0; _i0++) {
+              dp[_i0].psr_enable = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = analogix_dp_psr_enabled(dp);
+          printf("%d\n", benchRet); 
+          free(dp);
+        
+        break;
+    }
     default:
         usage();
         break;

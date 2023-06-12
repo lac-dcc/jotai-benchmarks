@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ struct mdp5_cfg *mdp5_cfg_get_config(struct mdp5_cfg_handler *cfg_handler)
 	return &cfg_handler->config;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,28 +75,122 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_cfg_handler0 = 1;
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_cfg_handler0 = 65025;
           struct mdp5_cfg_handler * cfg_handler = (struct mdp5_cfg_handler *) malloc(_len_cfg_handler0*sizeof(struct mdp5_cfg_handler));
           for(int _i0 = 0; _i0 < _len_cfg_handler0; _i0++) {
-            cfg_handler[_i0].config.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg_handler[_i0].config.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           struct mdp5_cfg * benchRet = mdp5_cfg_get_config(cfg_handler);
           printf("%d\n", (*benchRet).dummy);
           free(cfg_handler);
         
         break;
     }
+
+
     // big-arr-10x
     case 1:
     {
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
           int _len_cfg_handler0 = 100;
           struct mdp5_cfg_handler * cfg_handler = (struct mdp5_cfg_handler *) malloc(_len_cfg_handler0*sizeof(struct mdp5_cfg_handler));
           for(int _i0 = 0; _i0 < _len_cfg_handler0; _i0++) {
-            cfg_handler[_i0].config.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+              cfg_handler[_i0].config.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
+          struct mdp5_cfg * benchRet = mdp5_cfg_get_config(cfg_handler);
+          printf("%d\n", (*benchRet).dummy);
+          free(cfg_handler);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 6
+          // dynamic_instructions_O0 : 6
+          // ------------------------------- 
+          // static_instructions_O1 : 5
+          // dynamic_instructions_O1 : 5
+          // ------------------------------- 
+          // static_instructions_O2 : 5
+          // dynamic_instructions_O2 : 5
+          // ------------------------------- 
+          // static_instructions_O3 : 5
+          // dynamic_instructions_O3 : 5
+          // ------------------------------- 
+          // static_instructions_Ofast : 5
+          // dynamic_instructions_Ofast : 5
+          // ------------------------------- 
+          // static_instructions_Os : 5
+          // dynamic_instructions_Os : 5
+          // ------------------------------- 
+          // static_instructions_Oz : 5
+          // dynamic_instructions_Oz : 5
+          // ------------------------------- 
+
+          int _len_cfg_handler0 = 1;
+          struct mdp5_cfg_handler * cfg_handler = (struct mdp5_cfg_handler *) malloc(_len_cfg_handler0*sizeof(struct mdp5_cfg_handler));
+          for(int _i0 = 0; _i0 < _len_cfg_handler0; _i0++) {
+              cfg_handler[_i0].config.dummy = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
           struct mdp5_cfg * benchRet = mdp5_cfg_get_config(cfg_handler);
           printf("%d\n", (*benchRet).dummy);
           free(cfg_handler);

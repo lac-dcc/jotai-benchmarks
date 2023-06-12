@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -70,12 +72,6 @@ __attribute__((used)) static int mpc52xx_psc_spi_transfer_setup(struct spi_devic
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -88,27 +84,175 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_spi0 = 1;
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_spi0 = 65025;
           struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
           for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
-            spi[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
-        spi[_i0].max_speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].max_speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_spi__i0__controller_state0 = 1;
           spi[_i0].controller_state = (struct mpc52xx_psc_spi_cs *) malloc(_len_spi__i0__controller_state0*sizeof(struct mpc52xx_psc_spi_cs));
           for(int _j0 = 0; _j0 < _len_spi__i0__controller_state0; _j0++) {
-            spi[_i0].controller_state->bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
-        spi[_i0].controller_state->speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+              spi[_i0].controller_state->bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].controller_state->speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           }
+        
+          int _len_t0 = 65025;
+          struct spi_transfer * t = (struct spi_transfer *) malloc(_len_t0*sizeof(struct spi_transfer));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mpc52xx_psc_spi_transfer_setup(spi,t);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spi0; _aux++) {
+          free(spi[_aux].controller_state);
+          }
+          free(spi);
+          free(t);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_spi0 = 100;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].max_speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spi__i0__controller_state0 = 1;
+          spi[_i0].controller_state = (struct mpc52xx_psc_spi_cs *) malloc(_len_spi__i0__controller_state0*sizeof(struct mpc52xx_psc_spi_cs));
+          for(int _j0 = 0; _j0 < _len_spi__i0__controller_state0; _j0++) {
+              spi[_i0].controller_state->bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].controller_state->speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
+          int _len_t0 = 100;
+          struct spi_transfer * t = (struct spi_transfer *) malloc(_len_t0*sizeof(struct spi_transfer));
+          for(int _i0 = 0; _i0 < _len_t0; _i0++) {
+              t[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = mpc52xx_psc_spi_transfer_setup(spi,t);
+          printf("%d\n", benchRet); 
+          for(int _aux = 0; _aux < _len_spi0; _aux++) {
+          free(spi[_aux].controller_state);
+          }
+          free(spi);
+          free(t);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 44
+          // dynamic_instructions_O0 : 44
+          // ------------------------------- 
+          // static_instructions_O1 : 23
+          // dynamic_instructions_O1 : 23
+          // ------------------------------- 
+          // static_instructions_O2 : 21
+          // dynamic_instructions_O2 : 21
+          // ------------------------------- 
+          // static_instructions_O3 : 21
+          // dynamic_instructions_O3 : 21
+          // ------------------------------- 
+          // static_instructions_Ofast : 21
+          // dynamic_instructions_Ofast : 21
+          // ------------------------------- 
+          // static_instructions_Os : 21
+          // dynamic_instructions_Os : 21
+          // ------------------------------- 
+          // static_instructions_Oz : 21
+          // dynamic_instructions_Oz : 21
+          // ------------------------------- 
+
+          int _len_spi0 = 1;
+          struct spi_device * spi = (struct spi_device *) malloc(_len_spi0*sizeof(struct spi_device));
+          for(int _i0 = 0; _i0 < _len_spi0; _i0++) {
+              spi[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].max_speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_spi__i0__controller_state0 = 1;
+          spi[_i0].controller_state = (struct mpc52xx_psc_spi_cs *) malloc(_len_spi__i0__controller_state0*sizeof(struct mpc52xx_psc_spi_cs));
+          for(int _j0 = 0; _j0 < _len_spi__i0__controller_state0; _j0++) {
+              spi[_i0].controller_state->bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          spi[_i0].controller_state->speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          }
+        
           int _len_t0 = 1;
           struct spi_transfer * t = (struct spi_transfer *) malloc(_len_t0*sizeof(struct spi_transfer));
           for(int _i0 = 0; _i0 < _len_t0; _i0++) {
-            t[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
-        t[_i0].speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+              t[_i0].bits_per_word = ((-2 * (next_i()%2)) + 1) * next_i();
+          t[_i0].speed_hz = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = mpc52xx_psc_spi_transfer_setup(spi,t);
           printf("%d\n", benchRet); 
           for(int _aux = 0; _aux < _len_spi0; _aux++) {

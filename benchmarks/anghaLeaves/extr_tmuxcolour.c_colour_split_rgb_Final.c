@@ -31,6 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -63,12 +66,6 @@ colour_split_rgb(int c, u_char *r, u_char *g, u_char *b)
 	*b = c & 0xff;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,21 +82,25 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int c = 100;
+        
           int _len_r0 = 1;
           int * r = (int *) malloc(_len_r0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_r0; _i0++) {
             r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_g0 = 1;
           int * g = (int *) malloc(_len_g0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_g0; _i0++) {
             g[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           int _len_b0 = 1;
           int * b = (int *) malloc(_len_b0*sizeof(int));
           for(int _i0 = 0; _i0 < _len_b0; _i0++) {
             b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
           }
+        
           colour_split_rgb(c,r,g,b);
           free(r);
           free(g);
@@ -107,7 +108,96 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr
+    case 1:
+    {
+          int c = 255;
+        
+          int _len_r0 = 65025;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_g0 = 65025;
+          int * g = (int *) malloc(_len_g0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+            g[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 65025;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          colour_split_rgb(c,r,g,b);
+          free(r);
+          free(g);
+          free(b);
+        
+        break;
+    }
+    // big-arr-10x
+    case 2:
+    {
+          int c = 10;
+        
+          int _len_r0 = 100;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_g0 = 100;
+          int * g = (int *) malloc(_len_g0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+            g[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 100;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          colour_split_rgb(c,r,g,b);
+          free(r);
+          free(g);
+          free(b);
+        
+        break;
+    }
+    // empty
+    case 3:
+    {
+          int c = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_r0 = 1;
+          int * r = (int *) malloc(_len_r0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_r0; _i0++) {
+            r[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_g0 = 1;
+          int * g = (int *) malloc(_len_g0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_g0; _i0++) {
+            g[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          int _len_b0 = 1;
+          int * b = (int *) malloc(_len_b0*sizeof(int));
+          for(int _i0 = 0; _i0 < _len_b0; _i0++) {
+            b[_i0] = ((-2 * (next_i()%2)) + 1) * next_i();
+          }
+        
+          colour_split_rgb(c,r,g,b);
+          free(r);
+          free(g);
+          free(b);
+        
+        break;
+    }
     default:
         usage();
         break;

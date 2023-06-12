@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -65,12 +67,6 @@ nstime_init2(nstime_t *time, uint64_t sec, uint64_t nsec) {
 	time->ns = sec * BILLION + nsec;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -83,31 +79,172 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
+
     // int-bounds
     case 0:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int sec = 100;
+        
           int nsec = 100;
+        
           int _len_time0 = 1;
           struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_time0; _i0++) {
-            time[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              time[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           nstime_init2(time,sec,nsec);
           free(time);
         
         break;
     }
-    // big-arr-10x
+
+
+    // big-arr
     case 1:
     {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int sec = 255;
+        
+          int nsec = 255;
+        
+          int _len_time0 = 65025;
+          struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_time0; _i0++) {
+              time[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          nstime_init2(time,sec,nsec);
+          free(time);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 2:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
           int sec = 10;
+        
           int nsec = 10;
+        
           int _len_time0 = 100;
           struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_time0; _i0++) {
-            time[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+              time[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          nstime_init2(time,sec,nsec);
+          free(time);
+        
+        break;
+    }
+
+
+    // empty
+    case 3:
+    {
+          // static_instructions_O0 : 12
+          // dynamic_instructions_O0 : 12
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int sec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int nsec = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_time0 = 1;
+          struct TYPE_3__ * time = (struct TYPE_3__ *) malloc(_len_time0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_time0; _i0++) {
+              time[_i0].ns = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           nstime_init2(time,sec,nsec);
           free(time);
         

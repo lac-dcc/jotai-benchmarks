@@ -31,7 +31,9 @@ void usage() {
     prog [ARGS]\n\
 \nARGS:\n\
        0            int-bounds\n\
-       1            big-arr-10x\n\
+       1            big-arr\n\
+       2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -77,12 +79,6 @@ __attribute__((used)) static int phylink_mii_write(struct phylink *pl, unsigned 
 	return 0;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -99,13 +95,40 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int phy_id = 100;
+        
           unsigned int reg = 100;
+        
           unsigned int val = 100;
+        
           int _len_pl0 = 1;
           struct phylink * pl = (struct phylink *) malloc(_len_pl0*sizeof(struct phylink));
           for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
-            pl[_i0].link_an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pl[_i0].link_an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
+          int benchRet = phylink_mii_write(pl,phy_id,reg,val);
+          printf("%d\n", benchRet); 
+          free(pl);
+        
+        break;
+    }
+    // big-arr
+    case 1:
+    {
+          unsigned int phy_id = 255;
+        
+          unsigned int reg = 255;
+        
+          unsigned int val = 255;
+        
+          int _len_pl0 = 65025;
+          struct phylink * pl = (struct phylink *) malloc(_len_pl0*sizeof(struct phylink));
+          for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
+              pl[_i0].link_an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
           int benchRet = phylink_mii_write(pl,phy_id,reg,val);
           printf("%d\n", benchRet); 
           free(pl);
@@ -113,23 +136,49 @@ int main(int argc, char *argv[]) {
         break;
     }
     // big-arr-10x
-    case 1:
+    case 2:
     {
           unsigned int phy_id = 10;
+        
           unsigned int reg = 10;
+        
           unsigned int val = 10;
+        
           int _len_pl0 = 100;
           struct phylink * pl = (struct phylink *) malloc(_len_pl0*sizeof(struct phylink));
           for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
-            pl[_i0].link_an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+              pl[_i0].link_an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = phylink_mii_write(pl,phy_id,reg,val);
           printf("%d\n", benchRet); 
           free(pl);
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int phy_id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int reg = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int val = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int _len_pl0 = 1;
+          struct phylink * pl = (struct phylink *) malloc(_len_pl0*sizeof(struct phylink));
+          for(int _i0 = 0; _i0 < _len_pl0; _i0++) {
+              pl[_i0].link_an_mode = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = phylink_mii_write(pl,phy_id,reg,val);
+          printf("%d\n", benchRet); 
+          free(pl);
+        
+        break;
+    }
     default:
         usage();
         break;

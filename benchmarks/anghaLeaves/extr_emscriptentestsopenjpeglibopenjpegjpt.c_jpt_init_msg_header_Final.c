@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ void jpt_init_msg_header(opj_jpt_msg_header_t * header) {
 	header->Layer_nb = 0;		/* Auxiliary for JPP case */
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,26 +81,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_header0 = 1;
+          int _len_header0 = 65025;
           struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
           for(int _i0 = 0; _i0 < _len_header0; _i0++) {
-            header[_i0].Layer_nb = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].Msg_length = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].Msg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].CSn_Id = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].Class_Id = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].last_byte = ((-2 * (next_i()%2)) + 1) * next_i();
-        header[_i0].Id = ((-2 * (next_i()%2)) + 1) * next_i();
+              header[_i0].Layer_nb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Msg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Msg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].CSn_Id = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Class_Id = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].last_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           jpt_init_msg_header(header);
           free(header);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_header0 = 100;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].Layer_nb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Msg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Msg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].CSn_Id = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Class_Id = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].last_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jpt_init_msg_header(header);
+          free(header);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_header0 = 1;
+          struct TYPE_3__ * header = (struct TYPE_3__ *) malloc(_len_header0*sizeof(struct TYPE_3__));
+          for(int _i0 = 0; _i0 < _len_header0; _i0++) {
+              header[_i0].Layer_nb = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Msg_length = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Msg_offset = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].CSn_Id = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Class_Id = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].last_byte = ((-2 * (next_i()%2)) + 1) * next_i();
+          header[_i0].Id = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          jpt_init_msg_header(header);
+          free(header);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -69,12 +70,6 @@ check_width (unsigned cur,
     return(dw > prev);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -91,7 +86,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned int cur = 100;
+        
           unsigned int prev = 100;
+        
           int benchRet = check_width(cur,prev);
           printf("%d\n", benchRet); 
         
@@ -101,7 +98,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned int cur = 255;
+        
           unsigned int prev = 255;
+        
           int benchRet = check_width(cur,prev);
           printf("%d\n", benchRet); 
         
@@ -111,13 +110,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned int cur = 10;
+        
           unsigned int prev = 10;
+        
           int benchRet = check_width(cur,prev);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned int cur = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          unsigned int prev = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = check_width(cur,prev);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

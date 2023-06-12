@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ smb2_compare_fids(struct cifsFileInfo *ob1, struct cifsFileInfo *ob2)
 	       ob1->fid.volatile_fid == ob2->fid.volatile_fid;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,21 +78,27 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_ob10 = 1;
+          int _len_ob10 = 65025;
           struct cifsFileInfo * ob1 = (struct cifsFileInfo *) malloc(_len_ob10*sizeof(struct cifsFileInfo));
           for(int _i0 = 0; _i0 < _len_ob10; _i0++) {
-            ob1[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
-        ob1[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+              ob1[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ob1[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
-          int _len_ob20 = 1;
+        
+          int _len_ob20 = 65025;
           struct cifsFileInfo * ob2 = (struct cifsFileInfo *) malloc(_len_ob20*sizeof(struct cifsFileInfo));
           for(int _i0 = 0; _i0 < _len_ob20; _i0++) {
-            ob2[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
-        ob2[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+              ob2[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ob2[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           int benchRet = smb2_compare_fids(ob1,ob2);
           printf("%d\n", benchRet); 
           free(ob1);
@@ -104,7 +106,62 @@ int main(int argc, char *argv[]) {
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          int _len_ob10 = 100;
+          struct cifsFileInfo * ob1 = (struct cifsFileInfo *) malloc(_len_ob10*sizeof(struct cifsFileInfo));
+          for(int _i0 = 0; _i0 < _len_ob10; _i0++) {
+              ob1[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ob1[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ob20 = 100;
+          struct cifsFileInfo * ob2 = (struct cifsFileInfo *) malloc(_len_ob20*sizeof(struct cifsFileInfo));
+          for(int _i0 = 0; _i0 < _len_ob20; _i0++) {
+              ob2[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ob2[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = smb2_compare_fids(ob1,ob2);
+          printf("%d\n", benchRet); 
+          free(ob1);
+          free(ob2);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          int _len_ob10 = 1;
+          struct cifsFileInfo * ob1 = (struct cifsFileInfo *) malloc(_len_ob10*sizeof(struct cifsFileInfo));
+          for(int _i0 = 0; _i0 < _len_ob10; _i0++) {
+              ob1[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ob1[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int _len_ob20 = 1;
+          struct cifsFileInfo * ob2 = (struct cifsFileInfo *) malloc(_len_ob20*sizeof(struct cifsFileInfo));
+          for(int _i0 = 0; _i0 < _len_ob20; _i0++) {
+              ob2[_i0].fid.persistent_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+          ob2[_i0].fid.volatile_fid = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          int benchRet = smb2_compare_fids(ob1,ob2);
+          printf("%d\n", benchRet); 
+          free(ob1);
+          free(ob2);
+        
+        break;
+    }
     default:
         usage();
         break;

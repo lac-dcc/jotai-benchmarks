@@ -65,12 +65,6 @@ __attribute__((used)) static bool tcp_state_active(int state)
 	return tcp_state_active_table[state];
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -87,6 +81,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int state = 100;
+        
           int benchRet = tcp_state_active(state);
           printf("%d\n", benchRet); 
         
@@ -96,6 +91,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int state = 255;
+        
           int benchRet = tcp_state_active(state);
           printf("%d\n", benchRet); 
         
@@ -105,12 +101,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int state = 10;
+        
           int benchRet = tcp_state_active(state);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

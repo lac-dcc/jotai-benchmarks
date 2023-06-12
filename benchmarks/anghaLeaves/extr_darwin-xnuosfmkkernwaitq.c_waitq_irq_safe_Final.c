@@ -30,8 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
        1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -62,12 +63,6 @@ int waitq_irq_safe(struct waitq *waitq)
 	return waitq->waitq_irq;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -80,14 +75,16 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
-          int _len_waitq0 = 1;
+          int _len_waitq0 = 65025;
           struct waitq * waitq = (struct waitq *) malloc(_len_waitq0*sizeof(struct waitq));
           for(int _i0 = 0; _i0 < _len_waitq0; _i0++) {
-            waitq[_i0].waitq_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              waitq[_i0].waitq_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = waitq_irq_safe(waitq);
           printf("%d\n", benchRet); 
           free(waitq);
@@ -100,15 +97,32 @@ int main(int argc, char *argv[]) {
           int _len_waitq0 = 100;
           struct waitq * waitq = (struct waitq *) malloc(_len_waitq0*sizeof(struct waitq));
           for(int _i0 = 0; _i0 < _len_waitq0; _i0++) {
-            waitq[_i0].waitq_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+              waitq[_i0].waitq_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
           }
+        
           int benchRet = waitq_irq_safe(waitq);
           printf("%d\n", benchRet); 
           free(waitq);
         
         break;
     }
-
+    // empty
+    case 2:
+    {
+          int _len_waitq0 = 1;
+          struct waitq * waitq = (struct waitq *) malloc(_len_waitq0*sizeof(struct waitq));
+          for(int _i0 = 0; _i0 < _len_waitq0; _i0++) {
+              waitq[_i0].waitq_irq = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          }
+        
+          int benchRet = waitq_irq_safe(waitq);
+          printf("%d\n", benchRet); 
+          free(waitq);
+        
+        break;
+    }
     default:
         usage();
         break;

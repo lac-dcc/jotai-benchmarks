@@ -71,12 +71,6 @@ __attribute__((used)) static u32 rotation24bpp(u32 dx, u32 direction)
 	return ((rotation << 8) | DST_24_ROTATION_ENABLE);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -93,7 +87,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int dx = 100;
+        
           int direction = 100;
+        
           int benchRet = rotation24bpp(dx,direction);
           printf("%d\n", benchRet); 
         
@@ -103,7 +99,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int dx = 255;
+        
           int direction = 255;
+        
           int benchRet = rotation24bpp(dx,direction);
           printf("%d\n", benchRet); 
         
@@ -113,13 +111,14 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int dx = 10;
+        
           int direction = 10;
+        
           int benchRet = rotation24bpp(dx,direction);
           printf("%d\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -64,12 +66,6 @@ void qxl_ring_init_hdr(struct qxl_ring *ring)
 	ring->ring->header.notify_on_prod = ring->n_elements;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -82,19 +78,144 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+
+    // big-arr
     case 0:
     {
-          int _len_ring0 = 1;
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ring0 = 65025;
           struct qxl_ring * ring = (struct qxl_ring *) malloc(_len_ring0*sizeof(struct qxl_ring));
           for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
-            ring[_i0].n_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].n_elements = ((-2 * (next_i()%2)) + 1) * next_i();
           int _len_ring__i0__ring0 = 1;
           ring[_i0].ring = (struct TYPE_4__ *) malloc(_len_ring__i0__ring0*sizeof(struct TYPE_4__));
           for(int _j0 = 0; _j0 < _len_ring__i0__ring0; _j0++) {
-            ring[_i0].ring->header.notify_on_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+              ring[_i0].ring->header.notify_on_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           }
+        
+          qxl_ring_init_hdr(ring);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].ring);
+          }
+          free(ring);
+        
+        break;
+    }
+
+
+    // big-arr-10x
+    case 1:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ring0 = 100;
+          struct qxl_ring * ring = (struct qxl_ring *) malloc(_len_ring0*sizeof(struct qxl_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].n_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__ring0 = 1;
+          ring[_i0].ring = (struct TYPE_4__ *) malloc(_len_ring__i0__ring0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__ring0; _j0++) {
+              ring[_i0].ring->header.notify_on_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
+          qxl_ring_init_hdr(ring);
+          for(int _aux = 0; _aux < _len_ring0; _aux++) {
+          free(ring[_aux].ring);
+          }
+          free(ring);
+        
+        break;
+    }
+
+
+    // empty
+    case 2:
+    {
+          // static_instructions_O0 : 10
+          // dynamic_instructions_O0 : 10
+          // ------------------------------- 
+          // static_instructions_O1 : 7
+          // dynamic_instructions_O1 : 7
+          // ------------------------------- 
+          // static_instructions_O2 : 7
+          // dynamic_instructions_O2 : 7
+          // ------------------------------- 
+          // static_instructions_O3 : 7
+          // dynamic_instructions_O3 : 7
+          // ------------------------------- 
+          // static_instructions_Ofast : 7
+          // dynamic_instructions_Ofast : 7
+          // ------------------------------- 
+          // static_instructions_Os : 7
+          // dynamic_instructions_Os : 7
+          // ------------------------------- 
+          // static_instructions_Oz : 7
+          // dynamic_instructions_Oz : 7
+          // ------------------------------- 
+
+          int _len_ring0 = 1;
+          struct qxl_ring * ring = (struct qxl_ring *) malloc(_len_ring0*sizeof(struct qxl_ring));
+          for(int _i0 = 0; _i0 < _len_ring0; _i0++) {
+              ring[_i0].n_elements = ((-2 * (next_i()%2)) + 1) * next_i();
+          int _len_ring__i0__ring0 = 1;
+          ring[_i0].ring = (struct TYPE_4__ *) malloc(_len_ring__i0__ring0*sizeof(struct TYPE_4__));
+          for(int _j0 = 0; _j0 < _len_ring__i0__ring0; _j0++) {
+              ring[_i0].ring->header.notify_on_prod = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          }
+        
           qxl_ring_init_hdr(ring);
           for(int _aux = 0; _aux < _len_ring0; _aux++) {
           free(ring[_aux].ring);

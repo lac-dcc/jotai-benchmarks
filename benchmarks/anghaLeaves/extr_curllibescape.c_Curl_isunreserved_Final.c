@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -81,12 +82,6 @@ bool Curl_isunreserved(unsigned char in)
   return FALSE;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -103,6 +98,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           unsigned char in = 100;
+        
           int benchRet = Curl_isunreserved(in);
           printf("%d\n", benchRet); 
         
@@ -112,6 +108,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           unsigned char in = 255;
+        
           int benchRet = Curl_isunreserved(in);
           printf("%d\n", benchRet); 
         
@@ -121,12 +118,22 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           unsigned char in = 10;
+        
           int benchRet = Curl_isunreserved(in);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          unsigned char in = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = Curl_isunreserved(in);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -62,12 +62,6 @@ __attribute__((used)) static inline unsigned long sparse_encode_early_nid(int ni
 	return (nid << SECTION_NID_SHIFT);
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -84,6 +78,7 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int nid = 100;
+        
           unsigned long benchRet = sparse_encode_early_nid(nid);
           printf("%lu\n", benchRet); 
         
@@ -93,6 +88,7 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int nid = 255;
+        
           unsigned long benchRet = sparse_encode_early_nid(nid);
           printf("%lu\n", benchRet); 
         
@@ -102,12 +98,12 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int nid = 10;
+        
           unsigned long benchRet = sparse_encode_early_nid(nid);
           printf("%lu\n", benchRet); 
         
         break;
     }
-
     default:
         usage();
         break;

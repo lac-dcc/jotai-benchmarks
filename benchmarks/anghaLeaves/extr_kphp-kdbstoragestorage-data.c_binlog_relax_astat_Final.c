@@ -30,7 +30,9 @@ void usage() {
     printf("%s", "Usage:\n\
     prog [ARGS]\n\
 \nARGS:\n\
-       0            int-bounds\n\
+       0            big-arr\n\
+       1            big-arr-10x\n\
+       2            empty\n\
 \n\
 ");
 
@@ -67,12 +69,6 @@ __attribute__((used)) static void binlog_relax_astat (storage_binlog_file_t *B, 
   B->as_read.old_value = B->st_read.fails;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -85,23 +81,69 @@ int main(int argc, char *argv[]) {
     int opt = atoi(argv[1]);
     switch(opt) {
 
-    // int-bounds
+    // big-arr
     case 0:
     {
           double e = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-          int _len_B0 = 1;
+        
+          int _len_B0 = 65025;
           struct TYPE_7__ * B = (struct TYPE_7__ *) malloc(_len_B0*sizeof(struct TYPE_7__));
           for(int _i0 = 0; _i0 < _len_B0; _i0++) {
-            B[_i0].st_read.fails = ((-2 * (next_i()%2)) + 1) * next_i();
-        B[_i0].as_read.counter = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
-        B[_i0].as_read.old_value = ((-2 * (next_i()%2)) + 1) * next_i();
+              B[_i0].st_read.fails = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          B[_i0].as_read.counter = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          B[_i0].as_read.old_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
           }
+        
           binlog_relax_astat(B,e);
           free(B);
         
         break;
     }
-
+    // big-arr-10x
+    case 1:
+    {
+          double e = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_B0 = 100;
+          struct TYPE_7__ * B = (struct TYPE_7__ *) malloc(_len_B0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].st_read.fails = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          B[_i0].as_read.counter = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          B[_i0].as_read.old_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          binlog_relax_astat(B,e);
+          free(B);
+        
+        break;
+    }
+    // empty
+    case 2:
+    {
+          double e = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+        
+          int _len_B0 = 1;
+          struct TYPE_7__ * B = (struct TYPE_7__ *) malloc(_len_B0*sizeof(struct TYPE_7__));
+          for(int _i0 = 0; _i0 < _len_B0; _i0++) {
+              B[_i0].st_read.fails = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          B[_i0].as_read.counter = ((-2.0 * (next_i()%2)) + 1.0) * (-16777216.000000 + (float) next_f() / (((float) 16777215.000000/(16777215.000000 - -16777216.000000))));
+          B[_i0].as_read.old_value = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+        
+          }
+        
+          binlog_relax_astat(B,e);
+          free(B);
+        
+        break;
+    }
     default:
         usage();
         break;

@@ -33,6 +33,7 @@ void usage() {
        0            int-bounds\n\
        1            big-arr\n\
        2            big-arr-10x\n\
+       3            empty\n\
 \n\
 ");
 
@@ -86,12 +87,6 @@ int TeamCount( int ignoreClientNum, team_t team ) {
 	return count;
 }
 
-
-// ------------------------------------------------------------------------- //
-
-
-
-
 // ------------------------------------------------------------------------- //
 
 int main(int argc, char *argv[]) {
@@ -108,7 +103,9 @@ int main(int argc, char *argv[]) {
     case 0:
     {
           int ignoreClientNum = 100;
+        
           long team = 100;
+        
           int benchRet = TeamCount(ignoreClientNum,team);
           printf("%d\n", benchRet); 
         
@@ -118,7 +115,9 @@ int main(int argc, char *argv[]) {
     case 1:
     {
           int ignoreClientNum = 255;
+        
           long team = 255;
+        
           int benchRet = TeamCount(ignoreClientNum,team);
           printf("%d\n", benchRet); 
         
@@ -128,13 +127,26 @@ int main(int argc, char *argv[]) {
     case 2:
     {
           int ignoreClientNum = 10;
+        
           long team = 10;
+        
           int benchRet = TeamCount(ignoreClientNum,team);
           printf("%d\n", benchRet); 
         
         break;
     }
-
+    // empty
+    case 3:
+    {
+          int ignoreClientNum = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          long team = ((-2 * (next_i()%2)) + 1) * next_i();
+        
+          int benchRet = TeamCount(ignoreClientNum,team);
+          printf("%d\n", benchRet); 
+        
+        break;
+    }
     default:
         usage();
         break;
